@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://bruno.ke.com">
-    <img width="200" src="https://img.ljcdn.com/beike/zjz/bruno/img/1637306783951.jpg">
+    <img width="200" src="https://img.ljcdn.com/beike/zjz/bruno/img/1638883523735.jpg">
   </a>
 </p>
 
@@ -25,7 +25,7 @@ An enterprise-class package of Flutter components for mobile applications.
 
 
 
-![](https://img.ljcdn.com/beike/zjz/bruno/img/1637308027692.png)
+![](https://img.ljcdn.com/beike/zjz/bruno/img/1638883534391.png)
 
 ## ✨ Features
 
