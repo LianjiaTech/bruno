@@ -74,13 +74,13 @@ BrnBubbleText(
 
 ### 🌈 主题定制
 
-参考 [定制主题]() 文档
+参考 [主题定制](https://bruno.ke.com/theme) 文档
 
 
 
 ## 参与贡献
 
-贡献之前请先阅读 [贡献指南]()。
+贡献之前请先阅读 [贡献指南](https://bruno.ke.com/contribution)。
 
 感谢所有为 Bruno 做出贡献的开发者!
 
@@ -147,21 +147,21 @@ BrnBubbleText(
 
 ## 🔗 链接 
 
-- [首页]()
+- [首页](https://bruno.ke.com)
 
-- [所有组件]()
+- [所有组件](https://bruno.ke.com/widgets)
 
-- [设计理念]()
+- [设计理念](https://mp.weixin.qq.com/s?__biz=MzIyODcxODY0OA==&mid=2247486048&idx=1&sn=0cc95bd85a54ce0f39f6247d15618ae8&chksm=e84ceb37df3b62216b34c7be041229630eca3d7c4fd3823ebf0520a9f2c99ed2cdf3e677904b&mpshare=1&scene=1&srcid=11012tvWvcYunVGfiPa8EfCT&sharer_sharetime=1635751229200&sharer_shareid=dbde8f595d5b99a8f5cfb27122964615&version=3.1.16.90294)
 
-- [快速接入]()
+- [快速接入](https://bruno.ke.com/start)
 
-- [主题定制]()
+- [主题定制](https://bruno.ke.com/theme)
 
-- [常见问题]()
+- [常见问题](https://bruno.ke.com/faq)
 
-- [sketch使用教程]()
+- [sketch使用教程](https://bruno.ke.com/sketch)
 
-- [设计物料下载]()
+- [设计物料下载](https://bruno.ke.com:3008/download/sketch)
 
 ## 致谢
 
