@@ -1,0 +1,12 @@
+{
+  "errno": 0,
+  "error": "",
+  "data": {
+    "list": [
+      {
+      "type": "customHandle",
+      "key": "date",
+      "title": "自定义事件选择"
+    }]
+  }
+}

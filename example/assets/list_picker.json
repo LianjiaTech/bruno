@@ -1,0 +1,2618 @@
+{
+  "errno": 0,
+  "data": {
+    "list": [
+      {
+        "defaultValue": ":100",
+        "ext": {},
+        "children": [
+          {
+            "defaultValue": "1000:2000",
+            "ext": {},
+            "children": [
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": "",
+                "name": "不限"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "checkbox",
+                "value": ":1000",
+                "name": "1000元以下"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "checkbox",
+                "value": "1000:2000",
+                "name": "1000-2000元"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "checkbox",
+                "value": "2000:3000",
+                "name": "2000-3000元"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "checkbox",
+                "value": "3000:4000",
+                "name": "3000-4000元"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "checkbox",
+                "value": "4000:5000",
+                "name": "4000-5000元"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "checkbox",
+                "value": "5000:",
+                "name": "5000元以上"
+              },
+              {
+                "defaultValue": "",
+                "ext": {
+                  "min": 0,
+                  "max": 999999,
+                  "unit": "元"
+                },
+                "children": [],
+                "key": "",
+                "type": "range",
+                "value": "",
+                "name": "自定义价格"
+              }
+            ],
+            "key": "test_price",
+            "type": "radio",
+            "value": "rent",
+            "name": "价格"
+          },
+          {
+            "defaultValue": "",
+            "ext": {},
+            "children": [
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": "",
+                "name": "不限"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": ":100",
+                "name": "100万以下"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": "100:150",
+                "name": "100-150万"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": "150:200",
+                "name": "150-200万"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": "200:250",
+                "name": "200-250万"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": "250:300",
+                "name": "250-300万"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": "300:500",
+                "name": "300-500万"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": "500:1000",
+                "name": "500-1000万"
+              },
+              {
+                "defaultValue": "",
+                "ext": {},
+                "children": [],
+                "key": "",
+                "type": "radio",
+                "value": "1000:",
+                "name": "1000万以上"
+              },
+              {
+                "defaultValue": "",
+                "ext": {
+                  "min": 0,
+                  "max": 9999999,
+                  "unit": "万"
+                },
+                "children": [],
+                "key": "",
+                "type": "range",
+                "value": "",
+                "name": "自定义价格"
+              }
+            ],
+            "key": "test_price_1",
+            "type": "radio",
+            "value": "sale",
+            "name": "售房价格"
+          }
+        ],
+        "key": "g_price",
+        "type": "radio",
+        "value": "总价",
+        "name": "总价"
+      },
+      {
+        "defaultValue": "1:1",
+        "ext": {},
+        "children": [
+          {
+            "defaultValue": "",
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "",
+            "name": "不限"
+          },
+          {
+            "defaultValue": "",
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "1:1",
+            "name": "1室"
+          },
+          {
+            "defaultValue": "",
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "2:2",
+            "name": "2室"
+          },
+          {
+            "defaultValue": "",
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "3:3",
+            "name": "3室"
+          },
+          {
+            "defaultValue": "",
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "4:4",
+            "name": "4室"
+          },
+          {
+            "defaultValue": "",
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "5:5",
+            "name": "5室"
+          },
+          {
+            "defaultValue": "",
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "5:",
+            "name": "5室以上"
+          },
+          {
+            "defaultValue": "",
+            "ext": {
+              "min": 1,
+              "max": 100,
+              "unit": "室"
+            },
+            "children": [],
+            "key": "",
+            "type": "range",
+            "value": "",
+            "name": "自定义房型"
+          }
+        ],
+        "key": "room",
+        "type": "checkbox",
+        "value": "",
+        "name": "房型"
+      },
+      {
+        "name": "我的角色",
+        "key": "role",
+        "type": "radio",
+        "defaultValue": "",
+        "value": "",
+        "ext": {
+          "defaultShowCount": 3,
+          "isHighFrequency": false
+        },
+        "children": [
+          {
+            "name": "不限",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "",
+            "ext": {},
+            "children": []
+          },
+          {
+            "name": "维护人",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "1",
+            "ext": {},
+            "children": []
+          },
+          {
+            "name": "钥匙人",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "2",
+            "ext": {},
+            "children": []
+          },
+          {
+            "name": "实勘人",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "3",
+            "ext": {},
+            "children": []
+          },
+          {
+            "name": "VIP服务人",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "4",
+            "ext": {},
+            "children": []
+          },
+          {
+            "name": "备件人",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "1011121314",
+            "ext": {},
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "商圈",
+        "key": "dId",
+        "type": "radio",
+        "defaultValue": "",
+        "value": "",
+        "ext": {
+          "isHighFrequency": false
+        },
+        "children": [
+          {
+            "name": "不限",
+            "type": "radio",
+            "ext": {}
+          },
+          {
+            "name": "和平",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "101",
+            "ext": {},
+            "children": [
+              {
+                "name": "不限",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "不限",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "南门街",
+                "key": "twolevel",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "22",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区所有地区所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市所有地区所有地区",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "南市",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "48",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "南营门街",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "劝业场",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "25",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "劝业场",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "25",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "小白楼",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "24",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "体育馆街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "24",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "新兴街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "26",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "河东",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "102",
+            "ext": {},
+            "children": [
+              {
+                "name": "唐家口",
+                "key": "tangjiakou",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "83",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "nanshi",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "xiaobailou",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "xinxingjie",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "向阳楼",
+                "key": "xiangyanglou",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "82",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "万新村",
+                "key": "wanxinchun",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "92",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "大王庄",
+                "key": "dawangzhuang",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "29",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "上杭路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "74",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "太阳城",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "771",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "春华街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "93",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "常州道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "92",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "富民路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "86",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "中山门街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "248",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "鲁山道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "97",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "大直沽",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "87",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "二号桥街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "242",
+                "ext": {},
+                "children": [
+                  {
+                    "name": "所有地区",
+                    "key": "",
+                    "type": "radio",
+                    "defaultValue": "",
+                    "value": "",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "南市",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "48",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "小白楼",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "体育馆街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "24",
+                    "ext": {},
+                    "children": []
+                  },
+                  {
+                    "name": "新兴街",
+                    "key": "",
+                    "type": "checkbox",
+                    "defaultValue": "",
+                    "value": "26",
+                    "ext": {},
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "商圈",
+        "key": "dId",
+        "type": "radio",
+        "defaultValue": "",
+        "value": "",
+        "ext": {
+          "isHighFrequency": false
+        },
+        "children": [
+          {
+            "name": "和平",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "101",
+            "ext": {},
+            "children": [
+              {
+                "name": "所有地区",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "",
+                "ext": {}
+              },
+              {
+                "name": "南市",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "48",
+                "ext": {}
+              },
+              {
+                "name": "劝业场",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "25",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "小白楼",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "24",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "体育馆街",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "24",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "新兴街",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "26",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "河东",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "102",
+            "ext": {},
+            "children": [
+              {
+                "name": "唐家口",
+                "key": "tangjiakou",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "83",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "向阳楼",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "82",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "万新村",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "92",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "大王庄",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "29",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "上杭路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "74",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "太阳城",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "771",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "春华街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "93",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "常州道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "92",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "富民路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "86",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "中山门街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "248",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "鲁山道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "97",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "大直沽",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "87",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "二号桥街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "242",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "河西",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "103",
+            "ext": {},
+            "children": [
+              {
+                "name": "越秀路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "42",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "柳林街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "44",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "新梅江",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "33",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "天塔街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "257",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "桃园街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "258",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "陈塘庄",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "84",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "马场街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "255",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "挂甲寺",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "20",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "下瓦房",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "23",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "大营门",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "17",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "友谊路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "10",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "梅江",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "80",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "尖山",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "12",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "小海地",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "82",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "南开",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "104",
+            "ext": {},
+            "children": [
+              {
+                "name": "华苑",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "72",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "体育中心街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "12",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "王顶堤",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "06",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "水上公园街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "14",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "兴南街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "75",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "万兴街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "285",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "学府街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "286",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "向阳路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "94",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "广开街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "280",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "嘉陵道街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "282",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "鼓楼街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "433",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "长虹街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "91",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "河北",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "105",
+            "ext": {},
+            "children": [
+              {
+                "name": "新开河",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "01",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "王串场",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "33",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "铁东路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "00",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "宁园",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "60",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "江都路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "34",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "光复道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "49",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "鸿顺里街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "18",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "月牙河",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "96",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "建昌道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "99",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "望海楼",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "58",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "蓟州",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "25",
+            "ext": {},
+            "children": [
+              {
+                "name": "蓟县",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "18",
+                "ext": {},
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "商圈",
+        "key": "dId",
+        "type": "radio",
+        "defaultValue": "",
+        "value": "",
+        "ext": {
+          "isHighFrequency": false
+        },
+        "children": [
+          {
+            "name": "和平",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "101",
+            "ext": {},
+            "children": [
+              {
+                "name": "所有地区",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "",
+                "ext": {}
+              },
+              {
+                "name": "南市",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "48",
+                "ext": {}
+              },
+              {
+                "name": "劝业场",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "25",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "小白楼",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "24",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "体育馆街",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "24",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "新兴街",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "26",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "河东",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "102",
+            "ext": {},
+            "children": [
+              {
+                "name": "唐家口",
+                "key": "tangjiakou",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "83",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "向阳楼",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "82",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "万新村",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "92",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "大王庄",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "29",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "上杭路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "74",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "太阳城",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "771",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "春华街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "93",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "常州道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "92",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "富民路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "86",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "中山门街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "8",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "鲁山道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "97",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "大直沽",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "87",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "二号桥街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "242",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "河西",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "103",
+            "ext": {},
+            "children": [
+              {
+                "name": "越秀路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "42",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "柳林街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "44",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "新梅江",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "33",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "天塔街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "11",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "桃园街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "258",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "陈塘庄",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "84",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "马场街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "11",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "挂甲寺",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "20",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "下瓦房",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "23",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "大营门",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "17",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "友谊路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "10",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "梅江",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "80",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "尖山",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "12",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "小海地",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "82",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "南开",
+            "key": "bId",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "14",
+            "ext": {},
+            "children": [
+              {
+                "name": "华苑",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "72",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "体育中心街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "12",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "王顶堤",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "06",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "水上公园街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "14",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "兴南街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "75",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "万兴街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "285",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "学府街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "286",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "向阳路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "94",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "广开街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "280",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "嘉陵道街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "282",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "鼓楼街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "433",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "长虹街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "91",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "河北",
+            "key": "bid",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "105",
+            "ext": {},
+            "children": [
+              {
+                "name": "新开河",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "01",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "王串场",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "33",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "铁东路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "00",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "宁园",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "60",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "江都路",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "34",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "光复道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "49",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "鸿顺里街",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "28",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "月牙河",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "96",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "建昌道",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "99",
+                "ext": {},
+                "children": []
+              },
+              {
+                "name": "望海楼",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "58",
+                "ext": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "蓟州",
+            "key": "bid",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "11",
+            "ext": {},
+            "children": [
+              {
+                "name": "蓟县",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "11",
+                "ext": {},
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

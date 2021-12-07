@@ -1,0 +1,340 @@
+
+{
+  "errno": 0,
+  "data": {
+    "list": [
+      {
+        "key": "date",
+        "type": "radio",
+        "title": "日期",
+        "defaultValue": "1596697343911:1596897343911",
+        "id": "01",
+        "ext": {},
+        "children": [
+          {
+            "defaultValue": "",
+            "id": "0201",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "unlimit",
+            "value": "",
+            "title": "不限"
+          },
+          {
+            "defaultValue": "",
+            "id": "0205",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "1hour",
+            "title": "一小时前"
+          },
+          {
+            "defaultValue": "",
+            "id": "0206",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "1day",
+            "title": "一天前"
+          },
+          {
+            "defaultValue": "",
+            "id": "0207",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "1month",
+            "title": "一月前"
+          },
+          {
+            "defaultValue": "",
+            "id": "0208",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "checkbox",
+            "value": "1year",
+            "title": "一年前"
+          },
+          {
+            "defaultValue": "",
+            "id": "0209",
+            "exclusiveIdList": [],
+            "ext": {
+              "min":"1396797343911",
+              "max":"1706797343911"
+            },
+            "children": [],
+            "key": "",
+            "type": "daterange",
+            "title": "自定义日期"
+          }
+        ]
+      },
+      {
+        "defaultValue": "1596797343911",
+        "id": "03",
+        "key": "date_11",
+        "type": "radio",
+        "value": "",
+        "title": "时间一",
+        "ext": {},
+        "children": [
+          {
+            "defaultValue": "",
+            "id": "0301",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "unlimit",
+            "value": "",
+            "title": "不限"
+          },
+          {
+            "defaultValue": "",
+            "id": "0301",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "1:1",
+            "title": "时间一"
+          },
+          {
+            "defaultValue": "",
+            "id": "0303",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "2:2",
+            "title": "时间一"
+          },
+          {
+            "defaultValue": "",
+            "id": "0304",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "3:3",
+            "title": "时间一"
+          },
+          {
+            "defaultValue": "",
+            "id": "0305",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "4:4",
+            "title": "时间一"
+          },
+          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:5",
+            "title": "时间一"
+          },
+          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },
+          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间一"
+          },
+          {
+            "defaultValue": "",
+            "id": "0307",
+            "exclusiveIdList": [],
+            "children": [],
+            "key": "",
+            "type": "date",
+            "value": "1596797343911",
+            "title": "自定义时间"
+          }
+        ]
+      },
+      {
+        "id": "03",
+        "key": "date_22",
+        "type": "radio",
+        "value": "",
+        "title": "时间二",
+        "ext": {},
+        "children": [
+
+          {
+            "defaultValue": "",
+            "id": "0305",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "4:4",
+            "title": "时间0"
+          },
+          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:5",
+            "title": "时间1"
+          },
+          {
+            "defaultValue": "",
+            "id": "0306",
+            "exclusiveIdList": [],
+            "ext": {},
+            "children": [],
+            "key": "",
+            "type": "radio",
+            "value": "5:",
+            "title": "时间2"
+          },
+          {
+            "defaultValue": "",
+            "id": "0307",
+            "exclusiveIdList": [],
+            "children": [],
+            "key": "",
+            "type": "daterangecalendar",
+            "value": "",
+            "title": "自定义房型"
+          }
+        ]
+      }
+    ]
+  },
+  "cost": 87
+}

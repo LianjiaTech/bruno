@@ -1,0 +1,1370 @@
+{
+  "errno": 0,
+  "data": {
+    "list": [
+      {
+        "title": "单列",
+        "key": "one_list_key",
+        "type": "radio",
+        "defaultValue": "",
+        "value": "",
+        "children": [
+          {
+            "title": "不限",
+            "key": "",
+            "type": "unlimit",
+            "defaultValue": "",
+            "value": ""
+          },
+          {
+            "title": "选项一",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "1"
+          },
+          {
+            "title": "选项二",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "2"
+          },
+          {
+            "title": "选项三",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "3"
+          },
+          {
+            "title": "选项四",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "4"
+          },
+          {
+            "title": "选项五",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "5"
+          },
+          {
+            "title": "选项六",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "6"
+          },
+          {
+            "title": "选项七",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "7"
+          },
+          {
+            "title": "选项八",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "8"
+          }
+        ]
+      },
+      {
+        "defaultValue": "",
+        "key": "two_list_key",
+        "type": "radio",
+        "value": "",
+        "title": "双列",
+        "children": [
+          {
+            "title": "项目一",
+            "key": "first_list_key",
+            "type": "radio",
+            "defaultValue": "2",
+            "value": "",
+            "children": [
+              {
+                "title": "不限",
+                "key": "",
+                "type": "unlimit",
+                "defaultValue": "",
+                "value": ""
+              },
+              {
+                "title": "1-选项一",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "1"
+              },
+              {
+                "title": "1-选项二",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "2"
+              },
+              {
+                "title": "1-选项三",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "3"
+              },
+              {
+                "title": "1-选项四",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "4"
+              },
+              {
+                "title": "1-选项五",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "5"
+              },
+              {
+                "title": "1-选项六",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "6"
+              },
+              {
+                "title": "1-选项七",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "7"
+              },
+              {
+                "title": "1-选项八",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "8"
+              }
+            ]
+          },
+          {
+            "title": "项目二",
+            "key": "second_list_key",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "",
+            "children": [
+              {
+                "title": "不限",
+                "key": "",
+                "type": "unlimit",
+                "defaultValue": "",
+                "value": ""
+              },
+              {
+                "title": "2-选项一",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "1"
+              },
+              {
+                "title": "2-选项二",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "2"
+              },
+              {
+                "title": "2-选项三",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "3"
+              },
+              {
+                "title": "2-选项四",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "4"
+              },
+              {
+                "title": "2-选项五",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "5"
+              },
+              {
+                "title": "2-选项六",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "6"
+              },
+              {
+                "title": "2-选项七",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "7"
+              },
+              {
+                "title": "2-选项八",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "8"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "更多",
+        "key": "more",
+        "type": "more",
+        "defaultValue": "",
+        "value": "more",
+        "maxSelectedCount": "65535",
+        "children": [
+          {
+            "title": "商圈",
+            "key": "districtId",
+            "value": "",
+            "type": "floatinglayer",
+            "children": [
+              {
+                "title": "和平",
+                "key": "bid",
+                "value": "101",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "不限",
+                    "value": "",
+                    "type": "unlimit"
+                  },
+                  {
+                    "title": "劝业场",
+                    "key": "",
+                    "value": "225",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "小白楼",
+                    "key": "",
+                    "value": "224",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "南营门街",
+                    "key": "1",
+                    "value": "222",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "体育馆街",
+                    "key": "",
+                    "value": "224",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "南市",
+                    "key": "",
+                    "value": "748",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "新兴街",
+                    "key": "",
+                    "value": "226",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "河东",
+                "key": "hedong",
+                "value": "102",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "唐家口",
+                    "key": "",
+                    "value": "783",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "向阳楼",
+                    "key": "",
+                    "value": "782",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "万新村",
+                    "key": "",
+                    "value": "192",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "大王庄",
+                    "key": "",
+                    "value": "229",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "太阳城",
+                    "key": "",
+                    "value": "771",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "上杭路",
+                    "key": "",
+                    "value": "774",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "春华街",
+                    "key": "",
+                    "value": "793",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "常州道",
+                    "key": "",
+                    "value": "792",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "富民路",
+                    "key": "",
+                    "value": "186",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "中山门街",
+                    "key": "",
+                    "value": "248",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "鲁山道",
+                    "key": "",
+                    "value": "797",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "大直沽",
+                    "key": "",
+                    "value": "787",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "二号桥街",
+                    "key": "",
+                    "value": "242",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "河西",
+                "key": "bid",
+                "value": "103",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "越秀路",
+                    "key": "",
+                    "value": "842",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "柳林街",
+                    "key": "",
+                    "value": "844",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "新梅江",
+                    "key": "",
+                    "value": "833",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "天塔街",
+                    "key": "",
+                    "value": "257",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "桃园街",
+                    "key": "",
+                    "value": "258",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "陈塘庄",
+                    "key": "",
+                    "value": "184",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "马场街",
+                    "key": "",
+                    "value": "255",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "挂甲寺",
+                    "key": "",
+                    "value": "220",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "下瓦房",
+                    "key": "",
+                    "value": "223",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "大营门",
+                    "key": "",
+                    "value": "817",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "友谊路",
+                    "key": "",
+                    "value": "210",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "梅江",
+                    "key": "",
+                    "value": "180",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "尖山",
+                    "key": "",
+                    "value": "212",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "小海地",
+                    "key": "",
+                    "value": "182",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "南开",
+                "key": "bid",
+                "value": "104",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "华苑",
+                    "key": "",
+                    "value": "172",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "体育中心街",
+                    "key": "",
+                    "value": "812",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "王顶堤",
+                    "key": "",
+                    "value": "206",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "水上公园街",
+                    "key": "",
+                    "value": "814",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "兴南街",
+                    "key": "",
+                    "value": "775",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "万兴街",
+                    "key": "",
+                    "value": "285",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "学府街",
+                    "key": "",
+                    "value": "286",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "向阳路",
+                    "key": "",
+                    "value": "794",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "广开街",
+                    "key": "",
+                    "value": "280",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "嘉陵道街",
+                    "key": "",
+                    "value": "282",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "鼓楼街",
+                    "key": "",
+                    "value": "433",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "长虹街",
+                    "key": "",
+                    "value": "791",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "河北",
+                "key": "bid",
+                "value": "105",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "新开河",
+                    "key": "",
+                    "value": "201",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "王串场",
+                    "key": "",
+                    "value": "233",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "铁东路",
+                    "key": "",
+                    "value": "200",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "宁园",
+                    "key": "",
+                    "value": "760",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "江都路",
+                    "key": "",
+                    "value": "234",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "光复道",
+                    "key": "",
+                    "value": "749",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "鸿顺里街",
+                    "key": "",
+                    "value": "228",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "月牙河",
+                    "key": "",
+                    "value": "196",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "建昌道",
+                    "key": "",
+                    "value": "199",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "望海楼",
+                    "key": "",
+                    "value": "758",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "红桥",
+                "key": "bid",
+                "value": "106",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "芥园道",
+                    "key": "",
+                    "value": "216",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "西沽街",
+                    "key": "",
+                    "value": "269",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "咸阳北路",
+                    "key": "",
+                    "value": "808",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "三条石",
+                    "key": "",
+                    "value": "826",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "双环邨",
+                    "key": "",
+                    "value": "829",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "西于庄",
+                    "key": "",
+                    "value": "816",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "大胡同",
+                    "key": "",
+                    "value": "832",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "丁字沽街",
+                    "key": "",
+                    "value": "263",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "铃铛阁",
+                    "key": "",
+                    "value": "834",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "邵公庄",
+                    "key": "",
+                    "value": "823",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "塘沽",
+                "key": "bid",
+                "value": "107",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "新村街",
+                    "key": "",
+                    "value": "586",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "胡家园",
+                    "key": "",
+                    "value": "906",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "新河街",
+                    "key": "",
+                    "value": "836",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "杭州道",
+                    "key": "",
+                    "value": "832",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "向阳街",
+                    "key": "",
+                    "value": "289",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "解放路",
+                    "key": "",
+                    "value": "833",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "新城镇",
+                    "key": "",
+                    "value": "834",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "新港",
+                    "key": "",
+                    "value": "835",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "渤海石油街",
+                    "key": "",
+                    "value": "829",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "大沽街",
+                    "key": "",
+                    "value": "830",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "工农村",
+                    "key": "",
+                    "value": "831",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "北塘街",
+                    "key": "",
+                    "value": "951",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "三槐路街",
+                    "key": "",
+                    "value": "950",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "东丽",
+                "key": "bid",
+                "value": "110",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "军粮城",
+                    "key": "",
+                    "value": "908",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "华明镇",
+                    "key": "",
+                    "value": "825",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "钢管公司",
+                    "key": "",
+                    "value": "840",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "张贵庄",
+                    "key": "",
+                    "value": "909",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "金钟街",
+                    "key": "",
+                    "value": "824",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "万新街",
+                    "key": "",
+                    "value": "827",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "空港经济区",
+                    "key": "",
+                    "value": "837",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "月牙河",
+                    "key": "",
+                    "value": "196",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "新立街",
+                    "key": "",
+                    "value": "306",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "东丽湖",
+                    "key": "",
+                    "value": "839",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "西青",
+                "key": "bid",
+                "value": "111",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "张家窝",
+                    "key": "",
+                    "value": "761",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "侯台",
+                    "key": "",
+                    "value": "068",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "精武镇",
+                    "key": "",
+                    "value": "767",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "中北镇",
+                    "key": "",
+                    "value": "299",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "西营门",
+                    "key": "",
+                    "value": "750",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "杨柳青",
+                    "key": "",
+                    "value": "753",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "李七庄",
+                    "key": "",
+                    "value": "176",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "大寺",
+                    "key": "",
+                    "value": "771",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "辛口镇",
+                    "key": "",
+                    "value": "757",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "津南",
+                "key": "bid",
+                "value": "112",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "咸水沽",
+                    "key": "",
+                    "value": "811",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "八里台",
+                    "key": "",
+                    "value": "810",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "北闸口",
+                    "key": "",
+                    "value": "813",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "双港",
+                    "key": "",
+                    "value": "805",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "葛沽镇",
+                    "key": "",
+                    "value": "821",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "小站镇",
+                    "key": "",
+                    "value": "820",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "辛庄",
+                    "key": "",
+                    "value": "806",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "北辰",
+                "key": "bid",
+                "value": "113",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "双口镇",
+                    "key": "",
+                    "value": "777",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "宜兴埠",
+                    "key": "",
+                    "value": "795",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "天穆镇",
+                    "key": "",
+                    "value": "781",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "集贤里",
+                    "key": "",
+                    "value": "796",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "果园新村",
+                    "key": "",
+                    "value": "798",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "北仓镇",
+                    "key": "",
+                    "value": "801",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "瑞景居住区",
+                    "key": "",
+                    "value": "582",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "双街",
+                    "key": "",
+                    "value": "934",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "小淀镇",
+                    "key": "",
+                    "value": "802",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "西堤头",
+                    "key": "",
+                    "value": "804",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "武清",
+                "key": "bid",
+                "value": "114",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "下朱庄",
+                    "key": "",
+                    "value": "048",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "南湖",
+                    "key": "",
+                    "value": "049",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "静湖",
+                    "key": "",
+                    "value": "050",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "武清其它",
+                    "key": "",
+                    "value": "767",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "杨村",
+                    "key": "",
+                    "value": "051",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "新湾",
+                    "key": "",
+                    "value": "052",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "中信广场",
+                    "key": "",
+                    "value": "053",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "黄庄",
+                    "key": "",
+                    "value": "054",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "佛罗伦萨",
+                    "key": "",
+                    "value": "055",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "体育中心",
+                    "key": "",
+                    "value": "056",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "保利金街",
+                    "key": "",
+                    "value": "057",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "滨海新区",
+                "key": "bid",
+                "value": "116",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "滨海其它",
+                    "key": "",
+                    "value": "792",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "开发区",
+                "key": "bid",
+                "value": "119",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "开发区",
+                    "key": "",
+                    "value": "952",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "第一大街",
+                    "key": "",
+                    "value": "837",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "第二大街",
+                    "key": "",
+                    "value": "838",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "第三大街",
+                    "key": "",
+                    "value": "839",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "第四大街",
+                    "key": "",
+                    "value": "840",
+                    "type": "checkbox"
+                  },
+                  {
+                    "title": "第五大街",
+                    "key": "",
+                    "value": "841",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "宝坻",
+                "key": "bid",
+                "value": "215",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "宝坻",
+                    "key": "",
+                    "value": "774",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "宁河",
+                "key": "bid",
+                "value": "221",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "宁河",
+                    "key": "",
+                    "value": "773",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "静海",
+                "key": "bid",
+                "value": "223",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "静海",
+                    "key": "",
+                    "value": "276",
+                    "type": "checkbox"
+                  }
+                ]
+              },
+              {
+                "title": "蓟州",
+                "key": "bid",
+                "value": "225",
+                "type": "checkbox",
+                "children": [
+                  {
+                    "title": "蓟县",
+                    "key": "",
+                    "value": "768",
+                    "type": "checkbox"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "项目一",
+            "key": "first_list_key",
+            "type": "radio",
+            "defaultValue": "2",
+            "value": "",
+            "children": [
+              {
+                "title": "不限",
+                "key": "",
+                "type": "unlimit",
+                "defaultValue": "",
+                "value": ""
+              },
+              {
+                "title": "1-选项一",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "1"
+              },
+              {
+                "title": "1-选项二",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "2"
+              },
+              {
+                "title": "1-选项三",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "3"
+              },
+              {
+                "title": "1-选项四",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "4"
+              },
+              {
+                "title": "1-选项五",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "5"
+              },
+              {
+                "title": "1-选项六",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "6"
+              },
+              {
+                "title": "1-选项七",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "7"
+              },
+              {
+                "title": "1-选项八",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "8"
+              },
+              {
+                "defaultValue": "",
+                "ext": {
+                  "min": 0,
+                  "max": 9999999,
+                  "unit": "单位"
+                },
+                "type": "range",
+                "value": "",
+                "title": "自定义范围"
+              }
+            ]
+          },
+          {
+            "title": "项目二",
+            "key": "second_list_key",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "",
+            "children": [
+              {
+                "title": "不限",
+                "key": "",
+                "type": "unlimit",
+                "defaultValue": "",
+                "value": ""
+              },
+              {
+                "title": "2-选项一",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "1"
+              },
+              {
+                "title": "2-选项二",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "2"
+              },
+              {
+                "title": "2-选项三",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "3"
+              },
+              {
+                "title": "2-选项四",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "4"
+              },
+              {
+                "title": "2-选项五",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "5"
+              },
+              {
+                "title": "2-选项六",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "6"
+              },
+              {
+                "title": "2-选项七",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "7"
+              },
+              {
+                "title": "2-选项八",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "8"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

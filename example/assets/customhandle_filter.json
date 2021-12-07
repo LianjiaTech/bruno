@@ -1,0 +1,86 @@
+{
+  "errno": 0,
+  "data": {
+    "list": [
+      {
+        "title": "单列",
+        "key": "one_list_key",
+        "type": "radio",
+        "defaultValue": "",
+        "value": "",
+        "children": [
+          {
+            "title": "不限",
+            "key": "",
+            "type": "unlimit",
+            "defaultValue": "",
+            "value": ""
+          },
+          {
+            "title": "选项一",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "1"
+          },
+          {
+            "title": "选项二",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "2"
+          },
+          {
+            "title": "选项三",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "3"
+          },
+          {
+            "title": "选项四",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "4"
+          },
+          {
+            "title": "选项五",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "5"
+          },
+          {
+            "title": "选项六",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "6"
+          },
+          {
+            "title": "选项七",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "7"
+          },
+          {
+            "title": "选项八",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "8"
+          }
+        ]
+      },
+      {
+        "defaultValue": "",
+        "key": "customKey",
+        "type": "customHandle",
+        "value": "",
+        "title": "自定义类型"
+      }
+    ]
+  }
+}

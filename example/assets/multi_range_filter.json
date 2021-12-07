@@ -1,0 +1,259 @@
+{
+  "errno": 0,
+  "data": {
+    "list": [
+      {
+        "title": "单 Tab 切换",
+        "key": "one_range_key",
+        "type": "checkbox",
+        "defaultValue": "",
+        "value": "",
+        "children": [
+          {
+            "title": "不限",
+            "key": "",
+            "type": "unlimit",
+            "defaultValue": "",
+            "value": ""
+          },
+          {
+            "title": "选项一",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "1"
+          },
+          {
+            "title": "选项二",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "2"
+          },
+          {
+            "title": "选项三",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "3"
+          },
+          {
+            "title": "选项四",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "4"
+          },
+          {
+            "title": "选项五",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "5"
+          },
+          {
+            "title": "选项六",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "6"
+          },
+          {
+            "title": "选项七",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "7"
+          },
+          {
+            "title": "选项八",
+            "key": "",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "8"
+          },
+          {
+            "defaultValue": "",
+            "ext": {
+              "min": 0,
+              "max": 9999999,
+              "unit": "单位"
+            },
+            "children": [],
+            "key": "",
+            "type": "range",
+            "value": "",
+            "title": "自定义范围"
+          }
+        ]
+      },
+      {
+        "defaultValue": "",
+        "key": "two_range_key",
+        "type": "checkbox",
+        "value": "",
+        "title": "双 Tab 切换",
+        "children": [
+          {
+            "title": "项目一",
+            "key": "first_range_key",
+            "type": "radio",
+            "defaultValue": "2",
+            "value": "",
+            "children": [
+              {
+                "title": "不限",
+                "key": "",
+                "type": "unlimit",
+                "defaultValue": "",
+                "value": ""
+              },
+              {
+                "title": "1-选项一",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "1"
+              },
+              {
+                "title": "1-选项二",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "2"
+              },
+              {
+                "title": "1-选项三",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "3"
+              },
+              {
+                "title": "1-选项四",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "4"
+              },
+              {
+                "title": "1-选项五",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "5"
+              },
+              {
+                "title": "1-选项六",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "6"
+              },
+              {
+                "title": "1-选项七",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "7"
+              },
+              {
+                "title": "1-选项八",
+                "key": "",
+                "type": "checkbox",
+                "defaultValue": "",
+                "value": "8"
+              }
+              ,
+              {
+                "defaultValue": "",
+                "ext": {
+                  "min": 0,
+                  "max": 9999999,
+                  "unit": "单位"
+                },
+                "children": [],
+                "key": "",
+                "type": "range",
+                "value": "",
+                "title": "自定义范围"
+              }
+            ]
+          },
+          {
+            "title": "项目二",
+            "key": "second_range_key",
+            "type": "radio",
+            "defaultValue": "",
+            "value": "",
+            "children": [
+              {
+                "title": "不限",
+                "key": "",
+                "type": "unlimit",
+                "defaultValue": "",
+                "value": ""
+              },
+              {
+                "title": "2-选项一",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "1"
+              },
+              {
+                "title": "2-选项二",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "2"
+              },
+              {
+                "title": "2-选项三",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "3"
+              },
+              {
+                "title": "2-选项四",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "4"
+              },
+              {
+                "title": "2-选项五",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "5"
+              },
+              {
+                "title": "2-选项六",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "6"
+              },
+              {
+                "title": "2-选项七",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "7"
+              },
+              {
+                "title": "2-选项八",
+                "key": "",
+                "type": "radio",
+                "defaultValue": "",
+                "value": "8"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
