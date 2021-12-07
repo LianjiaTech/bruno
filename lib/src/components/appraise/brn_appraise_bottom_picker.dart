@@ -54,7 +54,7 @@ class _BrnAppraiseBottomPickerState extends State<BrnAppraiseBottomPicker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomInset: true,
       backgroundColor: Color(0x99000000),
       body: Container(
         alignment: Alignment.bottomCenter,

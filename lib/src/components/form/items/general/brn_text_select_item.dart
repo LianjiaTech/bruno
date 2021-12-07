@@ -331,7 +331,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
     TextPainter painter;
     if (widget.value != null && widget.value.isNotEmpty) {
       painter = TextPainter(
-          locale: Localizations.localeOf(context, nullOk: true),
+          locale: Localizations.localeOf(context),
           textAlign: TextAlign.end,
           textDirection: TextDirection.ltr,
           strutStyle: _contentStructStyle,
@@ -341,7 +341,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           ));
     } else {
       painter = TextPainter(
-          locale: Localizations.localeOf(context, nullOk: true),
+          locale: Localizations.localeOf(context),
           textAlign: TextAlign.end,
           textDirection: TextDirection.ltr,
           strutStyle: _contentStructStyle,
@@ -394,7 +394,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
     TextPainter painter = TextPainter(
 
         // AUTO：华为手机如果不指定locale的时候，该方法算出来的文字高度是比系统计算偏小的。
-        locale: Localizations.localeOf(context, nullOk: true),
+        locale: Localizations.localeOf(context),
         maxLines: maxLines,
         textAlign: TextAlign.end,
         textDirection: TextDirection.ltr,
