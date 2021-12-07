@@ -76,7 +76,7 @@ class BrnBottomWritePicker extends StatefulWidget {
       Color cursorColor,
       String defaultText,
       TextEditingController textEditingController}) {
-    final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
+    final ThemeData theme = Theme.of(context);
     showGeneralDialog(
         context: context,
         pageBuilder: (BuildContext buildContext, Animation<double> animation,

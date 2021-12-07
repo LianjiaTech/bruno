@@ -126,10 +126,12 @@ class BrnPhotoItemConfig extends BrnBasicItemConfig {
                 color: Colors.white,
                 child: PhotoView(
                   backgroundDecoration: BoxDecoration(color: themeData.pageBackgroundColor),
-                  loadingChild: Container(
-                    child: BrnLoadingDialog(),
-                    color: themeData.pageBackgroundColor,
-                  ),
+                  loadingBuilder: (context, event) {
+                    return Container(
+                      child: BrnLoadingDialog(),
+                      color: themeData.pageBackgroundColor,
+                    );
+                  },
                   imageProvider: NetworkImage(url),
                 ),
               ),

@@ -153,7 +153,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomInset: true,
       backgroundColor: Color(0x33999999),
       body: Container(
         alignment: Alignment.bottomCenter,
