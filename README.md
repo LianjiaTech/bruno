@@ -9,7 +9,7 @@
 <h1 align="center">Bruno</h1>
 <div align="center">
 
-一套企业级移动端Flutter组件库
+一套企业级移动端 Flutter 组件库
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LianjiaTech/bruno/blob/master/LICENSE)
 
@@ -17,7 +17,7 @@
 
 <div align="center">
 
-简体中文| [English](./README.en-US.md)
+简体中文 | [English](./README.en-US.md)
 
 </div>
 
@@ -27,11 +27,11 @@
 ## ✨ 特性
 
 - 提炼自企业级移动端产品的交互和视觉风格
-- 开箱即用的高质量Flutter组件
+- 开箱即用的高质量 Flutter 组件
 - 提供满足业务差异的主题定制能力
 - 设计工具赋能开发全链路
 
-### Demo下载
+### Demo 下载
 
 [Bruno for Android]()
 
@@ -40,7 +40,7 @@
 
 
 
-## 适配Flutter版本
+## 适配 Flutter 版本
 
  
 
@@ -53,7 +53,7 @@
 
 ## 接入
 
-Flutter 工程中pubspec.yaml文件里加入以下依赖：
+Flutter 工程中 pubspec.yaml 文件里加入以下依赖：
 
 ```dart
 dependencies:
@@ -82,7 +82,7 @@ BrnBubbleText(
 
 贡献之前请先阅读 [贡献指南]()。
 
-感谢所有为Bruno做出贡献的开发者!
+感谢所有为 Bruno 做出贡献的开发者!
 
 <div style="display:flex;flex-wrap: wrap;">
   <a href="https://github.com/violinday">
@@ -165,7 +165,7 @@ BrnBubbleText(
 
 ## 致谢
 
-bruno作为整套标准组件，参考和引用部分开源库如下：
+Bruno 作为整套标准组件，参考和引用部分开源库如下：
 
 - [flutter_gifimage](https://github.com/peng8350/flutter_gifimage) 
 - [expansion_tile_card.dart](https://gist.github.com/Skylled/7ac0f2f99881f7df2a0a850e60ef2df0)
