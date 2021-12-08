@@ -27,9 +27,9 @@ dependencies:
   cupertino_icons: ^0.1.2
   bruno:
     path: ../
-  flutter_easyrefresh: 2.1.1
+  flutter_easyrefresh: ^2.2.1
   http: any
-  badges: 1.2.0
+  badges: ^2.0.2
   flutter_swiper: 1.1.6
 
 dev_dependencies:
