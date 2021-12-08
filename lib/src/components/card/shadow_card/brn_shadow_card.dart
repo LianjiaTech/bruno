@@ -64,7 +64,10 @@ class BrnShadowCard extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(circular)),
           border: tempBorderWidth != 0
               ? Border.all(
-                  color: BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase,
+                  color: BrnThemeConfigurator.instance
+                      .getConfig()
+                      .commonConfig
+                      .dividerColorBase,
                   width: tempBorderWidth)
               : Border.all(style: BorderStyle.none),
           boxShadow: [

@@ -34,7 +34,8 @@ class BrnStateTag extends StatelessWidget {
       tagText: tagText,
       textPadding: EdgeInsets.only(bottom: 0, left: 4, right: 4, top: 0),
       textColor: textColor ?? getTagColor(tagState),
-      backgroundColor: backgroundColor ?? getTagColor(tagState).withOpacity(0.1),
+      backgroundColor:
+          backgroundColor ?? getTagColor(tagState).withOpacity(0.1),
     );
   }
 

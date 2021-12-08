@@ -54,7 +54,8 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
   @override
   void didUpdateWidget(BrnGallerySummaryPage oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.controller != null && oldWidget.controller != widget.controller) {
+    if (widget.controller != null &&
+        oldWidget.controller != widget.controller) {
       widget.controller.addListener(() {
         if (mounted) {
           setState(() {});
@@ -87,7 +88,9 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
                 return _buildItem(allConfig[i], i);
               },
               tabIndexedBuilder: (c, i) {
-                return BadgeTab(text: '${allConfig[i].title}(${allConfig[i].configList.length})');
+                return BadgeTab(
+                    text:
+                        '${allConfig[i].title}(${allConfig[i].configList.length})');
               },
               itemCount: allConfig.length),
         );
@@ -107,7 +110,10 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
           padding: EdgeInsets.only(top: 16, bottom: 12, left: 20, right: 20),
           child: Text(
             '${groupConfig.title}(${groupConfig.configList.length})',
-            style: TextStyle(color: Color(0xFF222222), fontSize: 18, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: Color(0xFF222222),
+                fontSize: 18,
+                fontWeight: FontWeight.w600),
           ),
         ),
       ));
@@ -131,8 +137,8 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
                 );
               }));
           },
-          child:
-              groupConfig.configList[i].buildSummaryWidget(context, widget.allConfig, groupId, i),
+          child: groupConfig.configList[i]
+              .buildSummaryWidget(context, widget.allConfig, groupId, i),
         ));
       columnViews.add(GridView.count(
         physics: NeverScrollableScrollPhysics(),

@@ -7,7 +7,8 @@ const double DESIGN_SCREEN_HEIGHT = 812;
 
 class BrnSelectionUtil {
   /// 处理兄弟结点为未选中状态，将自己置为选中状态
-  static void processBrotherItemSelectStatus(BrnSelectionEntity selectionEntity) {
+  static void processBrotherItemSelectStatus(
+      BrnSelectionEntity selectionEntity) {
     if (BrnSelectionFilterType.Checkbox == selectionEntity.filterType) {
       selectionEntity.isSelected = !selectionEntity.isSelected;
       List<BrnSelectionEntity> allBrothers = selectionEntity.parent?.children;
@@ -47,13 +48,18 @@ class BrnSelectionUtil {
       rootEntity = rootEntity.parent;
     }
 
-    if (rootEntity != null && rootEntity.children != null && rootEntity.children.length > 0) {
+    if (rootEntity != null &&
+        rootEntity.children != null &&
+        rootEntity.children.length > 0) {
       level = level > 1 ? level : 1;
       for (BrnSelectionEntity firstLevelEntity in rootEntity.children) {
-        if (firstLevelEntity.children != null && firstLevelEntity.children.length > 0) {
+        if (firstLevelEntity.children != null &&
+            firstLevelEntity.children.length > 0) {
           level = level > 2 ? level : 2;
-          for (BrnSelectionEntity secondLevelEntity in firstLevelEntity.children) {
-            if (secondLevelEntity.children != null && secondLevelEntity.children.length > 0) {
+          for (BrnSelectionEntity secondLevelEntity
+              in firstLevelEntity.children) {
+            if (secondLevelEntity.children != null &&
+                secondLevelEntity.children.length > 0) {
               level = 3;
               break;
             }
@@ -65,7 +71,8 @@ class BrnSelectionUtil {
   }
 
   /// 返回状态为选中的子节点
-  static List<BrnSelectionEntity> currentSelectListForEntity(BrnSelectionEntity entity) {
+  static List<BrnSelectionEntity> currentSelectListForEntity(
+      BrnSelectionEntity entity) {
     List<BrnSelectionEntity> list = List();
     if (entity.children != null && entity.children.length > 0) {
       for (BrnSelectionEntity entity in entity.children) {
@@ -91,7 +98,8 @@ class BrnSelectionUtil {
   }
 
   /// 判断列表中是否有range类型
-  static BrnSelectionEntity getFilledCustomInputItem(List<BrnSelectionEntity> list) {
+  static BrnSelectionEntity getFilledCustomInputItem(
+      List<BrnSelectionEntity> list) {
     BrnSelectionEntity filledCustomInputItem;
     if (list == null) return filledCustomInputItem;
     for (BrnSelectionEntity entity in list) {
@@ -133,7 +141,8 @@ class BrnSelectionUtil {
   /// 返回 true 符合条件，false 不符合条件
   static bool checkMaxSelectionCount(BrnSelectionEntity entity) {
     if (entity == null) return false;
-    return entity.getLimitedRootSelectedChildCount() < entity.getLimitedRootMaxSelectedCount();
+    return entity.getLimitedRootSelectedChildCount() <
+        entity.getLimitedRootMaxSelectedCount();
   }
 
 //设置数据为未选中状态

@@ -82,7 +82,8 @@ class BrnEnhanceNumberCard extends StatelessWidget {
     this.rowCount = 3,
     this.runningSpace,
     this.itemRunningSpace,
-    this.padding = const EdgeInsets.only(left: 20, right: 20),    this.backgroundColor = Colors.white,
+    this.padding = const EdgeInsets.only(left: 20, right: 20),
+    this.backgroundColor = Colors.white,
     this.itemTextAlign = TextAlign.left,
     this.themeData,
   }) : super(key: key);
@@ -107,7 +108,6 @@ class BrnEnhanceNumberCard extends StatelessWidget {
     }
     return LayoutBuilder(
       builder: (context, constraints) {
-
         Widget contentWidget = Container(
           height: 0,
           width: 0,
@@ -143,11 +143,11 @@ class BrnEnhanceNumberCard extends StatelessWidget {
                       // 每行的最后一个的 右边距，使用的是rightPadding的功能
                       Expanded(
                           child: Padding(
-                            padding: EdgeInsets.only(
-                                left: isFirst ? 0 : 20, right: condition1 ? 0 : 20),
-                            child: _buildItemWidget(data, defaultConfig,
-                                width: singleWidth),
-                          )),
+                        padding: EdgeInsets.only(
+                            left: isFirst ? 0 : 20, right: condition1 ? 0 : 20),
+                        child: _buildItemWidget(data, defaultConfig,
+                            width: singleWidth),
+                      )),
                       //分割线的显示规则是：固定高度47
                       //                item之间显示，最后一个不显示
                       Visibility(

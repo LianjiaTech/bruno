@@ -63,7 +63,12 @@ class BrnLinePainter extends BrnBasePainter {
 
   double selectX;
   double selectY;
-  double _startX = 0.0, _endX = 0.0, _startY = 0.0, _endY = 0.0, _fixedHeight, _fixedWidth;
+  double _startX = 0.0,
+      _endX = 0.0,
+      _startY = 0.0,
+      _endY = 0.0,
+      _fixedHeight,
+      _fixedWidth;
   List<LineCanvasModel> _lineCanvasModels;
 
   List<List<Point>> _linePointPositions = List();
@@ -100,7 +105,8 @@ class BrnLinePainter extends BrnBasePainter {
   }) {
     if (xDialValues == null) {
       for (var i = 1; i < lines.length; i++) {
-        assert(lines[i - 1].points.length == lines[i].points.length, '折线${i - 1}和$i条线的节点数不一致');
+        assert(lines[i - 1].points.length == lines[i].points.length,
+            '折线${i - 1}和$i条线的节点数不一致');
       }
     }
   }
@@ -150,9 +156,14 @@ class BrnLinePainter extends BrnBasePainter {
   }
 
   void _initValue() {
-    xDialColor ??= BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-    yDialColor ??= BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextSecondary;
-    hintLineColor ??= BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
+    xDialColor ??=
+        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
+    yDialColor ??= BrnThemeConfigurator.instance
+        .getConfig()
+        .commonConfig
+        .colorTextSecondary;
+    hintLineColor ??=
+        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
     hintLineSolid ??= true;
     xyLineWidth ??= 0.5;
     xDialMin ??= 0;
@@ -189,19 +200,26 @@ class BrnLinePainter extends BrnBasePainter {
 
           if (xDialValues != null && xDialValues.isNotEmpty) {
             for (var i = 0; i < item.points.length; i++) {
-              var xPosition =
-                  _startX + ((item.points[i].x - xDialMin) / (xDialMax - xDialMin) * _fixedWidth);
-              var yPosition =
-                  _startY - ((item.points[i].y - yDialMin) / (yDialMax - yDialMin) * _fixedHeight);
+              var xPosition = _startX +
+                  ((item.points[i].x - xDialMin) /
+                      (xDialMax - xDialMin) *
+                      _fixedWidth);
+              var yPosition = _startY -
+                  ((item.points[i].y - yDialMin) /
+                      (yDialMax - yDialMin) *
+                      _fixedHeight);
               pointArr.add(Point(xPosition, yPosition));
             }
           } else {
             var xScaleCount = item.points?.length ?? 0;
-            var W = _fixedWidth / (xScaleCount > 1 ? (xScaleCount - 1) : 1); //两个点之间的x方向距离
+            var W = _fixedWidth /
+                (xScaleCount > 1 ? (xScaleCount - 1) : 1); //两个点之间的x方向距离
             for (var i = 0; i < item.points.length; i++) {
               var xPosition = _startX + W * i;
-              var yPosition =
-                  _startY - ((item.points[i].y - yDialMin) / (yDialMax - yDialMin) * _fixedHeight);
+              var yPosition = _startY -
+                  ((item.points[i].y - yDialMin) /
+                      (yDialMax - yDialMin) *
+                      _fixedHeight);
               pointArr.add(Point(xPosition, yPosition));
             }
           }
@@ -253,7 +271,8 @@ class BrnLinePainter extends BrnBasePainter {
   Path _getSmoothLinePath(List<Point> points) {
     var targetPoints = List<Point>();
     targetPoints.addAll(points);
-    targetPoints.add(Point(points[points.length - 1].x * 2, points[points.length - 1].y * 2));
+    targetPoints.add(Point(
+        points[points.length - 1].x * 2, points[points.length - 1].y * 2));
     var x0, y0, x1, y1, t0, path = Path();
     for (int i = 0; i < targetPoints.length; i++) {
       var t1;
@@ -268,7 +287,8 @@ class BrnLinePainter extends BrnBasePainter {
           break;
         case 2:
           t1 = MonotoneX.slope3(x0, y0, x1, y1, x, y);
-          MonotoneX.point(path, x0, y0, x1, y1, MonotoneX.slope2(x0, y0, x1, y1, t1), t1);
+          MonotoneX.point(
+              path, x0, y0, x1, y1, MonotoneX.slope2(x0, y0, x1, y1, t1), t1);
           break;
         default:
           t1 = MonotoneX.slope3(x0, y0, x1, y1, x, y);
@@ -286,8 +306,8 @@ class BrnLinePainter extends BrnBasePainter {
   ///x,y轴
   void _drawXy(Canvas canvas, Paint paint) {
     if (isShowHintY) {
-      canvas.drawLine(Offset(_startX, _startY), Offset(_startX, _endY - basePadding),
-          paint..color = yDialColor); //y轴
+      canvas.drawLine(Offset(_startX, _startY),
+          Offset(_startX, _endY - basePadding), paint..color = yDialColor); //y轴
     }
 
     if (lines != null && lines.isNotEmpty) {
@@ -309,20 +329,26 @@ class BrnLinePainter extends BrnBasePainter {
         var tpX = TextPainter(
             textAlign: TextAlign.center,
             ellipsis: '.',
-            text: TextSpan(text: xDialValues[i].dialText, style: xDialValues[i].dialTextStyle),
+            text: TextSpan(
+                text: xDialValues[i].dialText,
+                style: xDialValues[i].dialTextStyle),
             textDirection: TextDirection.ltr)
           ..layout();
         // 开始绘制刻度
         _drawXRuleByPointPosition(
             tpX,
             canvas,
-            _startX + (xDialValues[i].value - xDialMin) / (xDialMax - xDialMin) * _fixedWidth,
+            _startX +
+                (xDialValues[i].value - xDialMin) /
+                    (xDialMax - xDialMin) *
+                    _fixedWidth,
             paint);
       }
     }
   }
 
-  void _drawXRuleByPointPosition(TextPainter tpX, Canvas canvas, double xPosition, Paint paint) {
+  void _drawXRuleByPointPosition(
+      TextPainter tpX, Canvas canvas, double xPosition, Paint paint) {
     tpX.paint(canvas, Offset(xPosition - tpX.width / 2, _startY + textPadding));
 
     // 绘制与 X 轴对应的垂直辅助线
@@ -345,8 +371,8 @@ class BrnLinePainter extends BrnBasePainter {
 
     // 绘制 x轴刻度
     if (isShowHintX) {
-      canvas.drawLine(Offset(xPosition, _startY), Offset(xPosition, _startY + rulerWidth),
-          paint..color = xDialColor);
+      canvas.drawLine(Offset(xPosition, _startY),
+          Offset(xPosition, _startY + rulerWidth), paint..color = xDialColor);
     }
   }
 
@@ -361,7 +387,8 @@ class BrnLinePainter extends BrnBasePainter {
                   end: Alignment.bottomCenter,
                   tileMode: TileMode.clamp,
                   colors: element.shaderColors)
-              .createShader(Rect.fromLTWH(_startX, _endY, _fixedWidth, _fixedHeight));
+              .createShader(
+                  Rect.fromLTWH(_startX, _endY, _fixedWidth, _fixedHeight));
           canvas
             ..drawPath(
                 shadowPathElement,
@@ -398,7 +425,8 @@ class BrnLinePainter extends BrnBasePainter {
             ..style = PaintingStyle.stroke; //描边为居中描边
           canvas.drawCircle(
               Offset(pointElement.x, pointElement.y),
-              (element.pointRadius - element.pointInnerRadius) / 2 + element.pointInnerRadius,
+              (element.pointRadius - element.pointInnerRadius) / 2 +
+                  element.pointInnerRadius,
               pointPaint);
         });
 
@@ -414,10 +442,11 @@ class BrnLinePainter extends BrnBasePainter {
             ..strokeCap = StrokeCap.round
             ..color = color
             ..style = PaintingStyle.fill;
-          canvas.drawCircle(
-              Offset(pointElement.x, pointElement.y), element.pointInnerRadius, pointPaintBg);
+          canvas.drawCircle(Offset(pointElement.x, pointElement.y),
+              element.pointInnerRadius, pointPaintBg);
 
-          if (currentLineIndex == lineSelectIndex && currentPointIndex == pointSelectIndex) {
+          if (currentLineIndex == lineSelectIndex &&
+              currentPointIndex == pointSelectIndex) {
             color = element.pointInnerColor;
           }
           var pointPaint = Paint()
@@ -425,8 +454,8 @@ class BrnLinePainter extends BrnBasePainter {
             ..strokeCap = StrokeCap.round
             ..color = color
             ..style = PaintingStyle.fill;
-          canvas.drawCircle(
-              Offset(pointElement.x, pointElement.y), element.pointInnerRadius, pointPaint);
+          canvas.drawCircle(Offset(pointElement.x, pointElement.y),
+              element.pointInnerRadius, pointPaint);
         });
       }
     });
@@ -452,7 +481,10 @@ class BrnLinePainter extends BrnBasePainter {
           dashArray: CircularIntervalList<double>(<double>[4.0, 4.0]),
         ),
         paint
-          ..color = BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase
+          ..color = BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .colorTextBase
           ..strokeWidth = 1.0,
       );
 
@@ -462,7 +494,10 @@ class BrnLinePainter extends BrnBasePainter {
           dashArray: CircularIntervalList<double>(<double>[4.0, 4.0]),
         ),
         paint
-          ..color = BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase
+          ..color = BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .colorTextBase
           ..strokeWidth = 1.0,
       );
     }
@@ -470,25 +505,31 @@ class BrnLinePainter extends BrnBasePainter {
 
   void _drawPointDisplayText(Canvas canvas) {
     if (_linePointPositions != null && _linePointPositions.isNotEmpty) {
-      for (int lineIndex = 0; lineIndex < _linePointPositions.length; lineIndex++) {
+      for (int lineIndex = 0;
+          lineIndex < _linePointPositions.length;
+          lineIndex++) {
         BrnPointsLine item = lines[lineIndex];
-        if (item.isShowPointText && item.points != null && item.points.isNotEmpty) {
+        if (item.isShowPointText &&
+            item.points != null &&
+            item.points.isNotEmpty) {
           var length = item.points.length;
           for (var i = 0; i < length; i++) {
-            if (item.points[i].pointText == null || item.points[i].pointText.length == 0) {
+            if (item.points[i].pointText == null ||
+                item.points[i].pointText.length == 0) {
               continue;
             }
             var tpX = TextPainter(
                 textAlign: TextAlign.center,
                 ellipsis: '.',
                 text: TextSpan(
-                    text: '${item.points[i].pointText}', style: item.points[i].pointTextStyle),
+                    text: '${item.points[i].pointText}',
+                    style: item.points[i].pointTextStyle),
                 textDirection: TextDirection.ltr)
               ..layout();
-            double adjustOffset =
-                isAdjustPosition(lineIndex, _linePointPositions[lineIndex][i], _linePointPositions)
-                    ? (20 - tpX.height)
-                    : -20;
+            double adjustOffset = isAdjustPosition(lineIndex,
+                    _linePointPositions[lineIndex][i], _linePointPositions)
+                ? (20 - tpX.height)
+                : -20;
             tpX.paint(
                 canvas,
                 Offset(
@@ -504,7 +545,8 @@ class BrnLinePainter extends BrnBasePainter {
     }
   }
 
-  bool isAdjustPosition(int lineIndex, Point currentPoint, List<List<Point<num>>> lines) {
+  bool isAdjustPosition(
+      int lineIndex, Point currentPoint, List<List<Point<num>>> lines) {
     List<Point<num>> sameXPoints = getSameXValuePoints(currentPoint, lines);
     if (sameXPoints.length > 0) {
       if (currentPoint.distanceTo(sameXPoints[0]) == 0) {
@@ -516,13 +558,16 @@ class BrnLinePainter extends BrnBasePainter {
     return false;
   }
 
-  List<Point<num>> getSameXValuePoints(Point currentPoint, List<List<Point<num>>> lines) {
+  List<Point<num>> getSameXValuePoints(
+      Point currentPoint, List<List<Point<num>>> lines) {
     List<Point<num>> sameXPoints = List();
     if (lines != null) {
       for (int lineIndex = 0; lineIndex < lines.length; lineIndex++) {
         List<Point<num>> linePoints = lines[lineIndex];
         if (linePoints != null) {
-          for (int pointIndex = 0; pointIndex < linePoints.length; pointIndex++) {
+          for (int pointIndex = 0;
+              pointIndex < linePoints.length;
+              pointIndex++) {
             if (currentPoint.x == linePoints[pointIndex].x &&
                 currentPoint != linePoints[pointIndex]) {
               sameXPoints.add(linePoints[pointIndex]);

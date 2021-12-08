@@ -67,7 +67,6 @@ class BrnTitleFormItem extends StatefulWidget {
       this.onTap,
       this.themeData})
       : super(key: key) {
-
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -79,11 +78,9 @@ class BrnTitleFormItem extends StatefulWidget {
   BrnTitleFormItemState createState() {
     return BrnTitleFormItemState();
   }
-
 }
 
 class BrnTitleFormItemState extends State<BrnTitleFormItem> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -100,18 +97,21 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData),
                   child: Row(
                     children: <Widget>[
                       // 主标题
                       Container(
-                        child: Text(widget.title ?? "",
-                        style: BrnFormUtil.getHeadTitleTextStyle(widget.themeData),
+                          child: Text(
+                        widget.title ?? "",
+                        style:
+                            BrnFormUtil.getHeadTitleTextStyle(widget.themeData),
                       )),
 
                       // 问号提示
-                      BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                      BrnFormUtil.buildTipLabelWidget(
+                          widget.tipLabel, widget.onTip, widget.themeData),
                     ],
                   ),
                 ),
@@ -151,7 +151,4 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
       ),
     );
   }
-
 }
-
-

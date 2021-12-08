@@ -68,28 +68,27 @@ class BrnMultiChoiceInputFormItem extends StatefulWidget {
   /// 选项选中状态变化回调
   final OnBrnFormMultiChoiceValueChanged onChanged;
 
-
   /// form配置
   BrnFormItemConfig themeData;
 
-  BrnMultiChoiceInputFormItem({
-    Key key,
-    this.label,
-    this.title: "",
-    this.subTitle,
-    this.tipLabel,
-    this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
-    this.error: "",
-    this.isEdit: true,
-    this.isRequire: true,
-    this.onAddTap,
-    this.onRemoveTap,
-    this.onTip,
-    this.value,
-    this.options,
-    this.enableList,
-    this.onChanged,
-    this.themeData})
+  BrnMultiChoiceInputFormItem(
+      {Key key,
+      this.label,
+      this.title: "",
+      this.subTitle,
+      this.tipLabel,
+      this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
+      this.error: "",
+      this.isEdit: true,
+      this.isRequire: true,
+      this.onAddTap,
+      this.onRemoveTap,
+      this.onTip,
+      this.value,
+      this.options,
+      this.enableList,
+      this.onChanged,
+      this.themeData})
       : super() {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
@@ -102,10 +101,10 @@ class BrnMultiChoiceInputFormItem extends StatefulWidget {
   BrnMultiChoiceInputFormItemState createState() {
     return BrnMultiChoiceInputFormItemState();
   }
-
 }
 
-class BrnMultiChoiceInputFormItemState extends State<BrnMultiChoiceInputFormItem> {
+class BrnMultiChoiceInputFormItemState
+    extends State<BrnMultiChoiceInputFormItem> {
   // 标记选项的选中状态，内部变量无须初始化。初始化选中状态通过设置value字段设置
   List<bool> _selectStatus;
 
@@ -132,14 +131,21 @@ class BrnMultiChoiceInputFormItemState extends State<BrnMultiChoiceInputFormItem
                   maxHeight: 25,
                 ),
                 child: Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData),
                   child: Row(
                     children: <Widget>[
-                      BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                      BrnFormUtil.buildPrefixIcon(
+                          widget.prefixIconType,
+                          widget.isEdit,
+                          context,
+                          widget.onAddTap,
+                          widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
-                      BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
-                      BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                      BrnFormUtil.buildTitleWidget(
+                          widget.title, widget.themeData),
+                      BrnFormUtil.buildTipLabelWidget(
+                          widget.tipLabel, widget.onTip, widget.themeData),
                     ],
                   ),
                 ),
@@ -187,9 +193,10 @@ class BrnMultiChoiceInputFormItemState extends State<BrnMultiChoiceInputFormItem
                 ),
                 radioIndex: index,
                 disable: getRadioEnableState(index),
-                isSelected: (_selectStatus != null && pos < _selectStatus.length)
-                    ? _selectStatus[pos]
-                    : false,
+                isSelected:
+                    (_selectStatus != null && pos < _selectStatus.length)
+                        ? _selectStatus[pos]
+                        : false,
                 onValueChangedAtIndex: (position, value) {
                   _selectStatus[position] = value;
                   List<String> oldValue = List<String>()..addAll(widget.value);
@@ -205,7 +212,6 @@ class BrnMultiChoiceInputFormItemState extends State<BrnMultiChoiceInputFormItem
 
                     BrnFormUtil.notifyMultiChoiceStatusChanged(
                         widget.onChanged, context, oldValue, widget.value);
-
                   });
                 },
               ),

@@ -83,32 +83,33 @@ class BrnSearchText extends StatefulWidget {
   /// 用于控制清除 Icon 和右侧 Action 的显示与隐藏。等其他复杂的操作。
   final BrnSearchTextController searchController;
 
-  const BrnSearchText(
-      {Key key,
-      this.searchController,
-      this.controller,
-      this.maxLines = 1,
-      this.maxLength,
-      this.hintText,
-      this.hintStyle,
-      this.textStyle,
-      this.prefixIcon,
-      this.onTextChange,
-      this.onTextCommit,
-      this.onTextClear,
-      this.onActionTap,
-      this.action,
-      this.maxHeight = 60,
-      this.innerPadding = const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
-      this.outSideColor = Colors.white,
-      this.innerColor = const Color(0xfff8f8f8),
-      this.normalBorder,
-      this.activeBorder,
-      this.borderRadius = const BorderRadius.all(const Radius.circular(6.0)),
-      this.focusNode,
-      this.autoFocus = false,
-      this.textInputAction,})
-      : super(key: key);
+  const BrnSearchText({
+    Key key,
+    this.searchController,
+    this.controller,
+    this.maxLines = 1,
+    this.maxLength,
+    this.hintText,
+    this.hintStyle,
+    this.textStyle,
+    this.prefixIcon,
+    this.onTextChange,
+    this.onTextCommit,
+    this.onTextClear,
+    this.onActionTap,
+    this.action,
+    this.maxHeight = 60,
+    this.innerPadding =
+        const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
+    this.outSideColor = Colors.white,
+    this.innerColor = const Color(0xfff8f8f8),
+    this.normalBorder,
+    this.activeBorder,
+    this.borderRadius = const BorderRadius.all(const Radius.circular(6.0)),
+    this.focusNode,
+    this.autoFocus = false,
+    this.textInputAction,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -211,8 +212,10 @@ class _SearchTextState extends State<BrnSearchText> {
                           // 控制器属性，控制正在编辑的文本。
                           controller: textEditingController,
                           // 光标颜色属性，绘制光标时使用的颜色。
-                          cursorColor:
-                              BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+                          cursorColor: BrnThemeConfigurator.instance
+                              .getConfig()
+                              .commonConfig
+                              .brandPrimary,
                           // 光标宽度属性，光标的厚度，默认是2.0。
                           cursorWidth: 2.0,
                           // 样式属性，用于正在编辑的文本的样式。
@@ -271,14 +274,17 @@ class _SearchTextState extends State<BrnSearchText> {
                           }
                           textEditingController.clear();
                           if (this.widget.onTextChange != null) {
-                            this.widget.onTextChange(textEditingController.value.text);
+                            this
+                                .widget
+                                .onTextChange(textEditingController.value.text);
                           }
                           setState(() {});
                         },
                         child: Visibility(
                           visible: textEditingController.text.isNotEmpty,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: BrunoTools.getAssetImage(
                               BrnAsset.ICON_DELETE_TEXT,
                             ),

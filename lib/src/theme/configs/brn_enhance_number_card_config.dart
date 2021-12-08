@@ -25,21 +25,26 @@ class BrnEnhanceNumberCardConfig extends BrnBaseConfig {
   BrnTextStyle descTextStyle;
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
-    BrnEnhanceNumberCardConfig userConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).enhanceNumberCardConfig;
+    BrnEnhanceNumberCardConfig userConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .enhanceNumberCardConfig;
 
     this.runningSpace ??= userConfig.runningSpace;
     this.itemRunningSpace ??= userConfig.itemRunningSpace;
     this.dividerWidth ??= userConfig.dividerWidth;
 
-    this.titleTextStyle = userConfig.titleTextStyle
-        .merge(BrnTextStyle(color: commonConfig.colorTextBase).merge(this.titleTextStyle));
+    this.titleTextStyle = userConfig.titleTextStyle.merge(
+        BrnTextStyle(color: commonConfig.colorTextBase)
+            .merge(this.titleTextStyle));
 
-    this.descTextStyle = userConfig.descTextStyle
-        .merge(BrnTextStyle(color: commonConfig.colorTextSecondary).merge(this.descTextStyle));
+    this.descTextStyle = userConfig.descTextStyle.merge(
+        BrnTextStyle(color: commonConfig.colorTextSecondary)
+            .merge(this.descTextStyle));
   }
 
   BrnEnhanceNumberCardConfig copyWith({
@@ -64,8 +69,10 @@ class BrnEnhanceNumberCardConfig extends BrnBaseConfig {
       runningSpace: other.runningSpace,
       itemRunningSpace: other.itemRunningSpace,
       dividerWidth: other.dividerWidth,
-      titleTextStyle: titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
-      descTextStyle: descTextStyle?.merge(other.descTextStyle) ?? other.descTextStyle,
+      titleTextStyle:
+          titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
+      descTextStyle:
+          descTextStyle?.merge(other.descTextStyle) ?? other.descTextStyle,
     );
   }
 }

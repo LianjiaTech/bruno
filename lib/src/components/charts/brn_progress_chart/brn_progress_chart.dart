@@ -2,7 +2,8 @@ import 'package:bruno/src/components/charts/brn_progress_chart/brn_progress_char
 import 'package:flutter/material.dart';
 
 /// 在进度条上展示的 Widget
-typedef BrnProgressIndicatorBuilder = Widget Function(BuildContext context, double value);
+typedef BrnProgressIndicatorBuilder = Widget Function(
+    BuildContext context, double value);
 
 /// 一个简单的进度条 Widget，支持数据变化时的动画
 class BrnProgressChart extends StatefulWidget {
@@ -53,7 +54,8 @@ class BrnProgressChart extends StatefulWidget {
   }
 }
 
-class BrnProgressChartState extends State<BrnProgressChart> with SingleTickerProviderStateMixin {
+class BrnProgressChartState extends State<BrnProgressChart>
+    with SingleTickerProviderStateMixin {
   Animation<double> _animation;
   AnimationController _animationController;
   double _value = 0;
@@ -62,8 +64,8 @@ class BrnProgressChartState extends State<BrnProgressChart> with SingleTickerPro
   void initState() {
     super.initState();
     if (widget.showAnimation) {
-      _animationController =
-          AnimationController(vsync: this, duration: Duration(milliseconds: 250));
+      _animationController = AnimationController(
+          vsync: this, duration: Duration(milliseconds: 250));
       Tween tween = Tween<double>(begin: 0, end: widget.value);
       _animation = tween.animate(_animationController);
       _animation.addListener(() {

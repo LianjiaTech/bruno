@@ -5,5 +5,6 @@ class BrnMultiSelectBottomPickerItem {
 
   bool isChecked; //是否选中
 
-  BrnMultiSelectBottomPickerItem(this.code, this.content, {this.isChecked: false});
+  BrnMultiSelectBottomPickerItem(this.code, this.content,
+      {this.isChecked: false});
 }

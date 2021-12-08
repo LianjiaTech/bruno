@@ -5,7 +5,8 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
 /// section为所在行数（0或1），index是在第几位（从0开始记）, shareItem为渠道相关信息
-typedef void BrnShareActionSheetItemClickCallBack(int section, int index, BrnShareItem shareItem);
+typedef void BrnShareActionSheetItemClickCallBack(
+    int section, int index, BrnShareItem shareItem);
 
 /// 点击事件拦截回调（如果配置了此项，返回值为是否拦截，如果为true，则进行拦截，不进行默认回调）
 /// section为所在行数（0或1），index是在第几位（从0开始记）,shareItem为渠道相关信息
@@ -125,8 +126,8 @@ class BrnShareActionSheet extends StatelessWidget {
         : (channel.canClick
             ? BrunoTools.getAssetImage(
                 BrnShareItemConstants.shareItemImagePathList[channel.shareType])
-            : BrunoTools.getAssetImage(
-                BrnShareItemConstants.disableShareItemImagePathList[channel.shareType]));
+            : BrunoTools.getAssetImage(BrnShareItemConstants
+                .disableShareItemImagePathList[channel.shareType]));
     //如果没图或没文字则不显示
     if (title == null || image == null) {
       return null;
@@ -158,7 +159,8 @@ class BrnShareActionSheet extends StatelessWidget {
         ),
       ),
       onTap: () {
-        if (clickInterceptor == null || !clickInterceptor(section, index, channel)) {
+        if (clickInterceptor == null ||
+            !clickInterceptor(section, index, channel)) {
           // 推荐使用回调方法处理点击事件!!!!!!!!!!
           if (clickCallBack != null && channel.canClick) {
             clickCallBack(section, index, channel);
@@ -212,7 +214,10 @@ class BrnShareActionSheet extends StatelessWidget {
         style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase),
+            color: BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .colorTextBase),
       ),
     ));
 
@@ -264,7 +269,8 @@ class BrnShareActionSheet extends StatelessWidget {
           child: Center(
             child: Text(
               (cancelTitle != null) ? cancelTitle : "取消",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: textColor),
+              style: TextStyle(
+                  fontSize: 16, fontWeight: FontWeight.w600, color: textColor),
             ),
           ),
         ),

@@ -88,7 +88,8 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
         themeData: themeData,
         iconImage: (iconType == BrnDialogConstants.ICON_CUSTOM)
             ? customIconWidget
-            : BrunoTools.getAssetImage(BrnDialogConstants.shareItemImagePathList[iconType]),
+            : BrunoTools.getAssetImage(
+                BrnDialogConstants.shareItemImagePathList[iconType]),
         titleText: titleText,
         messageText: descText,
         warningWidget: Container(

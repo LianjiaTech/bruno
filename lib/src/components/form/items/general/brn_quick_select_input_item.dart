@@ -78,6 +78,7 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
 
   /// 用户自定义快捷按钮视图
   Widget btns;
+
   /// 快捷按钮较多时是否可滑动，默认为 fasle，不可滑动
   final bool isBtnsScroll;
 
@@ -118,11 +119,10 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
   BrnTextQuickSelectFormItemState createState() {
     return BrnTextQuickSelectFormItemState();
   }
-
 }
 
-class BrnTextQuickSelectFormItemState extends State<BrnTextQuickSelectFormItem> {
-
+class BrnTextQuickSelectFormItemState
+    extends State<BrnTextQuickSelectFormItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -138,20 +138,27 @@ class BrnTextQuickSelectFormItemState extends State<BrnTextQuickSelectFormItem> 
             child: Row(
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData),
                   child: Row(
                     children: <Widget>[
-                      BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                      BrnFormUtil.buildPrefixIcon(
+                          widget.prefixIconType,
+                          widget.isEdit,
+                          context,
+                          widget.onAddTap,
+                          widget.onRemoveTap),
 
                       // 必填项
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
 
                       // 主标题
-                      BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
+                      BrnFormUtil.buildTitleWidget(
+                          widget.title, widget.themeData),
 
                       // 问号提示
-                      BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                      BrnFormUtil.buildTipLabelWidget(
+                          widget.tipLabel, widget.onTip, widget.themeData),
                     ],
                   ),
                 ),
@@ -197,10 +204,8 @@ class BrnTextQuickSelectFormItemState extends State<BrnTextQuickSelectFormItem> 
                 btns: widget.btns,
                 isBtnsScroll: widget.isBtnsScroll,
                 isEdit: widget.isEdit,
-
                 onBtnSelectChanged: widget.onBtnSelectChanged,
-              )
-              ),
+              )),
 
           /// 错误提示
           BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
@@ -224,8 +229,6 @@ class BrnTextQuickSelectFormItemState extends State<BrnTextQuickSelectFormItem> 
       );
     }
   }
-
-
 }
 
 // ignore: must_be_immutable
@@ -345,7 +348,9 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
             ),
           ),
           onPressed: () {
-            if (!widget.isEdit || (widget.enableBtnList != null && !widget.enableBtnList[index])) {
+            if (!widget.isEdit ||
+                (widget.enableBtnList != null &&
+                    !widget.enableBtnList[index])) {
               return;
             }
             if (widget.onBtnSelectChanged != null) {
@@ -353,7 +358,8 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
             }
             if (_useInnerStatus) {
               // 如果是内部维护的状态，需要改变按钮的状态
-              widget.selectBtnList[index] = widget.selectBtnList[index] ? false : true;
+              widget.selectBtnList[index] =
+                  widget.selectBtnList[index] ? false : true;
             }
             setState(() {});
             /*
@@ -410,7 +416,8 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
       return Color(0xFF999999);
     }
 
-    if (widget.selectBtnList == null || widget.selectBtnList.length != widget.btnsTxt.length) {
+    if (widget.selectBtnList == null ||
+        widget.selectBtnList.length != widget.btnsTxt.length) {
       return Color(0xFF222222);
     }
 

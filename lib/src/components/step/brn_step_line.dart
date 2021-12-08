@@ -183,7 +183,10 @@ class _BrnStepLineState extends State<BrnStepLine> {
       } else {
         lineColor.clear();
         lineColor.add(widget.highlightColor ??
-            BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
+            BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .brandPrimary);
         return lineColor;
       }
     } else {
@@ -192,7 +195,10 @@ class _BrnStepLineState extends State<BrnStepLine> {
       }
       return List<Color>()
         ..add(widget.highlightColor ??
-            BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
+            BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .brandPrimary);
     }
   }
 

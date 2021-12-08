@@ -18,7 +18,8 @@ enum BrnMultiSelectStyle {
 typedef BrnMultiSelectTagText<V> = String Function(V data);
 
 ///提交按钮事件回调
-typedef BrnMultiSelectedTagsCallback = void Function(List<BrnTagItemBean> selectedTags);
+typedef BrnMultiSelectedTagsCallback = void Function(
+    List<BrnTagItemBean> selectedTags);
 
 class BrnMultiSelectTags extends StatefulWidget {
   ///当点击到最大数目时的点击事件
@@ -113,13 +114,16 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
   ///等宽度的布局
   Widget _buildGridViewWidget(BuildContext context) {
     int brnCrossAxisCount = widget.brnCrossAxisCount ?? 2;
-    double width =
-        (MediaQuery.of(context).size.width - (brnCrossAxisCount - 1) * 12 - 40) / brnCrossAxisCount;
+    double width = (MediaQuery.of(context).size.width -
+            (brnCrossAxisCount - 1) * 12 -
+            40) /
+        brnCrossAxisCount;
     //计算宽高比
     double brnChildAspectRatio = width / 34.0;
 
     return Container(
-      padding: widget.padding ?? EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0, bottom: 0.0),
+      padding: widget.padding ??
+          EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0, bottom: 0.0),
       constraints: BoxConstraints(maxHeight: 322, minHeight: 120),
       child: GridView.count(
         shrinkWrap: true,
@@ -132,7 +136,8 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
         //宽高比
         childAspectRatio: brnChildAspectRatio,
         children: _sourceTags.map((choice) {
-          return _getItem(choice, EdgeInsets.only(left: 8, right: 8, bottom: 1));
+          return _getItem(
+              choice, EdgeInsets.only(left: 8, right: 8, bottom: 1));
         }).toList(),
       ),
     );
@@ -146,7 +151,8 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
           spacing: 12,
           runSpacing: 12,
           children: _sourceTags.map((choice) {
-            return _getItem(choice, EdgeInsets.only(left: 8, right: 8, top: 10.5, bottom: 11));
+            return _getItem(choice,
+                EdgeInsets.only(left: 8, right: 8, top: 10.5, bottom: 11));
           }).toList(),
         ));
   }
@@ -199,9 +205,15 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
         BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
     Color tagTitleColor = widget.tagPickerBean.tagTitleColor ??
         BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-    Color tagBackgroundColor = widget.tagPickerBean.tagBackgroudColor ?? Color(0xFFF8F8F8);
-    Color selectedTagBackgroundColor = widget.tagPickerBean.selectedTagBackgroudColor ??
-        BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary.withAlpha(0x14);
+    Color tagBackgroundColor =
+        widget.tagPickerBean.tagBackgroudColor ?? Color(0xFFF8F8F8);
+    Color selectedTagBackgroundColor =
+        widget.tagPickerBean.selectedTagBackgroudColor ??
+            BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .brandPrimary
+                .withAlpha(0x14);
 
     bool selected = choice.isSelect;
     Color titleColor = selected ? selectedTagTitleColor : tagTitleColor;
@@ -215,9 +227,12 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
       },
       child: Container(
         constraints: BoxConstraints(minWidth: widget.minWidth ?? 75),
-        decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(3.0)),
+        decoration: BoxDecoration(
+            color: bgColor, borderRadius: BorderRadius.circular(3.0)),
         padding: padding,
-        alignment: widget.tagStyle == BrnMultiSelectStyle.average ? Alignment.center : null,
+        alignment: widget.tagStyle == BrnMultiSelectStyle.average
+            ? Alignment.center
+            : null,
         child: Text(
           textToDisplay,
           textAlign: TextAlign.center,

@@ -19,7 +19,8 @@ typedef BrnAppraiseTagClick = void Function(List<String> selectedTags);
 /// index 选中的表情或者星星的index
 /// selectedTags 所有选中标签的集合
 /// input 自定义输入的内容
-typedef BrnAppraiseConfirmClick = void Function(int index, List<String> selectedTags, String input);
+typedef BrnAppraiseConfirmClick = void Function(
+    int index, List<String> selectedTags, String input);
 
 /// 点击关闭的回掉
 typedef BrnAppraiseCloseClickCallBack = void Function(BuildContext context);
@@ -68,7 +69,13 @@ class BrnAppraise extends StatefulWidget {
   final BrnAppraiseConfig config;
 
   /// 评价组建每个评分对应的默认文案
-  static const List<String> _defaultIconDescriptions = ['不好', '还行', '满意', '很棒', '超惊喜'];
+  static const List<String> _defaultIconDescriptions = [
+    '不好',
+    '还行',
+    '满意',
+    '很棒',
+    '超惊喜'
+  ];
 
   BrnAppraise({
     this.title,
@@ -137,9 +144,10 @@ class _BrnAppraiseState extends State<BrnAppraise> {
 
   /// header
   Widget _headerArea(BuildContext context) {
-    EdgeInsets defaultPadding = (widget.headerType == BrnAppraiseHeaderType.center)
-        ? EdgeInsets.only(top: 20, bottom: 20)
-        : EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 20);
+    EdgeInsets defaultPadding =
+        (widget.headerType == BrnAppraiseHeaderType.center)
+            ? EdgeInsets.only(top: 20, bottom: 20)
+            : EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 20);
     return BrnAppraiseHeader(
       showHeader: widget.config?.showHeader ?? true,
       headerType: widget.headerType ?? BrnAppraiseHeaderType.spaceBetween,

@@ -34,7 +34,8 @@ class BrnSubSwitchTitle extends StatefulWidget {
   _BrnSubSwitchTitleState createState() => _BrnSubSwitchTitleState();
 }
 
-class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle> with TickerProviderStateMixin {
+class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle>
+    with TickerProviderStateMixin {
   List<Widget> widgetList;
 
   TabController _controller;
@@ -105,7 +106,8 @@ class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle> with TickerProvid
       ),
       labelPadding: EdgeInsets.all(0),
       //未选中态颜色
-      unselectedLabelColor: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+      unselectedLabelColor:
+          BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
       //未选中态样式
       unselectedLabelStyle: TextStyle(
         fontWeight: FontWeight.w400,

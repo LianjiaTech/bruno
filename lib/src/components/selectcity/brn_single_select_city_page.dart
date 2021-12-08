@@ -86,7 +86,8 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
     if (widget.cityList == null || widget.cityList.isEmpty) {
       //加载城市列表
       rootBundle
-          .loadString('packages/${BrnStrings.flutterPackageName}/assets/json/china.json')
+          .loadString(
+              'packages/${BrnStrings.flutterPackageName}/assets/json/china.json')
           .then((value) {
         Map countyMap = json.decode(value);
         List list = countyMap['china'];
@@ -281,7 +282,9 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
               Divider(
                 height: .0,
               ),
-              _showCityStack ? _buildCityList() : _buildSearchResultList(_searchText),
+              _showCityStack
+                  ? _buildCityList()
+                  : _buildSearchResultList(_searchText),
             ],
           ),
         ));
@@ -320,9 +323,11 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
               alignment: Alignment.center,
               width: 40.0,
               height: 40.0,
-              decoration:
-                  BoxDecoration(color: Color(0x22222222), borderRadius: BorderRadius.circular(5.0)),
-              child: Text(hint, style: TextStyle(color: Colors.white, fontSize: 20.0)),
+              decoration: BoxDecoration(
+                  color: Color(0x22222222),
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: Text(hint,
+                  style: TextStyle(color: Colors.white, fontSize: 20.0)),
             );
           },
         ));

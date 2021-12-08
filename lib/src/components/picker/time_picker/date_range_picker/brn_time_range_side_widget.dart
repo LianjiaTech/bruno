@@ -55,8 +55,12 @@ class BrnTimeRangeSideWidget extends StatefulWidget {
   }
 
   @override
-  State<StatefulWidget> createState() => _TimePickerWidgetState(this.minDateTime, this.maxDateTime,
-      this.initialStartDateTime, this.minuteDivider, this.onInitSelectChange);
+  State<StatefulWidget> createState() => _TimePickerWidgetState(
+      this.minDateTime,
+      this.maxDateTime,
+      this.initialStartDateTime,
+      this.minuteDivider,
+      this.onInitSelectChange);
 }
 
 class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
@@ -77,13 +81,18 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
 
   DateRangeSideValueCallback _onInitSelectChange;
 
-  _TimePickerWidgetState(DateTime minTime, DateTime maxTime, DateTime initStartTime,
-      int minuteDivider, DateRangeSideValueCallback onInitSelectChange) {
+  _TimePickerWidgetState(
+      DateTime minTime,
+      DateTime maxTime,
+      DateTime initStartTime,
+      int minuteDivider,
+      DateRangeSideValueCallback onInitSelectChange) {
     _onInitSelectChange = onInitSelectChange;
     _initData(minTime, maxTime, initStartTime, minuteDivider);
   }
 
-  void _initData(DateTime minTime, DateTime maxTime, DateTime initStartTime, int minuteDivider) {
+  void _initData(DateTime minTime, DateTime maxTime, DateTime initStartTime,
+      int minuteDivider) {
     if (minTime == null) {
       minTime = DateTime.parse(DATE_PICKER_MIN_DATETIME);
     }
@@ -110,16 +119,18 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
 
     if (_currStartHour == null || _currStartMinute == null) {
       this._currStartHour = initStartTime.hour;
-      this._currStartHour = min(max(_hourRange.first, _currStartHour), _hourRange.last);
+      this._currStartHour =
+          min(max(_hourRange.first, _currStartHour), _hourRange.last);
 
       this._currStartMinute = initStartTime.minute;
-      this._currStartMinute = min(max(_minuteRange.first, _currStartMinute), _minuteRange.last);
+      this._currStartMinute =
+          min(max(_minuteRange.first, _currStartMinute), _minuteRange.last);
       _currStartMinute -= _currStartMinute % _minuteDivider;
     }
     _onInitSelectedChange();
     // create scroll controller
-    _startHourScrollCtrl =
-        FixedExtentScrollController(initialItem: _currStartHour - _hourRange.first);
+    _startHourScrollCtrl = FixedExtentScrollController(
+        initialItem: _currStartHour - _hourRange.first);
     _startMinuteScrollCtrl = FixedExtentScrollController(
         initialItem: (_currStartMinute - _minuteRange.first) ~/ _minuteDivider);
     _startScrollCtrlMap = {
@@ -134,7 +145,9 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
   Widget build(BuildContext context) {
     _initData(_minTime, _maxTime, widget.initialStartDateTime, _minuteDivider);
     return GestureDetector(
-      child: Container(color: widget.themeData.backgroundColor, child: _renderPickerView(context)),
+      child: Container(
+          color: widget.themeData.backgroundColor,
+          child: _renderPickerView(context)),
     );
   }
 
@@ -147,8 +160,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
   void _onInitSelectedChange() {
     if (_onInitSelectChange != null) {
       DateTime now = DateTime.now();
-      DateTime startDateTime =
-          DateTime(now.year, now.month, now.day, _currStartHour, _currStartMinute);
+      DateTime startDateTime = DateTime(
+          now.year, now.month, now.day, _currStartHour, _currStartMinute);
       _onInitSelectChange(startDateTime, _calcStartSelectIndexList());
     }
   }
@@ -157,8 +170,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
   void _onSelectedChange() {
     if (widget.onChange != null) {
       DateTime now = DateTime.now();
-      DateTime startDateTime =
-          DateTime(now.year, now.month, now.day, _currStartHour, _currStartMinute);
+      DateTime startDateTime = DateTime(
+          now.year, now.month, now.day, _currStartHour, _currStartMinute);
       widget.onChange(startDateTime, _calcStartSelectIndexList());
     }
   }
@@ -188,7 +201,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
   /// render the picker widget of year、month and day
   Widget _renderDatePickerWidget() {
     List<Widget> pickers = List<Widget>();
-    List<String> formatArr = DateTimeFormatter.splitDateFormat(widget.dateFormat);
+    List<String> formatArr =
+        DateTimeFormatter.splitDateFormat(widget.dateFormat);
     formatArr.forEach((format) {
       List<int> valueRange = _findPickerItemRange(format);
 
@@ -206,7 +220,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
       );
       pickers.add(pickerColumn);
     });
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
   }
 
   Widget _renderDatePickerColumnComponent({
@@ -247,7 +262,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
             if (format.contains('m')) {
               value = valueRange.first + _minuteDivider * index;
             }
-            return _renderDatePickerItemComponent(index, format.contains('m'), value, format);
+            return _renderDatePickerItemComponent(
+                index, format.contains('m'), value, format);
           },
         ),
       ),
@@ -263,7 +279,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
     return ((valueRange.last - valueRange.first) ~/ divider) + 1;
   }
 
-  Widget _renderDatePickerItemComponent(int index, bool isMinuteColumn, int value, String format) {
+  Widget _renderDatePickerItemComponent(
+      int index, bool isMinuteColumn, int value, String format) {
     TextStyle textStyle = widget.themeData.itemTextStyle.generateTextStyle();
     if ((!isMinuteColumn && (index == _calcStartSelectIndexList()[0])) ||
         ((isMinuteColumn && (index == _calcStartSelectIndexList()[1])))) {
@@ -302,11 +319,12 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
     _isChangeTimeRange = true;
 
     List<int> minuteRange = _calcMinuteRange();
-    bool minuteRangeChanged =
-        _minuteRange.first != minuteRange.first || _minuteRange.last != minuteRange.last;
+    bool minuteRangeChanged = _minuteRange.first != minuteRange.first ||
+        _minuteRange.last != minuteRange.last;
     if (minuteRangeChanged) {
       // selected hour changed
-      _currStartMinute = max(min(_currStartMinute, minuteRange.last), minuteRange.first);
+      _currStartMinute =
+          max(min(_currStartMinute, minuteRange.last), minuteRange.first);
     }
 
     setState(() {
@@ -317,9 +335,11 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
     if (minuteRangeChanged) {
       // CupertinoPicker refresh data not working (https://github.com/flutter/flutter/issues/22999)
       int currMinute = _currStartMinute;
-      _startMinuteScrollCtrl.jumpToItem((minuteRange.last - minuteRange.first) ~/ _minuteDivider);
+      _startMinuteScrollCtrl
+          .jumpToItem((minuteRange.last - minuteRange.first) ~/ _minuteDivider);
       if (currMinute < minuteRange.last) {
-        _startMinuteScrollCtrl.jumpToItem((currMinute - minuteRange.first) ~/ _minuteDivider);
+        _startMinuteScrollCtrl
+            .jumpToItem((currMinute - minuteRange.first) ~/ _minuteDivider);
       }
     }
 

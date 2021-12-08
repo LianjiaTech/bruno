@@ -123,8 +123,9 @@ class _AzListViewState extends State<AzListView> {
       _isShowIndexBarHint = model.isTouchDown;
       int offset = _suspensionSectionMap[model.tag];
       if (offset != null) {
-        _scrollController
-            .jumpTo(offset.toDouble().clamp(.0, _scrollController.position.maxScrollExtent));
+        _scrollController.jumpTo(offset
+            .toDouble()
+            .clamp(.0, _scrollController.position.maxScrollExtent));
       }
     });
   }
@@ -168,7 +169,8 @@ class _AzListViewState extends State<AzListView> {
             itemBuilder: (BuildContext context, int index) {
               if (index == 0 && _cityList[index] is _Header) {
                 return SizedBox(
-                    height: widget.header.height.toDouble(), child: widget.header.builder(context));
+                    height: widget.header.height.toDouble(),
+                    child: widget.header.builder(context));
               }
               return widget.itemBuilder(context, _cityList[index]);
             }),
@@ -178,7 +180,8 @@ class _AzListViewState extends State<AzListView> {
         itemHeight: widget.itemHeight,
         onSusTagChanged: widget.onSusTagChanged,
         header: widget.header,
-        onSusSectionInited: (Map<String, int> map) => _suspensionSectionMap = map,
+        onSusSectionInited: (Map<String, int> map) =>
+            _suspensionSectionMap = map,
       )
     ];
 

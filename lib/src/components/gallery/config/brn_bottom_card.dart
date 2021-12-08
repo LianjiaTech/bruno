@@ -31,7 +31,8 @@ class BrnPhotoBottomCard extends StatefulWidget {
   _BrnPhotoBottomCardState createState() => _BrnPhotoBottomCardState();
 }
 
-class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard> with TickerProviderStateMixin {
+class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
+    with TickerProviderStateMixin {
   PhotoBottomCardState state;
 
   @override
@@ -45,7 +46,9 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard> with TickerProv
     return Container(
       width: double.infinity,
       color: widget.themeData.bottomBackgroundColor,
-      child: state == PhotoBottomCardState.cantFold ? buildCantFoldWidget() : buildFoldableWidget(),
+      child: state == PhotoBottomCardState.cantFold
+          ? buildCantFoldWidget()
+          : buildFoldableWidget(),
     );
   }
 
@@ -58,7 +61,8 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard> with TickerProv
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(widget.name ?? "", style: widget.themeData.titleStyle?.generateTextStyle()),
+            Text(widget.name ?? "",
+                style: widget.themeData.titleStyle?.generateTextStyle()),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -70,7 +74,9 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard> with TickerProv
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(right: 4),
-                    child: Text('展开', style: widget.themeData.actionStyle?.generateTextStyle()),
+                    child: Text('展开',
+                        style:
+                            widget.themeData.actionStyle?.generateTextStyle()),
                   ),
                   Transform.rotate(
                     angle: pi,
@@ -93,7 +99,8 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard> with TickerProv
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(widget.name ?? "", style: widget.themeData.titleStyle?.generateTextStyle()),
+                  Text(widget.name ?? "",
+                      style: widget.themeData.titleStyle?.generateTextStyle()),
                   GestureDetector(
                     onTap: () {
                       setState(() {
@@ -105,8 +112,9 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard> with TickerProv
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(right: 4),
-                          child:
-                              Text('收起', style: widget.themeData.actionStyle?.generateTextStyle()),
+                          child: Text('收起',
+                              style: widget.themeData.actionStyle
+                                  ?.generateTextStyle()),
                         ),
                         BrunoTools.getAssetImageWithColor(
                             BrnAsset.ICON_UPARROW, widget.themeData.iconColor)

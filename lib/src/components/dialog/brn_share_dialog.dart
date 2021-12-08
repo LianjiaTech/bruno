@@ -244,8 +244,9 @@ class BrnShareDialog extends StatelessWidget {
         ),
       ));
     }
-    double space =
-        (shareItems.length >= 5) ? 14 : (300 - 39 * shareItems.length) / (shareItems.length + 1);
+    double space = (shareItems.length >= 5)
+        ? 14
+        : (300 - 39 * shareItems.length) / (shareItems.length + 1);
     return Container(
       padding: EdgeInsets.only(bottom: 28),
       alignment: Alignment.center,

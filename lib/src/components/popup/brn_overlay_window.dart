@@ -41,7 +41,8 @@ class BrnOverlayWindow extends StatefulWidget {
   /// [content] 要展示的内容
   /// [autoDismissOnTouchOutSide] 点击 OverlayWindow 外部是否自动消失
   /// [onDismiss] OverlayWindow 消失回调
-  static BrnOverlayController showOverlayWindow(BuildContext context, Key targetKey,
+  static BrnOverlayController showOverlayWindow(
+      BuildContext context, Key targetKey,
       {Widget content,
       BrnOverlayPopDirection popDirection,
       bool autoDismissOnTouchOutSide,
@@ -113,13 +114,15 @@ class _BrnOverlayWindowState extends State<BrnOverlayWindow> {
     var placeHolderPart = GestureDetector();
     Widget realContent;
 
-    double marginTop = _showRect.top + (_showRect.height - _targetViewSize.height) / 2;
+    double marginTop =
+        _showRect.top + (_showRect.height - _targetViewSize.height) / 2;
     if (_screenSize.height - marginTop < _targetViewSize.height) {
       marginTop = max(0, _screenSize.height - _targetViewSize.height);
     }
     marginTop = max(0, marginTop);
 
-    double marginLeft = _showRect.left + (_showRect.width - _targetViewSize.width) / 2;
+    double marginLeft =
+        _showRect.left + (_showRect.width - _targetViewSize.width) / 2;
     if (_screenSize.width - marginLeft < _targetViewSize.width) {
       marginLeft = max(0, _screenSize.width - _targetViewSize.width);
     }
@@ -203,7 +206,8 @@ class _BrnOverlayWindowState extends State<BrnOverlayWindow> {
     }
     RenderBox renderBox = key.currentContext.findRenderObject();
     var offset = renderBox.localToGlobal(Offset.zero);
-    return Rect.fromLTWH(offset.dx, offset.dy, renderBox.size.width, renderBox.size.height);
+    return Rect.fromLTWH(
+        offset.dx, offset.dy, renderBox.size.width, renderBox.size.height);
   }
 
   ///

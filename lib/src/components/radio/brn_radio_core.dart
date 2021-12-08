@@ -104,7 +104,9 @@ class _BrnRadioCoreState extends State<BrnRadioCore> {
       padding: widget.iconPadding ?? EdgeInsets.all(5),
       child: this._isSelected
           ? (this._disable ? widget.disSelectedImage : widget.selectedImage)
-          : (this._disable ? widget.disUnselectedImage : widget.unselectedImage),
+          : (this._disable
+              ? widget.disUnselectedImage
+              : widget.unselectedImage),
     );
 
     Widget radioWidget;

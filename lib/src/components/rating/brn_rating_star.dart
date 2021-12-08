@@ -94,7 +94,9 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
       } else {
         state = RatingState.unselect;
       }
-      var rating = widget.starBuilder != null ? widget.starBuilder(state) : _buildRating(state);
+      var rating = widget.starBuilder != null
+          ? widget.starBuilder(state)
+          : _buildRating(state);
 
       if (widget.onSelected != null) {
         list.add(GestureDetector(
@@ -133,7 +135,8 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
         return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STAR_HALF, 16, 16);
       case RatingState.unselect:
       default:
-        return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STAR, 16, 16, color: Color(0xFFF0F0F0));
+        return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STAR, 16, 16,
+            color: Color(0xFFF0F0F0));
     }
   }
 }

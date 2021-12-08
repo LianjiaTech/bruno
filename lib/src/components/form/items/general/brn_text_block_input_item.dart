@@ -67,6 +67,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
 
   /// 输入内容类型
   final String inputType;
+
   /// 指定对输入数据的格式化要求
   List<TextInputFormatter> inputFormatters;
 
@@ -109,7 +110,6 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
       this.maxLines = 20,
       this.themeData})
       : super(key: key) {
-
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -121,7 +121,6 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
   BrnTextBlockInputFormItemState createState() {
     return BrnTextBlockInputFormItemState();
   }
-
 }
 
 class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
@@ -151,14 +150,20 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
               child: Row(
                 children: <Widget>[
                   // 添加/删除 按钮
-                  BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                  BrnFormUtil.buildPrefixIcon(
+                      widget.prefixIconType,
+                      widget.isEdit,
+                      context,
+                      widget.onAddTap,
+                      widget.onRemoveTap),
                   // 是否必填图标
                   BrnFormUtil.buildRequireWidget(widget.isRequire),
 
                   // title
                   BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
 
-                  BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                  BrnFormUtil.buildTipLabelWidget(
+                      widget.tipLabel, widget.onTip, widget.themeData),
                 ],
               ),
             ),
@@ -182,7 +187,8 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
               minLines: widget.minLines ?? 4,
               textAlign: TextAlign.left,
               enabled: widget.isEdit,
-              style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit),
+              style: BrnFormUtil.getIsEditTextStyle(
+                  widget.themeData, widget.isEdit),
               inputFormatters: widget.inputFormatters,
               decoration: InputDecoration(
                 hintText: widget.hint ?? "请输入",
@@ -190,13 +196,12 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
                 contentPadding: EdgeInsets.all(0),
                 border: InputBorder.none,
                 isDense: true,
-                enabledBorder:
-                    UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
-                focusedBorder:
-                    UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent)),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent)),
               ),
               onChanged: (text) {
-
                 BrnFormUtil.notifyInputChanged(widget.onChanged, text);
               },
             ),
@@ -206,7 +211,6 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
     );
   }
 
-
   @override
   void dispose() {
     super.dispose();
@@ -214,8 +218,4 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
       _controller?.dispose();
     }
   }
-
-
 }
-
-

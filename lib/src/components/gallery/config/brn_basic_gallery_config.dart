@@ -18,10 +18,10 @@ abstract class BrnBasicItemConfig {
   String type;
 
   //构建查看详情页的widget
-  Widget buildDetailWidget(
-      BuildContext context, List<BrnBasicGroupConfig> allConfig, int groupId, int index);
+  Widget buildDetailWidget(BuildContext context,
+      List<BrnBasicGroupConfig> allConfig, int groupId, int index);
 
   //构建简略页的widget
-  Widget buildSummaryWidget(
-      BuildContext context, List<BrnBasicGroupConfig> allConfig, int groupId, int index);
+  Widget buildSummaryWidget(BuildContext context,
+      List<BrnBasicGroupConfig> allConfig, int groupId, int index);
 }

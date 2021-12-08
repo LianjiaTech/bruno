@@ -12,7 +12,8 @@ class PulseWidget extends StatefulWidget {
   _PulseWidgetState createState() => _PulseWidgetState();
 }
 
-class _PulseWidgetState extends State<PulseWidget> with TickerProviderStateMixin {
+class _PulseWidgetState extends State<PulseWidget>
+    with TickerProviderStateMixin {
   AnimationController _scaleController;
   AnimationController _fadeController;
   Animation _alphaAnimation;
@@ -54,8 +55,10 @@ class _PulseWidgetState extends State<PulseWidget> with TickerProviderStateMixin
               child: ScaleTransition(
                 scale: _scaleController,
                 child: CustomPaint(
-                  painter: CirclePainter(
-                      BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary),
+                  painter: CirclePainter(BrnThemeConfigurator.instance
+                      .getConfig()
+                      .commonConfig
+                      .brandPrimary),
                   size: Size(widget.width, widget.height),
                 ),
               ),
@@ -67,8 +70,10 @@ class _PulseWidgetState extends State<PulseWidget> with TickerProviderStateMixin
             bottom: widget.width / 4,
             right: widget.width / 4,
             child: CustomPaint(
-              painter: CirclePainter(
-                  BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary),
+              painter: CirclePainter(BrnThemeConfigurator.instance
+                  .getConfig()
+                  .commonConfig
+                  .brandPrimary),
               size: Size(widget.width / 2, widget.height / 2),
             ),
           )
@@ -95,7 +100,8 @@ class CirclePainter extends CustomPainter {
     Paint paint = Paint()
       ..style = PaintingStyle.fill
       ..color = color;
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2), size.width / 2, paint);
+    canvas.drawCircle(
+        Offset(size.width / 2, size.height / 2), size.width / 2, paint);
   }
 
   @override

@@ -36,7 +36,10 @@ class BrnHorizontalStepsManager {
     }
     return Container(
       child: BrnHorizontalSteps(
-          steps: steps, controller: controller, doingIcon: doingIcon, completedIcon: completedIcon),
+          steps: steps,
+          controller: controller,
+          doingIcon: doingIcon,
+          completedIcon: completedIcon),
     );
   }
 
@@ -67,7 +70,8 @@ class BrnHorizontalStepsManager {
   /// 向后一步
   ///
   void backStep() {
-    int backIndex = controller.currentIndex <= 0 ? 0 : controller.currentIndex - 1;
+    int backIndex =
+        controller.currentIndex <= 0 ? 0 : controller.currentIndex - 1;
     controller.setCurrentIndex(backIndex);
   }
 }
@@ -84,7 +88,8 @@ class BrnHorizontalSteps extends StatefulWidget {
   final Widget doingIcon;
   final Widget completedIcon;
 
-  BrnHorizontalSteps({this.steps, this.controller, this.doingIcon, this.completedIcon})
+  BrnHorizontalSteps(
+      {this.steps, this.controller, this.doingIcon, this.completedIcon})
       : assert(steps.length < 6);
 
   @override
@@ -187,7 +192,10 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
         margin: EdgeInsets.fromLTRB(0, 0, 0, 28),
         color: index >= widget.controller.currentIndex
             ? Color(0xFFE7E7E7)
-            : BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+            : BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .brandPrimary,
         height: 1,
       ),
     );
@@ -225,7 +233,9 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
           step.stepContentText,
           style: TextStyle(
             fontSize: 14,
-            color: index > widget.controller.currentIndex ? Color(0xFFCCCCCC) : Color(0xFF222222),
+            color: index > widget.controller.currentIndex
+                ? Color(0xFFCCCCCC)
+                : Color(0xFF222222),
           ),
         ));
   }
@@ -241,7 +251,10 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     }
     // 使用组件默认的icon
     return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_COMPLETED, 20, 20,
-        color: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
+        color: BrnThemeConfigurator.instance
+            .getConfig()
+            .commonConfig
+            .brandPrimary);
   }
 
   Widget _getDoingIcon(BrunoStep step) {
@@ -255,7 +268,10 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     }
     // 使用组件默认的icon
     return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_DOING, 20, 20,
-        color: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
+        color: BrnThemeConfigurator.instance
+            .getConfig()
+            .commonConfig
+            .brandPrimary);
   }
 }
 

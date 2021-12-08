@@ -4,7 +4,8 @@ import 'package:bruno/src/components/selection/brn_selection_view.dart';
 import 'package:bruno/src/constants/brn_constants.dart';
 import 'package:flutter/material.dart';
 
-typedef BrnSimpleSelectionOnSelectionChanged = void Function(List<ItemEntity> selectedParams);
+typedef BrnSimpleSelectionOnSelectionChanged = void Function(
+    List<ItemEntity> selectedParams);
 
 const String defaultMenuKey = "defaultMenuKey";
 
@@ -103,7 +104,8 @@ class BrnSimpleSelectionState extends State<BrnSimpleSelection> {
   Widget build(BuildContext context) {
     return BrnSelectionView(
       originalSelectionData: selectionEntityList,
-      onSelectionChanged: (menuIndex, selectedParams, customParams, setCustomTitleFunction) {
+      onSelectionChanged:
+          (menuIndex, selectedParams, customParams, setCustomTitleFunction) {
         if (widget.onSimpleSelectionChanged != null && selectedParams != null) {
           List<ItemEntity> selectedItems = List();
           String valueStr = selectedParams[widget.menuKey ?? defaultMenuKey];
@@ -113,7 +115,9 @@ class BrnSimpleSelectionState extends State<BrnSimpleSelection> {
             ///遍历获取选中的items
             for (String value in values) {
               for (ItemEntity item in widget.items) {
-                if (item.value != null && value != null && item.value == value) {
+                if (item.value != null &&
+                    value != null &&
+                    item.value == value) {
                   selectedItems.add(item);
                   break;
                 }

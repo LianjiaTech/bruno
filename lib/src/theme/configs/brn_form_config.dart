@@ -101,28 +101,35 @@ class BrnFormItemConfig extends BrnBaseConfig {
   /// ③ 如果全局配置中的配置同样为 null 则根据 [configId] 取出全局配置。
   /// ④ 如果没有配置 [configId] 的全局配置，则使用 Bruno 默认的配置
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局form组件配置
-    BrnFormItemConfig formItemThemeData =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).formItemConfig;
+    BrnFormItemConfig formItemThemeData = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .formItemConfig;
 
     this.titlePaddingSm ??= formItemThemeData.titlePaddingSm;
 
     this.titlePaddingLg ??= formItemThemeData.titlePaddingLg;
 
-    this.optionSelectedTextStyle = formItemThemeData.optionSelectedTextStyle.merge(BrnTextStyle(
+    this.optionSelectedTextStyle =
+        formItemThemeData.optionSelectedTextStyle.merge(BrnTextStyle(
       color: commonConfig.brandPrimary,
       fontSize: commonConfig.fontSizeSubHead,
     ).merge(this.optionSelectedTextStyle));
 
-    this.optionTextStyle = formItemThemeData.optionTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
-            .merge(this.optionTextStyle));
+    this.optionTextStyle = formItemThemeData.optionTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeSubHead)
+        .merge(this.optionTextStyle));
 
     this.headTitleTextStyle = formItemThemeData.headTitleTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeHead)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeHead)
             .merge(this.headTitleTextStyle));
 
     if (this.errorPadding == null) {
@@ -151,33 +158,43 @@ class BrnFormItemConfig extends BrnBaseConfig {
           bottom: commonConfig.vSpacingLg);
     }
 
-    this.tipsTextStyle = formItemThemeData.tipsTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextSecondary, fontSize: commonConfig.fontSizeBase)
-            .merge(this.tipsTextStyle));
+    this.tipsTextStyle = formItemThemeData.tipsTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextSecondary,
+            fontSize: commonConfig.fontSizeBase)
+        .merge(this.tipsTextStyle));
 
     this.disableTextStyle = formItemThemeData.disableTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextDisabled, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.colorTextDisabled,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.disableTextStyle));
 
     this.contentTextStyle = formItemThemeData.contentTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.contentTextStyle));
 
-    this.hintTextStyle = formItemThemeData.hintTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextHint, fontSize: commonConfig.fontSizeSubHead)
-            .merge(this.hintTextStyle));
+    this.hintTextStyle = formItemThemeData.hintTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextHint,
+            fontSize: commonConfig.fontSizeSubHead)
+        .merge(this.hintTextStyle));
 
-    this.titleTextStyle = formItemThemeData.titleTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
-            .merge(this.titleTextStyle));
+    this.titleTextStyle = formItemThemeData.titleTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeSubHead)
+        .merge(this.titleTextStyle));
 
     this.subTitleTextStyle = formItemThemeData.subTitleTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextSecondary, fontSize: commonConfig.fontSizeCaption)
+        BrnTextStyle(
+                color: commonConfig.colorTextSecondary,
+                fontSize: commonConfig.fontSizeCaption)
             .merge(this.subTitleTextStyle));
 
-    this.errorTextStyle = formItemThemeData.errorTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandError, fontSize: commonConfig.fontSizeCaption)
-            .merge(this.errorTextStyle));
+    this.errorTextStyle = formItemThemeData.errorTextStyle.merge(BrnTextStyle(
+            color: commonConfig.brandError,
+            fontSize: commonConfig.fontSizeCaption)
+        .merge(this.errorTextStyle));
 
     this.optionsMiddlePadding ??= formItemThemeData?.optionsMiddlePadding;
   }
@@ -216,31 +233,41 @@ class BrnFormItemConfig extends BrnBaseConfig {
       tipsTextStyle: tipsTextStyle ?? this.tipsTextStyle,
       headTitleTextStyle: headTitleTextStyle ?? this.headTitleTextStyle,
       optionTextStyle: optionTextStyle ?? this.optionTextStyle,
-      optionSelectedTextStyle: optionSelectedTextStyle ?? this.optionSelectedTextStyle,
+      optionSelectedTextStyle:
+          optionSelectedTextStyle ?? this.optionSelectedTextStyle,
     );
   }
 
   BrnFormItemConfig merge(BrnFormItemConfig other) {
     if (other == null) return this;
     return copyWith(
-        titleTextStyle: titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
-        subTitleTextStyle:
-            subTitleTextStyle?.merge(other.subTitleTextStyle) ?? other.subTitleTextStyle,
-        errorTextStyle: errorTextStyle?.merge(other.errorTextStyle) ?? other.errorTextStyle,
-        hintTextStyle: hintTextStyle?.merge(other.hintTextStyle) ?? other.hintTextStyle,
-        contentTextStyle: contentTextStyle?.merge(other.contentTextStyle) ?? other.contentTextStyle,
+        titleTextStyle:
+            titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
+        subTitleTextStyle: subTitleTextStyle?.merge(other.subTitleTextStyle) ??
+            other.subTitleTextStyle,
+        errorTextStyle:
+            errorTextStyle?.merge(other.errorTextStyle) ?? other.errorTextStyle,
+        hintTextStyle:
+            hintTextStyle?.merge(other.hintTextStyle) ?? other.hintTextStyle,
+        contentTextStyle: contentTextStyle?.merge(other.contentTextStyle) ??
+            other.contentTextStyle,
         formPadding: other.formPadding,
         titlePaddingSm: other.titlePaddingSm,
         titlePaddingLg: other.titlePaddingLg,
         optionsMiddlePadding: other.optionsMiddlePadding,
         subTitlePadding: other.subTitlePadding,
         errorPadding: other.errorPadding,
-        disableTextStyle: disableTextStyle?.merge(other.disableTextStyle) ?? other.disableTextStyle,
-        tipsTextStyle: tipsTextStyle?.merge(other.tipsTextStyle) ?? other.tipsTextStyle,
+        disableTextStyle: disableTextStyle?.merge(other.disableTextStyle) ??
+            other.disableTextStyle,
+        tipsTextStyle:
+            tipsTextStyle?.merge(other.tipsTextStyle) ?? other.tipsTextStyle,
         headTitleTextStyle:
-            headTitleTextStyle?.merge(other.headTitleTextStyle) ?? other.headTitleTextStyle,
-        optionTextStyle: optionTextStyle?.merge(other.optionTextStyle) ?? other.optionTextStyle,
-        optionSelectedTextStyle: optionSelectedTextStyle?.merge(other.optionSelectedTextStyle) ??
-            other.optionSelectedTextStyle);
+            headTitleTextStyle?.merge(other.headTitleTextStyle) ??
+                other.headTitleTextStyle,
+        optionTextStyle: optionTextStyle?.merge(other.optionTextStyle) ??
+            other.optionTextStyle,
+        optionSelectedTextStyle:
+            optionSelectedTextStyle?.merge(other.optionSelectedTextStyle) ??
+                other.optionSelectedTextStyle);
   }
 }

@@ -124,7 +124,6 @@ class BrnRangeInputFormItem extends StatefulWidget {
       this.maxInputFormatters,
       this.themeData})
       : super(key: key) {
-
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -136,7 +135,6 @@ class BrnRangeInputFormItem extends StatefulWidget {
   BrnRangeInputFormItemState createState() {
     return BrnRangeInputFormItemState();
   }
-
 }
 
 class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
@@ -155,7 +153,6 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -172,14 +169,21 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData),
                   child: Row(
                     children: <Widget>[
-                      BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                      BrnFormUtil.buildPrefixIcon(
+                          widget.prefixIconType,
+                          widget.isEdit,
+                          context,
+                          widget.onAddTap,
+                          widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
-                      BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
-                      BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                      BrnFormUtil.buildTitleWidget(
+                          widget.title, widget.themeData),
+                      BrnFormUtil.buildTipLabelWidget(
+                          widget.tipLabel, widget.onTip, widget.themeData),
                     ],
                   ),
                 ),
@@ -192,29 +196,33 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                           maxWidth: 50,
                         ),
                         child: TextField(
-                          keyboardType: BrnFormUtil.getInputType(widget.inputType),
+                          keyboardType:
+                              BrnFormUtil.getInputType(widget.inputType),
                           enabled: widget.isEdit,
                           maxLines: 1,
                           maxLength: widget.leftMaxCount,
-                          style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit),
+                          style: BrnFormUtil.getIsEditTextStyle(
+                              widget.themeData, widget.isEdit),
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData),
+                            hintStyle:
+                                BrnFormUtil.getHintTextStyle(widget.themeData),
                             hintText: widget.hintMin ?? '最小',
-
                             counterText: "",
                             contentPadding: EdgeInsets.all(0),
                             isDense: true,
                             enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent)),
+                                borderSide:
+                                    BorderSide(color: Colors.transparent)),
                             focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent)),
+                                borderSide:
+                                    BorderSide(color: Colors.transparent)),
                           ),
                           textAlign: TextAlign.end,
                           controller: _minController,
                           onChanged: (text) {
-
-                            BrnFormUtil.notifyInputChanged(widget.onMinChanged, text);
+                            BrnFormUtil.notifyInputChanged(
+                                widget.onMinChanged, text);
                           },
                         ),
                       ),
@@ -243,28 +251,33 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                           maxWidth: 50,
                         ),
                         child: TextField(
-                          keyboardType: BrnFormUtil.getInputType(widget.inputType),
+                          keyboardType:
+                              BrnFormUtil.getInputType(widget.inputType),
                           enabled: widget.isEdit,
                           maxLines: 1,
                           maxLength: widget.rightMaxCount,
-                          style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit),
+                          style: BrnFormUtil.getIsEditTextStyle(
+                              widget.themeData, widget.isEdit),
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData),
+                            hintStyle:
+                                BrnFormUtil.getHintTextStyle(widget.themeData),
                             hintText: widget.hintMax ?? '最大',
-
                             counterText: "",
                             contentPadding: EdgeInsets.all(0),
                             isDense: true,
                             enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent)),
+                                borderSide:
+                                    BorderSide(color: Colors.transparent)),
                             focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent)),
+                                borderSide:
+                                    BorderSide(color: Colors.transparent)),
                           ),
                           textAlign: TextAlign.end,
                           controller: _maxController,
                           onChanged: (text) {
-                            BrnFormUtil.notifyInputChanged(widget.onMaxChanged, text);
+                            BrnFormUtil.notifyInputChanged(
+                                widget.onMaxChanged, text);
                           },
                         ),
                       ),
@@ -304,8 +317,4 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
       _maxController?.dispose();
     }
   }
-
 }
-
-
-

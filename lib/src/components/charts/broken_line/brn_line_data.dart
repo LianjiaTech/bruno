@@ -47,7 +47,10 @@ class BrnPointData {
     pointTextStyle ??= TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 12,
-        color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase);
+        color: BrnThemeConfigurator.instance
+            .getConfig()
+            .commonConfig
+            .colorTextBase);
   }
 }
 
@@ -73,7 +76,6 @@ class BrnLineTouchData {
 
 /// 每条线的定义
 class BrnPointsLine {
-
   /// 点集合
   List<BrnPointData> points;
 
@@ -109,7 +111,6 @@ class BrnPointsLine {
 
   ///  是否展示节点的文本
   bool isShowPointText;
-
 
   BrnPointsLine(
       {this.isShowXDial = false,

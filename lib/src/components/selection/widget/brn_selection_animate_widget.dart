@@ -9,14 +9,19 @@ class BrnSelectionAnimationWidget extends StatefulWidget {
   final int animationMilliseconds;
 
   const BrnSelectionAnimationWidget(
-      {Key key, @required this.controller, @required this.view, this.animationMilliseconds = 100})
+      {Key key,
+      @required this.controller,
+      @required this.view,
+      this.animationMilliseconds = 100})
       : super(key: key);
 
   @override
-  _BrnSelectionAnimationWidgetState createState() => _BrnSelectionAnimationWidgetState();
+  _BrnSelectionAnimationWidgetState createState() =>
+      _BrnSelectionAnimationWidgetState();
 }
 
-class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidget>
+class _BrnSelectionAnimationWidgetState
+    extends State<BrnSelectionAnimationWidget>
     with SingleTickerProviderStateMixin {
   bool _isControllerDisposed = false;
   Animation<double> _animation;
@@ -28,7 +33,8 @@ class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidge
 
     widget.controller.addListener(_onController);
     _controller = AnimationController(
-        duration: Duration(milliseconds: widget.animationMilliseconds), vsync: this);
+        duration: Duration(milliseconds: widget.animationMilliseconds),
+        vsync: this);
   }
 
   dispose() {
@@ -53,13 +59,14 @@ class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidge
       return;
     }
 
-    _animation =
-        Tween(begin: 0.0, end: widget.controller.screenHeight - widget.controller.listViewTop)
-            .animate(_controller)
-              ..addListener(() {
-                //这行如果不写，没有动画效果
-                setState(() {});
-              });
+    _animation = Tween(
+            begin: 0.0,
+            end: widget.controller.screenHeight - widget.controller.listViewTop)
+        .animate(_controller)
+          ..addListener(() {
+            //这行如果不写，没有动画效果
+            setState(() {});
+          });
 
     if (_isControllerDisposed) return;
 
@@ -78,7 +85,8 @@ class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidge
         color: Color(0xB3000000),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height - widget.controller.listViewTop,
+          height: MediaQuery.of(context).size.height -
+              widget.controller.listViewTop,
           child: Padding(
             padding: EdgeInsets.all(0),
             child: widget.view,

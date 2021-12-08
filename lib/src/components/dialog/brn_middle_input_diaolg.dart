@@ -112,13 +112,17 @@ class BrnMiddleInputDialog {
       maxLines: maxLines ?? minLines,
       minLines: minLines,
       //光标颜色
-      cursorColor: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+      cursorColor:
+          BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
       autofocus: autoFocus ?? false,
       //光标圆角弧度
       cursorRadius: Radius.circular(2.0),
       style: TextStyle(
           fontSize: 14,
-          color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase),
+          color: BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .colorTextBase),
       maxLengthEnforced: true,
       onChanged: (value) {
         _value = value;
@@ -129,18 +133,27 @@ class BrnMiddleInputDialog {
         hintText: hintText,
         hintStyle: TextStyle(
             fontSize: 14,
-            color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint),
+            color: BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .colorTextHint),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.0),
             borderSide: BorderSide(
               width: 0.5,
-              color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint,
+              color: BrnThemeConfigurator.instance
+                  .getConfig()
+                  .commonConfig
+                  .colorTextHint,
             )),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.0),
             borderSide: BorderSide(
               width: 0.5,
-              color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint,
+              color: BrnThemeConfigurator.instance
+                  .getConfig()
+                  .commonConfig
+                  .colorTextHint,
             )),
       ),
     ));

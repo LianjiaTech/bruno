@@ -33,10 +33,12 @@ class BrnSelectionRangeItemWidget extends StatefulWidget {
       this.onRangeChanged,
       this.onFocusChanged});
 
-  _BrnSelectionRangeItemWidgetState createState() => _BrnSelectionRangeItemWidgetState();
+  _BrnSelectionRangeItemWidgetState createState() =>
+      _BrnSelectionRangeItemWidgetState();
 }
 
-class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidget> {
+class _BrnSelectionRangeItemWidgetState
+    extends State<BrnSelectionRangeItemWidget> {
   FocusNode _minFocusNode = FocusNode();
   FocusNode _maxFocusNode = FocusNode();
 
@@ -83,7 +85,9 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
       widget.item.isSelected = true;
     });
 
-    EventBus.instance.on<ClearSelectionFocusEvent>().listen((ClearSelectionFocusEvent event) {
+    EventBus.instance
+        .on<ClearSelectionFocusEvent>()
+        .listen((ClearSelectionFocusEvent event) {
       _minFocusNode?.unfocus();
       _maxFocusNode?.unfocus();
     });
@@ -107,7 +111,8 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
                     widget.item.extMap['unit']?.toString() +
                     ")",
                 textAlign: TextAlign.left,
-                style: widget.themeData.rangeTitleTextStyle?.generateTextStyle(),
+                style:
+                    widget.themeData.rangeTitleTextStyle?.generateTextStyle(),
               ),
             ),
             Row(
@@ -138,7 +143,9 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
           widget.item.isSelected = true;
         },
         focusNode: isMax ? _maxFocusNode : _minFocusNode,
-        controller: isMax ? widget.maxTextEditingController : widget.minTextEditingController,
+        controller: isMax
+            ? widget.maxTextEditingController
+            : widget.minTextEditingController,
         cursorColor: widget.themeData.commonConfig.brandPrimary,
         textAlign: TextAlign.center,
         decoration: InputDecoration(

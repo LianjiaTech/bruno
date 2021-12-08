@@ -33,7 +33,13 @@ class BrnAppraiseBottomPicker extends StatefulWidget {
   final BrnAppraiseConfig config;
 
   /// 评价组建每个评分对应的默认文案
-  static const List<String> _defaultIconDescriptions = ['不好', '还行', '满意', '很棒', '超惊喜'];
+  static const List<String> _defaultIconDescriptions = [
+    '不好',
+    '还行',
+    '满意',
+    '很棒',
+    '超惊喜'
+  ];
 
   BrnAppraiseBottomPicker({
     this.title,
@@ -47,7 +53,8 @@ class BrnAppraiseBottomPicker extends StatefulWidget {
   });
 
   @override
-  _BrnAppraiseBottomPickerState createState() => _BrnAppraiseBottomPickerState();
+  _BrnAppraiseBottomPickerState createState() =>
+      _BrnAppraiseBottomPickerState();
 }
 
 class _BrnAppraiseBottomPickerState extends State<BrnAppraiseBottomPicker> {

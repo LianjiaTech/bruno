@@ -50,31 +50,43 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
       : super(configId: configId);
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnAbnormalStateConfig abnormalStateConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).abnormalStateConfig;
+    BrnAbnormalStateConfig abnormalStateConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .abnormalStateConfig;
 
-    this.singleBrnTextStyle = abnormalStateConfig.singleBrnTextStyle.merge(BrnTextStyle(
-            color: commonConfig.colorTextBaseInverse, fontSize: commonConfig.fontSizeSubHead)
-        .merge(this.singleBrnTextStyle));
+    this.singleBrnTextStyle = abnormalStateConfig.singleBrnTextStyle.merge(
+        BrnTextStyle(
+                color: commonConfig.colorTextBaseInverse,
+                fontSize: commonConfig.fontSizeSubHead)
+            .merge(this.singleBrnTextStyle));
 
-    this.titleTextStyle = abnormalStateConfig.titleTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
-            .merge(this.titleTextStyle));
+    this.titleTextStyle = abnormalStateConfig.titleTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeSubHead)
+        .merge(this.titleTextStyle));
 
     this.contentTextStyle = abnormalStateConfig.contentTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextHint, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.colorTextHint,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.contentTextStyle));
 
     this.operateTextStyle = abnormalStateConfig.operateTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeBase)
+        BrnTextStyle(
+                color: commonConfig.brandPrimary,
+                fontSize: commonConfig.fontSizeBase)
             .merge(this.operateTextStyle));
 
     this.doubleBrnTextStyle = abnormalStateConfig.doubleBrnTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.brandPrimary,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.doubleBrnTextStyle));
 
     this.btnRadius ??= abnormalStateConfig.btnRadius;
@@ -109,14 +121,17 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   BrnAbnormalStateConfig merge(BrnAbnormalStateConfig other) {
     if (other == null) return this;
     return copyWith(
-      titleTextStyle: titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
-      contentTextStyle: contentTextStyle?.merge(other.contentTextStyle) ?? other.contentTextStyle,
-      operateTextStyle: operateTextStyle?.merge(other.operateTextStyle) ?? other.operateTextStyle,
+      titleTextStyle:
+          titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
+      contentTextStyle: contentTextStyle?.merge(other.contentTextStyle) ??
+          other.contentTextStyle,
+      operateTextStyle: operateTextStyle?.merge(other.operateTextStyle) ??
+          other.operateTextStyle,
       btnRadius: other.btnRadius,
-      doubleBrnTextStyle:
-          doubleBrnTextStyle?.merge(other.doubleBrnTextStyle) ?? other.doubleBrnTextStyle,
-      singleBrnTextStyle:
-          singleBrnTextStyle?.merge(other.singleBrnTextStyle) ?? other.singleBrnTextStyle,
+      doubleBrnTextStyle: doubleBrnTextStyle?.merge(other.doubleBrnTextStyle) ??
+          other.doubleBrnTextStyle,
+      singleBrnTextStyle: singleBrnTextStyle?.merge(other.singleBrnTextStyle) ??
+          other.singleBrnTextStyle,
       singleMinWidth: other.singleMinWidth,
       doubleMinWidth: other.doubleMinWidth,
     );

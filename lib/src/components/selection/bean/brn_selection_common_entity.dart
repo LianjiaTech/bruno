@@ -51,7 +51,6 @@ enum BrnSelectionWindowType {
 }
 
 class BrnSelectionEntity {
-
   /// 类型 是单选、复选还是有自定义输入
   String type;
 
@@ -116,8 +115,7 @@ class BrnSelectionEntity {
   bool canJoinTitle = false;
 
   BrnSelectionEntity(
-      {
-      this.key,
+      {this.key,
       this.value,
       this.defaultValue,
       this.title,
@@ -135,7 +133,8 @@ class BrnSelectionEntity {
     this.originalCustomMap = Map();
 
     /// 默认支持最大选中个数为 65535
-    this.maxSelectedCount = maxSelectedCount ?? BrnSelectionConstant.MAX_SELECT_COUNT;
+    this.maxSelectedCount =
+        maxSelectedCount ?? BrnSelectionConstant.MAX_SELECT_COUNT;
   }
 
   /// 构造简单筛选数据
@@ -151,7 +150,8 @@ class BrnSelectionEntity {
     this.isSelected = false;
 
     /// 默认支持最大选中个数为 65535
-    this.maxSelectedCount = maxSelectedCount ?? BrnSelectionConstant.MAX_SELECT_COUNT;
+    this.maxSelectedCount =
+        maxSelectedCount ?? BrnSelectionConstant.MAX_SELECT_COUNT;
   }
 
   BrnSelectionEntity.fromJson(Map<String, dynamic> map) {
@@ -162,14 +162,16 @@ class BrnSelectionEntity {
     type = map['type'] ?? "";
     defaultValue = map['defaultValue'] ?? "";
     value = map['value'] ?? "";
-    if (map['maxSelectedCount'] != null && int.tryParse(map['maxSelectedCount']) != null) {
+    if (map['maxSelectedCount'] != null &&
+        int.tryParse(map['maxSelectedCount']) != null) {
       maxSelectedCount = int.tryParse(map['maxSelectedCount']);
     } else {
       maxSelectedCount = BrnSelectionConstant.MAX_SELECT_COUNT;
     }
     extMap = map['ext'] ?? {};
     children = List()
-      ..addAll((map['children'] as List ?? []).map((o) => BrnSelectionEntity.fromMap(o)));
+      ..addAll((map['children'] as List ?? [])
+          .map((o) => BrnSelectionEntity.fromMap(o)));
     filterType = parserFilterTypeWithType(map['type'] ?? "");
     isSelected = false;
   }
@@ -184,23 +186,25 @@ class BrnSelectionEntity {
     entity.type = map['type'] ?? "";
     entity.defaultValue = map['defaultValue'] ?? "";
     entity.value = map['value'] ?? "";
-    if (map['maxSelectedCount'] != null && int.tryParse(map['maxSelectedCount']) != null) {
+    if (map['maxSelectedCount'] != null &&
+        int.tryParse(map['maxSelectedCount']) != null) {
       entity.maxSelectedCount = int.tryParse(map['maxSelectedCount']);
     } else {
       entity.maxSelectedCount = BrnSelectionConstant.MAX_SELECT_COUNT;
     }
     entity.extMap = map['ext'] ?? {};
     entity.children = List()
-      ..addAll((map['children'] as List ?? []).map((o) => BrnSelectionEntity.fromMap(o)));
+      ..addAll((map['children'] as List ?? [])
+          .map((o) => BrnSelectionEntity.fromMap(o)));
     entity.filterType = entity.parserFilterTypeWithType(map['type'] ?? "");
     return entity;
   }
-  
+
   void configRelationshipAndDefaultValue() {
     configRelationship();
     configDefaultValue();
   }
-  
+
   void configRelationship() {
     if (this.children != null && this.children.length > 0) {
       for (BrnSelectionEntity entity in this.children) {
@@ -249,7 +253,8 @@ class BrnSelectionEntity {
       if (hasCheckBoxBrother()) {
         isSelected = children.where((_) => _.isSelected).length > 0;
       } else {
-        isSelected = isSelected || children.where((_) => _.isSelected).length > 0;
+        isSelected =
+            isSelected || children.where((_) => _.isSelected).length > 0;
       }
     }
   }
@@ -348,7 +353,8 @@ class BrnSelectionEntity {
             ?.where((_) => !_.isUnLimit())
             ?.where((_) =>
                 (_.filterType != BrnSelectionFilterType.Range) ||
-                (_.filterType == BrnSelectionFilterType.Range && !BrunoTools.isEmpty(_.customMap)))
+                (_.filterType == BrnSelectionFilterType.Range &&
+                    !BrunoTools.isEmpty(_.customMap)))
             ?.where((_) =>
                 (_.filterType != BrnSelectionFilterType.DateRange) ||
                 (_.filterType == BrnSelectionFilterType.DateRange &&
@@ -366,7 +372,8 @@ class BrnSelectionEntity {
       return this.selectedLastColumnList();
     } else {
       List<BrnSelectionEntity> results = List();
-      List<BrnSelectionEntity> firstColumn = BrnSelectionUtil.currentSelectListForEntity(this);
+      List<BrnSelectionEntity> firstColumn =
+          BrnSelectionUtil.currentSelectListForEntity(this);
       results.addAll(firstColumn);
       if (firstColumn != null && firstColumn.length > 0) {
         for (BrnSelectionEntity firstEntity in firstColumn) {
@@ -390,7 +397,8 @@ class BrnSelectionEntity {
 
   List<BrnSelectionEntity> allSelectedList() {
     List<BrnSelectionEntity> results = List();
-    List<BrnSelectionEntity> firstColumn = BrnSelectionUtil.currentSelectListForEntity(this);
+    List<BrnSelectionEntity> firstColumn =
+        BrnSelectionUtil.currentSelectListForEntity(this);
     results.addAll(firstColumn);
     if (firstColumn != null && firstColumn.length > 0) {
       for (BrnSelectionEntity firstEntity in firstColumn) {
@@ -421,7 +429,8 @@ class BrnSelectionEntity {
 
   BrnSelectionEntity getRootEntity(BrnSelectionEntity rootEntity) {
     if (rootEntity.parent == null ||
-        rootEntity.parent.maxSelectedCount == BrnSelectionConstant.MAX_SELECT_COUNT) {
+        rootEntity.parent.maxSelectedCount ==
+            BrnSelectionConstant.MAX_SELECT_COUNT) {
       return rootEntity;
     } else {
       return getRootEntity(rootEntity.parent);
@@ -442,7 +451,9 @@ class BrnSelectionEntity {
   /// 判断当前的筛选 Item 是否为当前层次中第一个被选中的 Item。
   /// 用于展开筛选弹窗时显示选中效果。
   int getIndexInCurrentLevel() {
-    if (parent == null || parent.children == null || parent.children.length == 0) return -1;
+    if (parent == null ||
+        parent.children == null ||
+        parent.children.length == 0) return -1;
 
     for (BrnSelectionEntity entity in parent.children) {
       if (entity == this) {
@@ -454,7 +465,9 @@ class BrnSelectionEntity {
 
   /// 是否在筛选数据的最后一层。 如果最大层次为 3；某个筛选数据层次为 2，但其无子节点。此时认为不在最后一层。
   bool isInLastLevel() {
-    if (parent == null || parent.children == null || parent.children.length == 0) return true;
+    if (parent == null ||
+        parent.children == null ||
+        parent.children.length == 0) return true;
 
     for (BrnSelectionEntity entity in parent.children) {
       if (entity.children != null && entity.children.length > 0) {
@@ -466,8 +479,9 @@ class BrnSelectionEntity {
 
   /// 检查自己的兄弟结点是否存在 checkbox 类型。
   bool hasCheckBoxBrother() {
-    int count =
-        parent?.children?.where((f) => f.filterType == BrnSelectionFilterType.Checkbox)?.length;
+    int count = parent?.children
+        ?.where((f) => f.filterType == BrnSelectionFilterType.Checkbox)
+        ?.length;
     return count == null ? false : count > 0;
   }
 
@@ -567,7 +581,9 @@ class BrnSelectionEntity {
         int inputMax = int.tryParse(customMap['max'] ?? "");
 
         if (inputMax != null && inputMin != null) {
-          if (inputMin >= limitMin && inputMax <= limitMax && inputMax >= inputMin) {
+          if (inputMin >= limitMin &&
+              inputMax <= limitMax &&
+              inputMax >= inputMin) {
             return true;
           } else {
             return false;

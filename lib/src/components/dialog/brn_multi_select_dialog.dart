@@ -6,7 +6,8 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef BrnMultiSelectDialogClickSubmitCallback = bool Function(List<MultiSelectItem> data);
+typedef BrnMultiSelectDialogClickSubmitCallback = bool Function(
+    List<MultiSelectItem> data);
 typedef BrnMultiSelectDialogOnItemClickCallback = void Function(
     BuildContext dialogContext, int index);
 
@@ -92,8 +93,8 @@ class BrnMultiSelectDialog extends Dialog {
         submitText: submitText,
         onSubmitClick: onSubmitClick,
         onItemClick: onItemClick,
-        submitBgColor:
-            submitBgColor ?? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+        submitBgColor: submitBgColor ??
+            BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
         isShowOperateWidget: isShowOperateWidget);
   }
 }
@@ -172,12 +173,14 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                         ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) => _buildItem(context, index),
+                            itemBuilder: (context, index) =>
+                                _buildItem(context, index),
                             itemCount: widget.conditions?.length),
                         widget.customWidget != null
                             ? Container(
                                 child: widget.customWidget,
-                                padding: EdgeInsets.only(left: 20, right: 20, top: 12),
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 12),
                               )
                             : Container(
                                 width: 0,
@@ -190,13 +193,15 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                     children: <Widget>[
                       Expanded(
                         child: ListView.builder(
-                            itemBuilder: (context, index) => _buildItem(context, index),
+                            itemBuilder: (context, index) =>
+                                _buildItem(context, index),
                             itemCount: widget.conditions?.length),
                       ),
                       widget.customWidget != null
                           ? Container(
                               child: widget.customWidget,
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 12),
+                              padding:
+                                  EdgeInsets.only(left: 20, right: 20, top: 12),
                             )
                           : Container(
                               width: 0,
@@ -258,7 +263,8 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
           behavior: HitTestBehavior.opaque,
           onTap: () {
             setState(() {
-              widget.conditions[index].isChecked = !widget.conditions[index].isChecked;
+              widget.conditions[index].isChecked =
+                  !widget.conditions[index].isChecked;
             });
             if (widget.onItemClick != null) {
               widget.onItemClick(context, index);
@@ -290,13 +296,16 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                         alignment: Alignment.center,
                         height: 44,
                         child: widget.conditions[index].isChecked
-                            ? BrunoTools.getAssetImageWithBandColor(BrnAsset.iconMultiSelected)
+                            ? BrunoTools.getAssetImageWithBandColor(
+                                BrnAsset.iconMultiSelected)
                             : BrunoTools.getAssetImage(BrnAsset.iconUnSelect)),
                   ],
                 ),
               ),
               index != widget.conditions.length - 1
-                  ? Padding(padding: EdgeInsets.fromLTRB(20, 0, 20, 0), child: BrnLine())
+                  ? Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: BrnLine())
                   : Container()
             ],
           ));

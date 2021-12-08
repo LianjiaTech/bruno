@@ -5,7 +5,6 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-
 ///传入的泛型数据转换为值 以填充Widget
 typedef SelectTagWithInputValueGetter<V> = String Function(V data);
 

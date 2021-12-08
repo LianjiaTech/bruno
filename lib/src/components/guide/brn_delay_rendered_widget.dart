@@ -74,7 +74,8 @@ class _DelayRenderedWidgetState extends State<_DelayRenderedWidget> {
         });
         Timer(
           Duration(
-            milliseconds: duration.inMilliseconds + durationInterval.inMilliseconds,
+            milliseconds:
+                duration.inMilliseconds + durationInterval.inMilliseconds,
           ),
           () {
             setState(() {

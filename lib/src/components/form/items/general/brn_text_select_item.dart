@@ -133,7 +133,6 @@ class BrnTextSelectFormItem extends StatefulWidget {
       this.layoutRatio,
       this.themeData})
       : super(key: key) {
-
     this._isAutoLayout = true;
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
@@ -146,19 +145,19 @@ class BrnTextSelectFormItem extends StatefulWidget {
   BrnTextSelectFormItemState createState() {
     return BrnTextSelectFormItemState();
   }
-
 }
 
 double _fontSize = BrnFont.FONT_16;
-StrutStyle _contentStructStyle =
-    StrutStyle(forceStrutHeight: true, height: 1, leading: 0.5, fontSize: _fontSize);
+StrutStyle _contentStructStyle = StrutStyle(
+    forceStrutHeight: true, height: 1, leading: 0.5, fontSize: _fontSize);
 
 class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.computeItemEdgeInsets2(widget.prefixIconType, widget.isRequire),
+      padding: BrnFormUtil.computeItemEdgeInsets2(
+          widget.prefixIconType, widget.isRequire),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -166,10 +165,10 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
               ? _buildAutoLayoutTitleWidget(context)
               : _buildTitleWidget(context),
 
-           // 副标题
+          // 副标题
           BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
 
-           // 错误提示
+          // 错误提示
           BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
         ],
       ),
@@ -194,17 +193,24 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   // 当左侧标题显示不下时折行展示
   // 当有用户自定义比例时用用户自定义比例
   Widget _buildAutoLayoutTitleWidget(BuildContext context) {
-    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
       double maxWidth = _getTitleMaxWidth(context, constraints);
       return Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Flexible(
             child: Container(
-              padding: BrnFormUtil.computeEdgeInsets2(widget.prefixIconType, widget.isRequire),
+              padding: BrnFormUtil.computeEdgeInsets2(
+                  widget.prefixIconType, widget.isRequire),
               child: Row(
                 children: <Widget>[
-                  BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                  BrnFormUtil.buildPrefixIcon(
+                      widget.prefixIconType,
+                      widget.isEdit,
+                      context,
+                      widget.onAddTap,
+                      widget.onRemoveTap),
                   BrnFormUtil.buildRequireWidget(widget.isRequire),
                   Flexible(child: _buildTitleTextWidget()),
                   _buildTipWidget(),
@@ -243,7 +249,8 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           children: <Widget>[
             Expanded(child: buildText()),
             Container(
-              height: calculateTextHeight(context, getCalculateText(), _fontSize, 1),
+              height: calculateTextHeight(
+                  context, getCalculateText(), _fontSize, 1),
               alignment: Alignment.center,
               child: BrnFormUtil.getRightArrowIcon(),
             ),
@@ -252,7 +259,6 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       ),
     );
   }
-
 
   // 提示语
   Widget _buildTipWidget() {
@@ -280,7 +286,10 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
                 widget.tipLabel ?? "",
                 overflow: TextOverflow.ellipsis,
                 strutStyle: StrutStyle(
-                    forceStrutHeight: true, height: 1, leading: 0.5, fontSize: BrnFont.FONT_14),
+                    forceStrutHeight: true,
+                    height: 1,
+                    leading: 0.5,
+                    fontSize: BrnFont.FONT_14),
                 style: BrnFormUtil.getTipsTextStyle(widget.themeData),
               ),
             ),
@@ -294,7 +303,9 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   Widget _buildTitleTextWidget() {
     return Text(
       widget.title ?? "",
-      overflow: widget.titleMaxLines == null ? TextOverflow.clip : TextOverflow.ellipsis,
+      overflow: widget.titleMaxLines == null
+          ? TextOverflow.clip
+          : TextOverflow.ellipsis,
       maxLines: widget.titleMaxLines,
       strutStyle: _contentStructStyle,
       style: BrnFormUtil.getTitleTextStyle(widget.themeData, height: 1),
@@ -307,10 +318,12 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          padding: BrnFormUtil.computeEdgeInsets2(widget.prefixIconType, widget.isRequire),
+          padding: BrnFormUtil.computeEdgeInsets2(
+              widget.prefixIconType, widget.isRequire),
           child: Row(
             children: <Widget>[
-              BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+              BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit,
+                  context, widget.onAddTap, widget.onRemoveTap),
               BrnFormUtil.buildRequireWidget(widget.isRequire),
               _buildTitleTextWidget(),
               _buildTipWidget(),
@@ -337,7 +350,9 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           strutStyle: _contentStructStyle,
           text: TextSpan(
             text: widget.value,
-            style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit, height: 1),
+            style: BrnFormUtil.getIsEditTextStyle(
+                widget.themeData, widget.isEdit,
+                height: 1),
           ));
     } else {
       painter = TextPainter(
@@ -364,7 +379,8 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
         maxLines: widget.valueMaxLines ?? 1,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
-        style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit, height: 1),
+        style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit,
+            height: 1),
       );
     } else {
       return Text(
@@ -410,6 +426,4 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
     // 文字的高度:painter.height
     return painter.height < fontSize ? fontSize : painter.height;
   }
-
 }
-

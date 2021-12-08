@@ -23,7 +23,8 @@ class DoughnutChartLegend extends StatelessWidget {
   /// 图例展示所用数据
   final List<BrnDoughnutDataItem> data;
 
-  DoughnutChartLegend({this.legendStyle = BrnDoughnutChartLegendStyle.wrap, this.data});
+  DoughnutChartLegend(
+      {this.legendStyle = BrnDoughnutChartLegendStyle.wrap, this.data});
 
   @override
   Widget build(BuildContext context) {

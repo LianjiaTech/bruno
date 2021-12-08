@@ -65,10 +65,8 @@ class BrnExpandFormGroup extends StatefulWidget {
     this.error: "",
     this.isEdit: true,
     this.isRequire: false,
-
     this.onRemoveTap,
     this.onTip,
-
     this.isExpand: true,
     this.deleteLabel,
     this.children,
@@ -78,11 +76,9 @@ class BrnExpandFormGroup extends StatefulWidget {
   BrnExpandFormGroupState createState() {
     return BrnExpandFormGroupState();
   }
-
 }
 
 class BrnExpandFormGroupState extends State<BrnExpandFormGroup> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -119,8 +115,4 @@ class BrnExpandFormGroupState extends State<BrnExpandFormGroup> {
 
     return result;
   }
-
-
 }
-
-

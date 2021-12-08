@@ -60,7 +60,6 @@ class BrnDatePicker {
 
     /// 分钟间切换的差值
     int minuteDivider: 1,
-
     DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
 
     /// 时间选择组件显示的时间类型
@@ -114,7 +113,8 @@ class BrnDatePicker {
             onChange: onChange,
             onConfirm: onConfirm,
             theme: Theme.of(context),
-            barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+            barrierLabel:
+                MaterialLocalizations.of(context).modalBarrierDismissLabel,
             themeData: themeData,
           ),
         )
@@ -178,13 +178,14 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   @override
   AnimationController createAnimationController() {
     assert(_animationController == null);
-    _animationController = BottomSheet.createAnimationController(navigator.overlay);
+    _animationController =
+        BottomSheet.createAnimationController(navigator.overlay);
     return _animationController;
   }
 
   @override
-  Widget buildPage(
-      BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     double height = themeData.pickerHeight;
     if (pickerTitleConfig.title != null || pickerTitleConfig.showTitle) {
       height += themeData.titleHeight;
@@ -266,7 +267,8 @@ class _DatePickerComponent extends StatelessWidget {
         builder: (BuildContext context, Widget child) {
           return ClipRect(
             child: CustomSingleChildLayout(
-              delegate: _BottomPickerLayout(route.animation.value, contentHeight: _pickerHeight),
+              delegate: _BottomPickerLayout(route.animation.value,
+                  contentHeight: _pickerHeight),
               child: BrnPickerClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(route.themeData.cornerRadius),

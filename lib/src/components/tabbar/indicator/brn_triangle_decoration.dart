@@ -27,7 +27,6 @@ class BrnTriangleIndicator extends Decoration {
     this.shape,
   });
 
-
   factory BrnTriangleIndicator.fromBoxDecoration(BoxDecoration source) {
     ShapeBorder shape;
     assert(source.shape != null);
@@ -74,7 +73,8 @@ class BrnTriangleIndicator extends Decoration {
   @override
   BrnTriangleIndicator lerpFrom(Decoration a, double t) {
     if (a is BoxDecoration) {
-      return BrnTriangleIndicator.lerp(BrnTriangleIndicator.fromBoxDecoration(a), this, t);
+      return BrnTriangleIndicator.lerp(
+          BrnTriangleIndicator.fromBoxDecoration(a), this, t);
     } else if (a == null || a is BrnTriangleIndicator) {
       return BrnTriangleIndicator.lerp(a, this, t);
     }
@@ -84,14 +84,16 @@ class BrnTriangleIndicator extends Decoration {
   @override
   BrnTriangleIndicator lerpTo(Decoration b, double t) {
     if (b is BoxDecoration) {
-      return BrnTriangleIndicator.lerp(this, BrnTriangleIndicator.fromBoxDecoration(b), t);
+      return BrnTriangleIndicator.lerp(
+          this, BrnTriangleIndicator.fromBoxDecoration(b), t);
     } else if (b == null || b is BrnTriangleIndicator) {
       return BrnTriangleIndicator.lerp(this, b, t);
     }
     return super.lerpTo(b, t);
   }
 
-  static BrnTriangleIndicator lerp(BrnTriangleIndicator a, BrnTriangleIndicator b, double t) {
+  static BrnTriangleIndicator lerp(
+      BrnTriangleIndicator a, BrnTriangleIndicator b, double t) {
     assert(t != null);
     if (a == null && b == null) return null;
     if (a != null && b != null) {
@@ -140,9 +142,12 @@ class BrnTriangleIndicator extends Decoration {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.defaultDiagnosticsTreeStyle = DiagnosticsTreeStyle.whitespace;
-    properties.add(DiagnosticsProperty<Color>('color', color, defaultValue: null));
-    properties.add(DiagnosticsProperty<Gradient>('gradient', gradient, defaultValue: null));
-    properties.add(DiagnosticsProperty<DecorationImage>('image', image, defaultValue: null));
+    properties
+        .add(DiagnosticsProperty<Color>('color', color, defaultValue: null));
+    properties.add(DiagnosticsProperty<Gradient>('gradient', gradient,
+        defaultValue: null));
+    properties.add(DiagnosticsProperty<DecorationImage>('image', image,
+        defaultValue: null));
     properties.add(IterableProperty<BoxShadow>('shadows', shadows,
         defaultValue: null, style: DiagnosticsTreeStyle.whitespace));
     properties.add(DiagnosticsProperty<ShapeBorder>('shape', shape));
@@ -150,7 +155,9 @@ class BrnTriangleIndicator extends Decoration {
 
   @override
   bool hitTest(Size size, Offset position, {TextDirection textDirection}) {
-    return shape.getOuterPath(Offset.zero & size, textDirection: textDirection).contains(position);
+    return shape
+        .getOuterPath(Offset.zero & size, textDirection: textDirection)
+        .contains(position);
   }
 
   @override
@@ -164,7 +171,8 @@ class BrnTriangleIndicator extends Decoration {
 
 /// An object that paints a [BrnTriangleIndicator] into a canvas.
 class _TriangleDecorationPainter extends BoxPainter {
-  _TriangleDecorationPainter(this._decoration, this._path, this._paint, VoidCallback onChanged)
+  _TriangleDecorationPainter(
+      this._decoration, this._path, this._paint, VoidCallback onChanged)
       : assert(_decoration != null),
         super(onChanged);
 
@@ -173,7 +181,8 @@ class _TriangleDecorationPainter extends BoxPainter {
   Paint _paint; //画笔
   Path _path; //绘制路径
 
-  void _paintTriangle(Canvas canvas, Offset offset, Rect rect, ImageConfiguration configuration) {
+  void _paintTriangle(Canvas canvas, Offset offset, Rect rect,
+      ImageConfiguration configuration) {
     final baseX = offset.dx + rect.width / 2;
     final width = _decoration.triWidth;
     final height = _decoration.triHeight;

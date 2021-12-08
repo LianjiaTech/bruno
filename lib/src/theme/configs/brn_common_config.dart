@@ -67,11 +67,9 @@ class BrnCommonConfig extends BrnBaseConfig {
   /// default value is Color(0xFF999999)
   Color colorTextDisabled;
 
-
   /// 文本框提示暗文文字色
   /// default value is Color(0xFFCCCCCC)
   Color colorTextHint;
-
 
   /// 跟随主题色[brandPrimary]
   Color colorLink;
@@ -325,7 +323,8 @@ class BrnCommonConfig extends BrnBaseConfig {
 
   /// 优先级  [GLOBAL_CONFIG_ID] 获取配置 > [BRUNO_CONFIG_ID] 获取配置
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
     /// 获取合适的 完整配置（BrnAllConfig）
     this.colorTextBase ??= commonConfig.colorTextBase;
     this.colorTextImportant ??= commonConfig.colorTextImportant;

@@ -206,14 +206,20 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
       _defaultCancelTextColor = Colors.white;
       _defaultClearIconColor = Colors.white.withOpacity(0.4);
     } else {
-      _defaultDividerColor =
-          BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase;
-      _defaultHintTextColor = BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint;
-      _defaultInputTextColor =
-          BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextSecondary;
+      _defaultDividerColor = BrnThemeConfigurator.instance
+          .getConfig()
+          .commonConfig
+          .dividerColorBase;
+      _defaultHintTextColor =
+          BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint;
+      _defaultInputTextColor = BrnThemeConfigurator.instance
+          .getConfig()
+          .commonConfig
+          .colorTextSecondary;
       _defaultCancelTextColor =
           BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-      _defaultClearIconColor = BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint;
+      _defaultClearIconColor =
+          BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint;
     }
   }
 
@@ -261,7 +267,8 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(right: 8.0),
-                child: BrunoTools.getAssetSizeImage(BrnAsset.ICON_SEARCH, 16, 16),
+                child:
+                    BrunoTools.getAssetSizeImage(BrnAsset.ICON_SEARCH, 16, 16),
               ),
               Expanded(
                 child: TextField(
@@ -270,8 +277,10 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
                     // 控制器属性，控制正在编辑的文本。
                     controller: _controller,
                     // 光标颜色属性，绘制光标时使用的颜色。
-                    cursorColor:
-                        BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+                    cursorColor: BrnThemeConfigurator.instance
+                        .getConfig()
+                        .commonConfig
+                        .brandPrimary,
                     // 光标宽度属性，光标的厚度，默认是2.0。
                     cursorWidth: 2.0,
                     // 样式属性，用于正在编辑的文本的样式。
@@ -329,7 +338,8 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
                   visible: _controller.text.isNotEmpty,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        right: valueNotifier.value ? 24 : 20, left: valueNotifier.value ? 24 : 20),
+                        right: valueNotifier.value ? 24 : 20,
+                        left: valueNotifier.value ? 24 : 20),
                     child: Image.asset(
                       'assets/${BrnAsset.ICON_DELETE_TEXT}',
                       color: _defaultClearIconColor,

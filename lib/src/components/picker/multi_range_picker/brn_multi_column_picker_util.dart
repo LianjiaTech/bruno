@@ -3,7 +3,6 @@ import 'package:bruno/src/utils/brn_tools.dart';
 
 /// BrnMultiColumnPicker相关工具类
 class BrnMultiColumnPickerUtil {
-
   /// 筛选项最多不超过三层,故直接写代码判断,本质为深度优先搜索。
   static int getTotalColumnCount(BrnPickerEntity entity) {
     int count = 0;
@@ -12,13 +11,17 @@ class BrnMultiColumnPickerUtil {
       rootEntity = rootEntity.parent;
     }
 
-    if (rootEntity != null && rootEntity.children != null && rootEntity.children.length > 0) {
+    if (rootEntity != null &&
+        rootEntity.children != null &&
+        rootEntity.children.length > 0) {
       count = count > 1 ? count : 1;
       for (BrnPickerEntity firstLevelEntity in rootEntity.children) {
-        if (firstLevelEntity.children != null && firstLevelEntity.children.length > 0) {
+        if (firstLevelEntity.children != null &&
+            firstLevelEntity.children.length > 0) {
           count = count > 2 ? count : 2;
           for (BrnPickerEntity secondLevelEntity in firstLevelEntity.children) {
-            if (secondLevelEntity.children != null && secondLevelEntity.children.length > 0) {
+            if (secondLevelEntity.children != null &&
+                secondLevelEntity.children.length > 0) {
               count = 3;
               break;
             }
@@ -49,7 +52,7 @@ class BrnMultiColumnPickerUtil {
   /// 返回 true 符合条件，false 不符合条件
   static bool isSelectedCountExceed(BrnPickerEntity entity) {
     if (entity == null && entity.parent == null) return false;
-    return entity.parent.getSelectedChildCount() < entity.parent.maxSelectedCount;
+    return entity.parent.getSelectedChildCount() <
+        entity.parent.maxSelectedCount;
   }
-
 }

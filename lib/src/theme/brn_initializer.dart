@@ -15,6 +15,7 @@ class BrnInitializer {
     if (brunoImgUtils != null) {
       BrnThemeImg.register(brunoImgUtils: brunoImgUtils);
     }
+
     /// 配置主题定制
     BrnThemeConfigurator.instance.register(allThemeConfig, configId: configId);
   }

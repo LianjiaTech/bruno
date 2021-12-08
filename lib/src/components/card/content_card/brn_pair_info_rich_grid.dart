@@ -80,7 +80,8 @@ class BrnRichInfoGrid extends StatelessWidget {
   }
 
   Widget _buildGridView(context) {
-    BrnPairRichInfoGridConfig defaultConfig = themeData ?? BrnPairRichInfoGridConfig();
+    BrnPairRichInfoGridConfig defaultConfig =
+        themeData ?? BrnPairRichInfoGridConfig();
 
     defaultConfig = defaultConfig.merge(BrnPairRichInfoGridConfig(
         itemSpacing: space, rowSpacing: rowSpace, itemHeight: itemHeight));
@@ -95,7 +96,8 @@ class BrnRichInfoGrid extends StatelessWidget {
         if (gridWidth == double.infinity) {
           gridWidth = MediaQuery.of(context).size.width;
         }
-        double itemHeight = defaultConfig.itemHeight * (MediaQuery.textScaleFactorOf(context));
+        double itemHeight =
+            defaultConfig.itemHeight * (MediaQuery.textScaleFactorOf(context));
         double itemWidth = (gridWidth - defaultConfig.itemSpacing) / 2;
 
         var gridView = GridView.builder(
@@ -144,7 +146,9 @@ class BrnRichInfoGrid extends StatelessWidget {
       return Container(
         constraints: BoxConstraints(maxWidth: width / 4),
         child: Text(info.keyPart,
-            maxLines: 1, overflow: TextOverflow.ellipsis, style: _getKeyStyle(themeData: config)),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: _getKeyStyle(themeData: config)),
       );
     }
     if (info.keyPart is Widget) {
@@ -157,7 +161,8 @@ class BrnRichInfoGrid extends StatelessWidget {
     );
   }
 
-  Widget _getValueWidget(BrnRichGridInfo info, BrnPairRichInfoGridConfig config) {
+  Widget _getValueWidget(
+      BrnRichGridInfo info, BrnPairRichInfoGridConfig config) {
     if (info == null) {
       return Container(
         height: 0,
@@ -213,8 +218,8 @@ class BrnRichGridInfo {
     BrnPairRichInfoGridConfig themeData,
   }) {
     themeData ??= BrnPairRichInfoGridConfig();
-    themeData = themeData
-        .merge(BrnPairRichInfoGridConfig(linkTextStyle: BrnTextStyle(color: clickColor)));
+    themeData = themeData.merge(BrnPairRichInfoGridConfig(
+        linkTextStyle: BrnTextStyle(color: clickColor)));
     themeData = BrnThemeConfigurator.instance
         .getConfig(configId: themeData.configId)
         .pairRichInfoGridConfig
@@ -231,7 +236,8 @@ class BrnRichGridInfo {
           },
           child: Padding(
             padding: EdgeInsets.only(left: isKey ? 0 : 4),
-            child: BrunoTools.getAssetSizeImage(BrnAsset.ICON_PAIR_INFO_QUESTION, 14, 14),
+            child: BrunoTools.getAssetSizeImage(
+                BrnAsset.ICON_PAIR_INFO_QUESTION, 14, 14),
           ));
     }
 
@@ -249,7 +255,8 @@ class BrnRichGridInfo {
             child: Text(clickTitle,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: _getClickStyle(clickTitle, clickColor, themeData: themeData)),
+                style: _getClickStyle(clickTitle, clickColor,
+                    themeData: themeData)),
           ),
         ),
       );
@@ -334,5 +341,6 @@ TextStyle _getClickStyle(String content, Color clickColor,
         {BrnPairRichInfoGridConfig themeData}) =>
     themeData.linkTextStyle?.generateTextStyle();
 
-TextStyle _getValueStyle(String content, {BrnPairRichInfoGridConfig themeData}) =>
+TextStyle _getValueStyle(String content,
+        {BrnPairRichInfoGridConfig themeData}) =>
     themeData?.valueTextStyle?.generateTextStyle();

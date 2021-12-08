@@ -97,12 +97,14 @@ class BrnPopupWindow extends StatefulWidget {
   static void showPopWindow(context, String text, GlobalKey popKey,
       {BrnPopupDirection popDirection = BrnPopupDirection.bottom,
       double arrowHeight = 6.0,
-      TextStyle textStyle = const TextStyle(fontSize: 16, color: Color(0xFFFFFFFF)),
+      TextStyle textStyle =
+          const TextStyle(fontSize: 16, color: Color(0xFFFFFFFF)),
       Color backgroundColor = const Color(0xFF1A1A1A),
       bool hasCloseIcon = false,
       double offset = 0,
       Widget widget,
-      EdgeInsets paddingInsets = const EdgeInsets.only(left: 18, top: 14, right: 18, bottom: 14),
+      EdgeInsets paddingInsets =
+          const EdgeInsets.only(left: 18, top: 14, right: 18, bottom: 14),
       double borderRadius = 8,
       Color borderColor = Colors.transparent,
       double borderWidth = 1,
@@ -183,7 +185,8 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
     }
     RenderBox renderBox = key.currentContext.findRenderObject();
     var offset = renderBox.localToGlobal(Offset.zero);
-    return Rect.fromLTWH(offset.dx, offset.dy, renderBox.size.width, renderBox.size.height);
+    return Rect.fromLTWH(
+        offset.dx, offset.dy, renderBox.size.width, renderBox.size.height);
   }
 
   // 计算popUpWindow显示的位置
@@ -248,9 +251,15 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
     return _expandedRight
         ? Positioned(
             left: widget.arrowOffset ??
-                _left + (_showRect.width - _arrowSpacing) / 2 - widget.spaceMargin,
-            top: _popDirection == BrnPopupDirection.bottom ? _top - widget.arrowHeight : null,
-            bottom: _popDirection == BrnPopupDirection.top ? _bottom - widget.arrowHeight : null,
+                _left +
+                    (_showRect.width - _arrowSpacing) / 2 -
+                    widget.spaceMargin,
+            top: _popDirection == BrnPopupDirection.bottom
+                ? _top - widget.arrowHeight
+                : null,
+            bottom: _popDirection == BrnPopupDirection.top
+                ? _bottom - widget.arrowHeight
+                : null,
             child: CustomPaint(
               size: Size(15.0, widget.arrowHeight),
               painter: _TrianglePainter(
@@ -261,9 +270,15 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
           )
         : Positioned(
             right: widget.arrowOffset ??
-                _right + (_showRect.width - _arrowSpacing) / 2 - widget.spaceMargin,
-            top: _popDirection == BrnPopupDirection.bottom ? _top - widget.arrowHeight : null,
-            bottom: _popDirection == BrnPopupDirection.top ? _bottom - widget.arrowHeight : null,
+                _right +
+                    (_showRect.width - _arrowSpacing) / 2 -
+                    widget.spaceMargin,
+            top: _popDirection == BrnPopupDirection.bottom
+                ? _top - widget.arrowHeight
+                : null,
+            bottom: _popDirection == BrnPopupDirection.top
+                ? _bottom - widget.arrowHeight
+                : null,
             child: CustomPaint(
               size: Size(15.0, widget.arrowHeight),
               painter: _TrianglePainter(
@@ -290,7 +305,9 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
                 border: Border.all(color: _borderColor, width: 0.5),
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 4)),
             constraints: BoxConstraints(
-                maxWidth: _expandedRight ? _screenSize.width - _left : _screenSize.width - _right,
+                maxWidth: _expandedRight
+                    ? _screenSize.width - _left
+                    : _screenSize.width - _right,
                 maxHeight: _popDirection == BrnPopupDirection.bottom
                     ? _screenSize.height - _top
                     : _screenSize.height - _bottom - statusBarHeight),
@@ -299,13 +316,15 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
                     child: widget.canWrap
                         ? RichText(
                             text: TextSpan(children: <InlineSpan>[
-                            TextSpan(text: widget.text, style: widget.textStyle),
+                            TextSpan(
+                                text: widget.text, style: widget.textStyle),
                             widget.isShowCloseIcon
                                 ? WidgetSpan(
                                     alignment: PlaceholderAlignment.middle,
                                     child: Padding(
                                       padding: EdgeInsets.only(left: 6),
-                                      child: BrunoTools.getAssetImage(BrnAsset.ICON_POPUP_CLOSE),
+                                      child: BrunoTools.getAssetImage(
+                                          BrnAsset.ICON_POPUP_CLOSE),
                                     ))
                                 : TextSpan(text: "")
                           ]))
@@ -324,7 +343,8 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
                               widget.isShowCloseIcon
                                   ? Padding(
                                       padding: EdgeInsets.only(left: 6),
-                                      child: BrunoTools.getAssetImage(BrnAsset.ICON_POPUP_CLOSE),
+                                      child: BrunoTools.getAssetImage(
+                                          BrnAsset.ICON_POPUP_CLOSE),
                                     )
                                   : Text("")
                             ],
@@ -405,8 +425,8 @@ class BrnPopupRoute extends PopupRoute {
   String get barrierLabel => null;
 
   @override
-  Widget buildPage(
-      BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     return child;
   }
 
@@ -438,7 +458,11 @@ class BrnPopupListWindow {
       BrnPopupListItemBuilder itemBuilder,
       BrnPopupListItemClick onItemClick}) {
     TextStyle textStyle = TextStyle(
-        color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase, fontSize: 16);
+        color: BrnThemeConfigurator.instance
+            .getConfig()
+            .commonConfig
+            .colorTextBase,
+        fontSize: 16);
     double arrowHeight = 6.0;
     Color borderColor = Color(0xffCCCCCC);
     Color backgroundColor = Colors.white;
@@ -462,16 +486,18 @@ class BrnPopupListWindow {
           offset: offset,
           widget: BrunoTools.isEmpty(data)
               ? Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
+                  constraints:
+                      BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
                 )
               : Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
+                  constraints:
+                      BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
                   child: SingleChildScrollView(
                     child: Container(
                       padding: EdgeInsets.only(top: 6, bottom: 6),
                       child: Column(
-                        children: _getItems(context, minWidth, maxWidth, itemBuilder, textStyle,
-                            data, onItemClick, null),
+                        children: _getItems(context, minWidth, maxWidth,
+                            itemBuilder, textStyle, data, onItemClick, null),
                       ),
                     ),
                   ),
@@ -503,10 +529,15 @@ class BrnPopupListWindow {
     double maxWidth = 150;
     double maxHeight = 200;
     double arrowOffset;
-    Color borderColor = BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase;
+    Color borderColor =
+        BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase;
     Color backgroundColor = Colors.white;
     TextStyle textStyle = TextStyle(
-        color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase, fontSize: 14);
+        color: BrnThemeConfigurator.instance
+            .getConfig()
+            .commonConfig
+            .colorTextBase,
+        fontSize: 14);
     bool hasCloseIcon = true;
 
     Navigator.push(
@@ -523,16 +554,18 @@ class BrnPopupListWindow {
           offset: offset,
           widget: BrunoTools.isEmpty(data)
               ? Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
+                  constraints:
+                      BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
                 )
               : Container(
-                  constraints: BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
+                  constraints:
+                      BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
                   child: SingleChildScrollView(
                     child: Container(
                       padding: EdgeInsets.only(top: 6, bottom: 6),
                       child: Column(
-                        children: _getItems(context, minWidth, maxWidth, null, textStyle, data,
-                            onItemClick, onDismiss),
+                        children: _getItems(context, minWidth, maxWidth, null,
+                            textStyle, data, onItemClick, onDismiss),
                       ),
                     ),
                   ),
@@ -554,8 +587,8 @@ class BrnPopupListWindow {
       List<String> data,
       BrnPopupListItemClick onItemClick,
       VoidCallback onDismiss) {
-    double textMaxWidth =
-        _getMaxWidth(textStyle ?? TextStyle(fontSize: 16, color: Color(0xFFFFFFFF)), data);
+    double textMaxWidth = _getMaxWidth(
+        textStyle ?? TextStyle(fontSize: 16, color: Color(0xFFFFFFFF)), data);
     if (textMaxWidth + 52 < minWidth) {
       textMaxWidth = minWidth;
     } else if (textMaxWidth + 52 > maxWidth) {
@@ -579,7 +612,8 @@ class BrnPopupListWindow {
                   width: textMaxWidth,
                   alignment: Alignment.center,
                   color: Colors.transparent,
-                  padding: EdgeInsets.only(left: 26, right: 26, top: 6, bottom: 6),
+                  padding:
+                      EdgeInsets.only(left: 26, right: 26, top: 6, bottom: 6),
                   child: _getTextWidget(itemBuilder, data, f, textStyle)));
         })?.toList() ??
         List();
@@ -605,12 +639,13 @@ class BrnPopupListWindow {
     return maxWidth;
   }
 
-  static Widget _getTextWidget(
-      BrnPopupListItemBuilder itemBuilder, List<String> data, String text, TextStyle textStyle) {
+  static Widget _getTextWidget(BrnPopupListItemBuilder itemBuilder,
+      List<String> data, String text, TextStyle textStyle) {
     if (itemBuilder == null) {
       return _getDefaultText(text, textStyle);
     } else {
-      return itemBuilder(data.indexOf(text), text) ?? _getDefaultText(text, textStyle);
+      return itemBuilder(data.indexOf(text), text) ??
+          _getDefaultText(text, textStyle);
     }
   }
 

@@ -47,7 +47,6 @@ class BrnAllThemeConfig {
       String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID});
 
   void initThemeConfig(String configId) {
-
     this.commonConfig ??= BrnCommonConfig();
     this.appBarConfig ??= BrnAppBarConfig();
     this.buttonConfig ??= BrnButtonConfig();
@@ -67,20 +66,35 @@ class BrnAllThemeConfig {
     this.galleryDetailConfig ??= BrnGalleryDetailConfig();
 
     commonConfig?.initThemeConfig(configId);
-    appBarConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    buttonConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    dialogConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    formItemConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    cardTitleConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    abnormalStateConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    tagConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    pairInfoTableConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    pairRichInfoGridConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    selectionConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    actionSheetConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    pickerConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    enhanceNumberCardConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    tabBarConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    galleryDetailConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    appBarConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    buttonConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    dialogConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    formItemConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    cardTitleConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    abnormalStateConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    tagConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    pairInfoTableConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    pairRichInfoGridConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    selectionConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    actionSheetConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    pickerConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    enhanceNumberCardConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    tabBarConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
+    galleryDetailConfig?.initThemeConfig(configId,
+        currentLevelCommonConfig: commonConfig);
   }
 }

@@ -15,8 +15,10 @@ class BrnTagsPickerHeaderConfig {
     this.cancelFontSize = 18,
     this.dividingLineColor,
   }) {
-    this.titleColor = BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-    this.cancelColor = BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
+    this.titleColor =
+        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
+    this.cancelColor =
+        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
   }
 
   final double headerHeight;
@@ -46,7 +48,8 @@ class BrnTagsPickerConfig {
       this.selectedTagBackgroudColor,
       this.chipPadding,
       this.tagItemSource = const []}) {
-    this.tagTitleColor = BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
+    this.tagTitleColor =
+        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
   }
 
   ///tag 文字大小
@@ -87,5 +90,10 @@ class BrnTagItemBean {
   ///自己添加的扩展
   Map ext;
 
-  BrnTagItemBean({this.name = '', this.code = '', this.index, this.isSelect = false, this.ext});
+  BrnTagItemBean(
+      {this.name = '',
+      this.code = '',
+      this.index,
+      this.isSelect = false,
+      this.ext});
 }

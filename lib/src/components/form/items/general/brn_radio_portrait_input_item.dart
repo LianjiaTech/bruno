@@ -90,7 +90,6 @@ class BrnRadioPortraitInputFormItem extends StatefulWidget {
       this.onChanged,
       this.themeData})
       : super(key: key) {
-
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -102,12 +101,10 @@ class BrnRadioPortraitInputFormItem extends StatefulWidget {
   BrnRadioPortraitInputFormItemState createState() {
     return BrnRadioPortraitInputFormItemState();
   }
-
 }
 
-class BrnRadioPortraitInputFormItemState extends State<BrnRadioPortraitInputFormItem> {
-
-
+class BrnRadioPortraitInputFormItemState
+    extends State<BrnRadioPortraitInputFormItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -124,14 +121,21 @@ class BrnRadioPortraitInputFormItemState extends State<BrnRadioPortraitInputForm
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData),
                   child: Row(
                     children: <Widget>[
-                      BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                      BrnFormUtil.buildPrefixIcon(
+                          widget.prefixIconType,
+                          widget.isEdit,
+                          context,
+                          widget.onAddTap,
+                          widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
-                      BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
-                     BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                      BrnFormUtil.buildTitleWidget(
+                          widget.title, widget.themeData),
+                      BrnFormUtil.buildTipLabelWidget(
+                          widget.tipLabel, widget.onTip, widget.themeData),
                     ],
                   ),
                 ),
@@ -238,7 +242,4 @@ class BrnRadioPortraitInputFormItemState extends State<BrnRadioPortraitInputForm
 
     return !widget.enableList[index];
   }
-
 }
-
-

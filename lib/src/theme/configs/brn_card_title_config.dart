@@ -52,11 +52,14 @@ class BrnCardTitleConfig extends BrnBaseConfig {
 
   /// cardTitleConfig  获取逻辑详见 [BrnThemeConfigurator.getConfig] 方法
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
-    BrnCardTitleConfig cardTitleConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).cardTitleConfig;
+    BrnCardTitleConfig cardTitleConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .cardTitleConfig;
 
     this.cardBackgroundColor ??= commonConfig.fillBase;
 
@@ -68,8 +71,10 @@ class BrnCardTitleConfig extends BrnBaseConfig {
           bottom: commonConfig.vSpacingMd);
     }
 
-    this.titleWithHeightTextStyle = cardTitleConfig.titleWithHeightTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeHead)
+    this.titleWithHeightTextStyle = cardTitleConfig.titleWithHeightTextStyle
+        .merge(BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeHead)
             .merge(this.titleWithHeightTextStyle));
 
     this.titleTextStyle = cardTitleConfig.titleTextStyle.merge(BrnTextStyle(
@@ -77,12 +82,14 @@ class BrnCardTitleConfig extends BrnBaseConfig {
       fontSize: commonConfig.fontSizeHead,
     ).merge(this.titleTextStyle));
 
-    this.subtitleTextStyle = cardTitleConfig.subtitleTextStyle.merge(BrnTextStyle(
+    this.subtitleTextStyle =
+        cardTitleConfig.subtitleTextStyle.merge(BrnTextStyle(
       color: commonConfig.colorTextBase,
       fontSize: commonConfig.fontSizeBase,
     ).merge(this.subtitleTextStyle));
 
-    this.accessoryTextStyle = cardTitleConfig.accessoryTextStyle.merge(BrnTextStyle(
+    this.accessoryTextStyle =
+        cardTitleConfig.accessoryTextStyle.merge(BrnTextStyle(
       color: commonConfig.colorTextSecondary,
       fontSize: commonConfig.fontSizeHead,
     ).merge(this.accessoryTextStyle));
@@ -106,7 +113,8 @@ class BrnCardTitleConfig extends BrnBaseConfig {
       Color cardBackgroundColor}) {
     return BrnCardTitleConfig(
         cardTitlePadding: cardTitlePadding ?? this.cardTitlePadding,
-        titleWithHeightTextStyle: titleWithHeightTextStyle ?? this.titleWithHeightTextStyle,
+        titleWithHeightTextStyle:
+            titleWithHeightTextStyle ?? this.titleWithHeightTextStyle,
         titleTextStyle: titleTextStyle ?? this.titleTextStyle,
         subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
         detailTextStyle: detailTextStyle ?? this.detailTextStyle,
@@ -119,15 +127,20 @@ class BrnCardTitleConfig extends BrnBaseConfig {
     if (other == null) return this;
     return copyWith(
       cardTitlePadding: other.cardTitlePadding,
-      titleWithHeightTextStyle:
-          this.titleWithHeightTextStyle?.merge(other.titleWithHeightTextStyle) ??
-              other.titleWithHeightTextStyle,
-      titleTextStyle: this.titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
+      titleWithHeightTextStyle: this
+              .titleWithHeightTextStyle
+              ?.merge(other.titleWithHeightTextStyle) ??
+          other.titleWithHeightTextStyle,
+      titleTextStyle: this.titleTextStyle?.merge(other.titleTextStyle) ??
+          other.titleTextStyle,
       subtitleTextStyle:
-          this.subtitleTextStyle?.merge(other.subtitleTextStyle) ?? other.subtitleTextStyle,
-      detailTextStyle: this.detailTextStyle?.merge(other.detailTextStyle) ?? other.detailTextStyle,
+          this.subtitleTextStyle?.merge(other.subtitleTextStyle) ??
+              other.subtitleTextStyle,
+      detailTextStyle: this.detailTextStyle?.merge(other.detailTextStyle) ??
+          other.detailTextStyle,
       accessoryTextStyle:
-          this.accessoryTextStyle?.merge(other.accessoryTextStyle) ?? other.accessoryTextStyle,
+          this.accessoryTextStyle?.merge(other.accessoryTextStyle) ??
+              other.accessoryTextStyle,
       alignment: other.alignment,
       cardBackgroundColor: other.cardBackgroundColor,
     );

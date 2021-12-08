@@ -67,7 +67,8 @@ class BrnDateRangePicker {
     }
 
     // Set value of date format
-    dateFormat = DateTimeFormatter.generateDateRangePickerFormat(dateFormat, pickerMode);
+    dateFormat =
+        DateTimeFormatter.generateDateRangePickerFormat(dateFormat, pickerMode);
 
     Navigator.push(
       context,
@@ -86,7 +87,8 @@ class BrnDateRangePicker {
         onChange: onChange,
         onConfirm: onConfirm,
         isDismissible: isDismissible,
-        barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
         themeData: themeData,
       ),
     ).whenComplete(onClose);
@@ -94,7 +96,10 @@ class BrnDateRangePicker {
 }
 
 class _DatePickerRoute<T> extends PopupRoute<T> {
-  final DateTime minDateTime, maxDateTime, initialStartDateTime, initialEndDateTime;
+  final DateTime minDateTime,
+      maxDateTime,
+      initialStartDateTime,
+      initialEndDateTime;
   final bool isLimitTimeRange;
   final String dateFormat;
   final DateTimePickerLocale locale;
@@ -152,13 +157,14 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   @override
   AnimationController createAnimationController() {
     assert(_animationController == null);
-    _animationController = BottomSheet.createAnimationController(navigator.overlay);
+    _animationController =
+        BottomSheet.createAnimationController(navigator.overlay);
     return _animationController;
   }
 
   @override
-  Widget buildPage(
-      BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     double height = themeData.pickerHeight;
     if (pickerTitleConfig.title != null || pickerTitleConfig.showTitle) {
       height += themeData.titleHeight;
@@ -230,7 +236,8 @@ class _DatePickerComponent extends StatelessWidget {
         builder: (BuildContext context, Widget child) {
           return ClipRect(
             child: CustomSingleChildLayout(
-              delegate: _BottomPickerLayout(route.animation.value, contentHeight: _pickerHeight),
+              delegate: _BottomPickerLayout(route.animation.value,
+                  contentHeight: _pickerHeight),
               child: BrnPickerClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(route.themeData.cornerRadius),

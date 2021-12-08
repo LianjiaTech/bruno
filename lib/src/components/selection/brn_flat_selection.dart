@@ -59,7 +59,8 @@ class BrnFlatSelection extends StatefulWidget {
   _BrnFlatSelectionState createState() => _BrnFlatSelectionState();
 }
 
-class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerProviderStateMixin {
+class _BrnFlatSelectionState extends State<BrnFlatSelection>
+    with SingleTickerProviderStateMixin {
   List<BrnSelectionEntity> _originalSelectedItemsList;
 
   StreamController<FlatClearEvent> clearController;
@@ -74,7 +75,8 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerPr
     _controller = widget.controller;
 
     if (widget.isNeedConfigChild ?? true) {
-      widget.entityDataList?.forEach((f) => f.configRelationshipAndDefaultValue());
+      widget.entityDataList
+          ?.forEach((f) => f.configRelationshipAndDefaultValue());
     }
     _controller?.addListener(_handleFlatControllerTick);
 
@@ -202,7 +204,8 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerPr
       }
     });
 
-    widget.confirmCallback(DefaultSelectionConverter().convertSelectedData(widget.entityDataList));
+    widget.confirmCallback(
+        DefaultSelectionConverter().convertSelectedData(widget.entityDataList));
   }
 
   /// 标题+筛选条件的 列表

@@ -40,7 +40,8 @@ class BrnBubbleText extends StatelessWidget {
   ///气泡的圆角 默认是4
   final double radius;
 
-  const BrnBubbleText({Key key, this.text, this.maxLines, this.onExpanded, this.radius = 4})
+  const BrnBubbleText(
+      {Key key, this.text, this.maxLines, this.onExpanded, this.radius = 4})
       : super(key: key);
 
   @override
@@ -81,7 +82,10 @@ class BrnBubbleText extends StatelessWidget {
               textStyle: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
-                color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+                color: BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .colorTextBase,
               ),
             ),
           ),

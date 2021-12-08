@@ -109,7 +109,8 @@ class BrnGuide {
     EdgeInsets padding,
     BorderRadiusGeometry borderRadius,
   }) {
-    assert(stepsIndex.every((stepIndex) => stepIndex >= 0 && stepIndex < stepCount));
+    assert(stepsIndex
+        .every((stepIndex) => stepIndex >= 0 && stepIndex < stepCount));
     stepsIndex.forEach((index) {
       setStepConfig(
         index,
@@ -124,11 +125,15 @@ class BrnGuide {
       EdgeInsets currentConfig = _configMap[_currentStepIndex]['padding'];
       RenderBox renderBox;
       renderBox = globalKey.currentContext.findRenderObject();
-      _widgetWidth = renderBox.size.width + (currentConfig?.horizontal ?? padding.horizontal);
-      _widgetHeight = renderBox.size.height + (currentConfig?.vertical ?? padding.vertical);
+      _widgetWidth = renderBox.size.width +
+          (currentConfig?.horizontal ?? padding.horizontal);
+      _widgetHeight =
+          renderBox.size.height + (currentConfig?.vertical ?? padding.vertical);
       _widgetOffset = Offset(
-        renderBox.localToGlobal(Offset.zero).dx - (currentConfig?.left ?? padding.left),
-        renderBox.localToGlobal(Offset.zero).dy - (currentConfig?.top ?? padding.top),
+        renderBox.localToGlobal(Offset.zero).dx -
+            (currentConfig?.left ?? padding.left),
+        renderBox.localToGlobal(Offset.zero).dy -
+            (currentConfig?.top ?? padding.top),
       );
     } on Exception catch (e) {
       _widgetWidth = 0;
@@ -217,7 +222,9 @@ class BrnGuide {
                               left: _widgetOffset.dx,
                               top: _widgetOffset.dy,
                               borderRadiusGeometry:
-                                  _configMap[_currentStepIndex]['borderRadius'] ?? borderRadius,
+                                  _configMap[_currentStepIndex]
+                                          ['borderRadius'] ??
+                                      borderRadius,
                             ),
                           ],
                         ),

@@ -20,12 +20,15 @@ class BrnAppraiseEmojiListView extends StatefulWidget {
   static const List<String> _defaultTitles = ['不好', '还行', '满意', '很棒', '超惊喜'];
 
   BrnAppraiseEmojiListView(
-      {this.indexes = const [0, 1, 2, 3, 4], this.titles = _defaultTitles, this.onTap})
+      {this.indexes = const [0, 1, 2, 3, 4],
+      this.titles = _defaultTitles,
+      this.onTap})
       : assert((indexes?.length ?? 0) > 0),
         assert(titles?.length == 5);
 
   @override
-  _BrnAppraiseEmojiListViewState createState() => _BrnAppraiseEmojiListViewState();
+  _BrnAppraiseEmojiListViewState createState() =>
+      _BrnAppraiseEmojiListViewState();
 }
 
 class _BrnAppraiseEmojiListViewState extends State<BrnAppraiseEmojiListView> {
@@ -71,7 +74,8 @@ class _BrnAppraiseEmojiListViewState extends State<BrnAppraiseEmojiListView> {
         unselectedName: _unselectedIcons[widget.indexes[i]],
         defaultName: _defaultIcons[widget.indexes[i]],
         index: i,
-        padding: EdgeInsets.symmetric(horizontal: 7.0 * (6 - widget.indexes.length)),
+        padding:
+            EdgeInsets.symmetric(horizontal: 7.0 * (6 - widget.indexes.length)),
         selectedIndex: _selectedIndex,
         title: widget.titles[widget.indexes[i]],
         onTap: (index) {

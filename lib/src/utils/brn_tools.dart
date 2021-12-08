@@ -7,8 +7,9 @@ class BrunoTools {
   /// 将 icon 根据主题色变色后返回
   static Image getAssetImageWithBandColor(String assetFilePath,
       {String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID}) {
-    BrnCommonConfig commonConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).commonConfig;
+    BrnCommonConfig commonConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .commonConfig;
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -31,7 +32,8 @@ class BrunoTools {
   /// imgAssetPath: assets资源文件路径
   /// package 访问某个package里的资源，这里默认flutter_alliance_package
   /// scale: 与所用的png资源是icon_2x.png (scale=2.0)，icon_3x.png(scale=3.0)
-  static Image getAssetImage(String assetFilePath, {BoxFit fit, bool gaplessPlayback = false}) {
+  static Image getAssetImage(String assetFilePath,
+      {BoxFit fit, bool gaplessPlayback = false}) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -54,7 +56,8 @@ class BrunoTools {
     );
   }
 
-  static Image getAssetSizeImage(String assetFilePath, double w, double h, {Color color}) {
+  static Image getAssetSizeImage(String assetFilePath, double w, double h,
+      {Color color}) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -94,7 +97,9 @@ class BrunoTools {
   static Size textSize(String text, TextStyle style) {
     if (isEmpty(text)) return Size(0, 0);
     final TextPainter textPainter = TextPainter(
-        text: TextSpan(text: text, style: style), maxLines: 1, textDirection: TextDirection.ltr)
+        text: TextSpan(text: text, style: style),
+        maxLines: 1,
+        textDirection: TextDirection.ltr)
       ..layout(minWidth: 0, maxWidth: double.infinity);
     return textPainter.size;
   }

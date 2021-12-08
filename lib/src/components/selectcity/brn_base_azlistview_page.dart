@@ -95,7 +95,8 @@ class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
     List<ISuspensionBean> top = widget.getTopData();
 
     if (_dataList.isEmpty && top.isEmpty) {
-      return BrnAbnormalStateUtils.getEmptyWidgetByState(context, AbnormalState.noData, (index) {});
+      return BrnAbnormalStateUtils.getEmptyWidgetByState(
+          context, AbnormalState.noData, (index) {});
     }
 
     suspensionTag = top.isEmpty ? _dataList[0].tag : top[0].tag;

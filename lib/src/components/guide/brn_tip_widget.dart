@@ -45,8 +45,10 @@ class BrnTipInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color borderColor = mode == GuideMode.force ? Colors.transparent : Color(0xFFCCCCCC);
-    if (direction == GuideDirection.bottomLeft || direction == GuideDirection.bottomRight)
+    Color borderColor =
+        mode == GuideMode.force ? Colors.transparent : Color(0xFFCCCCCC);
+    if (direction == GuideDirection.bottomLeft ||
+        direction == GuideDirection.bottomRight)
       return Column(
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
@@ -68,18 +70,22 @@ class BrnTipInfoWidget extends StatelessWidget {
           ),
         ],
       );
-    if (direction == GuideDirection.topLeft || direction == GuideDirection.topRight)
+    if (direction == GuideDirection.topLeft ||
+        direction == GuideDirection.topRight)
       return Column(
         children: <Widget>[
           buildContent(),
           Container(
-            alignment: direction == GuideDirection.topLeft ? Alignment.topRight : Alignment.topLeft,
+            alignment: direction == GuideDirection.topLeft
+                ? Alignment.topRight
+                : Alignment.topLeft,
             padding: direction == GuideDirection.topLeft
                 ? EdgeInsets.only(right: arrowPadding ?? 12)
                 : EdgeInsets.only(left: arrowPadding ?? 12),
             child: CustomPaint(
               size: Size(14.0, 6.0),
-              painter: CustomTrianglePainter(borderColor: borderColor, direction: Direction.bottom),
+              painter: CustomTrianglePainter(
+                  borderColor: borderColor, direction: Direction.bottom),
             ),
           ),
         ],
@@ -95,7 +101,8 @@ class BrnTipInfoWidget extends StatelessWidget {
             padding: EdgeInsets.only(top: 12),
             child: CustomPaint(
               size: Size(6.0, 14.0),
-              painter: CustomTrianglePainter(borderColor: borderColor, direction: Direction.right),
+              painter: CustomTrianglePainter(
+                  borderColor: borderColor, direction: Direction.right),
             ),
           ),
         ],
@@ -134,7 +141,9 @@ class BrnTipInfoWidget extends StatelessWidget {
         ],
         borderRadius: BorderRadius.circular(4),
         color: Colors.white,
-        border: mode == GuideMode.force ? null : Border.all(color: Color(0xFFCCCCCC), width: 0.5),
+        border: mode == GuideMode.force
+            ? null
+            : Border.all(color: Color(0xFFCCCCCC), width: 0.5),
       ),
       width: width,
       padding: EdgeInsets.only(left: 16, right: 16, bottom: 14),
@@ -155,7 +164,8 @@ class BrnTipInfoWidget extends StatelessWidget {
     double imageSize = width - 16;
     return Padding(
       padding: EdgeInsets.only(top: 14),
-      child: Image.network(info.imgUrl, width: imageSize, height: imageSize, fit: BoxFit.cover),
+      child: Image.network(info.imgUrl,
+          width: imageSize, height: imageSize, fit: BoxFit.cover),
     );
   }
 
@@ -171,7 +181,10 @@ class BrnTipInfoWidget extends StatelessWidget {
             bottom: 0,
             child: Text(
               "${info.title}",
-              style: TextStyle(fontSize: 14, color: Color(0XFF222222), fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Color(0XFF222222),
+                  fontWeight: FontWeight.w600),
             ),
           ),
           Positioned(
@@ -184,7 +197,8 @@ class BrnTipInfoWidget extends StatelessWidget {
                     onTap: () {
                       onClose();
                     },
-                    child: BrunoTools.getAssetImageWithColor(BrnAsset.ICON_CLOSE, Colors.black),
+                    child: BrunoTools.getAssetImageWithColor(
+                        BrnAsset.ICON_CLOSE, Colors.black),
                   ),
           ),
         ],
@@ -197,7 +211,8 @@ class BrnTipInfoWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 6),
       child: Text('${info.message}',
-          style: TextStyle(fontSize: 14, color: Color(0xFF999999), height: 1.3), maxLines: 3),
+          style: TextStyle(fontSize: 14, color: Color(0xFF999999), height: 1.3),
+          maxLines: 3),
     );
   }
 
@@ -223,7 +238,8 @@ class BrnTipInfoWidget extends StatelessWidget {
                         },
                         child: Text(
                           '跳过 (${currentStepIndex + 1}/$stepCount)',
-                          style: TextStyle(color: Color(0xFF999999), fontSize: 14),
+                          style:
+                              TextStyle(color: Color(0xFF999999), fontSize: 14),
                         ),
                       ),
                     ))
@@ -240,7 +256,10 @@ class BrnTipInfoWidget extends StatelessWidget {
                       padding: EdgeInsets.only(left: 14, right: 14),
                       alignment: Alignment.centerLeft,
                       decoration: BoxDecoration(
-                        color: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+                        color: BrnThemeConfigurator.instance
+                            .getConfig()
+                            .commonConfig
+                            .brandPrimary,
                         borderRadius: BorderRadius.circular(2),
                       ),
                       child: GestureDetector(
@@ -248,7 +267,9 @@ class BrnTipInfoWidget extends StatelessWidget {
                           onNext();
                         },
                         child: Text(
-                          nextTip ?? stepCount == currentStepIndex + 1 ? '我知道了' : '下一步',
+                          nextTip ?? stepCount == currentStepIndex + 1
+                              ? '我知道了'
+                              : '下一步',
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
                       ),
@@ -283,7 +304,8 @@ class BrnTipInfoWidget extends StatelessWidget {
                         },
                         child: Text(
                           '跳过 (${currentStepIndex + 1}/$stepCount)',
-                          style: TextStyle(color: Color(0xFF999999), fontSize: 14),
+                          style:
+                              TextStyle(color: Color(0xFF999999), fontSize: 14),
                         ),
                       ),
                     ))
@@ -303,7 +325,9 @@ class BrnTipInfoWidget extends StatelessWidget {
                           onNext();
                         },
                         child: Text(
-                          nextTip ?? stepCount == currentStepIndex + 1 ? '我知道了' : '下一步',
+                          nextTip ?? stepCount == currentStepIndex + 1
+                              ? '我知道了'
+                              : '下一步',
                           style: TextStyle(
                               color: BrnThemeConfigurator.instance
                                   .getConfig()

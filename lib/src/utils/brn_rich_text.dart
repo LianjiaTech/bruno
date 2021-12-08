@@ -33,8 +33,11 @@ class BrnRichTextGenerator {
     _spanList.add(TextSpan(
         style: textStyle ??
             TextStyle(
-              color:
-                  linkColor ?? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+              color: linkColor ??
+                  BrnThemeConfigurator.instance
+                      .getConfig()
+                      .commonConfig
+                      .brandPrimary,
               fontWeight: fontWeight ?? FontWeight.normal,
               fontSize: fontSize ?? 16,
             ),
@@ -52,13 +55,19 @@ class BrnRichTextGenerator {
   /// fontsize 是文案大小 默认是16
   /// color 是文案的颜色 默认是深黑色
   BrnRichTextGenerator addText(String text,
-      {TextStyle textStyle, double fontSize, Color color, FontWeight fontWeight}) {
+      {TextStyle textStyle,
+      double fontSize,
+      Color color,
+      FontWeight fontWeight}) {
     _spanList.add(TextSpan(
         text: text ?? "",
         style: textStyle ??
             TextStyle(
-                color:
-                    color ?? BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+                color: color ??
+                    BrnThemeConfigurator.instance
+                        .getConfig()
+                        .commonConfig
+                        .colorTextBase,
                 fontSize: fontSize ?? 16,
                 fontWeight: fontWeight ?? FontWeight.normal)));
     return this;

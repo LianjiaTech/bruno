@@ -6,7 +6,8 @@ class BrnCSS2Text {
   static TextSpan toTextSpan(String htmlContent,
       {BrnHyperLinkCallback linksCallback, TextStyle defaultStyle}) {
     return TextSpan(
-      children: BrnConvert(htmlContent, linkCallBack: linksCallback, defaultStyle: defaultStyle)
+      children: BrnConvert(htmlContent,
+              linkCallBack: linksCallback, defaultStyle: defaultStyle)
           .convert(),
     );
   }
@@ -18,7 +19,8 @@ class BrnCSS2Text {
       TextAlign textAlign,
       TextOverflow textOverflow}) {
     return Text.rich(
-      toTextSpan(htmlContent, linksCallback: linksCallback, defaultStyle: defaultStyle),
+      toTextSpan(htmlContent,
+          linksCallback: linksCallback, defaultStyle: defaultStyle),
       maxLines: maxLines,
       textAlign: textAlign,
       overflow: textOverflow ?? TextOverflow.clip,

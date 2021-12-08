@@ -53,7 +53,10 @@ class BrnAppraiseHeader extends StatelessWidget {
         title ?? '',
         maxLines: maxLines ?? 1,
         style: TextStyle(
-          color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+          color: BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .colorTextBase,
           fontSize: 18.0,
           fontWeight: FontWeight.w600,
         ),
@@ -66,38 +69,42 @@ class BrnAppraiseHeader extends StatelessWidget {
       color: Colors.white,
       height: 38 + (maxLines ?? 1) * 22.0,
       child: Padding(
-            padding: headPadding ?? EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 20),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 4, right: 12),
-                    child: Text(
-                      title ?? '',
-                      maxLines: maxLines ?? 1,
-                      style: TextStyle(
-                        color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
-                        fontSize: 18.0,
-                        height: 1,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+        padding: headPadding ??
+            EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 20),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(top: 4, right: 12),
+                child: Text(
+                  title ?? '',
+                  maxLines: maxLines ?? 1,
+                  style: TextStyle(
+                    color: BrnThemeConfigurator.instance
+                        .getConfig()
+                        .commonConfig
+                        .colorTextBase,
+                    fontSize: 18.0,
+                    height: 1,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    if (cancelCallBack != null) {
-                      cancelCallBack(context);
-                    }
-                    Navigator.of(context).pop();
-                  },
-                  child: BrunoTools.getAssetImage(BrnAsset.ICON_PICKER_CLOSE),
-                ),
-              ],
+              ),
             ),
-          ),
+            InkWell(
+              onTap: () {
+                if (cancelCallBack != null) {
+                  cancelCallBack(context);
+                }
+                Navigator.of(context).pop();
+              },
+              child: BrunoTools.getAssetImage(BrnAsset.ICON_PICKER_CLOSE),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

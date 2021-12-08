@@ -81,32 +81,42 @@ class BrnTabBarConfig extends BrnBaseConfig {
   double tagHeight;
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
-    BrnTabBarConfig tabBarConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).tabBarConfig;
+    BrnTabBarConfig tabBarConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .tabBarConfig;
 
     this.tabHeight ??= tabBarConfig.tabHeight;
     this.indicatorHeight ??= tabBarConfig.indicatorHeight;
     this.indicatorWidth ??= tabBarConfig.indicatorWidth;
 
-    this.labelStyle = tabBarConfig.labelStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeSubHead)
-            .merge(this.labelStyle));
+    this.labelStyle = tabBarConfig.labelStyle.merge(BrnTextStyle(
+            color: commonConfig.brandPrimary,
+            fontSize: commonConfig.fontSizeSubHead)
+        .merge(this.labelStyle));
 
     this.unselectedLabelStyle = tabBarConfig.unselectedLabelStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.unselectedLabelStyle));
 
     this.backgroundColor ??= tabBarConfig.backgroundColor;
 
     this.tagNormalTextStyle = tabBarConfig.tagNormalTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeCaption)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeCaption)
             .merge(this.tagNormalTextStyle));
 
     this.tagSelectedTextStyle = tabBarConfig.tagSelectedTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeCaption)
+        BrnTextStyle(
+                color: commonConfig.brandPrimary,
+                fontSize: commonConfig.fontSizeCaption)
             .merge(this.tagSelectedTextStyle));
 
     this.tagNormalBgColor ??= tabBarConfig.tagNormalBgColor;
@@ -158,14 +168,17 @@ class BrnTabBarConfig extends BrnBaseConfig {
       indicatorHeight: other.indicatorHeight,
       indicatorWidth: other.indicatorWidth,
       labelStyle: this.labelStyle?.merge(other.labelStyle) ?? other.labelStyle,
-      unselectedLabelStyle: this.unselectedLabelStyle?.merge(other.unselectedLabelStyle) ??
-          other.unselectedLabelStyle,
+      unselectedLabelStyle:
+          this.unselectedLabelStyle?.merge(other.unselectedLabelStyle) ??
+              other.unselectedLabelStyle,
       backgroundColor: other.backgroundColor,
       tagNormalTextStyle:
-          this.tagNormalTextStyle?.merge(other.tagNormalTextStyle) ?? other.tagNormalTextStyle,
+          this.tagNormalTextStyle?.merge(other.tagNormalTextStyle) ??
+              other.tagNormalTextStyle,
       tagNormalColor: other.tagNormalBgColor,
-      tagSelectedTextStyle: this.tagSelectedTextStyle?.merge(other.tagSelectedTextStyle) ??
-          other.tagSelectedTextStyle,
+      tagSelectedTextStyle:
+          this.tagSelectedTextStyle?.merge(other.tagSelectedTextStyle) ??
+              other.tagSelectedTextStyle,
       tagSelectedColor: other.tagSelectedBgColor,
       tagRadius: other.tagRadius,
       tagSpacing: other.tagSpacing,

@@ -17,7 +17,8 @@ enum BrnMultiSelectTagsLayoutStyle {
 }
 
 typedef BrnMultiSelectTagStringBuilder<V> = String Function(V data);
-typedef BrnMultiSelectTagOnItemClick = void Function(BrnTagItemBean onTapTag, bool isSelect);
+typedef BrnMultiSelectTagOnItemClick = void Function(
+    BrnTagItemBean onTapTag, bool isSelect);
 
 /// 多选标签弹框,适用于底部弹出 Picker，且选择样式为 Tag 的场景。
 /// 功能：多选标签弹框，适用于从底部弹出的情况，属于 Picker；
@@ -77,7 +78,7 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
   /// 是等分样式还是流式布局样式，[BrnMultiSelectTagsLayoutStyle]，默认等分
   final BrnMultiSelectTagsLayoutStyle layoutStyle;
 
-  /// item的高度, 默认数值是34 
+  /// item的高度, 默认数值是34
   final double itemHeight;
 
   /// 操作类型属性
@@ -123,20 +124,32 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
   }
 
   ///等宽度的布局
-  Widget _buildGridViewWidget(BuildContext context, VoidCallback onUpdate, double maxWidth) {
-    int brnCrossAxisCount = (this.crossAxisCount == 0 || this.crossAxisCount == null)
-        ? 4
-        : this.crossAxisCount;
-    double width = (maxWidth - (brnCrossAxisCount - 1) * 12 - 40) / brnCrossAxisCount;
+  Widget _buildGridViewWidget(
+      BuildContext context, VoidCallback onUpdate, double maxWidth) {
+    int brnCrossAxisCount =
+        (this.crossAxisCount == 0 || this.crossAxisCount == null)
+            ? 4
+            : this.crossAxisCount;
+    double width =
+        (maxWidth - (brnCrossAxisCount - 1) * 12 - 40) / brnCrossAxisCount;
     //计算宽高比
     double brnChildAspectRatio = width / this.itemHeight;
     Color selectedTagTitleColor = this.tagPickerConfig.selectedTagTitleColor ??
         BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
     Color tagTitleColor = this.tagPickerConfig.tagTitleColor ??
-        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextImportant;
-    Color tagBackgroudColor = this.tagPickerConfig.tagBackgroudColor ?? Color(0xffF8F8F8);
-    Color selectedTagBackgroudColor = this.tagPickerConfig.selectedTagBackgroudColor ??
-        BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary.withAlpha(0x14);
+        BrnThemeConfigurator.instance
+            .getConfig()
+            .commonConfig
+            .colorTextImportant;
+    Color tagBackgroudColor =
+        this.tagPickerConfig.tagBackgroudColor ?? Color(0xffF8F8F8);
+    Color selectedTagBackgroudColor =
+        this.tagPickerConfig.selectedTagBackgroudColor ??
+            BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .brandPrimary
+                .withAlpha(0x14);
     return Container(
       padding: EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0, bottom: 0.0),
       constraints: BoxConstraints(maxHeight: 322, minHeight: 120),
@@ -150,7 +163,8 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
         //宽高比
         childAspectRatio: brnChildAspectRatio,
         //GridView内边距
-        padding: EdgeInsets.only(top: 20.0, left: 0.0, right: 0.0, bottom: 20.0),
+        padding:
+            EdgeInsets.only(top: 20.0, left: 0.0, right: 0.0, bottom: 20.0),
         primary: true,
         children: this._sourceTags.map((choice) {
           bool selected = choice.isSelect;
@@ -163,7 +177,8 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
             pressElevation: 0,
             backgroundColor: tagBackgroudColor,
             selectedColor: selectedTagBackgroudColor,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(2.0)),
             label: Container(
               width: width,
               child: Text(
@@ -202,10 +217,19 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
     Color selectedTagTitleColor = this.tagPickerConfig.selectedTagTitleColor ??
         BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
     Color tagTitleColor = this.tagPickerConfig.tagTitleColor ??
-        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextImportant;
-    Color tagBackgroudColor = this.tagPickerConfig.tagBackgroudColor ?? Color(0xffF8F8F8);
-    Color selectedTagBackgroudColor = this.tagPickerConfig.selectedTagBackgroudColor ??
-        BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary.withAlpha(0x14);
+        BrnThemeConfigurator.instance
+            .getConfig()
+            .commonConfig
+            .colorTextImportant;
+    Color tagBackgroudColor =
+        this.tagPickerConfig.tagBackgroudColor ?? Color(0xffF8F8F8);
+    Color selectedTagBackgroudColor =
+        this.tagPickerConfig.selectedTagBackgroudColor ??
+            BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .brandPrimary
+                .withAlpha(0x14);
 
     return Container(
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -223,7 +247,8 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
               pressElevation: 0,
               backgroundColor: tagBackgroudColor,
               selectedColor: selectedTagBackgroudColor,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(2.0)),
               label: Text(
                 onTagValueGetter(choice),
                 textAlign: TextAlign.center,

@@ -20,7 +20,8 @@ class BrnConvert {
   //外部传入的默认文本样式
   TextStyle _defaultStyle;
 
-  BrnConvert(String cssContent, {Function linkCallBack, TextStyle defaultStyle}) {
+  BrnConvert(String cssContent,
+      {Function linkCallBack, TextStyle defaultStyle}) {
     _eventList = xml.parseEvents(cssContent);
     _linkCallBack = linkCallBack ?? null;
     _defaultStyle = defaultStyle;
@@ -39,7 +40,10 @@ class BrnConvert {
           fontSize: 14,
           decoration: TextDecoration.none,
           fontWeight: FontWeight.normal,
-          color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextImportant,
+          color: BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .colorTextImportant,
         );
 
     List<TextSpan> spans = [];
@@ -52,13 +56,16 @@ class BrnConvert {
             xmlEvent.attributes.forEach((attr) {
               switch (attr.name) {
                 case "color":
-                  Color textColor = BrnConvertUtil.generateColorByString(attr.value);
+                  Color textColor =
+                      BrnConvertUtil.generateColorByString(attr.value);
                   textStyle = textStyle.apply(color: textColor);
                   break;
                 case "weight":
-                  FontWeight fontWeight = BrnConvertUtil.generateFontWidgetByString(attr.value);
-                  textStyle =
-                      textStyle.apply(fontWeightDelta: fontWeight.index - FontWeight.normal.index);
+                  FontWeight fontWeight =
+                      BrnConvertUtil.generateFontWidgetByString(attr.value);
+                  textStyle = textStyle.apply(
+                      fontWeightDelta:
+                          fontWeight.index - FontWeight.normal.index);
                   break;
                 case "size":
                   double size = BrnConvertUtil.generateFontSize(attr.value);
@@ -80,7 +87,10 @@ class BrnConvert {
               switch (attr.name) {
                 case "href":
                   textStyle = textStyle.apply(
-                      color: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
+                      color: BrnThemeConfigurator.instance
+                          .getConfig()
+                          .commonConfig
+                          .brandPrimary);
                   tag.linkUrl = attr.value;
                   break;
               }
@@ -127,7 +137,9 @@ class BrnConvert {
       }
     };
     return TextSpan(
-        style: tag.style, text: text, recognizer: tag.isLink ? tapGestureRecognizer : null);
+        style: tag.style,
+        text: text,
+        recognizer: tag.isLink ? tapGestureRecognizer : null);
   }
 }
 

@@ -14,7 +14,10 @@ const EdgeInsetsGeometry cIconPadding = const EdgeInsets.only(top: 28.0);
 
 /// title的文字样式
 const TextStyle cTitleTextStyle = const TextStyle(
-    fontWeight: FontWeight.w600, inherit: true, fontSize: 18.0, color: Color(0xFF222222));
+    fontWeight: FontWeight.w600,
+    inherit: true,
+    fontSize: 18.0,
+    color: Color(0xFF222222));
 
 /// title的文字的对齐
 const int cTitleMaxLines = 3;
@@ -27,11 +30,17 @@ const TextAlign cContentTextAlign = TextAlign.center;
 
 /// 内容部分的文字的样式
 const TextStyle cContentTextStyle = const TextStyle(
-    inherit: true, fontSize: 14.0, color: Color(0xFF666666), decoration: TextDecoration.none);
+    inherit: true,
+    fontSize: 14.0,
+    color: Color(0xFF666666),
+    decoration: TextDecoration.none);
 
 /// 警示文案样式
 const TextStyle cWarningTextStyle = TextStyle(
-    inherit: true, fontSize: 14.0, color: Color(0xFFFA3F3F), decoration: TextDecoration.none);
+    inherit: true,
+    fontSize: 14.0,
+    color: Color(0xFFFA3F3F),
+    decoration: TextDecoration.none);
 
 /// 警示文案的文字对齐
 const TextAlign cWarningTextAlign = TextAlign.center;
@@ -40,22 +49,22 @@ const TextAlign cWarningTextAlign = TextAlign.center;
 const Color cBackgroundColor = Colors.white;
 
 /// 对话框的边框----》默认圆角5
-const ShapeBorder cShape =
-    const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0)));
+const ShapeBorder cShape = const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(5.0)));
 
 /// 主题按钮的背景颜色---》白色
 const Color cMainBackgroundColor = Colors.white;
 
 /// 主题按钮的文字样式---》主色调
-const TextStyle cMainTextStyle =
-    const TextStyle(color: Color(0xFF00AE66), fontWeight: FontWeight.w600, fontSize: 16);
+const TextStyle cMainTextStyle = const TextStyle(
+    color: Color(0xFF00AE66), fontWeight: FontWeight.w600, fontSize: 16);
 
 /// 灰色按钮的背景颜色---》白色
 const Color cGreyBackgroundColor = Colors.white;
 
 /// 非按钮的文字样式---》灰色
-const TextStyle cGreyActionsTextStyle =
-    const TextStyle(color: Color(0xFF222222), fontWeight: FontWeight.w600, fontSize: 16);
+const TextStyle cGreyActionsTextStyle = const TextStyle(
+    color: Color(0xFF222222), fontWeight: FontWeight.w600, fontSize: 16);
 
 /// 底部按钮的高度
 const double cBottomHeight = 44.0;
@@ -73,10 +82,13 @@ const Divider cDividerLine = const Divider(
 enum ButtonType {
   /// 单按钮
   Single,
+
   /// 多按钮
   Multi,
+
   /// 左按钮
   Left,
+
   /// 右按钮
   Right,
 }
@@ -288,12 +300,14 @@ class BrnDialog extends AlertDialog {
     }
 
     if (_isShowContent()) {
-      Widget generateContentWidget = _generateContentWidget(context, defaultConfig);
+      Widget generateContentWidget =
+          _generateContentWidget(context, defaultConfig);
       children.add(generateContentWidget);
     }
 
     if (_isShowWarning()) {
-      Widget generateWarningWidget = _generateWarningWidget(context, defaultConfig);
+      Widget generateWarningWidget =
+          _generateWarningWidget(context, defaultConfig);
       children.add(generateWarningWidget);
     }
 
@@ -321,14 +335,15 @@ class BrnDialog extends AlertDialog {
             width: defaultConfig?.dialogWidth,
             child: Material(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(BrnDialogUtils.getDialogRadius(defaultConfig)))),
+                  borderRadius: BorderRadius.all(Radius.circular(
+                      BrnDialogUtils.getDialogRadius(defaultConfig)))),
               child: dialogChild,
               color: defaultConfig?.backgroundColor,
             )));
   }
 
-  Widget _generateIconWidget(BuildContext context, BrnDialogConfig dialogConfig) {
+  Widget _generateIconWidget(
+      BuildContext context, BrnDialogConfig dialogConfig) {
     Widget _createWidget(Widget widget) {
       return Center(
         child: Padding(
@@ -346,7 +361,8 @@ class BrnDialog extends AlertDialog {
       return _createWidget(iconImage);
     }
     if (showIcon) {
-      return _createWidget(BrunoTools.getAssetImageWithBandColor("icons/icon_alter.png"));
+      return _createWidget(
+          BrunoTools.getAssetImageWithBandColor("icons/icon_alter.png"));
     }
 
     return SizedBox(
@@ -356,7 +372,8 @@ class BrnDialog extends AlertDialog {
   }
 
   /// 标题widget：以titleWidget为准，辅以title生成的Text。
-  Widget _generateTitleWidget(BuildContext context, BrnDialogConfig dialogConfig) {
+  Widget _generateTitleWidget(
+      BuildContext context, BrnDialogConfig dialogConfig) {
     if (titleWidget != null) {
       return DefaultTextStyle(
         textAlign: dialogConfig?.titleTextAlign,
@@ -378,7 +395,8 @@ class BrnDialog extends AlertDialog {
   }
 
   /// 内容widget：以contentWidget为准，辅以message生成的Text
-  Widget _generateContentWidget(BuildContext context, BrnDialogConfig dialogConfig) {
+  Widget _generateContentWidget(
+      BuildContext context, BrnDialogConfig dialogConfig) {
     if (contentWidget != null)
       return Flexible(
         child: DefaultTextStyle(
@@ -400,7 +418,8 @@ class BrnDialog extends AlertDialog {
   }
 
   /// 警示widget：以warningWidget为准，辅以warning生成的Text
-  Widget _generateWarningWidget(BuildContext context, BrnDialogConfig dialogConfig) {
+  Widget _generateWarningWidget(
+      BuildContext context, BrnDialogConfig dialogConfig) {
     if (warningWidget != null)
       return Flexible(
         child: DefaultTextStyle(
@@ -423,8 +442,8 @@ class BrnDialog extends AlertDialog {
   /// 单个button 左右有圆角
   /// 两个button 左button有左圆角&右直角 右button有右圆角&左直角
   /// 多个button 最后一个左右圆角  其他均直角
-  Widget _generateMainWidget(
-      Widget widget, Color background, ButtonType type, int index, BrnDialogConfig dialogConfig) {
+  Widget _generateMainWidget(Widget widget, Color background, ButtonType type,
+      int index, BrnDialogConfig dialogConfig) {
     return Container(
       decoration: ShapeDecoration(
           color: background,
@@ -458,8 +477,8 @@ class BrnDialog extends AlertDialog {
   /// 单个button 左右有圆角
   /// 两个button 左button有左圆角&右直角 右button有右圆角&左直角
   /// 多个button 最后一个左右圆角  其他均直角
-  Widget _generateGreyWidget(
-      Widget widget, Color background, ButtonType type, int index, BrnDialogConfig dialogConfig) {
+  Widget _generateGreyWidget(Widget widget, Color background, ButtonType type,
+      int index, BrnDialogConfig dialogConfig) {
     return Container(
       constraints: BoxConstraints.tightFor(height: cBottomHeight),
       decoration: ShapeDecoration(
@@ -489,7 +508,8 @@ class BrnDialog extends AlertDialog {
     );
   }
 
-  Widget _generateActionsWidget(BuildContext context, BrnDialogConfig defaultConfig) {
+  Widget _generateActionsWidget(
+      BuildContext context, BrnDialogConfig defaultConfig) {
     bool showTextActions = _isEmptyActionsWidget();
     int length = showTextActions ? actionsText.length : actionsWidget.length;
     if (length == 1) {
@@ -510,7 +530,8 @@ class BrnDialog extends AlertDialog {
         children: [
           Expanded(
             child: showTextActions
-                ? _mapTextToGesWidget(context, actionsText[0], 0, false, defaultConfig,
+                ? _mapTextToGesWidget(
+                    context, actionsText[0], 0, false, defaultConfig,
                     type: ButtonType.Left)
                 : actionsWidget[0],
           ),
@@ -520,7 +541,8 @@ class BrnDialog extends AlertDialog {
           ),
           Expanded(
             child: showTextActions
-                ? _mapTextToGesWidget(context, actionsText[1], 1, true, defaultConfig,
+                ? _mapTextToGesWidget(
+                    context, actionsText[1], 1, true, defaultConfig,
                     type: ButtonType.Right)
                 : actionsWidget[1],
           )
@@ -535,7 +557,8 @@ class BrnDialog extends AlertDialog {
             physics: length > 3 ? null : NeverScrollableScrollPhysics(),
             itemBuilder: (context, i) {
               return showTextActions
-                  ? _mapTextToGesWidget(context, actionsText[i], i, true, defaultConfig,
+                  ? _mapTextToGesWidget(
+                      context, actionsText[i], i, true, defaultConfig,
                       type: ButtonType.Multi)
                   : actionsWidget[i];
             },
@@ -547,21 +570,25 @@ class BrnDialog extends AlertDialog {
     }
   }
 
-  Widget _mapTextToGesWidget(
-      BuildContext context, String label, int index, bool main, BrnDialogConfig dialogConfig,
+  Widget _mapTextToGesWidget(BuildContext context, String label, int index,
+      bool main, BrnDialogConfig dialogConfig,
       {ButtonType type = ButtonType.Single}) {
     Text text = Text(label);
     Widget ges = GestureDetector(
       child: main
-          ? _generateMainWidget(
-              text, dialogConfig?.mainActionBackgroundColor, type, index, dialogConfig)
+          ? _generateMainWidget(text, dialogConfig?.mainActionBackgroundColor,
+              type, index, dialogConfig)
           : _generateGreyWidget(
-              text, dialogConfig?.assistActionsBackgroundColor, type, index, dialogConfig),
+              text,
+              dialogConfig?.assistActionsBackgroundColor,
+              type,
+              index,
+              dialogConfig),
       onTap: () {
         if (indexedActionCallback != null) {
           //点击的监听
           indexedActionCallback(index);
-        }else{
+        } else {
           Navigator.pop(context);
         }
       },
@@ -608,7 +635,8 @@ class BrnDialog extends AlertDialog {
     defaultConfig = defaultConfig.merge(BrnDialogConfig(
       mainActionTextStyle: BrnTextStyle.withStyle(brnDialogStyle.mainTextStyle),
       mainActionBackgroundColor: brnDialogStyle.mainBackgroundColor,
-      assistActionsTextStyle: BrnTextStyle.withStyle(brnDialogStyle.greyActionsTextStyle),
+      assistActionsTextStyle:
+          BrnTextStyle.withStyle(brnDialogStyle.greyActionsTextStyle),
       assistActionsBackgroundColor: brnDialogStyle.greyActionsBackgroundColor,
       radius: brnDialogStyle.radius,
       iconPadding: brnDialogStyle.iconPadding,
@@ -632,7 +660,9 @@ class BrnDialog extends AlertDialog {
 
   /// 主题配置的标题间距
   EdgeInsetsGeometry _configTitlePadding(BrnDialogConfig dialogConfig) {
-    return _isShowIcon() ? dialogConfig?.titlePaddingSm : dialogConfig?.titlePaddingLg;
+    return _isShowIcon()
+        ? dialogConfig?.titlePaddingSm
+        : dialogConfig?.titlePaddingLg;
   }
 
   /// 主题配置的内容间距

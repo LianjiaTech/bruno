@@ -95,7 +95,6 @@ class BrnRatioInputFormItem extends StatefulWidget {
       this.onChanged,
       this.themeData})
       : super(key: key) {
-
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -107,7 +106,6 @@ class BrnRatioInputFormItem extends StatefulWidget {
   BrnRatioInputFormItemState createState() {
     return BrnRatioInputFormItemState();
   }
-
 }
 
 class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
@@ -119,7 +117,6 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
 
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -137,14 +134,21 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData),
                   child: Row(
                     children: <Widget>[
-                      BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                      BrnFormUtil.buildPrefixIcon(
+                          widget.prefixIconType,
+                          widget.isEdit,
+                          context,
+                          widget.onAddTap,
+                          widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
-                      BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
-                      BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                      BrnFormUtil.buildTitleWidget(
+                          widget.title, widget.themeData),
+                      BrnFormUtil.buildTipLabelWidget(
+                          widget.tipLabel, widget.onTip, widget.themeData),
                     ],
                   ),
                 ),
@@ -154,33 +158,39 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
                         padding: EdgeInsets.only(right: 10),
                         child: Text(
                           "1 : ",
-                          style: BrnFormUtil.getTitleTextStyle(widget.themeData),
+                          style:
+                              BrnFormUtil.getTitleTextStyle(widget.themeData),
                         )),
                     Container(
                       width: 60,
                       child: TextField(
-                        keyboardType: BrnFormUtil.getInputType(widget.inputType),
+                        keyboardType:
+                            BrnFormUtil.getInputType(widget.inputType),
                         enabled: widget.isEdit,
                         maxLines: 1,
-                        style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit),
+                        style: BrnFormUtil.getIsEditTextStyle(
+                            widget.themeData, widget.isEdit),
                         inputFormatters: widget.inputFormatters,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData),
+                          hintStyle:
+                              BrnFormUtil.getHintTextStyle(widget.themeData),
                           hintText: widget.hint ?? '请输入',
-
                           counterText: "",
                           contentPadding: EdgeInsets.all(0),
                           isDense: true,
                           enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent)),
+                              borderSide:
+                                  BorderSide(color: Colors.transparent)),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent)),
+                              borderSide:
+                                  BorderSide(color: Colors.transparent)),
                         ),
                         textAlign: TextAlign.end,
                         controller: _controller,
                         onChanged: (text) {
-                          BrnFormUtil.notifyInputChanged(widget.onChanged, text);
+                          BrnFormUtil.notifyInputChanged(
+                              widget.onChanged, text);
                         },
                       ),
                     ),
@@ -207,7 +217,4 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
       _controller?.dispose();
     }
   }
-
 }
-
-

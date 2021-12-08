@@ -61,12 +61,15 @@ class BrnPickerConfig extends BrnBaseConfig {
   double cornerRadius;
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnPickerConfig pickerConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).pickerConfig;
+    BrnPickerConfig pickerConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .pickerConfig;
 
     this.backgroundColor ??= pickerConfig.backgroundColor;
     this.pickerHeight ??= pickerConfig.pickerHeight;
@@ -75,25 +78,31 @@ class BrnPickerConfig extends BrnBaseConfig {
     this.dividerColor ??= pickerConfig.dividerColor;
     this.cornerRadius ??= pickerConfig.cornerRadius;
 
-    this.titleTextStyle = pickerConfig.titleTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
-            .merge(this.titleTextStyle));
+    this.titleTextStyle = pickerConfig.titleTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeSubHead)
+        .merge(this.titleTextStyle));
 
     this.cancelTextStyle = pickerConfig.cancelTextStyle
-        .merge(
-            BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead))
+        .merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeSubHead))
         .merge(this.cancelTextStyle);
 
-    this.confirmTextStyle = pickerConfig.confirmTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeSubHead)
-            .merge(this.confirmTextStyle));
+    this.confirmTextStyle = pickerConfig.confirmTextStyle.merge(BrnTextStyle(
+            color: commonConfig.brandPrimary,
+            fontSize: commonConfig.fontSizeSubHead)
+        .merge(this.confirmTextStyle));
 
-    this.itemTextStyle = pickerConfig.itemTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeHead)
-            .merge(this.itemTextStyle));
+    this.itemTextStyle = pickerConfig.itemTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeHead)
+        .merge(this.itemTextStyle));
 
     this.itemTextSelectedStyle = pickerConfig.itemTextSelectedStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeHead)
+        BrnTextStyle(
+                color: commonConfig.brandPrimary,
+                fontSize: commonConfig.fontSizeHead)
             .merge(this.itemTextSelectedStyle));
   }
 
@@ -118,7 +127,8 @@ class BrnPickerConfig extends BrnBaseConfig {
       titleHeight: titleHeight ?? this.titleHeight,
       itemHeight: itemHeight ?? this.itemHeight,
       itemTextStyle: itemTextStyle ?? this.itemTextStyle,
-      itemTextSelectedStyle: itemTextSelectedStyle ?? this.itemTextSelectedStyle,
+      itemTextSelectedStyle:
+          itemTextSelectedStyle ?? this.itemTextSelectedStyle,
       dividerColor: dividerColor ?? this.dividerColor,
       cornerRadius: cornerRadius ?? this.cornerRadius,
     );
@@ -128,17 +138,21 @@ class BrnPickerConfig extends BrnBaseConfig {
     if (other == null) return this;
     return copyWith(
         backgroundColor: other.backgroundColor,
-        cancelTextStyle:
-            this.cancelTextStyle?.merge(other.cancelTextStyle) ?? other.cancelTextStyle,
+        cancelTextStyle: this.cancelTextStyle?.merge(other.cancelTextStyle) ??
+            other.cancelTextStyle,
         confirmTextStyle:
-            this.confirmTextStyle?.merge(other.confirmTextStyle) ?? other.confirmTextStyle,
-        titleTextStyle: this.titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
+            this.confirmTextStyle?.merge(other.confirmTextStyle) ??
+                other.confirmTextStyle,
+        titleTextStyle: this.titleTextStyle?.merge(other.titleTextStyle) ??
+            other.titleTextStyle,
         pickerHeight: other.pickerHeight,
         titleHeight: other.titleHeight,
         itemHeight: other.itemHeight,
-        itemTextStyle: this.itemTextStyle?.merge(other.itemTextStyle) ?? other.itemTextStyle,
-        itemTextSelectedStyle: this.itemTextSelectedStyle?.merge(other.itemTextSelectedStyle) ??
-            other.itemTextSelectedStyle,
+        itemTextStyle: this.itemTextStyle?.merge(other.itemTextStyle) ??
+            other.itemTextStyle,
+        itemTextSelectedStyle:
+            this.itemTextSelectedStyle?.merge(other.itemTextSelectedStyle) ??
+                other.itemTextSelectedStyle,
         dividerColor: other.dividerColor,
         cornerRadius: other.cornerRadius);
   }

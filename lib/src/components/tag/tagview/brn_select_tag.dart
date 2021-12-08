@@ -109,7 +109,9 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
     super.initState();
     _tagState = widget.tags.map((name) => false).toList();
     if (widget.initTagState != null) {
-      for (int index = 0; index < min(widget.initTagState.length, widget.tags.length); index++) {
+      for (int index = 0;
+          index < min(widget.initTagState.length, widget.tags.length);
+          index++) {
         _tagState[index] = widget.initTagState[index];
       }
     }
@@ -200,7 +202,8 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
       constraints: BoxConstraints(minWidth: widget.themeData.tagMinWidth),
       decoration: BoxDecoration(
           color: selected
-              ? (widget.themeData?.selectedTagBackgroundColor?.withOpacity(0.12))
+              ? (widget.themeData?.selectedTagBackgroundColor
+                  ?.withOpacity(0.12))
               : (widget.themeData?.tagBackgroundColor),
           borderRadius: BorderRadius.circular(widget.themeData?.tagRadius)),
       width: widget.fixWidthMode ? widget.themeData?.tagWidth : null,
@@ -223,13 +226,17 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
   void didUpdateWidget(BrnSelectTag oldWidget) {
     super.didUpdateWidget(oldWidget);
     // 如果两个数组不相等,重置选中状态
-    if (!sameList(oldWidget.tags, widget.tags)) _tagState = List.filled(widget.tags.length, false);
+    if (!sameList(oldWidget.tags, widget.tags))
+      _tagState = List.filled(widget.tags.length, false);
   }
 
   /// 比较两个数组内容是否一致，如果一致，返回 true，否则 false
   bool sameList(List<String> first, List<String> second) {
-    if (first == null || second == null || first.length != second.length) return false;
+    if (first == null || second == null || first.length != second.length)
+      return false;
     int index = 0;
-    return first.firstWhere((item) => item != second[index++], orElse: () => null) == null;
+    return first.firstWhere((item) => item != second[index++],
+            orElse: () => null) ==
+        null;
   }
 }

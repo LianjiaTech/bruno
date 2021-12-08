@@ -11,7 +11,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-
 /// 单个tab选中的回调
 /// [state]:当前组件的State对象，[BrnTabBarState]
 /// [index]:当前组件的角标
@@ -232,7 +231,8 @@ class BrnTabBarState extends State<BrnTabBar> {
   }
 
   void _handleTabIndexChangeTick() {
-    if (widget.controller.index.toDouble() == widget.controller.animation.value) {
+    if (widget.controller.index.toDouble() ==
+        widget.controller.animation.value) {
       _brnTabbarController?.selectIndex = widget.controller?.index ?? 0;
       _brnTabbarController?.isShow = false;
     }
@@ -263,12 +263,15 @@ class BrnTabBarState extends State<BrnTabBar> {
     return TabBar(
         tabs: fillWidgetByDataList(),
         controller: widget.controller,
-        isScrollable: widget.tabs.length > 4 || widget.tabWidth != null || widget.isScroll,
+        isScrollable: widget.tabs.length > 4 ||
+            widget.tabWidth != null ||
+            widget.isScroll,
         labelColor: widget.labelColor ?? widget.themeData.labelStyle.color,
-        labelStyle: widget.labelStyle ?? widget.themeData.labelStyle.generateTextStyle(),
+        labelStyle: widget.labelStyle ??
+            widget.themeData.labelStyle.generateTextStyle(),
         labelPadding: widget.labelPadding,
-        unselectedLabelColor:
-            widget.unselectedLabelColor ?? widget.themeData.unselectedLabelStyle.color,
+        unselectedLabelColor: widget.unselectedLabelColor ??
+            widget.themeData.unselectedLabelStyle.color,
         unselectedLabelStyle: widget.unselectedLabelStyle ??
             widget.themeData.unselectedLabelStyle.generateTextStyle(),
         dragStartBehavior: widget.dragStartBehavior,
@@ -298,7 +301,8 @@ class BrnTabBarState extends State<BrnTabBar> {
       child: GestureDetector(
         onTap: () {
           if (!_brnTabbarController.isShow &&
-              widget.controller.index.toDouble() == widget.controller.animation.value) {
+              widget.controller.index.toDouble() ==
+                  widget.controller.animation.value) {
             _brnTabbarController?.show();
             if (widget.onMorePop != null) {
               widget.onMorePop();
@@ -316,12 +320,16 @@ class BrnTabBarState extends State<BrnTabBar> {
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
-                BoxShadow(color: Color(0x05000000), offset: Offset(-3, 0), spreadRadius: -1)
+                BoxShadow(
+                    color: Color(0x05000000),
+                    offset: Offset(-3, 0),
+                    spreadRadius: -1)
               ],
             ),
             child: !_brnTabbarController.isShow
                 ? BrunoTools.getAssetImage(BrnAsset.ICON_TRIANGLE_DOWN)
-                : BrunoTools.getAssetImageWithBandColor(BrnAsset.ICON_TRIANGLE_UP)),
+                : BrunoTools.getAssetImageWithBandColor(
+                    BrnAsset.ICON_TRIANGLE_UP)),
       ),
     );
   }
@@ -358,7 +366,8 @@ class BrnTabBarState extends State<BrnTabBar> {
       for (int i = 0; i < tabList.length; i++) {
         BadgeTab badgeTab = tabList[i];
         if (widget.mode == BrnTabBarBadgeMode.average) {
-          widgets.add(_wrapAverageWidget(badgeTab, minWidth, i == tabList.length - 1));
+          widgets.add(
+              _wrapAverageWidget(badgeTab, minWidth, i == tabList.length - 1));
         } else {
           widgets.add(_wrapOriginWidget(badgeTab, i == tabList.length - 1));
         }
@@ -387,12 +396,17 @@ class BrnTabBarState extends State<BrnTabBar> {
                     overflow: TextOverflow.ellipsis,
                   )),
               Badge(
-                showBadge: (badgeTab.badgeNum != null ? badgeTab.badgeNum > 0 : false) ||
+                showBadge: (badgeTab.badgeNum != null
+                        ? badgeTab.badgeNum > 0
+                        : false) ||
                     badgeTab.showRedBadge ||
-                    (badgeTab.badgeText != null ? badgeTab.badgeText.isNotEmpty : false),
+                    (badgeTab.badgeText != null
+                        ? badgeTab.badgeText.isNotEmpty
+                        : false),
                 badgeContent: Text(
                   _badgeText,
-                  style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
+                  style: TextStyle(
+                      color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
                 ),
                 shape: _badgeShape,
                 elevation: 0,
@@ -400,9 +414,12 @@ class BrnTabBarState extends State<BrnTabBar> {
                 borderRadius: _borderRadius,
                 alignment: Alignment.topLeft,
                 padding: _badgePadding,
-                position: BadgePosition.topEnd(top: _paddingTop, end: _paddingRight),
+                position:
+                    BadgePosition.topEnd(top: _paddingTop, end: _paddingRight),
                 child: Text(badgeTab.text,
-                    maxLines: 1, softWrap: true, overflow: TextOverflow.ellipsis),
+                    maxLines: 1,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis),
               )
             ],
           ),
@@ -420,7 +437,8 @@ class BrnTabBarState extends State<BrnTabBar> {
   }
 
   // 定制的等分tab样式
-  Widget _wrapAverageWidget(BadgeTab badgeTab, double minWidth, bool lastElement) {
+  Widget _wrapAverageWidget(
+      BadgeTab badgeTab, double minWidth, bool lastElement) {
     caculateBadgeParams(badgeTab);
     return Container(
       width: minWidth,
@@ -443,12 +461,17 @@ class BrnTabBarState extends State<BrnTabBar> {
                       overflow: TextOverflow.ellipsis,
                     )),
                 Badge(
-                  showBadge: (badgeTab.badgeNum != null ? badgeTab.badgeNum > 0 : false) ||
+                  showBadge: (badgeTab.badgeNum != null
+                          ? badgeTab.badgeNum > 0
+                          : false) ||
                       badgeTab.showRedBadge ||
-                      (badgeTab.badgeText != null ? badgeTab.badgeText.isNotEmpty : false),
+                      (badgeTab.badgeText != null
+                          ? badgeTab.badgeText.isNotEmpty
+                          : false),
                   badgeContent: Text(
                     _badgeText,
-                    style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
+                    style: TextStyle(
+                        color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
                   ),
                   shape: _badgeShape,
                   elevation: 0,
@@ -456,9 +479,12 @@ class BrnTabBarState extends State<BrnTabBar> {
                   borderRadius: _borderRadius,
                   alignment: Alignment.topLeft,
                   padding: _badgePadding,
-                  position: BadgePosition.topEnd(top: _paddingTop, end: _paddingRight),
+                  position: BadgePosition.topEnd(
+                      top: _paddingTop, end: _paddingRight),
                   child: Text(badgeTab.text,
-                      maxLines: 1, softWrap: true, overflow: TextOverflow.ellipsis),
+                      maxLines: 1,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis),
                 )
               ],
             ),
@@ -526,7 +552,8 @@ class BrnTabBarState extends State<BrnTabBar> {
   // 展开更多
   void showMoreWindow(BuildContext context) {
     final RenderBox dropDownItemRenderBox = context.findRenderObject();
-    var position = dropDownItemRenderBox.localToGlobal(Offset.zero, ancestor: null);
+    var position =
+        dropDownItemRenderBox.localToGlobal(Offset.zero, ancestor: null);
     var size = dropDownItemRenderBox.size;
     _brnTabbarController.top = size.height + position.dy;
 
@@ -554,7 +581,8 @@ class BrnTabBarState extends State<BrnTabBar> {
                   color: Color(0xB3000000),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height - _brnTabbarController.top,
+                    height: MediaQuery.of(context).size.height -
+                        _brnTabbarController.top,
                     child: Padding(
                       padding: EdgeInsets.all(0),
                       child: _TabBarOverlayWidget(
@@ -667,7 +695,8 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Visibility(
-                        visible: widget.moreWindowText != null && widget.moreWindowText.isNotEmpty,
+                        visible: widget.moreWindowText != null &&
+                            widget.moreWindowText.isNotEmpty,
                         child: Padding(
                           padding: EdgeInsets.only(bottom: 16),
                           child: Text(
@@ -694,7 +723,9 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
 
   Widget _createMoreItems() {
     // 计算tag的宽度
-    _tagWidth = (_parentWidth - widget.spacing * (widget.preLineTagCount - 1) - _padding * 2) /
+    _tagWidth = (_parentWidth -
+            widget.spacing * (widget.preLineTagCount - 1) -
+            _padding * 2) /
         widget.preLineTagCount;
 
     List<Widget> widgets = List();

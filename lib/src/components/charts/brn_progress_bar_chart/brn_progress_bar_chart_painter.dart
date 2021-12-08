@@ -58,12 +58,15 @@ class ChartAxis {
 
   /// 是否有刻度
   final bool hasMark;
+
   /// 实线/虚线/无
   final AxisStyle axisStyle;
+
   /// 两个刻度间距
   double space;
   double maxTextHeight = 0;
   double maxTextWidth = 0;
+
   /// 0/刻度偏移量
   double leadingSpace = 30;
   TextStyle textStyle = TextStyle(color: Color(0x999999), fontSize: 12);

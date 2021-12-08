@@ -184,14 +184,16 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
             child: GestureDetector(
               onPanDown: (DragDownDetails e) {
                 for (var i = 0; i < widget.lines[0].points.length; i++) {
-                  int lineIndex = _lineWithXPainter.lineIndexCompute(e.localPosition, i);
+                  int lineIndex =
+                      _lineWithXPainter.lineIndexCompute(e.localPosition, i);
                   if (lineIndex >= 0) {
                     lineSelectIndex = lineIndex;
                     pointSelectIndex = i;
-                    Point selectedPoint =
-                        _lineWithXPainter.selectedPoint(lineSelectIndex, pointSelectIndex);
+                    Point selectedPoint = _lineWithXPainter.selectedPoint(
+                        lineSelectIndex, pointSelectIndex);
                     _fillLeftTopPoint(
-                        widget.lines[lineSelectIndex].points[pointSelectIndex].lineTouchData,
+                        widget.lines[lineSelectIndex].points[pointSelectIndex]
+                            .lineTouchData,
                         _lineWithXPainter.startX,
                         _lineWithXPainter.endX,
                         _lineWithXPainter.startY,
@@ -219,8 +221,10 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
               child: Stack(children: [
                 CustomPaint(
                   size: widget.size,
-                  painter: widget.backgroundColor == null ? _lineWithXPainter : null,
-                  foregroundPainter: widget.backgroundColor != null ? _lineWithXPainter : null,
+                  painter:
+                      widget.backgroundColor == null ? _lineWithXPainter : null,
+                  foregroundPainter:
+                      widget.backgroundColor != null ? _lineWithXPainter : null,
                   child: widget.backgroundColor != null
                       ? Container(
                           width: widget.size.width,
@@ -230,7 +234,8 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
                       : null,
                 ),
                 (lineSelectIndex >= 0 && pointSelectIndex >= 0)
-                    ? _buildTouchTipWidget(widget.lines[lineSelectIndex].points[pointSelectIndex])
+                    ? _buildTouchTipWidget(
+                        widget.lines[lineSelectIndex].points[pointSelectIndex])
                     : Container(),
               ]),
             ),
@@ -295,8 +300,14 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
     return touchTipWidget;
   }
 
-  void _fillLeftTopPoint(BrnLineTouchData lineTouchData, double startX, double endX, double startY,
-      double endY, double fixedHeight, Point selectedPoint) {
+  void _fillLeftTopPoint(
+      BrnLineTouchData lineTouchData,
+      double startX,
+      double endX,
+      double startY,
+      double endY,
+      double fixedHeight,
+      Point selectedPoint) {
     if (selectedPoint == null || lineTouchData == null) return;
 
     if (pointSelectIndex < 0 && lineSelectIndex < 0) {

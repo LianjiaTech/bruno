@@ -50,8 +50,8 @@ class BrnTimeWidget extends StatefulWidget {
   BrnPickerConfig themeData;
 
   @override
-  State<StatefulWidget> createState() => _BrnTimeWidgetState(
-      this.minDateTime, this.maxDateTime, this.initDateTime, this.minuteDivider);
+  State<StatefulWidget> createState() => _BrnTimeWidgetState(this.minDateTime,
+      this.maxDateTime, this.initDateTime, this.minuteDivider);
 }
 
 class _BrnTimeWidgetState extends State<BrnTimeWidget> {
@@ -61,14 +61,17 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
   int _currHour, _currMinute, _currSecond;
   int _minuteDivider;
   List<int> _hourRange, _minuteRange, _secondRange;
-  FixedExtentScrollController _hourScrollCtrl, _minuteScrollCtrl, _secondScrollCtrl;
+  FixedExtentScrollController _hourScrollCtrl,
+      _minuteScrollCtrl,
+      _secondScrollCtrl;
 
   Map<String, FixedExtentScrollController> _scrollCtrlMap;
   Map<String, List<int>> _valueRangeMap;
 
   bool _isChangeTimeRange = false;
 
-  _BrnTimeWidgetState(DateTime minTime, DateTime maxTime, DateTime initTime, int minuteDivider) {
+  _BrnTimeWidgetState(DateTime minTime, DateTime maxTime, DateTime initTime,
+      int minuteDivider) {
     if (minTime == null) {
       minTime = DateTime.parse(DATE_PICKER_MIN_DATETIME);
     }
@@ -97,26 +100,35 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
 
     // limit the range of minute
     this._minuteRange = _calcMinuteRange();
-    this._currMinute = min(max(_minuteRange.first, _currMinute), _minuteRange.last);
+    this._currMinute =
+        min(max(_minuteRange.first, _currMinute), _minuteRange.last);
     _currMinute -= _currMinute % _minuteDivider;
     // limit the range of second
     this._secondRange = _calcSecondRange();
-    this._currSecond = min(max(_secondRange.first, _currSecond), _secondRange.last);
+    this._currSecond =
+        min(max(_secondRange.first, _currSecond), _secondRange.last);
 
     // create scroll controller
-    _hourScrollCtrl = FixedExtentScrollController(initialItem: _currHour - _hourRange.first);
+    _hourScrollCtrl =
+        FixedExtentScrollController(initialItem: _currHour - _hourRange.first);
     _minuteScrollCtrl = FixedExtentScrollController(
         initialItem: (_currMinute - _minuteRange.first) ~/ _minuteDivider);
-    _secondScrollCtrl = FixedExtentScrollController(initialItem: _currSecond - _secondRange.first);
+    _secondScrollCtrl = FixedExtentScrollController(
+        initialItem: _currSecond - _secondRange.first);
 
-    _scrollCtrlMap = {'H': _hourScrollCtrl, 'm': _minuteScrollCtrl, 's': _secondScrollCtrl};
+    _scrollCtrlMap = {
+      'H': _hourScrollCtrl,
+      'm': _minuteScrollCtrl,
+      's': _secondScrollCtrl
+    };
     _valueRangeMap = {'H': _hourRange, 'm': _minuteRange, 's': _secondRange};
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Material(color: Colors.transparent, child: _renderPickerView(context)),
+      child: Material(
+          color: Colors.transparent, child: _renderPickerView(context)),
     );
   }
 
@@ -125,7 +137,8 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
     Widget pickerWidget = _renderDatePickerWidget();
 
     // display the title widget
-    if (widget.pickerTitleConfig.title != null || widget.pickerTitleConfig.showTitle) {
+    if (widget.pickerTitleConfig.title != null ||
+        widget.pickerTitleConfig.showTitle) {
       Widget titleWidget = BrnPickerTitle(
         pickerTitleConfig: widget.pickerTitleConfig,
         locale: widget.locale,
@@ -149,8 +162,8 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
   void _onPressedConfirm() {
     if (widget.onConfirm != null) {
       DateTime now = DateTime.now();
-      DateTime dateTime =
-          DateTime(now.year, now.month, now.day, _currHour, _currMinute, _currSecond);
+      DateTime dateTime = DateTime(
+          now.year, now.month, now.day, _currHour, _currMinute, _currSecond);
       widget.onConfirm(dateTime, _calcSelectIndexList());
     }
     Navigator.pop(context);
@@ -160,8 +173,8 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
   void _onSelectedChange() {
     if (widget.onChange != null) {
       DateTime now = DateTime.now();
-      DateTime dateTime =
-          DateTime(now.year, now.month, now.day, _currHour, _currMinute, _currSecond);
+      DateTime dateTime = DateTime(
+          now.year, now.month, now.day, _currHour, _currMinute, _currSecond);
       widget.onChange(dateTime, _calcSelectIndexList());
     }
   }
@@ -191,7 +204,8 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
   /// render the picker widget of year、month and day
   Widget _renderDatePickerWidget() {
     List<Widget> pickers = List<Widget>();
-    List<String> formatArr = DateTimeFormatter.splitDateFormat(widget.dateFormat);
+    List<String> formatArr =
+        DateTimeFormatter.splitDateFormat(widget.dateFormat);
     formatArr.forEach((format) {
       List<int> valueRange = _findPickerItemRange(format);
 
@@ -211,7 +225,8 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
       );
       pickers.add(pickerColumn);
     });
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
   }
 
   Widget _renderDatePickerColumnComponent({
@@ -241,7 +256,8 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
               value = _minuteDivider * index;
             }
 
-            return _renderDatePickerItemComponent(getColumnType(format), index, value, format);
+            return _renderDatePickerItemComponent(
+                getColumnType(format), index, value, format);
           },
         ),
       ),
@@ -273,14 +289,18 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
       ColumnType columnType, int index, int value, String format) {
     TextStyle textStyle = widget.themeData.itemTextStyle.generateTextStyle();
     if ((ColumnType.Hour == columnType && index == _calcSelectIndexList()[0]) ||
-        (ColumnType.Minute == columnType && index == _calcSelectIndexList()[1]) ||
-        (ColumnType.Second == columnType && index == _calcSelectIndexList()[2])) {
+        (ColumnType.Minute == columnType &&
+            index == _calcSelectIndexList()[1]) ||
+        (ColumnType.Second == columnType &&
+            index == _calcSelectIndexList()[2])) {
       textStyle = widget.themeData.itemTextSelectedStyle.generateTextStyle();
     }
     return Container(
       height: widget.themeData.itemHeight,
       alignment: Alignment.center,
-      child: Text(DateTimeFormatter.formatDateTime(value, format, widget.locale), style: textStyle),
+      child: Text(
+          DateTimeFormatter.formatDateTime(value, format, widget.locale),
+          style: textStyle),
     );
   }
 
@@ -322,8 +342,8 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
     _isChangeTimeRange = true;
 
     List<int> minuteRange = _calcMinuteRange();
-    bool minuteRangeChanged =
-        _minuteRange.first != minuteRange.first || _minuteRange.last != minuteRange.last;
+    bool minuteRangeChanged = _minuteRange.first != minuteRange.first ||
+        _minuteRange.last != minuteRange.last;
     if (minuteRangeChanged) {
       // selected hour changed
       _currMinute = max(min(_currMinute, minuteRange.last), minuteRange.first);
@@ -331,8 +351,8 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
     }
 
     List<int> secondRange = _calcSecondRange();
-    bool secondRangeChanged =
-        _secondRange.first != secondRange.first || _secondRange.last != secondRange.last;
+    bool secondRangeChanged = _secondRange.first != secondRange.first ||
+        _secondRange.last != secondRange.last;
     if (secondRangeChanged) {
       // second range changed, need limit the value of selected second
       _currSecond = max(min(_currSecond, secondRange.last), secondRange.first);
@@ -349,7 +369,8 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
     if (minuteRangeChanged) {
       // CupertinoPicker refresh data not working (https://github.com/flutter/flutter/issues/22999)
       int currMinute = _currMinute;
-      _minuteScrollCtrl.jumpToItem((minuteRange.last - minuteRange.first) ~/ _minuteDivider);
+      _minuteScrollCtrl
+          .jumpToItem((minuteRange.last - minuteRange.first) ~/ _minuteDivider);
       if (currMinute < minuteRange.last) {
         _minuteScrollCtrl.jumpToItem(currMinute - minuteRange.first);
       }

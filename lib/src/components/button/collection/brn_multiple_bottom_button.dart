@@ -47,20 +47,21 @@ class BrnMultipleBottomButton extends StatefulWidget {
   /// 暴露给外界设置多选状态的控制器
   final BrnMultipleBottomController bottomController;
 
-const BrnMultipleBottomButton(
-    {Key key,
-    this.mainButton,
-    this.subButton,
-    this.onMainButtonTap,
-    this.onSubButtonTap,
-    this.onSelectedButtonTap,
-    this.onSelectAll,
-    this.hasArrow = false,
-    this.bottomController})
+  const BrnMultipleBottomButton(
+      {Key key,
+      this.mainButton,
+      this.subButton,
+      this.onMainButtonTap,
+      this.onSubButtonTap,
+      this.onSelectedButtonTap,
+      this.onSelectAll,
+      this.hasArrow = false,
+      this.bottomController})
       : super(key: key);
 
   @override
-  _BrnMultipleBottomButtonState createState() => _BrnMultipleBottomButtonState();
+  _BrnMultipleBottomButtonState createState() =>
+      _BrnMultipleBottomButtonState();
 }
 
 class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
@@ -95,7 +96,8 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
         ? GestureDetector(
             onTap: () {
               //点击全选将当前状态置反，回调到外界，行为与单独点击圆圈保持一致
-              bool currentState = !_controller.valueNotifier.value.selectAllState;
+              bool currentState =
+                  !_controller.valueNotifier.value.selectAllState;
               _controller.setState(selectAllState: currentState);
               if (widget.onSelectAll != null) widget.onSelectAll(currentState);
             },
@@ -115,7 +117,8 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                         onValueChangedAtIndex: (index, value) {
                           //同步到外界的当前的全选状态
                           _controller.setState(selectAllState: value);
-                          if (widget.onSelectAll != null) widget.onSelectAll(value);
+                          if (widget.onSelectAll != null)
+                            widget.onSelectAll(value);
                         },
                         key: Key(DateTime.now().toString()),
                       );
@@ -136,13 +139,15 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
   }
 
   Widget _selectedCountWidget() {
-    Image unfoldWidget = BrunoTools.getAssetImageWithColor(BrnAsset.ICON_SELECTED_UP_TRIANGLE,
+    Image unfoldWidget = BrunoTools.getAssetImageWithColor(
+        BrnAsset.ICON_SELECTED_UP_TRIANGLE,
         BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
 
-    Image foldWidget = BrunoTools.getAssetImage(BrnAsset.ICON_UNSELECT_DOWN_TRIANGLE);
+    Image foldWidget =
+        BrunoTools.getAssetImage(BrnAsset.ICON_UNSELECT_DOWN_TRIANGLE);
 
-    Image cantFoldWidget =
-        BrunoTools.getAssetImageWithColor(BrnAsset.ICON_UNSELECT_DOWN_TRIANGLE, Color(0XCCCCCCCC));
+    Image cantFoldWidget = BrunoTools.getAssetImageWithColor(
+        BrnAsset.ICON_UNSELECT_DOWN_TRIANGLE, Color(0XCCCCCCCC));
 
     return GestureDetector(
       onTap: () {
@@ -150,7 +155,8 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
           if (widget.onSelectedButtonTap != null) {
             if (_controller.valueNotifier.value.selectedCount == 0) {
               _unfoldState = false;
-              widget.onSelectedButtonTap(BrnMultipleButtonArrowState.cantUnfold);
+              widget
+                  .onSelectedButtonTap(BrnMultipleButtonArrowState.cantUnfold);
               return;
             }
             _unfoldState = !_unfoldState;
@@ -178,13 +184,17 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                   '(${value.selectedCount})',
                   style: TextStyle(
                       color: value.selectedCount != 0
-                          ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary
+                          ? BrnThemeConfigurator.instance
+                              .getConfig()
+                              .commonConfig
+                              .brandPrimary
                           : Color(0x99999999),
                       fontSize: 16),
                 ));
                 if (value.selectedCount == 0) _unfoldState = false;
                 if (widget.hasArrow) {
-                  if (value.arrowStatus != BrnMultipleButtonArrowState.defaultStatus) {
+                  if (value.arrowStatus !=
+                      BrnMultipleButtonArrowState.defaultStatus) {
                     //使用方主动设置箭头状态的时候
                     Widget arrow;
                     switch (value.arrowStatus) {
@@ -201,8 +211,10 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                         break;
                     }
                     //重置unfold的状态，避免主动设置箭头方向后，影响原本逻辑
-                    _unfoldState = value.arrowStatus == BrnMultipleButtonArrowState.fold;
-                    value.arrowStatus = BrnMultipleButtonArrowState.defaultStatus;
+                    _unfoldState =
+                        value.arrowStatus == BrnMultipleButtonArrowState.fold;
+                    value.arrowStatus =
+                        BrnMultipleButtonArrowState.defaultStatus;
 
                     rowChildren.add(Container(
                       margin: EdgeInsets.only(left: 2, top: 2),
@@ -214,7 +226,9 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                       rowChildren.add(Container(
                         margin: EdgeInsets.only(left: 2, top: 2),
                         width: 6,
-                        child: value.selectedCount == 0 ? cantFoldWidget : foldWidget,
+                        child: value.selectedCount == 0
+                            ? cantFoldWidget
+                            : foldWidget,
                       ));
                     } else {
                       rowChildren.add(Container(
@@ -261,14 +275,19 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(4)),
                         color: value.mainButtonState
-                            ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary
+                            ? BrnThemeConfigurator.instance
+                                .getConfig()
+                                .commonConfig
+                                .brandPrimary
                             : Color(0xFFCCCCCC)),
                     child: widget.mainButton is String
                         ? Center(
                             child: Text(
                             widget.mainButton,
                             style: TextStyle(
-                                color: value.mainButtonState ? Colors.white : Color(0xAAFFFFFF),
+                                color: value.mainButtonState
+                                    ? Colors.white
+                                    : Color(0xAAFFFFFF),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
                             overflow: TextOverflow.ellipsis,
@@ -299,14 +318,19 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(4)),
                         color: value.subButtonState
-                            ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandAuxiliary
+                            ? BrnThemeConfigurator.instance
+                                .getConfig()
+                                .commonConfig
+                                .brandAuxiliary
                             : Color(0xFFCCCCCC)),
                     child: widget.subButton is String
                         ? Center(
                             child: Text(
                             widget.subButton,
                             style: TextStyle(
-                                color: value.subButtonState ? Colors.white : Color(0xAAFFFFFF),
+                                color: value.subButtonState
+                                    ? Colors.white
+                                    : Color(0xAAFFFFFF),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
                             overflow: TextOverflow.ellipsis,
@@ -347,7 +371,8 @@ class BrnMultipleBottomController {
     MultiSelectState data = MultiSelectState(
         selectedCount: selectedCount ?? valueNotifier?.value?.selectedCount,
         selectAllState: selectAllState ?? valueNotifier?.value?.selectAllState,
-        mainButtonState: mainButtonState ?? valueNotifier?.value?.mainButtonState,
+        mainButtonState:
+            mainButtonState ?? valueNotifier?.value?.mainButtonState,
         subButtonState: subButtonState ?? valueNotifier?.value?.subButtonState,
         arrowStatus: arrowStatus ?? valueNotifier?.value?.arrowStatus);
     valueNotifier.value = data;

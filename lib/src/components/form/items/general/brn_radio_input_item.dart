@@ -81,27 +81,26 @@ class BrnRadioInputFormItem extends StatefulWidget {
   /// form配置
   BrnFormItemConfig themeData;
 
-  BrnRadioInputFormItem(
-      {Key key,
-      this.label,
-      this.title: "",
-      this.subTitle,
-      this.tipLabel,
-      this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
-      this.error: "",
-      this.isEdit: true,
-      this.isRequire: false,
-      this.onAddTap,
-      this.onRemoveTap,
-      this.onTip,
-      this.value,
-      this.options,
-      this.enableList,
-      this.onChanged,
-      this.themeData,
-      this.titleMaxLines,})
-      : super(key: key) {
-
+  BrnRadioInputFormItem({
+    Key key,
+    this.label,
+    this.title: "",
+    this.subTitle,
+    this.tipLabel,
+    this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
+    this.error: "",
+    this.isEdit: true,
+    this.isRequire: false,
+    this.onAddTap,
+    this.onRemoveTap,
+    this.onTip,
+    this.value,
+    this.options,
+    this.enableList,
+    this.onChanged,
+    this.themeData,
+    this.titleMaxLines,
+  }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -131,7 +130,6 @@ class BrnRadioInputFormItem extends StatefulWidget {
     this.layoutRatio,
     this.themeData,
   }) : super(key: key) {
-
     this._isAutoLayout = true;
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
@@ -144,7 +142,6 @@ class BrnRadioInputFormItem extends StatefulWidget {
   BrnRadioInputFormItemState createState() {
     return BrnRadioInputFormItemState();
   }
-
 }
 
 class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
@@ -183,7 +180,8 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
   }
 
   Widget _buildAutoLayoutTitleWidget(BuildContext context) {
-    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
       double maxWidth = _getTitleMaxWidth(context, constraints);
       return Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,7 +192,12 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
                   widget.prefixIconType, widget.isRequire, widget.themeData),
               child: Row(
                 children: <Widget>[
-                  BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                  BrnFormUtil.buildPrefixIcon(
+                      widget.prefixIconType,
+                      widget.isEdit,
+                      context,
+                      widget.onAddTap,
+                      widget.onRemoveTap),
                   BrnFormUtil.buildRequireWidget(widget.isRequire),
                   Flexible(child: _buildTitleTextWidget()),
                   _buildTipWidget()
@@ -220,7 +223,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
       offstage: (widget.tipLabel == null /*|| widget.tipLabel.isEmpty*/),
       child: GestureDetector(
         onTap: () {
-          if(widget.onTip != null){
+          if (widget.onTip != null) {
             widget.onTip();
           }
         },
@@ -294,11 +297,12 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
 
   Widget _buildTitleTextWidget() {
     return Text(widget.title ?? "",
-        overflow: widget.titleMaxLines == null ? TextOverflow.clip : TextOverflow.ellipsis,
+        overflow: widget.titleMaxLines == null
+            ? TextOverflow.clip
+            : TextOverflow.ellipsis,
         maxLines: widget.titleMaxLines,
         style: BrnFormUtil.getTitleTextStyle(widget.themeData));
   }
-
 
   Row _buildTitleWidget(BuildContext context) {
     return Row(
@@ -314,15 +318,19 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
             child: Row(
               children: <Widget>[
                 // 添加/删除图标
-                BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                BrnFormUtil.buildPrefixIcon(
+                    widget.prefixIconType,
+                    widget.isEdit,
+                    context,
+                    widget.onAddTap,
+                    widget.onRemoveTap),
                 // 必填项 "*" 图标
                 BrnFormUtil.buildRequireWidget(widget.isRequire),
 
                 // 主标题
-                Container(
-                    child: _buildTitleTextWidget()),
+                Container(child: _buildTitleTextWidget()),
 
-                 // 问号图标
+                // 问号图标
                 _buildTipWidget(),
               ],
             ),
@@ -422,8 +430,4 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
 
     return !widget.enableList[index];
   }
-
 }
-
-
-

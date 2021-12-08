@@ -32,11 +32,14 @@ class BrnButtonConfig extends BrnBaseConfig {
   double smallButtonFontSize;
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
-    BrnButtonConfig userConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).buttonConfig;
+    BrnButtonConfig userConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .buttonConfig;
 
     this.bigButtonRadius ??= userConfig?.bigButtonRadius;
     this.bigButtonHeight ??= userConfig?.bigButtonHeight;

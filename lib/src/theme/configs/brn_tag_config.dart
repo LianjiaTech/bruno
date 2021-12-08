@@ -52,11 +52,14 @@ class BrnTagConfig extends BrnBaseConfig {
       : super(configId: configId);
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnTagConfig tagConfig = BrnThemeConfigurator.instance.getConfig(configId: configId).tagConfig;
+    BrnTagConfig tagConfig =
+        BrnThemeConfigurator.instance.getConfig(configId: configId).tagConfig;
 
     this.tagHeight ??= tagConfig.tagHeight;
 
@@ -69,13 +72,15 @@ class BrnTagConfig extends BrnBaseConfig {
 
     this.selectedTagBackgroundColor ??= commonConfig.brandPrimary;
 
-    this.tagTextStyle = tagConfig.tagTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeCaption)
-            .merge(this.tagTextStyle));
+    this.tagTextStyle = tagConfig.tagTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeCaption)
+        .merge(this.tagTextStyle));
 
-    this.selectTagTextStyle = tagConfig.selectTagTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeCaption)
-            .merge(this.selectTagTextStyle));
+    this.selectTagTextStyle = tagConfig.selectTagTextStyle.merge(BrnTextStyle(
+            color: commonConfig.brandPrimary,
+            fontSize: commonConfig.fontSizeCaption)
+        .merge(this.selectTagTextStyle));
   }
 
   BrnTagConfig copyWith(
@@ -92,7 +97,8 @@ class BrnTagConfig extends BrnBaseConfig {
         selectTagTextStyle: selectTextStyle ?? this.selectTagTextStyle,
         tagRadius: radius ?? this.tagRadius,
         tagBackgroundColor: backgroundColor ?? this.tagBackgroundColor,
-        selectedTagBackgroundColor: selectedBackgroundColor ?? this.selectedTagBackgroundColor,
+        selectedTagBackgroundColor:
+            selectedBackgroundColor ?? this.selectedTagBackgroundColor,
         tagHeight: height ?? this.tagHeight,
         tagWidth: width ?? this.tagWidth,
         tagMinWidth: tagMinWidth ?? this.tagMinWidth);
@@ -100,9 +106,11 @@ class BrnTagConfig extends BrnBaseConfig {
 
   BrnTagConfig merge(BrnTagConfig other) {
     return copyWith(
-        textStyle: this.tagTextStyle?.merge(other.tagTextStyle) ?? other.tagTextStyle,
+        textStyle:
+            this.tagTextStyle?.merge(other.tagTextStyle) ?? other.tagTextStyle,
         selectTextStyle:
-            this.selectTagTextStyle?.merge(other.selectTagTextStyle) ?? other.selectTagTextStyle,
+            this.selectTagTextStyle?.merge(other.selectTagTextStyle) ??
+                other.selectTagTextStyle,
         radius: other.tagRadius,
         backgroundColor: other.tagBackgroundColor,
         selectedBackgroundColor: other.selectedTagBackgroundColor,

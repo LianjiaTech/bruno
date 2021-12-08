@@ -63,10 +63,13 @@ class BrnRadioButton extends StatelessWidget {
       childOnRight: childOnRight,
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
-      selectedImage: BrunoTools.getAssetImageWithBandColor(BrnAsset.ICON_RADIO_SINGLE_SELECTED),
+      selectedImage: BrunoTools.getAssetImageWithBandColor(
+          BrnAsset.ICON_RADIO_SINGLE_SELECTED),
       unselectedImage: BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_UNSELECTED),
-      disSelectedImage: BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_MULTI_SELECTED),
-      disUnselectedImage: BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_UNSELECTED),
+      disSelectedImage:
+          BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_MULTI_SELECTED),
+      disUnselectedImage:
+          BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_UNSELECTED),
       child: child,
       onRadioItemClick: () {
         onValueChangedAtIndex(radioIndex, true);

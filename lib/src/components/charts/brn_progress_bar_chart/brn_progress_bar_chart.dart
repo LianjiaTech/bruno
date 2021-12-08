@@ -100,23 +100,28 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
     int numberOfBars = widget.barBundleList[0].barList.length;
     if (BarChartStyle.horizontal == widget.barChartStyle) {
       double height = widget.yAxis.leadingSpace +
-          (widget.singleBarWidth * barBundleCount + widget.barGroupSpace) * numberOfBars;
+          (widget.singleBarWidth * barBundleCount + widget.barGroupSpace) *
+              numberOfBars;
 
       ///有 x 轴 需要加上 x 轴占用的高度
-      if (null != widget.xAxis?.axisItemList && 0 < widget.xAxis.axisItemList.length) {
+      if (null != widget.xAxis?.axisItemList &&
+          0 < widget.xAxis.axisItemList.length) {
         height += 22;
       }
       double width = MediaQuery.of(context).size.width;
       return Size(width, height);
     } else if (BarChartStyle.vertical == widget.barChartStyle) {
       double width = widget.xAxis.leadingSpace +
-          (widget.singleBarWidth * barBundleCount + widget.barGroupSpace) * numberOfBars;
+          (widget.singleBarWidth * barBundleCount + widget.barGroupSpace) *
+              numberOfBars;
 
       /// 有 y 轴需要加上 y 轴占用的宽度
-      if (null != widget.yAxis?.axisItemList && 0 < widget.yAxis.axisItemList.length) {
+      if (null != widget.yAxis?.axisItemList &&
+          0 < widget.yAxis.axisItemList.length) {
         width += BrnProgressBarChartPainter.maxYAxisWidth(widget.yAxis);
       }
-      return Size(widget.minWidth > width ? widget.minWidth : width, widget.height ?? 300);
+      return Size(widget.minWidth > width ? widget.minWidth : width,
+          widget.height ?? 300);
     } else {
       return Size.zero;
     }
@@ -169,7 +174,8 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
       return Container();
     }
     if (BarChartStyle.vertical == widget.barChartStyle) {
-      double yAxisWidth = BrnProgressBarChartPainter.maxYAxisWidth(widget.yAxis);
+      double yAxisWidth =
+          BrnProgressBarChartPainter.maxYAxisWidth(widget.yAxis);
       return Padding(
         padding: widget.padding,
         child: Stack(
@@ -203,11 +209,14 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
                       barMaxValue: widget.barMaxValue,
                       barGroupSpace: widget.barGroupSpace,
                       barBundleList: widget.barBundleList,
-                      onBarItemClickInterceptor: widget.onBarItemClickInterceptor,
+                      onBarItemClickInterceptor:
+                          widget.onBarItemClickInterceptor,
                       selectedBarItem: _selectedBarItem,
                       selectedHintTextColor: widget.selectedHintTextColor,
-                      selectedHintTextBackgroundColor: widget.selectedHintTextBackgroundColor,
-                      brnProgressBarChartSelectCallback: (BrnProgressBarItem item) {
+                      selectedHintTextBackgroundColor:
+                          widget.selectedHintTextBackgroundColor,
+                      brnProgressBarChartSelectCallback:
+                          (BrnProgressBarItem item) {
                         if (null != widget.barChartSelectCallback)
                           widget.barChartSelectCallback(item);
                         setState(() {

@@ -5,8 +5,10 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 //将标签属性 转为 相当的style
 class BrnConvertUtil {
   //将标签color 转为 颜色
-  static Color generateColorByString(String hexColor, {String defColor: 'ffffffff'}) {
-    Color color = BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
+  static Color generateColorByString(String hexColor,
+      {String defColor: 'ffffffff'}) {
+    Color color =
+        BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
     if (hexColor == null || hexColor.isEmpty) return color;
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
     hexColor = hexColor.replaceAll('0X', '');

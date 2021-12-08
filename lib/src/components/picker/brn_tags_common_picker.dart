@@ -10,7 +10,8 @@ enum BrnCommonPickBackType {
   confirm,
 }
 
-typedef TagsPickerContentBuilder = Widget Function(BuildContext context, VoidCallback onUpdate);
+typedef TagsPickerContentBuilder = Widget Function(
+    BuildContext context, VoidCallback onUpdate);
 
 /// 创建时传入Builder 或者 子类实现 createBuilder 函数
 class CommonTagsPicker extends StatefulWidget {
@@ -32,7 +33,9 @@ class CommonTagsPicker extends StatefulWidget {
       this.themeData})
       : super(key: key) {
     this.themeData ??= BrnPickerConfig();
-    this.themeData = this.themeData.merge(BrnThemeConfigurator.instance.getConfig().pickerConfig);
+    this.themeData = this
+        .themeData
+        .merge(BrnThemeConfigurator.instance.getConfig().pickerConfig);
   }
 
   void show() {
@@ -91,10 +94,14 @@ class _CommonPickerState extends State<CommonTagsPicker> {
   Widget build(BuildContext context) {
     return BrnPickerClipRRect(
       borderRadius: BorderRadius.only(
-        topLeft:
-            Radius.circular(BrnThemeConfigurator.instance.getConfig().pickerConfig.cornerRadius),
-        topRight:
-            Radius.circular(BrnThemeConfigurator.instance.getConfig().pickerConfig.cornerRadius),
+        topLeft: Radius.circular(BrnThemeConfigurator.instance
+            .getConfig()
+            .pickerConfig
+            .cornerRadius),
+        topRight: Radius.circular(BrnThemeConfigurator.instance
+            .getConfig()
+            .pickerConfig
+            .cornerRadius),
       ),
       child: Container(
           color: Colors.white,

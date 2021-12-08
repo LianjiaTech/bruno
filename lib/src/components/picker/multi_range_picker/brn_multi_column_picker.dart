@@ -14,15 +14,16 @@ import 'package:flutter/material.dart';
 /// [columnIndex] 数据项所在列
 /// [rowIndex] 数据项所在列中的位置
 /// [entity] 被点击的数据项
-typedef void BrnOnEntityTap(int columnIndex, int rowIndex, BrnPickerEntity entity);
+typedef void BrnOnEntityTap(
+    int columnIndex, int rowIndex, BrnPickerEntity entity);
 
 /// 单个数据项被点击的回调，
 /// [results] 选中的数据项
 /// [firstIndex] 第一列被选中数据的位置
 /// [secondIndex] 第二列被选中数据的位置
 /// [thirdIndex] 第三列被选中数据的位置
-typedef void BrnOnPickerConfirm(
-    Map<String, List<BrnPickerEntity>> results, int firstIndex, int secondIndex, int thirdIndex);
+typedef void BrnOnPickerConfirm(Map<String, List<BrnPickerEntity>> results,
+    int firstIndex, int secondIndex, int thirdIndex);
 
 /// 从屏幕下方弹起的多级筛选选择器
 /// 可设置筛项的层级、多选、单选等筛选相关功能
@@ -73,7 +74,9 @@ class BrnMultiColumnPicker extends StatefulWidget {
       this.themeData})
       : super(key: key) {
     this.themeData ??= BrnPickerConfig();
-    this.themeData = this.themeData.merge(BrnThemeConfigurator.instance.getConfig().pickerConfig);
+    this.themeData = this
+        .themeData
+        .merge(BrnThemeConfigurator.instance.getConfig().pickerConfig);
   }
 
   @override
@@ -81,7 +84,8 @@ class BrnMultiColumnPicker extends StatefulWidget {
 }
 
 class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
-  static const BrnMultiRangeSelConverter defaultConverter = const BrnMultiRangeSelConverter();
+  static const BrnMultiRangeSelConverter defaultConverter =
+      const BrnMultiRangeSelConverter();
   List<BrnPickerEntity> _firstList = List();
   List<BrnPickerEntity> _secondList = List();
   List<BrnPickerEntity> _thirdList = List();
@@ -102,8 +106,10 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
 
   @override
   void initState() {
-    _normalColor = BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-    _selectedColor = BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
+    _normalColor =
+        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
+    _selectedColor =
+        BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
     _initData();
     super.initState();
   }
@@ -168,9 +174,11 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
           maxHeight: widget.maxHeight,
           flex: _getFlexByColumnIndex(1),
           focusedIndex: _firstIndex,
-          singleListItemPick: (int listIndex, int index, BrnPickerEntity entity) {
+          singleListItemPick:
+              (int listIndex, int index, BrnPickerEntity entity) {
             _setFirstIndex(index);
-            if (_columnCount == 1 && widget.entity.filterType == PickerFilterType.Radio) {
+            if (_columnCount == 1 &&
+                widget.entity.filterType == PickerFilterType.Radio) {
               _confirmButtonClickEvent();
             }
             if (widget.onEntityTap != null) {
@@ -190,7 +198,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
           selectedBackgroundColor: _getSelectBgColorByColumnIndex(1),
           flex: _getFlexByColumnIndex(1),
           focusedIndex: _firstIndex,
-          singleListItemPick: (int listIndex, int index, BrnPickerEntity entity) {
+          singleListItemPick:
+              (int listIndex, int index, BrnPickerEntity entity) {
             _setFirstIndex(index);
             if (widget.onEntityTap != null) {
               widget.onEntityTap(0, index, entity);
@@ -206,7 +215,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
           selectedBackgroundColor: _getSelectBgColorByColumnIndex(2),
           flex: _getFlexByColumnIndex(2),
           focusedIndex: _secondIndex,
-          singleListItemPick: (int listIndex, int index, BrnPickerEntity entity) {
+          singleListItemPick:
+              (int listIndex, int index, BrnPickerEntity entity) {
             _setSecondIndex(index);
             if (widget.onEntityTap != null) {
               widget.onEntityTap(1, index, entity);
@@ -225,7 +235,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
           selectedBackgroundColor: _getSelectBgColorByColumnIndex(1),
           flex: _getFlexByColumnIndex(1),
           focusedIndex: _firstIndex,
-          singleListItemPick: (int listIndex, int index, BrnPickerEntity entity) {
+          singleListItemPick:
+              (int listIndex, int index, BrnPickerEntity entity) {
             _setFirstIndex(index);
             if (widget.onEntityTap != null) {
               widget.onEntityTap(0, index, entity);
@@ -241,7 +252,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
           selectedBackgroundColor: _getSelectBgColorByColumnIndex(2),
           flex: _getFlexByColumnIndex(2),
           focusedIndex: _secondIndex,
-          singleListItemPick: (int listIndex, int index, BrnPickerEntity entity) {
+          singleListItemPick:
+              (int listIndex, int index, BrnPickerEntity entity) {
             _setSecondIndex(index);
             if (widget.onEntityTap != null) {
               widget.onEntityTap(1, index, entity);
@@ -256,7 +268,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
           selectedBackgroundColor: _getSelectBgColorByColumnIndex(3),
           flex: _getFlexByColumnIndex(3),
           focusedIndex: _thirdIndex,
-          singleListItemPick: (int listIndex, int index, BrnPickerEntity entity) {
+          singleListItemPick:
+              (int listIndex, int index, BrnPickerEntity entity) {
             if (entity.isSelected) {
               _thirdIndex = index;
             } else {
@@ -287,7 +300,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
     if (widget.onConfirm != null) {
       //更多和无tips等外部调用的多选需要传递此值selectedLastColumnArray
       Map<String, List<BrnPickerEntity>> result = defaultConverter
-          .convertPickedData([widget.entity], includeUnlimitSelection: widget.isIncludeUnLimit);
+          .convertPickedData([widget.entity],
+              includeUnlimitSelection: widget.isIncludeUnLimit);
       widget.onConfirm(result, _firstIndex, _secondIndex, _thirdIndex);
     }
   }
@@ -356,7 +370,9 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
 
     if (_firstIndex == -1) {
       if (widget.defaultFocusedIndexes != null) {
-        for (int index = 0; index < widget.defaultFocusedIndexes.length; index++) {
+        for (int index = 0;
+            index < widget.defaultFocusedIndexes.length;
+            index++) {
           if (index == 0 && widget.defaultFocusedIndexes[index] >= 0) {
             _firstIndex = widget.defaultFocusedIndexes[index];
           }
@@ -420,7 +436,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
     _firstIndex = firstIndex;
     _secondIndex = -1;
     if (widget.entity.children.length > _firstIndex) {
-      List<BrnPickerEntity> seconds = widget.entity.children[_firstIndex].children;
+      List<BrnPickerEntity> seconds =
+          widget.entity.children[_firstIndex].children;
       if (seconds != null) {
         _secondIndex = _getInitialSelectIndex(seconds);
 
@@ -437,7 +454,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
   void _setSecondIndex(int secondIndex) {
     _secondIndex = secondIndex;
     _thirdIndex = -1;
-    List<BrnPickerEntity> seconds = widget.entity.children[_firstIndex].children;
+    List<BrnPickerEntity> seconds =
+        widget.entity.children[_firstIndex].children;
     if (seconds.length > _secondIndex) {
       List<BrnPickerEntity> thirds = seconds[_secondIndex].children;
       if (thirds != null) {
@@ -467,7 +485,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
         // 当上一级为多选时，当前级不应有默认焦点，
         // 例如1级为多选，不应该默认选中2级的不限
         // 否则每选中任意一个1级选项，就默认有了一个2级的不限
-        if (entity.isUnLimit() && entity.parent.filterType != PickerFilterType.Checkbox) {
+        if (entity.isUnLimit() &&
+            entity.parent.filterType != PickerFilterType.Checkbox) {
           index = levelList.indexOf(entity);
           break;
         }

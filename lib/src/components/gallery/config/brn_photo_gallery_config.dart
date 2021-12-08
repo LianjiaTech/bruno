@@ -16,7 +16,8 @@ class BrnPhotoGroupConfig extends BrnBasicGroupConfig {
   //通过url列表生成配置
   BrnPhotoGroupConfig.url({this.title, @required this.urls, this.themeData}) {
     configList = List();
-    urls.forEach((item) => configList.add(BrnPhotoItemConfig(url: item, themeData: themeData)));
+    urls.forEach((item) =>
+        configList.add(BrnPhotoItemConfig(url: item, themeData: themeData)));
   }
 
   //自定义配置列表
@@ -83,8 +84,8 @@ class BrnPhotoItemConfig extends BrnBasicItemConfig {
   }
 
   @override
-  Widget buildSummaryWidget(
-      BuildContext context, List<BrnBasicGroupConfig> allConfig, int groupId, int index) {
+  Widget buildSummaryWidget(BuildContext context,
+      List<BrnBasicGroupConfig> allConfig, int groupId, int index) {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(2.0)),
@@ -101,8 +102,8 @@ class BrnPhotoItemConfig extends BrnBasicItemConfig {
   }
 
   @override
-  Widget buildDetailWidget(
-      BuildContext context, List<BrnBasicGroupConfig> allConfig, int groupId, int index) {
+  Widget buildDetailWidget(BuildContext context,
+      List<BrnBasicGroupConfig> allConfig, int groupId, int index) {
     return Container(
       color: Colors.white,
       child: Stack(
@@ -125,7 +126,8 @@ class BrnPhotoItemConfig extends BrnBasicItemConfig {
               child: Container(
                 color: Colors.white,
                 child: PhotoView(
-                  backgroundDecoration: BoxDecoration(color: themeData.pageBackgroundColor),
+                  backgroundDecoration:
+                      BoxDecoration(color: themeData.pageBackgroundColor),
                   loadingBuilder: (context, event) {
                     return Container(
                       child: BrnLoadingDialog(),

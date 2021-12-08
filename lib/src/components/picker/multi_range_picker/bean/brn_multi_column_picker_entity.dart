@@ -16,7 +16,8 @@ enum PickerWindowType {
 
 class BrnPickerEntity {
   String uniqueId; //唯一的id
-  String type; //类型 目前支持的类型有不限（unlimit）、单选（radio）、复选（checkbox）, 最终被解析成 PickerFilterType 类型
+  String
+      type; //类型 目前支持的类型有不限（unlimit）、单选（radio）、复选（checkbox）, 最终被解析成 PickerFilterType 类型
   String key; //回传给服务器
   String value; //回传给服务器
   String name; //显示的文案
@@ -43,7 +44,8 @@ class BrnPickerEntity {
     this.filterType = this.parserFilterTypeWithType(this.type);
 
     /// 默认支持最大选中个数为 65535
-    this.maxSelectedCount = maxSelectedCount ?? BrnSelectionConstant.MAX_SELECT_COUNT;
+    this.maxSelectedCount =
+        maxSelectedCount ?? BrnSelectionConstant.MAX_SELECT_COUNT;
   }
 
   static BrnPickerEntity fromMap(Map<String, dynamic> map) {
@@ -57,7 +59,8 @@ class BrnPickerEntity {
     entity.isSelected = map['isSelected'] ?? false;
     entity.defaultValue = map['defaultValue'] ?? "";
     entity.value = map['value'] ?? "";
-    if (map['maxSelectedCount'] != null && int.tryParse(map['maxSelectedCount']) != null) {
+    if (map['maxSelectedCount'] != null &&
+        int.tryParse(map['maxSelectedCount']) != null) {
       entity.maxSelectedCount = int.tryParse(map['maxSelectedCount']);
     } else {
       entity.maxSelectedCount = BrnSelectionConstant.MAX_SELECT_COUNT;
@@ -65,7 +68,8 @@ class BrnPickerEntity {
     entity.extMap = map['ext'] ?? {};
 //    entity.children = map['children'] ?? [];
     entity.children = List()
-      ..addAll((map['children'] as List ?? []).map((o) => BrnPickerEntity.fromMap(o)));
+      ..addAll((map['children'] as List ?? [])
+          .map((o) => BrnPickerEntity.fromMap(o)));
     return entity;
   }
 
@@ -87,7 +91,6 @@ class BrnPickerEntity {
       isSelected = isSelected || children.where((_) => _.isSelected).length > 0;
     }
   }
-
 
   void configRelationship() {
     if (this.children != null && this.children.length > 0) {
@@ -140,7 +143,8 @@ class BrnPickerEntity {
             if (secondEntity != null &&
                 secondEntity.children != null &&
                 secondEntity.children.length > 0) {
-              List<BrnPickerEntity> thirds = this.currentSelectListForEntity(secondEntity);
+              List<BrnPickerEntity> thirds =
+                  this.currentSelectListForEntity(secondEntity);
               if (thirds.length > 0) {
                 list.addAll(thirds);
               } else if (secondEntity.isSelected) {
@@ -172,11 +176,13 @@ class BrnPickerEntity {
     if (firstColumn != null && firstColumn.length > 0) {
       for (BrnPickerEntity firstEntity in firstColumn) {
         if (firstEntity != null) {
-          List<BrnPickerEntity> secondColumn = this.currentSelectListForEntity(firstEntity);
+          List<BrnPickerEntity> secondColumn =
+              this.currentSelectListForEntity(firstEntity);
           results.addAll(secondColumn);
           if (secondColumn != null && secondColumn.length > 0) {
             for (BrnPickerEntity secondEntity in secondColumn) {
-              List<BrnPickerEntity> thirdColumn = this.currentSelectListForEntity(secondEntity);
+              List<BrnPickerEntity> thirdColumn =
+                  this.currentSelectListForEntity(secondEntity);
               results.addAll(thirdColumn);
             }
           }
@@ -215,7 +221,9 @@ class BrnPickerEntity {
   /// 判断当前的筛选 Item 是否为当前层次中第一个被选中的 Item。
   /// 用于展开筛选弹窗时显示选中效果。
   int getIndexInCurrentLevel() {
-    if (parent == null || parent.children == null || parent.children.length == 0) return -1;
+    if (parent == null ||
+        parent.children == null ||
+        parent.children.length == 0) return -1;
 
     for (BrnPickerEntity entity in parent.children) {
       if (entity == this) {
@@ -226,7 +234,9 @@ class BrnPickerEntity {
   }
 
   bool isInLastLevel() {
-    if (parent == null || parent.children == null || parent.children.length == 0) return true;
+    if (parent == null ||
+        parent.children == null ||
+        parent.children.length == 0) return true;
 
     for (BrnPickerEntity entity in parent.children) {
       if (entity.children != null && entity.children.length > 0) {
@@ -238,7 +248,8 @@ class BrnPickerEntity {
 
   /// 在这里简单认为 value 为空【null 或 ''】时为 unLimit.
   bool isUnLimit() {
-    return filterType == PickerFilterType.UnLimit || (BrunoTools.isEmpty(value) && filterType == PickerFilterType.Radio);
+    return filterType == PickerFilterType.UnLimit ||
+        (BrunoTools.isEmpty(value) && filterType == PickerFilterType.Radio);
   }
 
   void clearSelectedEntity() {

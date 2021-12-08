@@ -143,12 +143,15 @@ class BrnSelectionConfig extends BrnBaseConfig {
       : super(configId: configId);
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局筛选配置
-    BrnSelectionConfig selectionConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).selectionConfig;
+    BrnSelectionConfig selectionConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .selectionConfig;
 
     lightSelectBgColor ??= selectionConfig.lightSelectBgColor;
 
@@ -169,71 +172,100 @@ class BrnSelectionConfig extends BrnBaseConfig {
     tagRadius ??= commonConfig.radiusSm;
 
     this.flatBoldTextStyle = selectionConfig.flatBoldTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.flatBoldTextStyle));
 
     this.flatSelectedTextStyle = selectionConfig.flatSelectedTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.brandPrimary,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.flatSelectedTextStyle));
 
     this.flayNormalTextStyle = selectionConfig.flayNormalTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.flayNormalTextStyle));
 
-    this.moreTextStyle = selectionConfig.moreTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextSecondary, fontSize: commonConfig.fontSizeCaption)
-            .merge(this.moreTextStyle));
+    this.moreTextStyle = selectionConfig.moreTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextSecondary,
+            fontSize: commonConfig.fontSizeCaption)
+        .merge(this.moreTextStyle));
 
-    this.optionTextStyle = selectionConfig.optionTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeBase)
-            .merge(this.optionTextStyle));
+    this.optionTextStyle = selectionConfig.optionTextStyle.merge(BrnTextStyle(
+            color: commonConfig.brandPrimary,
+            fontSize: commonConfig.fontSizeBase)
+        .merge(this.optionTextStyle));
 
     this.titleForMoreTextStyle = selectionConfig.titleForMoreTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeBase)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeBase)
             .merge(this.titleForMoreTextStyle));
 
-    this.resetTextStyle = selectionConfig.resetTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextImportant, fontSize: commonConfig.fontSizeCaption)
-            .merge(this.resetTextStyle));
+    this.resetTextStyle = selectionConfig.resetTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextImportant,
+            fontSize: commonConfig.fontSizeCaption)
+        .merge(this.resetTextStyle));
 
     this.itemBoldTextStyle = selectionConfig.itemBoldTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeBase)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeBase)
             .merge(this.itemBoldTextStyle));
 
     this.itemSelectedTextStyle = selectionConfig.itemSelectedTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeBase)
+        BrnTextStyle(
+                color: commonConfig.brandPrimary,
+                fontSize: commonConfig.fontSizeBase)
             .merge(this.itemSelectedTextStyle));
 
     this.itemNormalTextStyle = selectionConfig.itemNormalTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeBase)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeBase)
             .merge(this.itemNormalTextStyle));
 
-    this.inputTextStyle = selectionConfig.inputTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeBase)
-            .merge(this.inputTextStyle));
+    this.inputTextStyle = selectionConfig.inputTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeBase)
+        .merge(this.inputTextStyle));
 
-    this.hintTextStyle = selectionConfig.hintTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextHint, fontSize: commonConfig.fontSizeBase)
-            .merge(this.hintTextStyle));
+    this.hintTextStyle = selectionConfig.hintTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextHint,
+            fontSize: commonConfig.fontSizeBase)
+        .merge(this.hintTextStyle));
 
     this.rangeTitleTextStyle = selectionConfig.rangeTitleTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.rangeTitleTextStyle));
 
     this.tagSelectedTextStyle = selectionConfig.tagSelectedTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeCaption)
+        BrnTextStyle(
+                color: commonConfig.brandPrimary,
+                fontSize: commonConfig.fontSizeCaption)
             .merge(this.tagSelectedTextStyle));
 
     this.tagNormalTextStyle = selectionConfig.tagNormalTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeCaption)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeCaption)
             .merge(this.tagNormalTextStyle));
 
     this.menuNormalTextStyle = selectionConfig.menuNormalTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeBase)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeBase)
             .merge(this.menuNormalTextStyle));
 
     this.menuSelectedTextStyle = selectionConfig.menuSelectedTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeBase)
+        BrnTextStyle(
+                color: commonConfig.brandPrimary,
+                fontSize: commonConfig.fontSizeBase)
             .merge(this.menuSelectedTextStyle));
   }
 
@@ -267,17 +299,21 @@ class BrnSelectionConfig extends BrnBaseConfig {
   }) {
     return BrnSelectionConfig(
         menuNormalTextStyle: menuNormalTextStyle ?? this.menuNormalTextStyle,
-        menuSelectedTextStyle: menuSelectedTextStyle ?? this.menuSelectedTextStyle,
+        menuSelectedTextStyle:
+            menuSelectedTextStyle ?? this.menuSelectedTextStyle,
         tagNormalTextStyle: tagTextStyle ?? this.tagNormalTextStyle,
         tagSelectedTextStyle: tagSelectedTextStyle ?? this.tagSelectedTextStyle,
         tagRadius: tagRadius ?? this.tagRadius,
-        tagNormalBackgroundColor: tagBackgroundColor ?? this.tagNormalBackgroundColor,
-        tagSelectedBackgroundColor: tagSelectedBackgroundColor ?? this.tagSelectedBackgroundColor,
+        tagNormalBackgroundColor:
+            tagBackgroundColor ?? this.tagNormalBackgroundColor,
+        tagSelectedBackgroundColor:
+            tagSelectedBackgroundColor ?? this.tagSelectedBackgroundColor,
         hintTextStyle: hintTextStyle ?? this.hintTextStyle,
         rangeTitleTextStyle: rangeTitleTextStyle ?? this.rangeTitleTextStyle,
         inputTextStyle: inputTextStyle ?? this.inputTextStyle,
         itemNormalTextStyle: itemNormalTextStyle ?? this.itemNormalTextStyle,
-        itemSelectedTextStyle: itemSelectedTextStyle ?? this.itemSelectedTextStyle,
+        itemSelectedTextStyle:
+            itemSelectedTextStyle ?? this.itemSelectedTextStyle,
         itemBoldTextStyle: itemBoldTextStyle ?? this.itemBoldTextStyle,
         deepNormalBgColor: deepNormalBgColor ?? this.deepNormalBgColor,
         deepSelectBgColor: deepSelectBgColor ?? this.deepSelectBgColor,
@@ -286,37 +322,45 @@ class BrnSelectionConfig extends BrnBaseConfig {
         lightNormalBgColor: lightNormalBgColor ?? this.lightNormalBgColor,
         lightSelectBgColor: lightSelectBgColor ?? this.lightSelectBgColor,
         resetTextStyle: resetTextStyle ?? this.resetTextStyle,
-        titleForMoreTextStyle: titleForMoreTextStyle ?? this.titleForMoreTextStyle,
+        titleForMoreTextStyle:
+            titleForMoreTextStyle ?? this.titleForMoreTextStyle,
         optionTextStyle: optionTextStyle ?? this.optionTextStyle,
         moreTextStyle: moreTextStyle ?? this.moreTextStyle,
         flayNormalTextStyle: flayNormalTextStyle ?? this.flayNormalTextStyle,
-        flatSelectedTextStyle: flatSelectedTextStyle ?? this.flatSelectedTextStyle,
+        flatSelectedTextStyle:
+            flatSelectedTextStyle ?? this.flatSelectedTextStyle,
         flatBoldTextStyle: flatBoldTextStyle ?? this.flatBoldTextStyle);
   }
 
   BrnSelectionConfig merge(BrnSelectionConfig other) {
     return copyWith(
-        menuNormalTextStyle:
-            this.menuNormalTextStyle?.merge(other.menuNormalTextStyle) ?? other.menuNormalTextStyle,
-        menuSelectedTextStyle: this.menuSelectedTextStyle?.merge(other.menuSelectedTextStyle) ??
-            other.menuSelectedTextStyle,
-        tagTextStyle:
-            this.tagNormalTextStyle?.merge(other.tagNormalTextStyle) ?? other.tagNormalTextStyle,
-        tagSelectedTextStyle: this.tagSelectedTextStyle?.merge(other.tagSelectedTextStyle) ??
-            other.tagSelectedTextStyle,
+        menuNormalTextStyle: this.menuNormalTextStyle?.merge(other.menuNormalTextStyle) ??
+            other.menuNormalTextStyle,
+        menuSelectedTextStyle:
+            this.menuSelectedTextStyle?.merge(other.menuSelectedTextStyle) ??
+                other.menuSelectedTextStyle,
+        tagTextStyle: this.tagNormalTextStyle?.merge(other.tagNormalTextStyle) ??
+            other.tagNormalTextStyle,
+        tagSelectedTextStyle:
+            this.tagSelectedTextStyle?.merge(other.tagSelectedTextStyle) ??
+                other.tagSelectedTextStyle,
         tagRadius: other.tagRadius,
         tagBackgroundColor: other.tagNormalBackgroundColor,
         tagSelectedBackgroundColor: other.tagSelectedBackgroundColor,
-        hintTextStyle: this.hintTextStyle?.merge(other.hintTextStyle) ?? other.hintTextStyle,
-        rangeTitleTextStyle:
-            this.rangeTitleTextStyle?.merge(other.rangeTitleTextStyle) ?? other.rangeTitleTextStyle,
-        inputTextStyle: this.inputTextStyle?.merge(other.inputTextStyle) ?? other.inputTextStyle,
+        hintTextStyle: this.hintTextStyle?.merge(other.hintTextStyle) ??
+            other.hintTextStyle,
+        rangeTitleTextStyle: this.rangeTitleTextStyle?.merge(other.rangeTitleTextStyle) ??
+            other.rangeTitleTextStyle,
+        inputTextStyle: this.inputTextStyle?.merge(other.inputTextStyle) ??
+            other.inputTextStyle,
         itemNormalTextStyle:
-            this.itemNormalTextStyle?.merge(other.itemNormalTextStyle) ?? other.itemNormalTextStyle,
-        itemSelectedTextStyle: this.itemSelectedTextStyle?.merge(other.itemSelectedTextStyle) ??
-            other.itemSelectedTextStyle,
-        itemBoldTextStyle:
-            this.itemBoldTextStyle?.merge(other.itemBoldTextStyle) ?? other.itemBoldTextStyle,
+            this.itemNormalTextStyle?.merge(other.itemNormalTextStyle) ??
+                other.itemNormalTextStyle,
+        itemSelectedTextStyle:
+            this.itemSelectedTextStyle?.merge(other.itemSelectedTextStyle) ??
+                other.itemSelectedTextStyle,
+        itemBoldTextStyle: this.itemBoldTextStyle?.merge(other.itemBoldTextStyle) ??
+            other.itemBoldTextStyle,
         deepNormalBgColor: other.deepNormalBgColor,
         deepSelectBgColor: other.deepSelectBgColor,
         middleNormalBgColor: other.middleNormalBgColor,
@@ -324,16 +368,11 @@ class BrnSelectionConfig extends BrnBaseConfig {
         lightNormalBgColor: other.lightNormalBgColor,
         lightSelectBgColor: other.lightSelectBgColor,
         resetTextStyle: this.resetTextStyle?.merge(other.resetTextStyle) ?? other.resetTextStyle,
-        titleForMoreTextStyle: this.titleForMoreTextStyle?.merge(other.titleForMoreTextStyle) ??
-            other.titleForMoreTextStyle,
-        optionTextStyle:
-            this.optionTextStyle?.merge(other.optionTextStyle) ?? other.optionTextStyle,
+        titleForMoreTextStyle: this.titleForMoreTextStyle?.merge(other.titleForMoreTextStyle) ?? other.titleForMoreTextStyle,
+        optionTextStyle: this.optionTextStyle?.merge(other.optionTextStyle) ?? other.optionTextStyle,
         moreTextStyle: this.moreTextStyle?.merge(other.moreTextStyle) ?? other.moreTextStyle,
-        flayNormalTextStyle:
-            this.flayNormalTextStyle?.merge(other.flayNormalTextStyle) ?? other.flayNormalTextStyle,
-        flatSelectedTextStyle: this.flatSelectedTextStyle?.merge(other.flatSelectedTextStyle) ??
-            other.flatSelectedTextStyle,
-        flatBoldTextStyle:
-            this.flatBoldTextStyle?.merge(other.flatBoldTextStyle) ?? other.flatBoldTextStyle);
+        flayNormalTextStyle: this.flayNormalTextStyle?.merge(other.flayNormalTextStyle) ?? other.flayNormalTextStyle,
+        flatSelectedTextStyle: this.flatSelectedTextStyle?.merge(other.flatSelectedTextStyle) ?? other.flatSelectedTextStyle,
+        flatBoldTextStyle: this.flatBoldTextStyle?.merge(other.flatBoldTextStyle) ?? other.flatBoldTextStyle);
   }
 }

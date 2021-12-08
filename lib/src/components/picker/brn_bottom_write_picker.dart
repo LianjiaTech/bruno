@@ -4,7 +4,8 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
 ///取消输入事件回调
-typedef BrnBottomWritePickerClickCallback = Future<void> Function(String content);
+typedef BrnBottomWritePickerClickCallback = Future<void> Function(
+    String content);
 
 ///确认输入事件回调
 typedef BrnBottomWritePickerConfirmClickCallback = Future<void> Function(
@@ -90,13 +91,21 @@ class BrnBottomWritePicker extends StatefulWidget {
             onConfirm: onConfirm,
             onCancel: onCancel,
             rightTextColor: rightTextColor ??
-                BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
-            cursorColor:
-                cursorColor ?? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+                BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .brandPrimary,
+            cursorColor: cursorColor ??
+                BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .brandPrimary,
             defaultText: defaultText,
             textEditingController: textEditingController,
           );
-          return theme != null ? Theme(data: theme, child: pageChild) : pageChild;
+          return theme != null
+              ? Theme(data: theme, child: pageChild)
+              : pageChild;
         });
   }
 }
@@ -112,7 +121,8 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
         _controller = TextEditingController.fromValue(TextEditingValue(
             text: widget.defaultText,
             selection: TextSelection.fromPosition(TextPosition(
-                affinity: TextAffinity.downstream, offset: widget.defaultText.length))));
+                affinity: TextAffinity.downstream,
+                offset: widget.defaultText.length))));
       } else {
         _controller = TextEditingController();
       }
@@ -128,7 +138,10 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
         child: TextField(
             style: TextStyle(
                 fontSize: 16,
-                color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase),
+                color: BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .colorTextBase),
             controller: _controller,
             autofocus: true,
             maxLines: 8,
@@ -138,10 +151,16 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
               border: InputBorder.none,
               hintStyle: TextStyle(
                   fontSize: 16,
-                  color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint),
+                  color: BrnThemeConfigurator.instance
+                      .getConfig()
+                      .commonConfig
+                      .colorTextHint),
               counterStyle: TextStyle(
                   fontSize: 16,
-                  color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint),
+                  color: BrnThemeConfigurator.instance
+                      .getConfig()
+                      .commonConfig
+                      .colorTextHint),
               hintText: widget.hintText,
             )),
       ),

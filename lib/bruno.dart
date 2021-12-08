@@ -161,7 +161,6 @@ export 'src/components/gallery/config/brn_bottom_card.dart';
 export 'src/components/gallery/config/brn_basic_gallery_config.dart';
 export 'src/components/gallery/config/brn_controller.dart';
 
-
 // 红点组件
 
 export 'src/components/input/brn_input_text.dart';

@@ -116,7 +116,6 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
       this.controller,
       this.themeData})
       : super(key: key) {
-
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -125,11 +124,12 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
   }
 
   @override
-  BrnTitleSelectInputFormItemState createState() => BrnTitleSelectInputFormItemState();
-
+  BrnTitleSelectInputFormItemState createState() =>
+      BrnTitleSelectInputFormItemState();
 }
 
-class BrnTitleSelectInputFormItemState extends State<BrnTitleSelectInputFormItem> {
+class BrnTitleSelectInputFormItemState
+    extends State<BrnTitleSelectInputFormItem> {
   TextEditingController _controller;
   StreamController<bool> _showController;
   StreamController<String> _textController;
@@ -174,18 +174,20 @@ class BrnTitleSelectInputFormItemState extends State<BrnTitleSelectInputFormItem
 
   Widget _buildLeftMenu() {
     return Container(
-      padding:
-          BrnFormUtil.titleEdgeInsets(widget.prefixIconType, widget.isRequire, widget.themeData),
+      padding: BrnFormUtil.titleEdgeInsets(
+          widget.prefixIconType, widget.isRequire, widget.themeData),
       child: Row(
         children: <Widget>[
-          BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+          BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit,
+              context, widget.onAddTap, widget.onRemoveTap),
           BrnFormUtil.buildRequireWidget(widget.isRequire),
           //menu
           _buildMenuWidget(),
           //小三角
           _buildTriangle(),
 
-          BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+          BrnFormUtil.buildTipLabelWidget(
+              widget.tipLabel, widget.onTip, widget.themeData),
         ],
       ),
     );
@@ -204,7 +206,8 @@ class BrnTitleSelectInputFormItemState extends State<BrnTitleSelectInputFormItem
             RenderBox trigle = _globalKey.currentContext?.findRenderObject();
             Offset offset = trigle?.localToGlobal(Offset.zero);
             final RenderBox button = context.findRenderObject();
-            final RenderBox overlay = Overlay.of(context).context.findRenderObject();
+            final RenderBox overlay =
+                Overlay.of(context).context.findRenderObject();
             final RelativeRect position = RelativeRect.fromRect(
               Rect.fromPoints(
                 button.localToGlobal(Offset.zero, ancestor: overlay),
@@ -213,8 +216,11 @@ class BrnTitleSelectInputFormItemState extends State<BrnTitleSelectInputFormItem
               Offset.zero & overlay.size,
             );
 
-            var relativeRect = RelativeRect.fromLTRB(position.left + offset?.dx ?? 16,
-                position.top + 44, position.right + offset?.dx ?? 16, position.bottom + 44);
+            var relativeRect = RelativeRect.fromLTRB(
+                position.left + offset?.dx ?? 16,
+                position.top + 44,
+                position.right + offset?.dx ?? 16,
+                position.bottom + 44);
             _showController.add(true);
             Navigator.push(
               context,
@@ -266,7 +272,8 @@ class BrnTitleSelectInputFormItemState extends State<BrnTitleSelectInputFormItem
         initialData: false,
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           return snapshot.data
-              ? BrunoTools.getAssetImageWithBandColor(BrnAsset.ICON_SELECTED_UP_TRIANGLE)
+              ? BrunoTools.getAssetImageWithBandColor(
+                  BrnAsset.ICON_SELECTED_UP_TRIANGLE)
               : BrunoTools.getAssetImage(BrnAsset.ICON_UNSELECT_DOWN_TRIANGLE);
         },
       ),
@@ -295,15 +302,13 @@ class BrnTitleSelectInputFormItemState extends State<BrnTitleSelectInputFormItem
         counterText: "",
         contentPadding: EdgeInsets.all(0),
         isDense: true,
-        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
-        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
       ),
     );
   }
-
-
-
-
 
   @override
   void dispose() {
@@ -314,16 +319,13 @@ class BrnTitleSelectInputFormItemState extends State<BrnTitleSelectInputFormItem
     }
   }
 
-
   void initForm() {
     _showController = StreamController();
     _textController = StreamController();
     _controller = widget.controller ?? TextEditingController();
 
     _globalKey = GlobalKey();
-
   }
-
 }
 
 class TitleSelectPopWidget extends StatefulWidget {
@@ -332,8 +334,8 @@ class TitleSelectPopWidget extends StatefulWidget {
   final Function(String item, int index) selectCallback;
   BrnFormItemConfig themeData;
 
-  TitleSelectPopWidget({
-      this.selectList,
+  TitleSelectPopWidget(
+      {this.selectList,
       this.selectedIndex,
       this.selectCallback,
       this.themeData});
@@ -360,7 +362,8 @@ class _TitleSelectPopWidgetState extends State<TitleSelectPopWidget> {
           ),
         ],
         color: Colors.white,
-        border: Border.all(color: widget.themeData.commonConfig.dividerColorBase, width: 0.5),
+        border: Border.all(
+            color: widget.themeData.commonConfig.dividerColorBase, width: 0.5),
         borderRadius: BorderRadius.all(Radius.circular(4)),
       ),
       child: Column(
@@ -414,4 +417,3 @@ class _TitleSelectPopWidgetState extends State<TitleSelectPopWidget> {
     );
   }
 }
-

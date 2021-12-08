@@ -52,9 +52,11 @@ class IndexBar extends StatefulWidget {
       this.width = 30,
       this.itemHeight = 16,
       this.color = Colors.transparent,
-      this.textStyle = const TextStyle(fontSize: 12.0, color: Color(0xFF101D37)),
+      this.textStyle =
+          const TextStyle(fontSize: 12.0, color: Color(0xFF101D37)),
       this.touchDownColor = const Color(0xffeeeeee),
-      this.touchDownTextStyle = const TextStyle(fontSize: 12.0, color: Colors.black)});
+      this.touchDownTextStyle =
+          const TextStyle(fontSize: 12.0, color: Colors.black)});
 
   /// index data.
   final List<String> data;
@@ -80,7 +82,8 @@ class IndexBar extends StatefulWidget {
   final IndexBarTouchCallback onTouch;
 
   @override
-  _SuspensionListViewIndexBarState createState() => _SuspensionListViewIndexBarState();
+  _SuspensionListViewIndexBarState createState() =>
+      _SuspensionListViewIndexBarState();
 }
 
 class _SuspensionListViewIndexBarState extends State<IndexBar> {

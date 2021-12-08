@@ -7,7 +7,8 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
 typedef BrnSingleSelectOnSubmitCallback = Function(String data);
-typedef BrnSingleSelectOnItemClickCallback = void Function(BuildContext dialogContext, int index);
+typedef BrnSingleSelectOnItemClickCallback = void Function(
+    BuildContext dialogContext, int index);
 
 /// 单选列表弹框
 class BrnSingleSelectDialog extends Dialog {
@@ -119,8 +120,8 @@ class BrnSingleSelectDialogWidget extends StatefulWidget {
   }
 }
 
-class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget> {
-
+class BrnSingleSelectDialogWidgetState
+    extends State<BrnSingleSelectDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,8 +133,9 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
               decoration: BoxDecoration(
                 //背景
                 color: widget.themeData?.backgroundColor,
-                borderRadius: BorderRadius.all(
-                    Radius.circular(BrnDialogUtils.getDialogRadius(widget.themeData))), //设置四周圆角 角度
+                borderRadius: BorderRadius.all(Radius.circular(
+                    BrnDialogUtils.getDialogRadius(
+                        widget.themeData))), //设置四周圆角 角度
               ),
               child: Stack(
                 children: <Widget>[
@@ -145,7 +147,8 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                         padding: EdgeInsets.fromLTRB(20, 28, 20, 12),
                         child: Text(
                           widget.title,
-                          style: BrnDialogUtils.getDialogTitleStyle(widget.themeData),
+                          style: BrnDialogUtils.getDialogTitleStyle(
+                              widget.themeData),
                         ),
                       ),
                       Container(
@@ -157,12 +160,15 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                                     ListView.builder(
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
-                                        itemBuilder: (context, index) => _buildItem(context, index),
-                                        itemCount: widget.conditions?.length ?? 0),
+                                        itemBuilder: (context, index) =>
+                                            _buildItem(context, index),
+                                        itemCount:
+                                            widget.conditions?.length ?? 0),
                                     widget.customWidget != null
                                         ? Container(
                                             child: widget.customWidget,
-                                            padding: EdgeInsets.only(left: 20, right: 20, top: 12),
+                                            padding: EdgeInsets.only(
+                                                left: 20, right: 20, top: 12),
                                           )
                                         : Container(
                                             width: 0,
@@ -175,13 +181,16 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                                 children: <Widget>[
                                   Expanded(
                                     child: ListView.builder(
-                                        itemBuilder: (context, index) => _buildItem(context, index),
-                                        itemCount: widget.conditions?.length ?? 0),
+                                        itemBuilder: (context, index) =>
+                                            _buildItem(context, index),
+                                        itemCount:
+                                            widget.conditions?.length ?? 0),
                                   ),
                                   widget.customWidget != null
                                       ? Container(
                                           child: widget.customWidget,
-                                          padding: EdgeInsets.only(left: 20, right: 20, top: 12),
+                                          padding: EdgeInsets.only(
+                                              left: 20, right: 20, top: 12),
                                         )
                                       : Container(
                                           width: 0,
@@ -200,7 +209,8 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                                       .getConfig()
                                       .commonConfig
                                       .brandPrimary,
-                                  borderRadius: BorderRadius.all(Radius.circular(6.0)), //设置四周圆角 角度
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(6.0)), //设置四周圆角 角度
                                 ),
                                 alignment: Alignment.center,
                                 height: 48,
@@ -231,7 +241,8 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                               },
                               child: Padding(
                                 padding: EdgeInsets.all(15),
-                                child: BrunoTools.getAssetImage(BrnAsset.ICON_PICKER_CLOSE),
+                                child: BrunoTools.getAssetImage(
+                                    BrnAsset.ICON_PICKER_CLOSE),
                               )))
                       : Container()
                 ],
@@ -256,7 +267,8 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                     setState(() {
                       for (dynamic item in widget.conditions) {
                         if (widget.conditions[index] == item) {
-                          if (widget.onItemClick != null && widget.checkedItem != item) {
+                          if (widget.onItemClick != null &&
+                              widget.checkedItem != item) {
                             widget.onItemClick(context, index);
                           }
                           widget.checkedItem = item;
@@ -267,12 +279,16 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                   },
                   child: Text(widget.conditions[index],
                       style: TextStyle(
-                          fontWeight: widget.conditions[index] == widget.checkedItem
-                              ? FontWeight.w600
-                              : FontWeight.normal,
+                          fontWeight:
+                              widget.conditions[index] == widget.checkedItem
+                                  ? FontWeight.w600
+                                  : FontWeight.normal,
                           fontSize: 16,
                           color: widget.conditions[index] == widget.checkedItem
-                              ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary
+                              ? BrnThemeConfigurator.instance
+                                  .getConfig()
+                                  .commonConfig
+                                  .brandPrimary
                               : BrnThemeConfigurator.instance
                                   .getConfig()
                                   .commonConfig
@@ -283,7 +299,8 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                     alignment: Alignment.center,
                     height: 44,
                     child: widget.checkedItem == widget.conditions[index]
-                        ? BrunoTools.getAssetImageWithBandColor(BrnAsset.iconSingleSelected)
+                        ? BrunoTools.getAssetImageWithBandColor(
+                            BrnAsset.iconSingleSelected)
                         : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
                   ),
                   onTap: () {
@@ -299,7 +316,8 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
             ),
           ),
           index != widget.conditions.length - 1
-              ? Padding(padding: EdgeInsets.fromLTRB(20, 0, 20, 0), child: BrnLine())
+              ? Padding(
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0), child: BrnLine())
               : Container()
         ],
       ));

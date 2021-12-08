@@ -16,7 +16,8 @@ typedef BrnMultiSelectListPickerSubmit = void Function(
 
 /// item 被点击时的回调
 /// [index] item 的索引
-typedef BrnMultiSelectListPickerItemClick = void Function(BuildContext context, int index);
+typedef BrnMultiSelectListPickerItemClick = void Function(
+    BuildContext context, int index);
 
 /// 多选列表 Picker
 
@@ -29,14 +30,14 @@ class BrnMultiSelectListPicker extends StatefulWidget {
   final BrnPickerTitleConfig pickerTitleConfig;
 
   static void show(
-      BuildContext context, {
-        @required List<BrnMultiSelectBottomPickerItem> items,
-        BrnMultiSelectListPickerSubmit onSubmit,
-        VoidCallback onCancel,
-        BrnMultiSelectListPickerItemClick onItemClick,
-        BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
-        bool isDismissible = true,
-      }) {
+    BuildContext context, {
+    @required List<BrnMultiSelectBottomPickerItem> items,
+    BrnMultiSelectListPickerSubmit onSubmit,
+    VoidCallback onCancel,
+    BrnMultiSelectListPickerItemClick onItemClick,
+    BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
+    bool isDismissible = true,
+  }) {
     showModalBottomSheet(
       context: context,
       isDismissible: isDismissible,
@@ -52,7 +53,7 @@ class BrnMultiSelectListPicker extends StatefulWidget {
       },
     );
   }
-  
+
   BrnMultiSelectListPicker({
     Key key,
     this.title,
@@ -74,10 +75,14 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
   Widget build(BuildContext context) {
     return BrnPickerClipRRect(
       borderRadius: BorderRadius.only(
-        topLeft:
-            Radius.circular(BrnThemeConfigurator.instance.getConfig().pickerConfig.cornerRadius),
-        topRight:
-            Radius.circular(BrnThemeConfigurator.instance.getConfig().pickerConfig.cornerRadius),
+        topLeft: Radius.circular(BrnThemeConfigurator.instance
+            .getConfig()
+            .pickerConfig
+            .cornerRadius),
+        topRight: Radius.circular(BrnThemeConfigurator.instance
+            .getConfig()
+            .pickerConfig
+            .cornerRadius),
       ),
       child: Container(
         color: Colors.white,
@@ -92,21 +97,23 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
                   child: BrnPickerTitle(
                     pickerTitleConfig: widget.pickerTitleConfig,
                     onConfirm: () {
-                      List<BrnMultiSelectBottomPickerItem> selectedItems = List();
+                      List<BrnMultiSelectBottomPickerItem> selectedItems =
+                          List();
                       if (widget.onSubmit != null) {
                         for (int i = 0; i < widget.items?.length; i++) {
                           if (widget.items[i].isChecked) {
                             selectedItems.add(widget.items[i]);
                           }
                         }
-                        if(widget.onSubmit != null) {
+                        if (widget.onSubmit != null) {
                           widget.onSubmit(selectedItems);
                         }
                       }
                     },
-                    onCancel: widget.onCancel ?? () {
-                      Navigator.of(context).pop();
-                    },
+                    onCancel: widget.onCancel ??
+                        () {
+                          Navigator.of(context).pop();
+                        },
                   ),
                 ),
                 LimitedBox(
@@ -114,7 +121,8 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
                     maxHeight: PICKER_HEIGHT,
                     child: ListView.builder(
                         shrinkWrap: true,
-                        itemBuilder: (context, index) => _buildItem(context, index),
+                        itemBuilder: (context, index) =>
+                            _buildItem(context, index),
                         itemCount: widget.items?.length)),
               ],
             ),
@@ -164,13 +172,16 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
                         alignment: Alignment.center,
                         height: 50,
                         child: widget.items[index].isChecked
-                            ? BrunoTools.getAssetImageWithBandColor(BrnAsset.iconMultiSelected)
+                            ? BrunoTools.getAssetImageWithBandColor(
+                                BrnAsset.iconMultiSelected)
                             : BrunoTools.getAssetImage(BrnAsset.iconUnSelect)),
                   ],
                 ),
               ),
               index != widget.items.length - 1
-                  ? Padding(padding: EdgeInsets.fromLTRB(20, 0, 20, 0), child: BrnLine())
+                  ? Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: BrnLine())
                   : Container()
             ],
           ));

@@ -130,7 +130,9 @@ class BrnActionCardTitle extends StatelessWidget {
       return Container(
         constraints: BoxConstraints(maxWidth: 84),
         child: Text(this.subTitle,
-            maxLines: 1, overflow: TextOverflow.ellipsis, style: subTextStyle(defaultConfig)),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: subTextStyle(defaultConfig)),
       );
     }
 

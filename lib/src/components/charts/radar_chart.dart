@@ -155,7 +155,9 @@ class BrnRadarChart extends MultiChildRenderObjectWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        color: Color(0xFF222222), fontSize: 12, fontWeight: FontWeight.w600),
+                        color: Color(0xFF222222),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600),
                   ),
                 ));
               }
@@ -341,10 +343,12 @@ class RenderRadarChart extends RenderBox
 
   @override
   void setupParentData(RenderBox child) {
-    if (child.parentData is! BrnRadarChartParentData) child.parentData = BrnRadarChartParentData();
+    if (child.parentData is! BrnRadarChartParentData)
+      child.parentData = BrnRadarChartParentData();
   }
 
-  double _getIntrinsicDimensionHorizontal(double mainChildSizeGetter(RenderBox child)) {
+  double _getIntrinsicDimensionHorizontal(
+      double mainChildSizeGetter(RenderBox child)) {
     double x;
     double maxX = 0, minX = 0;
     RenderBox child = firstChild;
@@ -377,7 +381,8 @@ class RenderRadarChart extends RenderBox
     return maxX - minX;
   }
 
-  double _getIntrinsicDimensionVertical(double mainChildSizeGetter(RenderBox child)) {
+  double _getIntrinsicDimensionVertical(
+      double mainChildSizeGetter(RenderBox child)) {
     double y;
     double maxY = 0, minY = 0;
     RenderBox child = firstChild;
@@ -427,12 +432,14 @@ class RenderRadarChart extends RenderBox
 
   @override
   double computeMinIntrinsicHeight(double width) {
-    return _getIntrinsicDimensionVertical((RenderBox child) => child.getMinIntrinsicHeight(width));
+    return _getIntrinsicDimensionVertical(
+        (RenderBox child) => child.getMinIntrinsicHeight(width));
   }
 
   @override
   double computeMaxIntrinsicHeight(double width) {
-    return _getIntrinsicDimensionVertical((RenderBox child) => child.getMaxIntrinsicHeight(width));
+    return _getIntrinsicDimensionVertical(
+        (RenderBox child) => child.getMaxIntrinsicHeight(width));
   }
 
   @override
@@ -506,8 +513,12 @@ class RenderRadarChart extends RenderBox
       _hasVisualOverflow = true;
     }
     _overflowOffset = Offset(
-        intrinsicSize.width - size.width > 0 ? intrinsicSize.width - size.width : 0,
-        intrinsicSize.height - size.height > 0 ? intrinsicSize.height - size.height : 0);
+        intrinsicSize.width - size.width > 0
+            ? intrinsicSize.width - size.width
+            : 0,
+        intrinsicSize.height - size.height > 0
+            ? intrinsicSize.height - size.height
+            : 0);
     _centerOffset = Offset(-(maxX + minX) / 2, (maxY + minY) / 2);
     child = firstChild;
     i = 0;
@@ -524,7 +535,10 @@ class RenderRadarChart extends RenderBox
         } else if (angle == pi / 2) {
           y = size.height / 2 - y - child.size.height / 2;
         } else {
-          y = size.height / 2 - y - child.size.height - _markerMargin * cos(angle);
+          y = size.height / 2 -
+              y -
+              child.size.height -
+              _markerMargin * cos(angle);
         }
       } else {
         if (angle == pi) {
@@ -548,7 +562,10 @@ class RenderRadarChart extends RenderBox
         if (angle == pi * 3 / 2) {
           x = size.width / 2 + x - _markerMargin - child.size.width;
         } else {
-          x = size.width / 2 + x - child.size.width + _markerMargin * sin(angle);
+          x = size.width / 2 +
+              x -
+              child.size.width +
+              _markerMargin * sin(angle);
         }
       }
       childParentData.offset = Offset(x, y) + _offset[i] + _centerOffset;
@@ -575,7 +592,8 @@ class RenderRadarChart extends RenderBox
     double translateX = rect.width / 2;
     double translateY = rect.height / 2;
     //translate the canvas's top left to widget'center since flutter canvas rotate pivot can only be the top left.
-    canvas.translate(translateX + _centerOffset?.dx ?? 0, translateY + _centerOffset?.dy ?? 0);
+    canvas.translate(translateX + _centerOffset?.dx ?? 0,
+        translateY + _centerOffset?.dy ?? 0);
     canvas.rotate(_rotateAngle);
     _drawBackground(canvas, rect.size, translateX, translateY);
     _drawRadar(canvas);
@@ -689,9 +707,11 @@ class RenderRadarChart extends RenderBox
       if (radarStyle.dotted) {
         for (int i = 0; i < dotPosition.length; i++) {
           _radarPainter.color = Colors.white;
-          canvas.drawCircle(dotPosition[i], radarStyle.dotRadius + 2 ?? 2, _radarPainter);
+          canvas.drawCircle(
+              dotPosition[i], radarStyle.dotRadius + 2 ?? 2, _radarPainter);
           _radarPainter.color = radarStyle.dotColor ?? radarStyle.strokeColor;
-          canvas.drawCircle(dotPosition[i], radarStyle.dotRadius ?? 2, _radarPainter);
+          canvas.drawCircle(
+              dotPosition[i], radarStyle.dotRadius ?? 2, _radarPainter);
         }
       }
     }

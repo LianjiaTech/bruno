@@ -24,8 +24,8 @@ enum AbnormalState {
 class BrnAbnormalStateUtils {
   /// 通过状态获取对应空页面widget
   /// status: 页面状态类型为[EmptyState]
-  static Widget getEmptyWidgetByState(
-      BuildContext context, AbnormalState status, BrnEmptyStatusIndexedActionClickCallback action,
+  static Widget getEmptyWidgetByState(BuildContext context,
+      AbnormalState status, BrnEmptyStatusIndexedActionClickCallback action,
       {Image img}) {
     if (AbnormalState.getDataFailed == status) {
       return BrnAbnormalStateWidget(
@@ -144,8 +144,9 @@ class BrnAbnormalStateWidget extends StatelessWidget {
           color: bgColor ?? Colors.white,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment:
-                isCenterVertical ? MainAxisAlignment.center : MainAxisAlignment.start,
+            mainAxisAlignment: isCenterVertical
+                ? MainAxisAlignment.center
+                : MainAxisAlignment.start,
             children: <Widget>[
               _buildImageWidget(context),
               _buildTextWidget(),
@@ -163,8 +164,9 @@ class BrnAbnormalStateWidget extends StatelessWidget {
     final height = size.height;
     return img != null
         ? Container(
-            padding:
-                isCenterVertical ? null : EdgeInsets.only(top: topOffset ?? height * topPercent),
+            padding: isCenterVertical
+                ? null
+                : EdgeInsets.only(top: topOffset ?? height * topPercent),
             child: img,
           )
         : Container();
@@ -177,7 +179,8 @@ class BrnAbnormalStateWidget extends StatelessWidget {
             alignment: Alignment.center,
             padding: EdgeInsets.fromLTRB(60, 24, 60, 0),
             child: Text(title,
-                textAlign: TextAlign.center, style: themeData?.titleTextStyle?.generateTextStyle()),
+                textAlign: TextAlign.center,
+                style: themeData?.titleTextStyle?.generateTextStyle()),
           )
         : Container();
   }
@@ -215,7 +218,8 @@ class BrnAbnormalStateWidget extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(48, 16, 48, 16),
           decoration: BoxDecoration(
               color: themeData.commonConfig.brandPrimary,
-              borderRadius: BorderRadius.all(Radius.circular(themeData?.btnRadius))),
+              borderRadius:
+                  BorderRadius.all(Radius.circular(themeData?.btnRadius))),
           child: Text(operateTexts[0] ?? "",
               textAlign: TextAlign.center,
               style: themeData?.singleBrnTextStyle?.generateTextStyle()),
@@ -232,7 +236,8 @@ class BrnAbnormalStateWidget extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(36, 16, 36, 16),
               decoration: BoxDecoration(
                   color: themeData.commonConfig.brandPrimary.withAlpha(0x14),
-                  borderRadius: BorderRadius.all(Radius.circular(themeData?.btnRadius))),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(themeData?.btnRadius))),
               child: Text(operateTexts[0] ?? "",
                   textAlign: TextAlign.center,
                   style: themeData?.doubleBrnTextStyle?.generateTextStyle()),
@@ -249,7 +254,8 @@ class BrnAbnormalStateWidget extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(36, 16, 36, 16),
               decoration: BoxDecoration(
                   color: themeData.commonConfig.brandPrimary.withAlpha(0x14),
-                  borderRadius: BorderRadius.all(Radius.circular(themeData?.btnRadius))),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(themeData?.btnRadius))),
               child: Text(operateTexts[1] ?? "",
                   textAlign: TextAlign.center,
                   style: themeData?.doubleBrnTextStyle?.generateTextStyle()),
@@ -260,8 +266,8 @@ class BrnAbnormalStateWidget extends StatelessWidget {
     } else if (OperateAreaType.TextButton == operateAreaType) {
       return GestureDetector(
           onTap: () => action(0),
-          child:
-              Text(operateTexts[0] ?? "", style: themeData?.operateTextStyle?.generateTextStyle()));
+          child: Text(operateTexts[0] ?? "",
+              style: themeData?.operateTextStyle?.generateTextStyle()));
     }
     return Container();
   }

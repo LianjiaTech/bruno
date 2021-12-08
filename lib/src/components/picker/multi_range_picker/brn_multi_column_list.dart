@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 /// [listIndex] 点击位置处于第几列
 /// [index] 点击位置处于当前列的位置
 /// [entity] 被点击位置的数据
-typedef bool BrnOnSelectEntityInterceptor(int listIndex, int index, BrnPickerEntity entity);
+typedef bool BrnOnSelectEntityInterceptor(
+    int listIndex, int index, BrnPickerEntity entity);
 
 // ignore: must_be_immutable
 class BrnMultiColumnListWidget extends StatefulWidget {
@@ -44,8 +45,9 @@ class BrnMultiColumnListWidget extends StatefulWidget {
     items.forEach((element) {
       element.configRelationship();
     });
-    
-    currentListIndex = BrnMultiColumnPickerUtil.getCurrentColumnIndex(items.length > 0 ? items[0] : null);
+
+    currentListIndex = BrnMultiColumnPickerUtil.getCurrentColumnIndex(
+        items.length > 0 ? items[0] : null);
 
     _selectedItems = items?.where((f) => f.isSelected)?.toList();
     if (_selectedItems == null) {
@@ -54,7 +56,8 @@ class BrnMultiColumnListWidget extends StatefulWidget {
   }
 
   @override
-  _BrnMultiColumnListWidgetState createState() => _BrnMultiColumnListWidgetState();
+  _BrnMultiColumnListWidgetState createState() =>
+      _BrnMultiColumnListWidgetState();
 
   List<BrnPickerEntity> getSelectedItems() {
     return _selectedItems;
@@ -94,12 +97,14 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
               isFirstLevel: (1 == widget.currentListIndex) ? true : false,
               itemSelectFunction: (BrnPickerEntity entity) {
                 if (widget.onSelectEntityInterceptor != null &&
-                    widget.onSelectEntityInterceptor(widget.currentListIndex, index, entity) ==
+                    widget.onSelectEntityInterceptor(
+                            widget.currentListIndex, index, entity) ==
                         false) {
                   return;
                 }
                 _processFilterData(entity);
-                widget.singleListItemPick(widget.currentListIndex, index, entity);
+                widget.singleListItemPick(
+                    widget.currentListIndex, index, entity);
               },
             );
           },
@@ -122,14 +127,16 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
       return;
     }
 
-    if (selectedEntity.filterType == PickerFilterType.Checkbox && !selectedEntity.isSelected) {
+    if (selectedEntity.filterType == PickerFilterType.Checkbox &&
+        !selectedEntity.isSelected) {
       if (!BrnMultiColumnPickerUtil.isSelectedCountExceed(selectedEntity)) {
         BrnToast.show("您选择的数量已达上限", context);
         return;
       }
     }
 
-    int totalLevel = BrnMultiColumnPickerUtil.getTotalColumnCount(selectedEntity);
+    int totalLevel =
+        BrnMultiColumnPickerUtil.getTotalColumnCount(selectedEntity);
     if (selectedEntity.isUnLimit()) {
       selectedEntity.parent.clearChildSelection();
     }
@@ -149,8 +156,10 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
     /// （两列、三列时）第一列节点是否被选中取决于它的子节点是否被选中，
     /// 只有当它子节点被选中时才会认为第一列的节点相应被选中。
     if (widget.items != null && widget.items.length > 0) {
-      widget.items[0].parent?.isSelected =
-          widget.items[0].parent.children.where((BrnPickerEntity f) => f.isSelected).length > 0;
+      widget.items[0].parent?.isSelected = widget.items[0].parent.children
+              .where((BrnPickerEntity f) => f.isSelected)
+              .length >
+          0;
     }
 
     for (BrnPickerEntity item in widget.items) {

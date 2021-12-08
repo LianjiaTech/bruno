@@ -105,8 +105,8 @@ class BrnInputText extends StatelessWidget {
       if (textData != null && textData.length > 0) {
         _controller = TextEditingController.fromValue(TextEditingValue(
             text: textData,
-            selection: TextSelection.fromPosition(
-                TextPosition(affinity: TextAffinity.downstream, offset: textData.length))));
+            selection: TextSelection.fromPosition(TextPosition(
+                affinity: TextAffinity.downstream, offset: textData.length))));
       } else {
         _controller = TextEditingController();
       }
@@ -137,8 +137,12 @@ class BrnInputText extends StatelessWidget {
         textInputAction: textInputAction,
         style: TextStyle(
             fontSize: 16,
-            color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase),
-        buildCounter: (BuildContext context, {int currentLength, int maxLength, bool isFocused}) {
+            color: BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .colorTextBase),
+        buildCounter: (BuildContext context,
+            {int currentLength, int maxLength, bool isFocused}) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
@@ -147,7 +151,10 @@ class BrnInputText extends StatelessWidget {
                 style: TextStyle(
                   color: (currentLength == 0
                       ? Color(0xffcccccc)
-                      : BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextSecondary),
+                      : BrnThemeConfigurator.instance
+                          .getConfig()
+                          .commonConfig
+                          .colorTextSecondary),
                   fontSize: 16,
                 ),
               ),
@@ -168,8 +175,10 @@ class BrnInputText extends StatelessWidget {
           contentPadding: EdgeInsets.all(0),
           border: InputBorder.none,
           isDense: true,
-          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
-          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+          enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent)),
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent)),
         ),
         onSubmitted: (text) {
           if (onSubmit != null) {

@@ -22,4 +22,5 @@ const double PICKER_TITLE_HEIGHT = 48.0;
 const double PICKER_ITEM_HEIGHT = 48.0;
 
 /// Default value of DatePicker's item [TextStyle].
-const TextStyle PICKER_ITEM_TEXT_STYLE = const TextStyle(color: Color(0xFF222222), fontSize: 18.0);
+const TextStyle PICKER_ITEM_TEXT_STYLE =
+    const TextStyle(color: Color(0xFF222222), fontSize: 18.0);

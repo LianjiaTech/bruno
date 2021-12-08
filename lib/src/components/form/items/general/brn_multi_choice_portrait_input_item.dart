@@ -91,7 +91,6 @@ class BrnMultiChoicePortraitInputFormItem extends StatefulWidget {
       this.onChanged,
       this.themeData})
       : super() {
-
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -99,15 +98,14 @@ class BrnMultiChoicePortraitInputFormItem extends StatefulWidget {
         .merge(this.themeData);
   }
 
-
   @override
   BrnMultiChoicePortraitInputFormItemState createState() {
     return BrnMultiChoicePortraitInputFormItemState();
   }
-
 }
 
-class BrnMultiChoicePortraitInputFormItemState extends State<BrnMultiChoicePortraitInputFormItem> {
+class BrnMultiChoicePortraitInputFormItemState
+    extends State<BrnMultiChoicePortraitInputFormItem> {
   // 标记选项的选中状态，内部变量无须初始化。初始化选中状态通过设置value字段设置
   List<bool> _selectStatus;
 
@@ -134,14 +132,21 @@ class BrnMultiChoicePortraitInputFormItemState extends State<BrnMultiChoicePortr
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData),
                   child: Row(
                     children: <Widget>[
-                      BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                      BrnFormUtil.buildPrefixIcon(
+                          widget.prefixIconType,
+                          widget.isEdit,
+                          context,
+                          widget.onAddTap,
+                          widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
-                      BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
-                      BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                      BrnFormUtil.buildTitleWidget(
+                          widget.title, widget.themeData),
+                      BrnFormUtil.buildTipLabelWidget(
+                          widget.tipLabel, widget.onTip, widget.themeData),
                     ],
                   ),
                 ),
@@ -175,7 +180,6 @@ class BrnMultiChoicePortraitInputFormItemState extends State<BrnMultiChoicePortr
     result.add(BrnLine(leftInset: 20, rightInset: 20));
 
     for (int index = 0; index < options.length; ++index) {
-
       result.add(Container(
         padding: EdgeInsets.only(top: 11, bottom: 11),
         child: BrnCheckbox(
@@ -291,7 +295,3 @@ class BrnMultiChoicePortraitInputFormItemState extends State<BrnMultiChoicePortr
     }
   }
 }
-
-
-
-

@@ -24,14 +24,16 @@ class BrnAppraiseStarListView extends StatefulWidget {
         assert(titles == null || titles.length >= count);
 
   @override
-  _BrnAppraiseStarListViewState createState() => _BrnAppraiseStarListViewState();
+  _BrnAppraiseStarListViewState createState() =>
+      _BrnAppraiseStarListViewState();
 }
 
 class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
-  Image _star = BrunoTools.getAssetImage(BrnAsset.iconStarSize, gaplessPlayback: true);
+  Image _star =
+      BrunoTools.getAssetImage(BrnAsset.iconStarSize, gaplessPlayback: true);
 
-  Image _selectedStar =
-      BrunoTools.getAssetImage(BrnAsset.iconStarSizeSelected, gaplessPlayback: true);
+  Image _selectedStar = BrunoTools.getAssetImage(BrnAsset.iconStarSizeSelected,
+      gaplessPlayback: true);
 
   int _selectedIndex = -1;
 
@@ -52,7 +54,10 @@ class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
             subTitle ?? '',
             style: TextStyle(
                 fontSize: 12.0,
-                color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextSecondary,
+                color: BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .colorTextSecondary,
                 fontWeight: FontWeight.w600),
           ),
         );

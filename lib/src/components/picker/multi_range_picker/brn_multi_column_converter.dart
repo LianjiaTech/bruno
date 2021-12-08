@@ -5,17 +5,21 @@ import 'package:bruno/src/utils/brn_tools.dart';
 class BrnMultiRangeSelConverter {
   const BrnMultiRangeSelConverter();
 
-  Map<String, List<BrnPickerEntity>> convertPickedData(List<BrnPickerEntity> selectedResults,
+  Map<String, List<BrnPickerEntity>> convertPickedData(
+      List<BrnPickerEntity> selectedResults,
       {bool includeUnlimitSelection = false}) {
-    return getSelectionParams(selectedResults, includeUnlimitSelection: includeUnlimitSelection);
+    return getSelectionParams(selectedResults,
+        includeUnlimitSelection: includeUnlimitSelection);
   }
 
-  Map<String, List<BrnPickerEntity>> getSelectionParams(List<BrnPickerEntity> selectedResults,
+  Map<String, List<BrnPickerEntity>> getSelectionParams(
+      List<BrnPickerEntity> selectedResults,
       {bool includeUnlimitSelection = false}) {
     Map<String, List<BrnPickerEntity>> params = Map();
     if (selectedResults == null) return params;
     for (BrnPickerEntity menuItemEntity in selectedResults) {
-      int levelCount = BrnMultiColumnPickerUtil.getTotalColumnCount(menuItemEntity);
+      int levelCount =
+          BrnMultiColumnPickerUtil.getTotalColumnCount(menuItemEntity);
       if (levelCount == 1) {
         params.addAll(getCurrentSelectionEntityParams(menuItemEntity,
             includeUnlimitSelection: includeUnlimitSelection));
@@ -46,7 +50,8 @@ class BrnMultiRangeSelConverter {
     return params;
   }
 
-  Map<String, List<BrnPickerEntity>> mergeParams(Map<String, List<BrnPickerEntity>> params,
+  Map<String, List<BrnPickerEntity>> mergeParams(
+      Map<String, List<BrnPickerEntity>> params,
       Map<String, List<BrnPickerEntity>> selectedParams) {
     selectedParams?.forEach((String key, List<BrnPickerEntity> value) {
       if (params != null && params.containsKey(key)) {
@@ -74,7 +79,8 @@ class BrnMultiRangeSelConverter {
         })
         ?.map((BrnPickerEntity f) => f)
         ?.toList();
-    List<BrnPickerEntity> selectedParams = selectedEntity == null ? [] : selectedEntity;
+    List<BrnPickerEntity> selectedParams =
+        selectedEntity == null ? [] : selectedEntity;
     if (!BrunoTools.isEmpty(selectedParams) && !BrunoTools.isEmpty(parentKey)) {
       params[parentKey] = selectedParams;
     }

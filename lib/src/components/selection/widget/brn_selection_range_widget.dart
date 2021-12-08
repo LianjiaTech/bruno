@@ -24,7 +24,8 @@ typedef void BrnOnRangeSelectionBgClick();
 
 // ignore: must_be_immutable
 class BrnRangeSelectionGroupWidget extends StatefulWidget {
-  static final double screenWidth = window.physicalSize.width / window.devicePixelRatio;
+  static final double screenWidth =
+      window.physicalSize.width / window.devicePixelRatio;
 
   final BrnSelectionEntity entity;
   final double maxContentHeight;
@@ -50,10 +51,12 @@ class BrnRangeSelectionGroupWidget extends StatefulWidget {
       this.themeData});
 
   @override
-  _BrnRangeSelectionGroupWidgetState createState() => _BrnRangeSelectionGroupWidgetState();
+  _BrnRangeSelectionGroupWidgetState createState() =>
+      _BrnRangeSelectionGroupWidgetState();
 }
 
-class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWidget>
+class _BrnRangeSelectionGroupWidgetState
+    extends State<BrnRangeSelectionGroupWidget>
     with SingleTickerProviderStateMixin {
   List<BrnSelectionEntity> _originalSelectedItemsList = List();
   List<BrnSelectionEntity> _firstList = List();
@@ -79,7 +82,9 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
     }
     _tabController.addListener(() {
       _clearAllSelectedItems();
-      clearNotTagItem(totalLevel == 1 ? _firstList : _firstList[_tabController.index].children);
+      clearNotTagItem(totalLevel == 1
+          ? _firstList
+          : _firstList[_tabController.index].children);
     });
     super.initState();
   }
@@ -89,7 +94,9 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
     _tabController?.dispose();
     if (!_isConfirmClick) {
       _resetSelectionDatas(widget.entity);
-      clearNotTagItem(totalLevel == 1 ? _firstList : _firstList[_tabController.index].children);
+      clearNotTagItem(totalLevel == 1
+          ? _firstList
+          : _firstList[_tabController.index].children);
       _resetCustomMapData();
     }
     super.dispose();
@@ -131,7 +138,8 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
       rangeWidget = _createNewTagAndRangeWidget(_firstList, null, Colors.white);
     } else if (_firstList != null && _secondList != null) {
       /// 2、有二级的情况
-      rangeWidget = _createNewTagAndRangeWidget(_firstList, _secondList, Colors.white);
+      rangeWidget =
+          _createNewTagAndRangeWidget(_firstList, _secondList, Colors.white);
     }
 
     return Container(
@@ -142,21 +150,24 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
               maxHeight: MediaQuery.of(context).size.height -
                   MediaQuery.of(context).padding.bottom -
                   widget.marginTop)
-          : BoxConstraints(maxHeight: widget.maxContentHeight + DESIGN_BOTTOM_HEIGHT),
+          : BoxConstraints(
+              maxHeight: widget.maxContentHeight + DESIGN_BOTTOM_HEIGHT),
       child: rangeWidget,
     );
   }
 
-  Widget _createNewTagAndRangeWidget(
-      List<BrnSelectionEntity> firstList, List<BrnSelectionEntity> secondList, Color white) {
-    if (firstList != null && BrnSelectionUtil.getTotalLevel(widget.entity) == 1) {
+  Widget _createNewTagAndRangeWidget(List<BrnSelectionEntity> firstList,
+      List<BrnSelectionEntity> secondList, Color white) {
+    if (firstList != null &&
+        BrnSelectionUtil.getTotalLevel(widget.entity) == 1) {
       return Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
             child: SingleChildScrollView(
-              child:
-                  Column(mainAxisSize: MainAxisSize.min, children: getOneTabContent(widget.entity)),
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: getOneTabContent(widget.entity)),
             ),
           ),
           BrnLine(
@@ -165,7 +176,8 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
           _bottomWidget()
         ],
       );
-    } else if (firstList != null && BrnSelectionUtil.getTotalLevel(widget.entity) == 2) {
+    } else if (firstList != null &&
+        BrnSelectionUtil.getTotalLevel(widget.entity) == 2) {
       var tabBar = BrnTabBar(
         tabHeight: 50,
         controller: _tabController,
@@ -207,8 +219,8 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
         .toList();
     Size maxWidthSize;
     for (BrnSelectionEntity entity in subFilterList) {
-      Size size = BrnTextUtil.textSize(
-          entity.title, widget.themeData.tagNormalTextStyle.generateTextStyle());
+      Size size = BrnTextUtil.textSize(entity.title,
+          widget.themeData.tagNormalTextStyle.generateTextStyle());
       if (maxWidthSize == null) {
         maxWidthSize = size;
       } else {
@@ -222,10 +234,14 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
 
     ///如果指定展示列，则按照指定列展示，否则动态计算宽度。最大不超过四列。
     if (widget.rowount == null) {
-      int oneCountTagWidth = (BrnRangeSelectionGroupWidget.screenWidth - 40 - 12 * (1 - 1)) ~/ 1;
-      int twoCountTagWidth = (BrnRangeSelectionGroupWidget.screenWidth - 40 - 12 * (2 - 1)) ~/ 2;
-      int threeCountTagWidth = (BrnRangeSelectionGroupWidget.screenWidth - 40 - 12 * (3 - 1)) ~/ 3;
-      int fourCountTagWidth = (BrnRangeSelectionGroupWidget.screenWidth - 40 - 12 * (4 - 1)) ~/ 4;
+      int oneCountTagWidth =
+          (BrnRangeSelectionGroupWidget.screenWidth - 40 - 12 * (1 - 1)) ~/ 1;
+      int twoCountTagWidth =
+          (BrnRangeSelectionGroupWidget.screenWidth - 40 - 12 * (2 - 1)) ~/ 2;
+      int threeCountTagWidth =
+          (BrnRangeSelectionGroupWidget.screenWidth - 40 - 12 * (3 - 1)) ~/ 3;
+      int fourCountTagWidth =
+          (BrnRangeSelectionGroupWidget.screenWidth - 40 - 12 * (4 - 1)) ~/ 4;
       if (maxWidthSize.width > twoCountTagWidth) {
         tagWidth = oneCountTagWidth;
       } else if (threeCountTagWidth < maxWidthSize.width &&
@@ -238,7 +254,9 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
         tagWidth = fourCountTagWidth;
       }
     } else {
-      tagWidth = (BrnRangeSelectionGroupWidget.screenWidth - 40 - 12 * (widget.rowount - 1)) ~/
+      tagWidth = (BrnRangeSelectionGroupWidget.screenWidth -
+              40 -
+              12 * (widget.rowount - 1)) ~/
           widget.rowount;
     }
 
@@ -255,8 +273,9 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
                   setState(() {
                     _setFirstIndex(_tabController.index);
                     _setSecondIndex(index);
-                    clearNotTagItem(
-                        totalLevel == 1 ? _firstList : _firstList[_tabController.index].children);
+                    clearNotTagItem(totalLevel == 1
+                        ? _firstList
+                        : _firstList[_tabController.index].children);
                     _clearEditRangeText();
                   });
                 }),
@@ -293,8 +312,10 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
             });
         break;
       } else if (item.filterType == BrnSelectionFilterType.Date) {
-        DateTime initialStartDate = DateTimeFormatter.convertIntValueToDateTime(item.value);
-        DateTime initialEndDate = DateTimeFormatter.convertIntValueToDateTime(item.value);
+        DateTime initialStartDate =
+            DateTimeFormatter.convertIntValueToDateTime(item.value);
+        DateTime initialEndDate =
+            DateTimeFormatter.convertIntValueToDateTime(item.value);
         content = BrnCalendarView(
           key: GlobalKey(),
           selectMode: SelectMode.SINGLE,
@@ -312,10 +333,12 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
       } else if (item.filterType == BrnSelectionFilterType.DateRangeCalendar) {
         DateTime initialStartDate = item.customMap == null
             ? null
-            : DateTimeFormatter.convertIntValueToDateTime(item.customMap['min']);
+            : DateTimeFormatter.convertIntValueToDateTime(
+                item.customMap['min']);
         DateTime initialEndDate = item.customMap == null
             ? null
-            : DateTimeFormatter.convertIntValueToDateTime(item.customMap['max']);
+            : DateTimeFormatter.convertIntValueToDateTime(
+                item.customMap['max']);
         content = BrnCalendarView(
           key: GlobalKey(),
           selectMode: SelectMode.RANGE,
@@ -356,7 +379,8 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
                   Container(
                     height: 24,
                     width: 24,
-                    child: BrunoTools.getAssetImage(BrnAsset.iconSelectionReset),
+                    child:
+                        BrunoTools.getAssetImage(BrnAsset.iconSelectionReset),
                   ),
                   Text(
                     '重置',
@@ -390,7 +414,8 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
     if (totalLevel == 2) {
       List<BrnSelectionEntity> subFilterList =
           widget.entity.children[_tabController.index].children;
-      List<BrnSelectionEntity> selectItems = subFilterList.where((f) => f.isSelected).toList();
+      List<BrnSelectionEntity> selectItems =
+          subFilterList.where((f) => f.isSelected).toList();
       if (selectItems.length > 0) {
         _firstList[_tabController.index].isSelected = true;
       } else {
@@ -399,18 +424,23 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
     }
 
     // 处理Range类型的校验
-    BrnSelectionEntity rangeEntity = getSelectRangeItem(
-        totalLevel == 1 ? _firstList : _firstList[_tabController.index].children);
+    BrnSelectionEntity rangeEntity = getSelectRangeItem(totalLevel == 1
+        ? _firstList
+        : _firstList[_tabController.index].children);
     if (rangeEntity != null) {
       if (rangeEntity.customMap != null &&
-          ((rangeEntity.customMap['min'] != null && rangeEntity.customMap['min'].length > 0) ||
-              (rangeEntity.customMap['max'] != null && rangeEntity.customMap['max'].length > 0))) {
+          ((rangeEntity.customMap['min'] != null &&
+                  rangeEntity.customMap['min'].length > 0) ||
+              (rangeEntity.customMap['max'] != null &&
+                  rangeEntity.customMap['max'].length > 0))) {
         if (!rangeEntity.isValidRange()) {
           FocusScope.of(context).requestFocus(FocusNode());
           if (rangeEntity?.filterType == BrnSelectionFilterType.Range) {
             BrnToast.show('您输入的区间有误', context);
-          } else if (rangeEntity?.filterType == BrnSelectionFilterType.DateRange ||
-              rangeEntity?.filterType == BrnSelectionFilterType.DateRangeCalendar) {
+          } else if (rangeEntity?.filterType ==
+                  BrnSelectionFilterType.DateRange ||
+              rangeEntity?.filterType ==
+                  BrnSelectionFilterType.DateRangeCalendar) {
             BrnToast.show('您选择的区间有误', context);
           }
           return;
@@ -427,7 +457,9 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
 
   void _clearAllSelectedItems() {
     _resetSelectionDatas(widget.entity);
-    clearNotTagItem(totalLevel == 1 ? _firstList : _firstList[_tabController.index].children);
+    clearNotTagItem(totalLevel == 1
+        ? _firstList
+        : _firstList[_tabController.index].children);
     _clearEditRangeText();
     setState(() {
       _configDefaultInitSelectIndex();
@@ -462,7 +494,8 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
     _firstIndex = firstIndex;
     _secondIndex = -1;
     if (widget.entity.children.length > _firstIndex) {
-      List<BrnSelectionEntity> seconds = widget.entity.children[_firstIndex].children;
+      List<BrnSelectionEntity> seconds =
+          widget.entity.children[_firstIndex].children;
       if (seconds != null) {
         for (BrnSelectionEntity entity in seconds) {
           if (entity.isSelected) {

@@ -34,7 +34,8 @@ class BrnDoughnutDataItem {
 }
 
 /// 选中扇形区域后执行的回调
-typedef BrnDoughnutSelectCallback = void Function(BrnDoughnutDataItem selectedItem);
+typedef BrnDoughnutSelectCallback = void Function(
+    BrnDoughnutDataItem selectedItem);
 
 class BrnDoughnut extends CustomPainter {
   ///圆心位置
@@ -96,8 +97,9 @@ class BrnDoughnut extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     double minLength = size.width < size.height ? size.width : size.height;
     double outterCircleRadius = minLength / 2;
-    double innerCircleRadius =
-        outterCircleRadius - this.ringWidth >= 0 ? outterCircleRadius - this.ringWidth : 30.0;
+    double innerCircleRadius = outterCircleRadius - this.ringWidth >= 0
+        ? outterCircleRadius - this.ringWidth
+        : 30.0;
 
     double indicatorLCircleRadius = outterCircleRadius - 5;
     double indicatorRCircleRadius = outterCircleRadius + 8;
@@ -123,10 +125,13 @@ class BrnDoughnut extends CustomPainter {
 
       // 画文本
       if (item.title != null &&
-          (this.showTitleWhenSelected == false || item.startRadius == selectedItem?.startRadius)) {
+          (this.showTitleWhenSelected == false ||
+              item.startRadius == selectedItem?.startRadius)) {
         // 画引线
-        Offset indicarorLPoint = calcOffsetWith(item.middleRadius, indicatorLCircleRadius);
-        Offset indicatorRPoint = calcOffsetWith(item.middleRadius, indicatorRCircleRadius);
+        Offset indicarorLPoint =
+            calcOffsetWith(item.middleRadius, indicatorLCircleRadius);
+        Offset indicatorRPoint =
+            calcOffsetWith(item.middleRadius, indicatorRCircleRadius);
         Offset revisedIndicarorLPoint = Offset(
           indicarorLPoint.dx + center.dx.roundToDouble(),
           indicarorLPoint.dy + center.dy.roundToDouble(),
@@ -142,17 +147,21 @@ class BrnDoughnut extends CustomPainter {
           ..isAntiAlias = true
           ..strokeWidth = 1
           ..style = PaintingStyle.fill;
-        canvas.drawLine(revisedIndicarorLPoint, revisedIndicatorRPoint, _paintIndicator);
+        canvas.drawLine(
+            revisedIndicarorLPoint, revisedIndicatorRPoint, _paintIndicator);
 
         /// 画水平线
-        Offset indicatorEndOffset =
-            calcHorizontalOffset(revisedIndicarorLPoint, revisedIndicatorRPoint);
-        canvas.drawLine(revisedIndicatorRPoint, indicatorEndOffset, _paintIndicator);
+        Offset indicatorEndOffset = calcHorizontalOffset(
+            revisedIndicarorLPoint, revisedIndicatorRPoint);
+        canvas.drawLine(
+            revisedIndicatorRPoint, indicatorEndOffset, _paintIndicator);
 
-        TextStyle textStyle = TextStyle(fontSize: this.fontSize, color: this.fontColor);
+        TextStyle textStyle =
+            TextStyle(fontSize: this.fontSize, color: this.fontColor);
 
         TextPainter textPainter = TextPainter(
-            text: TextSpan(text: item.title, style: textStyle), textDirection: TextDirection.ltr)
+            text: TextSpan(text: item.title, style: textStyle),
+            textDirection: TextDirection.ltr)
           ..layout(maxWidth: double.infinity, minWidth: 0);
 
         double textWidth = textPainter.size.width;
@@ -161,15 +170,20 @@ class BrnDoughnut extends CustomPainter {
         //画背景
         Offset baseRectCenter = Offset(
             indicatorEndOffset.dx > revisedIndicatorRPoint.dx
-                ? indicatorEndOffset.dx + textWidth / 2 + this.textHorizontalPadding
-                : indicatorEndOffset.dx - textWidth / 2 - this.textHorizontalPadding,
+                ? indicatorEndOffset.dx +
+                    textWidth / 2 +
+                    this.textHorizontalPadding
+                : indicatorEndOffset.dx -
+                    textWidth / 2 -
+                    this.textHorizontalPadding,
             indicatorEndOffset.dy);
         Rect baseRect = Rect.fromCenter(
             center: baseRectCenter,
             width: textWidth + this.textHorizontalPadding * 2,
             height: textHeight + this.textVerticalPadding * 2);
         RRect rRect = RRect.fromRectAndRadius(baseRect, Radius.circular(2));
-        Paint textBackgroundPaint = Paint()..color = Colors.black.withOpacity(0.7);
+        Paint textBackgroundPaint = Paint()
+          ..color = Colors.black.withOpacity(0.7);
         canvas.drawRRect(rRect, textBackgroundPaint);
 
         textPainter.paint(
@@ -219,9 +233,11 @@ class BrnDoughnut extends CustomPainter {
     for (int i = 0; i < length; i++) {
       BrnDoughnutDataItem item = data[i];
       double radain = pointRadianInSector(position);
-      if (item.startRadius < radain && radain < (item.startRadius + item.radius)) {
+      if (item.startRadius < radain &&
+          radain < (item.startRadius + item.radius)) {
         if (null != brnDoughnutSelectCallback)
-          brnDoughnutSelectCallback(item.startRadius == selectedItem?.startRadius ? null : item);
+          brnDoughnutSelectCallback(
+              item.startRadius == selectedItem?.startRadius ? null : item);
         break;
       }
     }
@@ -230,9 +246,10 @@ class BrnDoughnut extends CustomPainter {
   }
 
   double pointRadianInSector(Offset position) {
-    Offset relativePosition = Offset(position.dx - circleCenter.dx, position.dy - circleCenter.dy);
-    double round =
-        acos(relativePosition.dx / sqrt(pow(relativePosition.dx, 2) + pow(relativePosition.dy, 2)));
+    Offset relativePosition =
+        Offset(position.dx - circleCenter.dx, position.dy - circleCenter.dy);
+    double round = acos(relativePosition.dx /
+        sqrt(pow(relativePosition.dx, 2) + pow(relativePosition.dy, 2)));
     double revisedRadian = round;
     if (relativePosition.dy < 0) {
       revisedRadian = 2 * pi - round;

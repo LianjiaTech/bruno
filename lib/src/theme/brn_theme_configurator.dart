@@ -15,7 +15,8 @@ class BrnThemeConfigurator {
   }
 
   /// 手动注册时，默认注册渠道是 GLOBAL_CONFIG_ID
-  void register(BrnAllThemeConfig allThemeConfig, {String configId = GLOBAL_CONFIG_ID}) {
+  void register(BrnAllThemeConfig allThemeConfig,
+      {String configId = GLOBAL_CONFIG_ID}) {
     assert(configId != null);
 
     /// 先赋值默认配置

@@ -97,12 +97,14 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
       this.iconColor,
       String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID})
       : super(configId: configId) {
-    this.appbarTitleStyle = BrnTextStyle(color: commonConfig.colorTextBaseInverse);
+    this.appbarTitleStyle =
+        BrnTextStyle(color: commonConfig.colorTextBaseInverse);
     this.appbarActionStyle = BrnTextStyle(color: BrnAppBarTheme.lightTextColor);
     this.appbarBackgroundColor = Colors.black;
     this.appbarBrightness = Brightness.dark;
     this.tabBarUnSelectedLabelStyle = BrnTextStyle(color: Color(0XFFCCCCCC));
-    this.tabBarLabelStyle = BrnTextStyle(color: commonConfig.colorTextBaseInverse);
+    this.tabBarLabelStyle =
+        BrnTextStyle(color: commonConfig.colorTextBaseInverse);
     this.tabBarBackgroundColor = Colors.black;
     this.pageBackgroundColor = Colors.black;
     this.bottomBackgroundColor = Color(0X88000000);
@@ -133,7 +135,8 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     this.appbarActionStyle = BrnTextStyle(color: commonConfig.colorTextBase);
     this.appbarBackgroundColor = commonConfig.fillBody;
     this.appbarBrightness = Brightness.light;
-    this.tabBarUnSelectedLabelStyle = BrnTextStyle(color: commonConfig.colorTextBase);
+    this.tabBarUnSelectedLabelStyle =
+        BrnTextStyle(color: commonConfig.colorTextBase);
     this.tabBarLabelStyle = BrnTextStyle(color: commonConfig.brandPrimary);
     this.tabBarBackgroundColor = commonConfig.fillBody;
     this.pageBackgroundColor = commonConfig.fillBody;
@@ -145,30 +148,38 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
   }
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnGalleryDetailConfig galleryDetailConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).galleryDetailConfig;
+    BrnGalleryDetailConfig galleryDetailConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .galleryDetailConfig;
 
-    this.appbarTitleStyle = galleryDetailConfig.appbarTitleStyle.merge(BrnTextStyle(
-            color: commonConfig.colorTextBaseInverse, fontSize: commonConfig.fontSizeSubHead)
-        .merge(this.appbarTitleStyle));
+    this.appbarTitleStyle = galleryDetailConfig.appbarTitleStyle.merge(
+        BrnTextStyle(
+                color: commonConfig.colorTextBaseInverse,
+                fontSize: commonConfig.fontSizeSubHead)
+            .merge(this.appbarTitleStyle));
 
-    this.appbarActionStyle = galleryDetailConfig.appbarActionStyle.merge(this.appbarActionStyle);
+    this.appbarActionStyle =
+        galleryDetailConfig.appbarActionStyle.merge(this.appbarActionStyle);
 
     this.appbarBrightness ??= galleryDetailConfig.appbarBrightness;
 
     this.appbarBackgroundColor ??= galleryDetailConfig.appbarBackgroundColor;
 
-    this.tabBarUnSelectedLabelStyle = galleryDetailConfig.tabBarUnSelectedLabelStyle
+    this.tabBarUnSelectedLabelStyle = galleryDetailConfig
+        .tabBarUnSelectedLabelStyle
         .merge(BrnTextStyle(fontSize: commonConfig.fontSizeSubHead))
         .merge(this.tabBarUnSelectedLabelStyle);
 
     this.tabBarLabelStyle = galleryDetailConfig.tabBarLabelStyle
         .merge(BrnTextStyle(
-            color: commonConfig.colorTextBaseInverse, fontSize: commonConfig.fontSizeSubHead))
+            color: commonConfig.colorTextBaseInverse,
+            fontSize: commonConfig.fontSizeSubHead))
         .merge(this.tabBarLabelStyle);
 
     this.tabBarBackgroundColor ??= galleryDetailConfig.tabBarBackgroundColor;
@@ -179,7 +190,8 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
 
     this.titleStyle = galleryDetailConfig.titleStyle
         .merge(BrnTextStyle(
-            color: commonConfig.colorTextBaseInverse, fontSize: commonConfig.fontSizeHead))
+            color: commonConfig.colorTextBaseInverse,
+            fontSize: commonConfig.fontSizeHead))
         .merge(this.titleStyle);
 
     this.contentStyle = galleryDetailConfig.contentStyle
@@ -188,7 +200,8 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
 
     this.actionStyle = galleryDetailConfig.actionStyle
         .merge(BrnTextStyle(
-            color: commonConfig.colorTextBaseInverse, fontSize: commonConfig.fontSizeBase))
+            color: commonConfig.colorTextBaseInverse,
+            fontSize: commonConfig.fontSizeBase))
         .merge(this.actionStyle);
 
     this.iconColor ??= galleryDetailConfig.iconColor;
@@ -215,13 +228,17 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     return BrnGalleryDetailConfig(
       appbarTitleStyle: appbarTitleStyle ?? this.appbarTitleStyle,
       appbarActionStyle: appbarActionStyle ?? this.appbarActionStyle,
-      appbarBackgroundColor: appbarBackgroundColor ?? this.appbarBackgroundColor,
+      appbarBackgroundColor:
+          appbarBackgroundColor ?? this.appbarBackgroundColor,
       appbarBrightness: appbarBrightness ?? this.appbarBrightness,
-      tabBarUnSelectedLabelStyle: tabBarUnSelectedLabelStyle ?? this.tabBarUnSelectedLabelStyle,
+      tabBarUnSelectedLabelStyle:
+          tabBarUnSelectedLabelStyle ?? this.tabBarUnSelectedLabelStyle,
       tabBarLabelStyle: tabBarLabelStyle ?? this.tabBarLabelStyle,
-      tabBarBackgroundColor: tabBarBackgroundColor ?? this.tabBarBackgroundColor,
+      tabBarBackgroundColor:
+          tabBarBackgroundColor ?? this.tabBarBackgroundColor,
       pageBackgroundColor: pageBackgroundColor ?? this.pageBackgroundColor,
-      bottomBackgroundColor: bottomBackgroundColor ?? this.bottomBackgroundColor,
+      bottomBackgroundColor:
+          bottomBackgroundColor ?? this.bottomBackgroundColor,
       titleStyle: titleStyle ?? this.titleStyle,
       contentStyle: contentStyle ?? this.contentStyle,
       actionStyle: actionStyle ?? this.actionStyle,
@@ -232,20 +249,23 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
   BrnGalleryDetailConfig merge(BrnGalleryDetailConfig other) {
     if (other == null) return this;
     return copyWith(
-      appbarTitleStyle: appbarTitleStyle?.merge(other.appbarTitleStyle) ?? other.appbarTitleStyle,
-      appbarActionStyle:
-          appbarActionStyle?.merge(other.appbarActionStyle) ?? other.appbarActionStyle,
+      appbarTitleStyle: appbarTitleStyle?.merge(other.appbarTitleStyle) ??
+          other.appbarTitleStyle,
+      appbarActionStyle: appbarActionStyle?.merge(other.appbarActionStyle) ??
+          other.appbarActionStyle,
       appbarBackgroundColor: other.appbarBackgroundColor,
       appbarBrightness: other.appbarBrightness,
       tabBarUnSelectedLabelStyle:
           tabBarUnSelectedLabelStyle?.merge(other.tabBarUnSelectedLabelStyle) ??
               other.tabBarUnSelectedLabelStyle,
-      tabBarLabelStyle: tabBarLabelStyle?.merge(other.tabBarLabelStyle) ?? other.tabBarLabelStyle,
+      tabBarLabelStyle: tabBarLabelStyle?.merge(other.tabBarLabelStyle) ??
+          other.tabBarLabelStyle,
       tabBarBackgroundColor: other.tabBarBackgroundColor,
       pageBackgroundColor: other.pageBackgroundColor,
       bottomBackgroundColor: other.bottomBackgroundColor,
       titleStyle: titleStyle?.merge(other.titleStyle) ?? other.titleStyle,
-      contentStyle: contentStyle?.merge(other.contentStyle) ?? other.contentStyle,
+      contentStyle:
+          contentStyle?.merge(other.contentStyle) ?? other.contentStyle,
       actionStyle: actionStyle?.merge(other.actionStyle) ?? other.actionStyle,
       iconColor: other.iconColor,
     );

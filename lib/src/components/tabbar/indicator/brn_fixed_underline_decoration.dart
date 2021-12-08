@@ -102,7 +102,8 @@ class _FixedUnderlinePainter extends BoxPainter {
     assert(configuration.size != null);
     final Rect rect = offset & configuration.size;
     final TextDirection textDirection = configuration.textDirection;
-    final Rect indicator = _indicatorRectFor(rect, textDirection).deflate(borderSide.width / 2.0);
+    final Rect indicator =
+        _indicatorRectFor(rect, textDirection).deflate(borderSide.width / 2.0);
     final Paint paint = borderSide.toPaint()..strokeCap = StrokeCap.square;
     paint.color = decoration.color;
     paint.strokeWidth = decoration.thickness;

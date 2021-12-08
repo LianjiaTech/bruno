@@ -67,48 +67,63 @@ class BrnActionSheetConfig extends BrnBaseConfig {
   EdgeInsets titlePadding;
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnActionSheetConfig actionSheetConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).actionSheetConfig;
+    BrnActionSheetConfig actionSheetConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .actionSheetConfig;
 
     this.titlePadding ??= actionSheetConfig.titlePadding;
 
     this.contentPadding ??= actionSheetConfig.contentPadding;
 
-    this.titleStyle = actionSheetConfig.titleStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextSecondary, fontSize: commonConfig.fontSizeBase)
-            .merge(this.titleStyle));
+    this.titleStyle = actionSheetConfig.titleStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextSecondary,
+            fontSize: commonConfig.fontSizeBase)
+        .merge(this.titleStyle));
 
-    this.itemTitleStyle = actionSheetConfig.itemTitleStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
-            .merge(this.itemTitleStyle));
+    this.itemTitleStyle = actionSheetConfig.itemTitleStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeSubHead)
+        .merge(this.itemTitleStyle));
 
     this.itemTitleStyleLink = actionSheetConfig.itemTitleStyleLink.merge(
-        BrnTextStyle(color: commonConfig.colorLink, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.colorLink,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.itemTitleStyleLink));
 
     this.itemTitleStyleAlert = actionSheetConfig.itemTitleStyleAlert.merge(
-        BrnTextStyle(color: commonConfig.brandError, fontSize: commonConfig.fontSizeBase)
+        BrnTextStyle(
+                color: commonConfig.brandError,
+                fontSize: commonConfig.fontSizeBase)
             .merge(this.itemTitleStyleAlert));
 
-    this.itemDescStyle = actionSheetConfig.itemDescStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeCaption)
-            .merge(this.itemDescStyle));
+    this.itemDescStyle = actionSheetConfig.itemDescStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeCaption)
+        .merge(this.itemDescStyle));
 
     this.itemDescStyleLink = actionSheetConfig.itemDescStyleLink.merge(
-        BrnTextStyle(color: commonConfig.colorLink, fontSize: commonConfig.fontSizeCaption)
+        BrnTextStyle(
+                color: commonConfig.colorLink,
+                fontSize: commonConfig.fontSizeCaption)
             .merge(this.itemDescStyleLink));
 
     this.itemDescStyleAlert = actionSheetConfig.itemDescStyleAlert.merge(
-        BrnTextStyle(color: commonConfig.brandError, fontSize: commonConfig.fontSizeCaption)
+        BrnTextStyle(
+                color: commonConfig.brandError,
+                fontSize: commonConfig.fontSizeCaption)
             .merge(this.itemDescStyleAlert));
 
-    this.cancelStyle = actionSheetConfig.cancelStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
-            .merge(this.cancelStyle));
+    this.cancelStyle = actionSheetConfig.cancelStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeSubHead)
+        .merge(this.cancelStyle));
 
     this.topRadius ??= commonConfig.radiusLg;
   }
@@ -161,17 +176,24 @@ class BrnActionSheetConfig extends BrnBaseConfig {
     if (other == null) return this;
     return copyWith(
       titleStyle: this.titleStyle?.merge(other.titleStyle) ?? other.titleStyle,
-      itemTitleStyle: this.itemTitleStyle?.merge(other.itemTitleStyle) ?? other.itemTitleStyle,
+      itemTitleStyle: this.itemTitleStyle?.merge(other.itemTitleStyle) ??
+          other.itemTitleStyle,
       itemTitleStyleLink:
-          this.itemTitleStyleLink?.merge(other.itemTitleStyleLink) ?? other.itemTitleStyleLink,
+          this.itemTitleStyleLink?.merge(other.itemTitleStyleLink) ??
+              other.itemTitleStyleLink,
       itemTitleStyleAlert:
-          this.itemTitleStyleAlert?.merge(other.itemTitleStyleAlert) ?? other.itemTitleStyleAlert,
-      itemDescStyle: this.itemDescStyle?.merge(other.itemDescStyle) ?? other.itemDescStyle,
+          this.itemTitleStyleAlert?.merge(other.itemTitleStyleAlert) ??
+              other.itemTitleStyleAlert,
+      itemDescStyle:
+          this.itemDescStyle?.merge(other.itemDescStyle) ?? other.itemDescStyle,
       itemDescStyleLink:
-          this.itemDescStyleLink?.merge(other.itemDescStyleLink) ?? other.itemDescStyleLink,
+          this.itemDescStyleLink?.merge(other.itemDescStyleLink) ??
+              other.itemDescStyleLink,
       itemDescStyleAlert:
-          this.itemDescStyleAlert?.merge(other.itemDescStyleAlert) ?? other.itemDescStyleAlert,
-      cancelStyle: this.cancelStyle?.merge(other.cancelStyle) ?? other.cancelStyle,
+          this.itemDescStyleAlert?.merge(other.itemDescStyleAlert) ??
+              other.itemDescStyleAlert,
+      cancelStyle:
+          this.cancelStyle?.merge(other.cancelStyle) ?? other.cancelStyle,
       topRadius: other.topRadius,
       contentPadding: other.contentPadding,
       titlePadding: other.titlePadding,

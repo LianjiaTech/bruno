@@ -9,7 +9,8 @@ class BrnSelectionEntityListBean {
     if (map == null) return null;
     BrnSelectionEntityListBean bean = BrnSelectionEntityListBean(null);
     bean.list = List()
-      ..addAll((map['list'] as List ?? []).map((o) => BrnSelectionEntity.fromMap(o)));
+      ..addAll((map['list'] as List ?? [])
+          .map((o) => BrnSelectionEntity.fromMap(o)));
     return bean;
   }
 }

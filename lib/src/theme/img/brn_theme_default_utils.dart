@@ -39,7 +39,8 @@ class BrnThemeImg {
       BrunoTools.getAssetImage(BrnAsset.SELECT_CHECKED_STATUS);
 
   Image get STEP_ICON {
-    return _defaultBrunoImg?.getStepIcon() ?? BrunoTools.getAssetImage(BrnAsset.stepTitle);
+    return _defaultBrunoImg?.getStepIcon() ??
+        BrunoTools.getAssetImage(BrnAsset.stepTitle);
   }
 }
 
@@ -57,7 +58,8 @@ class BrnDefaultThemeImgUtil extends BrnThemeImgUtils {
 
   @override
   Image getCHECKED_STATUS() {
-    return BrunoTools.getAssetImageWithBandColor(BrnAsset.SELECT_CHECKED_STATUS);
+    return BrunoTools.getAssetImageWithBandColor(
+        BrnAsset.SELECT_CHECKED_STATUS);
   }
 
   @override

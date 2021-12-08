@@ -36,7 +36,8 @@ class BrnDashedLine extends StatelessWidget {
       BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase;
 
   /// 默认位置，头部
-  static const BrnDashedLinePosition _normalPosition = BrnDashedLinePosition.DashedLineLeading;
+  static const BrnDashedLinePosition _normalPosition =
+      BrnDashedLinePosition.DashedLineLeading;
 
   /// 虚线方向，默认值[_normalAxis]
   final Axis axis;
@@ -145,11 +146,11 @@ class BrnDashedPainter extends CustomPainter {
       }
       while (startX < maxWidth) {
         if ((maxWidth - startX) < this.dashedLength) {
-          canvas.drawLine(
-              Offset(startX, height), Offset(startX + (maxWidth - startX), height), paint);
+          canvas.drawLine(Offset(startX, height),
+              Offset(startX + (maxWidth - startX), height), paint);
         } else {
-          canvas.drawLine(
-              Offset(startX, height), Offset(startX + this.dashedLength, height), paint);
+          canvas.drawLine(Offset(startX, height),
+              Offset(startX + this.dashedLength, height), paint);
         }
         startX += space;
       }
@@ -167,10 +168,11 @@ class BrnDashedPainter extends CustomPainter {
       }
       while (startY < maxHeight) {
         if ((maxHeight - startY) < this.dashedLength) {
-          canvas.drawLine(
-              Offset(width, startY), Offset(width, startY + (maxHeight - startY)), paint);
+          canvas.drawLine(Offset(width, startY),
+              Offset(width, startY + (maxHeight - startY)), paint);
         } else {
-          canvas.drawLine(Offset(width, startY), Offset(width, startY + this.dashedLength), paint);
+          canvas.drawLine(Offset(width, startY),
+              Offset(width, startY + this.dashedLength), paint);
         }
         startY += space;
       }

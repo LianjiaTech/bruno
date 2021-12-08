@@ -125,7 +125,8 @@ class BrnMultiDataPicker extends StatefulWidget {
           confirmTextStyle: BrnTextStyle.withStyle(confirmTextStyle),
           titleTextStyle: BrnTextStyle.withStyle(titleTextStyle),
           itemTextStyle: BrnTextStyle(color: textColor, fontSize: textFontSize),
-          itemTextSelectedStyle: BrnTextStyle(color: textSelectedColor, fontSize: textFontSize),
+          itemTextSelectedStyle:
+              BrnTextStyle(color: textSelectedColor, fontSize: textFontSize),
         ));
 
     this.themeData = BrnThemeConfigurator.instance
@@ -209,14 +210,17 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
         color: widget.themeData?.backgroundColor,
         child: Row(
             mainAxisSize: MainAxisSize.max,
-            children: widget.pickerTitles != null ? _pickersWithTitle() : _pickers()));
+            children: widget.pickerTitles != null
+                ? _pickersWithTitle()
+                : _pickers()));
   }
 
   List<Widget> _pickersWithTitle() {
     List<Widget> pickersWithTitle = List();
     for (int i = 0; i < widget.delegate.numberOfComponent(); i++) {
       int initRow = widget.delegate.initSelectedRowForComponent(i);
-      FixedExtentScrollController controller = FixedExtentScrollController(initialItem: initRow);
+      FixedExtentScrollController controller =
+          FixedExtentScrollController(initialItem: initRow);
       widget.controllers.add(controller);
       if (i >= _selectedIndexList.length) _selectedIndexList.add(0);
       Widget picker = _configSinglePicker(i);
@@ -232,7 +236,8 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
                   child: Text(
                     widget.pickerTitles[i],
                     style: TextStyle(
-                        fontSize: widget.pickerTitleFontSize, color: widget.pickerTitleColor),
+                        fontSize: widget.pickerTitleFontSize,
+                        color: widget.pickerTitleColor),
                   ),
                 ),
               ),
@@ -248,7 +253,8 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
     List<Widget> pickers = List();
     for (int i = 0; i < widget.delegate.numberOfComponent(); i++) {
       int initRow = widget.delegate.initSelectedRowForComponent(i);
-      FixedExtentScrollController controller = FixedExtentScrollController(initialItem: initRow);
+      FixedExtentScrollController controller =
+          FixedExtentScrollController(initialItem: initRow);
       widget.controllers.add(controller);
       if (i >= _selectedIndexList.length) _selectedIndexList.add(0);
       Widget picker = _configSinglePicker(i);
@@ -267,16 +273,21 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
       createWidgetList: () {
         if (widget.createItemWidget != null) {
           List<Widget> widgetList = List();
-          for (int i = 0; i < widget.delegate.numberOfRowsInComponent(component); i++) {
+          for (int i = 0;
+              i < widget.delegate.numberOfRowsInComponent(component);
+              i++) {
             bool isSelect = _selectedIndexList[component] == i;
             widgetList.add(widget.createItemWidget != null
-                ? widget.createItemWidget(isSelect, component, i, _selectedIndexList)
+                ? widget.createItemWidget(
+                    isSelect, component, i, _selectedIndexList)
                 : Container());
           }
           return widgetList;
         } else {
           List<Widget> list = List();
-          for (int i = 0; i < widget.delegate.numberOfRowsInComponent(component); i++) {
+          for (int i = 0;
+              i < widget.delegate.numberOfRowsInComponent(component);
+              i++) {
             list.add(Center(
               child: Text(
                 widget.delegate.titleForRowInComponent(component, i),
@@ -289,15 +300,21 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
           return list;
         }
       },
-      itemExtent: widget.delegate.rowHeightForComponent(component) ?? widget.themeData.itemHeight,
+      itemExtent: widget.delegate.rowHeightForComponent(component) ??
+          widget.themeData.itemHeight,
       changed: (int index) {
         widget.delegate.selectRowInComponent(component, index);
         _selectedIndexList[component] = index;
         setState(() {
-          for (int i = component + 1; i < widget.delegate.numberOfComponent(); i++) {
+          for (int i = component + 1;
+              i < widget.delegate.numberOfComponent();
+              i++) {
             List list = List();
-            for (int j = 0; j < widget.delegate.numberOfRowsInComponent(component); j++) {
-              list.add(widget.delegate.titleForRowInComponent(component, index));
+            for (int j = 0;
+                j < widget.delegate.numberOfRowsInComponent(component);
+                j++) {
+              list.add(
+                  widget.delegate.titleForRowInComponent(component, index));
             }
             FixedExtentScrollController controller = widget.controllers[i];
             if (widget.sync) {
@@ -381,7 +398,8 @@ class _MyPickerState extends State<MyPicker> {
 ///默认的选择轮盘滚动行为，Android去除默认的水波纹动画效果
 class _DefaultScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
     return child;
   }
 }

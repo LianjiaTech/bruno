@@ -172,19 +172,15 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
             BrnPopupListWindow.showPopListWindow(context, _popWindowKey,
                 offset: 10,
                 popDirection: widget.popDirection,
-
-                data: list,
-                onItemClick: (index, item) {
-                  if (widget.onTap != null) {
-                    widget.onTap(index + 3);
-                  }
-                },
-
-                onDismiss: () {
-                  setState(() {
-                    _isExpanded = false;
-                  });
-                });
+                data: list, onItemClick: (index, item) {
+              if (widget.onTap != null) {
+                widget.onTap(index + 3);
+              }
+            }, onDismiss: () {
+              setState(() {
+                _isExpanded = false;
+              });
+            });
             setState(() {
               _isExpanded = true;
             });

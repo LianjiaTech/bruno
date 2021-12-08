@@ -19,13 +19,15 @@ Color normalColor = Color(0xffF0F0F0);
 /// 其他按钮如下：
 ///  * [BrnSmallMainButton], 小主色调按钮
 
-
 /// 默认水平间距
 const double _BHorizontalPadding = 6;
+
 /// 默认垂直间距
 const double _BVerticalPadding = 8;
+
 /// 默认最小宽度
 const double _BMinWidth = 84;
+
 /// 默认线宽
 const double _BBorderWith = 1;
 
@@ -79,8 +81,9 @@ class BrnSmallOutlineButton extends StatelessWidget {
     BrnButtonConfig defaultThemeConfig = themeData ?? BrnButtonConfig();
 
     defaultThemeConfig = defaultThemeConfig.merge(BrnButtonConfig(
-        smallButtonFontSize: fontSize,
-        smallButtonRadius: radius,));
+      smallButtonFontSize: fontSize,
+      smallButtonRadius: radius,
+    ));
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
         .buttonConfig

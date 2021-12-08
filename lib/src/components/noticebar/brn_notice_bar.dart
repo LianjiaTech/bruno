@@ -74,7 +74,8 @@ class BrnNoticeBar extends StatelessWidget {
   Widget build(BuildContext context) {
     NoticeStyle defaultStyle = NoticeStyles.runningWithArrow;
 
-    Widget tempRightWidget = rightWidget ?? (noticeStyle?.rightIcon ?? defaultStyle.leftIcon);
+    Widget tempRightWidget =
+        rightWidget ?? (noticeStyle?.rightIcon ?? defaultStyle.leftIcon);
     if (onRightIconTap != null) {
       tempRightWidget = GestureDetector(
         child: tempRightWidget,
@@ -90,7 +91,8 @@ class BrnNoticeBar extends StatelessWidget {
         height: 36,
         text: content ?? '',
         textStyle: TextStyle(
-          color: textColor ?? (noticeStyle?.textColor ?? defaultStyle.textColor),
+          color:
+              textColor ?? (noticeStyle?.textColor ?? defaultStyle.textColor),
           fontSize: 14,
         ),
       );
@@ -99,7 +101,8 @@ class BrnNoticeBar extends StatelessWidget {
         content ?? '',
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
-          color: textColor ?? (noticeStyle?.textColor ?? defaultStyle.textColor),
+          color:
+              textColor ?? (noticeStyle?.textColor ?? defaultStyle.textColor),
           fontSize: 14,
         ),
       );
@@ -107,7 +110,9 @@ class BrnNoticeBar extends StatelessWidget {
 
     return Container(
       color: backgroundColor ??
-          (noticeStyle != null ? noticeStyle.backgroundColor : defaultStyle.backgroundColor),
+          (noticeStyle != null
+              ? noticeStyle.backgroundColor
+              : defaultStyle.backgroundColor),
       padding: this.padding ?? EdgeInsets.symmetric(horizontal: 20),
       constraints: BoxConstraints(minHeight: this.minHeight),
       child: GestureDetector(
@@ -122,7 +127,8 @@ class BrnNoticeBar extends StatelessWidget {
               offstage: !showLeftIcon,
               child: Padding(
                 padding: EdgeInsets.only(right: 8),
-                child: leftWidget ?? (noticeStyle?.leftIcon ?? defaultStyle.leftIcon),
+                child: leftWidget ??
+                    (noticeStyle?.leftIcon ?? defaultStyle.leftIcon),
               ),
             ),
             Expanded(
@@ -229,5 +235,6 @@ class NoticeStyle {
   ///右边的图标
   final Widget rightIcon;
 
-  NoticeStyle(this.leftIcon, this.textColor, this.backgroundColor, this.rightIcon);
+  NoticeStyle(
+      this.leftIcon, this.textColor, this.backgroundColor, this.rightIcon);
 }

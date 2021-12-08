@@ -51,8 +51,10 @@ class BrnPortraitRadioGroup extends StatefulWidget {
     this.themeData,
     this.isCollapseContent = false,
   }) {
-    this.options =
-        options?.map((item) => BrnPortraitRadioGroupOption(title: item))?.toList() ?? List();
+    this.options = options
+            ?.map((item) => BrnPortraitRadioGroupOption(title: item))
+            ?.toList() ??
+        List();
     int selectedIndex = options.indexOf(selectedOption);
     if (selectedIndex > -1) {
       this.selectedOption = this.options[selectedIndex];
@@ -131,7 +133,8 @@ class BrnPortraitRadioGroupState extends State<BrnPortraitRadioGroup> {
                   fit: FlexFit.tight,
                   child: Text(
                     option.title ?? '',
-                    overflow: widget.isCollapseContent ? TextOverflow.ellipsis : null,
+                    overflow:
+                        widget.isCollapseContent ? TextOverflow.ellipsis : null,
                     maxLines: widget.isCollapseContent ? 1 : null,
                     style: getOptionTextStyle(option, index),
                   ),
@@ -160,7 +163,8 @@ class BrnPortraitRadioGroupState extends State<BrnPortraitRadioGroup> {
                   padding: EdgeInsets.only(top: 4, right: 20),
                   child: Text(
                     option.subTitle ?? '',
-                    overflow: widget.isCollapseContent ? TextOverflow.ellipsis : null,
+                    overflow:
+                        widget.isCollapseContent ? TextOverflow.ellipsis : null,
                     maxLines: widget.isCollapseContent ? 1 : null,
                     style: BrnFormUtil.getSubTitleTextStyle(widget.themeData),
                   ),
@@ -191,7 +195,8 @@ class BrnPortraitRadioGroupState extends State<BrnPortraitRadioGroup> {
     return selectedIndex;
   }
 
-  bool isSameOption(BrnPortraitRadioGroupOption src, BrnPortraitRadioGroupOption dst) {
+  bool isSameOption(
+      BrnPortraitRadioGroupOption src, BrnPortraitRadioGroupOption dst) {
     if (src == null || dst == null) return false;
     return src.title == dst.title && src.subTitle == dst.subTitle;
   }

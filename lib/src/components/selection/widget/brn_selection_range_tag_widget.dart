@@ -46,10 +46,12 @@ class BrnSelectionRangeTagWidget extends StatefulWidget {
         super(key: key);
 
   @override
-  _BrnSelectionRangeTagWidgetState createState() => _BrnSelectionRangeTagWidgetState();
+  _BrnSelectionRangeTagWidgetState createState() =>
+      _BrnSelectionRangeTagWidgetState();
 }
 
-class _BrnSelectionRangeTagWidgetState extends State<BrnSelectionRangeTagWidget> {
+class _BrnSelectionRangeTagWidgetState
+    extends State<BrnSelectionRangeTagWidget> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -61,7 +63,9 @@ class _BrnSelectionRangeTagWidgetState extends State<BrnSelectionRangeTagWidget>
 
   List<Widget> _tagWidgetList(context) {
     List<Widget> list = List<Widget>();
-    for (int nameIndex = 0; nameIndex < widget.tagFilterList.length; nameIndex++) {
+    for (int nameIndex = 0;
+        nameIndex < widget.tagFilterList.length;
+        nameIndex++) {
       Widget tagWidget = _tagWidgetAtIndex(nameIndex);
       GestureDetector gdt = GestureDetector(
           child: tagWidget,
@@ -86,14 +90,16 @@ class _BrnSelectionRangeTagWidgetState extends State<BrnSelectionRangeTagWidget>
   }
 
   Widget _tagWidgetAtIndex(int nameIndex) {
-    bool selected =
-        widget.tagFilterList[nameIndex].isSelected || nameIndex == widget.initFocusedindex;
+    bool selected = widget.tagFilterList[nameIndex].isSelected ||
+        nameIndex == widget.initFocusedindex;
     String text = widget.tagFilterList[nameIndex].title;
-    if (widget.tagFilterList[nameIndex].filterType == BrnSelectionFilterType.Date &&
+    if (widget.tagFilterList[nameIndex].filterType ==
+            BrnSelectionFilterType.Date &&
         !BrunoTools.isEmpty(widget.tagFilterList[nameIndex].value)) {
       if (int.tryParse(widget.tagFilterList[nameIndex].value) != null) {
         text = DateTimeFormatter.formatDate(
-            DateTimeFormatter.convertIntValueToDateTime(widget.tagFilterList[nameIndex].value),
+            DateTimeFormatter.convertIntValueToDateTime(
+                widget.tagFilterList[nameIndex].value),
             'yyyy年MM月dd日',
             DateTimePickerLocale.zh_cn);
       }

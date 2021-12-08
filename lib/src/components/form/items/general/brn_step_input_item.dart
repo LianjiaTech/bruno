@@ -71,26 +71,25 @@ class BrnStepInputFormItem extends StatefulWidget {
   /// form配置
   BrnFormItemConfig themeData;
 
-  BrnStepInputFormItem(
-      {Key key,
-      this.label,
-      this.title: "",
-      this.subTitle,
-      this.tipLabel,
-      this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
-      this.error: "",
-      this.isEdit: true,
-      this.isRequire: false,
-      this.onAddTap,
-      this.onRemoveTap,
-      this.onTip,
-      this.value: 0,
-      this.maxLimit: 10,
-      this.minLimit: 0,
-      this.onChanged,
-      this.themeData, })
-      : super(key: key) {
-
+  BrnStepInputFormItem({
+    Key key,
+    this.label,
+    this.title: "",
+    this.subTitle,
+    this.tipLabel,
+    this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
+    this.error: "",
+    this.isEdit: true,
+    this.isRequire: false,
+    this.onAddTap,
+    this.onRemoveTap,
+    this.onTip,
+    this.value: 0,
+    this.maxLimit: 10,
+    this.minLimit: 0,
+    this.onChanged,
+    this.themeData,
+  }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -98,16 +97,13 @@ class BrnStepInputFormItem extends StatefulWidget {
         .merge(this.themeData);
   }
 
-
   @override
   BrnStepInputFormItemState createState() {
     return BrnStepInputFormItemState();
   }
-
 }
 
 class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -124,14 +120,21 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData),
                   child: Row(
                     children: <Widget>[
-                      BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                      BrnFormUtil.buildPrefixIcon(
+                          widget.prefixIconType,
+                          widget.isEdit,
+                          context,
+                          widget.onAddTap,
+                          widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
-                      BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
-                      BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                      BrnFormUtil.buildTitleWidget(
+                          widget.title, widget.themeData),
+                      BrnFormUtil.buildTipLabelWidget(
+                          widget.tipLabel, widget.onTip, widget.themeData),
                     ],
                   ),
                 ),
@@ -150,16 +153,16 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
 
                         if (widget.value == null) {
                           widget.value = 1;
-                          BrnFormUtil.notifyValueChanged(
-                              widget.onChanged, context, widget.value + 1, widget.value);
+                          BrnFormUtil.notifyValueChanged(widget.onChanged,
+                              context, widget.value + 1, widget.value);
                           setState(() {});
                           return;
                         }
 
                         if (!isReachMinLevel()) {
                           widget.value = widget.value - 1;
-                          BrnFormUtil.notifyValueChanged(
-                              widget.onChanged, context, widget.value + 1, widget.value);
+                          BrnFormUtil.notifyValueChanged(widget.onChanged,
+                              context, widget.value + 1, widget.value);
                           setState(() {});
                         }
                       },
@@ -190,16 +193,16 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
 
                         if (widget.value == null) {
                           widget.value = 1;
-                          BrnFormUtil.notifyValueChanged(
-                              widget.onChanged, context, widget.value - 1, widget.value);
+                          BrnFormUtil.notifyValueChanged(widget.onChanged,
+                              context, widget.value - 1, widget.value);
                           setState(() {});
                           return;
                         }
 
                         if (!isReachMaxLevel()) {
                           widget.value = widget.value + 1;
-                          BrnFormUtil.notifyValueChanged(
-                              widget.onChanged, context, widget.value - 1, widget.value);
+                          BrnFormUtil.notifyValueChanged(widget.onChanged,
+                              context, widget.value - 1, widget.value);
                           setState(() {});
                         }
                       },
@@ -281,8 +284,4 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
 
     return false;
   }
-
 }
-
-
-

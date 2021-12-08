@@ -50,7 +50,8 @@ class GifImage extends StatefulWidget {
 }
 
 class GifImageState extends State<GifImage> {
-  ValueNotifier<List<ImageInfo>> _images = ValueNotifier<List<ImageInfo>>(List());
+  ValueNotifier<List<ImageInfo>> _images =
+      ValueNotifier<List<ImageInfo>>(List());
   double _curValue = 0.0;
 
   @override
@@ -129,8 +130,8 @@ class GifImageState extends State<GifImage> {
     AssetBundleImageKey key = await provider.obtainKey(ImageConfiguration());
     data = await key.bundle.load(key.name);
 
-    ui.Codec codec =
-        await PaintingBinding.instance.instantiateImageCodec(data.buffer.asUint8List());
+    ui.Codec codec = await PaintingBinding.instance
+        .instantiateImageCodec(data.buffer.asUint8List());
     for (int i = 0; i < codec.frameCount; i++) {
       FrameInfo frameInfo = await codec.getNextFrame();
       infos.add(ImageInfo(image: frameInfo.image));

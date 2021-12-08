@@ -38,7 +38,9 @@ class BrnPageLoading extends StatelessWidget {
         height: 50,
         width: 130,
         decoration: BoxDecoration(
-            color: Color(0xff222222), border: null, borderRadius: BorderRadius.circular(5)),
+            color: Color(0xff222222),
+            border: null,
+            borderRadius: BorderRadius.circular(5)),
         child: Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -70,7 +72,6 @@ class BrnPageLoading extends StatelessWidget {
   }
 }
 
-
 /// 通过 [BrnPageLoading] 构建出的加载状态的弹窗，加载动画和加载文字并排展示，且在屏幕中间。可通
 /// 过 [BrnLoadingDialog.show] 和 [BrnLoadingDialog.dismiss] 控制弹窗的显示和关闭。不会自动关闭。
 class BrnLoadingDialog extends Dialog {
@@ -92,11 +93,11 @@ class BrnLoadingDialog extends Dialog {
   ///  * [useRootNavigator] 把弹窗添加到 [context] 中的 rootNavigator 还是最近的 [Navigator]，默认为 true，添加到
   ///    rootNavigator，详见 [showDialog] 中的 [useRootNavigator]。
   static void show(
-      BuildContext context, {
-        String content,
-        bool barrierDismissible = true,
-        bool useRootNavigator = true,
-      }) {
+    BuildContext context, {
+    String content,
+    bool barrierDismissible = true,
+    bool useRootNavigator = true,
+  }) {
     showDialog(
         context: context,
         barrierDismissible: barrierDismissible,

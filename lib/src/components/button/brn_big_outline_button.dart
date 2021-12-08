@@ -29,8 +29,10 @@ import 'package:flutter/material.dart';
 
 /// 默认水平间距
 const double _BHorizontalPadding = 16;
+
 /// 默认垂直间距
 const double _BVerticalPadding = 8;
+
 /// 默认线宽
 const double _BBorderWith = 1;
 
@@ -74,7 +76,8 @@ class BrnBigOutlineButton extends StatelessWidget {
         .buttonConfig
         .merge(defaultThemeConfig);
 
-    Color _lineColor = lineColor ?? defaultThemeConfig.commonConfig.borderColorBase;
+    Color _lineColor =
+        lineColor ?? defaultThemeConfig.commonConfig.borderColorBase;
 
     return BrnNormalButton.outline(
       borderWith: _BBorderWith,
@@ -92,7 +95,8 @@ class BrnBigOutlineButton extends StatelessWidget {
           width: width ?? double.infinity,
           height: defaultThemeConfig.bigButtonHeight),
       onTap: onTap,
-      insertPadding: EdgeInsets.symmetric(vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
+      insertPadding: EdgeInsets.symmetric(
+          vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
       backgroundColor: Colors.white,
       disableBackgroundColor: Color(0xffcccccc).withOpacity(0.1),
     );

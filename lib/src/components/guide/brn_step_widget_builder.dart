@@ -5,7 +5,8 @@ enum GuideDirection { left, right, topLeft, bottomLeft, topRight, bottomRight }
 
 /// 单步引导组件
 class StepWidgetBuilder {
-  static Map _smartGetPosition({Size size, Size screenSize, Offset offset, GuideMode introMode}) {
+  static Map _smartGetPosition(
+      {Size size, Size screenSize, Offset offset, GuideMode introMode}) {
     double height = size.height;
     double width = size.width;
     double screenWidth = screenSize.width;
@@ -81,7 +82,8 @@ class StepWidgetBuilder {
         alignTop = false;
       }
       if (leftArea > rightArea) {
-        position['right'] = rightArea + width / 2 - 20 <= 0 ? 16.0 : rightArea + width / 2 - 20;
+        position['right'] =
+            rightArea + width / 2 - 20 <= 0 ? 16.0 : rightArea + width / 2 - 20;
         position['crossAxisAlignment'] = CrossAxisAlignment.end;
         position['width'] = min(leftArea + width - 16, screenWidth * 0.618);
 
@@ -91,7 +93,9 @@ class StepWidgetBuilder {
           position['direction'] = GuideDirection.bottomLeft;
         }
       } else {
-        position['left'] = offset.dx + width / 2 - 20 <= 0 ? 16.0 : offset.dx + size.width / 2 - 20;
+        position['left'] = offset.dx + width / 2 - 20 <= 0
+            ? 16.0
+            : offset.dx + size.width / 2 - 20;
         position['width'] = min(rightArea + width - 16, screenWidth * 0.618);
 
         if (alignTop) {

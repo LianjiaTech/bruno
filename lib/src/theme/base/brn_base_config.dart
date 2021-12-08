@@ -8,7 +8,8 @@ abstract class BrnBaseConfig {
   BrnCommonConfig _currentLevelCommonConfig;
 
   BrnBaseConfig(
-      {this.configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID, bool autoFlatConfig = false}) {
+      {this.configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID,
+      bool autoFlatConfig = false}) {
     if (autoFlatConfig) {
       initThemeConfig(configId);
     }
@@ -23,7 +24,8 @@ abstract class BrnBaseConfig {
   /// 当detailTextStyle中字段(如：color)为null时会使用commonConfig.colorTextBase
   /// 第二步 以默认上一级配置为基础merge  第一步结果，当第一步中字段(如：color)为空时 ,
   /// 使用上一层级配置的color(cardTitleConfig.detailTextStyle.color)
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
     _currentLevelCommonConfig = currentLevelCommonConfig;
   }
 

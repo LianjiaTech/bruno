@@ -106,7 +106,8 @@ class BrnBottomButtonPanel extends StatelessWidget {
       VoidCallback secondaryButtonOnTap,
       bool enableMainButton = true,
       List<BrnVerticalIconButton> iconButtonList}) {
-    if ((buttonTitleList == null || buttonTitleList.isEmpty) && iconButtonList == null) {
+    if ((buttonTitleList == null || buttonTitleList.isEmpty) &&
+        iconButtonList == null) {
       return Container(
         height: 0,
         width: 0,
@@ -210,7 +211,10 @@ class BrnBottomButtonPanel extends StatelessWidget {
               padding: EdgeInsets.only(left: 8, right: 8, top: 6, bottom: 6),
               decoration: BoxDecoration(
                 color: enableSecondaryButton
-                    ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandAuxiliary
+                    ? BrnThemeConfigurator.instance
+                        .getConfig()
+                        .commonConfig
+                        .brandAuxiliary
                     : Color(0xFFCCCCCC),
                 borderRadius: BorderRadius.all(Radius.circular(6.0)),
               ),
@@ -250,7 +254,10 @@ class BrnBottomButtonPanel extends StatelessWidget {
           padding: EdgeInsets.only(left: 8, right: 8, top: 6, bottom: 6),
           decoration: BoxDecoration(
             color: enableMainButton
-                ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary
+                ? BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .brandPrimary
                 : Color(0xFFCCCCCC),
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
           ),
@@ -277,7 +284,8 @@ class BrnBottomButtonPanel extends StatelessWidget {
 
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.only(left: (_isEmptyIcon() && _isEmptySecondary()) ? 12 : 8),
+        padding: EdgeInsets.only(
+            left: (_isEmptyIcon() && _isEmptySecondary()) ? 12 : 8),
         child: mainWidget,
       ),
     );

@@ -32,6 +32,7 @@ class BrnSelectedListActionSheetController extends ChangeNotifier {
     _isHidden = true;
     notifyListeners();
   }
+
   bool get isHidden {
     return _isHidden;
   }

@@ -177,20 +177,24 @@ class BrnDefaultConfigUtils {
   /// 表单项默认配置
   static BrnFormItemConfig defaultFormItemConfig = BrnFormItemConfig(
     headTitleTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeHead),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeHead),
     titleTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeSubHead),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
     subTitleTextStyle: BrnTextStyle(
         color: defaultCommonConfig.colorTextSecondary,
         fontSize: defaultCommonConfig.fontSizeCaption),
     errorTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.brandError, fontSize: defaultCommonConfig.fontSizeCaption),
+        color: defaultCommonConfig.brandError,
+        fontSize: defaultCommonConfig.fontSizeCaption),
     hintTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextHint,
       fontSize: defaultCommonConfig.fontSizeSubHead,
     ),
     contentTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeSubHead),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
     optionsMiddlePadding: EdgeInsets.only(left: defaultCommonConfig.hSpacingMd),
     optionTextStyle: BrnTextStyle(
         height: 1.3,
@@ -207,16 +211,19 @@ class BrnDefaultConfigUtils {
         bottom: defaultCommonConfig.vSpacingLg),
     titlePaddingSm: EdgeInsets.only(left: 10),
     titlePaddingLg: EdgeInsets.only(left: defaultCommonConfig.hSpacingLg),
-    subTitlePadding:
-        EdgeInsets.only(left: defaultCommonConfig.hSpacingLg, top: defaultCommonConfig.vSpacingXs),
-    errorPadding:
-        EdgeInsets.only(left: defaultCommonConfig.hSpacingLg, top: defaultCommonConfig.vSpacingXs),
+    subTitlePadding: EdgeInsets.only(
+        left: defaultCommonConfig.hSpacingLg,
+        top: defaultCommonConfig.vSpacingXs),
+    errorPadding: EdgeInsets.only(
+        left: defaultCommonConfig.hSpacingLg,
+        top: defaultCommonConfig.vSpacingXs),
     disableTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextDisabled,
       fontSize: defaultCommonConfig.fontSizeSubHead,
     ),
     tipsTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextSecondary, fontSize: defaultCommonConfig.fontSizeBase),
+        color: defaultCommonConfig.colorTextSecondary,
+        fontSize: defaultCommonConfig.fontSizeBase),
   );
 
   /// Dialog默认配置
@@ -225,18 +232,26 @@ class BrnDefaultConfigUtils {
       radius: defaultCommonConfig.radiusLg,
       iconPadding: EdgeInsets.only(top: defaultCommonConfig.vSpacingXxl),
       titlePaddingSm: EdgeInsets.only(
-          top: 12, left: defaultCommonConfig.hSpacingXxl, right: defaultCommonConfig.hSpacingXxl),
+          top: 12,
+          left: defaultCommonConfig.hSpacingXxl,
+          right: defaultCommonConfig.hSpacingXxl),
       titlePaddingLg: EdgeInsets.only(
-          top: 28, left: defaultCommonConfig.hSpacingXxl, right: defaultCommonConfig.hSpacingXxl),
+          top: 28,
+          left: defaultCommonConfig.hSpacingXxl,
+          right: defaultCommonConfig.hSpacingXxl),
       titleTextStyle: BrnTextStyle(
           fontWeight: FontWeight.w600,
           fontSize: defaultCommonConfig.fontSizeHead,
           color: defaultCommonConfig.colorTextBase),
       titleTextAlign: TextAlign.center,
       contentPaddingSm: EdgeInsets.only(
-          top: 8, left: defaultCommonConfig.hSpacingXl, right: defaultCommonConfig.hSpacingXl),
+          top: 8,
+          left: defaultCommonConfig.hSpacingXl,
+          right: defaultCommonConfig.hSpacingXl),
       contentPaddingLg: EdgeInsets.only(
-          top: 28, left: defaultCommonConfig.hSpacingXl, right: defaultCommonConfig.hSpacingXl),
+          top: 28,
+          left: defaultCommonConfig.hSpacingXl,
+          right: defaultCommonConfig.hSpacingXl),
       contentTextStyle: BrnTextStyle(
         fontSize: defaultCommonConfig.fontSizeBase,
         color: defaultCommonConfig.colorTextImportant,
@@ -244,9 +259,13 @@ class BrnDefaultConfigUtils {
       ),
       contentTextAlign: TextAlign.center,
       warningPaddingSm: EdgeInsets.only(
-          top: 6, left: defaultCommonConfig.hSpacingXl, right: defaultCommonConfig.hSpacingXl),
+          top: 6,
+          left: defaultCommonConfig.hSpacingXl,
+          right: defaultCommonConfig.hSpacingXl),
       warningPaddingLg: EdgeInsets.only(
-          top: 28, left: defaultCommonConfig.hSpacingXl, right: defaultCommonConfig.hSpacingXl),
+          top: 28,
+          left: defaultCommonConfig.hSpacingXl,
+          right: defaultCommonConfig.hSpacingXl),
       warningTextAlign: TextAlign.center,
       warningTextStyle: BrnTextStyle(
         fontSize: defaultCommonConfig.fontSizeBase,
@@ -283,41 +302,48 @@ class BrnDefaultConfigUtils {
       fontSize: defaultCommonConfig.fontSizeBase,
     ),
     detailTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeBase),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeBase),
     accessoryTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextSecondary,
       fontSize: defaultCommonConfig.fontSizeBase,
     ),
     cardTitlePadding: EdgeInsets.only(
-        top: defaultCommonConfig.vSpacingXl, bottom: defaultCommonConfig.vSpacingMd),
+        top: defaultCommonConfig.vSpacingXl,
+        bottom: defaultCommonConfig.vSpacingMd),
     alignment: PlaceholderAlignment.middle,
     cardBackgroundColor: defaultCommonConfig.fillBase,
   );
 
   /// 空页面配置
-  static BrnAbnormalStateConfig defaultAbnormalStateConfig = BrnAbnormalStateConfig(
-      titleTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.colorTextBase,
-          fontSize: defaultCommonConfig.fontSizeSubHead,
-          fontWeight: FontWeight.w600),
-      contentTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.colorTextHint, fontSize: defaultCommonConfig.fontSizeBase),
-      operateTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.brandPrimary, fontSize: defaultCommonConfig.fontSizeBase),
-      btnRadius: 4,
-      doubleBrnTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.brandPrimary, fontSize: defaultCommonConfig.fontSizeSubHead),
-      singleBrnTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextBaseInverse,
-        fontSize: defaultCommonConfig.fontSizeSubHead,
-      ),
-      singleMinWidth: 160,
-      doubleMinWidth: 120);
+  static BrnAbnormalStateConfig defaultAbnormalStateConfig =
+      BrnAbnormalStateConfig(
+          titleTextStyle: BrnTextStyle(
+              color: defaultCommonConfig.colorTextBase,
+              fontSize: defaultCommonConfig.fontSizeSubHead,
+              fontWeight: FontWeight.w600),
+          contentTextStyle: BrnTextStyle(
+              color: defaultCommonConfig.colorTextHint,
+              fontSize: defaultCommonConfig.fontSizeBase),
+          operateTextStyle: BrnTextStyle(
+              color: defaultCommonConfig.brandPrimary,
+              fontSize: defaultCommonConfig.fontSizeBase),
+          btnRadius: 4,
+          doubleBrnTextStyle: BrnTextStyle(
+              color: defaultCommonConfig.brandPrimary,
+              fontSize: defaultCommonConfig.fontSizeSubHead),
+          singleBrnTextStyle: BrnTextStyle(
+            color: defaultCommonConfig.colorTextBaseInverse,
+            fontSize: defaultCommonConfig.fontSizeSubHead,
+          ),
+          singleMinWidth: 160,
+          doubleMinWidth: 120);
 
   /// 标签配置
   static BrnTagConfig defaultTagConfig = BrnTagConfig(
       tagTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeCaption),
+          color: defaultCommonConfig.colorTextBase,
+          fontSize: defaultCommonConfig.fontSizeCaption),
       selectTagTextStyle: BrnTextStyle(
           fontWeight: FontWeight.w600,
           color: defaultCommonConfig.brandPrimary,
@@ -357,20 +383,25 @@ class BrnDefaultConfigUtils {
       systemUiOverlayStyle: SystemUiOverlayStyle.dark);
 
   /// 内容信息（两列）配置
-  static BrnPairInfoTableConfig defaultPairInfoTableConfig = BrnPairInfoTableConfig(
+  static BrnPairInfoTableConfig defaultPairInfoTableConfig =
+      BrnPairInfoTableConfig(
     rowSpacing: 4,
     itemSpacing: 2,
     keyTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextSecondary, fontSize: defaultCommonConfig.fontSizeBase),
+        color: defaultCommonConfig.colorTextSecondary,
+        fontSize: defaultCommonConfig.fontSizeBase),
     valueTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeBase),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeBase),
     linkTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.brandPrimary, fontSize: defaultCommonConfig.fontSizeBase),
+        color: defaultCommonConfig.brandPrimary,
+        fontSize: defaultCommonConfig.fontSizeBase),
     configId: BrnThemeConfigurator.BRUNO_CONFIG_ID,
   );
 
   /// 内容信息（一列）配置
-  static BrnPairRichInfoGridConfig defaultPairRichInfoGridConfig = BrnPairRichInfoGridConfig(
+  static BrnPairRichInfoGridConfig defaultPairRichInfoGridConfig =
+      BrnPairRichInfoGridConfig(
     rowSpacing: 4,
     itemSpacing: 2,
     itemHeight: 20,
@@ -403,7 +434,8 @@ class BrnDefaultConfigUtils {
   static BrnActionSheetConfig defaultActionSheetConfig = BrnActionSheetConfig(
     topRadius: defaultCommonConfig.radiusLg,
     titleStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextSecondary, fontSize: defaultCommonConfig.fontSizeBase),
+        color: defaultCommonConfig.colorTextSecondary,
+        fontSize: defaultCommonConfig.fontSizeBase),
     itemTitleStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextBase,
       fontSize: defaultCommonConfig.fontSizeSubHead,
@@ -445,9 +477,11 @@ class BrnDefaultConfigUtils {
   static BrnPickerConfig defaultPickerConfig = BrnPickerConfig(
     backgroundColor: PICKER_BACKGROUND_COLOR,
     cancelTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeSubHead),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
     confirmTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.brandPrimary, fontSize: defaultCommonConfig.fontSizeSubHead),
+        color: defaultCommonConfig.brandPrimary,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
     titleTextStyle: BrnTextStyle(
         color: defaultCommonConfig.colorTextBase,
         fontSize: defaultCommonConfig.fontSizeSubHead,
@@ -458,7 +492,8 @@ class BrnDefaultConfigUtils {
     itemHeight: PICKER_ITEM_HEIGHT,
     dividerColor: Color(0xFFF0F0F0),
     itemTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeHead),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeHead),
     itemTextSelectedStyle: BrnTextStyle(
       color: defaultCommonConfig.brandPrimary,
       fontSize: defaultCommonConfig.fontSizeHead,
@@ -468,11 +503,13 @@ class BrnDefaultConfigUtils {
   );
 
   /// 数字增强信息配置
-  static BrnEnhanceNumberCardConfig defaultNumberInfoConfig = BrnEnhanceNumberCardConfig(
+  static BrnEnhanceNumberCardConfig defaultNumberInfoConfig =
+      BrnEnhanceNumberCardConfig(
     runningSpace: 16,
     itemRunningSpace: 8,
     titleTextStyle: BrnTextStyle(fontSize: 28, fontWeight: FontWeight.w600),
-    descTextStyle: BrnTextStyle(fontSize: 12, color: defaultCommonConfig.colorTextSecondary),
+    descTextStyle: BrnTextStyle(
+        fontSize: 12, color: defaultCommonConfig.colorTextSecondary),
     dividerWidth: 0.5,
   );
 
@@ -491,10 +528,12 @@ class BrnDefaultConfigUtils {
         fontWeight: FontWeight.normal),
     tagRadius: defaultCommonConfig.radiusSm,
     tagNormalTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeCaption),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeCaption),
     tagNormalBgColor: defaultCommonConfig.brandPrimary.withAlpha(0x14),
     tagSelectedTextStyle: BrnTextStyle(
-        color: defaultCommonConfig.brandPrimary, fontSize: defaultCommonConfig.fontSizeCaption),
+        color: defaultCommonConfig.brandPrimary,
+        fontSize: defaultCommonConfig.fontSizeCaption),
     tagSelectedBgColor: defaultCommonConfig.fillBody,
     tagSpacing: 12,
     preLineTagCount: 4,
@@ -504,13 +543,15 @@ class BrnDefaultConfigUtils {
   /// 筛选项配置
   static BrnSelectionConfig defaultSelectionConfig = BrnSelectionConfig(
       menuNormalTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeBase),
+          color: defaultCommonConfig.colorTextBase,
+          fontSize: defaultCommonConfig.fontSizeBase),
       menuSelectedTextStyle: BrnTextStyle(
           fontWeight: FontWeight.w600,
           fontSize: defaultCommonConfig.fontSizeBase,
           color: defaultCommonConfig.brandPrimary),
       tagNormalTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeCaption),
+          color: defaultCommonConfig.colorTextBase,
+          fontSize: defaultCommonConfig.fontSizeCaption),
       tagSelectedTextStyle: BrnTextStyle(
         color: defaultCommonConfig.brandPrimary,
         fontSize: defaultCommonConfig.fontSizeCaption,
@@ -518,17 +559,21 @@ class BrnDefaultConfigUtils {
       ),
       tagRadius: defaultCommonConfig.radiusSm,
       tagNormalBackgroundColor: defaultCommonConfig.fillBody,
-      tagSelectedBackgroundColor: defaultCommonConfig.brandPrimary.withOpacity(0.12),
+      tagSelectedBackgroundColor:
+          defaultCommonConfig.brandPrimary.withOpacity(0.12),
       rangeTitleTextStyle: BrnTextStyle(
           color: defaultCommonConfig.colorTextBase,
           fontSize: defaultCommonConfig.fontSizeSubHead,
           fontWeight: FontWeight.w600),
       hintTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.colorTextHint, fontSize: defaultCommonConfig.fontSizeBase),
+          color: defaultCommonConfig.colorTextHint,
+          fontSize: defaultCommonConfig.fontSizeBase),
       inputTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeBase),
+          color: defaultCommonConfig.colorTextBase,
+          fontSize: defaultCommonConfig.fontSizeBase),
       itemNormalTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeBase),
+          color: defaultCommonConfig.colorTextBase,
+          fontSize: defaultCommonConfig.fontSizeBase),
       itemSelectedTextStyle: BrnTextStyle(
         color: defaultCommonConfig.brandPrimary,
         fontSize: defaultCommonConfig.fontSizeBase,
@@ -554,13 +599,15 @@ class BrnDefaultConfigUtils {
         fontWeight: FontWeight.w600,
       ),
       optionTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.brandPrimary, fontSize: defaultCommonConfig.fontSizeBase),
+          color: defaultCommonConfig.brandPrimary,
+          fontSize: defaultCommonConfig.fontSizeBase),
       moreTextStyle: BrnTextStyle(
         color: defaultCommonConfig.colorTextSecondary,
         fontSize: defaultCommonConfig.fontSizeCaption,
       ),
       flayNormalTextStyle: BrnTextStyle(
-          color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeSubHead),
+          color: defaultCommonConfig.colorTextBase,
+          fontSize: defaultCommonConfig.fontSizeSubHead),
       flatSelectedTextStyle: BrnTextStyle(
           color: defaultCommonConfig.brandPrimary,
           fontSize: defaultCommonConfig.fontSizeSubHead,
@@ -571,7 +618,8 @@ class BrnDefaultConfigUtils {
           fontWeight: FontWeight.w600));
 
   /// 查看图片配置
-  static BrnGalleryDetailConfig defaultGalleryDetailConfig = BrnGalleryDetailConfig(
+  static BrnGalleryDetailConfig defaultGalleryDetailConfig =
+      BrnGalleryDetailConfig(
     appbarTitleStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextBaseInverse,
       fontSize: defaultCommonConfig.fontSizeSubHead,
@@ -583,7 +631,8 @@ class BrnDefaultConfigUtils {
         fontWeight: FontWeight.w600),
     appbarBackgroundColor: Colors.black,
     appbarBrightness: Brightness.dark,
-    tabBarUnSelectedLabelStyle: BrnTextStyle(fontSize: 16, color: Color(0XFFCCCCCC)),
+    tabBarUnSelectedLabelStyle:
+        BrnTextStyle(fontSize: 16, color: Color(0XFFCCCCCC)),
     tabBarLabelStyle: BrnTextStyle(
         fontSize: defaultCommonConfig.fontSizeSubHead,
         fontWeight: FontWeight.w600,
@@ -595,8 +644,8 @@ class BrnDefaultConfigUtils {
         color: defaultCommonConfig.colorTextBaseInverse,
         fontSize: defaultCommonConfig.fontSizeHead,
         fontWeight: FontWeight.w600),
-    contentStyle:
-        BrnTextStyle(color: Color(0xFFCCCCCC), fontSize: defaultCommonConfig.fontSizeBase),
+    contentStyle: BrnTextStyle(
+        color: Color(0xFFCCCCCC), fontSize: defaultCommonConfig.fontSizeBase),
     actionStyle: BrnTextStyle(
         color: defaultCommonConfig.colorTextBaseInverse,
         fontSize: defaultCommonConfig.fontSizeBase),

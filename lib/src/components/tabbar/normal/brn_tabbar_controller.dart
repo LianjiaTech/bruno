@@ -59,7 +59,8 @@ class BrnCloseWindowController {
   ///
   bool isShow = false;
 
-  StreamController<CloseWindowEvent> _closeController = StreamController.broadcast();
+  StreamController<CloseWindowEvent> _closeController =
+      StreamController.broadcast();
 
   StreamController<CloseWindowEvent> getCloseController() {
     return _closeController;

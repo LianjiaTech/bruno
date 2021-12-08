@@ -134,12 +134,15 @@ class BrnAppBarConfig extends BrnBaseConfig {
   SystemUiOverlayStyle systemUiOverlayStyle;
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnAppBarConfig appbarConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).appBarConfig;
+    BrnAppBarConfig appbarConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .appBarConfig;
 
     this.backgroundColor ??= appbarConfig?.backgroundColor;
     this.appBarHeight ??= appbarConfig?.appBarHeight;
@@ -181,7 +184,8 @@ class BrnAppBarConfig extends BrnBaseConfig {
         titlePadding: titlePading ?? this.titlePadding,
         iconSize: iconSize ?? this.iconSize,
         flexibleSpace: flexibleSpace ?? this.flexibleSpace,
-        systemUiOverlayStyle: systemUiOverlayStyle ?? this.systemUiOverlayStyle);
+        systemUiOverlayStyle:
+            systemUiOverlayStyle ?? this.systemUiOverlayStyle);
   }
 
   BrnAppBarConfig merge(BrnAppBarConfig other) {
@@ -190,8 +194,10 @@ class BrnAppBarConfig extends BrnBaseConfig {
         backgroundColor: other.backgroundColor,
         appBarHeight: other.appBarHeight,
         leadIconBuilder: other.leadIconBuilder,
-        titleStyle: this.titleStyle?.merge(other.titleStyle) ?? other.titleStyle,
-        actionsStyle: this.actionsStyle?.merge(other.actionsStyle) ?? other.actionsStyle,
+        titleStyle:
+            this.titleStyle?.merge(other.titleStyle) ?? other.titleStyle,
+        actionsStyle:
+            this.actionsStyle?.merge(other.actionsStyle) ?? other.actionsStyle,
         titleMaxLength: other.titleMaxLength,
         leftAndRightPadding: other.leftAndRightPadding,
         itemSpacing: other.itemSpacing,

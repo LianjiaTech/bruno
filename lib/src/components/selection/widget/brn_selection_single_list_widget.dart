@@ -43,7 +43,8 @@ class BrnSelectionSingleListWidget extends StatefulWidget {
     }
 
     /// 当前 Items 所在的层级
-    currentListIndex = BrnSelectionUtil.getCurrentListIndex(items.length > 0 ? items[0] : null);
+    currentListIndex = BrnSelectionUtil.getCurrentListIndex(
+        items.length > 0 ? items[0] : null);
 
     _selectedItems = items?.where((f) => f.isSelected)?.toList();
     if (_selectedItems == null) {
@@ -52,14 +53,16 @@ class BrnSelectionSingleListWidget extends StatefulWidget {
   }
 
   @override
-  _BrnSelectionSingleListWidgetState createState() => _BrnSelectionSingleListWidgetState();
+  _BrnSelectionSingleListWidgetState createState() =>
+      _BrnSelectionSingleListWidgetState();
 
   List<BrnSelectionEntity> getSelectedItems() {
     return _selectedItems;
   }
 }
 
-class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWidget> {
+class _BrnSelectionSingleListWidgetState
+    extends State<BrnSelectionSingleListWidget> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -90,12 +93,18 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
               isMoreSelectionListType: false,
               isFirstLevel: (1 == widget.currentListIndex) ? true : false,
               itemSelectFunction: (BrnSelectionEntity entity) {
-                if ((entity.filterType == BrnSelectionFilterType.Checkbox && !entity.isSelected) ||
+                if ((entity.filterType == BrnSelectionFilterType.Checkbox &&
+                        !entity.isSelected) ||
                     entity.filterType != BrnSelectionFilterType.Checkbox) {
                   if (entity.hasCheckBoxBrother()) {
                     if (entity.isUnLimit() &&
-                            entity.parent.children.where((f) => f.isSelected).length > 0 ||
-                        entity.parent.children.where((f) => f.isSelected && f.isUnLimit()).length >
+                            entity.parent.children
+                                    .where((f) => f.isSelected)
+                                    .length >
+                                0 ||
+                        entity.parent.children
+                                .where((f) => f.isSelected && f.isUnLimit())
+                                .length >
                             0) {
                       ///点击的是不限类型，且不限类型同级别已经有选中的 Item 则不用检查数量。
                       /// 不限类型已经选中，选择非不限类型时，什么也不做，
@@ -112,7 +121,8 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
                   }
                 }
                 _processFilterData(entity);
-                widget.singleListItemSelect(widget.currentListIndex, index, entity);
+                widget.singleListItemSelect(
+                    widget.currentListIndex, index, entity);
               },
             );
           },
@@ -153,8 +163,10 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
     /// （两列、三列时）第一列节点是否被选中取决于它的子节点是否被选中，
     /// 只有当它子节点被选中时才会认为第一列的节点相应被选中。
     if (widget.items != null && widget.items.length > 0) {
-      widget.items[0].parent?.isSelected =
-          widget.items[0].parent.children.where((BrnSelectionEntity f) => f.isSelected).length > 0;
+      widget.items[0].parent?.isSelected = widget.items[0].parent.children
+              .where((BrnSelectionEntity f) => f.isSelected)
+              .length >
+          0;
     }
 
     for (BrnSelectionEntity item in widget.items) {
@@ -198,10 +210,13 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
     }
   }
 
-  void configMultiLevelList(BrnSelectionEntity selectedEntity, int currentListIndex) {
+  void configMultiLevelList(
+      BrnSelectionEntity selectedEntity, int currentListIndex) {
     /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
     if (BrnSelectionFilterType.Radio == selectedEntity.filterType) {
-      selectedEntity.parent?.children?.where((f) => f != selectedEntity)?.forEach((f) {
+      selectedEntity.parent?.children
+          ?.where((f) => f != selectedEntity)
+          ?.forEach((f) {
         f.clearChildSelection();
         f.isSelected = false;
       });
@@ -209,7 +224,9 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
     } else if (BrnSelectionFilterType.Checkbox == selectedEntity.filterType) {
       /// 选中【不限】清除同一级别其他的状态
       if (selectedEntity.isUnLimit()) {
-        selectedEntity.parent?.children?.where((f) => f != selectedEntity)?.forEach((f) {
+        selectedEntity.parent?.children
+            ?.where((f) => f != selectedEntity)
+            ?.forEach((f) {
           f.clearChildSelection();
           f.isSelected = false;
         });

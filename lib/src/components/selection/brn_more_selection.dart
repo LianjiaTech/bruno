@@ -32,7 +32,10 @@ class BrnMoreSelectionPage extends StatefulWidget {
   final BrnSelectionConfig themeData;
 
   BrnMoreSelectionPage(
-      {this.entityData, this.confirmCallback, this.onCustomFloatingLayerClick, this.themeData});
+      {this.entityData,
+      this.confirmCallback,
+      this.onCustomFloatingLayerClick,
+      this.themeData});
 
   @override
   _BrnMoreSelectionPageState createState() => _BrnMoreSelectionPageState();
@@ -53,12 +56,14 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    animation = Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
+    animation =
+        Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
     _controller.forward();
 
     _originalSelectedItemsList = List();
     _originalSelectedItemsList.clear();
-    _originalSelectedItemsList.addAll(widget.entityData?.allSelectedList() ?? List());
+    _originalSelectedItemsList
+        .addAll(widget.entityData?.allSelectedList() ?? List());
     for (BrnSelectionEntity entity in _originalSelectedItemsList) {
       entity.isSelected = true;
       if (entity.customMap != null) {
@@ -246,8 +251,10 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
               node.filterType == BrnSelectionFilterType.DateRange ||
               node.filterType == BrnSelectionFilterType.DateRangeCalendar)) {
         if (node.customMap != null &&
-            ((node.customMap['min'] != null && node.customMap['min'].length > 0) ||
-                (node.customMap['max'] != null && node.customMap['max'].length > 0))) {
+            ((node.customMap['min'] != null &&
+                    node.customMap['min'].length > 0) ||
+                (node.customMap['max'] != null &&
+                    node.customMap['max'].length > 0))) {
           if (!node.isValidRange()) {
             isValid = false;
             if (node?.filterType == BrnSelectionFilterType.Range) {

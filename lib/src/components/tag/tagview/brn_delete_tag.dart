@@ -71,7 +71,8 @@ class BrnDeleteTag extends StatefulWidget {
       : super(key: key) {
     themeData ??= BrnTagConfig();
     themeData = themeData.merge(BrnTagConfig(
-        tagBackgroundColor: this.backgroundColor, tagTextStyle: BrnTextStyle.withStyle(tagTextStyle)));
+        tagBackgroundColor: this.backgroundColor,
+        tagTextStyle: BrnTextStyle.withStyle(tagTextStyle)));
     themeData = BrnThemeConfigurator.instance
         .getConfig(configId: themeData.configId)
         .tagConfig
@@ -88,7 +89,8 @@ class _BrnDeleteTagState extends State<BrnDeleteTag> {
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ?? BrnDeleteTagController(initTags: widget.tags);
+    _controller =
+        widget.controller ?? BrnDeleteTagController(initTags: widget.tags);
   }
 
   @override
@@ -127,14 +129,17 @@ class _BrnDeleteTagState extends State<BrnDeleteTag> {
     if (widget.softWrap ?? true) {
       result = Wrap(
         spacing: widget.horizontalSpacing ?? 10,
-        runSpacing: widget.verticalSpacing != null ? widget.verticalSpacing - 16 : -6,
+        runSpacing:
+            widget.verticalSpacing != null ? widget.verticalSpacing - 16 : -6,
         alignment: WrapAlignment.start,
         children: itemList,
       );
     } else {
       int tagIdx = 0;
       var finalTagList = itemList.map((tag) {
-        double rightPadding = (tagIdx == itemList.length - 1) ? 0 : widget.horizontalSpacing ?? 12;
+        double rightPadding = (tagIdx == itemList.length - 1)
+            ? 0
+            : widget.horizontalSpacing ?? 12;
         var padding = Padding(
           child: tag,
           padding: EdgeInsets.only(right: rightPadding),
@@ -196,15 +201,18 @@ class DeleteTagItemWidget extends StatelessWidget {
       labelPadding: EdgeInsets.fromLTRB(0, 0, -3, 0),
       backgroundColor: themeData.tagBackgroundColor,
       label: Text(this.title,
-          overflow: TextOverflow.ellipsis, style: themeData?.tagTextStyle?.generateTextStyle()),
+          overflow: TextOverflow.ellipsis,
+          style: themeData?.tagTextStyle?.generateTextStyle()),
       shape: shape ??
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(themeData?.tagRadius)),
+          RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(themeData?.tagRadius)),
       //删除图标
       deleteIcon: deleteIconSize != null
           ? BrunoTools.getAssetSizeImage(
               BrnAsset.ICON_CLOSE, deleteIconSize.width, deleteIconSize.height,
               color: deleteIconColor)
-          : BrunoTools.getAssetImageWithColor(BrnAsset.ICON_CLOSE, deleteIconColor),
+          : BrunoTools.getAssetImageWithColor(
+              BrnAsset.ICON_CLOSE, deleteIconColor),
       onDeleted: () {
         debugPrint('$index');
         didDeleted(index);

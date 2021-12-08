@@ -36,13 +36,15 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var checkbox;
-    if (!item.isUnLimit() && (item.children == null || item.children.length == 0)) {
+    if (!item.isUnLimit() &&
+        (item.children == null || item.children.length == 0)) {
       if (item.isInLastLevel() && item.hasCheckBoxBrother()) {
         checkbox = Container(
           padding: EdgeInsets.only(left: 6),
           width: 21,
           child: (item.isSelected)
-              ? BrunoTools.getAssetImageWithBandColor(BrnAsset.iconMultiSelected)
+              ? BrunoTools.getAssetImageWithBandColor(
+                  BrnAsset.iconMultiSelected)
               : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
         );
       } else {
@@ -86,7 +88,8 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
               Visibility(
                 visible: !BrunoTools.isEmpty(item.subTitle),
                 child: Padding(
-                  padding: EdgeInsets.only(right: item.isInLastLevel() ? 21 : 0),
+                  padding:
+                      EdgeInsets.only(right: item.isInLastLevel() ? 21 : 0),
                   child: BrnCSS2Text.toTextView(item.subTitle ?? '',
                       defaultStyle: TextStyle(
                           fontSize: 12,
@@ -143,14 +146,17 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
 
   String getSelectedItemCount(BrnSelectionEntity item) {
     String itemCount = "";
-    if ((BrnSelectionUtil.getTotalLevel(item) < 3 || !isFirstLevel) && item.children != null) {
-      int count = item.children.where((f) => f.isSelected && !f.isUnLimit()).length;
+    if ((BrnSelectionUtil.getTotalLevel(item) < 3 || !isFirstLevel) &&
+        item.children != null) {
+      int count =
+          item.children.where((f) => f.isSelected && !f.isUnLimit()).length;
       if (count > 1) {
         return '($count)';
       } else if (count == 1 && item.hasCheckBoxBrother()) {
         return '($count)';
       } else {
-        var unLimited = item.children.where((f) => f.isSelected && f.isUnLimit()).toList();
+        var unLimited =
+            item.children.where((f) => f.isSelected && f.isUnLimit()).toList();
         if (unLimited.length > 0) {
           return '(全部)';
         }

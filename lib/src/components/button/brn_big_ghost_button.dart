@@ -63,8 +63,8 @@ class BrnBigGhostButton extends StatelessWidget {
       constraints: BoxConstraints.tightFor(
           width: width ?? double.infinity,
           height: defaultThemeConfig.bigButtonHeight),
-      backgroundColor:
-          bgColor ?? defaultThemeConfig.commonConfig.brandPrimary.withOpacity(0.05),
+      backgroundColor: bgColor ??
+          defaultThemeConfig.commonConfig.brandPrimary.withOpacity(0.05),
       onTap: onTap,
       alignment: Alignment.center,
       text: title ?? '确认',

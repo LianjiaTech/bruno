@@ -59,7 +59,10 @@ class BrnDateRangeSideWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _DatePickerWidgetState(
-      this.minDateTime, this.maxDateTime, this.initialStartDateTime, this.onInitSelectChange);
+      this.minDateTime,
+      this.maxDateTime,
+      this.initialStartDateTime,
+      this.onInitSelectChange);
 }
 
 class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
@@ -77,13 +80,14 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
 
   DateRangeSideValueCallback _onInitSelectChange;
 
-  _DatePickerWidgetState(DateTime minDateTime, DateTime maxDateTime, DateTime initialDateTime,
-      DateRangeSideValueCallback onInitSelectChange) {
+  _DatePickerWidgetState(DateTime minDateTime, DateTime maxDateTime,
+      DateTime initialDateTime, DateRangeSideValueCallback onInitSelectChange) {
     _onInitSelectChange = onInitSelectChange;
     _initData(initialDateTime, minDateTime, maxDateTime);
   }
 
-  void _initData(DateTime initialDateTime, DateTime minDateTime, DateTime maxDateTime) {
+  void _initData(
+      DateTime initialDateTime, DateTime minDateTime, DateTime maxDateTime) {
     DateTime initDateTime = initialDateTime ?? DateTime.now();
     this._currYear = initDateTime.year;
     this._currMonth = initDateTime.month;
@@ -106,18 +110,28 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
     this._currDay = min(max(_dayRange.first, _currDay), _dayRange.last);
     _onInitSelectedChange();
     // create scroll controller
-    _yearScrollCtrl = FixedExtentScrollController(initialItem: _currYear - _yearRange.first);
-    _monthScrollCtrl = FixedExtentScrollController(initialItem: _currMonth - _monthRange.first);
-    _dayScrollCtrl = FixedExtentScrollController(initialItem: _currDay - _dayRange.first);
-    _scrollCtrlMap = {'y': _yearScrollCtrl, 'M': _monthScrollCtrl, 'd': _dayScrollCtrl};
+    _yearScrollCtrl =
+        FixedExtentScrollController(initialItem: _currYear - _yearRange.first);
+    _monthScrollCtrl = FixedExtentScrollController(
+        initialItem: _currMonth - _monthRange.first);
+    _dayScrollCtrl =
+        FixedExtentScrollController(initialItem: _currDay - _dayRange.first);
+    _scrollCtrlMap = {
+      'y': _yearScrollCtrl,
+      'M': _monthScrollCtrl,
+      'd': _dayScrollCtrl
+    };
     _valueRangeMap = {'y': _yearRange, 'M': _monthRange, 'd': _dayRange};
   }
 
   @override
   Widget build(BuildContext context) {
-    _initData(widget.initialStartDateTime, widget.minDateTime, widget.maxDateTime);
+    _initData(
+        widget.initialStartDateTime, widget.minDateTime, widget.maxDateTime);
     return GestureDetector(
-      child: Container(color: widget.themeData.backgroundColor, child: _renderDatePickerWidget()),
+      child: Container(
+          color: widget.themeData.backgroundColor,
+          child: _renderDatePickerWidget()),
     );
   }
 
@@ -162,7 +176,8 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
   /// render the picker widget of year、month and day
   Widget _renderDatePickerWidget() {
     List<Widget> pickers = List<Widget>();
-    List<String> formatArr = DateTimeFormatter.splitDateFormat(widget.dateFormat);
+    List<String> formatArr =
+        DateTimeFormatter.splitDateFormat(widget.dateFormat);
     formatArr.forEach((format) {
       List<int> valueRange = _findPickerItemRange(format);
 
@@ -182,7 +197,8 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
       );
       pickers.add(pickerColumn);
     });
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
   }
 
   Widget _renderDatePickerColumnComponent({
@@ -230,7 +246,8 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
       ColumnType columnType, int index, int value, String format) {
     TextStyle textStyle = widget.themeData.itemTextStyle.generateTextStyle();
     if ((ColumnType.Year == columnType && index == _calcSelectIndexList()[0]) ||
-        (ColumnType.Month == columnType && index == _calcSelectIndexList()[1]) ||
+        (ColumnType.Month == columnType &&
+            index == _calcSelectIndexList()[1]) ||
         (ColumnType.Day == columnType && index == _calcSelectIndexList()[2])) {
       textStyle = widget.themeData.itemTextSelectedStyle.generateTextStyle();
     }
@@ -275,15 +292,16 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
     _isChangeDateRange = true;
 
     List<int> monthRange = _calcMonthRange();
-    bool monthRangeChanged =
-        _monthRange.first != monthRange.first || _monthRange.last != monthRange.last;
+    bool monthRangeChanged = _monthRange.first != monthRange.first ||
+        _monthRange.last != monthRange.last;
     if (monthRangeChanged) {
       // selected year changed
       _currMonth = max(min(_currMonth, monthRange.last), monthRange.first);
     }
 
     List<int> dayRange = _calcDayRange();
-    bool dayRangeChanged = _dayRange.first != dayRange.first || _dayRange.last != dayRange.last;
+    bool dayRangeChanged =
+        _dayRange.first != dayRange.first || _dayRange.last != dayRange.last;
     if (dayRangeChanged) {
       // day range changed, need limit the value of selected day
       _currDay = max(min(_currDay, dayRange.last), dayRange.first);

@@ -13,7 +13,6 @@ class BrnToast {
 
   static _ToastView preToastView;
 
-
   /// 显示在中间。如不设置duration则会自动根据内容长度来计算（更友好，最长5秒）
   static void showInCenter(String text, BuildContext context, {int duration}) {
     show(text, context, duration: duration, gravity: CENTER);
@@ -44,8 +43,8 @@ class BrnToast {
     toastView.overlayState = overlayState;
     OverlayEntry overlayEntry;
     overlayEntry = OverlayEntry(builder: (context) {
-      return _buildToastLayout(
-          context, backgroundColor, backgroundRadius, preIcon, text, textStyle, gravity,
+      return _buildToastLayout(context, backgroundColor, backgroundRadius,
+          preIcon, text, textStyle, gravity,
           verticalOffset: verticalOffset);
     });
     toastView._overlayEntry = overlayEntry;
@@ -53,11 +52,14 @@ class BrnToast {
     toastView._show(aiDuration, onDismiss: onDismiss);
   }
 
-  static double getRealVerticalOffset(double verticalOffset, int gravity, BuildContext context) {
+  static double getRealVerticalOffset(
+      double verticalOffset, int gravity, BuildContext context) {
     if (gravity == BrnToast.TOP) {
-      verticalOffset = (verticalOffset ?? 0) + MediaQuery.of(context).viewInsets.top + 50;
+      verticalOffset =
+          (verticalOffset ?? 0) + MediaQuery.of(context).viewInsets.top + 50;
     } else if (gravity == BrnToast.BOTTOM) {
-      verticalOffset = (verticalOffset ?? 0) + MediaQuery.of(context).viewInsets.bottom + 50;
+      verticalOffset =
+          (verticalOffset ?? 0) + MediaQuery.of(context).viewInsets.bottom + 50;
     } else {
       verticalOffset = 0;
     }
@@ -65,8 +67,14 @@ class BrnToast {
   }
 }
 
-_ToastWidget _buildToastLayout(BuildContext context, Color background, double backgroundRadius,
-    Image preIcon, String msg, TextStyle textStyle, int gravity,
+_ToastWidget _buildToastLayout(
+    BuildContext context,
+    Color background,
+    double backgroundRadius,
+    Image preIcon,
+    String msg,
+    TextStyle textStyle,
+    int gravity,
     {double verticalOffset}) {
   Alignment alignment = Alignment.center;
   EdgeInsets padding;
@@ -118,7 +126,8 @@ class _ToastView {
   _show(int duration, {VoidCallback onDismiss}) async {
     _isVisible = true;
     overlayState.insert(_overlayEntry);
-    await Future.delayed(Duration(seconds: duration == null ? BrnToast.LENGTH_SHORT : duration));
+    await Future.delayed(
+        Duration(seconds: duration == null ? BrnToast.LENGTH_SHORT : duration));
     _dismiss();
     if (onDismiss != null) {
       onDismiss();

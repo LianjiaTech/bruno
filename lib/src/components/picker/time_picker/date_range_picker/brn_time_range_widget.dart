@@ -80,8 +80,12 @@ class BrnTimeRangeWidget extends StatefulWidget {
   }
 
   @override
-  State<StatefulWidget> createState() => _TimePickerWidgetState(this.minDateTime, this.maxDateTime,
-      this.initialStartDateTime, this.initialEndDateTime, this.minuteDivider);
+  State<StatefulWidget> createState() => _TimePickerWidgetState(
+      this.minDateTime,
+      this.maxDateTime,
+      this.initialStartDateTime,
+      this.initialEndDateTime,
+      this.minuteDivider);
 }
 
 class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
@@ -97,13 +101,13 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
   DateTime _startSelectedDateTime;
   DateTime _endSelectedDateTime;
 
-  _TimePickerWidgetState(DateTime minTime, DateTime maxTime, DateTime initStartTime,
-      DateTime initEndTime, int minuteDivider) {
+  _TimePickerWidgetState(DateTime minTime, DateTime maxTime,
+      DateTime initStartTime, DateTime initEndTime, int minuteDivider) {
     _initData(minTime, maxTime, initStartTime, initEndTime, minuteDivider);
   }
 
-  void _initData(DateTime minTime, DateTime maxTime, DateTime initStartTime, DateTime initEndTime,
-      int minuteDivider) {
+  void _initData(DateTime minTime, DateTime maxTime, DateTime initStartTime,
+      DateTime initEndTime, int minuteDivider) {
     if (minTime == null) {
       minTime = DateTime.parse(DATE_PICKER_MIN_DATETIME);
     }
@@ -111,10 +115,10 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
       maxTime = DateTime.parse(DATE_PICKER_MAX_DATETIME);
     }
     DateTime now = DateTime.now();
-    this._minTime =
-        DateTime(now.year, now.month, now.day, minTime.hour, minTime.minute, minTime.second);
-    this._maxTime =
-        DateTime(now.year, now.month, now.day, maxTime.hour, maxTime.minute, maxTime.second);
+    this._minTime = DateTime(now.year, now.month, now.day, minTime.hour,
+        minTime.minute, minTime.second);
+    this._maxTime = DateTime(now.year, now.month, now.day, maxTime.hour,
+        maxTime.minute, maxTime.second);
 
     if (initStartTime == null) {
       // init time is now
@@ -142,19 +146,22 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
     this._hourRange = _calcHourRange();
     this._minuteRange = _calcMinuteRange();
 
-    this._currStartHour = min(max(_hourRange.first, _currStartHour), _hourRange.last);
+    this._currStartHour =
+        min(max(_hourRange.first, _currStartHour), _hourRange.last);
     this._currEndHour = min(_currEndHour, _hourRange.last);
     // limit the range of minute
 
-    this._currStartMinute = min(max(_minuteRange.first, _currStartMinute), _minuteRange.last);
+    this._currStartMinute =
+        min(max(_minuteRange.first, _currStartMinute), _minuteRange.last);
     _currStartMinute -= _currStartMinute % _minuteDivider;
 
     this._currEndMinute = min(_currEndMinute, _minuteRange.last);
     _currEndMinute -= _currEndMinute % _minuteDivider;
 
-    _startSelectedDateTime =
-        DateTime(now.year, now.month, now.day, _currStartHour, _currStartMinute);
-    _endSelectedDateTime = DateTime(now.year, now.month, now.day, _currEndHour, _currEndMinute);
+    _startSelectedDateTime = DateTime(
+        now.year, now.month, now.day, _currStartHour, _currStartMinute);
+    _endSelectedDateTime =
+        DateTime(now.year, now.month, now.day, _currEndHour, _currEndMinute);
 
     _startSelectedIndex = _calcStartSelectIndexList(_minuteDivider);
     _endSelectedIndex = _calcEndSelectIndexList(_minuteDivider);
@@ -162,9 +169,11 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    _initData(_minTime, _maxTime, _startSelectedDateTime, _endSelectedDateTime, _minuteDivider);
+    _initData(_minTime, _maxTime, _startSelectedDateTime, _endSelectedDateTime,
+        _minuteDivider);
     return GestureDetector(
-      child: Material(color: Colors.transparent, child: _renderPickerView(context)),
+      child: Material(
+          color: Colors.transparent, child: _renderPickerView(context)),
     );
   }
 
@@ -173,7 +182,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
     Widget pickerWidget = _renderDatePickerWidget();
 
     // display the title widget
-    if (widget.pickerTitleConfig.title != null || widget.pickerTitleConfig.showTitle) {
+    if (widget.pickerTitleConfig.title != null ||
+        widget.pickerTitleConfig.showTitle) {
       Widget titleWidget = BrnPickerTitle(
         pickerTitleConfig: widget.pickerTitleConfig,
         locale: widget.locale,
@@ -196,8 +206,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
   /// pressed confirm widget
   void _onPressedConfirm() {
     if (widget.onConfirm != null) {
-      widget.onConfirm(
-          _startSelectedDateTime, _endSelectedDateTime, _startSelectedIndex, _endSelectedIndex);
+      widget.onConfirm(_startSelectedDateTime, _endSelectedDateTime,
+          _startSelectedIndex, _endSelectedIndex);
     }
     Navigator.pop(context);
   }
@@ -253,7 +263,9 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
             child: BrnTimeRangeSideWidget(
               key: secondGlobalKey,
               dateFormat: widget.dateFormat,
-              minDateTime: (widget.isLimitTimeRange ?? true) ? _startSelectedDateTime : _minTime,
+              minDateTime: (widget.isLimitTimeRange ?? true)
+                  ? _startSelectedDateTime
+                  : _minTime,
               maxDateTime: _maxTime,
               initialStartDateTime: (widget.isLimitTimeRange ?? true)
                   ? _endSelectedDateTime.compareTo(_startSelectedDateTime) > 0
@@ -275,7 +287,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
                 });
               },
             ))));
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
   }
 
   /// calculate selected index list

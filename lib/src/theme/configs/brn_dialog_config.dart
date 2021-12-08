@@ -129,12 +129,15 @@ class BrnDialogConfig extends BrnBaseConfig {
   /// ③ 如果全局配置中的配置同样为 null 则根据 [configId] 取出全局配置。
   /// ④ 如果没有配置 [configId] 的全局配置，则使用 Bruno 默认的配置
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(String configId,
+      {BrnCommonConfig currentLevelCommonConfig}) {
+    super.initThemeConfig(configId,
+        currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnDialogConfig dialogConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).dialogConfig;
+    BrnDialogConfig dialogConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .dialogConfig;
 
     this.dialogWidth ??= dialogConfig?.dialogWidth;
 
@@ -164,24 +167,30 @@ class BrnDialogConfig extends BrnBaseConfig {
           bottom: dialogConfig.iconPadding.bottom);
     }
 
-    this.titleTextStyle = dialogConfig.titleTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeHead)
-            .merge(this.titleTextStyle));
+    this.titleTextStyle = dialogConfig.titleTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextBase,
+            fontSize: commonConfig.fontSizeHead)
+        .merge(this.titleTextStyle));
 
-    this.contentTextStyle = dialogConfig.contentTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextImportant, fontSize: commonConfig.fontSizeBase)
-            .merge(this.contentTextStyle));
+    this.contentTextStyle = dialogConfig.contentTextStyle.merge(BrnTextStyle(
+            color: commonConfig.colorTextImportant,
+            fontSize: commonConfig.fontSizeBase)
+        .merge(this.contentTextStyle));
 
-    this.warningTextStyle = dialogConfig.warningTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandError, fontSize: commonConfig.fontSizeBase)
-            .merge(this.warningTextStyle));
+    this.warningTextStyle = dialogConfig.warningTextStyle.merge(BrnTextStyle(
+            color: commonConfig.brandError, fontSize: commonConfig.fontSizeBase)
+        .merge(this.warningTextStyle));
 
     this.mainActionTextStyle = dialogConfig.mainActionTextStyle.merge(
-        BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.brandPrimary,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.mainActionTextStyle));
 
     this.assistActionsTextStyle = dialogConfig.assistActionsTextStyle.merge(
-        BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeSubHead)
             .merge(this.assistActionsTextStyle));
 
     if (this.contentPaddingSm == null) {
@@ -274,8 +283,10 @@ class BrnDialogConfig extends BrnBaseConfig {
         warningTextAlign: warningTextAlign ?? this.warningTextAlign,
         dividerPadding: dividerPadding ?? this.dividerPadding,
         mainActionTextStyle: mainActionTextStyle ?? this.mainActionTextStyle,
-        assistActionsTextStyle: assistActionsTextStyle ?? this.assistActionsTextStyle,
-        mainActionBackgroundColor: mainActionBackgroundColor ?? this.mainActionBackgroundColor,
+        assistActionsTextStyle:
+            assistActionsTextStyle ?? this.assistActionsTextStyle,
+        mainActionBackgroundColor:
+            mainActionBackgroundColor ?? this.mainActionBackgroundColor,
         assistActionsBackgroundColor:
             assistActionsBackgroundColor ?? this.assistActionsBackgroundColor,
         bottomHeight: bottomHeight ?? this.bottomHeight,
@@ -290,21 +301,26 @@ class BrnDialogConfig extends BrnBaseConfig {
         iconPadding: other.iconPadding,
         titlePaddingSm: other.titlePaddingSm,
         titlePaddingLg: other.titlePaddingLg,
-        titleTextStyle: titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
+        titleTextStyle:
+            titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
         titleTextAlign: other.titleTextAlign,
         contentPaddingSm: other.contentPaddingSm,
         contentPaddingLg: other.contentPaddingLg,
-        contentTextStyle: contentTextStyle?.merge(other.contentTextStyle) ?? other.contentTextStyle,
+        contentTextStyle: contentTextStyle?.merge(other.contentTextStyle) ??
+            other.contentTextStyle,
         contentTextAlign: other.contentTextAlign,
         warningPaddingSm: other.warningPaddingSm,
         warningPaddingLg: other.warningPaddingLg,
-        warningTextStyle: warningTextStyle?.merge(other.warningTextStyle) ?? other.warningTextStyle,
+        warningTextStyle: warningTextStyle?.merge(other.warningTextStyle) ??
+            other.warningTextStyle,
         warningTextAlign: other.warningTextAlign,
         dividerPadding: other.dividerPadding,
         mainActionTextStyle:
-            mainActionTextStyle?.merge(other.mainActionTextStyle) ?? other.mainActionTextStyle,
-        assistActionsTextStyle: assistActionsTextStyle?.merge(other.assistActionsTextStyle) ??
-            other.assistActionsTextStyle,
+            mainActionTextStyle?.merge(other.mainActionTextStyle) ??
+                other.mainActionTextStyle,
+        assistActionsTextStyle:
+            assistActionsTextStyle?.merge(other.assistActionsTextStyle) ??
+                other.assistActionsTextStyle,
         mainActionBackgroundColor: other.mainActionBackgroundColor,
         assistActionsBackgroundColor: other.assistActionsBackgroundColor,
         bottomHeight: other.bottomHeight,

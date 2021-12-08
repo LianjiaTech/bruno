@@ -68,8 +68,7 @@ class BrnSmallMainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     BrnButtonConfig defaultThemeConfig = themeData ?? BrnButtonConfig();
     defaultThemeConfig = defaultThemeConfig.merge(BrnButtonConfig(
-        smallButtonFontSize: fontSize,
-        smallButtonRadius: radius));
+        smallButtonFontSize: fontSize, smallButtonRadius: radius));
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
@@ -92,7 +91,7 @@ class BrnSmallMainButton extends StatelessWidget {
         double textWidth = textPainter.width;
         //按钮本身大小
         double _maxWidth = textWidth + _BHorizontalPadding * 2;
-        double _minWidth = min(_BMinWidth,con.maxWidth);
+        double _minWidth = min(_BMinWidth, con.maxWidth);
 
         //保证最小宽度是 （84、可用空间）的最小值
         if (_maxWidth <= _minWidth) {

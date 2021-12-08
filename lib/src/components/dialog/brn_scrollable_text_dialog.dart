@@ -117,11 +117,14 @@ class BrnScrollableText extends StatelessWidget {
             constraints: BoxConstraints(maxHeight: 220),
             child: Scrollbar(
                 child: SingleChildScrollView(
-                    child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              BrnCSS2Text.toTextView(contentText,
-                  linksCallback: linksCallback,
-                  defaultStyle: TextStyle(fontSize: textFontSize, color: textColor))
-            ])))),
+                    child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                  BrnCSS2Text.toTextView(contentText,
+                      linksCallback: linksCallback,
+                      defaultStyle:
+                          TextStyle(fontSize: textFontSize, color: textColor))
+                ])))),
       ),
       title: title,
       isClose: isClose,

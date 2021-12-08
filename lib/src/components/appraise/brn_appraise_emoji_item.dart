@@ -69,7 +69,8 @@ class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
     );
     _gif = GifImage(
       controller: _controller,
-      image: AssetImage(widget.selectedName, package: BrnStrings.flutterPackageName),
+      image: AssetImage(widget.selectedName,
+          package: BrnStrings.flutterPackageName),
       width: 34,
       height: 34,
       defaultImage: Image.asset(
@@ -103,8 +104,9 @@ class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
               child: Text(
                 widget.title ?? '',
                 style: TextStyle(
-                  color:
-                      widget.index == widget.selectedIndex ? Color(0xffffc300) : Color(0xff999999),
+                  color: widget.index == widget.selectedIndex
+                      ? Color(0xffffc300)
+                      : Color(0xff999999),
                   fontSize: 12.0,
                   fontWeight: FontWeight.w600,
                 ),

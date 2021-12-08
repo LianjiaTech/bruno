@@ -87,7 +87,8 @@ class _SuspensionWidgetState extends State<SuspensionView> {
 
   int _getIndex(int offset) {
     if (widget.header != null && offset < widget.header.height) {
-      if (_suspensionTop != -widget.header.height && widget.suspensionWidget != null) {
+      if (_suspensionTop != -widget.header.height &&
+          widget.suspensionWidget != null) {
         setState(() {
           _suspensionTop = -widget.header.height;
         });

@@ -98,10 +98,10 @@ class BrnTitleState extends State<BrnBaseTitle> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsetsForHead(widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsetsForHead(
+                      widget.isRequire, widget.themeData),
                   child: Row(
                     children: <Widget>[
-
                       // 必填项符号
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
 
@@ -109,7 +109,8 @@ class BrnTitleState extends State<BrnBaseTitle> {
                       getTitleWidget(),
 
                       // 问号提示
-                      BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                      BrnFormUtil.buildTipLabelWidget(
+                          widget.tipLabel, widget.onTip, widget.themeData),
                     ],
                   ),
                 ),

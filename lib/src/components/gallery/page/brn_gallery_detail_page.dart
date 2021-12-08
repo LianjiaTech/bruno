@@ -60,7 +60,8 @@ class BrnGalleryDetailPage extends StatefulWidget {
   _BrnGalleryDetailPageState createState() => _BrnGalleryDetailPageState();
 }
 
-class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage> with TickerProviderStateMixin {
+class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
+    with TickerProviderStateMixin {
   /// title 关联的通知，因为 title 与图片所处的位置关联
   ValueNotifier<String> _titleNotifier;
   TabController _tabController;
@@ -114,7 +115,8 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage> with Ticker
   @override
   void didUpdateWidget(BrnGalleryDetailPage oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.controller != null && oldWidget.controller != widget.controller) {
+    if (widget.controller != null &&
+        oldWidget.controller != widget.controller) {
       oldWidget.controller?.removeListener(_refreshByController);
       widget.controller.addListener(_refreshByController);
     }
@@ -167,7 +169,8 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage> with Ticker
   void _buildViews() {
     _reset();
     _titleNotifier = ValueNotifier<String>(null);
-    _tabController = TabController(length: _allConfig.length, vsync: this, initialIndex: _curTab)
+    _tabController = TabController(
+        length: _allConfig.length, vsync: this, initialIndex: _curTab)
       ..addListener(() {
         _curTab = _tabController.index;
       });
@@ -181,16 +184,18 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage> with Ticker
       }
       _groupStartPosition[i] = _allCount;
     }
-    _pageController = PageController(initialPage: _getPagePosition(_curTab, _curIndex));
+    _pageController =
+        PageController(initialPage: _getPagePosition(_curTab, _curIndex));
     if (_allConfig != null) {
       _assorted = _allConfig.length > 1;
 
-      _allConfig.forEach(
-          (item) => _tabs.add(BadgeTab(text: '${item.title ?? ""}(${item.configList.length})')));
+      _allConfig.forEach((item) => _tabs.add(
+          BadgeTab(text: '${item.title ?? ""}(${item.configList.length})')));
       if (_allConfig.length > 1)
         _columnViews.add(BrnTabBar(
           backgroundcolor: _tabBarConfig.backgroundColor,
-          unselectedLabelStyle: _tabBarConfig.unselectedLabelStyle?.generateTextStyle(),
+          unselectedLabelStyle:
+              _tabBarConfig.unselectedLabelStyle?.generateTextStyle(),
           unselectedLabelColor: _tabBarConfig.unselectedLabelStyle?.color,
           labelColor: _tabBarConfig.labelStyle?.color,
           indicatorColor: _tabBarConfig.labelStyle?.color,
@@ -205,13 +210,16 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage> with Ticker
 
       for (int i = 0; i < _allConfig.length; i++) {
         for (int j = 0; j < _allConfig[i].configList.length; j++) {
-          _pageViews.add(_allConfig[i].configList[j].buildDetailWidget(context, _allConfig, i, j));
+          _pageViews.add(_allConfig[i]
+              .configList[j]
+              .buildDetailWidget(context, _allConfig, i, j));
         }
       }
     }
     _groupTitle = _allConfig[_curTab].title ?? "";
     _indexTitle = "${_curIndex + 1}/${_allConfig[_curTab].configList.length}";
-    _titleNotifier.value = _assorted ? "$_groupTitle($_indexTitle)" : "$_indexTitle";
+    _titleNotifier.value =
+        _assorted ? "$_groupTitle($_indexTitle)" : "$_indexTitle";
 
     _columnViews.add(Expanded(
       child: PageView(
@@ -236,7 +244,8 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage> with Ticker
       _curTab = pos[0];
       _tabController.animateTo(pos[0]);
     }
-    _titleNotifier.value = _assorted ? "$_groupTitle($_indexTitle)" : "$_indexTitle";
+    _titleNotifier.value =
+        _assorted ? "$_groupTitle($_indexTitle)" : "$_indexTitle";
     return null;
   }
 
@@ -261,17 +270,19 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage> with Ticker
         ),
         actions: widget.detailRightAction != null
             ? ValueListenableBuilder(
-                builder: (c, v, _) => widget.detailRightAction(_curTab, _curIndex),
+                builder: (c, v, _) =>
+                    widget.detailRightAction(_curTab, _curIndex),
                 valueListenable: _titleNotifier,
               )
             : BrnTextAction(
-       '全部图片',
+                '全部图片',
                 themeData: _appBarConfig,
                 iconPressed: () {
                   if (widget.fromSummary) {
                     Navigator.of(context).pop();
                   } else {
-                    Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
+                    Navigator.of(context)
+                        .push(CupertinoPageRoute(builder: (context) {
                       return BrnGallerySummaryPage(
                         controller: widget.controller,
                         allConfig: _allConfig,
@@ -280,7 +291,8 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage> with Ticker
                     })).then((result) {
                       if (result is List && result != null) {
                         _tabController.animateTo(result[0]);
-                        _pageController.jumpToPage(_getPagePosition(result[0], result[1]));
+                        _pageController
+                            .jumpToPage(_getPagePosition(result[0], result[1]));
                       }
                     });
                   }

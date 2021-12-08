@@ -34,13 +34,15 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var checkbox;
-    if (!item.isUnLimit() && (item.children == null || item.children.length == 0)) {
+    if (!item.isUnLimit() &&
+        (item.children == null || item.children.length == 0)) {
       if (item.isInLastLevel() && _hasCheckBoxBrother(item)) {
         checkbox = Container(
           padding: EdgeInsets.only(left: 6),
           width: 21,
           child: (item.isSelected)
-              ? BrunoTools.getAssetImageWithBandColor(BrnAsset.iconMultiSelected)
+              ? BrunoTools.getAssetImageWithBandColor(
+                  BrnAsset.iconMultiSelected)
               : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
         );
       } else {
@@ -95,8 +97,9 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   }
 
   Color _getItemTextColor() {
-    Color itemColor =
-        (item.isUnLimit() ? isCurrentFocused : item.isSelected) ? selectColor : normalColor;
+    Color itemColor = (item.isUnLimit() ? isCurrentFocused : item.isSelected)
+        ? selectColor
+        : normalColor;
     if (!item.isInLastLevel()) {
       itemColor = isCurrentFocused ? selectColor : normalColor;
     }
@@ -104,9 +107,10 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   }
 
   FontWeight _getItemFontWeight() {
-    FontWeight fontWeight = (item.isUnLimit() ? isCurrentFocused : item.isSelected)
-        ? FontWeight.w600
-        : FontWeight.normal;
+    FontWeight fontWeight =
+        (item.isUnLimit() ? isCurrentFocused : item.isSelected)
+            ? FontWeight.w600
+            : FontWeight.normal;
 
     if (!item.isInLastLevel()) {
       fontWeight = isCurrentFocused ? FontWeight.w600 : FontWeight.normal;
@@ -116,9 +120,11 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
 
   String _getSelectedItemCount(BrnPickerEntity item) {
     String itemCount = "";
-    if ((BrnMultiColumnPickerUtil.getTotalColumnCount(item) < 3 || !isFirstLevel) &&
+    if ((BrnMultiColumnPickerUtil.getTotalColumnCount(item) < 3 ||
+            !isFirstLevel) &&
         item.children != null) {
-      int count = item.children.where((f) => f.isSelected && !f.isUnLimit()).length;
+      int count =
+          item.children.where((f) => f.isSelected && !f.isUnLimit()).length;
       if (count > 1) {
         return '($count)';
       }
@@ -127,8 +133,9 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   }
 
   bool _hasCheckBoxBrother(BrnPickerEntity item) {
-    int count =
-        item.parent.children?.where((f) => f.filterType == PickerFilterType.Checkbox)?.length;
+    int count = item.parent.children
+        ?.where((f) => f.filterType == PickerFilterType.Checkbox)
+        ?.length;
     return count == null ? false : count > 0;
   }
 }

@@ -81,7 +81,6 @@ class BrnStarsFormItem extends StatefulWidget {
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-
       this.sumStar: 5,
       this.value: 0,
       this.onChanged,
@@ -98,7 +97,6 @@ class BrnStarsFormItem extends StatefulWidget {
   BrnStarsFormItemState createState() {
     return BrnStarsFormItemState();
   }
-
 }
 
 class BrnStarsFormItemState extends State<BrnStarsFormItem> {
@@ -116,18 +114,25 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData),
                   child: ConstrainedBox(
                       constraints: BoxConstraints(
                         maxHeight: 25,
                       ),
                       child: Row(
                         children: <Widget>[
-                          BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context, widget.onAddTap, widget.onRemoveTap),
+                          BrnFormUtil.buildPrefixIcon(
+                              widget.prefixIconType,
+                              widget.isEdit,
+                              context,
+                              widget.onAddTap,
+                              widget.onRemoveTap),
                           BrnFormUtil.buildRequireWidget(widget.isRequire),
-                          BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
-                          BrnFormUtil.buildTipLabelWidget(widget.tipLabel, widget.onTip, widget.themeData),
+                          BrnFormUtil.buildTitleWidget(
+                              widget.title, widget.themeData),
+                          BrnFormUtil.buildTipLabelWidget(
+                              widget.tipLabel, widget.onTip, widget.themeData),
                         ],
                       ))),
               Row(
@@ -160,7 +165,8 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
           final int label = index;
           int oldValue = widget.value;
           widget.value = label + 1;
-          BrnFormUtil.notifyValueChanged(widget.onChanged, context, oldValue, widget.value);
+          BrnFormUtil.notifyValueChanged(
+              widget.onChanged, context, oldValue, widget.value);
           setState(() {});
         },
         child: Container(
@@ -194,7 +200,4 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
 
     return BrunoTools.getAssetImage(BrnAsset.ICON_STAR_UNSELECT);
   }
-
 }
-
-

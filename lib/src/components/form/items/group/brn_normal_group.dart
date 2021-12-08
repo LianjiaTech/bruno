@@ -71,7 +71,6 @@ class BrnNormalFormGroup extends StatefulWidget {
     this.deleteLabel,
     this.children,
   }) : super() {
-
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData.configId)
@@ -83,7 +82,6 @@ class BrnNormalFormGroup extends StatefulWidget {
   BrnNormalFormGroupState createState() {
     return BrnNormalFormGroupState();
   }
-
 }
 
 class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
@@ -113,8 +111,9 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
                             padding: EdgeInsets.only(left: 20, right: 6),
                             child: Text(
                               widget.title ?? "",
-                              style:
-                                  BrnFormUtil.getHeadTitleTextStyle(widget.themeData, isBold: true),
+                              style: BrnFormUtil.getHeadTitleTextStyle(
+                                  widget.themeData,
+                                  isBold: true),
                             )),
                       ],
                     ),
@@ -185,7 +184,4 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
 
     return result;
   }
-
 }
-
-

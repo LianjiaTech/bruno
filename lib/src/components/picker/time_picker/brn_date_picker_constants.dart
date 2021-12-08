@@ -4,7 +4,8 @@ typedef DateValueCallback(DateTime dateTime, List<int> selectedIndex);
 typedef DateRangeValueCallback(DateTime startDateTime, DateTime endDateTime,
     List<int> startSelectedIndex, List<int> endSelectedIndex);
 
-typedef DateRangeSideValueCallback(DateTime selectDateTime, List<int> selectedIndex);
+typedef DateRangeSideValueCallback(
+    DateTime selectDateTime, List<int> selectedIndex);
 
 /// Pressed cancel callback.
 typedef DateVoidCallback();
