@@ -33,11 +33,7 @@
 
 ### Demo 下载
 
-[Bruno for Android](https://mobile.lianjia.com/grayscale.html?key=myJvn58y)
-
-[Bruno  for iOS](https://mobile.lianjia.com/grayscale.html?key=M6xJwEWa)
-
-
+<img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639056071900.png" style="zoom:50%;" />            <img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639056067059.png" style="zoom:50%;" />
 
 
 ## 适配 Flutter 版本
@@ -161,7 +157,7 @@ BrnBubbleText(
 
 - [sketch 设计指引](https://bruno.ke.com/page/guide/sketch)
 
-- [设计物料下载](https://bruno.ke.com:3008/download/sketch)
+- [设计物料下载](https://bruno.ke.com/download/sketch)
 
 ## 致谢
 

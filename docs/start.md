@@ -12,7 +12,7 @@ order: 2
 
 #### 从设计侧开始
 
-首先你需要下载 [UI 资源文件](https://bruno.ke.com:3008/download/sketch) ，下载完成后参照 [Sketch 设计指引](./sketch) 制作页面并输出一份带有组件信息的标注稿。
+首先你需要下载 [UI 资源文件](https://bruno.ke.com/download/sketch) ，下载完成后参照 [Sketch 设计指引](./sketch) 制作页面并输出一份带有组件信息的标注稿。
 
 #### 代码侧接入
 

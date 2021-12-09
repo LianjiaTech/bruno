@@ -36,9 +36,8 @@ An enterprise-class package of Flutter components for mobile applications.
 
 ### Demo download
 
-[Bruno for Android](https://mobile.lianjia.com/grayscale.html?key=myJvn58y)
 
-[Bruno  for iOS](https://mobile.lianjia.com/grayscale.html?key=M6xJwEWa)
+<img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639056071900.png" style="zoom:50%;" />            <img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639056067059.png" style="zoom:50%;" />
 
 
 ## Adapted version of Flutter
@@ -154,7 +153,7 @@ Thanks to all the developers who contributed to Bruno !
 - [Customize themes](https://bruno.ke.com/page/guide/theme)
 - [Frequently asked question](https://bruno.ke.com/page/guide/faq)
 - [Sketch usage](https://bruno.ke.com/page/guide/sketch)
-- [Download of Design](https://bruno.ke.com:3008/download/sketch)
+- [Download of Design](https://bruno.ke.com/download/sketch)
 
 ## Acknowledgements
 

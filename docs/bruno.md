@@ -55,7 +55,7 @@ BrnInitializer.register(allThemeConfig:TestConfigUtils.defaultAllConfig);
 - [常见问题](./faq)
 - [Sketch 设计指引](./sketch)
 
-- [设计物料下载](https://bruno.ke.com:3008/download/sketch)
+- [设计物料下载](https://bruno.ke.com/download/sketch)
 
 ### 谁在使用
 
