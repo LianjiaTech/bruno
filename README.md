@@ -33,7 +33,7 @@
 
 ### Demo 下载
 
-<img width="200" height="200" src="https://img.ljcdn.com/beike/zjz/bruno/img/1639056071900.png"  />       <img width="200" height="200" src="https://img.ljcdn.com/beike/zjz/bruno/img/1639056067059.png"  />
+<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1639056071900.png"  />       <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1639056067059.png"  />
 
 
 ## 适配 Flutter 版本
