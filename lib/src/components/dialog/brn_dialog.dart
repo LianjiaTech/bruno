@@ -14,7 +14,10 @@ const EdgeInsetsGeometry cIconPadding = const EdgeInsets.only(top: 28.0);
 
 /// title的文字样式
 const TextStyle cTitleTextStyle = const TextStyle(
-    fontWeight: FontWeight.w600, inherit: true, fontSize: 18.0, color: Color(0xFF222222));
+    fontWeight: FontWeight.w600,
+    inherit: true,
+    fontSize: 18.0,
+    color: Color(0xFF222222));
 
 /// title的文字的对齐
 const int cTitleMaxLines = 3;
