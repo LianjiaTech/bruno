@@ -21,11 +21,11 @@ order: 3
 
 - 全局样式配置
 
-<img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639035043636.gif" alt="img" style="zoom:50%;" />
+<img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639051288686.gif" alt="img" style="zoom:50%;" />
 
 - 单组件样式配置
 
-<img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639034573427.gif" alt="img" style="zoom:75%;" />
+<img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639051268630.gif" alt="img" style="zoom:50%;" />
 
 如果你也需要类似适配，可以参照以下步骤开始专属定制~
 

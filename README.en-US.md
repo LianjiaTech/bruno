@@ -36,9 +36,9 @@ An enterprise-class package of Flutter components for mobile applications.
 
 ### Demo download
 
-[Bruno for Android]()
+[Bruno for Android](https://mobile.lianjia.com/grayscale.html?key=myJvn58y)
 
-[Bruno  for iOS]()
+[Bruno  for iOS](https://mobile.lianjia.com/grayscale.html?key=M6xJwEWa)
 
 
 ## Adapted version of Flutter
@@ -73,13 +73,13 @@ BrnBubbleText(
 
 ### 🌈 Customize themes
 
-Reference [custom theme](https://bruno.ke.com/theme).
+Reference [custom theme](https://bruno.ke.com/page/guide/theme).
 
 
 
 ## Contributing
 
-Please read our [Contributing](https://bruno.ke.com/contribution) first.
+Please read our [Contributing](https://bruno.ke.com/page/guide/contribution) first.
 
 Thanks to all the developers who contributed to Bruno !
 
@@ -148,12 +148,12 @@ Thanks to all the developers who contributed to Bruno !
 ## 🔗 Links
 
 - [Homepage](https://bruno.ke.com)
-- [All component ](https://bruno.ke.com/widgets)
+- [All component ](https://bruno.ke.com/page/widgets)
 - [Design concept](https://mp.weixin.qq.com/s?__biz=MzIyODcxODY0OA==&mid=2247486048&idx=1&sn=0cc95bd85a54ce0f39f6247d15618ae8&chksm=e84ceb37df3b62216b34c7be041229630eca3d7c4fd3823ebf0520a9f2c99ed2cdf3e677904b&mpshare=1&scene=1&srcid=11012tvWvcYunVGfiPa8EfCT&sharer_sharetime=1635751229200&sharer_shareid=dbde8f595d5b99a8f5cfb27122964615&version=3.1.16.90294)
-- [Preparing for use ](https://bruno.ke.com/start)
-- [Customize themes](https://bruno.ke.com/theme)
-- [Frequently asked question](https://bruno.ke.com/faq)
-- [Sketch usage](https://bruno.ke.com/sketch)
+- [Preparing for use ](https://bruno.ke.com/page/guide/start)
+- [Customize themes](https://bruno.ke.com/page/guide/theme)
+- [Frequently asked question](https://bruno.ke.com/page/guide/faq)
+- [Sketch usage](https://bruno.ke.com/page/guide/sketch)
 - [Download of Design](https://bruno.ke.com:3008/download/sketch)
 
 ## Acknowledgements
