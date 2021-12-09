@@ -28,6 +28,8 @@ order: 5
 
 Bruno 团队会关注所有的 pull request，review 并合并你的代码，当然在 review 过程中会提出我们的一些修改意见，以及会告诉你为什么这么修改。
 
-### 加入社区
 
-如果你希望和 Bruno 团队一起参与维护工作，你可以 [申请](https://github.com/LianjiaTech/bruno) 成为 Bruno 的一员。
+
+### 加入我们
+
+Bruno 是一个时间跨度大，贡献者多的项目，虽然已经经过多条业务线累计上万次的引用。但作为开源项目，它仍需不断打磨优化。如果你在使用过程中遇到了问题，或者有什么建议，欢迎  [issue](https://github.com/LianjiaTech/bruno/issues/new)  与我们交流共建，我们非常期待与你一起将 Bruno 做成 Flutter 生态中最有影响力的组件项目。

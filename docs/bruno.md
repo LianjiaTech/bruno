@@ -68,7 +68,7 @@ BrnInitializer.register(allThemeConfig:TestConfigUtils.defaultAllConfig);
 覆盖贝壳 B 端所有业务线，服务贝壳 10+ App ，组件累积引用超 1w 次。
 
 <blockquote><p style="color:#666666">
-  <font size="2">如果你的公司和产品使用了Bruno，欢迎到 <a href="http://github/bruno">这里</a> 留言。</font></p></blockquote>
+  <font size="2">如果你有意愿接入Bruno，或者你公司和产品使用了Bruno，欢迎到 <a href="https://github.com/LianjiaTech/bruno/issues/2">这里</a> 留言。</font></p></blockquote>
 
 ### 如何贡献
 

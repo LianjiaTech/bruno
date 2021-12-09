@@ -19,11 +19,13 @@ order: 3
 
 #### 适用什么场景？
 
-以下是 Bruno 适配 pad 案例：
+- 全局样式配置
 
-<img src="https://img.ljcdn.com/beike/zjz/bruno/img/1637564885092.png" alt="img" style="zoom:67%;" />
+<img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639035043636.gif" alt="img" style="zoom:50%;" />
 
-对 `BrnDialog` 配置了 圆角、标题文字大小、内容文字大小、主题色、弹窗大小等。
+- 单组件样式配置
+
+<img src="https://img.ljcdn.com/beike/zjz/bruno/img/1639034573427.gif" alt="img" style="zoom:75%;" />
 
 如果你也需要类似适配，可以参照以下步骤开始专属定制~
 
@@ -86,7 +88,7 @@ class XxxConfigUtils {
 BrnInitializer.register(allThemeConfig: XxxConfigUtils.defaultAllConfig);
 ```
 
-当然你也可以忽略 step1~step3，直接在 `main.dart` 中注册 `BrnAllThemeConfig`
+当然你也可以忽略  step1 ~ step3，直接在 `main.dart` 中注册 `BrnAllThemeConfig`
 
 ```dart
 BrnInitializer.register(
@@ -100,7 +102,7 @@ BrnInitializer.register(
 
 最后
 
-如果你想针对单个组件而并非一组组件进行配置，正如上面我们提到了所有支持主题定制的组件都有一个可选参数 <code>themeData</code>
+如果你想针对单个组件而并非一组组件进行配置，正如上面我们提到了所有支持主题定制的组件都有一个可选参数  <code>themeData</code>
 
 ```dart
 BrnMultiChoiceInputFormItem(

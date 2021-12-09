@@ -6,7 +6,7 @@ order: 6
 
 #### 如何找到适配 Flutter SDK 版本？
 
-我们会把最新适配版本更新到 [pub.dev](https://pub.dev/) 上
+我们会把最新适配版本更新到 [pub.dev](https://pub.dev/packages/bruno/versions) 上
 
 #### 主题定制没生效可能原因？
 
@@ -22,8 +22,8 @@ Bruno 是作为整套解决方案输出，因此没有做组件拆分，以后�
 
 #### 不会使用 Sketch 插件怎么办？
 
-通过阅读这篇文章 [Sketch 教程](./sketch) 你将了解并掌握 Sketch 基础用法。
+通过阅读这篇文章 [Sketch 教程](./sketch) 你将快速了解并完成你的设计。
 
 #### 遇到问题怎么办？
 
-可以提 [issue](https://github.com/LianjiaTech/bruno/issues/new) 给我们，这里请参照 [issue 规范](https://github.com/LianjiaTech/bruno/issues) 提交，我们会定期查阅大家提的 issue，如果你已经有了解法，欢迎提 [pull request](https://github.com/LianjiaTech/bruno/pulls) 给我们。
+可以提 [issue](https://github.com/LianjiaTech/bruno/issues/new) 给我们，这里请参照 [issue 规范](https://github.com/LianjiaTech/bruno/issues/3) 提交，我们会定期查阅大家提的 issue，如果你已经有了解法，欢迎提 [pull request](https://github.com/LianjiaTech/bruno/pulls) 给我们。
