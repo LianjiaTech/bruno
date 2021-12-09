@@ -48,18 +48,12 @@ BrnInitializer.register(allThemeConfig:TestConfigUtils.defaultAllConfig);
 ### 链接
 
 - [首页](../)
-
 - [所有组件](../widgets)
-
 - [设计理念](https://mp.weixin.qq.com/s?__biz=MzIyODcxODY0OA==&mid=2247486048&idx=1&sn=0cc95bd85a54ce0f39f6247d15618ae8&chksm=e84ceb37df3b62216b34c7be041229630eca3d7c4fd3823ebf0520a9f2c99ed2cdf3e677904b&mpshare=1&scene=1&srcid=11012tvWvcYunVGfiPa8EfCT&sharer_sharetime=1635751229200&sharer_shareid=dbde8f595d5b99a8f5cfb27122964615&version=3.1.16.90294)
-
 - [快速接入](./start)
-
 - [主题定制](./theme)
-
 - [常见问题](./faq)
-
-- [sketch 使用教程](./sketch)
+- [Sketch 设计指引](./sketch)
 
 - [设计物料下载](https://bruno.ke.com:3008/download/sketch)
 
