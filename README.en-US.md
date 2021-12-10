@@ -37,7 +37,7 @@ An enterprise-class package of Flutter components for mobile applications.
 ### Demo download
 
 
-<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1639124495570.png"  />       <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1639124495582.png"  />
+<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005085.png"  />       <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005077.png"  />
 
 
 ## Adapted version of Flutter
