@@ -4,6 +4,10 @@ order: 6
 
 # FAQ
 
+#### Bruno 什么时候支持空安全？
+
+我们已经在着手迁移空安全的工作，但由于组件体量较大，需要对每个组件的属性及接口做评估，因此支持空安全会相对滞后，敬请期待。
+
 #### 如何找到适配 Flutter SDK 版本？
 
 我们会把最新适配版本更新到 [pub.dev](https://pub.dev/packages/bruno/) 上
@@ -28,6 +32,4 @@ Bruno 是作为整套解决方案输出，因此没有做组件拆分，以后�
 
 可以提 [issue](https://github.com/LianjiaTech/bruno/issues/new) 给我们，这里请参照 [issue 规范](https://github.com/LianjiaTech/bruno/issues/3) 提交，我们会定期查阅大家提的 issue，如果你已经有了解法，欢迎提 [pull request](https://github.com/LianjiaTech/bruno/pulls) 给我们。
 
-#### Bruno 什么时候支持空安全？
 
-我们已经在着手迁移空安全的工作，但由于组件体量较大，需要对每个组件的属性及接口做评估，因此支持空安全会相对滞后，敬请期待。
