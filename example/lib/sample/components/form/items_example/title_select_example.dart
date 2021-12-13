@@ -47,7 +47,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
               title: _list[0],
               hint: "请输入",
               controller: controller,
-              inputFormatters: [WhitelistingTextInputFormatter(RegExp('[0-9"]'))],
+              inputFormatters: [FilteringTextInputFormatter(RegExp('[0-9"]'))],
               selectedIndex: -1,
               selectList: _list,
               onTip: () {

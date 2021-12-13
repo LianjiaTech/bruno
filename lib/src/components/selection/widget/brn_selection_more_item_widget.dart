@@ -564,7 +564,7 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
               .getConfig()
               .commonConfig
               .brandPrimary,
-          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           style: widget.themeData.inputTextStyle.generateTextStyle(),
           decoration: InputDecoration(
               hintText: hint,
