@@ -58,7 +58,7 @@ const BrnMiddleInputDialog(
 | cancelText | String | 取消文案 | 否 | 取消 |
 | confirmText | String | 确定文案 | 否 | 确定 |
 | inputFormatters | TextInputAction  | 键盘操作按钮类型，可参见系统的 TextField.textInputAction | 否 | TextInputAction.newline |
-| textInputAction | `List<TextInputFormatter>`  | 用于控制输入的内容范围比如只能输入数字可以填写:`WhitelistingTextInputFormatter.digitsOnly` | 否 | 无 |
+| textInputAction | `List<TextInputFormatter>`  | 用于控制输入的内容范围比如只能输入数字可以填写:`FilteringTextInputFormatter.digitsOnly` | 否 | 无 |
 | dialogStyle | BrnDialogStyle | Dialog 风格设置 | 否 | BrnDialogStyle |
 | onConfirm | Function(String value) | 确定回调，返回输入的值 | 否 |  |
 | onCancel | VoidCallback | 取消回调 | 否 |  |
@@ -86,7 +86,7 @@ BrnMiddleInputDialog(
   autoFocus: true,
   maxLength: 1000,
   maxLines: 2,
-  inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
   dismissOnActionsTap: false,
   barrierDismissible: true,
   onConfirm: (value) {

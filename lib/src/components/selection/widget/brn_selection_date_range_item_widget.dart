@@ -134,7 +134,7 @@ class _BrnSelectionDateRangeItemWidgetState
           onTextTapped(isMax);
         },
         style: widget.themeData.inputTextStyle?.generateTextStyle(),
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         keyboardType: TextInputType.numberWithOptions(),
         onChanged: (input) {
           widget.item.isSelected = true;

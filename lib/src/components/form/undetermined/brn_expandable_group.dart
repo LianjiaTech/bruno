@@ -236,8 +236,8 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
 
     /// title 文字颜色
     _headerColorTween
-      ..begin = theme.textTheme.subhead.color
-      ..end = theme.textTheme.subhead.color;
+      ..begin = theme.textTheme.subtitle1.color
+      ..end = theme.textTheme.subtitle1.color;
 
     /// 展开收起图标颜色
     _iconColorTween

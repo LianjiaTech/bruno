@@ -489,7 +489,7 @@ class DialogEntryPage extends StatelessWidget {
         autoFocus: true,
         maxLength: 1000,
         maxLines: 2,
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         textInputAction: TextInputAction.done,
         dismissOnActionsTap: false,
         barrierDismissible: true,
