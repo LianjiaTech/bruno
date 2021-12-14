@@ -48,6 +48,7 @@ An enterprise-class package of Flutter components for mobile applications.
 | 1.0.0      | 1.22.4           |
 | 2.0.0      | 2.2.2            |
 
+> Attention although we have adapted version 2.2.2, support for null-safe is in the works. We'll keep you updated on github as soon as possible, so stay tuned to 🙂.
 
 
 ## Preparing for use
