@@ -1,3 +1,5 @@
+// @dart=2.9
+
 class BrnMultiClickUtils {
   static DateTime _lastClickTime;
 

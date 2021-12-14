@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:math';
 
 import 'package:bruno/src/theme/base/brn_text_style.dart';

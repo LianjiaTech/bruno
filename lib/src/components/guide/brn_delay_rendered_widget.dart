@@ -1,3 +1,5 @@
+// @dart=2.9
+
 part of brn_intro;
 
 /// 延时渲染一个 Widget

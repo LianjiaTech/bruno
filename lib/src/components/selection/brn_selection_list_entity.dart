@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/selection/bean/brn_selection_common_entity.dart';
 
 class BrnSelectionEntityListBean {

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:convert';
 
 import 'package:bruno/src/components/empty/brn_empty_status.dart';

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_card_title_config.dart';

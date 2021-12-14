@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 
 /// 控制页面刷新，并跳转到指定的 index

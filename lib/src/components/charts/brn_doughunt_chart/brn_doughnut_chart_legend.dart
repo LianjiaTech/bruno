@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/charts/brn_doughunt_chart/brn_doughnut_chart.dart';
 import 'package:flutter/material.dart';
 

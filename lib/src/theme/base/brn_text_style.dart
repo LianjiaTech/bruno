@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 
 ///  TextStyle处理类  用来将内部属性重新赋值进行copyWith 和 merge操作

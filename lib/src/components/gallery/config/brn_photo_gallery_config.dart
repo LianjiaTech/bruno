@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/gallery/config/brn_basic_gallery_config.dart';
 import 'package:bruno/src/components/gallery/config/brn_bottom_card.dart';
 import 'package:bruno/src/components/loading/brn_loading.dart';

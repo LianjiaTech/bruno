@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_header.dart';
 import 'package:flutter/material.dart';

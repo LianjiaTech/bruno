@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_emoji_item.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';

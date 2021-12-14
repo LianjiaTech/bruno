@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/appraise/brn_flutter_gif_image.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/selectcity/brn_az_common.dart';
 import 'package:bruno/src/components/selectcity/brn_index_bar.dart';
 import 'package:bruno/src/components/selectcity/brn_suspension_view.dart';

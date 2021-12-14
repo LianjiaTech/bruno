@@ -1,3 +1,5 @@
+// @dart=2.9
+
 class BrnAsset {
   static const String emptyState = "images/empty_state.png";
   static const String stepTitle = 'images/img_step_title.png';

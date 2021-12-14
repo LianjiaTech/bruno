@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/appraise/brn_appraise_emoji_list_view.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_header.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_star_list_view.dart';

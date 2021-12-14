@@ -1,3 +1,5 @@
+// @dart=2.9
+
 part of brn_intro;
 
 /// 引导组件所处的方位

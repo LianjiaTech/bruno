@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/theme/brn_theme.dart';
 
 /// 按钮基础配置

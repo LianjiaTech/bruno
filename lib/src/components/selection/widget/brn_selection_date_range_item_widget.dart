@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/time_picker/brn_date_time_formatter.dart';
 import 'package:bruno/src/components/picker/time_picker/date_picker/brn_date_widget.dart';

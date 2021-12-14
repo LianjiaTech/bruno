@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/noticebar/brn_marquee_text.dart';
 import 'package:flutter/material.dart';
 

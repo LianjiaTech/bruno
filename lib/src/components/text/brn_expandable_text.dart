@@ -2,7 +2,7 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-typedef TextExpandedCallback = Function(bool);
+typedef TextExpandedCallback = Function(bool?);
 
 /// 具备展开收起功能的文字面板
 ///
@@ -35,20 +35,20 @@ class BrnExpandableText extends StatefulWidget {
   final String text;
 
   ///显示的最多行数
-  final int maxLines;
+  final int? maxLines;
 
   /// 文本的样式
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// 展开或者收起的时候的回调
-  final TextExpandedCallback onExpanded;
+  final TextExpandedCallback? onExpanded;
 
   /// 更多按钮渐变色的初始色 默认白色
-  final Color color;
+  final Color? color;
 
   const BrnExpandableText(
-      {Key key,
-      @required this.text,
+      {Key? key,
+      required this.text,
       this.maxLines = 1000000,
       this.textStyle,
       this.onExpanded,
@@ -59,7 +59,7 @@ class BrnExpandableText extends StatefulWidget {
 }
 
 class _BrnExpandableTextState extends State<BrnExpandableText> {
-  bool _expanded;
+  bool? _expanded;
 
   @override
   void initState() {
@@ -80,7 +80,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
             ellipsis: 'EllipseText');
         tp.layout(maxWidth: size.maxWidth);
         if (tp.didExceedMaxLines) {
-          if (this._expanded) {
+          if (this._expanded!) {
             return _expandedText(context, widget.text);
           } else {
             return _foldedText(context, widget.text);
@@ -118,7 +118,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
       style: TextStyle(
           color: BrnThemeConfigurator.instance
               .getConfig()
-              .commonConfig
+              .commonConfig!
               .brandPrimary,
           fontSize: 14),
     );
@@ -139,7 +139,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
         setState(() {
           _expanded = true;
           if (null != widget.onExpanded) {
-            widget.onExpanded(_expanded);
+            widget.onExpanded!(_expanded);
           }
         });
       },
@@ -161,7 +161,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
           fontWeight: FontWeight.w400,
           color: BrnThemeConfigurator.instance
               .getConfig()
-              .commonConfig
+              .commonConfig!
               .colorTextBase,
         );
     return style;
@@ -173,7 +173,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
         style: TextStyle(
           color: BrnThemeConfigurator.instance
               .getConfig()
-              .commonConfig
+              .commonConfig!
               .brandPrimary,
           fontSize: 14,
         ),
@@ -182,7 +182,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
             setState(() {
               _expanded = false;
               if (null != widget.onExpanded) {
-                widget.onExpanded(_expanded);
+                widget.onExpanded!(_expanded);
               }
             });
           });

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/button/brn_normal_button.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';

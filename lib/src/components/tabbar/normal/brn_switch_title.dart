@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/components/tabbar/indicator/brn_custom_width_indicator.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';

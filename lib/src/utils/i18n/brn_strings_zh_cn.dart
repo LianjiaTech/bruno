@@ -1,3 +1,5 @@
+// @dart=2.9
+
 part of 'brn_date_picker_i18n.dart';
 
 /// Chinese (ZH) Simplified

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/dialog/brn_content_export_dialog.dart';
 import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
