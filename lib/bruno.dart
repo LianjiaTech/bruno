@@ -74,8 +74,6 @@ export 'src/components/tabbar/normal/brn_tabbar_controller.dart';
 export 'src/components/tabbar/indicator/brn_fixed_underline_decoration.dart';
 export 'src/components/tabbar/indicator/brn_triangle_decoration.dart';
 
-//分割线
-
 //空页面
 export 'src/components/empty/brn_empty_status.dart';
 
