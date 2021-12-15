@@ -316,16 +316,29 @@ class BrnDialog extends AlertDialog {
       children: children,
     );
 
-    return UnconstrainedBox(
-        child: SizedBox(
-            width: defaultConfig?.dialogWidth,
-            child: Material(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(BrnDialogUtils.getDialogRadius(defaultConfig)))),
-              child: dialogChild,
-              color: defaultConfig?.backgroundColor,
-            )));
+    final EdgeInsets effectivePadding = MediaQuery.of(context).viewInsets;
+    return AnimatedPadding(
+      padding: effectivePadding,
+      duration: Duration(milliseconds: 50),
+      curve: Curves.decelerate,
+      child: MediaQuery.removeViewInsets(
+        removeLeft: true,
+        removeTop: true,
+        removeRight: true,
+        removeBottom: true,
+        context: context,
+        child: UnconstrainedBox(
+            child: SizedBox(
+                width: defaultConfig?.dialogWidth,
+                child: Material(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(BrnDialogUtils.getDialogRadius(defaultConfig)))),
+                  child: dialogChild,
+                  color: defaultConfig?.backgroundColor,
+                ))),
+      ),
+    );
   }
 
   Widget _generateIconWidget(BuildContext context, BrnDialogConfig dialogConfig) {
