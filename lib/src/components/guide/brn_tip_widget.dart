@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/button/brn_icon_button.dart';
 import 'package:bruno/src/components/guide/brn_flutter_guide.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/constants/brn_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 

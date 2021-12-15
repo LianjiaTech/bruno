@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/form/base/input_item_interface.dart';
 import 'package:bruno/src/components/form/items/title/brn_base_title_item.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';

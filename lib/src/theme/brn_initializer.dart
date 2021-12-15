@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_all_config.dart';
 import 'package:bruno/src/theme/img/brn_theme_default_utils.dart';

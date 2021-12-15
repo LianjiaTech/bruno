@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/radio/brn_checkbox.dart';
 import 'package:bruno/src/components/radio/brn_radio_core.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';

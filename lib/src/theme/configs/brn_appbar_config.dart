@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/navbar/brn_appbar_theme.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';

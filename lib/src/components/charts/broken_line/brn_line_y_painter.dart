@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/charts/broken_line/brn_base_painter.dart';
 import 'package:bruno/src/components/charts/broken_line/brn_line_data.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';

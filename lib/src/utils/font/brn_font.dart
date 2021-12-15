@@ -1,3 +1,5 @@
+// @dart=2.9
+
 class BrnFont {
   static const double FONT_12 = 12;
 

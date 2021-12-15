@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 class BrnShareItemConstants {
   /// 分享渠道名称列表
   static const List shareItemTitleList = [

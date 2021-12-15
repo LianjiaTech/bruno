@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/selectcity/brn_az_common.dart';
 
 class BrnSelectCityModel extends ISuspensionBean {

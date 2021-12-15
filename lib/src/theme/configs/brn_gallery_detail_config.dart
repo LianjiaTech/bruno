@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:ui';
 
 import 'package:bruno/src/components/navbar/brn_appbar_theme.dart';

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_constants.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';

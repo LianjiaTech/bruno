@@ -4,7 +4,7 @@ version: 2.0.0
 homepage: https://github.com/LianjiaTech/bruno
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -17,6 +17,7 @@ dependencies:
   photo_view: ^0.13.0
   provider: ^6.0.1
   badges: ^2.0.2
+  collection: ^1.15.0-nullsafety.4
 
 dev_dependencies:
   flutter_test:

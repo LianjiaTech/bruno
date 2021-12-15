@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:math';
 
 import 'package:bruno/src/components/button/brn_big_main_button.dart';

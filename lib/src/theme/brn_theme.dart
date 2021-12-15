@@ -1,4 +1,7 @@
 /// theme export
+
+// @dart=2.9
+
 library bruno_theme;
 
 export 'base/brn_base_config.dart';

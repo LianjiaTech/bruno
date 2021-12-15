@@ -1,3 +1,5 @@
+// @dart=2.9
+
 library bruno;
 
 // 主题
@@ -73,8 +75,6 @@ export 'src/components/tabbar/normal/brn_tab_bar.dart';
 export 'src/components/tabbar/normal/brn_tabbar_controller.dart';
 export 'src/components/tabbar/indicator/brn_fixed_underline_decoration.dart';
 export 'src/components/tabbar/indicator/brn_triangle_decoration.dart';
-
-//分割线
 
 //空页面
 export 'src/components/empty/brn_empty_status.dart';

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:core';
 
 import 'package:bruno/src/components/gallery/config/brn_basic_gallery_config.dart';

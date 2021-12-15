@@ -1,5 +1,8 @@
 /// 用于model兼容回调
 /// 主要用于各种点击事件
+
+// @dart=2.9
+
 typedef OnBrnFormSelectAll = void Function(int index, bool isSelect);
 
 /// 主要用于各种输入值变化

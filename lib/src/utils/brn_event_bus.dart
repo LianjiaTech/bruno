@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:async';
 
 /// Dispatches events to listeners using the Dart [Stream] API. The [EventBus]

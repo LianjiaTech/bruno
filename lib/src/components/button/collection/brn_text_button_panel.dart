@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/src/components/popup/brn_popup_window.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
