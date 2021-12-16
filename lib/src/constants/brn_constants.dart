@@ -1,8 +1,6 @@
-// @dart=2.9
-
 class BrnShareItemConstants {
   /// 分享渠道名称列表
-  static const List shareItemTitleList = [
+  static const List<String> shareItemTitleList = [
     "微信",
     "朋友圈",
     "QQ",
@@ -16,7 +14,7 @@ class BrnShareItemConstants {
   ];
 
   /// 分享渠道图片地址列表
-  static const List shareItemImagePathList = [
+  static const List<String> shareItemImagePathList = [
     "images/icon_share_weChat.png",
     "images/icon_share_moments.png",
     "images/icon_share_qq.png",
@@ -30,7 +28,7 @@ class BrnShareItemConstants {
   ];
 
   /// 不可点击的分享渠道图片地址列表
-  static const List disableShareItemImagePathList = [
+  static const List<String> disableShareItemImagePathList = [
     "images/icon_share_weChat_disable.png",
     "images/icon_share_moments_disable.png",
     "images/icon_share_qq_disble.png",
