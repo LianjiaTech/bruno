@@ -1,16 +1,13 @@
-// @dart=2.9
-
 import 'package:flutter/material.dart';
 
 ///  TextStyle处理类  用来将内部属性重新赋值进行copyWith 和 merge操作
 class BrnTextStyle {
-  @required
-  Color color;
-  double fontSize;
-  FontWeight fontWeight;
-  TextDecoration decoration;
-  double height;
-  TextBaseline textBaseline;
+  Color? color;
+  double? fontSize;
+  FontWeight? fontWeight;
+  TextDecoration? decoration;
+  double? height;
+  TextBaseline? textBaseline;
 
   BrnTextStyle({
     this.color,
@@ -21,7 +18,7 @@ class BrnTextStyle {
     this.height,
   });
 
-  BrnTextStyle.withStyle(TextStyle style) {
+  BrnTextStyle.withStyle(TextStyle? style) {
     if (style == null) {
       return;
     }
@@ -31,16 +28,16 @@ class BrnTextStyle {
     if (style.fontSize != null) {
       this.fontSize = style.fontSize;
     }
-    if (style?.fontWeight != null) {
+    if (style.fontWeight != null) {
       this.fontWeight = style.fontWeight;
     }
-    if (style?.decoration != null) {
+    if (style.decoration != null) {
       this.decoration = style.decoration;
     }
-    if (style?.height != null) {
+    if (style.height != null) {
       this.height = style.height;
     }
-    if (style?.textBaseline != null) {
+    if (style.textBaseline != null) {
       this.textBaseline = style.textBaseline;
     }
   }
@@ -56,7 +53,7 @@ class BrnTextStyle {
     );
   }
 
-  void flatTextStyle(BrnTextStyle defaultTextStyle) {
+  void flatTextStyle(BrnTextStyle? defaultTextStyle) {
     if (defaultTextStyle == null) {
       return;
     }
@@ -81,12 +78,12 @@ class BrnTextStyle {
   }
 
   BrnTextStyle copyWith(
-      {Color color,
-      double fontSize,
-      FontWeight fontWeight,
-      TextDecoration decoration,
-      double height,
-      TextBaseline textBaseline}) {
+      {Color? color,
+      double? fontSize,
+      FontWeight? fontWeight,
+      TextDecoration? decoration,
+      double? height,
+      TextBaseline? textBaseline}) {
     return BrnTextStyle(
       color: color ?? this.color,
       fontSize: fontSize ?? this.fontSize,
@@ -97,7 +94,7 @@ class BrnTextStyle {
     );
   }
 
-  BrnTextStyle merge(BrnTextStyle other) {
+  BrnTextStyle merge(BrnTextStyle? other) {
     if (other == null) return this;
     return copyWith(
       color: other.color,
