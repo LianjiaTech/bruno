@@ -21,7 +21,7 @@ import 'package:example/sample/components/charts/progress_bar_chart_example.dart
 import 'package:example/sample/components/charts/progress_chart_entry_page.dart';
 import 'package:example/sample/components/dialog/dialog_entry_page.dart';
 import 'package:example/sample/components/empty/abnormal_entry_page.dart';
-import 'package:example/sample/components/form/form_item_entry_example.dart';
+import 'package:example/sample/components/form/all_item_style_example.dart';
 import 'package:example/sample/components/gallery/gallery_example.dart';
 import 'package:example/sample/components/guide/guide_entry_page.dart';
 import 'package:example/sample/components/input/input_example.dart';
@@ -173,7 +173,7 @@ class CardDataConfig {
         navigatorPage: (BuildContext context) {
           Navigator.push(context, MaterialPageRoute(
             builder: (BuildContext context) {
-              return FormItemExamplePage("表单项类型示例");
+              return AllFormItemStyleExamplePage("表单项类型示例");
             },
           ));
         }));

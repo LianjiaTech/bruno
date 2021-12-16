@@ -44,13 +44,6 @@ class _BrnTabbarStickyExampleState extends State<BrnTabbarStickyExample>
             controller: scrollController,
             headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
-                SliverAppBar(
-                  pinned: true,
-                  elevation: 0,
-                  flexibleSpace: FlexibleSpaceBar(
-                    title: Text('Tabbar sticky效果(通过代码注释打开 TabbarBadge 示例)'),
-                  ),
-                ),
                 buildHeaderWidget(),
                 SliverOverlapAbsorber(
                   handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
@@ -120,10 +113,10 @@ class StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => this.child.tabHeight;
+  double get maxExtent => this.child.tabHeight ?? 50;
 
   @override
-  double get minExtent => this.child.tabHeight;
+  double get minExtent => this.child.tabHeight ?? 50;
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {

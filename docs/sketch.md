@@ -2,11 +2,11 @@
 order: 4
 ---
 
-# Sketch 设计指南
+# Sketch 设计指引
 
 阅读本章内容你将学到如何使用 Bruno 配套的 Sketch 文件快速设计页面，并通过定制化标注插件导出可识别组件的设计稿。
 
-在开始之前需要先从 Bruno 主页下载 [UI 资源文件](https://bruno.ke.com:3008/download/sketch)，得到 Sketch 文件和定制标注插件。
+在开始之前需要先从 Bruno 主页下载 [UI 资源文件](https://bruno.ke.com/download/sketch)，得到 Sketch 文件和定制标注插件。
 
 ## 第一部分 安装插件&选取所需组件
 
