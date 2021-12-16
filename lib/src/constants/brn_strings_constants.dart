@@ -1,5 +1,3 @@
-// @dart=2.9
-
 class BrnStrings {
   //加载获取assets资源需要
   static const String flutterPackageName = "bruno";
