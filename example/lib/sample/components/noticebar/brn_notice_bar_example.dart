@@ -146,7 +146,7 @@ class BrnNoticeBarExample extends StatelessWidget {
               describeColor: Color(0xFF0984F9),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                  return BrnNoticeBarExample();
+                  return BrnNoticeBar01Example();
                 }));
               },
             ),
