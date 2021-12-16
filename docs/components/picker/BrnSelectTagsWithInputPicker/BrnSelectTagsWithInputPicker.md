@@ -1,10 +1,3 @@
----
-title: BrnSelectTagsWithInputPicker
-group:
-  title: Picker
-  order: 23
----
-
 # BrnSelectTagsWithInputPicker
 
 可作为当操作“驳回/无效”等场景时用来填写原因的简单录入。

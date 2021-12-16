@@ -1,10 +1,3 @@
----
-title: BrnMultipleBottomButton
-group:
-  title: Button
-  order: 5
----
-
 # BrnMultipleBottomButton
 
 用于多选状态页面底部的组合按钮

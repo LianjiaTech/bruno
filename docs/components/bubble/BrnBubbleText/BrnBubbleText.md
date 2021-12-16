@@ -1,10 +1,3 @@
----
-title: BrnBubbleText
-group:
-  title: Card
-  order: 7
----
-
 # BrnBubbleText
 
 气泡背景文本展示，支持展开/收起操作。

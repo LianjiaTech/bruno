@@ -1,10 +1,3 @@
----
-title: BrnBigGhostButton
-group:
-  title: Button
-  order: 5
----
-
 # BrnBigGhostButton
 
 ## 一、效果总览

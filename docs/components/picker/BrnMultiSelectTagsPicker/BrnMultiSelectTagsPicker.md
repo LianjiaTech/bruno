@@ -1,10 +1,3 @@
----
-title: BrnMultiSelectTagsPicker
-group:
-  title: Picker
-  order: 23
----
-
 # BrnMultiSelectTagsPicker 
 
 适用于底部弹出 Picker，且选择样式为 Tag 的场景。

@@ -1,11 +1,3 @@
----
-title: BrnIconButton
-group:
-  title: Button
-  order: 5
----
-
-
 # BrnIconButton
 
 ## 一、效果总览

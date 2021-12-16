@@ -1,10 +1,3 @@
----
-title: BrnExpandableText
-group:
-  title: Text
-  order: 34
----
-
 # BrnExpandableText
 
 ## 一、效果总览

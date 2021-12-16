@@ -1,10 +1,3 @@
----
-title: BrnRichInfoGrid
-group:
-  title: Card
-  order: 7
----
-
 # BrnRichInfoGrid
 
 ## 一、效果总览

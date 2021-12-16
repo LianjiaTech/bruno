@@ -1,10 +1,3 @@
----
-title: BrnTitleFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnTitleFormItem
 
 ## 一、效果总览

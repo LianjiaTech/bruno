@@ -1,10 +1,3 @@
----
-title: BrnDialog
-group:
-  title: Dialog
-  order: 10
----
-
 # BrnDialog
 
 ## 一、效果总览

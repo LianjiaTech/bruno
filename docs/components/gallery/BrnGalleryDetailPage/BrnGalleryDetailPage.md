@@ -1,10 +1,3 @@
----
-title: BrnGalleryDetailPage
-group:
-  title: Gallery
-  order: 13
----
-
 # BrnGalleryDetailPage
 
 查看大图交互模式-详情页。

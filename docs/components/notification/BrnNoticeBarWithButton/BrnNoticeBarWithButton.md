@@ -1,10 +1,3 @@
----
-title: BrnNoticeBarWithButton
-group:
-  title: NoticeBar
-  order: 22
----
-
 # BrnNoticeBarWithButton
 
 左边标签，右边按钮的通知视图。

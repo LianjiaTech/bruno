@@ -1,10 +1,3 @@
----
-title: BrnMiddleInputDialog
-group:
-  title: Dialog
-  order: 10
----
-
 # BrnMiddleInputDialog
 
 带输入的弹窗

@@ -1,10 +1,3 @@
----
-title: BrnCommonCardTitle
-group:
-  title: CardTitle
-  order: 8
----
-
 # BrnCommonCardTitle
 
 普通卡片标题主要用于卡片标题或者在 ListView 中的一行

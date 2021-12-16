@@ -1,10 +1,3 @@
----
-title: BrnAppraise
-group:
-  title: Appraise
-  order: 3
----
-
 # BrnAppraise
 
 带有等级、选择项和输入内容的评价组件。

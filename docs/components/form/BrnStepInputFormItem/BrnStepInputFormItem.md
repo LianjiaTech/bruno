@@ -1,10 +1,3 @@
----
-title: BrnStepInputFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnStepInputFormItem
 
 ## 一、效果总览

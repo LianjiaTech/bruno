@@ -1,11 +1,3 @@
----
-title: BrnSelectTag
-group:
-  title: Tag
-  order: 33
----
-
-
 # BrnSelectTag
 
 标签组件

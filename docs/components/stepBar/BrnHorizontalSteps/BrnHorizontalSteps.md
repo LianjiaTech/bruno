@@ -1,11 +1,3 @@
----
-title: BrnHorizontalSteps
-group:
-  title: Step
-  order: 29
----
-
-
 # BrnHorizontalSteps
 
 

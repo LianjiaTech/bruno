@@ -1,10 +1,3 @@
----
-title: BrnScrollAnchorTabWidget
-group:
-  title: Rating
-  order: 26
----
-
 # BrnAnchorTab
 
 锚点定位

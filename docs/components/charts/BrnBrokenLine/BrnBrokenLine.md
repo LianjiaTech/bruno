@@ -1,10 +1,3 @@
----
-title: BrokenLine 折线图
-group:
-  title: 数据图表
-  order: 2
----
-
 # BrnBrokenLine
 
 折线图，可显示多条线。

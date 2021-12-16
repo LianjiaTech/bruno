@@ -1,10 +1,3 @@
----
-title: BrnLoadingDialog
-group:
-  title: Dialog
-  order: 10
----
-
 # BrnLoadingDialog
 
 页面级加载框

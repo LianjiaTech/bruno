@@ -1,10 +1,3 @@
----
-title: BrnShareDialog
-group:
-  title: Dialog
-  order: 10
----
-
 # BrnShareDialog
 
 分享专用 Dialog

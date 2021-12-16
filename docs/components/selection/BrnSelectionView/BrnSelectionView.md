@@ -1,10 +1,3 @@
----
-title: BrnSelectionView
-group:
-  title: Selection
-  order: 28
----
-
 # BrnSelectionView
 
 用于筛选数据

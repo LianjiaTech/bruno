@@ -1,11 +1,4 @@
----
-title: BrnRadioItem
-group:
-  title: Radio
-  order: 25
----
-
-# BrnRadioItem
+# BrnCheckbox
 
 多项选择
 

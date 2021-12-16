@@ -1,10 +1,3 @@
----
-title: Progress 进度图
-group:
-  title: 数据图表
-  order: 2
----
-
 # BrnProgressChart
 
 展示一段进度或者数值。

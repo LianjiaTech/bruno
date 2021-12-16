@@ -1,10 +1,3 @@
----
-title: BrnAbnormalStateWidget
-group:
-  title: Empty
-  order: 11
----
-
 # BrnAbnormalStateWidget
 
 ## 一、效果总览

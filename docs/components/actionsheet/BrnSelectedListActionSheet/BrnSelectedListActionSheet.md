@@ -1,11 +1,4 @@
----
-title: BrnSelectedListActionSheet
-group:
-  title: ActionSheet
-  order: 2
----
-
-## BrnSelectedListActionSheet
+# BrnSelectedListActionSheet
 
 已选列表 actionSheet 组件。
 

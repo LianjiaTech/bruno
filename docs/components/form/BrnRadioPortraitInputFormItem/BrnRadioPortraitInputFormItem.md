@@ -1,10 +1,3 @@
----
-title: BrnRadioPortraitInputFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnRadioPortraitInputFormItem
 
 ## 一、效果总览

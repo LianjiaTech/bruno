@@ -1,10 +1,3 @@
----
-title: BrnMultiSelectListPicker
-group:
-  title: Picker
-  order: 23
----
-
 # BrnMultiSelectListPicker
 
 多选底部弹框 ，适用于从页面底部弹出，存在多选列表的情况。

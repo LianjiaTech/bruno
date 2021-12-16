@@ -1,11 +1,3 @@
----
-title: BrnExpandFormGroup
-group:
-  title: Form
-  order: 12
----
-
-
 # BrnExpandFormGroup
 可展开收起组类型录入项，内部可包含其他类型Widget。
 

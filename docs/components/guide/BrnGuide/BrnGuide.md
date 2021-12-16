@@ -1,10 +1,3 @@
----
-title: BrnGuide
-group:
-  title: Guide
-  order: 17
----
-
 # BrnGuide
 
 通过阻断式的交互弹框，实现新手交互

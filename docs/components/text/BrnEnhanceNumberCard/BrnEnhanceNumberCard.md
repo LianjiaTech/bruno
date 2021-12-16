@@ -1,10 +1,3 @@
----
-title: BrnEnhanceNumberCard
-group:
-  title: Card
-  order: 7
----
-
 # BrnEnhanceNumberCard
 常用于卡片中强化展示 数字信息
 

@@ -1,10 +1,3 @@
----
-title: BrnBigOutlineButton
-group:
-  title: Button
-  order: 5
----
-
 # BrnBigOutlineButton
 
 ## 一、效果总览

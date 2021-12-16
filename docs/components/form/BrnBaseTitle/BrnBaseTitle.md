@@ -1,10 +1,3 @@
----
-title: BrnBaseTitle
-group:
-  title: Form
-  order: 12
----
-
 # BrnBaseTitle
 
 可组合基础标题类型表单。

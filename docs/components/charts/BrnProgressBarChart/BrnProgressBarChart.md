@@ -1,10 +1,3 @@
----
-title: ProgressBar 柱状图
-group:
-  title: 数据图表
-  order: 2
----
-
 # BrnProgressBarChart
 
 数据条形柱状图。

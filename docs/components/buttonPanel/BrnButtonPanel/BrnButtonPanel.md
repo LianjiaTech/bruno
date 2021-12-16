@@ -1,10 +1,3 @@
----
-title: BrnButtonPanel
-group:
-  title: Button
-  order: 5
----
-
 # BrnButtonPanel
 
 主次按钮组成的横向按钮交互面板。

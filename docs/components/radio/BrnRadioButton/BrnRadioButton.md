@@ -1,10 +1,3 @@
----
-title: BrnRadioItem
-group:
-  title: Radio
-  order: 25
----
-
 # BrnRadioButton
 
 单项选择

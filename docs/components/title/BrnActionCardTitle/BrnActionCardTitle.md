@@ -1,10 +1,3 @@
----
-title: BrnActionCardTitle
-group:
-  title: CardTitle
-  order: 8
----
-
 # BrnActionCardTitle
 
 带右侧箭头的卡片标题

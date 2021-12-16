@@ -1,10 +1,3 @@
----
-title: BrnTextSelectFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnTextSelectFormItem
 
 用于数据选择的情况

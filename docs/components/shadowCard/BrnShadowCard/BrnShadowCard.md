@@ -1,10 +1,3 @@
----
-title: BrnShadowCard
-group:
-  title: Card
-  order: 7
----
-
 # BrnShadowCard
 
 支持自定义边框属性阴影卡片

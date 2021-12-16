@@ -1,10 +1,3 @@
----
-title: BrnExpandableGroup
-group:
-  title: Form
-  order: 12
----
-
 # BrnExpandableGroup
 
 可展开收起的表单项组类型

@@ -1,10 +1,3 @@
----
-title: BrnAppraiseBottomPicker
-group:
-  title: Appraise
-  order: 3
----
-
 # BrnAppraiseBottomPicker
 
 以 picker 样式展现的评价组件。具体参数和 [BrnAppraise](../brn-appraise/brn-appraise) 一样。

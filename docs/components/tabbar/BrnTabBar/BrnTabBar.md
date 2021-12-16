@@ -1,10 +1,3 @@
----
-title: BrnTabBar
-group:
-  title: TabBar
-  order: 32
----
-
 # BrnTabBar
 
 适用于多 tab 切换的场景

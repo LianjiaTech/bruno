@@ -1,11 +1,4 @@
----
-title: BrnBottomPicker
-group:
-  title: Picker
-  order: 23
----
-
-## BrnBottomPicker
+# BrnBottomPicker
 
 自定义的从底部弹出的picker框，支持高度的自定义（内容、头部）。解决了picker中有输入框，键盘遮挡等问题。
 

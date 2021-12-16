@@ -1,10 +1,3 @@
----
-title: BrnTitleSelectInputFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnTitleSelectInputFormItem
 
 ## 一、效果总览

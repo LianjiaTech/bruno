@@ -1,10 +1,3 @@
----
-title: BrnNormalFormGroup
-group:
-  title: Form
-  order: 12
----
-
 # BrnNormalFormGroup
 
 ## 一、效果总览

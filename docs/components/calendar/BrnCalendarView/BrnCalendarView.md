@@ -1,10 +1,3 @@
----
-title: BrnCalendarView
-group:
-  title: Calendar
-  order: 6
----
-
 # BrnCalendarView
 
 日历视图。

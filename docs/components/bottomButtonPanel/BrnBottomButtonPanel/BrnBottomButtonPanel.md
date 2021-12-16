@@ -1,10 +1,3 @@
----
-title: BrnBottomButtonPanel
-group:
-  title: Button
-  order: 5
----
-
 # BrnBottomButtonPanel
 
 ## 一、效果总览

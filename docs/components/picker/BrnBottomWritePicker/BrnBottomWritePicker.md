@@ -1,12 +1,4 @@
----
-title: BrnBottomWritePicker
-group:
-  title: Picker
-  order: 23
----
-
-
-## BrnBottomWritePicker
+# BrnBottomWritePicker
 
 从底部弹出带输入框的 Picker。
 

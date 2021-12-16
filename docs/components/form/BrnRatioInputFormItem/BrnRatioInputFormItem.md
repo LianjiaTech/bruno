@@ -1,10 +1,3 @@
----
-title: BrnRatioInputFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnRatioInputFormItem
 
 ## 一、效果总览

@@ -1,10 +1,3 @@
----
-title: BrnSingleSelectDialog
-group:
-  title: Dialog
-  order: 10
----
-
 # BrnSingleSelectDialog
 
 适用于单选弹窗列表

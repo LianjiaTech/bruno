@@ -1,10 +1,3 @@
----
-title: BrnSingleSelectCityPage
-group:
-  title: SelectCity
-  order: 27
----
-
 # BrnSingleSelectCityPage
 
 ## 一、效果总览

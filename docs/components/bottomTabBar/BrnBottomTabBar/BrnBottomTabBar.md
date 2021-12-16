@@ -1,11 +1,3 @@
----
-title: BrnBottomTabBar
-group:
-  title: TabBar
-  order: 32
----
-
-
 # BrnBottomTabBar
 
 一般用于首页，或者功能模块底部

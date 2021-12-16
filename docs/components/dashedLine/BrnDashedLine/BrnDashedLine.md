@@ -1,10 +1,3 @@
----
-title: BrnDashedLine
-group:
-  title: Line
-  order: 18
----
-
 # BrnDashedLine
 
 界面元素中的虚线分割线

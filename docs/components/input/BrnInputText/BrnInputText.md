@@ -1,10 +1,3 @@
----
-title: BrnInputText
-group:
-  title: Input
-  order: 16
----
-
 # BrnInputText
 
 动态通用输入框

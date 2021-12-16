@@ -1,10 +1,3 @@
----
-title: BrnRatingStar
-group:
-  title: Rating
-  order: 26
----
-
 # BrnRatingStar
 
 星级评分条

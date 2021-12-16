@@ -1,10 +1,3 @@
----
-title: BrnAddLabel
-group:
-  title: Form
-  order: 12
----
-
 # BrnAddLabel
 
 ## 一、效果总览

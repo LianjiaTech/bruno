@@ -1,10 +1,3 @@
----
-title: BrnTextQuickSelectFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnTextQuickSelectFormItem
 
 快速选择类型录入型表单项。

@@ -1,11 +1,3 @@
----
-title: BrnDatePicker
-group:
-  title: Picker
-  order: 23
----
-
-
 # BrnDatePicker
 
 可用于页面底部弹出选择【单个】时间点的情况。

@@ -1,10 +1,3 @@
----
-title: BrnToast
-group:
-  title: Toast
-  order: 35
----
-
 # BrnToast
 
 通用Toast

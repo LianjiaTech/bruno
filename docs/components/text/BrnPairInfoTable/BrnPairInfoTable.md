@@ -1,10 +1,3 @@
----
-title: BrnPairInfoTable
-group:
-  title: Card
-  order: 7
----
-
 # BrnPairInfoTable
 
 ## 一、效果总览

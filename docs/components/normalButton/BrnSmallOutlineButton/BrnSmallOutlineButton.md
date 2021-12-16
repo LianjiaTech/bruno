@@ -1,10 +1,3 @@
----
-title: BrnSmallOutlineButton
-group:
-  title: Button
-  order: 5
----
-
 # BrnSmallOutlineButton
 
 ## 一、效果总览

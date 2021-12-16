@@ -1,10 +1,3 @@
----
-title: BrnRangeInputFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnRangeInputFormItem
 
 ## 一、效果总览

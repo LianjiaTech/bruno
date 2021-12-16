@@ -1,10 +1,3 @@
----
-title: BrnTextBlockInputFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnTextBlockInputFormItem
 文本块输入型录入项。
 

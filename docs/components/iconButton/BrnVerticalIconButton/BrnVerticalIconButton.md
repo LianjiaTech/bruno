@@ -1,9 +1,3 @@
----
-title: BrnVerticalIconButton
-group:
-  title: Button
-  order: 5
----
 # BrnVerticalIconButton
 
 ## 一、效果总览

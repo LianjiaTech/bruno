@@ -1,10 +1,3 @@
----
-title: BrnSearchAppbar
-group:
-  title: AppBar
-  order: 20
----
-
 # BrnSearchAppbar
 
 适用于页面顶部Appbar 存在搜索功能的情况。

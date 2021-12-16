@@ -1,11 +1,3 @@
----
-title: BrnSearchText
-group:
-  title: SugSearch
-  order: 30
----
-
-
 # BrnSearchText
 
 搜索框，用于输入文本进行搜索。

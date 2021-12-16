@@ -1,10 +1,3 @@
----
-title: BrnScrollableTextDialog
-group:
-  title: Dialog
-  order: 10
----
-
 # BrnScrollableTextDialog
 
 纯文本 Dialog 超过定高可滚动

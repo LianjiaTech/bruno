@@ -1,10 +1,3 @@
----
-title: BrnAppBar
-group:
-  title: AppBar
-  order: 20
----
-
 # BrnAppBar
 
 适用于页面顶部存在导航栏的情况。

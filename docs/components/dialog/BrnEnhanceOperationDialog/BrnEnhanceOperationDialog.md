@@ -1,10 +1,3 @@
----
-title: BrnEnhanceOperationDialog
-group:
-  title: Dialog
-  order: 10
----
-
 # BrnEnhanceOperationDialog
 
 纵向单/双按钮Dialog

@@ -1,10 +1,3 @@
----
-title: BrnNoticeBar
-group:
-  title: NoticeBar
-  order: 21
----
-
 # BrnNoticeBar
 
 通知视图，默认最小高度 36。

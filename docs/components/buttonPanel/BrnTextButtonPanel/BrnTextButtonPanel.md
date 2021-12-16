@@ -1,10 +1,3 @@
----
-title: BrnTextButtonPanel
-group:
-  title: Button
-  order: 5
----
-
 # BrnTextButtonPanel
 
 多个文字按钮组成的按钮集合。

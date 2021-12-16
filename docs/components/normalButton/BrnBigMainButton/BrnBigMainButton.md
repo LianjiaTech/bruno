@@ -1,10 +1,3 @@
----
-title: BrnBigMainButton
-group:
-  title: Button
-  order: 5
----
-
 # BrnBigMainButton
 
 ## 一、效果总览

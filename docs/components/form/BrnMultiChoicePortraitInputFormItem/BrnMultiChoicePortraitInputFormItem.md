@@ -1,10 +1,3 @@
----
-title: BrnMultiChoicePortraitInputFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnMultiChoicePortraitInputFormItem
 
 ## 一、效果总览

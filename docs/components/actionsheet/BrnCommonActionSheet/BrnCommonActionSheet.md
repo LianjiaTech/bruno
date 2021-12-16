@@ -1,10 +1,3 @@
----
-title: BrnCommonActionSheet
-group:
-  title: ActionSheet
-  order: 2
----
-
 # BrnCommonActionSheet
 
 通用 ActionSheet

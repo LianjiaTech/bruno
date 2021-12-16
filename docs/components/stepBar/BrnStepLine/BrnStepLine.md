@@ -1,10 +1,3 @@
----
-title: BrnStepLine
-group:
-  title: Step
-  order: 29
----
-
 # BrnStepLine
 
 垂直步骤条

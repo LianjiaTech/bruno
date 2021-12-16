@@ -1,10 +1,3 @@
----
-title: BrnPortraitRadioGroup
-group:
-  title: Form
-  order: 12
----
-
 # BrnPortraitRadioGroup
 
 垂直单选列表 表单项

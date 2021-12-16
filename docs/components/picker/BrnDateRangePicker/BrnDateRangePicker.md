@@ -1,10 +1,3 @@
----
-title: BrnDateRangePicker
-group:
-  title: Picker
-  order: 23
----
-
 # BrnDateRangePicker
 
 适用于时间范围选择的情况，

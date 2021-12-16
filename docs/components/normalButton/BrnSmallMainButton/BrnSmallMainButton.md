@@ -1,10 +1,3 @@
----
-title: BrnSmallMainButton
-group:
-  title: Button
-  order: 5
----
-
 # BrnSmallMainButton
 
 ## 一、效果总览

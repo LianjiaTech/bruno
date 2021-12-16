@@ -1,10 +1,3 @@
----
-title: BrnStateTag
-group:
-  title: Tag
-  order: 33
----
-
 # BrnStateTag
 
 ## 一、效果总览

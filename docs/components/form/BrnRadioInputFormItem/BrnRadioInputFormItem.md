@@ -1,10 +1,3 @@
----
-title: BrnRadioInputFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnRadioInputFormItem
 
 横向单选录入项。

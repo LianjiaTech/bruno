@@ -1,10 +1,3 @@
----
-title: BrnShareActionSheet
-group:
-  title: ActionSheet
-  order: 2
----
-
 # BrnShareActionSheet
 
 分享专用ActionSheet

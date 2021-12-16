@@ -1,10 +1,3 @@
----
-title: BrnTagCustom
-group:
-  title: Tag
-  order: 33
----
-
 # BrnTagCustom
 
 ## 一、效果总览

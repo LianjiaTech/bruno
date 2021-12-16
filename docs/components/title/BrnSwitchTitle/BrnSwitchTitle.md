@@ -1,10 +1,3 @@
----
-title: BrnSwitchTitle
-group:
-  title: TabBar
-  order: 32
----
-
 # BrnSwitchTitle
 
 多个标题切换控件。

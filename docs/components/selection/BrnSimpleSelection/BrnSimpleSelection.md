@@ -1,10 +1,3 @@
----
-title: BrnSimpleSelection
-group:
-  title: Selection
-  order: 28
----
-
 # BrnSimpleSelection
 
 区间+输入混合一级筛选

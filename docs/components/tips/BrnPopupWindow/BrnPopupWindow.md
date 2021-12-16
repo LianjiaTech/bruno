@@ -1,10 +1,3 @@
----
-title: BrnPopupWindow
-group:
-  title: Popup
-  order: 24
----
-
 # BrnPopupWindow
 
 悬浮框

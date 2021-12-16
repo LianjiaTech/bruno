@@ -1,10 +1,3 @@
----
-title: Radar 雷达图
-group:
-  title: 数据图表
-  order: 2
----
-
 # BrnRadarChart
 
 雷达图

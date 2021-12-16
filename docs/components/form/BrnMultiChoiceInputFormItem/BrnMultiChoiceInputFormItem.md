@@ -1,10 +1,3 @@
----
-title: BrnMultiChoiceInputFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnMultiChoiceInputFormItem
 
 ## 一、效果总览

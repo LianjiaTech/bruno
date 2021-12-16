@@ -1,10 +1,3 @@
----
-title: BrnMultiSelectDialog
-group:
-  title: Dialog
-  order: 10
----
-
 # BrnMultiSelectDialog
 
 多选列表

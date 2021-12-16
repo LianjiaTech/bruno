@@ -1,10 +1,3 @@
----
-title: Funnel 漏斗图
-group:
-  title: 数据图表
-  order: 2
----
-
 # BrnFunnelChart
 
 漏斗图

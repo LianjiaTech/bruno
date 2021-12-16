@@ -1,11 +1,3 @@
----
-title: BrnFlatSelection
-group:
-  title: Selection
-  order: 28
----
-
-
 # BrnFlatSelection
 
 区间+输入混合一级筛选。

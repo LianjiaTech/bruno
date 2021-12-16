@@ -1,10 +1,3 @@
----
-title: BrnStarsFormItem
-group:
-  title: Form
-  order: 12
----
-
 # BrnStarsFormItem
 
 ## 一、效果总览

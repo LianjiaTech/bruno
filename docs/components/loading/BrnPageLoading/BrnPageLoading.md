@@ -1,10 +1,3 @@
----
-title: BrnPageLoading
-group:
-  title: Loading
-  order: 19
----
-
 # BrnPageLoading
 
 ## 一、效果总览

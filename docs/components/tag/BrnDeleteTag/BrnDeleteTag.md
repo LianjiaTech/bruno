@@ -1,11 +1,3 @@
----
-title: BrnDeleteTag
-group:
-  title: Tag
-  order: 33
----
-
-
 # BrnDeleteTag
 
 可删除标签

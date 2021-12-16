@@ -1,10 +1,3 @@
----
-title: BrnInsertInfo
-group:
-  title: Bubble 气泡
-  order: 7
----
-
 # BrnInsertInfo
 
 该元件的背景是不规则的边框，常用于卡片的下方作为备注信息。

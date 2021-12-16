@@ -1,10 +1,3 @@
----
-title: BrnSelectAllTitle
-group:
-  title: Form
-  order: 12
----
-
 # BrnSelectAllTitle
 
 全选类型类型表单项。
