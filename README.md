@@ -33,7 +33,7 @@
 
 ### Demo 下载
 
-<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005085.png"  />       <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005077.png"  />
+<img width="180" height="180" src="https://bruno.ke.com/demo_android.png"  />       <img width="180" height="180" src="https://bruno.ke.com/demo_ios.png"  />
 
 
 ## 适配 Flutter 版本
