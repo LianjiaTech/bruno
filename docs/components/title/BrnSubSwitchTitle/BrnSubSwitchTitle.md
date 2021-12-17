@@ -32,33 +32,34 @@ const BrnSubSwitchTitle({
   this.controller,
 }) : super(key: key);
 ```
+
 ### 参数说明
 
-| **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
-| --- | --- | --- | --- | --- |
-| nameList | `List<String>` | 标题的文案列表 | 是 | 无 |
-| defaultSelectIndex | int | 默认选中的 index | 否 | 0 |
-| onSelect | void Function(int index) | 选择指定标题的回调 | 否 | 无 |
-| padding | EdgeInsets | 二级标题的padding | 否 | EdgeInsets.only(right: 20) |
-| controller | TabController | 控制tab切换，默认不需要传递 | 否 | 无 |
+| **参数名**         | **参数类型**             | **描述**                      | **是否必填** | **默认值**                 |
+| ------------------ | ------------------------ | ----------------------------- | ------------ | -------------------------- |
+| nameList           | `List<String>`           | 标题的文案列表                | 是           | 无                         |
+| defaultSelectIndex | int                      | 默认选中的 index              | 否           | 0                          |
+| onSelect           | void Function(int index) | 选择指定标题的回调            | 否           | 无                         |
+| padding            | EdgeInsets               | 二级标题的 padding            | 否           | EdgeInsets.only(right: 20) |
+| controller         | TabController            | 控制 tab 切换，默认不需要传递 | 否           | 无                         |
 
 ## 四、代码演示
 
-### 效果1：基本样式
+### 效果 1：基本样式
 
 <img src="./img/BrnSubSwitchTitleDemo1.png" style="zoom:67%;" />
 
 ```dart
-BrnSubSwitchTitle(  
-  nameList: ['二级标题1', '二级标题2', '二级标题3'],  
-  defaultSelectIndex: 0,  
-  onSelect: (value) {  
-    BrnToast.show(value.toString(), context);  
-  },  
+BrnSubSwitchTitle(
+  nameList: ['二级标题1', '二级标题2', '二级标题3'],
+  defaultSelectIndex: 0,
+  onSelect: (value) {
+    BrnToast.show(value.toString(), context);
+  },
 )
 ```
 
-### 效果2：外部控制 tab
+### 效果 2：外部控制 tab
 
 <img src="./img/BrnSubSwitchTitleDemo2.gif"  />
 
@@ -93,4 +94,3 @@ Column(
   ]
 )
 ```
-

@@ -94,7 +94,7 @@ abstract class BrnFunnelLayerPainter {
 
 ## 四、代码演示
 
-### 效果1：
+### 效果 1：
 
 ![](./img/BrnFunnelChartIntro.png)
 

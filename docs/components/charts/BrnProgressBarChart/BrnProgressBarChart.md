@@ -6,7 +6,7 @@
 
 <img src="./img/BrnProgressBarChartIntro1.png" style="zoom:50%;" /> 
 <br/>
-<img src="./img/BrnProgressBarChartIntro2.png" style="zoom:50%;" /> 
+<img src="./img/BrnProgressBarChartIntro2.png" style="zoom:50%;" />
 
 ## 二、描述
 
@@ -16,12 +16,11 @@
 
 ### 使用规范
 
-竖状布局建议默认五项数值，超出可做横滑操作，最多建议支持9项，再多需采用条形图展示。
+竖状布局建议默认五项数值，超出可做横滑操作，最多建议支持 9 项，再多需采用条形图展示。
 
 ## 三、构造函数及参数说明
 
 ### 构造函数
-
 
 ```dart
 BrnProgressBarChart(
@@ -41,32 +40,31 @@ BrnProgressBarChart(
   this.barChartSelectCallback,
   this.height = 300})
 ```
+
 ### 参数说明
 
-| **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
-| --- | --- | --- | --- | --- |
-| minWidth | double | 最小宽度 |  | 0 |
-| height | double | 图标高度 | 否 | 300 |
-| padding | EdgeInsetsGeometry | 内边距 |  | EdgeInsets.all(20) |
-| barChartStyle | BarChartStyle | 水平/竖直方向条形图 |  | BarChartStyle.vertical |
-| xAxis | ChartAxis | x轴数据 | 是 |  |
-| yAxis | ChartAxis | y轴数据 | 是 |  |
-| barBundleList | `List<BarBundle>` | 柱形数据 | 是 |  |
-| barGroupSpace | double | 柱状图间距 |  | 30 |
-| singleBarWidth | double | 条形宽度 |  | 30 |
-| barMaxValue | double | 柱状图最大值 |  |  |
-| selectedHintTextColor | Color | 选中柱状图提示文案文本颜色 |  | Colors.white |
-| selectedHintTextBackgroundColor | Color | 选中柱状图提示文案文本背景颜色 |  | Colors.black |
-| barChartSelectCallback | void Function(BarItem barItem) | 选中柱状图时候的回调 |  |  |
-| onBarItemClickInterceptor | bool OnBarItemClickInterceptor(int barBundleIndex, BarBundle barBundle, int barGroupIndex, BarItem barItem) | 柱状图是否可点击回调 |  |  |
+| **参数名**                      | **参数类型**                                                                                                | **描述**                       | **是否必填** | **默认值**             |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------ | ------------ | ---------------------- |
+| minWidth                        | double                                                                                                      | 最小宽度                       |              | 0                      |
+| height                          | double                                                                                                      | 图标高度                       | 否           | 300                    |
+| padding                         | EdgeInsetsGeometry                                                                                          | 内边距                         |              | EdgeInsets.all(20)     |
+| barChartStyle                   | BarChartStyle                                                                                               | 水平/竖直方向条形图            |              | BarChartStyle.vertical |
+| xAxis                           | ChartAxis                                                                                                   | x 轴数据                       | 是           |                        |
+| yAxis                           | ChartAxis                                                                                                   | y 轴数据                       | 是           |                        |
+| barBundleList                   | `List<BarBundle>`                                                                                           | 柱形数据                       | 是           |                        |
+| barGroupSpace                   | double                                                                                                      | 柱状图间距                     |              | 30                     |
+| singleBarWidth                  | double                                                                                                      | 条形宽度                       |              | 30                     |
+| barMaxValue                     | double                                                                                                      | 柱状图最大值                   |              |                        |
+| selectedHintTextColor           | Color                                                                                                       | 选中柱状图提示文案文本颜色     |              | Colors.white           |
+| selectedHintTextBackgroundColor | Color                                                                                                       | 选中柱状图提示文案文本背景颜色 |              | Colors.black           |
+| barChartSelectCallback          | void Function(BarItem barItem)                                                                              | 选中柱状图时候的回调           |              |                        |
+| onBarItemClickInterceptor       | bool OnBarItemClickInterceptor(int barBundleIndex, BarBundle barBundle, int barGroupIndex, BarItem barItem) | 柱状图是否可点击回调           |              |                        |
 
 ## 四、代码演示
 
-### 效果1：
+### 效果 1：
 
 <img src="./img/BrnProgressBarChartDemo1.png" style="zoom:50%;" />
-
-
 
 ```dart
 BrnProgressBarChart(
@@ -135,10 +133,10 @@ BrnProgressBarChart(
   },
 )
 ```
-### 效果2：
+
+### 效果 2：
 
 <img src="./img/BrnProgressBarChartDemo2.png" style="zoom:50%;" />
-
 
 ```dart
 BrnProgressBarChart(

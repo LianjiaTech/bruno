@@ -4,9 +4,7 @@
 
 ## 一、效果总览
 
-![image-20211031165613809](./img/BrnSelectTagIntro.png) 
-
-
+![image-20211031165613809](./img/BrnSelectTagIntro.png)
 
 ## 二、描述
 
@@ -19,8 +17,6 @@
 3. 宽高间距可设置
 
 4. 支持单选和多选
-
-
 
 ## 三、构造函数与参数配置
 
@@ -45,40 +41,34 @@ BrnSelectTag({
     this.alignment = Alignment.centerLeft,
     this.fixWidthMode = true,
     this.themeData,
-  }) 
+  })
 ```
-
-
 
 ### 参数说明
 
-| **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
-| --- | --- | --- | --- | --- |
-| tags | List | 展示的标签列表 | 是 |  |
-| onSelect | void Function(List<int>) | 点击标签的回调， | 否 |  |
-| spacing | double | 水平间距 | 否 | 12 |
-| verticalSpacing | double | 垂直间距 | 否 | 10 |
-| tagTextStyle | TextStyle | 普通标签的样式 | 否 |  |
-| selectedTagTextStyle | TextStyle | 选中的标签样式 | 否 |  |
-| tagBackgroundColor | Color | 普通标签背景色 | 否 | F0Color |
-| selectedTagBackgroundColor | Color | 选中的标签背景色 | 否 | B0Color |
-| tagWidth | double | 标签宽度 | 否 | 75 |
-| tagHeight | double | 标签高度 | 否 | 34 |
-| isSingleSelect | bool | 是否是单选 | 否 | true |
-| initTagState | List<bool> | 初始选中的标签状态 | 否 |  |
-| softWrap | bool | 是否为流式布局，true流式，false横向滑动 | 否 | true |
-| aligment | Alignment | 对齐模式，默认为靠左 | 否 | Alignment.centerLeft |
-| fixWidthMode | bool | 是否为宽度固定模式，true宽度固定，false宽度自适应 | 否 | true |
-
-
+| **参数名**                 | **参数类型**             | **描述**                                            | **是否必填** | **默认值**           |
+| -------------------------- | ------------------------ | --------------------------------------------------- | ------------ | -------------------- |
+| tags                       | List                     | 展示的标签列表                                      | 是           |                      |
+| onSelect                   | void Function(List<int>) | 点击标签的回调，                                    | 否           |                      |
+| spacing                    | double                   | 水平间距                                            | 否           | 12                   |
+| verticalSpacing            | double                   | 垂直间距                                            | 否           | 10                   |
+| tagTextStyle               | TextStyle                | 普通标签的样式                                      | 否           |                      |
+| selectedTagTextStyle       | TextStyle                | 选中的标签样式                                      | 否           |                      |
+| tagBackgroundColor         | Color                    | 普通标签背景色                                      | 否           | F0Color              |
+| selectedTagBackgroundColor | Color                    | 选中的标签背景色                                    | 否           | B0Color              |
+| tagWidth                   | double                   | 标签宽度                                            | 否           | 75                   |
+| tagHeight                  | double                   | 标签高度                                            | 否           | 34                   |
+| isSingleSelect             | bool                     | 是否是单选                                          | 否           | true                 |
+| initTagState               | List<bool>               | 初始选中的标签状态                                  | 否           |                      |
+| softWrap                   | bool                     | 是否为流式布局，true 流式，false 横向滑动           | 否           | true                 |
+| aligment                   | Alignment                | 对齐模式，默认为靠左                                | 否           | Alignment.centerLeft |
+| fixWidthMode               | bool                     | 是否为宽度固定模式，true 宽度固定，false 宽度自适应 | 否           | true                 |
 
 ## 四、效果及代码展示
 
-### 效果1：单选 Tag，标签等宽
+### 效果 1：单选 Tag，标签等宽
 
-![image-20211031170415653](./img/BrnSelectTagDemo1.png) 
-
-
+![image-20211031170415653](./img/BrnSelectTagDemo1.png)
 
 ```dart
 List<String> tagList = [
@@ -97,16 +87,17 @@ BrnSelectTag(
     onSelect: (selectedIndexes) {
       BrnToast.show(selectedIndexes.toString(), context);
     })
-    
+
 double _getTagWidth(context, {int rowCount : 4}) {
   double leftRightPadding = 40;
   double rowItemSpace = 12;
   return MediaQuery.of(context).size.width - leftRightPadding - rowItemSpace * (rowCount - 1) / rowCount;
 }
 ```
-### 效果2： 多选 Tag，标签等宽
 
-![image-20211031171122941](./img/BrnSelectTagDemo2.png) 
+### 效果 2： 多选 Tag，标签等宽
+
+![image-20211031171122941](./img/BrnSelectTagDemo2.png)
 
 ```dart
 List<String> tagList = [
@@ -126,7 +117,7 @@ BrnSelectTag(
     onSelect: (selectedIndexes) {
       BrnToast.show(selectedIndexes.toString(), context);
     })
-    
+
 double _getTagWidth(context, {int rowCount : 4}) {
   double leftRightPadding = 40;
   double rowItemSpace = 12;
@@ -134,10 +125,9 @@ double _getTagWidth(context, {int rowCount : 4}) {
 }
 ```
 
+### 效果 3： 横向滑动，标签等宽
 
-### 效果3： 横向滑动，标签等宽
-
-![image-20211031171429265](./img/BrnSelectTagDemo3.png) 
+![image-20211031171429265](./img/BrnSelectTagDemo3.png)
 
 ```dart
 List<String> tagList = [
@@ -155,8 +145,8 @@ BrnSelectTag(
     onSelect: (index) {
       BrnToast.show("$index is selected", context);
     })
-    
-    
+
+
 double _getTagWidth(context, {int rowCount : 4}) {
   double leftRightPadding = 40;
   double rowItemSpace = 12;
@@ -165,10 +155,9 @@ double _getTagWidth(context, {int rowCount : 4}) {
 
 ```
 
+### 效果 4： 横向滑动的自适应宽度标签(最小宽度 75)
 
-### 效果4： 横向滑动的自适应宽度标签(最小宽度75)
-
-![image-20211031171534507](./img/BrnSelectTagDemo4.png) 
+![image-20211031171534507](./img/BrnSelectTagDemo4.png)
 
 ```dart
 List<String> tagList = [
@@ -187,7 +176,7 @@ BrnSelectTag(
     onSelect: (index) {
       BrnToast.show("$index is selected", context);
     })
-    
+
 
 double _getTagWidth(context, {int rowCount : 4}) {
   double leftRightPadding = 40;
@@ -196,10 +185,9 @@ double _getTagWidth(context, {int rowCount : 4}) {
 }
 ```
 
+### 效果 5：流式布局，自适应宽度标签
 
-### 效果5：流式布局，自适应宽度标签
-
-![image-20211031171809995](./img/BrnSelectTagDemo5.png) 
+![image-20211031171809995](./img/BrnSelectTagDemo5.png)
 
 ```dart
 BrnSelectTag(

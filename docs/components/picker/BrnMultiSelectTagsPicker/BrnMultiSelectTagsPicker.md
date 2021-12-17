@@ -1,10 +1,10 @@
-# BrnMultiSelectTagsPicker 
+# BrnMultiSelectTagsPicker
 
 适用于底部弹出 Picker，且选择样式为 Tag 的场景。
 
 ### 一、效果总览
 
-<img src="./img/BrnMultiSelectTagsPickerIntro.png" style="zoom:50%;" /> 
+<img src="./img/BrnMultiSelectTagsPickerIntro.png" style="zoom:50%;" />
 
 ## 二、描述
 
@@ -15,7 +15,6 @@
 ## 三、构造函数及参数说明
 
 ### 构造函数
-
 
 ```dart
 BrnMultiSelectTagsPicker({
@@ -33,29 +32,29 @@ BrnMultiSelectTagsPicker({
   this.layoutStyle = BrnMultiSelectTagsLayoutStyle.average,
   BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
   BrnPickerConfig themeData,
-}) 
+})
 ```
+
 ### 参数说明
 
-| 参数名 | 参数类型 | 描述 | 是否必填 | 默认值 |
-| --- | --- | --- | --- | --- |
-| context | Buildcontext |  | 是 |  |
-| headerBean | LJPickerHeaderBean | 设置弹框头部相关数据 | 否 |  |
-| onConfirm | ValueChanged | 点击【完成】时回调给外部选中的数据 | 是 |  |
-| onCancel | VoidCallback | 点击【取消】时回调给外部的事件 | 否 |  |
-| tagPickerConfig | BrnTagsPickerConfig | 设置弹框的tags数据，配置详情见BrnTagsPickerConfig | 否 | |
-| onTagValueGetter | TagValueGetter | 传入的泛型数据转换为字符串 以填充Widget | 是 |  |
-| crossAxisCount | int | 一行展示多少个item | 否 |  |
-| maxSelectItemCount | int | 最大选中多少个item | 否 | 0 |
-| layoutStyle | BrnMultiSelectTagsLayoutStyle | 枚举.等分布局流式布局 | 否 | BrnMultiSelectTagsLayoutStyle.average |
-| onMaxSelectClick | VoidCallback | 当点击到最大数目时的点击事件 | 否 |  |
-| onItemClick | BrnMultiSelectTagOnItemClick | 点击某个按钮的回调 | 否 | |
-| itemHeight | double | item高度 | 否 | 34.0 |
+| 参数名             | 参数类型                      | 描述                                                 | 是否必填 | 默认值                                |
+| ------------------ | ----------------------------- | ---------------------------------------------------- | -------- | ------------------------------------- |
+| context            | Buildcontext                  |                                                      | 是       |                                       |
+| headerBean         | LJPickerHeaderBean            | 设置弹框头部相关数据                                 | 否       |                                       |
+| onConfirm          | ValueChanged                  | 点击【完成】时回调给外部选中的数据                   | 是       |                                       |
+| onCancel           | VoidCallback                  | 点击【取消】时回调给外部的事件                       | 否       |                                       |
+| tagPickerConfig    | BrnTagsPickerConfig           | 设置弹框的 tags 数据，配置详情见 BrnTagsPickerConfig | 否       |                                       |
+| onTagValueGetter   | TagValueGetter                | 传入的泛型数据转换为字符串 以填充 Widget             | 是       |                                       |
+| crossAxisCount     | int                           | 一行展示多少个 item                                  | 否       |                                       |
+| maxSelectItemCount | int                           | 最大选中多少个 item                                  | 否       | 0                                     |
+| layoutStyle        | BrnMultiSelectTagsLayoutStyle | 枚举.等分布局流式布局                                | 否       | BrnMultiSelectTagsLayoutStyle.average |
+| onMaxSelectClick   | VoidCallback                  | 当点击到最大数目时的点击事件                         | 否       |                                       |
+| onItemClick        | BrnMultiSelectTagOnItemClick  | 点击某个按钮的回调                                   | 否       |                                       |
+| itemHeight         | double                        | item 高度                                            | 否       | 34.0                                  |
 
 ### 其它数据
 
 `BrnTagsPickerHeaderConfig` 弹框头部信息，用于设置多选弹框的头部信息
-
 
 ```dart
 BrnTagsPickerHeaderConfig({
@@ -70,10 +69,10 @@ BrnTagsPickerHeaderConfig({
   this.cancelColor,
   this.cancelFontSize = 18,
   this.dividingLineColor,
-}) 
+})
 ```
-`BrnTagsPickerConfig`弹框Tag的的数据实体，用于设置弹框Tags的数据内容
 
+`BrnTagsPickerConfig`弹框 Tag 的的数据实体，用于设置弹框 Tags 的数据内容
 
 ```dart
 class BrnTagsPickerConfig {
@@ -111,37 +110,36 @@ class BrnTagsPickerConfig {
 }
 ```
 
-
 ## 四、代码演示
 
-### 效果1：页面底部Picker多选
+### 效果 1：页面底部 Picker 多选
 
-<img src="./img/BrnMultiSelectTagsPickerIntro.png" style="zoom:50%;" /> 
+<img src="./img/BrnMultiSelectTagsPickerIntro.png" style="zoom:50%;" />
 
 ```dart
-///标签选择弹框  
-void _showMulSelectTagPicker(BuildContext context) {  
- List tags = [  
-   '洗衣机',  
-   '电视机',  
-   '电冰箱',  
-   '双人床',  
-   '电茶炉',  
-   '洗手池222',  
-   '电茶炉333',  
-   '洗手池3311',  
-   '洗碗机',  
-   '挖掘111122机',  
-   '抽风机',  
-   '可爱多',  
- ];  
+///标签选择弹框
+void _showMulSelectTagPicker(BuildContext context) {
+ List tags = [
+   '洗衣机',
+   '电视机',
+   '电冰箱',
+   '双人床',
+   '电茶炉',
+   '洗手池222',
+   '电茶炉333',
+   '洗手池3311',
+   '洗碗机',
+   '挖掘111122机',
+   '抽风机',
+   '可爱多',
+ ];
 
- List <BrnTagItemBean>items = List();  
- for (int i = 0; i < tags.length ;i++){  
-   String it = tags[i];  
-   BrnTagItemBean item = BrnTagItemBean(name: it,code: it,index: i, isSelect: true);  
-   items.add(item);  
- }  
+ List <BrnTagItemBean>items = List();
+ for (int i = 0; i < tags.length ;i++){
+   String it = tags[i];
+   BrnTagItemBean item = BrnTagItemBean(name: it,code: it,index: i, isSelect: true);
+   items.add(item);
+ }
 
  BrnMultiSelectTagsPicker(
     context: context,

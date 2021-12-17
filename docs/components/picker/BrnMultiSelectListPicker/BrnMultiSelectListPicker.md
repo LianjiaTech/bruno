@@ -4,9 +4,9 @@
 
 相似组件有：
 
-[BrnMultiSelectTagsPicker](../brn-multi-select-tags-picker/brn-multi-select-tags-picker)从底部弹出的 Tag 样式多选。
+[BrnMultiSelectTagsPicker](../widgets/brn-multi-select-tags-picker)从底部弹出的 Tag 样式多选。
 
-[BrnMultiSelectDialog](../../dialog/brn-multi-select-dialog/brn-multi-select-dialog) 从页面中部弹出多选弹窗。
+[BrnMultiSelectDialog](../widgets/brn-multi-select-dialog) 从页面中部弹出多选弹窗。
 
 ## 一、效果总览
 

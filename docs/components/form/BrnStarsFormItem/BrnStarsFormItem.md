@@ -12,7 +12,7 @@
 
 ### 交互规则
 
-1. 设置是否为"必填项"（"*"）
+1. 设置是否为"必填项"（"\*"）
 
 2. 设置“添加/删除”图标（"+"、"-"）：用于接收回调函数处理新增/删除录入项操作
 
@@ -25,7 +25,6 @@
 ## 三、构造函数及参数说明
 
 ### 构造函数
-
 
 ```dart
 BrnStarsFormItem(
@@ -56,42 +55,43 @@ BrnStarsFormItem(
 
 ### 参数说明
 
-| **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
-| --- | --- | --- | --- | --- | --- |
-| label | String | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
-| type | Stirng | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.STAR_INPUT_TYPE | 外部可根据此字段判断表单项类型 |
-| title | String | 录入项标题 | 否 | '' |  |
-| subTitle | String | 录入项子标题 | 否 | 无 |  |
-| tipLabel | String | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
-| prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.TYPE\_NORMAL | 1. 不展示图标：BrnPrefixIconType.TYPE\_NORMAL 2. 展示加号图标：BrnPrefixIconType.TYPE\_ADD 3. 展示减号图标：BrnPrefixIconType.TYPE\_REMOVE |
-| error | String | 录入项错误提示 | 否 | '' |  |
-| isRequire | bool | 录入项是否为必填项（展示`*`图标） 默认为 false 不必填 | 否 | false |  |
-| isEdit | bool | 录入项 是否可编辑 | 否 | true | true：可编辑false：禁用 |
-| onAddTap | VoidCallback | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onRemoveTap | VoidCallback | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onTip | VoidCallback | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
-| value | int | 外部设置点亮星标数量 | 否 | 0 |  |
-| sumStar | int | 总星标数量 | 否 | 5 |  |
-| onChanged | OnBrnFormValueChanged | 点亮星标数量变化回调 | 否 | 无 |  |
-| themeData | BrnFormItemConfig | form配置 | 否 | 无 | |
+| **参数名**     | **参数类型**          | **描述**                                                           | **是否必填** | **默认值**                       | **备注**                                                                                                                                |
+| -------------- | --------------------- | ------------------------------------------------------------------ | ------------ | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| label          | String                | 录入项的唯一标识，主要用于录入类型页面框架中                       | 否           | 无                               |                                                                                                                                         |
+| type           | Stirng                | 录入项类型，主要用于录入类型页面框架中                             | 否           | BrnInputItemType.STAR_INPUT_TYPE | 外部可根据此字段判断表单项类型                                                                                                          |
+| title          | String                | 录入项标题                                                         | 否           | ''                               |                                                                                                                                         |
+| subTitle       | String                | 录入项子标题                                                       | 否           | 无                               |                                                                                                                                         |
+| tipLabel       | String                | 录入项提示（问号图标&文案） 用户点击时触发 onTip 回调。            | 否           | 备注中类型 3                     | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为 null 时，不显示提示项                        |
+| prefixIconType | String                | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否           | BrnPrefixIconType.TYPE_NORMAL    | 1. 不展示图标：BrnPrefixIconType.TYPE_NORMAL 2. 展示加号图标：BrnPrefixIconType.TYPE_ADD 3. 展示减号图标：BrnPrefixIconType.TYPE_REMOVE |
+| error          | String                | 录入项错误提示                                                     | 否           | ''                               |                                                                                                                                         |
+| isRequire      | bool                  | 录入项是否为必填项（展示`*`图标） 默认为 false 不必填              | 否           | false                            |                                                                                                                                         |
+| isEdit         | bool                  | 录入项 是否可编辑                                                  | 否           | true                             | true：可编辑 false：禁用                                                                                                                |
+| onAddTap       | VoidCallback          | 点击"+"图标回调                                                    | 否           | 无                               | 见**prefixIconType**字段                                                                                                                |
+| onRemoveTap    | VoidCallback          | 点击"-"图标回调                                                    | 否           | 无                               | 见**prefixIconType**字段                                                                                                                |
+| onTip          | VoidCallback          | 点击"？"图标回调                                                   | 否           | 无                               | 见**tipLabel**字段                                                                                                                      |
+| value          | int                   | 外部设置点亮星标数量                                               | 否           | 0                                |                                                                                                                                         |
+| sumStar        | int                   | 总星标数量                                                         | 否           | 5                                |                                                                                                                                         |
+| onChanged      | OnBrnFormValueChanged | 点亮星标数量变化回调                                               | 否           | 无                               |                                                                                                                                         |
+| themeData      | BrnFormItemConfig     | form 配置                                                          | 否           | 无                               |                                                                                                                                         |
 
 ### 其他数据说明:
 
 #### BrnPrefixIconType:
 
 ```dart
-class BrnPrefixIconType {  
-  static const String TYPE_NORMAL = "type_normal";  
-  static const String TYPE_ADD = "type_add";  
-  static const String TYPE_REMOVE = "type_remove";  
+class BrnPrefixIconType {
+  static const String TYPE_NORMAL = "type_normal";
+  static const String TYPE_ADD = "type_add";
+  static const String TYPE_REMOVE = "type_remove";
 }
 ```
 
 ## 四、代码演示
 
-### 效果1：基本样式
+### 效果 1：基本样式
 
 ![](./img/BrnStarsFormItemDemo1.png)
+
 ```dart
 BrnStarsFormItem(
   title: "自然到访保护期",
@@ -111,9 +111,11 @@ BrnStarsFormItem(
   },
 )
 ```
-### 效果2：全功能样式
+
+### 效果 2：全功能样式
 
 ![](./img/BrnStarsFormItemDemo2.png)
+
 ```dart
 BrnStarsFormItem(
   prefixIconType: BrnPrefixIconType.TYPE_ADD,
@@ -139,4 +141,3 @@ BrnStarsFormItem(
   },
 )
 ```
-

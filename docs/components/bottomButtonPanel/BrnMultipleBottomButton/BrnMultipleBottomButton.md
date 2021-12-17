@@ -6,8 +6,6 @@
 
 ![image-20211031180759161](./img/BrnMultipleBottomButtonIntro.png)
 
-
-
 ## 二、描述
 
 ### 适用场景
@@ -32,37 +30,32 @@ BrnMultipleBottomButton(
   this.bottomController})
 ```
 
-
 ### 参数说明
 
 #### BrnMultipleBottomButton
 
-| **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
-| --- | --- | --- | --- | --- |
-| mainButton | dynamic | 主按钮的显示文案，传入String即使用默认的Text样式，传入其他样式则使用对应的Widget | 否 |  |
-| onMainButtonTap | VoidCallback | 主按钮点击回调 | 否 |  |
-| subButton | dynamic | 次按钮的显示文案，传入String即使用默认的Text样式，传入其他样式则使用对应的Widget | 否 |  |
-| onSubButtonTap | VoidCallback | 次按钮点击回调 | 否 |  |
-| onSelectedButtonTap | Function(int) | selectedButtonOnTap', '点击已选的回调，存在三种状态：-1:不可展开（当value为0的时候），0：收起，1：展开 | 否 |  |
-| onSelectAll | Function(bool) | 全选的点击回调，不传则不展示多选按钮，回传参数true表示选中全选，false表示取消全选 | 否 |  |
-| hasArrow | bool | 已选侧边是否需要小箭头 | 否 | false |
-| bottomController | BrnMultipleBottomController | 暴露给外界设置按钮状态的控制器 | 否 |  |
-
-
+| **参数名**          | **参数类型**                | **描述**                                                                                                   | **是否必填** | **默认值** |
+| ------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------ | ---------- |
+| mainButton          | dynamic                     | 主按钮的显示文案，传入 String 即使用默认的 Text 样式，传入其他样式则使用对应的 Widget                      | 否           |            |
+| onMainButtonTap     | VoidCallback                | 主按钮点击回调                                                                                             | 否           |            |
+| subButton           | dynamic                     | 次按钮的显示文案，传入 String 即使用默认的 Text 样式，传入其他样式则使用对应的 Widget                      | 否           |            |
+| onSubButtonTap      | VoidCallback                | 次按钮点击回调                                                                                             | 否           |            |
+| onSelectedButtonTap | Function(int)               | selectedButtonOnTap', '点击已选的回调，存在三种状态：-1:不可展开（当 value 为 0 的时候），0：收起，1：展开 | 否           |            |
+| onSelectAll         | Function(bool)              | 全选的点击回调，不传则不展示多选按钮，回传参数 true 表示选中全选，false 表示取消全选                       | 否           |            |
+| hasArrow            | bool                        | 已选侧边是否需要小箭头                                                                                     | 否           | false      |
+| bottomController    | BrnMultipleBottomController | 暴露给外界设置按钮状态的控制器                                                                             | 否           |            |
 
 #### MultiSelectState
 
 用于需要控制底部按钮栏的场景包括：全选状态是否选中、已选（）中的数量、主按钮，次按钮是否置灰以及小三角的方向控制。
 
-| **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
-| --- | --- | --- | --- | --- |
-| selectedCount | int | 设置已选中的数量 | 否 | 0 |
-| selectAllState | bool | 设置全选状态是否选中（不会触发selectAllOnTap的回调） | 否 | false |
-| mainButtonState | bool | 设置主按钮是否置灰 （置灰后任然会响应点击回调） | 否 | true |
-| subButtonState | bool | 设置次按钮是否置灰 （置灰后任然会响应点击回调） | 否 | true |
-| arrowStatus | int | 控制箭头的状态 枚举值为:// cantUnfold = -1;// fold = 0;// unfold = 1; | 否 | 0 |
-
-
+| **参数名**      | **参数类型** | **描述**                                                              | **是否必填** | **默认值** |
+| --------------- | ------------ | --------------------------------------------------------------------- | ------------ | ---------- |
+| selectedCount   | int          | 设置已选中的数量                                                      | 否           | 0          |
+| selectAllState  | bool         | 设置全选状态是否选中（不会触发 selectAllOnTap 的回调）                | 否           | false      |
+| mainButtonState | bool         | 设置主按钮是否置灰 （置灰后任然会响应点击回调）                       | 否           | true       |
+| subButtonState  | bool         | 设置次按钮是否置灰 （置灰后任然会响应点击回调）                       | 否           | true       |
+| arrowStatus     | int          | 控制箭头的状态 枚举值为:// cantUnfold = -1;// fold = 0;// unfold = 1; | 否           | 0          |
 
 #### BrnMultipleButtonArrowState
 
@@ -83,15 +76,11 @@ enum BrnMultipleButtonArrowState {
 }
 ```
 
-
-
 ## 四、代码演示
 
-### 效果1：展示所有的按钮
+### 效果 1：展示所有的按钮
 
-![](./img/BrnMultipleBottomButtonDemo1.png) 
-
-
+![](./img/BrnMultipleBottomButtonDemo1.png)
 
 ```dart
 BrnMultipleBottomController controller = BrnMultipleBottomController();
@@ -134,10 +123,9 @@ BrnMultipleBottomButton(
   }
 ```
 
+### 效果 2：展示已选和主按钮，带小箭头
 
-### 效果2：展示已选和主按钮，带小箭头
-
-![BrnMultipleBottomButtonDemo2](./img/BrnMultipleBottomButtonDemo2.png) 
+![BrnMultipleBottomButtonDemo2](./img/BrnMultipleBottomButtonDemo2.png)
 
 ```dart
 BrnMultipleBottomButton(
@@ -168,10 +156,10 @@ void selectedButtonOnTap(BrnMultipleButtonArrowState state) {
 }
 ```
 
+### 效果 3：只有已选和主按钮，不带小箭头
 
-### 效果3：只有已选和主按钮，不带小箭头
+![](./img/BrnMultipleBottomButtonDemo3.png)
 
-![](./img/BrnMultipleBottomButtonDemo3.png)  
 ```dart
 BrnMultipleBottomButton(
   onSelectedButtonTap: selectedButtonOnTap,
@@ -201,10 +189,9 @@ void selectedButtonOnTap(BrnMultipleButtonArrowState state) {
 }
 ```
 
+### 效果 4：已选+次要按钮+主要按钮
 
-### 效果4：已选+次要按钮+主要按钮
-
-![image-20211031181422524](./img/BrnMultipleBottomButtonDemo4.png) 
+![image-20211031181422524](./img/BrnMultipleBottomButtonDemo4.png)
 
 ```dart
 

@@ -4,7 +4,6 @@
 
 ![](./img/empty_state_intro.png)
 
-
 ## 二、描述
 
 ### 适用场景

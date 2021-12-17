@@ -6,17 +6,15 @@
 
 <img src="./img/BrnFlatSelectionIntro.png" style="zoom:67%;" />
 
-
 ## 二、描述
 
 ### 适用场景
 
-一级平铺筛选，目前应用pad上。
+一级平铺筛选，目前应用 pad 上。
 
 ## 三、构造函数及参数说明
 
 ### 构造函数
-
 
 ```dart
 BrnFlatSelection(
@@ -35,48 +33,47 @@ BrnFlatSelection(
 }
 ```
 
-
 ### 参数说明
 
-| 参数名 | 参数类型 | 描述 | 是否必填 | 默认值 |
-| --- | --- | --- | --- | --- |
-| entityDataList | `List<BrnSelectionEntity>` | 筛选原始数据 | 是 | 无 |
-| confirmCallback | `Function(Map<String, String>)` | 确定回调 | 否 | 无 |
-| preLineTagSize | int | 每行展示tag数 | 否 | 3 |
-| onCustomFloatingLayerClick | BrnOnCustomFloatingLayerClick | 自定义事件处理 | 否 | 无 |
-| isNeedConfigChild | bool | 是否需要配置子选项 | 否 | true |
-| controller | BrnFlatSelectionController | 自定义controller | 否 |  |
-| themeData | BrnSelectionConfig | 筛选项主题配置，配置详见BrnSelectionConfig | 否 | |
+| 参数名                     | 参数类型                        | 描述                                        | 是否必填 | 默认值 |
+| -------------------------- | ------------------------------- | ------------------------------------------- | -------- | ------ |
+| entityDataList             | `List<BrnSelectionEntity>`      | 筛选原始数据                                | 是       | 无     |
+| confirmCallback            | `Function(Map<String, String>)` | 确定回调                                    | 否       | 无     |
+| preLineTagSize             | int                             | 每行展示 tag 数                             | 否       | 3      |
+| onCustomFloatingLayerClick | BrnOnCustomFloatingLayerClick   | 自定义事件处理                              | 否       | 无     |
+| isNeedConfigChild          | bool                            | 是否需要配置子选项                          | 否       | true   |
+| controller                 | BrnFlatSelectionController      | 自定义 controller                           | 否       |        |
+| themeData                  | BrnSelectionConfig              | 筛选项主题配置，配置详见 BrnSelectionConfig | 否       |        |
 
 ## 四、代码演示
 
-### 效果1
+### 效果 1
 
 <img src="./img/BrnFlatSelectionDemo1.png" style="zoom:50%;" />
 
 ```dart
-BrnFlatSelection(  
-  entityDataList: widget._filterData,  
-  confirmCallback: (data) {  
-    var str = "";  
-    data.forEach((k, v) => str=str +" "+'${k}: ${v}');  
-    BrnToast.show(str, context);  
-  },  
+BrnFlatSelection(
+  entityDataList: widget._filterData,
+  confirmCallback: (data) {
+    var str = "";
+    data.forEach((k, v) => str=str +" "+'${k}: ${v}');
+    BrnToast.show(str, context);
+  },
   controller: controller)
 ```
-### 效果2
+
+### 效果 2
 
 <img src="./img/BrnFlatSelectionDemo2.png" style="zoom:50%;" />
 
 ```dart
-BrnFlatSelection(  
-  preLineTagSize: 4,  
-  entityDataList: widget._filterData,  
-  confirmCallback: (data) {  
-    var str = "";  
-    data.forEach((k, v) => str=str +" "+'${k}: ${v}');  
-    BrnToast.show(str, context);  
-  },  
+BrnFlatSelection(
+  preLineTagSize: 4,
+  entityDataList: widget._filterData,
+  confirmCallback: (data) {
+    var str = "";
+    data.forEach((k, v) => str=str +" "+'${k}: ${v}');
+    BrnToast.show(str, context);
+  },
   controller: controller)
 ```
-

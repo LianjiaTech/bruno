@@ -80,7 +80,7 @@ static Widget Function(StepWidgetParams params) useDefaultTheme(
 
 ## 四、代码演示
 
-### 效果1：强引导模式
+### 效果 1：强引导模式
 
 <img src="./img/BrnGuideForceDemo.gif" style="zoom:50%;" />
 
@@ -240,7 +240,7 @@ class _ForceGuideDemoState extends State<ForceGuideDemo> {
 }
 ```
 
-### 效果2：弱引导模式
+### 效果 2：弱引导模式
 
 <img src="./img/BrnGuideSoftDemo.gif" style="zoom:50%;" />
 

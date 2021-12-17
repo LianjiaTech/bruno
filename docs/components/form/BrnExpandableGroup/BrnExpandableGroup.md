@@ -52,7 +52,7 @@ BrnExpandableGroup({
 
 ## 四、代码演示
 
-### 效果1
+### 效果 1
 
 <img src="./img/BrnExpandableGroupIntro1.gif" style="zoom:50%;" />
 
@@ -61,7 +61,7 @@ class FormPageDemo extends StatefulWidget {
   @override
   _FormPageDemoState createState() => _FormPageDemoState();
 }
-````
+```
 
 ```dart
 class _FormPageDemoState extends State<FormPageDemo> {
@@ -157,4 +157,4 @@ class _FormPageDemoState extends State<FormPageDemo> {
     );
   }
 }
-````
+```

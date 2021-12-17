@@ -50,7 +50,6 @@ const BrnSmallOutlineButton({
 
 <img src="./img/BrnSmallOutlineButton.png" style="zoom:50%;" />&nbsp;
 
-
 ```dart
 BrnSmallOutlineButton(
   title: '次按钮',

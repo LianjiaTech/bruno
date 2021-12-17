@@ -28,24 +28,23 @@ const BrnBigOutlineButton({
   this.themeData,
 }) : super(key: key);
 ```
+
 ### 参数说明
 
-| **参数名** | **参数类型** | 描述 | **是否必填** | **默认值** |
-| --- | --- | --- | --- | --- |
-| title | String | 按钮显示文案 | 否 | 确认 |
-| onTap | VoidCallback | 点击的回调 | 否 | 无 |
-| isEnable | bool | 按钮是否可用 | 否 | True |
-| lineColor | Color | 边框颜色 | 否 | 主题色 |
-| textColor | Color | 按钮文本颜色 | 否 | 黑色 |
-| width | double | 按钮的宽度 | 否 | double.infinity |
+| **参数名** | **参数类型** | 描述         | **是否必填** | **默认值**      |
+| ---------- | ------------ | ------------ | ------------ | --------------- |
+| title      | String       | 按钮显示文案 | 否           | 确认            |
+| onTap      | VoidCallback | 点击的回调   | 否           | 无              |
+| isEnable   | bool         | 按钮是否可用 | 否           | True            |
+| lineColor  | Color        | 边框颜色     | 否           | 主题色          |
+| textColor  | Color        | 按钮文本颜色 | 否           | 黑色            |
+| width      | double       | 按钮的宽度   | 否           | double.infinity |
 
 ## 四、效果及代码演示
 
-###  效果1: 正常效果
-
+###   效果 1: 正常效果
 
 ![](./img/BrnBigOutlineButton.png)
-
 
 ```dart
 BrnBigOutlineButton(
@@ -55,10 +54,10 @@ BrnBigOutlineButton(
   },
 )
 ```
-###  效果2: 置灰效果
+
+###   效果 2: 置灰效果
 
 <img src="./img/BrnBigOutlineButtonDisabled.png" style="zoom:50%;" />
-
 
 ```dart
 BrnBigOutlineButton(
@@ -70,4 +69,3 @@ BrnBigOutlineButton(
   },
 )
 ```
-

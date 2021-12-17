@@ -58,44 +58,45 @@ BrnTextSelectFormItem({
 
 ### 参数说明：
 
-| **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
-| --- | --- | --- | --- | --- | --- |
-| label | String | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
-| type | Stirng | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.TEXT_SELECT_INPUT_TYPE | 外部可根据此字段判断表单项类型 |
-| title | String | 录入项标题 | 否 | '' |  |
-| subTitle | String | 录入项子标题 | 否 | 无 |  |
-| tipLabel | String | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
-| prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.TYPE_NORMAL | 1. 不展示图标：BrnPrefixIconType.TYPE\_NORMAL 2. 展示加号图标：BrnPrefixIconType.TYPE\_ADD 3. 展示减号图标：BrnPrefixIconType.TYPE\_REMOVE |
-| error | String | 录入项错误提示 | 否 | '' |  |
-| isRequire | bool | 录入项是否为必填项（展示`*`图标），默认为 false 不必填 | 否 | false |  |
-| isEdit | bool | 录入项 是否可编辑 | 否 | true | true：可编辑false：禁用 |
-| onAddTap | VoidCallback | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onRemoveTap | VoidCallback | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onTip | VoidCallback | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
-| onTap | VoidCallback | 点击录入区回调 | 否 | 无 |  |
-| hint | String | 录入项 hint 提示 | 否 | '请选择' |  |
-| value | String | 录入项的值 | 否 | 无 |  |
-| valueMaxLines | int | 选中文本最大行数 | 否 | 1 |  |
-| titleMaxLines | int | title最大行数 | 否 | 无 |  |
-| layoutRatio | double | 行布局左:右比例值，左边「标题+问号+提示语」  右边「选项值」，例如  左:右 = 6:4   则 ratio = 1.5 | 否 | 当左右内容超出默认比例且「有」提示语，则按比例  6:4 布局，当左右内容超出默认比例且「无」提示语，则按比例  4:6 布局，有用户自定义比例时用用户自定义比例 |  |
-
+| **参数名**     | **参数类型** | **描述**                                                                                    | **是否必填** | **默认值**                                                                                                                                           | **备注**                                                                                                                                |
+| -------------- | ------------ | ------------------------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| label          | String       | 录入项的唯一标识，主要用于录入类型页面框架中                                                | 否           | 无                                                                                                                                                   |                                                                                                                                         |
+| type           | Stirng       | 录入项类型，主要用于录入类型页面框架中                                                      | 否           | BrnInputItemType.TEXT_SELECT_INPUT_TYPE                                                                                                              | 外部可根据此字段判断表单项类型                                                                                                          |
+| title          | String       | 录入项标题                                                                                  | 否           | ''                                                                                                                                                   |                                                                                                                                         |
+| subTitle       | String       | 录入项子标题                                                                                | 否           | 无                                                                                                                                                   |                                                                                                                                         |
+| tipLabel       | String       | 录入项提示（问号图标&文案） 用户点击时触发 onTip 回调。                                     | 否           | 备注中类型 3                                                                                                                                         | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为 null 时，不显示提示项                        |
+| prefixIconType | String       | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类                          | 否           | BrnPrefixIconType.TYPE_NORMAL                                                                                                                        | 1. 不展示图标：BrnPrefixIconType.TYPE_NORMAL 2. 展示加号图标：BrnPrefixIconType.TYPE_ADD 3. 展示减号图标：BrnPrefixIconType.TYPE_REMOVE |
+| error          | String       | 录入项错误提示                                                                              | 否           | ''                                                                                                                                                   |                                                                                                                                         |
+| isRequire      | bool         | 录入项是否为必填项（展示`*`图标），默认为 false 不必填                                      | 否           | false                                                                                                                                                |                                                                                                                                         |
+| isEdit         | bool         | 录入项 是否可编辑                                                                           | 否           | true                                                                                                                                                 | true：可编辑 false：禁用                                                                                                                |
+| onAddTap       | VoidCallback | 点击"+"图标回调                                                                             | 否           | 无                                                                                                                                                   | 见**prefixIconType**字段                                                                                                                |
+| onRemoveTap    | VoidCallback | 点击"-"图标回调                                                                             | 否           | 无                                                                                                                                                   | 见**prefixIconType**字段                                                                                                                |
+| onTip          | VoidCallback | 点击"？"图标回调                                                                            | 否           | 无                                                                                                                                                   | 见**tipLabel**字段                                                                                                                      |
+| onTap          | VoidCallback | 点击录入区回调                                                                              | 否           | 无                                                                                                                                                   |                                                                                                                                         |
+| hint           | String       | 录入项 hint 提示                                                                            | 否           | '请选择'                                                                                                                                             |                                                                                                                                         |
+| value          | String       | 录入项的值                                                                                  | 否           | 无                                                                                                                                                   |                                                                                                                                         |
+| valueMaxLines  | int          | 选中文本最大行数                                                                            | 否           | 1                                                                                                                                                    |                                                                                                                                         |
+| titleMaxLines  | int          | title 最大行数                                                                              | 否           | 无                                                                                                                                                   |                                                                                                                                         |
+| layoutRatio    | double       | 行布局左:右比例值，左边「标题+问号+提示语」 右边「选项值」，例如 左:右 = 6:4 则 ratio = 1.5 | 否           | 当左右内容超出默认比例且「有」提示语，则按比例 6:4 布局，当左右内容超出默认比例且「无」提示语，则按比例 4:6 布局，有用户自定义比例时用用户自定义比例 |                                                                                                                                         |
 
 ### 其他数据说明:
 
 #### BrnPrefixIconType:
 
 ```dart
-class BrnPrefixIconType{  
-  static const String TYPE_NORMAL = "type_normal";  
-  static const String TYPE_ADD = "type_add";  
-  static const String TYPE_REMOVE = "type_remove";  
+class BrnPrefixIconType{
+  static const String TYPE_NORMAL = "type_normal";
+  static const String TYPE_ADD = "type_add";
+  static const String TYPE_REMOVE = "type_remove";
 }
 ```
+
 ## 四、代码演示
 
-### 效果1：基本样式
+### 效果 1：基本样式
 
 ![](./img/BrnTextSelectFormItemDemo1.png)
+
 ```dart
 BrnTextSelectFormItem(
   title: "证件类型",
@@ -113,9 +114,11 @@ BrnTextSelectFormItem(
   },
 ),
 ```
-### 效果2：全功能样式
+
+### 效果 2：全功能样式
 
 ![](./img/BrnTextSelectFormItemDemo2.png)
+
 ```dart
 BrnTextSelectFormItem(
   prefixIconType: BrnPrefixIconType.TYPE_ADD,
@@ -138,7 +141,8 @@ BrnTextSelectFormItem(
   },
 )
 ```
-### 效果3：无错误提示样式
+
+### 效果 3：无错误提示样式
 
 ![](./img/BrnTextSelectFormItemDemo3.png)
 
@@ -163,7 +167,8 @@ BrnTextSelectFormItem(
   },
 )
 ```
-### 效果4：autolayout 样式
+
+### 效果 4：autolayout 样式
 
 ![](./img/BrnTextSelectFormItemDemo4.png)
 

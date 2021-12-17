@@ -2,9 +2,9 @@
 
 用于筛选数据
 
-相关组件 [BrnFlatSelectionWidget](../brn-flat-selection/brn-flat-selection)
+相关组件 [BrnFlatSelectionWidget](../widgets/brn-flat-selection)
 
-相关组件 [BrnSimpleSelection](../brn-simple-selection/brn-simple-selection)
+相关组件 [BrnSimpleSelection](../widgets/brn-simple-selection)
 
 ## 一、效果总览
 

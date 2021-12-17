@@ -1,13 +1,10 @@
 # BrnEnhanceNumberCard
+
 常用于卡片中强化展示 数字信息
 
 ## 一、效果总览
 
-
-
-<img src="./img/BrnEnhanceNumberCardIntro.png" alt="image-20211031145110065" style="zoom:50%;" /> 
-
-
+<img src="./img/BrnEnhanceNumberCardIntro.png" alt="image-20211031145110065" style="zoom:50%;" />
 
 ## 二、描述
 
@@ -17,11 +14,9 @@
 
 ### **注意事项**
 
-1、需要强化的信息，必须是非中文（BrnMetaNumberInfoItemModel的number 字段），否则会显示异常，如下所示：
+1、需要强化的信息，必须是非中文（BrnMetaNumberInfoItemModel 的 number 字段），否则会显示异常，如下所示：
 
-![image-20211031145233093](./img/BrnEnhanceNumberCardIntro1.png) 
-
-
+![image-20211031145233093](./img/BrnEnhanceNumberCardIntro1.png)
 
 ## 三、构造函数及参数说明
 
@@ -40,25 +35,24 @@ BrnEnhanceNumberCard({
   this.themeData,
 })
 ```
+
 ### 参数说明
 
-| **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
-| --- | --- | --- | --- | --- |
-| itemChildren | List | 待展示的信息 | 否 | 无 |
-| rowCount | int | 每行展示的item的数量 | 否 | 3 |
-| runningSpace | double | 如果超过一行，则展示行间距则 | 否 | 16 |
-| itemRunningSpace | double | Item的上半部分和下半部分的间距 | 否 | 8 |
-| padding | EdgeInsets | 元件左右侧的边距 | 否 | EdgeInsets.only(left: 20, right: 20) |
-| backgroundColor | Color | 背景色 默认为白色 | 否 | Colors.white |
-| itemTextAlign | TextAlign | 文本内容对齐方式 | 否 | TextAlign.left |
-
-
+| **参数名**       | **参数类型** | **描述**                        | **是否必填** | **默认值**                           |
+| ---------------- | ------------ | ------------------------------- | ------------ | ------------------------------------ |
+| itemChildren     | List         | 待展示的信息                    | 否           | 无                                   |
+| rowCount         | int          | 每行展示的 item 的数量          | 否           | 3                                    |
+| runningSpace     | double       | 如果超过一行，则展示行间距则    | 否           | 16                                   |
+| itemRunningSpace | double       | Item 的上半部分和下半部分的间距 | 否           | 8                                    |
+| padding          | EdgeInsets   | 元件左右侧的边距                | 否           | EdgeInsets.only(left: 20, right: 20) |
+| backgroundColor  | Color        | 背景色 默认为白色               | 否           | Colors.white                         |
+| itemTextAlign    | TextAlign    | 文本内容对齐方式                | 否           | TextAlign.left                       |
 
 ## 四、代码演示
 
-### 效果1：单列数据
+### 效果 1：单列数据
 
-![image-20211031143416320](./img/BrnEnhanceNumberCardDemo1.png) 
+![image-20211031143416320](./img/BrnEnhanceNumberCardDemo1.png)
 
 ```
 BrnMetaNumberInfoWidget(
@@ -71,11 +65,9 @@ BrnMetaNumberInfoWidget(
 )
 ```
 
+### 效果 2：单列带前后描述信息
 
-
-### 效果2：单列带前后描述信息
-
-![image-20211031144239250](./img/BrnEnhanceNumberCardDemo2.png) 
+![image-20211031144239250](./img/BrnEnhanceNumberCardDemo2.png)
 
 ```dart
 BrnEnhanceNumberCard(
@@ -91,11 +83,9 @@ BrnEnhanceNumberCard(
 )
 ```
 
+### 效果 3：双列数据
 
-
-### 效果3：双列数据
-
-<img src="./img/BrnEnhanceNumberCardDemo3.png" style="zoom:50%;" /> 
+<img src="./img/BrnEnhanceNumberCardDemo3.png" style="zoom:50%;" />
 
 ```
 BrnMetaNumberInfoWidget(
@@ -113,11 +103,9 @@ BrnMetaNumberInfoWidget(
 )
 ```
 
+### 效果 4：单行三列情况
 
-
-### 效果4：单行三列情况
-
-![image-20211031144401720](./img/BrnEnhanceNumberCardDemo4.png) 
+![image-20211031144401720](./img/BrnEnhanceNumberCardDemo4.png)
 
 ```
 BrnEnhanceNumberCard(
@@ -145,11 +133,10 @@ BrnEnhanceNumberCard(
 )
 ```
 
+### 效果 5：其他展示效果
 
+![image-20211031144549311](./img/BrnEnhanceNumberCardDemo5.png)
 
-### 效果5：其他展示效果
-
-![image-20211031144549311](./img/BrnEnhanceNumberCardDemo5.png) 
 ```
 BrnEnhanceNumberCard(
   rowCount: 3,
@@ -190,4 +177,3 @@ BrnEnhanceNumberCard(
   ],
 )
 ```
-

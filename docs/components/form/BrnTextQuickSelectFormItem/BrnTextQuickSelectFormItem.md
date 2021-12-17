@@ -6,7 +6,7 @@
 
 ![](./img/BrnTextQuickSelectFormItemIntro.png)
 
-##  二、描述
+## 二、描述
 
 ### 适用场景
 
@@ -23,7 +23,6 @@
 ## 三、构造函数及参数说明
 
 ### 构造函数
-
 
 ```dart
 BrnTextQuickSelectFormItem(
@@ -57,40 +56,41 @@ BrnTextQuickSelectFormItem(
       .merge(themeData);
 }
 ```
+
 ### 参数说明
 
-| **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
-| --- | --- | --- | --- | --- | --- |
-| label | String | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
-| type | Stirng | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.TEXT_QUICK_SELECT_INPUT_TYPE | 外部可根据此字段判断表单项类型 |
-| title | String | 录入项标题 | 否 | '' |  |
-| subTitle | String | 录入项子标题 | 否 | 无 |  |
-| tipLabel | String | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
-| error | String | 录入项错误提示 | 否 | '' |  |
-| isRequire | bool | 录入项是否为必填项（展示`*`图标） 默认为 false 不必填 | 否 | false |  |
-| isEdit | bool | 录入项 是否可编辑 | 否 | true | true：可编辑false：禁用 |
-| prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 BrnPrefixIconType 类 | 否 | BrnPrefixIconType.TYPE\_NORMAL | 1. 不展示图标：BrnPrefixIconType.TYPE\_NORMAL2. 展示加号图标：BrnPrefixIconType.TYPE\_ADD3. 展示减号图标：BrnPrefixIconType.TYPE\_REMOVE |
-| isBtnsScroll | bool | 快捷按钮是否可滑动 | 否 | 无 | true：可滚动false：不可滚动 |
-| btnsTxt | List<String> | 按钮文案 | 否 | 无 |  |
-| selectBtnList | List<bool> | 按钮是否默认选中 | 否 | 无 | true：选中false：未选中 |
-| enableBtnList | List<bool> | 按钮是否默认禁用 | 否 | 无 | true：使能false：禁用 |
-| value | String | 选择框文案 | 否 | 无 |  |
-| onTip | VoidCallback | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
-| onAddTap | VoidCallback | 点击"+"图标回调 | 否 | 无 | 见prefixIconType字段 |
-| onRemoveTap | VoidCallback | 点击"-"图标回调 | 否 | 无 | 见prefixIconType字段 |
-| onBtnSelectChanged | ValueChanged<int> | 按钮选中文案，会把选中的序号回调出去。 | 否 | 无 |  |
-| hint | String | 录入项 hint 提示 | 否 | '请选择' |  |
-| value | String | 录入项的值 | 否 | 无 |  |
-| btnsTxt | List<String> | 快捷操作按钮选项文案列表 | 否 | 无 |  |
-| selectBtnList | List<bool> | 快捷按钮区的初始选中状态 | 否 | 无 |  |
-| enableBtnList | List<bool> | 快捷按钮区的是否可用状态 | 否 | 无 |  |
-| btns | Widget | 快捷按钮用户自定义视图 | 否 | 无 |  |
-| isBtnsScroll | bool | 快捷按钮较多时是否可滑动 | 否 | false |  |
-| themeData | BrnFormItemConfig | 表单主题配置 | 否 | 无 | |
+| **参数名**         | **参数类型**      | **描述**                                                       | **是否必填** | **默认值**                                    | **备注**                                                                                                                              |
+| ------------------ | ----------------- | -------------------------------------------------------------- | ------------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| label              | String            | 录入项的唯一标识，主要用于录入类型页面框架中                   | 否           | 无                                            |                                                                                                                                       |
+| type               | Stirng            | 录入项类型，主要用于录入类型页面框架中                         | 否           | BrnInputItemType.TEXT_QUICK_SELECT_INPUT_TYPE | 外部可根据此字段判断表单项类型                                                                                                        |
+| title              | String            | 录入项标题                                                     | 否           | ''                                            |                                                                                                                                       |
+| subTitle           | String            | 录入项子标题                                                   | 否           | 无                                            |                                                                                                                                       |
+| tipLabel           | String            | 录入项提示（问号图标&文案） 用户点击时触发 onTip 回调。        | 否           | 备注中类型 3                                  | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为 null 时，不显示提示项                      |
+| error              | String            | 录入项错误提示                                                 | 否           | ''                                            |                                                                                                                                       |
+| isRequire          | bool              | 录入项是否为必填项（展示`*`图标） 默认为 false 不必填          | 否           | false                                         |                                                                                                                                       |
+| isEdit             | bool              | 录入项 是否可编辑                                              | 否           | true                                          | true：可编辑 false：禁用                                                                                                              |
+| prefixIconType     | String            | 录入项前缀图标样式 "添加项" "删除项" 详见 BrnPrefixIconType 类 | 否           | BrnPrefixIconType.TYPE_NORMAL                 | 1. 不展示图标：BrnPrefixIconType.TYPE_NORMAL2. 展示加号图标：BrnPrefixIconType.TYPE_ADD3. 展示减号图标：BrnPrefixIconType.TYPE_REMOVE |
+| isBtnsScroll       | bool              | 快捷按钮是否可滑动                                             | 否           | 无                                            | true：可滚动 false：不可滚动                                                                                                          |
+| btnsTxt            | List<String>      | 按钮文案                                                       | 否           | 无                                            |                                                                                                                                       |
+| selectBtnList      | List<bool>        | 按钮是否默认选中                                               | 否           | 无                                            | true：选中 false：未选中                                                                                                              |
+| enableBtnList      | List<bool>        | 按钮是否默认禁用                                               | 否           | 无                                            | true：使能 false：禁用                                                                                                                |
+| value              | String            | 选择框文案                                                     | 否           | 无                                            |                                                                                                                                       |
+| onTip              | VoidCallback      | 点击"？"图标回调                                               | 否           | 无                                            | 见**tipLabel**字段                                                                                                                    |
+| onAddTap           | VoidCallback      | 点击"+"图标回调                                                | 否           | 无                                            | 见 prefixIconType 字段                                                                                                                |
+| onRemoveTap        | VoidCallback      | 点击"-"图标回调                                                | 否           | 无                                            | 见 prefixIconType 字段                                                                                                                |
+| onBtnSelectChanged | ValueChanged<int> | 按钮选中文案，会把选中的序号回调出去。                         | 否           | 无                                            |                                                                                                                                       |
+| hint               | String            | 录入项 hint 提示                                               | 否           | '请选择'                                      |                                                                                                                                       |
+| value              | String            | 录入项的值                                                     | 否           | 无                                            |                                                                                                                                       |
+| btnsTxt            | List<String>      | 快捷操作按钮选项文案列表                                       | 否           | 无                                            |                                                                                                                                       |
+| selectBtnList      | List<bool>        | 快捷按钮区的初始选中状态                                       | 否           | 无                                            |                                                                                                                                       |
+| enableBtnList      | List<bool>        | 快捷按钮区的是否可用状态                                       | 否           | 无                                            |                                                                                                                                       |
+| btns               | Widget            | 快捷按钮用户自定义视图                                         | 否           | 无                                            |                                                                                                                                       |
+| isBtnsScroll       | bool              | 快捷按钮较多时是否可滑动                                       | 否           | false                                         |                                                                                                                                       |
+| themeData          | BrnFormItemConfig | 表单主题配置                                                   | 否           | 无                                            |                                                                                                                                       |
 
 ## 四、代码演示
 
-### 效果1：基本样式
+### 效果 1：基本样式
 
 ![](./img/BrnTextQuickSelectFormItemDemo1.png)
 
@@ -98,7 +98,7 @@ BrnTextQuickSelectFormItem(
 String selectedStr = '';
 List<String> options = ['选项1', '选项2', '选项3', '选项4'];
 List<bool> status = [false, false, false, false];
-  
+
 BrnTextQuickSelectFormItem(
   title: "证件类型",
   btnsTxt: options,
@@ -133,7 +133,7 @@ BrnTextQuickSelectFormItem(
 ),
 ```
 
-### 效果2：全功能样式
+### 效果 2：全功能样式
 
 ![](./img/BrnTextQuickSelectFormItemDemo2.png)
 
@@ -180,4 +180,3 @@ BrnTextQuickSelectFormItem(
   },
 )
 ```
-

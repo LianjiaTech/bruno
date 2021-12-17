@@ -15,7 +15,7 @@
 ### 交互规则
 
 1. BrnAppraise：评价组件，支持表情包和五角星两种，可使用在页面和弹窗里。
-2. [BrnAppraiseBottomPicker](../brn-appraise-bottom-picker/brn-appraise-bottom-picker)：评价组件底部弹窗，对 BrnAppraise 做了一层 picker 的封装，参数与 BrnAppraise 完全一致。
+2. [BrnAppraiseBottomPicker](../widgets/brn-appraise-bottom-picker)：评价组件底部弹窗，对 BrnAppraise 做了一层 picker 的封装，参数与 BrnAppraise 完全一致。
 
 ### 使用规范
 

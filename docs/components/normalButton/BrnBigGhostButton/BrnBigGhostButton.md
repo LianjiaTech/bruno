@@ -10,7 +10,6 @@
 
 宽度为屏幕宽度的幽灵按钮
 
-
 ## 三、构造函数及参数说明
 
 ### 构造函数
@@ -26,21 +25,20 @@ const BrnBigGhostButton({
   this.themeData,
 }) : super(key: key);
 ```
+
 ### 参数说明
 
-| **参数名** | **参数类型** | 描述 | **是否必填** | **默认值** |
-| --- | --- | --- | --- | --- |
-| title | String | 按钮显示文案 | 否 | 确认 |
-| onTap | VoidCallback | 点击的回调 | 否 | 无 |
-| bgColor | Color | 按钮的背景色 | 否 | 主题色为5透明度的颜色 |
-| width | double | 按钮的宽度 | 否 | double.infinity |
-| titleColor | Color | 按钮的文字颜色 | 否 | 主题色 |
-
-
+| **参数名** | **参数类型** | 描述           | **是否必填** | **默认值**              |
+| ---------- | ------------ | -------------- | ------------ | ----------------------- |
+| title      | String       | 按钮显示文案   | 否           | 确认                    |
+| onTap      | VoidCallback | 点击的回调     | 否           | 无                      |
+| bgColor    | Color        | 按钮的背景色   | 否           | 主题色为 5 透明度的颜色 |
+| width      | double       | 按钮的宽度     | 否           | double.infinity         |
+| titleColor | Color        | 按钮的文字颜色 | 否           | 主题色                  |
 
 ## 四、代码演示
 
-### 效果1
+### 效果 1
 
 ![](./img/BrnBigGhostButtonDemo.png)
 

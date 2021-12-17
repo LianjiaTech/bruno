@@ -4,13 +4,13 @@
 
 ## 一、效果总览
 
-<img src="./img/BrnMultiSelectDialogIntro.png"  /> 
+<img src="./img/BrnMultiSelectDialogIntro.png"  />
 
 ## 二、描述
 
 ### 适用场景
 
-多选列表，适用于从页面中部弹出的情况，属于 Dialog。 相似组件有 [BrnMultiSelectListPicker](../../picker/brn-multi-select-list-picker/brn-multi-select-list-picker)， 从页面中部弹出。
+多选列表，适用于从页面中部弹出的情况，属于 Dialog。 相似组件有 [BrnMultiSelectListPicker](../widgets/brn-multi-select-list-picker)， 从页面中部弹出。
 
 ## 三、构造函数及参数说明
 
