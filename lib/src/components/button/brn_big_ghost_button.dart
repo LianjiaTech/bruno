@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/components/button/brn_normal_button.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
@@ -30,20 +30,20 @@ class BrnBigGhostButton extends StatelessWidget {
   final String title;
 
   ///文案颜色
-  final Color titleColor;
+  final Color? titleColor;
 
   ///按钮背景颜色
-  final Color bgColor;
+  final Color? bgColor;
 
   ///点击回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   ///默认父布局可用空间
-  final double width;
-  final BrnButtonConfig themeData;
+  final double? width;
+  final BrnButtonConfig? themeData;
 
   const BrnBigGhostButton({
-    Key key,
+    Key? key,
     this.title = '确认',
     this.titleColor,
     this.bgColor,
@@ -57,20 +57,20 @@ class BrnBigGhostButton extends StatelessWidget {
     BrnButtonConfig defaultThemeConfig = themeData ?? BrnButtonConfig();
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig
+        .buttonConfig!
         .merge(defaultThemeConfig);
 
     return BrnNormalButton(
-      borderRadius: BorderRadius.circular(defaultThemeConfig.bigButtonRadius),
+      borderRadius: BorderRadius.circular(defaultThemeConfig.bigButtonRadius!),
       constraints: BoxConstraints.tightFor(
           width: width ?? double.infinity,
           height: defaultThemeConfig.bigButtonHeight),
       backgroundColor: bgColor ??
-          defaultThemeConfig.commonConfig.brandPrimary.withOpacity(0.05),
+          defaultThemeConfig.commonConfig!.brandPrimary!.withOpacity(0.05),
       onTap: onTap,
       alignment: Alignment.center,
       text: title ?? '确认',
-      textColor: titleColor ?? defaultThemeConfig.commonConfig.brandPrimary,
+      textColor: titleColor ?? defaultThemeConfig.commonConfig!.brandPrimary,
       fontSize: defaultThemeConfig.bigButtonFontSize,
       insertPadding: EdgeInsets.symmetric(
           vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
