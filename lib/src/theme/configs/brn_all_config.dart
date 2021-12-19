@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/theme/configs/brn_abnormal_state_config.dart';
@@ -12,22 +12,22 @@ import 'package:bruno/src/theme/configs/brn_abnormal_state_config.dart';
 /// 当没有配置组件的特定属性时使用上一级特定配置
 ///
 class BrnAllThemeConfig {
-  BrnCommonConfig commonConfig;
-  BrnAppBarConfig appBarConfig;
-  BrnButtonConfig buttonConfig;
-  BrnDialogConfig dialogConfig;
-  BrnCardTitleConfig cardTitleConfig;
-  BrnAbnormalStateConfig abnormalStateConfig;
-  BrnTagConfig tagConfig;
-  BrnPairInfoTableConfig pairInfoTableConfig;
-  BrnPairRichInfoGridConfig pairRichInfoGridConfig;
-  BrnActionSheetConfig actionSheetConfig;
-  BrnPickerConfig pickerConfig;
-  BrnEnhanceNumberCardConfig enhanceNumberCardConfig;
-  BrnTabBarConfig tabBarConfig;
-  BrnFormItemConfig formItemConfig;
-  BrnSelectionConfig selectionConfig;
-  BrnGalleryDetailConfig galleryDetailConfig;
+  BrnCommonConfig? commonConfig;
+  BrnAppBarConfig? appBarConfig;
+  BrnButtonConfig? buttonConfig;
+  BrnDialogConfig? dialogConfig;
+  BrnCardTitleConfig? cardTitleConfig;
+  BrnAbnormalStateConfig? abnormalStateConfig;
+  BrnTagConfig? tagConfig;
+  BrnPairInfoTableConfig? pairInfoTableConfig;
+  BrnPairRichInfoGridConfig? pairRichInfoGridConfig;
+  BrnActionSheetConfig? actionSheetConfig;
+  BrnPickerConfig? pickerConfig;
+  BrnEnhanceNumberCardConfig? enhanceNumberCardConfig;
+  BrnTabBarConfig? tabBarConfig;
+  BrnFormItemConfig? formItemConfig;
+  BrnSelectionConfig? selectionConfig;
+  BrnGalleryDetailConfig? galleryDetailConfig;
 
   BrnAllThemeConfig(
       {this.commonConfig,

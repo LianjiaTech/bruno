@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -7,7 +7,7 @@ import 'package:bruno/src/theme/configs/brn_common_config.dart';
 abstract class BrnBaseConfig {
   String configId;
 
-  BrnCommonConfig _currentLevelCommonConfig;
+  BrnCommonConfig? _currentLevelCommonConfig;
 
   BrnBaseConfig(
       {this.configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID,
@@ -27,7 +27,7 @@ abstract class BrnBaseConfig {
   /// 第二步 以默认上一级配置为基础merge  第一步结果，当第一步中字段(如：color)为空时 ,
   /// 使用上一层级配置的color(cardTitleConfig.detailTextStyle.color)
   void initThemeConfig(String configId,
-      {BrnCommonConfig currentLevelCommonConfig}) {
+      {BrnCommonConfig? currentLevelCommonConfig}) {
     _currentLevelCommonConfig = currentLevelCommonConfig;
   }
 
@@ -37,7 +37,7 @@ abstract class BrnBaseConfig {
     initThemeConfig(configId);
   }
 
-  BrnCommonConfig get commonConfig =>
+  BrnCommonConfig? get commonConfig =>
       _currentLevelCommonConfig ??
       BrnThemeConfigurator.instance.getConfig(configId: configId).commonConfig;
 }

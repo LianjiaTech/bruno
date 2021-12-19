@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/theme/base/brn_base_config.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
@@ -9,35 +9,35 @@ import 'package:bruno/src/theme/configs/brn_common_config.dart';
 class BrnAbnormalStateConfig extends BrnBaseConfig {
   /// 文案区域标题
   ///  TextStyle(fontWeight: FontWeight.w600,color: [BrnCommonConfig.colorTextBase], fontSize: [BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle titleTextStyle;
+  BrnTextStyle? titleTextStyle;
 
   /// 文案区域内容
   /// TextStyle(color: [BrnCommonConfig.colorTextHint], fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle contentTextStyle;
+  BrnTextStyle? contentTextStyle;
 
   /// 操作区域文本样式
   /// TextStyle(color: [BrnCommonConfig.brandPrimary], fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle operateTextStyle;
+  BrnTextStyle? operateTextStyle;
 
   /// 圆角
   /// default value is [BrnCommonConfig.radiusSm]
-  double btnRadius;
+  double? btnRadius;
 
   /// 单按钮文本样式
   /// default value is TextStyle(color: [BrnCommonConfig.colorTextBaseInverse], fontSize: [BrnCommonConfig.fontSizeSubHead]
-  BrnTextStyle singleBrnTextStyle;
+  BrnTextStyle? singleBrnTextStyle;
 
   /// 双按钮文本样式
   /// default value is TextStyle(color: [BrnCommonConfig.brandPrimary], fontSize: [BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle doubleBrnTextStyle;
+  BrnTextStyle? doubleBrnTextStyle;
 
   /// 单按钮的按钮最小宽度
   /// default value is 160
-  double singleMinWidth;
+  double? singleMinWidth;
 
   /// 多按钮的按钮最小宽度
   /// default value is 120
-  double doubleMinWidth;
+  double? doubleMinWidth;
 
   BrnAbnormalStateConfig(
       {this.titleTextStyle,
@@ -53,42 +53,42 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
 
   @override
   void initThemeConfig(String configId,
-      {BrnCommonConfig currentLevelCommonConfig}) {
+      {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId,
         currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
     BrnAbnormalStateConfig abnormalStateConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        .abnormalStateConfig;
+        .abnormalStateConfig!;
 
-    this.singleBrnTextStyle = abnormalStateConfig.singleBrnTextStyle.merge(
+    this.singleBrnTextStyle = abnormalStateConfig.singleBrnTextStyle!.merge(
         BrnTextStyle(
-                color: commonConfig.colorTextBaseInverse,
-                fontSize: commonConfig.fontSizeSubHead)
+                color: commonConfig!.colorTextBaseInverse,
+                fontSize: commonConfig!.fontSizeSubHead)
             .merge(this.singleBrnTextStyle));
 
-    this.titleTextStyle = abnormalStateConfig.titleTextStyle.merge(BrnTextStyle(
-            color: commonConfig.colorTextBase,
-            fontSize: commonConfig.fontSizeSubHead)
+    this.titleTextStyle = abnormalStateConfig.titleTextStyle!.merge(BrnTextStyle(
+            color: commonConfig!.colorTextBase,
+            fontSize: commonConfig!.fontSizeSubHead)
         .merge(this.titleTextStyle));
 
-    this.contentTextStyle = abnormalStateConfig.contentTextStyle.merge(
+    this.contentTextStyle = abnormalStateConfig.contentTextStyle!.merge(
         BrnTextStyle(
-                color: commonConfig.colorTextHint,
-                fontSize: commonConfig.fontSizeSubHead)
+                color: commonConfig!.colorTextHint,
+                fontSize: commonConfig!.fontSizeSubHead)
             .merge(this.contentTextStyle));
 
-    this.operateTextStyle = abnormalStateConfig.operateTextStyle.merge(
+    this.operateTextStyle = abnormalStateConfig.operateTextStyle!.merge(
         BrnTextStyle(
-                color: commonConfig.brandPrimary,
-                fontSize: commonConfig.fontSizeBase)
+                color: commonConfig!.brandPrimary,
+                fontSize: commonConfig!.fontSizeBase)
             .merge(this.operateTextStyle));
 
-    this.doubleBrnTextStyle = abnormalStateConfig.doubleBrnTextStyle.merge(
+    this.doubleBrnTextStyle = abnormalStateConfig.doubleBrnTextStyle!.merge(
         BrnTextStyle(
-                color: commonConfig.brandPrimary,
-                fontSize: commonConfig.fontSizeSubHead)
+                color: commonConfig!.brandPrimary,
+                fontSize: commonConfig!.fontSizeSubHead)
             .merge(this.doubleBrnTextStyle));
 
     this.btnRadius ??= abnormalStateConfig.btnRadius;
@@ -99,14 +99,14 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   }
 
   BrnAbnormalStateConfig copyWith({
-    BrnTextStyle titleTextStyle,
-    BrnTextStyle contentTextStyle,
-    BrnTextStyle operateTextStyle,
-    double btnRadius,
-    BrnTextStyle singleBrnTextStyle,
-    BrnTextStyle doubleBrnTextStyle,
-    double singleMinWidth,
-    double doubleMinWidth,
+    BrnTextStyle? titleTextStyle,
+    BrnTextStyle? contentTextStyle,
+    BrnTextStyle? operateTextStyle,
+    double? btnRadius,
+    BrnTextStyle? singleBrnTextStyle,
+    BrnTextStyle? doubleBrnTextStyle,
+    double? singleMinWidth,
+    double? doubleMinWidth,
   }) {
     return BrnAbnormalStateConfig(
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
@@ -120,7 +120,7 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
     );
   }
 
-  BrnAbnormalStateConfig merge(BrnAbnormalStateConfig other) {
+  BrnAbnormalStateConfig merge(BrnAbnormalStateConfig? other) {
     if (other == null) return this;
     return copyWith(
       titleTextStyle:
