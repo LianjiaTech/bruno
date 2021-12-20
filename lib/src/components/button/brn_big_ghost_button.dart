@@ -61,16 +61,16 @@ class BrnBigGhostButton extends StatelessWidget {
         .merge(defaultThemeConfig);
 
     return BrnNormalButton(
-      borderRadius: BorderRadius.circular(defaultThemeConfig.bigButtonRadius),
+      borderRadius: BorderRadius.circular(defaultThemeConfig.bigButtonRadius!),
       constraints: BoxConstraints.tightFor(
           width: width ?? double.infinity,
           height: defaultThemeConfig.bigButtonHeight),
       backgroundColor: bgColor ??
-          defaultThemeConfig.commonConfig.brandPrimary.withOpacity(0.05),
+          defaultThemeConfig.commonConfig!.brandPrimary!.withOpacity(0.05),
       onTap: onTap,
       alignment: Alignment.center,
       text: title,
-      textColor: titleColor ?? defaultThemeConfig.commonConfig.brandPrimary,
+      textColor: titleColor ?? defaultThemeConfig.commonConfig!.brandPrimary,
       fontSize: defaultThemeConfig.bigButtonFontSize,
       insertPadding: EdgeInsets.symmetric(
           vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
