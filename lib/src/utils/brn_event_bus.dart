@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:async';
 
 /// Dispatches events to listeners using the Dart [Stream] API. The [EventBus]
@@ -15,6 +13,7 @@ import 'dart:async';
 /// github: https://github.com/marcojakob/dart-event-bus
 ///
 class EventBus {
+  late bool sync;
   StreamController _streamController;
 
   /// Controller for the event bus stream.
@@ -26,7 +25,7 @@ class EventBus {
   /// during a [fire] call. If false (the default), the event will be passed to
   /// the listeners at a later time, after the code creating the event has
   /// completed.
-  EventBus({bool sync = false})
+  EventBus({sync = false})
       : _streamController = StreamController.broadcast(sync: sync);
 
   /// Instead of using the default [StreamController] you can use this constructor
@@ -51,7 +50,7 @@ class EventBus {
   /// unpaused or canceled. So it's usually better to just cancel and later
   /// subscribe again (avoids memory leak).
   ///
-  Stream<T> on<T>() {
+  Stream on<T>() {
     if (T == dynamic) {
       return streamController.stream;
     } else {
@@ -71,7 +70,7 @@ class EventBus {
     _streamController.close();
   }
 
-  static EventBus _instance;
+  static EventBus _instance = new EventBus.init();
 
   factory EventBus.init() {
     _instance = EventBus();
@@ -79,9 +78,6 @@ class EventBus {
   }
 
   static EventBus get instance {
-    if (_instance == null) {
-      EventBus.init();
-    }
     return _instance;
   }
 }
