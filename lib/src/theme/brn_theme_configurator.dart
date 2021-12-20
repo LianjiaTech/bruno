@@ -1,6 +1,6 @@
 // @dart=2.9
 
-import 'package:bruno/src/theme/brn_theme.dart';
+import 'package:bruno/src/theme/base/brn_default_config_utils.dart';
 import 'package:bruno/src/theme/configs/brn_all_config.dart';
 
 class BrnThemeConfigurator {

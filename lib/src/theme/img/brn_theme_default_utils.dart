@@ -1,7 +1,5 @@
 // @dart=2.9
 
-import 'dart:ui';
-
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/img/brn_theme_img_utils.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
