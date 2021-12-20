@@ -77,7 +77,7 @@ class BrnBigMainButton extends StatelessWidget {
           width: width ?? double.infinity,
           height: defaultThemeConfig.bigButtonHeight),
       alignment: Alignment.center,
-      isEnable: isEnable ?? true,
+      isEnable: isEnable,
       text: title ?? '确认',
       backgroundColor: bgColor ?? defaultThemeConfig.commonConfig!.brandPrimary,
       disableBackgroundColor: Color(0xFFCCCCCC),

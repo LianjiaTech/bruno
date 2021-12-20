@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:core';
 import 'dart:ui';
@@ -8,7 +8,6 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_text_util.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// popup window 位于 targetView 的方向
 enum BrnPopupDirection {
@@ -25,52 +24,52 @@ class BrnPopupWindow extends StatefulWidget {
   final BuildContext context;
 
   /// 箭头的高度
-  final double arrowHeight;
+  final double? arrowHeight;
 
   /// 要显示的文本
-  final String text;
+  final String? text;
 
   /// 依附的组件和BrnPopUpWindow组件共同持有的GlobalKey
-  final GlobalKey popKey;
+  final GlobalKey? popKey;
 
   /// 要显示文本的样式
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// popUpWindow的背景颜色
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// 边框颜色
-  final Color borderColor;
+  final Color? borderColor;
 
   /// 是否有关闭图标
-  final bool isShowCloseIcon;
+  final bool? isShowCloseIcon;
 
   /// 距离targetView偏移量
-  final double offset;
+  final double? offset;
 
   /// popUpWindow位于targetView的方向
-  final BrnPopupDirection popDirection;
+  final BrnPopupDirection? popDirection;
 
   /// 自定义widget
-  final Widget widget;
+  final Widget? widget;
 
   /// 容器内边距
-  final EdgeInsets paddingInsets;
+  final EdgeInsets? paddingInsets;
 
   /// 容器圆角
-  final double borderRadius;
+  final double? borderRadius;
 
   /// 是否能多行显示  默认false:单行显示
   final bool canWrap;
 
   /// 默认距离TargetView边线的距离,默认：20
-  final double spaceMargin;
+  final double? spaceMargin;
 
   /// 箭头偏移量
-  final double arrowOffset;
+  final double? arrowOffset;
 
   /// popUpWindow消失回调
-  final VoidCallback onDismiss;
+  final VoidCallback? onDismiss;
 
   /// popWindow距离底部的距离小于此值的时候，
   /// 自动将popWindow在targetView上面弹出
@@ -104,7 +103,7 @@ class BrnPopupWindow extends StatefulWidget {
       Color backgroundColor = const Color(0xFF1A1A1A),
       bool hasCloseIcon = false,
       double offset = 0,
-      Widget widget,
+      Widget? widget,
       EdgeInsets paddingInsets =
           const EdgeInsets.only(left: 18, top: 14, right: 18, bottom: 14),
       double borderRadius = 8,
@@ -112,8 +111,8 @@ class BrnPopupWindow extends StatefulWidget {
       double borderWidth = 1,
       bool canWrap = false,
       double spaceMargin = 20,
-      double arrowOffset,
-      VoidCallback dismissCallback,
+      double? arrowOffset,
+      VoidCallback? dismissCallback,
       double turnOverFromBottom = 50.0}) {
     Navigator.push(
         context,
@@ -131,7 +130,7 @@ class BrnPopupWindow extends StatefulWidget {
           widget: widget,
           paddingInsets: paddingInsets,
           borderRadius: borderRadius,
-          borderColor: borderColor ?? Colors.transparent,
+          borderColor: borderColor,
           canWrap: canWrap,
           spaceMargin: spaceMargin,
           arrowOffset: arrowOffset,
@@ -146,10 +145,10 @@ class BrnPopupWindow extends StatefulWidget {
 
 class _BrnPopupWindowState extends State<BrnPopupWindow> {
   /// targetView的位置
-  Rect _showRect;
+  Rect? _showRect;
 
   /// 屏幕的尺寸
-  Size _screenSize;
+  late Size _screenSize;
 
   /// 箭头和左右侧边线间距
   double _arrowSpacing = 18;
@@ -158,34 +157,34 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
   bool _expandedRight = true;
 
   /// popUpWindow在中线两侧的具体位置
-  double _left, _right, _top, _bottom;
+  double? _left, _right, _top, _bottom;
 
   /// 箭头展示方向
-  BrnPopupDirection _popDirection;
+  BrnPopupDirection? _popDirection;
 
   /// 去除透明度的边框色
-  Color _borderColor;
+  Color? _borderColor;
 
   /// 去除透明度的背景颜色
-  Color _backgroundColor;
+  Color? _backgroundColor;
 
   @override
   void initState() {
     super.initState();
     this._showRect = _getWidgetGlobalRect(widget.popKey);
     this._screenSize = window.physicalSize / window.devicePixelRatio;
-    _borderColor = widget.borderColor.withAlpha(255);
-    _backgroundColor = widget.backgroundColor.withAlpha(255);
+    _borderColor = widget.borderColor!.withAlpha(255);
+    _backgroundColor = widget.backgroundColor!.withAlpha(255);
     _popDirection = widget.popDirection;
     _calculateOffset();
   }
 
   // 获取targetView的位置
-  Rect _getWidgetGlobalRect(GlobalKey key) {
+  Rect? _getWidgetGlobalRect(GlobalKey? key) {
     if (key == null) {
       return null;
     }
-    RenderBox renderBox = key.currentContext.findRenderObject();
+    RenderBox renderBox = key.currentContext!.findRenderObject() as RenderBox;
     var offset = renderBox.localToGlobal(Offset.zero);
     return Rect.fromLTWH(
         offset.dx, offset.dy, renderBox.size.width, renderBox.size.height);
@@ -193,25 +192,25 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
 
   // 计算popUpWindow显示的位置
   void _calculateOffset() {
-    if (_showRect.center.dx < _screenSize.width / 2) {
+    if (_showRect!.center.dx < _screenSize.width / 2) {
       // popUpWindow向右侧延伸
       _expandedRight = true;
-      _left = _showRect.left + widget.spaceMargin;
+      _left = _showRect!.left + widget.spaceMargin!;
     } else {
       // popUpWindow向左侧延伸
       _expandedRight = false;
-      _right = _screenSize.width - _showRect.right + widget.spaceMargin;
+      _right = _screenSize.width - _showRect!.right + widget.spaceMargin!;
     }
     if (_popDirection == BrnPopupDirection.bottom) {
       // 在targetView下方
-      _top = _showRect.height + _showRect.top + widget.offset;
-      if ((_screenSize.height - _top) < widget.turnOverFromBottom) {
+      _top = _showRect!.height + _showRect!.top + widget.offset!;
+      if ((_screenSize.height - _top!) < widget.turnOverFromBottom) {
         _popDirection = BrnPopupDirection.top;
-        _bottom = _screenSize.height - _showRect.top + widget.offset;
+        _bottom = _screenSize.height - _showRect!.top + widget.offset!;
       }
     } else if (_popDirection == BrnPopupDirection.top) {
       // 在targetView上方
-      _bottom = _screenSize.height - _showRect.top + widget.offset;
+      _bottom = _screenSize.height - _showRect!.top + widget.offset!;
     }
   }
 
@@ -225,7 +224,7 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
             onTap: () {
               Navigator.pop(context);
               if (widget.onDismiss != null) {
-                widget.onDismiss();
+                widget.onDismiss!();
               }
             },
             child: Material(
@@ -241,7 +240,7 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
           ),
           onWillPop: () {
             if (widget.onDismiss != null) {
-              widget.onDismiss();
+              widget.onDismiss!();
             }
             return Future.value(true);
           }),
@@ -253,17 +252,17 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
     return _expandedRight
         ? Positioned(
             left: widget.arrowOffset ??
-                _left +
-                    (_showRect.width - _arrowSpacing) / 2 -
-                    widget.spaceMargin,
+                _left! +
+                    (_showRect!.width - _arrowSpacing) / 2 -
+                    widget.spaceMargin!,
             top: _popDirection == BrnPopupDirection.bottom
-                ? _top - widget.arrowHeight
+                ? _top! - widget.arrowHeight!
                 : null,
             bottom: _popDirection == BrnPopupDirection.top
-                ? _bottom - widget.arrowHeight
+                ? _bottom! - widget.arrowHeight!
                 : null,
             child: CustomPaint(
-              size: Size(15.0, widget.arrowHeight),
+              size: Size(15.0, widget.arrowHeight!),
               painter: _TrianglePainter(
                   isDownArrow: _popDirection == BrnPopupDirection.top,
                   color: _backgroundColor,
@@ -272,17 +271,17 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
           )
         : Positioned(
             right: widget.arrowOffset ??
-                _right +
-                    (_showRect.width - _arrowSpacing) / 2 -
-                    widget.spaceMargin,
+                _right! +
+                    (_showRect!.width - _arrowSpacing) / 2 -
+                    widget.spaceMargin!,
             top: _popDirection == BrnPopupDirection.bottom
-                ? _top - widget.arrowHeight
+                ? _top! - widget.arrowHeight!
                 : null,
             bottom: _popDirection == BrnPopupDirection.top
-                ? _bottom - widget.arrowHeight
+                ? _bottom! - widget.arrowHeight!
                 : null,
             child: CustomPaint(
-              size: Size(15.0, widget.arrowHeight),
+              size: Size(15.0, widget.arrowHeight!),
               painter: _TrianglePainter(
                   isDownArrow: _popDirection == BrnPopupDirection.top,
                   color: _backgroundColor,
@@ -304,15 +303,15 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
             padding: widget.paddingInsets,
             decoration: BoxDecoration(
                 color: _backgroundColor,
-                border: Border.all(color: _borderColor, width: 0.5),
+                border: Border.all(color: _borderColor!, width: 0.5),
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 4)),
             constraints: BoxConstraints(
                 maxWidth: _expandedRight
-                    ? _screenSize.width - _left
-                    : _screenSize.width - _right,
+                    ? _screenSize.width - _left!
+                    : _screenSize.width - _right!,
                 maxHeight: _popDirection == BrnPopupDirection.bottom
-                    ? _screenSize.height - _top
-                    : _screenSize.height - _bottom - statusBarHeight),
+                    ? _screenSize.height - _top!
+                    : _screenSize.height - _bottom! - statusBarHeight),
             child: widget.widget == null
                 ? SingleChildScrollView(
                     child: widget.canWrap
@@ -320,7 +319,7 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
                             text: TextSpan(children: <InlineSpan>[
                             TextSpan(
                                 text: widget.text, style: widget.textStyle),
-                            widget.isShowCloseIcon
+                            widget.isShowCloseIcon!
                                 ? WidgetSpan(
                                     alignment: PlaceholderAlignment.middle,
                                     child: Padding(
@@ -336,13 +335,13 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
                               Flexible(
                                 fit: FlexFit.loose,
                                 child: Text(
-                                  widget.text,
+                                  widget.text!,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: widget.textStyle,
                                 ),
                               ),
-                              widget.isShowCloseIcon
+                              widget.isShowCloseIcon!
                                   ? Padding(
                                       padding: EdgeInsets.only(left: 6),
                                       child: BrunoTools.getAssetImage(
@@ -357,9 +356,9 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
 
 // 绘制箭头
 class _TrianglePainter extends CustomPainter {
-  bool isDownArrow;
-  Color color;
-  Color borderColor;
+  bool? isDownArrow;
+  Color? color;
+  Color? borderColor;
 
   _TrianglePainter({
     this.isDownArrow,
@@ -372,10 +371,10 @@ class _TrianglePainter extends CustomPainter {
     Path path = Path();
     Paint paint = Paint();
     paint.strokeWidth = 2.0;
-    paint.color = color;
+    paint.color = color!;
     paint.style = PaintingStyle.fill;
 
-    if (isDownArrow) {
+    if (isDownArrow!) {
       path.moveTo(0.0, -1.5);
       path.lineTo(size.width / 2.0, size.height);
       path.lineTo(size.width, -1.5);
@@ -389,10 +388,10 @@ class _TrianglePainter extends CustomPainter {
     Paint paintBorder = Paint();
     Path pathBorder = Path();
     paintBorder.strokeWidth = 0.5;
-    paintBorder.color = borderColor;
+    paintBorder.color = borderColor!;
     paintBorder.style = PaintingStyle.stroke;
 
-    if (isDownArrow) {
+    if (isDownArrow!) {
       pathBorder.moveTo(0.0, -0.5);
       pathBorder.lineTo(size.width / 2.0, size.height);
       pathBorder.lineTo(size.width, -0.5);
@@ -415,16 +414,16 @@ class BrnPopupRoute extends PopupRoute {
   final Duration _duration = Duration(milliseconds: 200);
   Widget child;
 
-  BrnPopupRoute({@required this.child});
+  BrnPopupRoute({required this.child});
 
   @override
-  Color get barrierColor => null;
+  Color? get barrierColor => null;
 
   @override
   bool get barrierDismissible => true;
 
   @override
-  String get barrierLabel => null;
+  String? get barrierLabel => null;
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,
@@ -439,12 +438,12 @@ class BrnPopupRoute extends PopupRoute {
 /// popup 中每个 Item 被点击时的回调，
 /// [index] Item 的索引
 /// [item] Item 内容
-typedef BrnPopupListItemClick = Function(int index, String item);
+typedef BrnPopupListItemClick = Function(int index, String? item);
 
 /// popup 用于构造自定义的 Item
 /// [index] Item 的索引
 /// [item] Item 内容
-typedef BrnPopupListItemBuilder = Widget Function(int index, String item);
+typedef BrnPopupListItemBuilder = Widget Function(int index, String? item);
 
 /// 基于 PopUpWindow 的 弹窗列表工具类
 class BrnPopupListWindow {
@@ -454,15 +453,15 @@ class BrnPopupListWindow {
   /// [popDirection] 箭头的方向
   /// [itemBuilder] 自定义 item 构造方法
   /// [onItemClick] item 点击回调
-  static void showButtonPanelPopList(context, GlobalKey popKey,
-      {List<String> data,
+  static void showButtonPanelPopList(context, GlobalKey? popKey,
+      {List<String?>? data,
       BrnPopupDirection popDirection = BrnPopupDirection.bottom,
-      BrnPopupListItemBuilder itemBuilder,
-      BrnPopupListItemClick onItemClick}) {
+      BrnPopupListItemBuilder? itemBuilder,
+      BrnPopupListItemClick? onItemClick}) {
     TextStyle textStyle = TextStyle(
         color: BrnThemeConfigurator.instance
             .getConfig()
-            .commonConfig
+            .commonConfig!
             .colorTextBase,
         fontSize: 16);
     double arrowHeight = 6.0;
@@ -518,26 +517,26 @@ class BrnPopupListWindow {
   /// [offset] 距离targetView偏移量
   /// [onItemClick] item 点击回调
   /// [onDismiss] popUpWindow消失回调
-  static void showPopListWindow(context, GlobalKey popKey,
-      {List<String> data,
+  static void showPopListWindow(context, GlobalKey? popKey,
+      {List<String>? data,
       BrnPopupDirection popDirection = BrnPopupDirection.bottom,
       double offset = 0,
-      BrnPopupListItemClick onItemClick,
-      VoidCallback onDismiss}) {
+      BrnPopupListItemClick? onItemClick,
+      VoidCallback? onDismiss}) {
     double arrowHeight = 6.0;
     double borderRadius = 4;
     double spaceMargin = 0;
     double minWidth = 100;
     double maxWidth = 150;
     double maxHeight = 200;
-    double arrowOffset;
-    Color borderColor =
-        BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase;
+    double? arrowOffset;
+    Color? borderColor =
+        BrnThemeConfigurator.instance.getConfig().commonConfig!.dividerColorBase;
     Color backgroundColor = Colors.white;
     TextStyle textStyle = TextStyle(
         color: BrnThemeConfigurator.instance
             .getConfig()
-            .commonConfig
+            .commonConfig!
             .colorTextBase,
         fontSize: 14);
     bool hasCloseIcon = true;
@@ -584,13 +583,15 @@ class BrnPopupListWindow {
       BuildContext context,
       double minWidth,
       double maxWidth,
-      BrnPopupListItemBuilder itemBuilder,
+      BrnPopupListItemBuilder? itemBuilder,
       TextStyle textStyle,
-      List<String> data,
-      BrnPopupListItemClick onItemClick,
-      VoidCallback onDismiss) {
+      List<String?>? data,
+      BrnPopupListItemClick? onItemClick,
+      VoidCallback? onDismiss) {
     double textMaxWidth = _getMaxWidth(
-        textStyle ?? TextStyle(fontSize: 16, color: Color(0xFFFFFFFF)), data);
+        textStyle
+            // ?? TextStyle(fontSize: 16, color: Color(0xFFFFFFFF))
+        , data);
     if (textMaxWidth + 52 < minWidth) {
       textMaxWidth = minWidth;
     } else if (textMaxWidth + 52 > maxWidth) {
@@ -617,16 +618,16 @@ class BrnPopupListWindow {
                   padding:
                       EdgeInsets.only(left: 26, right: 26, top: 6, bottom: 6),
                   child: _getTextWidget(itemBuilder, data, f, textStyle)));
-        })?.toList() ??
-        List();
+        }).toList() ??
+        [];
   }
 
   /// 遍历数据，计算每个 Item 内容，返回所有 Item 可展示的最大宽度
-  static double _getMaxWidth(TextStyle textStyle, List<String> data) {
+  static double _getMaxWidth(TextStyle textStyle, List<String?>? data) {
     double maxWidth = 0;
     if (!BrunoTools.isEmpty(data)) {
-      Size maxWidthSize;
-      for (String entity in data) {
+      Size? maxWidthSize;
+      for (String? entity in data!) {
         Size size = BrnTextUtil.textSize(entity, textStyle);
         if (maxWidthSize == null) {
           maxWidthSize = size;
@@ -636,18 +637,18 @@ class BrnPopupListWindow {
           }
         }
       }
-      maxWidth = maxWidthSize.width;
+      maxWidth = maxWidthSize!.width;
     }
     return maxWidth;
   }
 
-  static Widget _getTextWidget(BrnPopupListItemBuilder itemBuilder,
-      List<String> data, String text, TextStyle textStyle) {
+  static Widget _getTextWidget(BrnPopupListItemBuilder? itemBuilder,
+      List<String?>? data, String? text, TextStyle textStyle) {
     if (itemBuilder == null) {
-      return _getDefaultText(text, textStyle);
+      return _getDefaultText(text!, textStyle);
     } else {
-      return itemBuilder(data.indexOf(text), text) ??
-          _getDefaultText(text, textStyle);
+      return itemBuilder(data!.indexOf(text), text);
+          // ?? _getDefaultText(text!, textStyle);
     }
   }
 
@@ -656,11 +657,12 @@ class BrnPopupListWindow {
       text,
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
-      style: textStyle ??
-          TextStyle(
-            fontSize: 16,
-            color: Color(0xFFFFFFFF),
-          ),
+      style: textStyle
+          // ??
+          // TextStyle(
+          //   fontSize: 16,
+          //   color: Color(0xFFFFFFFF),
+          // ),
     );
   }
 }

@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -11,7 +11,7 @@ class BrunoTools {
       {String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID}) {
     BrnCommonConfig commonConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        .commonConfig;
+        .commonConfig!;
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -19,7 +19,7 @@ class BrunoTools {
   }
 
   /// 将 icon 根据传入颜色变后返回
-  static Image getAssetImageWithColor(String assetFilePath, Color color) {
+  static Image getAssetImageWithColor(String assetFilePath, Color? color) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -35,7 +35,7 @@ class BrunoTools {
   /// package 访问某个package里的资源，这里默认flutter_alliance_package
   /// scale: 与所用的png资源是icon_2x.png (scale=2.0)，icon_3x.png(scale=3.0)
   static Image getAssetImage(String assetFilePath,
-      {BoxFit fit, bool gaplessPlayback = false}) {
+      {BoxFit? fit, bool gaplessPlayback = false}) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -59,7 +59,7 @@ class BrunoTools {
   }
 
   static Image getAssetSizeImage(String assetFilePath, double w, double h,
-      {Color color}) {
+      {Color? color}) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -107,7 +107,7 @@ class BrunoTools {
   }
 
   /// 判空
-  static bool isEmpty(Object obj) {
+  static bool isEmpty(Object? obj) {
     if (obj is String) {
       return obj.isEmpty;
     } else if (obj is Iterable) {

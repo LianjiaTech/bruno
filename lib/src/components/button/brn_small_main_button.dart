@@ -112,13 +112,13 @@ class BrnSmallMainButton extends StatelessWidget {
         }
 
         return BrnNormalButton(
-          isEnable: isEnable ?? true,
+          isEnable: isEnable,
           constraints: BoxConstraints(
             minWidth: this.width ?? _minWidth,
             maxWidth: this.width ?? _maxWidth,
           ),
           alignment: Alignment.center,
-          text: title ?? '确认',
+          text: title,
           backgroundColor:
               bgColor ?? defaultThemeConfig.commonConfig!.brandPrimary,
           disableBackgroundColor: Color(0xFFCCCCCC),

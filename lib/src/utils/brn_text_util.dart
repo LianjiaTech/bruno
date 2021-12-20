@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:ui';
 
@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 
 class BrnTextUtil {
   /// 根据 TextStyle 计算 text 宽度。
-  static Size textSize(String text, TextStyle style) {
+  static Size textSize(String? text, TextStyle style) {
     if (BrunoTools.isEmpty(text)) return Size(0, 0);
     final TextPainter textPainter = TextPainter(
         text: TextSpan(text: text, style: style),

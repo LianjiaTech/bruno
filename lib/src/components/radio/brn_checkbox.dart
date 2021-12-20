@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +11,11 @@ class BrnCheckbox extends StatefulWidget {
   /// value 选项发生变化产生的回调
   /// int 选项的index
   /// bool 选项的选中状态，true表示选中，false未选中
-  final void Function(int, bool) onValueChangedAtIndex;
+  final void Function(int, bool?) onValueChangedAtIndex;
 
   /// 初始值，是否被选择
   /// 默认false
-  final bool isSelected;
+  final bool? isSelected;
 
   /// 是否禁用当前选项
   /// 默认false
@@ -23,10 +23,10 @@ class BrnCheckbox extends StatefulWidget {
 
   /// 选择按钮的padding
   /// 默认EdgeInsets.all(5)
-  final EdgeInsets iconPadding;
+  final EdgeInsets? iconPadding;
 
   /// 配合使用的控件，比如卡片或者text
-  final Widget child;
+  final Widget? child;
 
   /// 控件是否在选择按钮的右边，
   /// true时 控件在选择按钮右边
@@ -43,9 +43,9 @@ class BrnCheckbox extends StatefulWidget {
   final MainAxisSize mainAxisSize;
 
   const BrnCheckbox({
-    Key key,
-    @required this.radioIndex,
-    @required this.onValueChangedAtIndex,
+    Key? key,
+    required this.radioIndex,
+    required this.onValueChangedAtIndex,
     this.disable = false,
     this.isSelected = false,
     this.iconPadding,
@@ -62,7 +62,7 @@ class BrnCheckbox extends StatefulWidget {
 }
 
 class BrnCheckboxState extends State<BrnCheckbox> {
-  bool _isSelected;
+  bool? _isSelected;
 
   @override
   void initState() {
@@ -90,7 +90,7 @@ class BrnCheckboxState extends State<BrnCheckbox> {
       child: widget.child,
       onRadioItemClick: () {
         setState(() {
-          _isSelected = !_isSelected;
+          _isSelected = !_isSelected!;
         });
         widget.onValueChangedAtIndex(widget.radioIndex, _isSelected);
       },

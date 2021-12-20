@@ -87,8 +87,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
     // Left、文字在左 icon在右 right、文字在右 icon在左
     if (widget.direction == Direction.bottom) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Column(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -117,8 +117,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
           ));
     } else if (widget.direction == Direction.top) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Column(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -149,8 +149,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
           ));
     } else if (widget.direction == Direction.left) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Row(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -179,8 +179,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
           ));
     } else if (widget.direction == Direction.right) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Row(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -213,7 +213,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
       return GestureDetector(
         child: ctn,
         onTap: () {
-          widget?.onTap!();
+          widget.onTap!();
         },
       );
     }
