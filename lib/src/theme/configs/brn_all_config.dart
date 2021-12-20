@@ -1,7 +1,21 @@
 
 
-import 'package:bruno/src/theme/brn_theme.dart';
+import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_abnormal_state_config.dart';
+import 'package:bruno/src/theme/configs/brn_action_sheet_config.dart';
+import 'package:bruno/src/theme/configs/brn_appbar_config.dart';
+import 'package:bruno/src/theme/configs/brn_button_config.dart';
+import 'package:bruno/src/theme/configs/brn_card_title_config.dart';
+import 'package:bruno/src/theme/configs/brn_common_config.dart';
+import 'package:bruno/src/theme/configs/brn_dialog_config.dart';
+import 'package:bruno/src/theme/configs/brn_enhance_number_card_config.dart';
+import 'package:bruno/src/theme/configs/brn_form_config.dart';
+import 'package:bruno/src/theme/configs/brn_gallery_detail_config.dart';
+import 'package:bruno/src/theme/configs/brn_pair_info_config.dart';
+import 'package:bruno/src/theme/configs/brn_picker_config.dart';
+import 'package:bruno/src/theme/configs/brn_selection_config.dart';
+import 'package:bruno/src/theme/configs/brn_tabbar_config.dart';
+import 'package:bruno/src/theme/configs/brn_tag_config.dart';
 
 /// 描述: 全局配置
 ///
