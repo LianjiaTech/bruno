@@ -57,7 +57,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     _controller.forward();
 
     currentIndex = 0;
-    firstList = List();
+    firstList = [];
     _originalSelectedItemsList = widget.entityData.selectedList();
 
     _initData();
@@ -404,7 +404,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   void _initData() {
     //填充一级筛选数据
-    firstList = widget.entityData.children ?? List();
+    firstList = widget.entityData.children ?? [];
     //找到一级需要显示 的索引
     for (int i = 0; i < firstList.length; i++) {
       if (firstList[i].selectedList().isNotEmpty) {
@@ -441,7 +441,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
           height: 16,
           width: 16,
           child: tmp.isSelected
-              ? BrnThemeImg.instance.CHECKED_STATUS
+              ? BrnThemeImg.instance.checkedStatus
               : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
         )
       ],

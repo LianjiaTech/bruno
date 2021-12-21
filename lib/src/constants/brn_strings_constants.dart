@@ -1,5 +1,7 @@
 class BrnStrings {
-  //加载获取assets资源需要
+  const BrnStrings._();
+
+  /// 加载获取 assets 资源需要
   static const String flutterPackageName = "bruno";
 
   static const String getDateFailed = "获取数据失败，请重试";
