@@ -297,18 +297,18 @@ class _BrnActionSheetSelectedItemListState<T>
     widget._alphaAnimationController = alphaAnimationController;
     Animation yAnimation = Tween(begin: 65.0, end: this.getContentHeight())
         .animate(yAnimationController)
-          ..addListener(() {
-            setState(() => {});
-          })
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.dismissed) {
-              widget.onDismiss(_isClosedByClear);
-            }
-          });
+      ..addListener(() {
+        setState(() => {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.dismissed) {
+          widget.onDismiss(_isClosedByClear);
+        }
+      });
     widget._yAnimation = yAnimation;
     Animation alphaAnimation = Tween(begin: 0.0, end: 0.7)
         .animate(alphaAnimationController)
-          ..addListener(() {});
+      ..addListener(() {});
     widget._alphaAnimation = alphaAnimation;
     yAnimationController.forward();
     alphaAnimationController.forward();
