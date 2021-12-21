@@ -13,7 +13,6 @@ import 'dart:async';
 /// github: https://github.com/marcojakob/dart-event-bus
 ///
 class EventBus {
-  late bool sync;
   StreamController _streamController;
 
   /// Controller for the event bus stream.
@@ -25,7 +24,7 @@ class EventBus {
   /// during a [fire] call. If false (the default), the event will be passed to
   /// the listeners at a later time, after the code creating the event has
   /// completed.
-  EventBus({sync = false})
+  EventBus({bool sync = false})
       : _streamController = StreamController.broadcast(sync: sync);
 
   /// Instead of using the default [StreamController] you can use this constructor
@@ -70,14 +69,19 @@ class EventBus {
     _streamController.close();
   }
 
-  static EventBus _instance = new EventBus.init();
+  static EventBus? _instance;
 
   factory EventBus.init() {
-    _instance = EventBus();
-    return _instance;
+    if (_instance == null) {
+      _instance = EventBus();
+    }
+    return _instance!;
   }
 
   static EventBus get instance {
-    return _instance;
+    if (_instance == null) {
+      EventBus.init();
+    }
+    return _instance!;
   }
 }
