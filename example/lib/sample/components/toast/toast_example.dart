@@ -21,7 +21,7 @@ class _ToastExampleState extends State<ToastExample> with TickerProviderStateMix
               child: Center(
                 child: RaisedButton(
                   onPressed: () {
-                    BrnToast.show("普通长Toast", context, duration: BrnToast.LENGTH_LONG, gravity: 1);
+                    BrnToast.show("普通长Toast", context, duration: BrnLength.long, gravity: BrnToastGravity.center);
                   },
                   child: Text("普通长Toast"),
                 ),
@@ -38,7 +38,7 @@ class _ToastExampleState extends State<ToastExample> with TickerProviderStateMix
                           width: 24,
                           height: 24,
                         ),
-                        duration: BrnToast.LENGTH_SHORT);
+                        duration: BrnLength.short);
                   },
                   child: Text("失败图标Toast"),
                 ),
@@ -55,7 +55,7 @@ class _ToastExampleState extends State<ToastExample> with TickerProviderStateMix
                           width: 24,
                           height: 24,
                         ),
-                        duration: BrnToast.LENGTH_SHORT);
+                        duration: BrnLength.short);
                   },
                   child: Text("成功图标Toast"),
                 ),
