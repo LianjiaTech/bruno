@@ -32,9 +32,9 @@ class BrnSelectionConfig extends BrnBaseConfig {
     this.titleForMoreTextStyle,
     this.optionTextStyle,
     this.moreTextStyle,
-    this.flayNormalTextStyle,
-    this.flatSelectedTextStyle,
-    this.flatBoldTextStyle,
+    this.flayerNormalTextStyle,
+    this.flayerSelectedTextStyle,
+    this.flayerBoldTextStyle,
     String configId = GLOBAL_CONFIG_ID,
   }) : super(configId: configId);
 
@@ -201,7 +201,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.normal,
   /// )
-  BrnTextStyle? flayNormalTextStyle;
+  BrnTextStyle? flayerNormalTextStyle;
 
   /// 跳转二级页-选中文本样式
   ///
@@ -210,7 +210,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? flatSelectedTextStyle;
+  BrnTextStyle? flayerSelectedTextStyle;
 
   /// 跳转二级页-加粗文本样式
   ///
@@ -219,7 +219,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.w600
   /// )
-  BrnTextStyle? flatBoldTextStyle;
+  BrnTextStyle? flayerBoldTextStyle;
 
   @override
   void initThemeConfig(
@@ -245,23 +245,23 @@ class BrnSelectionConfig extends BrnBaseConfig {
     tagSelectedBackgroundColor ??= commonConfig.brandPrimary?.withOpacity(0.12);
     tagNormalBackgroundColor ??= commonConfig.fillBody;
     tagRadius ??= commonConfig.radiusSm;
-    flatBoldTextStyle = selectionConfig?.flatBoldTextStyle?.merge(
+    flayerBoldTextStyle = selectionConfig?.flayerBoldTextStyle?.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(flatBoldTextStyle),
+      ).merge(flayerBoldTextStyle),
     );
-    flatSelectedTextStyle = selectionConfig?.flatSelectedTextStyle?.merge(
+    flayerSelectedTextStyle = selectionConfig?.flayerSelectedTextStyle?.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(flatSelectedTextStyle),
+      ).merge(flayerSelectedTextStyle),
     );
-    flayNormalTextStyle = selectionConfig?.flayNormalTextStyle?.merge(
+    flayerNormalTextStyle = selectionConfig?.flayerNormalTextStyle?.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(flayNormalTextStyle),
+      ).merge(flayerNormalTextStyle),
     );
     moreTextStyle = selectionConfig?.moreTextStyle?.merge(
       BrnTextStyle(
@@ -371,9 +371,9 @@ class BrnSelectionConfig extends BrnBaseConfig {
     BrnTextStyle? titleForMoreTextStyle,
     BrnTextStyle? optionTextStyle,
     BrnTextStyle? moreTextStyle,
-    BrnTextStyle? flayNormalTextStyle,
-    BrnTextStyle? flatSelectedTextStyle,
-    BrnTextStyle? flatBoldTextStyle,
+    BrnTextStyle? flayerNormalTextStyle,
+    BrnTextStyle? flayerSelectedTextStyle,
+    BrnTextStyle? flayerBoldTextStyle,
   }) {
     return BrnSelectionConfig(
       menuNormalTextStyle: menuNormalTextStyle ?? this.menuNormalTextStyle,
@@ -404,10 +404,11 @@ class BrnSelectionConfig extends BrnBaseConfig {
           titleForMoreTextStyle ?? this.titleForMoreTextStyle,
       optionTextStyle: optionTextStyle ?? this.optionTextStyle,
       moreTextStyle: moreTextStyle ?? this.moreTextStyle,
-      flayNormalTextStyle: flayNormalTextStyle ?? this.flayNormalTextStyle,
-      flatSelectedTextStyle:
-          flatSelectedTextStyle ?? this.flatSelectedTextStyle,
-      flatBoldTextStyle: flatBoldTextStyle ?? this.flatBoldTextStyle,
+      flayerNormalTextStyle:
+          flayerNormalTextStyle ?? this.flayerNormalTextStyle,
+      flayerSelectedTextStyle:
+          flayerSelectedTextStyle ?? this.flayerSelectedTextStyle,
+      flayerBoldTextStyle: flayerBoldTextStyle ?? this.flayerBoldTextStyle,
     );
   }
 
@@ -457,14 +458,15 @@ class BrnSelectionConfig extends BrnBaseConfig {
           other.optionTextStyle,
       moreTextStyle:
           moreTextStyle?.merge(other.moreTextStyle) ?? other.moreTextStyle,
-      flayNormalTextStyle:
-          flayNormalTextStyle?.merge(other.flayNormalTextStyle) ??
-              other.flayNormalTextStyle,
-      flatSelectedTextStyle:
-          flatSelectedTextStyle?.merge(other.flatSelectedTextStyle) ??
-              other.flatSelectedTextStyle,
-      flatBoldTextStyle: flatBoldTextStyle?.merge(other.flatBoldTextStyle) ??
-          other.flatBoldTextStyle,
+      flayerNormalTextStyle:
+          flayerNormalTextStyle?.merge(other.flayerNormalTextStyle) ??
+              other.flayerNormalTextStyle,
+      flayerSelectedTextStyle:
+          flayerSelectedTextStyle?.merge(other.flayerSelectedTextStyle) ??
+              other.flayerSelectedTextStyle,
+      flayerBoldTextStyle:
+          flayerBoldTextStyle?.merge(other.flayerBoldTextStyle) ??
+              other.flayerBoldTextStyle,
     );
   }
 }

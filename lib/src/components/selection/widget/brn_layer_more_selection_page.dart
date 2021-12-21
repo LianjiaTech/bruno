@@ -303,12 +303,12 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
   Widget _buildLeftItem(int index) {
     //如果房山 被选中了或者房山处于正在选择的状态 则加粗
     TextStyle textStyle =
-        widget.themeData.flayNormalTextStyle.generateTextStyle();
+        widget.themeData.flayerNormalTextStyle.generateTextStyle();
     if (index == currentIndex) {
-      textStyle = widget.themeData.flatSelectedTextStyle.generateTextStyle();
+      textStyle = widget.themeData.flayerSelectedTextStyle.generateTextStyle();
     } else if ((firstList[index].isSelected) &&
         firstList[index].selectedList().isNotEmpty) {
-      textStyle = widget.themeData.flatBoldTextStyle.generateTextStyle();
+      textStyle = widget.themeData.flayerBoldTextStyle.generateTextStyle();
     }
 
     List<BrnSelectionEntity> list = firstList[index].selectedList();
@@ -433,8 +433,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
           child: Text(
             tmp.title.toString(),
             style: tmp.isSelected
-                ? widget.themeData.flatSelectedTextStyle.generateTextStyle()
-                : widget.themeData.flayNormalTextStyle.generateTextStyle(),
+                ? widget.themeData.flayerSelectedTextStyle.generateTextStyle()
+                : widget.themeData.flayerNormalTextStyle.generateTextStyle(),
           ),
         ),
         Container(
@@ -452,8 +452,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     return Text(tmp.title.toString(),
         textAlign: TextAlign.left,
         style: tmp.isSelected
-            ? widget.themeData.flatSelectedTextStyle.generateTextStyle()
-            : widget.themeData.flayNormalTextStyle.generateTextStyle());
+            ? widget.themeData.flayerSelectedTextStyle.generateTextStyle()
+            : widget.themeData.flayerNormalTextStyle.generateTextStyle());
   }
 
   //初始化二级的选中（小白楼）

@@ -676,16 +676,16 @@ class BrnDefaultConfigUtils {
       color: defaultCommonConfig.colorTextSecondary,
       fontSize: defaultCommonConfig.fontSizeCaption,
     ),
-    flayNormalTextStyle: BrnTextStyle(
+    flayerNormalTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextBase,
       fontSize: defaultCommonConfig.fontSizeSubHead,
     ),
-    flatSelectedTextStyle: BrnTextStyle(
+    flayerSelectedTextStyle: BrnTextStyle(
       color: defaultCommonConfig.brandPrimary,
       fontSize: defaultCommonConfig.fontSizeSubHead,
       fontWeight: FontWeight.w600,
     ),
-    flatBoldTextStyle: BrnTextStyle(
+    flayerBoldTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextBase,
       fontSize: defaultCommonConfig.fontSizeSubHead,
       fontWeight: FontWeight.w600,
