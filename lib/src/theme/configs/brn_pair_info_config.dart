@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/base/brn_base_config.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -18,60 +16,61 @@ class BrnPairInfoTableConfig extends BrnBaseConfig {
   }) : super(configId: configId);
 
   /// 行间距 纵向
-  double rowSpacing;
+  double? rowSpacing;
 
   /// BrnInfoModal 属性配置 行间距
-  double itemSpacing;
+  double? itemSpacing;
 
   /// BrnInfoModal key文字样式
   /// TextStyle(fontWeight: FontWeight.w400,color: [BrnCommonConfig.colorTextSecondary], fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle keyTextStyle;
+  BrnTextStyle? keyTextStyle;
 
   /// BrnInfoModal value文字样式
   /// TextStyle(fontWeight: FontWeight.w400,color: [BrnCommonConfig.colorTextBase], fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle valueTextStyle;
+  BrnTextStyle? valueTextStyle;
 
   /// BrnInfoModal 链接文字样式
   /// TextStyle(fontWeight: FontWeight.w400,color: [BrnCommonConfig.brandPrimary], fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle linkTextStyle;
+  BrnTextStyle? linkTextStyle;
 
   @override
   void initThemeConfig(String configId,
-      {BrnCommonConfig currentLevelCommonConfig}) {
+      {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId,
         currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnPairInfoTableConfig pairInfoTableConfig = BrnThemeConfigurator.instance
+    BrnPairInfoTableConfig? pairInfoTableConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        .pairInfoTableConfig;
+        ?.pairInfoTableConfig;
 
     this.rowSpacing ??= pairInfoTableConfig?.rowSpacing;
 
-    this.keyTextStyle = pairInfoTableConfig.keyTextStyle.merge(BrnTextStyle(
+    this.keyTextStyle = pairInfoTableConfig!.keyTextStyle?.merge(BrnTextStyle(
             color: commonConfig.colorTextSecondary,
             fontSize: commonConfig.fontSizeBase)
         .merge(this.keyTextStyle));
 
-    this.valueTextStyle = pairInfoTableConfig.valueTextStyle.merge(BrnTextStyle(
-            color: commonConfig.colorTextBase,
-            fontSize: commonConfig.fontSizeBase)
-        .merge(this.valueTextStyle));
+    this.valueTextStyle = pairInfoTableConfig.valueTextStyle?.merge(
+        BrnTextStyle(
+                color: commonConfig.colorTextBase,
+                fontSize: commonConfig.fontSizeBase)
+            .merge(this.valueTextStyle));
 
-    this.linkTextStyle = pairInfoTableConfig.linkTextStyle.merge(BrnTextStyle(
+    this.linkTextStyle = pairInfoTableConfig.linkTextStyle?.merge(BrnTextStyle(
             color: commonConfig.brandPrimary,
             fontSize: commonConfig.fontSizeBase)
         .merge(this.linkTextStyle));
 
-    this.itemSpacing ??= pairInfoTableConfig?.itemSpacing;
+    this.itemSpacing ??= pairInfoTableConfig.itemSpacing;
   }
 
   BrnPairInfoTableConfig copyWith(
-      {double rowSpacing,
-      double itemSpacing,
-      BrnTextStyle keyTextStyle,
-      BrnTextStyle valueTextStyle,
-      BrnTextStyle linkTextStyle}) {
+      {double? rowSpacing,
+      double? itemSpacing,
+      BrnTextStyle? keyTextStyle,
+      BrnTextStyle? valueTextStyle,
+      BrnTextStyle? linkTextStyle}) {
     return BrnPairInfoTableConfig(
       rowSpacing: rowSpacing ?? this.rowSpacing,
       itemSpacing: itemSpacing ?? this.itemSpacing,
@@ -82,7 +81,6 @@ class BrnPairInfoTableConfig extends BrnBaseConfig {
   }
 
   BrnPairInfoTableConfig merge(BrnPairInfoTableConfig other) {
-    if (other == null) return this;
     return copyWith(
       rowSpacing: other.rowSpacing,
       itemSpacing: other.itemSpacing,
@@ -109,54 +107,55 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
   }) : super(configId: configId);
 
   /// 行间距 纵向
-  double rowSpacing;
+  double? rowSpacing;
 
   /// 元素间距 横向
-  double itemSpacing;
+  double? itemSpacing;
 
   /// 元素高度
-  double itemHeight;
+  double? itemHeight;
 
   /// key文字样式
   /// TextStyle(fontWeight: FontWeight.w400,color: [BrnCommonConfig.colorTextSecondary], fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle keyTextStyle;
+  BrnTextStyle? keyTextStyle;
 
   /// value文字样式
   /// TextStyle(fontWeight: FontWeight.w400,color: [BrnCommonConfig.colorTextBase], fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle valueTextStyle;
+  BrnTextStyle? valueTextStyle;
 
   /// 链接文字样式
   /// TextStyle(fontWeight: FontWeight.w400,color: [BrnCommonConfig.brandPrimary], fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle linkTextStyle;
+  BrnTextStyle? linkTextStyle;
 
   @override
   void initThemeConfig(String configId,
-      {BrnCommonConfig currentLevelCommonConfig}) {
+      {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId,
         currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnPairRichInfoGridConfig pairRichInfoGridConfig = BrnThemeConfigurator
+    BrnPairRichInfoGridConfig? pairRichInfoGridConfig = BrnThemeConfigurator
         .instance
         .getConfig(configId: configId)
-        .pairRichInfoGridConfig;
+        ?.pairRichInfoGridConfig;
 
     this.rowSpacing ??= pairRichInfoGridConfig?.rowSpacing;
     this.itemSpacing ??= pairRichInfoGridConfig?.itemSpacing;
     this.itemHeight ??= pairRichInfoGridConfig?.itemHeight;
 
-    this.keyTextStyle = pairRichInfoGridConfig.keyTextStyle.merge(BrnTextStyle(
+    this.keyTextStyle =
+        pairRichInfoGridConfig?.keyTextStyle!.merge(BrnTextStyle(
       color: commonConfig.colorTextSecondary,
       fontSize: commonConfig.fontSizeBase,
     ).merge(this.keyTextStyle));
 
-    this.valueTextStyle = pairRichInfoGridConfig.valueTextStyle.merge(
+    this.valueTextStyle = pairRichInfoGridConfig?.valueTextStyle!.merge(
         BrnTextStyle(
                 color: commonConfig.colorTextBase,
                 fontSize: commonConfig.fontSizeBase)
             .merge(this.valueTextStyle));
 
-    this.linkTextStyle = pairRichInfoGridConfig.linkTextStyle.merge(
+    this.linkTextStyle = pairRichInfoGridConfig?.linkTextStyle!.merge(
         BrnTextStyle(
                 color: commonConfig.brandPrimary,
                 fontSize: commonConfig.fontSizeBase)
@@ -164,13 +163,13 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
   }
 
   BrnPairRichInfoGridConfig copyWith(
-      {double rowSpacing,
-      double itemSpacing,
-      double itemHeight,
-      BrnTextStyle keyTextStyle,
-      BrnTextStyle valueTextStyle,
-      BrnTextStyle linkTextStyle,
-      BrnTextStyle titleTextsStyle}) {
+      {double? rowSpacing,
+      double? itemSpacing,
+      double? itemHeight,
+      BrnTextStyle? keyTextStyle,
+      BrnTextStyle? valueTextStyle,
+      BrnTextStyle? linkTextStyle,
+      BrnTextStyle? titleTextsStyle}) {
     return BrnPairRichInfoGridConfig(
       rowSpacing: rowSpacing ?? this.rowSpacing,
       itemSpacing: itemSpacing ?? this.itemSpacing,
@@ -182,7 +181,6 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
   }
 
   BrnPairRichInfoGridConfig merge(BrnPairRichInfoGridConfig other) {
-    if (BrnPairRichInfoGridConfig == null) return this;
     return copyWith(
       rowSpacing: other.rowSpacing,
       itemSpacing: other.itemSpacing,

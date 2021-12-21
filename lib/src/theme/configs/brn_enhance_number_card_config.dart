@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/base/brn_base_config.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -18,46 +16,46 @@ class BrnEnhanceNumberCardConfig extends BrnBaseConfig {
   }) : super(configId: configId);
 
   ///如果超过一行，行间距
-  double runningSpace;
+  double? runningSpace;
 
   ///Item的上半部分和下半部分的间距
-  double itemRunningSpace;
+  double? itemRunningSpace;
 
-  double dividerWidth;
+  double? dividerWidth;
 
-  BrnTextStyle titleTextStyle;
+  BrnTextStyle? titleTextStyle;
 
-  BrnTextStyle descTextStyle;
+  BrnTextStyle? descTextStyle;
 
   @override
   void initThemeConfig(String configId,
-      {BrnCommonConfig currentLevelCommonConfig}) {
+      {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId,
         currentLevelCommonConfig: currentLevelCommonConfig);
 
-    BrnEnhanceNumberCardConfig userConfig = BrnThemeConfigurator.instance
+    BrnEnhanceNumberCardConfig? userConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        .enhanceNumberCardConfig;
+        ?.enhanceNumberCardConfig;
 
-    this.runningSpace ??= userConfig.runningSpace;
-    this.itemRunningSpace ??= userConfig.itemRunningSpace;
-    this.dividerWidth ??= userConfig.dividerWidth;
+    this.runningSpace ??= userConfig?.runningSpace;
+    this.itemRunningSpace ??= userConfig?.itemRunningSpace;
+    this.dividerWidth ??= userConfig?.dividerWidth;
 
-    this.titleTextStyle = userConfig.titleTextStyle.merge(
+    this.titleTextStyle = userConfig?.titleTextStyle!.merge(
         BrnTextStyle(color: commonConfig.colorTextBase)
             .merge(this.titleTextStyle));
 
-    this.descTextStyle = userConfig.descTextStyle.merge(
+    this.descTextStyle = userConfig?.descTextStyle?.merge(
         BrnTextStyle(color: commonConfig.colorTextSecondary)
             .merge(this.descTextStyle));
   }
 
   BrnEnhanceNumberCardConfig copyWith({
-    double runningSpace,
-    double itemRunningSpace,
-    double dividerWidth,
-    BrnTextStyle titleTextStyle,
-    BrnTextStyle descTextStyle,
+    double? runningSpace,
+    double? itemRunningSpace,
+    double? dividerWidth,
+    BrnTextStyle? titleTextStyle,
+    BrnTextStyle? descTextStyle,
   }) {
     return BrnEnhanceNumberCardConfig(
       runningSpace: runningSpace ?? this.runningSpace,
@@ -69,7 +67,6 @@ class BrnEnhanceNumberCardConfig extends BrnBaseConfig {
   }
 
   BrnEnhanceNumberCardConfig merge(BrnEnhanceNumberCardConfig other) {
-    if (other == null) return this;
     return copyWith(
       runningSpace: other.runningSpace,
       itemRunningSpace: other.itemRunningSpace,

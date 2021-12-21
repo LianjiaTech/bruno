@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -9,13 +7,13 @@ class BrunoTools {
   /// 将 icon 根据主题色变色后返回
   static Image getAssetImageWithBandColor(String assetFilePath,
       {String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID}) {
-    BrnCommonConfig commonConfig = BrnThemeConfigurator.instance
+    BrnCommonConfig? commonConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        .commonConfig;
+        ?.commonConfig;
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
-    return getAssetImageWithColor(assetFilePath, commonConfig.brandPrimary);
+    return getAssetImageWithColor(assetFilePath, commonConfig!.brandPrimary);
   }
 
   /// 将 icon 根据传入颜色变后返回
@@ -35,7 +33,7 @@ class BrunoTools {
   /// package 访问某个package里的资源，这里默认flutter_alliance_package
   /// scale: 与所用的png资源是icon_2x.png (scale=2.0)，icon_3x.png(scale=3.0)
   static Image getAssetImage(String assetFilePath,
-      {BoxFit fit, bool gaplessPlayback = false}) {
+      {BoxFit? fit, bool gaplessPlayback = false}) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -59,7 +57,7 @@ class BrunoTools {
   }
 
   static Image getAssetSizeImage(String assetFilePath, double w, double h,
-      {Color color}) {
+      {Color? color}) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -75,7 +73,7 @@ class BrunoTools {
 
   //从16进制数字字符串，生成Color，例如EDF0F3
   static Color colorFromHexString(String s) {
-    if (s == null || s.length != 6 || int.tryParse(s, radix: 16) == null) {
+    if (s.length != 6 || int.tryParse(s, radix: 16) == null) {
       return Colors.black;
     }
     return Color(int.parse(s, radix: 16) + 0xFF000000);
@@ -115,7 +113,7 @@ class BrunoTools {
     } else if (obj is Map) {
       return obj.length == 0;
     }
-    return obj == null;
+    return false;
   }
 
   /// 去掉最后一位小数

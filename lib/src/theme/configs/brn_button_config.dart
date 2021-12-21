@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/base/brn_base_config.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -18,32 +16,32 @@ class BrnButtonConfig extends BrnBaseConfig {
   }) : super(configId: configId);
 
   /// default value is 6
-  double bigButtonRadius;
+  double? bigButtonRadius;
 
   /// default value is 48
-  double bigButtonHeight;
+  double? bigButtonHeight;
 
   /// default value is 16
-  double bigButtonFontSize;
+  double? bigButtonFontSize;
 
   /// default value is 4
-  double smallButtonRadius;
+  double? smallButtonRadius;
 
   /// default value is 32
-  double smallButtonHeight;
+  double? smallButtonHeight;
 
   /// default value is 14
-  double smallButtonFontSize;
+  double? smallButtonFontSize;
 
   @override
   void initThemeConfig(String configId,
-      {BrnCommonConfig currentLevelCommonConfig}) {
+      {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId,
         currentLevelCommonConfig: currentLevelCommonConfig);
 
-    BrnButtonConfig userConfig = BrnThemeConfigurator.instance
+    BrnButtonConfig? userConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        .buttonConfig;
+        ?.buttonConfig;
 
     this.bigButtonRadius ??= userConfig?.bigButtonRadius;
     this.bigButtonHeight ??= userConfig?.bigButtonHeight;
@@ -54,12 +52,12 @@ class BrnButtonConfig extends BrnBaseConfig {
   }
 
   BrnButtonConfig copyWith(
-      {double bigButtonRadius,
-      double bigButtonHeight,
-      double bigButtonFontSize,
-      double smallButtonRadius,
-      double smallButtonHeight,
-      double smallButtonFontSize}) {
+      {double? bigButtonRadius,
+      double? bigButtonHeight,
+      double? bigButtonFontSize,
+      double? smallButtonRadius,
+      double? smallButtonHeight,
+      double? smallButtonFontSize}) {
     return BrnButtonConfig(
       bigButtonRadius: bigButtonRadius ?? this.bigButtonRadius,
       bigButtonHeight: bigButtonHeight ?? this.bigButtonHeight,
@@ -71,7 +69,6 @@ class BrnButtonConfig extends BrnBaseConfig {
   }
 
   BrnButtonConfig merge(BrnButtonConfig other) {
-    if (other == null) return this;
     return copyWith(
         bigButtonRadius: other.bigButtonRadius,
         bigButtonHeight: other.bigButtonHeight,

@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/base/brn_base_config.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -29,122 +27,122 @@ class BrnTabBarConfig extends BrnBaseConfig {
 
   /// Tabbar的整体高度
   /// default value is 50
-  double tabHeight;
+  double? tabHeight;
 
   /// 指示器的高度
   /// default value is 2
-  double indicatorHeight;
+  double? indicatorHeight;
 
   /// 指示器的宽度
   /// default value is 24
-  double indicatorWidth;
+  double? indicatorWidth;
 
   /// 选中Tab文本的样式
   /// default value is TextStyle(color:[BrnCommonConfig.brandPrimary],fontSize:[BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle labelStyle;
+  BrnTextStyle? labelStyle;
 
   /// 未选中Tab文本的样式
   /// default value is TextStyle(color:[BrnCommonConfig.colorTextBase],fontSize:[BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle unselectedLabelStyle;
+  BrnTextStyle? unselectedLabelStyle;
 
   /// 背景色
   /// default value is [BrnCommonConfig.fillBase]
-  Color backgroundColor;
+  Color? backgroundColor;
 
   /// 标签字体样式
   /// default value is BrnTextStyle(color: [BrnCommonConfig.colorTextBase], fontSize: [BrnCommonConfig.fontSizeCaption])
-  BrnTextStyle tagNormalTextStyle;
+  BrnTextStyle? tagNormalTextStyle;
 
   /// 标签背景色
   /// default value is [BrnCommonConfig.brandPrimary].withAlpha(0x14),
-  Color tagNormalBgColor;
+  Color? tagNormalBgColor;
 
   /// 标签字体样式
   /// default value is BrnTextStyle(color:[BrnCommonConfig.brandPrimary], fontSize: [BrnCommonConfig.fontSizeCaption])
-  BrnTextStyle tagSelectedTextStyle;
+  BrnTextStyle? tagSelectedTextStyle;
 
   /// 标签选中背景色
   /// default value is [BrnCommonConfig.fillBody]
-  Color tagSelectedBgColor;
+  Color? tagSelectedBgColor;
 
   /// tag圆角
   /// default value is [BrnCommonConfig.radiusSm]
-  double tagRadius;
+  double? tagRadius;
 
   /// tag间距
   /// default value is 12
-  double tagSpacing;
+  double? tagSpacing;
 
   /// 每行的tag数
   /// default value is 4
-  int preLineTagCount;
+  int? preLineTagCount;
 
   /// tag高度
   /// default value is 32
-  double tagHeight;
+  double? tagHeight;
 
   @override
   void initThemeConfig(String configId,
-      {BrnCommonConfig currentLevelCommonConfig}) {
+      {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId,
         currentLevelCommonConfig: currentLevelCommonConfig);
 
-    BrnTabBarConfig tabBarConfig = BrnThemeConfigurator.instance
+    BrnTabBarConfig? tabBarConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        .tabBarConfig;
+        ?.tabBarConfig;
 
-    this.tabHeight ??= tabBarConfig.tabHeight;
-    this.indicatorHeight ??= tabBarConfig.indicatorHeight;
-    this.indicatorWidth ??= tabBarConfig.indicatorWidth;
+    this.tabHeight ??= tabBarConfig?.tabHeight;
+    this.indicatorHeight ??= tabBarConfig?.indicatorHeight;
+    this.indicatorWidth ??= tabBarConfig?.indicatorWidth;
 
-    this.labelStyle = tabBarConfig.labelStyle.merge(BrnTextStyle(
+    this.labelStyle = tabBarConfig?.labelStyle!.merge(BrnTextStyle(
             color: commonConfig.brandPrimary,
             fontSize: commonConfig.fontSizeSubHead)
         .merge(this.labelStyle));
 
-    this.unselectedLabelStyle = tabBarConfig.unselectedLabelStyle.merge(
+    this.unselectedLabelStyle = tabBarConfig?.unselectedLabelStyle!.merge(
         BrnTextStyle(
                 color: commonConfig.colorTextBase,
                 fontSize: commonConfig.fontSizeSubHead)
             .merge(this.unselectedLabelStyle));
 
-    this.backgroundColor ??= tabBarConfig.backgroundColor;
+    this.backgroundColor ??= tabBarConfig?.backgroundColor;
 
-    this.tagNormalTextStyle = tabBarConfig.tagNormalTextStyle.merge(
+    this.tagNormalTextStyle = tabBarConfig?.tagNormalTextStyle!.merge(
         BrnTextStyle(
                 color: commonConfig.colorTextBase,
                 fontSize: commonConfig.fontSizeCaption)
             .merge(this.tagNormalTextStyle));
 
-    this.tagSelectedTextStyle = tabBarConfig.tagSelectedTextStyle.merge(
+    this.tagSelectedTextStyle = tabBarConfig?.tagSelectedTextStyle!.merge(
         BrnTextStyle(
                 color: commonConfig.brandPrimary,
                 fontSize: commonConfig.fontSizeCaption)
             .merge(this.tagSelectedTextStyle));
 
-    this.tagNormalBgColor ??= tabBarConfig.tagNormalBgColor;
-    this.tagSelectedBgColor ??= tabBarConfig.tagSelectedBgColor;
+    this.tagNormalBgColor ??= tabBarConfig?.tagNormalBgColor;
+    this.tagSelectedBgColor ??= tabBarConfig?.tagSelectedBgColor;
     this.tagRadius ??= commonConfig.radiusSm;
-    this.tagSpacing ??= tabBarConfig.tagSpacing;
-    this.preLineTagCount ??= tabBarConfig.preLineTagCount;
-    this.tagHeight ??= tabBarConfig.tagHeight;
+    this.tagSpacing ??= tabBarConfig?.tagSpacing;
+    this.preLineTagCount ??= tabBarConfig?.preLineTagCount;
+    this.tagHeight ??= tabBarConfig?.tagHeight;
   }
 
   BrnTabBarConfig copyWith({
-    double tabHeight,
-    double indicatorHeight,
-    double indicatorWidth,
-    BrnTextStyle labelStyle,
-    BrnTextStyle unselectedLabelStyle,
-    Color backgroundColor,
-    BrnTextStyle tagNormalTextStyle,
-    Color tagNormalColor,
-    BrnTextStyle tagSelectedTextStyle,
-    Color tagSelectedColor,
-    double tagRadius,
-    double tagSpacing,
-    int preLineTagSize,
-    double tagHeight,
+    double? tabHeight,
+    double? indicatorHeight,
+    double? indicatorWidth,
+    BrnTextStyle? labelStyle,
+    BrnTextStyle? unselectedLabelStyle,
+    Color? backgroundColor,
+    BrnTextStyle? tagNormalTextStyle,
+    Color? tagNormalColor,
+    BrnTextStyle? tagSelectedTextStyle,
+    Color? tagSelectedColor,
+    double? tagRadius,
+    double? tagSpacing,
+    int? preLineTagSize,
+    double? tagHeight,
   }) {
     return BrnTabBarConfig(
       tabHeight: tabHeight ?? this.tabHeight,
@@ -165,7 +163,6 @@ class BrnTabBarConfig extends BrnBaseConfig {
   }
 
   BrnTabBarConfig merge(BrnTabBarConfig other) {
-    if (other == null) return this;
     return copyWith(
       tabHeight: other.tabHeight,
       indicatorHeight: other.indicatorHeight,

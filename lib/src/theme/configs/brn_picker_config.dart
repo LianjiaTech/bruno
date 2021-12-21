@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/base/brn_base_config.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -25,83 +23,83 @@ class BrnPickerConfig extends BrnBaseConfig {
       : super(configId: configId);
 
   /// DatePicker's background color. value is [PICKER_BACKGROUND_COLOR]
-  Color backgroundColor;
+  Color? backgroundColor;
 
   /// cancel text style
   /// Default style is TextStyle(color:[BrnCommonConfig.colorTextBase],fontSize:[BrnCommonConfig.fontSizeSubHead]).
-  BrnTextStyle cancelTextStyle;
+  BrnTextStyle? cancelTextStyle;
 
   /// confirm text style
   /// Default style is TextStyle(color:[BrnCommonConfig.brandPrimary],fontSize:[BrnCommonConfig.fontSizeSubHead]).
-  BrnTextStyle confirmTextStyle;
+  BrnTextStyle? confirmTextStyle;
 
   /// title style
   /// Default style is TextStyle(color:[BrnCommonConfig.colorTextBase],fontSize:[BrnCommonConfig.fontSizeSubHead],fontWidget:FontWeight.w600).
-  BrnTextStyle titleTextStyle;
+  BrnTextStyle? titleTextStyle;
 
   /// The value of DatePicker's height.
   /// default value is [PICKER_HEIGHT]
-  double pickerHeight;
+  double? pickerHeight;
 
   /// The value of DatePicker's title height.
   /// default value is [PICKER_TITLE_HEIGHT]
-  double titleHeight;
+  double? titleHeight;
 
   /// The value of DatePicker's column height.
   /// default value is [PICKER_ITEM_HEIGHT]
-  double itemHeight;
+  double? itemHeight;
 
   /// The value of DatePicker's column [TextStyle].
   /// Default style is TextStyle(color:[BrnCommonConfig.colorTextBase],fontSize:[BrnCommonConfig.fontSizeHead]).
-  BrnTextStyle itemTextStyle;
+  BrnTextStyle? itemTextStyle;
 
   /// The value of DatePicker's column selected [TextStyle].
   /// Default style is TextStyle(color:[BrnCommonConfig.brandPrimary],fontSize:[BrnCommonConfig.fontSizeHead],fontWidget:FontWeight.w600).
-  BrnTextStyle itemTextSelectedStyle;
+  BrnTextStyle? itemTextSelectedStyle;
 
-  Color dividerColor;
-  double cornerRadius;
+  Color? dividerColor;
+  double? cornerRadius;
 
   @override
   void initThemeConfig(String configId,
-      {BrnCommonConfig currentLevelCommonConfig}) {
+      {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId,
         currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnPickerConfig pickerConfig = BrnThemeConfigurator.instance
+    BrnPickerConfig? pickerConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        .pickerConfig;
+        ?.pickerConfig;
 
-    this.backgroundColor ??= pickerConfig.backgroundColor;
-    this.pickerHeight ??= pickerConfig.pickerHeight;
-    this.titleHeight ??= pickerConfig.titleHeight;
-    this.itemHeight ??= pickerConfig.itemHeight;
-    this.dividerColor ??= pickerConfig.dividerColor;
-    this.cornerRadius ??= pickerConfig.cornerRadius;
+    this.backgroundColor ??= pickerConfig?.backgroundColor;
+    this.pickerHeight ??= pickerConfig?.pickerHeight;
+    this.titleHeight ??= pickerConfig?.titleHeight;
+    this.itemHeight ??= pickerConfig?.itemHeight;
+    this.dividerColor ??= pickerConfig?.dividerColor;
+    this.cornerRadius ??= pickerConfig?.cornerRadius;
 
-    this.titleTextStyle = pickerConfig.titleTextStyle.merge(BrnTextStyle(
+    this.titleTextStyle = pickerConfig?.titleTextStyle!.merge(BrnTextStyle(
             color: commonConfig.colorTextBase,
             fontSize: commonConfig.fontSizeSubHead)
         .merge(this.titleTextStyle));
 
-    this.cancelTextStyle = pickerConfig.cancelTextStyle
+    this.cancelTextStyle = pickerConfig?.cancelTextStyle!
         .merge(BrnTextStyle(
             color: commonConfig.colorTextBase,
             fontSize: commonConfig.fontSizeSubHead))
         .merge(this.cancelTextStyle);
 
-    this.confirmTextStyle = pickerConfig.confirmTextStyle.merge(BrnTextStyle(
+    this.confirmTextStyle = pickerConfig?.confirmTextStyle!.merge(BrnTextStyle(
             color: commonConfig.brandPrimary,
             fontSize: commonConfig.fontSizeSubHead)
         .merge(this.confirmTextStyle));
 
-    this.itemTextStyle = pickerConfig.itemTextStyle.merge(BrnTextStyle(
+    this.itemTextStyle = pickerConfig?.itemTextStyle!.merge(BrnTextStyle(
             color: commonConfig.colorTextBase,
             fontSize: commonConfig.fontSizeHead)
         .merge(this.itemTextStyle));
 
-    this.itemTextSelectedStyle = pickerConfig.itemTextSelectedStyle.merge(
+    this.itemTextSelectedStyle = pickerConfig?.itemTextSelectedStyle!.merge(
         BrnTextStyle(
                 color: commonConfig.brandPrimary,
                 fontSize: commonConfig.fontSizeHead)
@@ -109,17 +107,17 @@ class BrnPickerConfig extends BrnBaseConfig {
   }
 
   BrnPickerConfig copyWith(
-      {Color backgroundColor,
-      BrnTextStyle cancelTextStyle,
-      BrnTextStyle confirmTextStyle,
-      BrnTextStyle titleTextStyle,
-      double pickerHeight,
-      double titleHeight,
-      double itemHeight,
-      BrnTextStyle itemTextStyle,
-      BrnTextStyle itemTextSelectedStyle,
-      Color dividerColor,
-      double cornerRadius}) {
+      {Color? backgroundColor,
+      BrnTextStyle? cancelTextStyle,
+      BrnTextStyle? confirmTextStyle,
+      BrnTextStyle? titleTextStyle,
+      double? pickerHeight,
+      double? titleHeight,
+      double? itemHeight,
+      BrnTextStyle? itemTextStyle,
+      BrnTextStyle? itemTextSelectedStyle,
+      Color? dividerColor,
+      double? cornerRadius}) {
     return BrnPickerConfig(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       cancelTextStyle: cancelTextStyle ?? this.cancelTextStyle,
@@ -137,7 +135,6 @@ class BrnPickerConfig extends BrnBaseConfig {
   }
 
   BrnPickerConfig merge(BrnPickerConfig other) {
-    if (other == null) return this;
     return copyWith(
         backgroundColor: other.backgroundColor,
         cancelTextStyle: this.cancelTextStyle?.merge(other.cancelTextStyle) ??

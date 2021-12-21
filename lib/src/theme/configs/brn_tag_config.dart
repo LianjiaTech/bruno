@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:ui';
 
 import 'package:bruno/src/theme/base/brn_base_config.dart';
@@ -11,35 +9,35 @@ import 'package:bruno/src/theme/configs/brn_common_config.dart';
 class BrnTagConfig extends BrnBaseConfig {
   /// tag文本样式
   /// default TextStyle(fontSize: [BrnCommonConfig.fontSizeCaption],color: [BrnCommonConfig.colorTextBase])
-  BrnTextStyle tagTextStyle;
+  BrnTextStyle? tagTextStyle;
 
   /// tag选中文本样式
   /// default TextStyle(fontWeight: FontWeight.w600,fontSize: [BrnCommonConfig.fontSizeCaption],color: [BrnCommonConfig.brandPrimary])
-  BrnTextStyle selectTagTextStyle;
+  BrnTextStyle? selectTagTextStyle;
 
   /// 标签背景色
   /// default [BrnCommonConfig.fillBody]
-  Color tagBackgroundColor;
+  Color? tagBackgroundColor;
 
   /// 选中背景色
   /// default [BrnCommonConfig.brandPrimary]
-  Color selectedTagBackgroundColor;
+  Color? selectedTagBackgroundColor;
 
   /// 标签圆角
   /// default value is [BrnCommonConfig.radiusXs]
-  double tagRadius;
+  double? tagRadius;
 
   /// 标签高度，跟 fixWidthMode 无关
   /// default value is 34
-  double tagHeight;
+  double? tagHeight;
 
   /// 标签宽度，且仅在组件设置了固定宽度（fixWidthMode 为 true）时才生效
   /// default value is 75
-  double tagWidth;
+  double? tagWidth;
 
   /// 标签最小宽度
   /// default value is 75
-  double tagMinWidth;
+  double? tagMinWidth;
 
   BrnTagConfig(
       {this.tagTextStyle,
@@ -55,18 +53,18 @@ class BrnTagConfig extends BrnBaseConfig {
 
   @override
   void initThemeConfig(String configId,
-      {BrnCommonConfig currentLevelCommonConfig}) {
+      {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId,
         currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
-    BrnTagConfig tagConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).tagConfig;
+    BrnTagConfig? tagConfig =
+        BrnThemeConfigurator.instance.getConfig(configId: configId)?.tagConfig;
 
-    this.tagHeight ??= tagConfig.tagHeight;
+    this.tagHeight ??= tagConfig?.tagHeight;
 
-    this.tagWidth ??= tagConfig.tagWidth;
-    this.tagMinWidth ??= tagConfig.tagMinWidth;
+    this.tagWidth ??= tagConfig?.tagWidth;
+    this.tagMinWidth ??= tagConfig?.tagMinWidth;
 
     this.tagRadius ??= commonConfig.radiusXs;
 
@@ -74,26 +72,26 @@ class BrnTagConfig extends BrnBaseConfig {
 
     this.selectedTagBackgroundColor ??= commonConfig.brandPrimary;
 
-    this.tagTextStyle = tagConfig.tagTextStyle.merge(BrnTextStyle(
+    this.tagTextStyle = tagConfig?.tagTextStyle!.merge(BrnTextStyle(
             color: commonConfig.colorTextBase,
             fontSize: commonConfig.fontSizeCaption)
         .merge(this.tagTextStyle));
 
-    this.selectTagTextStyle = tagConfig.selectTagTextStyle.merge(BrnTextStyle(
+    this.selectTagTextStyle = tagConfig?.selectTagTextStyle!.merge(BrnTextStyle(
             color: commonConfig.brandPrimary,
             fontSize: commonConfig.fontSizeCaption)
         .merge(this.selectTagTextStyle));
   }
 
   BrnTagConfig copyWith(
-      {BrnTextStyle textStyle,
-      BrnTextStyle selectTextStyle,
-      double radius,
-      Color backgroundColor,
-      Color selectedBackgroundColor,
-      double height,
-      double width,
-      double tagMinWidth}) {
+      {BrnTextStyle? textStyle,
+      BrnTextStyle? selectTextStyle,
+      double? radius,
+      Color? backgroundColor,
+      Color? selectedBackgroundColor,
+      double? height,
+      double? width,
+      double? tagMinWidth}) {
     return BrnTagConfig(
         tagTextStyle: textStyle ?? this.tagTextStyle,
         selectTagTextStyle: selectTextStyle ?? this.selectTagTextStyle,
