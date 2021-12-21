@@ -365,11 +365,11 @@ class BrnDefaultConfigUtils {
       fontSize: defaultCommonConfig.fontSizeBase,
     ),
     btnRadius: 4,
-    doubleBrnTextStyle: BrnTextStyle(
+    doubleTextStyle: BrnTextStyle(
       color: defaultCommonConfig.brandPrimary,
       fontSize: defaultCommonConfig.fontSizeSubHead,
     ),
-    singleBrnTextStyle: BrnTextStyle(
+    singleTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextBaseInverse,
       fontSize: defaultCommonConfig.fontSizeSubHead,
     ),

@@ -10,8 +10,8 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
     this.contentTextStyle,
     this.operateTextStyle,
     this.btnRadius,
-    this.doubleBrnTextStyle,
-    this.singleBrnTextStyle,
+    this.singleTextStyle,
+    this.doubleTextStyle,
     this.singleMinWidth,
     this.doubleMinWidth,
     String configId = GLOBAL_CONFIG_ID,
@@ -52,7 +52,7 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextBaseInverse],
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   /// )
-  BrnTextStyle? singleBrnTextStyle;
+  BrnTextStyle? singleTextStyle;
 
   /// 双按钮文本样式
   ///
@@ -60,7 +60,7 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.brandPrimary],
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   /// )
-  BrnTextStyle? doubleBrnTextStyle;
+  BrnTextStyle? doubleTextStyle;
 
   /// 单按钮的按钮最小宽度
   /// 默认值为 160
@@ -85,12 +85,6 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
         .getConfig(configId: configId)
         .abnormalStateConfig;
 
-    singleBrnTextStyle = abnormalStateConfig?.singleBrnTextStyle?.merge(
-      BrnTextStyle(
-        color: commonConfig.colorTextBaseInverse,
-        fontSize: commonConfig.fontSizeSubHead,
-      ).merge(singleBrnTextStyle),
-    );
     titleTextStyle = abnormalStateConfig?.titleTextStyle?.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
@@ -109,11 +103,17 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
         fontSize: commonConfig.fontSizeBase,
       ).merge(operateTextStyle),
     );
-    doubleBrnTextStyle = abnormalStateConfig?.doubleBrnTextStyle?.merge(
+    singleTextStyle = abnormalStateConfig?.singleTextStyle?.merge(
+      BrnTextStyle(
+        color: commonConfig.colorTextBaseInverse,
+        fontSize: commonConfig.fontSizeSubHead,
+      ).merge(singleTextStyle),
+    );
+    doubleTextStyle = abnormalStateConfig?.doubleTextStyle?.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(doubleBrnTextStyle),
+      ).merge(doubleTextStyle),
     );
     btnRadius ??= abnormalStateConfig?.btnRadius;
     singleMinWidth ??= abnormalStateConfig?.singleMinWidth;
@@ -125,8 +125,8 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
     BrnTextStyle? contentTextStyle,
     BrnTextStyle? operateTextStyle,
     double? btnRadius,
-    BrnTextStyle? singleBrnTextStyle,
-    BrnTextStyle? doubleBrnTextStyle,
+    BrnTextStyle? singleTextStyle,
+    BrnTextStyle? doubleTextStyle,
     double? singleMinWidth,
     double? doubleMinWidth,
   }) {
@@ -135,8 +135,8 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
       contentTextStyle: contentTextStyle ?? this.contentTextStyle,
       operateTextStyle: operateTextStyle ?? this.operateTextStyle,
       btnRadius: btnRadius ?? this.btnRadius,
-      doubleBrnTextStyle: doubleBrnTextStyle ?? this.doubleBrnTextStyle,
-      singleBrnTextStyle: singleBrnTextStyle ?? this.singleBrnTextStyle,
+      singleTextStyle: singleTextStyle ?? this.singleTextStyle,
+      doubleTextStyle: doubleTextStyle ?? this.doubleTextStyle,
       singleMinWidth: singleMinWidth ?? this.singleMinWidth,
       doubleMinWidth: doubleMinWidth ?? this.doubleMinWidth,
     );
@@ -152,10 +152,10 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
       operateTextStyle: operateTextStyle?.merge(other.operateTextStyle) ??
           other.operateTextStyle,
       btnRadius: other.btnRadius,
-      doubleBrnTextStyle: doubleBrnTextStyle?.merge(other.doubleBrnTextStyle) ??
-          other.doubleBrnTextStyle,
-      singleBrnTextStyle: singleBrnTextStyle?.merge(other.singleBrnTextStyle) ??
-          other.singleBrnTextStyle,
+      singleTextStyle: singleTextStyle?.merge(other.singleTextStyle) ??
+          other.singleTextStyle,
+      doubleTextStyle: doubleTextStyle?.merge(other.doubleTextStyle) ??
+          other.doubleTextStyle,
       singleMinWidth: other.singleMinWidth,
       doubleMinWidth: other.doubleMinWidth,
     );
