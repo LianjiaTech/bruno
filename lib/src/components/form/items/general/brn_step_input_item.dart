@@ -7,7 +7,7 @@ import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
-import 'package:bruno/src/utils/font/brn_font.dart';
+import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -179,7 +179,7 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
                         "${widget.value}",
                         style: TextStyle(
                           color: Color(0xFF222222),
-                          fontSize: BrnFont.FONT_16,
+                          fontSize: BrnFonts.FONT_16,
                         ),
                       ),
                     ),

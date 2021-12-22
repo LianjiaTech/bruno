@@ -1,4 +1,6 @@
 class BrnMultiClickUtils {
+  const BrnMultiClickUtils._();
+
   static DateTime? _lastClickTime;
 
   static bool isMultiClick({int intervalMilliseconds = 500}) {
