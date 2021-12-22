@@ -57,7 +57,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     _controller.forward();
 
     currentIndex = 0;
-    firstList = List();
+    firstList = [];
     _originalSelectedItemsList = widget.entityData.selectedList();
 
     _initData();
@@ -303,12 +303,12 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
   Widget _buildLeftItem(int index) {
     //如果房山 被选中了或者房山处于正在选择的状态 则加粗
     TextStyle textStyle =
-        widget.themeData.flayNormalTextStyle.generateTextStyle();
+        widget.themeData.flayerNormalTextStyle.generateTextStyle();
     if (index == currentIndex) {
-      textStyle = widget.themeData.flatSelectedTextStyle.generateTextStyle();
+      textStyle = widget.themeData.flayerSelectedTextStyle.generateTextStyle();
     } else if ((firstList[index].isSelected) &&
         firstList[index].selectedList().isNotEmpty) {
-      textStyle = widget.themeData.flatBoldTextStyle.generateTextStyle();
+      textStyle = widget.themeData.flayerBoldTextStyle.generateTextStyle();
     }
 
     List<BrnSelectionEntity> list = firstList[index].selectedList();
@@ -404,7 +404,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   void _initData() {
     //填充一级筛选数据
-    firstList = widget.entityData.children ?? List();
+    firstList = widget.entityData.children ?? [];
     //找到一级需要显示 的索引
     for (int i = 0; i < firstList.length; i++) {
       if (firstList[i].selectedList().isNotEmpty) {
@@ -433,15 +433,15 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
           child: Text(
             tmp.title.toString(),
             style: tmp.isSelected
-                ? widget.themeData.flatSelectedTextStyle.generateTextStyle()
-                : widget.themeData.flayNormalTextStyle.generateTextStyle(),
+                ? widget.themeData.flayerSelectedTextStyle.generateTextStyle()
+                : widget.themeData.flayerNormalTextStyle.generateTextStyle(),
           ),
         ),
         Container(
           height: 16,
           width: 16,
           child: tmp.isSelected
-              ? BrnThemeImg.instance.CHECKED_STATUS
+              ? BrnThemeImg.instance.checkedStatus
               : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
         )
       ],
@@ -452,8 +452,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     return Text(tmp.title.toString(),
         textAlign: TextAlign.left,
         style: tmp.isSelected
-            ? widget.themeData.flatSelectedTextStyle.generateTextStyle()
-            : widget.themeData.flayNormalTextStyle.generateTextStyle());
+            ? widget.themeData.flayerSelectedTextStyle.generateTextStyle()
+            : widget.themeData.flayerNormalTextStyle.generateTextStyle());
   }
 
   //初始化二级的选中（小白楼）

@@ -63,10 +63,10 @@ class _BrnSelectionDatePickerAnimationWidgetState
 
     _animation = Tween(begin: widget.controller.screenHeight, end: 300.0)
         .animate(_controller)
-          ..addListener(() {
-            //这行如果不写，没有动画效果
-            setState(() {});
-          });
+      ..addListener(() {
+        //这行如果不写，没有动画效果
+        setState(() {});
+      });
 
     if (_isControllerDisposed) return;
 

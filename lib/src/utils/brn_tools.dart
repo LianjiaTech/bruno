@@ -4,20 +4,24 @@ import 'package:bruno/src/theme/configs/brn_common_config.dart';
 import 'package:flutter/material.dart';
 
 class BrunoTools {
+  const BrunoTools._();
+
   /// 将 icon 根据主题色变色后返回
-  static Image getAssetImageWithBandColor(String assetFilePath,
-      {String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID}) {
-    BrnCommonConfig? commonConfig = BrnThemeConfigurator.instance
+  static Image getAssetImageWithBandColor(
+    String assetFilePath, {
+    String configId = GLOBAL_CONFIG_ID,
+  }) {
+    final BrnCommonConfig? commonConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        ?.commonConfig;
+        .commonConfig;
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
-    return getAssetImageWithColor(assetFilePath, commonConfig!.brandPrimary);
+    return getAssetImageWithColor(assetFilePath, commonConfig?.brandPrimary);
   }
 
   /// 将 icon 根据传入颜色变后返回
-  static Image getAssetImageWithColor(String assetFilePath, Color color) {
+  static Image getAssetImageWithColor(String assetFilePath, Color? color) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -32,8 +36,11 @@ class BrunoTools {
   /// imgAssetPath: assets资源文件路径
   /// package 访问某个package里的资源，这里默认flutter_alliance_package
   /// scale: 与所用的png资源是icon_2x.png (scale=2.0)，icon_3x.png(scale=3.0)
-  static Image getAssetImage(String assetFilePath,
-      {BoxFit? fit, bool gaplessPlayback = false}) {
+  static Image getAssetImage(
+    String assetFilePath, {
+    BoxFit? fit,
+    bool gaplessPlayback = false,
+  }) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -56,8 +63,12 @@ class BrunoTools {
     );
   }
 
-  static Image getAssetSizeImage(String assetFilePath, double w, double h,
-      {Color? color}) {
+  static Image getAssetSizeImage(
+    String assetFilePath,
+    double w,
+    double h, {
+    Color? color,
+  }) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -72,8 +83,8 @@ class BrunoTools {
   }
 
   //从16进制数字字符串，生成Color，例如EDF0F3
-  static Color colorFromHexString(String s) {
-    if (s.length != 6 || int.tryParse(s, radix: 16) == null) {
+  static Color colorFromHexString(String? s) {
+    if (s == null || s.length != 6 || int.tryParse(s, radix: 16) == null) {
       return Colors.black;
     }
     return Color(int.parse(s, radix: 16) + 0xFF000000);
@@ -105,7 +116,7 @@ class BrunoTools {
   }
 
   /// 判空
-  static bool isEmpty(Object obj) {
+  static bool isEmpty(Object? obj) {
     if (obj is String) {
       return obj.isEmpty;
     } else if (obj is Iterable) {
@@ -113,7 +124,7 @@ class BrunoTools {
     } else if (obj is Map) {
       return obj.length == 0;
     }
-    return false;
+    return obj == null;
   }
 
   /// 去掉最后一位小数
