@@ -40,18 +40,21 @@ class BrnCheckbox extends StatefulWidget {
   /// 默认值MainAxisSize.min
   final MainAxisSize mainAxisSize;
 
-  const BrnCheckbox({
-    Key key,
-    @required this.radioIndex,
-    @required this.onValueChangedAtIndex,
-    this.disable = false,
-    this.isSelected = false,
-    this.iconPadding,
-    this.child,
-    this.childOnRight = true,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.mainAxisSize = MainAxisSize.min,
-  });
+  /// 默认值HitTestBehavior.translucent控制widget.onRadioItemClick触发的点击范围
+  final HitTestBehavior behavior;
+
+  const BrnCheckbox(
+      {Key key,
+      @required this.radioIndex,
+      @required this.onValueChangedAtIndex,
+      this.disable = false,
+      this.isSelected = false,
+      this.iconPadding,
+      this.child,
+      this.childOnRight = true,
+      this.mainAxisAlignment = MainAxisAlignment.start,
+      this.mainAxisSize = MainAxisSize.min,
+      this.behavior = HitTestBehavior.translucent});
 
   @override
   State<StatefulWidget> createState() {
@@ -92,6 +95,7 @@ class BrnCheckboxState extends State<BrnCheckbox> {
         });
         widget.onValueChangedAtIndex(widget.radioIndex, _isSelected);
       },
+      behavior: widget.behavior,
     );
   }
 }

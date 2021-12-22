@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -49,6 +50,9 @@ class BrnRadioCore extends StatefulWidget {
 
   final VoidCallback onRadioItemClick;
 
+  /// 默认值HitTestBehavior.translucent控制widget.onRadioItemClick触发的点击范围
+  final HitTestBehavior behavior;
+
   const BrnRadioCore(
       {Key key,
       @required this.radioIndex,
@@ -63,7 +67,8 @@ class BrnRadioCore extends StatefulWidget {
       this.unselectedImage,
       this.disSelectedImage,
       this.disUnselectedImage,
-      this.onRadioItemClick})
+      this.onRadioItemClick,
+      this.behavior = HitTestBehavior.translucent})
       : super(key: key);
 
   @override
@@ -131,7 +136,7 @@ class _BrnRadioCoreState extends State<BrnRadioCore> {
 
     return GestureDetector(
       child: radioWidget,
-      behavior: HitTestBehavior.translucent,
+      behavior: widget.behavior,
       onTap: () {
         if (widget.disable == true) return;
         widget.onRadioItemClick();
