@@ -8,7 +8,7 @@ class BrnConvertUtil {
   /// 将标签 color 转为 颜色
   static Color? generateColorByString(
     String hexColor, {
-    int defColor = 0xffffffff,
+    Color defaultColor = const Color(0xffffffff),
   }) {
     Color? color =
         BrnThemeConfigurator.instance.getConfig().commonConfig?.brandPrimary;
@@ -22,7 +22,7 @@ class BrnConvertUtil {
     try {
       color = Color(int.parse(hexColor, radix: 16));
     } catch (_) {}
-    return color;
+    return color ?? defaultColor;
   }
 
   /// 将标签字体转为合适的字体
