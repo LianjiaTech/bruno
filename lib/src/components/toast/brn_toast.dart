@@ -15,23 +15,32 @@ enum BrnToastGravity {
 }
 
 /// toast 显示时长
-class BrnLength {
-  BrnLength._();
+class BrnDuration {
+  BrnDuration._();
 
   /// toast 显示较短时间（1s）
-  static const int short = 1;
+  static const Duration short = Duration(seconds: 1);
 
   /// toast 显示较长时间（3s）
-  static const int long = 3;
+  static const Duration long = Duration(seconds: 3);
 }
 
 /// 通用的Toast组件
 class BrnToast {
+  /// Toast 距离顶部默认间距
+  static const int _defaultTopOffset = 50;
+
+  /// Toast 距离底部默认间距
+  static const int _defaultBottomOffset = 50;
+
+  /// _ToastView
   static _ToastView? preToastView;
 
   /// 显示在中间。如不设置duration则会自动根据内容长度来计算（更友好，最长5秒）
   static void showInCenter(
-      {required String text, required BuildContext context, int? duration}) {
+      {required String text,
+      required BuildContext context,
+      Duration? duration}) {
     show(
       text,
       context,
@@ -44,7 +53,7 @@ class BrnToast {
   static void show(
     String text,
     BuildContext context, {
-    int? duration,
+    Duration? duration,
     Color? background,
     TextStyle? textStyle,
     double? radius,
@@ -59,14 +68,16 @@ class BrnToast {
     preToastView?._dismiss();
     preToastView = null;
 
-    final double _systemVerticalOffset = getSystemVerticalOffset(
+    final double finalVerticalOffset = getVerticalOffset(
       context: context,
       gravity: gravity,
+      verticalOffset: verticalOffset,
     );
 
     /// 自动根据内容长度决定显示时长，更加人性化
-    final int autoDuration =
-        duration ?? min(text.length * 0.06 + 0.8, 5.0).ceil();
+    final int autoDuration = min(text.length * 0.06 + 0.8, 5.0).ceil();
+    final Duration finalDuration =
+        duration ?? Duration(milliseconds: autoDuration);
     final OverlayEntry overlayEntry = OverlayEntry(
       builder: (context) {
         return _ToastWidget(
@@ -77,39 +88,45 @@ class BrnToast {
             leading: preIcon,
             textStyle: textStyle,
             gravity: gravity,
-            verticalOffset: verticalOffset,
-            systemVerticalOffset: _systemVerticalOffset,
+            verticalOffset: finalVerticalOffset,
           ),
         );
       },
     );
-    _ToastView toastView = _ToastView(
+    final _ToastView toastView = _ToastView(
       overlayState: overlayState,
       overlayEntry: overlayEntry,
     );
     preToastView = toastView;
     toastView._show(
-      duration: Duration(seconds: autoDuration),
+      duration: finalDuration,
       onDismiss: onDismiss,
     );
   }
 
   /// 获取默认设置的垂直间距
-  static double getSystemVerticalOffset(
-      {required BuildContext context, BrnToastGravity? gravity}) {
-    final double verticalOffset;
+  static double getVerticalOffset({
+    required BuildContext context,
+    BrnToastGravity? gravity,
+    double? verticalOffset,
+  }) {
+    final double _verticalOffset = verticalOffset ?? 0;
+    final double defaultOffset;
     switch (gravity) {
       case BrnToastGravity.bottom:
-        verticalOffset = MediaQuery.of(context).viewInsets.bottom + 50;
+        final offset = verticalOffset ?? _defaultTopOffset;
+        defaultOffset = MediaQuery.of(context).viewInsets.bottom + offset;
         break;
       case BrnToastGravity.top:
-        verticalOffset = MediaQuery.of(context).viewInsets.top + 50;
+        final offset = verticalOffset ?? _defaultBottomOffset;
+        defaultOffset = MediaQuery.of(context).viewInsets.top + offset;
         break;
       case BrnToastGravity.center:
       default:
-        verticalOffset = 0;
+        defaultOffset = verticalOffset ?? 0;
     }
-    return verticalOffset;
+
+    return defaultOffset + _verticalOffset;
   }
 }
 
@@ -145,19 +162,15 @@ class ToastChild extends StatelessWidget {
   const ToastChild({
     Key? key,
     required this.msg,
-    required this.systemVerticalOffset,
+    required this.verticalOffset,
     this.background,
     this.radius,
     this.leading,
     this.gravity,
-    this.verticalOffset,
     this.textStyle,
   }) : super(key: key);
 
   Alignment get alignment {
-    if (verticalOffset != null) {
-      return Alignment.topCenter;
-    }
     switch (gravity) {
       case BrnToastGravity.bottom:
         return Alignment.bottomCenter;
@@ -169,28 +182,24 @@ class ToastChild extends StatelessWidget {
     }
   }
 
-  EdgeInsets? get padding {
-    if (verticalOffset != null) {
-      return EdgeInsets.only(top: verticalOffset!);
-    }
+  EdgeInsets get padding {
     switch (gravity) {
       case BrnToastGravity.bottom:
-        return EdgeInsets.only(bottom: systemVerticalOffset);
+        return EdgeInsets.only(bottom: verticalOffset);
       case BrnToastGravity.top:
-        return EdgeInsets.only(top: systemVerticalOffset);
+        return EdgeInsets.only(top: verticalOffset);
       case BrnToastGravity.center:
       default:
-        return null;
+        return EdgeInsets.only(top: verticalOffset);
     }
   }
 
   final String msg;
-  final double systemVerticalOffset;
+  final double verticalOffset;
   final Color? background;
   final double? radius;
   final Image? leading;
   final BrnToastGravity? gravity;
-  final double? verticalOffset;
   final TextStyle? textStyle;
 
   InlineSpan get leadingSpan {
