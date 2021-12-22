@@ -1,69 +1,66 @@
-// @dart=2.9
-
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/img/brn_theme_img_utils.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
 class BrnThemeImg {
-  BrnThemeImgUtils _defaultBrunoImg;
+  BrnThemeImg._(
+    BrnThemeImgUtils? brunoImgUtils,
+  ) : _defaultBrunoImg = brunoImgUtils ?? BrnDefaultThemeImgUtil();
 
-  static BrnThemeImg _instance;
-
-  BrnThemeImg._(BrnThemeImgUtils brunoImgUtils) {
-    this._defaultBrunoImg = brunoImgUtils ?? BrnDefaultThemeImgUtil();
-  }
-
-  factory BrnThemeImg.register({BrnThemeImgUtils brunoImgUtils}) {
+  factory BrnThemeImg.register({BrnThemeImgUtils? brunoImgUtils}) {
     _instance = BrnThemeImg._(brunoImgUtils);
-    return _instance;
+    return _instance!;
   }
 
   static BrnThemeImg get instance {
     if (_instance == null) {
       BrnThemeImg.register();
     }
-    return _instance;
+    return _instance!;
   }
 
-  Image get ARROW_REFRESH_UP =>
-      _defaultBrunoImg?.getARROW_REFRESH_UP() ??
+  static BrnThemeImg? _instance;
+
+  BrnThemeImgUtils _defaultBrunoImg;
+
+  Image get arrowRefreshUp =>
+      _defaultBrunoImg.arrowRefreshUp ??
       BrunoTools.getAssetImage(BrnAsset.refreshArrowUp);
 
-  Image get ARROW_REFRESH_DOWN =>
-      _defaultBrunoImg?.getARROW_REFRESH_DOWN() ??
+  Image get arrowRefreshDown =>
+      _defaultBrunoImg.arrowRefreshDown ??
       BrunoTools.getAssetImage(BrnAsset.refreshArrowDown);
 
-  Image get CHECKED_STATUS =>
-      _defaultBrunoImg?.getCHECKED_STATUS() ??
+  Image get checkedStatus =>
+      _defaultBrunoImg.checkedStatus ??
       BrunoTools.getAssetImage(BrnAsset.SELECT_CHECKED_STATUS);
 
-  Image get STEP_ICON {
-    return _defaultBrunoImg?.getStepIcon() ??
+  Image get stepIcon {
+    return _defaultBrunoImg.stepIcon ??
         BrunoTools.getAssetImage(BrnAsset.stepTitle);
   }
 }
 
-///默认link绿
 class BrnDefaultThemeImgUtil extends BrnThemeImgUtils {
   @override
-  Image getARROW_REFRESH_UP() {
+  Image get arrowRefreshUp {
     return BrunoTools.getAssetImageWithBandColor(BrnAsset.refreshArrowUp);
   }
 
   @override
-  Image getARROW_REFRESH_DOWN() {
+  Image get arrowRefreshDown {
     return BrunoTools.getAssetImageWithBandColor(BrnAsset.refreshArrowDown);
   }
 
   @override
-  Image getCHECKED_STATUS() {
+  Image get checkedStatus {
     return BrunoTools.getAssetImageWithBandColor(
         BrnAsset.SELECT_CHECKED_STATUS);
   }
 
   @override
-  Image getStepIcon() {
+  Image get stepIcon {
     return BrunoTools.getAssetImageWithBandColor(BrnAsset.stepTitle);
   }
 }
