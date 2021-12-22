@@ -40,6 +40,9 @@ class BrnRadioButton extends StatelessWidget {
   /// 默认值MainAxisSize.min
   final MainAxisSize mainAxisSize;
 
+  /// 默认值HitTestBehavior.deferToChild控制widget.onRadioItemClick触发的点击范围
+  final HitTestBehavior behavior;
+
   const BrnRadioButton({
     Key key,
     @required this.radioIndex,
@@ -51,6 +54,7 @@ class BrnRadioButton extends StatelessWidget {
     this.childOnRight = true,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.min,
+    this.behavior=HitTestBehavior.deferToChild
   });
 
   @override
@@ -74,6 +78,7 @@ class BrnRadioButton extends StatelessWidget {
       onRadioItemClick: () {
         onValueChangedAtIndex(radioIndex, true);
       },
+      behavior: behavior,
     );
   }
 }
