@@ -68,7 +68,7 @@ class BrnRadioCore extends StatefulWidget {
       this.disSelectedImage,
       this.disUnselectedImage,
       this.onRadioItemClick,
-      this.behavior=HitTestBehavior.translucent})
+      this.behavior = HitTestBehavior.translucent})
       : super(key: key);
 
   @override
