@@ -50,7 +50,7 @@ class BrnRadioCore extends StatefulWidget {
 
   final VoidCallback onRadioItemClick;
 
-  /// 默认值HitTestBehavior.deferToChild控制widget.onRadioItemClick触发的点击范围
+  /// 默认值HitTestBehavior.translucent控制widget.onRadioItemClick触发的点击范围
   final HitTestBehavior behavior;
 
   const BrnRadioCore(
@@ -68,7 +68,7 @@ class BrnRadioCore extends StatefulWidget {
       this.disSelectedImage,
       this.disUnselectedImage,
       this.onRadioItemClick,
-      this.behavior=HitTestBehavior.deferToChild})
+      this.behavior=HitTestBehavior.translucent})
       : super(key: key);
 
   @override
