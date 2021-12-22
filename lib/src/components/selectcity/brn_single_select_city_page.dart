@@ -11,7 +11,7 @@ import 'package:bruno/src/components/sugsearch/brn_search_text.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
-import 'package:bruno/src/utils/font/brn_font.dart';
+import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -57,7 +57,7 @@ class BrnSingleSelectCityPage extends StatefulWidget {
 }
 
 class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
-  List<BrnSelectCityModel> _cityList = List();
+  List<BrnSelectCityModel> _cityList = [];
 
   ///搜索框的高度
   int _suspensionHeight = 40;
@@ -168,7 +168,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF222222),
-                      fontSize: BrnFont.FONT_12,
+                      fontSize: BrnFonts.FONT_12,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -363,7 +363,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
 
   ///获取城市搜索结果
   List<BrnSelectCityModel> _searchCityList(String searchText) {
-    List<BrnSelectCityModel> cList = List();
+    List<BrnSelectCityModel> cList = [];
     for (int index = 0; index < _cityList.length; index++) {
       BrnSelectCityModel cInfo = _cityList[index];
       if (cInfo.name.contains(searchText) ||

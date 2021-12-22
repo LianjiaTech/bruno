@@ -14,16 +14,16 @@ class BrunoTools {
     final BrnCommonConfig? commonConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
         .commonConfig;
-    if (!assetFilePath.startsWith("assets")) {
-      assetFilePath = "assets/$assetFilePath";
+    if (!assetFilePath.startsWith('assets')) {
+      assetFilePath = 'assets/$assetFilePath';
     }
     return getAssetImageWithColor(assetFilePath, commonConfig?.brandPrimary);
   }
 
   /// 将 icon 根据传入颜色变后返回
   static Image getAssetImageWithColor(String assetFilePath, Color? color) {
-    if (!assetFilePath.startsWith("assets")) {
-      assetFilePath = "assets/$assetFilePath";
+    if (!assetFilePath.startsWith('assets')) {
+      assetFilePath = 'assets/$assetFilePath';
     }
     return Image.asset(
       assetFilePath,
@@ -33,16 +33,16 @@ class BrunoTools {
     );
   }
 
-  /// imgAssetPath: assets资源文件路径
-  /// package 访问某个package里的资源，这里默认flutter_alliance_package
-  /// scale: 与所用的png资源是icon_2x.png (scale=2.0)，icon_3x.png(scale=3.0)
+  /// [assetFilePath] assets 资源文件路径
+  /// [package] 访问某个 package 里的资源，这里默认为 'bruno'
+  /// [scale] 与所用的 png 资源是 icon_2x.png (scale=2.0)，icon_3x.png(scale=3.0)
   static Image getAssetImage(
     String assetFilePath, {
     BoxFit? fit,
     bool gaplessPlayback = false,
   }) {
-    if (!assetFilePath.startsWith("assets")) {
-      assetFilePath = "assets/$assetFilePath";
+    if (!assetFilePath.startsWith('assets')) {
+      assetFilePath = 'assets/$assetFilePath';
     }
     return Image.asset(
       assetFilePath,
@@ -54,8 +54,8 @@ class BrunoTools {
   }
 
   static Image getAssetScaleImage(String assetFilePath) {
-    if (!assetFilePath.startsWith("assets")) {
-      assetFilePath = "assets/$assetFilePath";
+    if (!assetFilePath.startsWith('assets')) {
+      assetFilePath = 'assets/$assetFilePath';
     }
     return Image.asset(
       assetFilePath,
@@ -69,8 +69,8 @@ class BrunoTools {
     double h, {
     Color? color,
   }) {
-    if (!assetFilePath.startsWith("assets")) {
-      assetFilePath = "assets/$assetFilePath";
+    if (!assetFilePath.startsWith('assets')) {
+      assetFilePath = 'assets/$assetFilePath';
     }
     return Image.asset(
       assetFilePath,
@@ -82,7 +82,7 @@ class BrunoTools {
     );
   }
 
-  //从16进制数字字符串，生成Color，例如EDF0F3
+  /// 从16进制数字字符串，生成Color，例如EDF0F3
   static Color colorFromHexString(String? s) {
     if (s == null || s.length != 6 || int.tryParse(s, radix: 16) == null) {
       return Colors.black;
@@ -90,28 +90,28 @@ class BrunoTools {
     return Color(int.parse(s, radix: 16) + 0xFF000000);
   }
 
-  // 获取本地AssetImage
-  /// [imgAssetPath]: assets资源文件路径
+  /// 获取本地 [AssetImage]
+  /// [assetFilePath] assets资源文件路径
   static ImageProvider getAssetImageProvider(String assetFilePath) {
-    if (!assetFilePath.startsWith("assets")) {
-      assetFilePath = "assets/$assetFilePath";
+    if (!assetFilePath.startsWith('assets')) {
+      assetFilePath = 'assets/$assetFilePath';
     }
 
-    AssetImage asimg = AssetImage(
+    final AssetImage image = AssetImage(
       assetFilePath,
       package: BrnStrings.flutterPackageName,
     );
-    return asimg;
+    return image;
   }
 
   /// 根据 TextStyle 计算 text 宽度。
   static Size textSize(String text, TextStyle style) {
     if (isEmpty(text)) return Size(0, 0);
     final TextPainter textPainter = TextPainter(
-        text: TextSpan(text: text, style: style),
-        maxLines: 1,
-        textDirection: TextDirection.ltr)
-      ..layout(minWidth: 0, maxWidth: double.infinity);
+      text: TextSpan(text: text, style: style),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout(minWidth: 0, maxWidth: double.infinity);
     return textPainter.size;
   }
 
@@ -119,9 +119,11 @@ class BrunoTools {
   static bool isEmpty(Object? obj) {
     if (obj is String) {
       return obj.isEmpty;
-    } else if (obj is Iterable) {
+    }
+    if (obj is Iterable) {
       return obj.isEmpty;
-    } else if (obj is Map) {
+    }
+    if (obj is Map) {
       return obj.length == 0;
     }
     return obj == null;
@@ -129,7 +131,7 @@ class BrunoTools {
 
   /// 去掉最后一位小数
 //static double formatNumRemoveLastNum(double num){
-//    int count = num.toString().length - num.toString().lastIndexOf(".") - 1;
+//    int count = num.toString().length - num.toString().lastIndexOf('.') - 1;
 //    if(count >1){
 //
 //    }

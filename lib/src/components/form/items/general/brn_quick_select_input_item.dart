@@ -4,7 +4,7 @@ import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
-import 'package:bruno/src/utils/font/brn_font.dart';
+import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -289,7 +289,7 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
     }
 
     if (widget.btnsTxt == null) {
-      widget.btnsTxt = List<String>();
+      widget.btnsTxt = <String>[];
     }
 
     if (widget.selectBtnList == null) {
@@ -327,7 +327,7 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
   }
 
   List<Widget> getBtnsByText() {
-    List<Widget> result = List<Widget>();
+    List<Widget> result = <Widget>[];
 
     for (int index = 0; index < widget.btnsTxt.length; ++index) {
       String str = widget.btnsTxt[index];
@@ -346,7 +346,7 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
           child: Text(
             str,
             style: TextStyle(
-              fontSize: BrnFont.FONT_12,
+              fontSize: BrnFonts.FONT_12,
             ),
           ),
           onPressed: () {

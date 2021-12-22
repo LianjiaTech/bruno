@@ -1,14 +1,12 @@
 // @dart=2.9
 
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
-import 'package:bruno/src/components/form/base/input_item_interface.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
-import 'package:bruno/src/utils/font/brn_font.dart';
+import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 ///
 /// 文本输入型录入项
@@ -213,7 +211,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                         widget.unit ?? "",
                         style: TextStyle(
                           color: Color(0xFF101010),
-                          fontSize: BrnFont.FONT_16,
+                          fontSize: BrnFonts.FONT_16,
                         ),
                       )),
                 ),
