@@ -1,4 +1,6 @@
 class BrnAsset {
+  const BrnAsset._();
+
   static const String emptyState = "images/empty_state.png";
   static const String stepTitle = 'images/img_step_title.png';
 
