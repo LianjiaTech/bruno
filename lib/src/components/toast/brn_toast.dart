@@ -93,10 +93,8 @@ class BrnToast {
         );
       },
     );
-    final _ToastView toastView = _ToastView(
-      overlayState: overlayState,
-      overlayEntry: overlayEntry,
-    );
+    final _ToastView toastView =
+        _ToastView(overlayState: overlayState, overlayEntry: overlayEntry);
     preToastView = toastView;
     toastView._show(
       duration: finalDuration,
