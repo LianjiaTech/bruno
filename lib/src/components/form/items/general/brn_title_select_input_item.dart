@@ -10,7 +10,7 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
-import 'package:bruno/src/utils/font/brn_font.dart';
+import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -298,7 +298,7 @@ class BrnTitleSelectInputFormItemState
         border: InputBorder.none,
         hintStyle: TextStyle(
             color: Color(0xFFCCCCCC),
-            fontSize: BrnFont.FONT_16,
+            fontSize: BrnFonts.FONT_16,
             textBaseline: TextBaseline.alphabetic),
         hintText: widget.hint ?? '请输入',
         counterText: "",
@@ -349,7 +349,7 @@ class TitleSelectPopWidget extends StatefulWidget {
 class _TitleSelectPopWidgetState extends State<TitleSelectPopWidget> {
   @override
   Widget build(BuildContext context) {
-    List<Widget> showList = List();
+    List<Widget> showList = [];
     for (int i = 0, n = widget.selectList.length; i < n; ++i) {
       showList.add(selectItem(widget.selectList[i], i, i == n - 1));
     }

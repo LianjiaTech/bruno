@@ -224,7 +224,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                   BorderRadius.all(Radius.circular(themeData?.btnRadius))),
           child: Text(operateTexts[0] ?? "",
               textAlign: TextAlign.center,
-              style: themeData?.singleBrnTextStyle?.generateTextStyle()),
+              style: themeData?.singleTextStyle?.generateTextStyle()),
         ),
       );
     } else if (OperateAreaType.DoubleButton == operateAreaType) {
@@ -242,7 +242,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                       BorderRadius.all(Radius.circular(themeData?.btnRadius))),
               child: Text(operateTexts[0] ?? "",
                   textAlign: TextAlign.center,
-                  style: themeData?.doubleBrnTextStyle?.generateTextStyle()),
+                  style: themeData?.doubleTextStyle?.generateTextStyle()),
             ),
           ),
           Container(
@@ -260,7 +260,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                       BorderRadius.all(Radius.circular(themeData?.btnRadius))),
               child: Text(operateTexts[1] ?? "",
                   textAlign: TextAlign.center,
-                  style: themeData?.doubleBrnTextStyle?.generateTextStyle()),
+                  style: themeData?.doubleTextStyle?.generateTextStyle()),
             ),
           ),
         ],

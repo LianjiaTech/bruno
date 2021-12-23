@@ -7,6 +7,7 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/utils/brn_rich_text.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
+import 'package:bruno/src/utils/css/brn_core_funtion.dart';
 import 'package:bruno/src/utils/css/brn_css_2_text.dart';
 import 'package:flutter/material.dart';
 
@@ -1020,7 +1021,7 @@ class BrnInfoModal {
     double itemSpacing,
     TextStyle valueTextStyle,
     bool isArrow = false,
-    BrnRichTextLinkClick richTextLinkClick,
+    BrnHyperLinkCallback richTextLinkClick,
     VoidCallback valueClickCallback,
     BrnPairInfoTableConfig themeData,
   }) {
