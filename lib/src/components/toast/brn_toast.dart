@@ -39,8 +39,8 @@ class BrnToast {
   /// 显示在中间。如不设置duration则会自动根据内容长度来计算（更友好，最长5秒）
   static void showInCenter(
       {required String text,
-        required BuildContext context,
-        Duration? duration}) {
+      required BuildContext context,
+      Duration? duration}) {
     show(
       text,
       context,
@@ -51,17 +51,17 @@ class BrnToast {
 
   /// 显示Toast，如不设置duration则会自动根据内容长度来计算（更友好，最长5秒）
   static void show(
-      String text,
-      BuildContext context, {
-        Duration? duration,
-        Color? background,
-        TextStyle? textStyle,
-        double? radius,
-        Image? preIcon,
-        double? verticalOffset,
-        VoidCallback? onDismiss,
-        BrnToastGravity? gravity,
-      }) {
+    String text,
+    BuildContext context, {
+    Duration? duration,
+    Color? background,
+    TextStyle? textStyle,
+    double? radius,
+    Image? preIcon,
+    double? verticalOffset,
+    VoidCallback? onDismiss,
+    BrnToastGravity? gravity,
+  }) {
     final OverlayState? overlayState = Overlay.of(context);
     if (overlayState == null) return;
 
@@ -94,7 +94,7 @@ class BrnToast {
       },
     );
     final _ToastView toastView =
-    _ToastView(overlayState: overlayState, overlayEntry: overlayEntry);
+        _ToastView(overlayState: overlayState, overlayEntry: overlayEntry);
     preToastView = toastView;
     toastView._show(
       duration: finalDuration,
@@ -129,8 +129,8 @@ class BrnToast {
 }
 
 class _ToastView {
-  late OverlayState overlayState;
-  late OverlayEntry overlayEntry;
+  OverlayState overlayState;
+  OverlayEntry overlayEntry;
   bool _isVisible = false;
 
   _ToastView({
