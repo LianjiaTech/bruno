@@ -65,10 +65,10 @@ class _BrnSelectionAnimationWidgetState
             begin: 0.0,
             end: widget.controller.screenHeight - widget.controller.listViewTop)
         .animate(_controller)
-          ..addListener(() {
-            //这行如果不写，没有动画效果
-            setState(() {});
-          });
+      ..addListener(() {
+        //这行如果不写，没有动画效果
+        setState(() {});
+      });
 
     if (_isControllerDisposed) return;
 

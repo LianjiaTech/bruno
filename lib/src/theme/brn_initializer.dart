@@ -1,18 +1,16 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_all_config.dart';
 import 'package:bruno/src/theme/img/brn_theme_default_utils.dart';
 import 'package:bruno/src/theme/img/brn_theme_img_utils.dart';
 
-///bruno初始化
-
+/// Bruno 初始化
 class BrnInitializer {
   /// 手动注册时，默认注册渠道是 GLOBAL_CONFIG_ID
-  static register(
-      {BrnAllThemeConfig allThemeConfig,
-      String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID,
-      BrnThemeImgUtils brunoImgUtils}) {
+  static register({
+    BrnAllThemeConfig? allThemeConfig,
+    String configId = GLOBAL_CONFIG_ID,
+    BrnThemeImgUtils? brunoImgUtils,
+  }) {
     /// 配置图片
     if (brunoImgUtils != null) {
       BrnThemeImg.register(brunoImgUtils: brunoImgUtils);
