@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/button/brn_big_main_button.dart';
 import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
@@ -34,34 +32,34 @@ class BrnDialogConstants {
 // ignore: must_be_immutable
 class BrnEnhanceOperationDialog extends StatelessWidget {
   /// 构建环境上下文
-  final BuildContext context;
+  final BuildContext? context;
 
   /// 图片类型，默认 0，[BrnDialogConstants.ICON_ALERT]
-  final int iconType;
+  final int? iconType;
 
   /// 自定义图标
-  final Widget customIconWidget;
+  final Widget? customIconWidget;
 
   /// 弹框标题文案，为空则不显示标题
-  final String titleText;
+  final String? titleText;
 
   /// 弹框辅助信息文案，为空则不显示辅助信息
-  final String descText;
+  final String? descText;
 
   /// 主要按钮文本
-  final String mainButtonText;
+  final String? mainButtonText;
 
   /// 次要按钮文案，为空则不显示次要按钮
-  final String secondaryButtonText;
+  final String? secondaryButtonText;
 
   /// 主要按钮回调
-  final VoidCallback onMainButtonClick;
+  final VoidCallback? onMainButtonClick;
 
   /// 次要按钮回调
-  final VoidCallback onSecondaryButtonClick;
+  final VoidCallback? onSecondaryButtonClick;
 
   /// 主题配置
-  BrnDialogConfig themeData;
+  BrnDialogConfig? themeData;
 
   BrnEnhanceOperationDialog({
     this.iconType,
@@ -77,8 +75,8 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
   }) {
     this.themeData ??= BrnDialogConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
-        .dialogConfig
+        .getConfig(configId: this.themeData!.configId)
+        .dialogConfig!
         .merge(this.themeData);
   }
 
@@ -89,9 +87,9 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
       child: BrnDialog(
         themeData: themeData,
         iconImage: (iconType == BrnDialogConstants.ICON_CUSTOM)
-            ? customIconWidget
+            ? customIconWidget as Image?
             : BrunoTools.getAssetImage(
-                BrnDialogConstants.shareItemImagePathList[iconType]),
+                BrnDialogConstants.shareItemImagePathList[iconType!]),
         titleText: titleText,
         messageText: descText,
         warningWidget: Container(
@@ -108,18 +106,18 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
   /// 弹出dialog
   show() {
     showDialog(
-        context: context,
+        context: context!,
         barrierDismissible: false,
         builder: (BuildContext context) {
           return this;
         }).then((value) {
       if (value == mainButtonText) {
         if (onMainButtonClick != null) {
-          onMainButtonClick();
+          onMainButtonClick!();
         }
       } else {
         if (onSecondaryButtonClick != null) {
-          onSecondaryButtonClick();
+          onSecondaryButtonClick!();
         }
       }
     });
@@ -127,7 +125,7 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
 
   /// 构建widgets框架
   List<Widget> _configDialogWidgets(BuildContext context) {
-    List<Widget> widgets = List();
+    List<Widget> widgets = [];
     //分割
     widgets.add(Container(
       height: 16,
@@ -170,9 +168,9 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
         highlightColor: Colors.transparent,
         child: Center(
           child: Text(
-            secondaryButtonText,
+            secondaryButtonText!,
             style: TextStyle(
-              color: themeData.commonConfig.brandPrimary,
+              color: themeData!.commonConfig.brandPrimary,
               fontSize: 16,
             ),
           ),

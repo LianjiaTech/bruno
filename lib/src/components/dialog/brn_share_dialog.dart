@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/components/dialog/brn_dialog_utils.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
@@ -26,16 +24,16 @@ class BrnShareDialog extends StatelessWidget {
   final BuildContext context;
 
   /// 标题文本
-  final String titleText;
+  final String? titleText;
 
   /// 弹框辅助信息文案，为空则不显示辅助信息
-  final String descText;
+  final String? descText;
 
   /// 文案与分享渠道图标间的分割线内嵌文案
-  final String separatorText;
+  final String? separatorText;
 
   /// 分享渠道列表
-  final List<int> shareChannels;
+  final List<int>? shareChannels;
 
   /// 标题颜色，默认值 Color(0xff222222)
   final Color titleColor;
@@ -50,19 +48,19 @@ class BrnShareDialog extends StatelessWidget {
   final Color separatorLineColor;
 
   /// 点击事件
-  final BrnShareDialogItemClickCallBack clickCallBack;
+  final BrnShareDialogItemClickCallBack? clickCallBack;
 
   /// 回调获取名称
-  final BrnShareDialogGetCustomShareItemTitle getCustomChannelTitle;
+  final BrnShareDialogGetCustomShareItemTitle? getCustomChannelTitle;
 
   /// 回调获取图片(Widget)
-  final BrnShareDialogGetCustomShareItemIcon getCustomChannelWidget;
+  final BrnShareDialogGetCustomShareItemIcon? getCustomChannelWidget;
 
   /// dialog配置
-  BrnDialogConfig themeData;
+  BrnDialogConfig? themeData;
 
   BrnShareDialog({
-    @required this.context,
+    required this.context,
     this.titleText,
     this.descText,
     this.separatorText,
@@ -78,8 +76,8 @@ class BrnShareDialog extends StatelessWidget {
   }) {
     this.themeData ??= BrnDialogConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .dialogConfig
+        .getConfig(configId: themeData!.configId)
+        .dialogConfig!
         .merge(themeData);
   }
 
@@ -119,7 +117,7 @@ class BrnShareDialog extends StatelessWidget {
       if (value != null) {
         List info = value;
         if (info.length >= 2) {
-          clickCallBack(info[0], info[1]);
+          clickCallBack!(info[0], info[1]);
         }
       }
     });
@@ -127,7 +125,7 @@ class BrnShareDialog extends StatelessWidget {
 
   /// 构建widgets框架
   List<Widget> _configDialogWidgets() {
-    List<Widget> widgets = List();
+    List<Widget> widgets = [];
     widgets.add(_configDialogseparator());
     //分割
     widgets.add(Padding(
@@ -146,7 +144,7 @@ class BrnShareDialog extends StatelessWidget {
             alignment: Alignment.center,
             padding: EdgeInsets.only(top: 28),
             child: Text(
-              titleText,
+              titleText!,
               style: BrnDialogUtils.getDialogTitleStyle(themeData),
             ),
           ),
@@ -186,7 +184,7 @@ class BrnShareDialog extends StatelessWidget {
             color: Color(0xffffffff),
             padding: EdgeInsets.only(left: 6, right: 6),
             child: Text(
-              (separatorText != null) ? separatorText : "你可以通过以下方式分享给客户",
+              (separatorText != null) ? separatorText! : "你可以通过以下方式分享给客户",
               style: TextStyle(fontSize: 12, color: shareTextColor),
             ),
           ),
@@ -197,21 +195,21 @@ class BrnShareDialog extends StatelessWidget {
 
   /// 构建分享途径部分
   Widget _configDialogShareItems() {
-    List<Widget> shareItems = List();
-    String title; // 标题
-    Widget image; // 图片路径
-    for (int index = 0; index < shareChannels.length; index++) {
+    List<Widget> shareItems = [];
+    String? title; // 标题
+    Widget? image; // 图片路径
+    for (int index = 0; index < shareChannels!.length; index++) {
       title = null;
       image = null;
-      if (shareChannels[index] == BrnShareItemConstants.SHARE_CUSTOM) {
+      if (shareChannels![index] == BrnShareItemConstants.SHARE_CUSTOM) {
         // 获取自定义channel信息
-        title = getCustomChannelTitle(index);
-        image = getCustomChannelWidget(index);
+        title = getCustomChannelTitle!(index);
+        image = getCustomChannelWidget!(index);
       } else {
         // 获取自预设channel信息
-        title = BrnShareItemConstants.shareItemTitleList[shareChannels[index]];
+        title = BrnShareItemConstants.shareItemTitleList[shareChannels![index]];
         image = BrunoTools.getAssetImage(
-            BrnShareItemConstants.shareItemImagePathList[shareChannels[index]]);
+            BrnShareItemConstants.shareItemImagePathList[shareChannels![index]]);
       }
       //如果没图或没文字则不显示
       if (title == null || image == null) {
@@ -230,7 +228,7 @@ class BrnShareDialog extends StatelessWidget {
                 height: 39,
               ),
               onTap: () {
-                Navigator.of(context).pop([shareChannels[index], index]);
+                Navigator.of(context).pop([shareChannels![index], index]);
               },
             ),
             Divider(

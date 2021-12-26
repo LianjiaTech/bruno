@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/dialog/brn_dialog_utils.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -11,27 +9,27 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class BrnContentExportWidget extends StatelessWidget {
   /// 标题
-  final String title;
+  final String? title;
 
   /// 是否可关闭
-  final bool isClose;
+  final bool? isClose;
 
   /// 中间内容widget
   final Widget contentWidget;
 
   /// 提交按钮文字
-  final String submitText;
+  final String? submitText;
 
   /// 内容最大高度
-  final Color submitBgColor;
+  final Color? submitBgColor;
 
   /// 提交操作
-  final VoidCallback onSubmit;
+  final VoidCallback? onSubmit;
 
   /// 是否展示底部操作区域
-  final bool isShowOperateWidget;
+  final bool? isShowOperateWidget;
 
-  BrnDialogConfig themeData;
+  BrnDialogConfig? themeData;
 
   BrnContentExportWidget(this.contentWidget,
       {this.title,
@@ -43,8 +41,8 @@ class BrnContentExportWidget extends StatelessWidget {
       this.themeData}) {
     this.themeData ??= BrnDialogConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .dialogConfig
+        .getConfig(configId: themeData!.configId)
+        .dialogConfig!
         .merge(themeData);
   }
 
@@ -69,7 +67,7 @@ class BrnContentExportWidget extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(
                           BrnDialogUtils.getDialogRadius(
-                              themeData))), //设置四周圆角 角度
+                              themeData)!)), //设置四周圆角 角度
                     ),
                     child: Stack(
                       children: <Widget>[
@@ -92,7 +90,7 @@ class BrnContentExportWidget extends StatelessWidget {
   }
 
   Widget _generateCloseWidget(BuildContext context) {
-    if (isClose) {
+    if (isClose!) {
       return Positioned(
           right: 0.0,
           child: GestureDetector(
@@ -111,12 +109,12 @@ class BrnContentExportWidget extends StatelessWidget {
   /// 构建Dialog标题
   Widget _generateTitleWidget() {
     return Padding(
-      padding: null != title && title.isNotEmpty
+      padding: null != title && title!.isNotEmpty
           ? EdgeInsets.fromLTRB(20, 28, 20, 12)
           : EdgeInsets.only(top: 20),
-      child: null != title && title.isNotEmpty
+      child: null != title && title!.isNotEmpty
           ? Text(
-              title,
+              title!,
               style: BrnDialogUtils.getDialogTitleStyle(themeData),
             )
           : Container(),
@@ -126,29 +124,29 @@ class BrnContentExportWidget extends StatelessWidget {
   /// 构建底部操作按钮
   Widget _generateBottomWidget(BuildContext context) {
     return Padding(
-        padding: isShowOperateWidget
+        padding: isShowOperateWidget!
             ? EdgeInsets.fromLTRB(20, 12, 20, 20)
             : EdgeInsets.only(top: 20),
-        child: isShowOperateWidget
+        child: isShowOperateWidget!
             ? InkWell(
                 child: Container(
                     decoration: BoxDecoration(
                       //背景
                       color:
-                          submitBgColor ?? themeData.commonConfig.brandPrimary,
+                          submitBgColor ?? themeData!.commonConfig.brandPrimary,
                       borderRadius:
                           BorderRadius.all(Radius.circular(6.0)), //设置四周圆角 角度
                     ),
                     alignment: Alignment.center,
                     height: 48,
-                    child: Text(submitText,
+                    child: Text(submitText!,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
                             fontSize: 18))),
                 onTap: () {
-                  if (onSubmit != null) onSubmit();
+                  if (onSubmit != null) onSubmit!();
                 },
               )
             : Container());
