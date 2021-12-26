@@ -162,7 +162,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
   Widget _getIconWidget() {
     if (widget.type == BrnAppraiseType.Emoji) {
       return BrnAppraiseEmojiListView(
-        indexes: widget.config?.indexes,
+        indexes: widget.config?.indexes ?? [],
         titles: widget.iconDescriptions,
         onTap: (index) {
           setState(() {
@@ -210,7 +210,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
         multiSelect: widget.config?.multiSelect ?? true,
         brnCrossAxisCount: widget.config?.tagCountEachRow ?? 2,
         selectedTagsCallback: (list) {
-          _selectedTag = tag2String(list);
+          _selectedTag = tag2String(list!);
           if (widget.config?.tagSelectCallback != null) {
             widget.config!.tagSelectCallback!(_selectedTag);
           }

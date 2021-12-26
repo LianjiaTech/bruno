@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -22,10 +20,10 @@ class BrnAppraiseHeader extends StatelessWidget {
   final BrnAppraiseHeaderType headerType;
 
   /// 标题的padding
-  final EdgeInsets headPadding;
+  final EdgeInsets? headPadding;
 
   /// 点击关闭的回掉
-  final BrnAppraiseCloseClickCallBack cancelCallBack;
+  final BrnAppraiseCloseClickCallBack? cancelCallBack;
 
   BrnAppraiseHeader(
       {this.showHeader = true,
@@ -52,12 +50,12 @@ class BrnAppraiseHeader extends StatelessWidget {
       color: Colors.white,
       padding: headPadding ?? EdgeInsets.only(top: 20, bottom: 20),
       child: Text(
-        title ?? '',
-        maxLines: maxLines ?? 1,
+        title,
+        maxLines: maxLines,
         style: TextStyle(
           color: BrnThemeConfigurator.instance
               .getConfig()
-              .commonConfig
+              .commonConfig!
               .colorTextBase,
           fontSize: 18.0,
           fontWeight: FontWeight.w600,
@@ -69,7 +67,7 @@ class BrnAppraiseHeader extends StatelessWidget {
   Widget _spaceHeader(BuildContext context) {
     return Container(
       color: Colors.white,
-      height: 38 + (maxLines ?? 1) * 22.0,
+      height: 38 + maxLines * 22.0,
       child: Padding(
         padding: headPadding ??
             EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 20),
@@ -81,12 +79,12 @@ class BrnAppraiseHeader extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: 4, right: 12),
                 child: Text(
-                  title ?? '',
-                  maxLines: maxLines ?? 1,
+                  title,
+                  maxLines: maxLines,
                   style: TextStyle(
                     color: BrnThemeConfigurator.instance
                         .getConfig()
-                        .commonConfig
+                        .commonConfig!
                         .colorTextBase,
                     fontSize: 18.0,
                     height: 1,
@@ -98,7 +96,7 @@ class BrnAppraiseHeader extends StatelessWidget {
             InkWell(
               onTap: () {
                 if (cancelCallBack != null) {
-                  cancelCallBack(context);
+                  cancelCallBack!(context);
                 }
                 Navigator.of(context).pop();
               },

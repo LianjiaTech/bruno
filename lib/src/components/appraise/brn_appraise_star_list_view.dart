@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -13,13 +11,13 @@ class BrnAppraiseStarListView extends StatefulWidget {
   final int count;
 
   /// 未选中时的提示
-  final String hint;
+  final String? hint;
 
   /// 星星下面的文案，点击对应的星星会显示相应index的文案，titles长度不能比count小
-  final List<String> titles;
+  final List<String>? titles;
 
   /// 点击回调
-  final BrnAppraiseIconClick onTap;
+  final BrnAppraiseIconClick? onTap;
 
   BrnAppraiseStarListView({this.count = 5, this.titles, this.hint, this.onTap})
       : assert(count > 0 && count <= 5),
@@ -45,9 +43,9 @@ class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
       return _buildStars();
     } else {
       Widget subWidget = Container();
-      String subTitle = widget.hint;
-      if (_selectedIndex >= 0 && _selectedIndex < widget.titles.length) {
-        subTitle = widget.titles[_selectedIndex];
+      String? subTitle = widget.hint;
+      if (_selectedIndex >= 0 && _selectedIndex < widget.titles!.length) {
+        subTitle = widget.titles![_selectedIndex];
       }
       if (subTitle?.isNotEmpty ?? false) {
         subWidget = Padding(
@@ -58,7 +56,7 @@ class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
                 fontSize: 12.0,
                 color: BrnThemeConfigurator.instance
                     .getConfig()
-                    .commonConfig
+                    .commonConfig!
                     .colorTextSecondary,
                 fontWeight: FontWeight.w600),
           ),
@@ -74,7 +72,7 @@ class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
   }
 
   Widget _buildStars() {
-    List<Widget> list = List();
+    List<Widget> list = [];
     for (int i = 0; i < widget.count; i++) {
       Widget item = GestureDetector(
         child: Padding(
@@ -83,7 +81,7 @@ class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
         ),
         onTap: () {
           if (widget.onTap != null) {
-            widget.onTap(i);
+            widget.onTap!(i);
           }
           _selectedIndex = i;
         },

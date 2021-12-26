@@ -53,7 +53,7 @@ class BrnAppraiseEmojiItem extends StatefulWidget {
 
 class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
     with SingleTickerProviderStateMixin {
-  AnimationController? _controller;
+  late AnimationController _controller;
 
   int? _selectedIndex;
 
@@ -142,13 +142,13 @@ class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
   }
 
   void _reset() {
-    _controller!.reset();
-    _controller!.animateBack(widget.frameCount);
+    _controller.reset();
+    _controller.animateBack(widget.frameCount);
   }
 
   @override
   void dispose() {
-    _controller!.dispose();
+    _controller.dispose();
     super.dispose();
   }
 }
