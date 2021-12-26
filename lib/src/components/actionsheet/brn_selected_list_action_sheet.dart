@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:math';
 import 'dart:ui';
 
@@ -59,7 +57,7 @@ class BrnSelectedListActionSheet<T> {
   final dynamic Function(int index, T entity) itemTitleBuilder;
 
   /// 控制视图隐藏/刷新列表等方法
-  final BrnSelectedListActionSheetController controller;
+  final BrnSelectedListActionSheetController? controller;
 
   /// 视图的最大高度。默认值 290，列表的内容的高度=maxHeight-65
   final double maxHeight;
@@ -77,10 +75,10 @@ class BrnSelectedListActionSheet<T> {
   ///   fontWeight: FontWeight.w600,
   ///   decoration: TextDecoration.none)
   /// ```
-  final String title;
+  final String? title;
 
   /// 自定义标题视图。默认外层有 `const EdgeInsets.fromLTRB(20, 20, 20, 15)` 的 padding，且优先级比 [title] 高
-  final Widget titleWidget;
+  final Widget? titleWidget;
 
   /// 清空按钮是否显示，默认为 false
   final bool isClearButtonHidden;
@@ -89,67 +87,69 @@ class BrnSelectedListActionSheet<T> {
   final bool isDeleteButtonHidden;
 
   /// 每一行前边的 icon，可不传。如果该 image 没有设置，并且 itemTitleBuilder 返回的是自定义 widget，则该 widget 自动填充整行区域
-  final Image itemIconImage;
+  final Image? itemIconImage;
 
   /// 点击清空按钮后的回调，如果没有实现该回调，则会显示默认弹窗。如果要关闭已选列表，请调用 dismiss()。
-  final VoidCallback onClear;
+  final VoidCallback? onClear;
 
   /// 清空按钮点击显示默认确认弹窗之后，`确定` 按钮的点击回调
-  final VoidCallback onClearConfirmed;
+  final VoidCallback? onClearConfirmed;
 
   /// 清空按钮点击显示默认确认弹窗之后，`取消` 按钮的点击回调
-  final VoidCallback onClearCanceled;
+  final VoidCallback? onClearCanceled;
 
   /// 每一行删除按钮的点击回调。返回值：是否要删除该 entity，如果该 handler 没有实现或者返回 true，则删除
-  final bool Function(int deleteIdx, T deleteEntity) onItemDelete;
+  final bool Function(int deleteIdx, T deleteEntity)? onItemDelete;
 
   /// 视图显示时的回调
-  final VoidCallback onListShowed;
+  final VoidCallback? onListShowed;
 
   /// 视图隐藏时的回调，会把是否是清空按钮触发的销毁视图回传
-  final void Function(bool isClosedByClearButton) onListDismissed;
+  final void Function(bool isClosedByClearButton)? onListDismissed;
 
-  OverlayEntry _overlayEntry;
-  double _leftOffset;
+  OverlayEntry? _overlayEntry;
+  double? _leftOffset;
   double _bottomKeyOffset = 0;
-  double _maxWidth;
+  double? _maxWidth;
 
-  BrnSelectedListActionSheet(
-      {this.context,
-      this.maxHeight = 290,
-      this.bottomOffset = 82,
-      this.title,
-      this.titleWidget,
-      this.isClearButtonHidden = false,
-      this.isDeleteButtonHidden = false,
-      this.itemIconImage,
-      this.items,
-      this.itemTitleBuilder,
-      this.onClear,
-      this.onClearConfirmed,
-      this.onClearCanceled,
-      this.onItemDelete,
-      this.onListShowed,
-      this.onListDismissed,
-      this.controller});
+  BrnSelectedListActionSheet({
+    required this.context,
+    this.maxHeight = 290,
+    this.bottomOffset = 82,
+    this.title,
+    this.titleWidget,
+    this.isClearButtonHidden = false,
+    this.isDeleteButtonHidden = false,
+    this.itemIconImage,
+    required this.items,
+    required this.itemTitleBuilder,
+    this.onClear,
+    this.onClearConfirmed,
+    this.onClearCanceled,
+    this.onItemDelete,
+    this.onListShowed,
+    this.onListDismissed,
+    this.controller,
+  });
 
   void _dismissHandler(bool isClear) {
     if (onListDismissed != null) {
-      onListDismissed(isClear);
+      onListDismissed!(isClear);
     }
     if (_overlayEntry != null) {
-      _overlayEntry.remove();
+      _overlayEntry!.remove();
       _overlayEntry = null;
     }
   }
 
   /// bottomWidgetKey: 已选列表下边操作区域绑定的 GlobalKey,已选列表会自动与操作区域左右对齐，且从操作区域的顶部滑出
-  void showWithTargetKey({GlobalKey bottomWidgetKey}) {
+  void showWithTargetKey({GlobalKey? bottomWidgetKey}) {
     assert(bottomWidgetKey != null);
-    RenderBox renderBox = bottomWidgetKey?.currentContext?.findRenderObject();
+    RenderBox? renderBox =
+        bottomWidgetKey?.currentContext?.findRenderObject() as RenderBox?;
     var offset = renderBox?.localToGlobal(Offset.zero);
     _leftOffset = offset?.dx ?? 0;
-    _maxWidth = renderBox?.size?.width ?? MediaQuery.of(context).size.width;
+    _maxWidth = renderBox?.size.width ?? MediaQuery.of(context).size.width;
     _bottomKeyOffset = MediaQuery.of(context).size.height - (offset?.dy ?? 0);
     this._innerShow(true);
   }
@@ -162,10 +162,10 @@ class BrnSelectedListActionSheet<T> {
     if (_overlayEntry != null) {
       return;
     }
-    BrnSelectedListActionSheetController tempCcontroller = controller;
-    if (tempCcontroller == null) {
-      tempCcontroller = BrnSelectedListActionSheetController();
-      tempCcontroller._isHidden = false;
+    BrnSelectedListActionSheetController? tempController = controller;
+    if (tempController == null) {
+      tempController = BrnSelectedListActionSheetController();
+      tempController._isHidden = false;
     }
     _BrnActionSheetSelectedItemListContentWidget content =
         _BrnActionSheetSelectedItemListContentWidget<T>(
@@ -175,9 +175,9 @@ class BrnSelectedListActionSheet<T> {
       },
       itemTitleBuilder: this.itemTitleBuilder,
       onItemDelete: this.onItemDelete,
-      controller: tempCcontroller,
+      controller: tempController,
     );
-    content._overlayState = Overlay.of(context);
+    content._overlayState = Overlay.of(context)!;
     OverlayEntry overlayEntry = OverlayEntry(builder: (context) {
       if (_maxWidth == null) {
         _maxWidth = MediaQuery.of(context).size.width;
@@ -188,7 +188,7 @@ class BrnSelectedListActionSheet<T> {
       return Positioned(
           top: MediaQuery.of(context).viewInsets.top,
           left: _leftOffset,
-          bottom: (showByKey ?? false)
+          bottom: (showByKey)
               ? _bottomKeyOffset
               : (bottomOffset +
                   MediaQuery.of(context).padding.bottom +
@@ -202,42 +202,43 @@ class BrnSelectedListActionSheet<T> {
     _overlayEntry = overlayEntry;
 
     if (onListShowed != null) {
-      onListShowed();
+      onListShowed!();
     }
   }
 }
 
 // ignore: must_be_immutable
 class _BrnActionSheetSelectedItemListContentWidget<T> extends StatefulWidget {
-  final BrnSelectedListActionSheet itemWidget;
-  final void Function(bool isClear) onDismiss;
-  final dynamic Function(int index, T entity) itemTitleBuilder;
-  final bool Function(int deleteIdx, T deleteEntity) onItemDelete;
-  final BrnSelectedListActionSheetController controller;
+  final BrnSelectedListActionSheet? itemWidget;
+  final void Function(bool isClear)? onDismiss;
+  final dynamic Function(int index, T entity)? itemTitleBuilder;
+  final bool Function(int deleteIdx, T deleteEntity)? onItemDelete;
+  final BrnSelectedListActionSheetController? controller;
 
-  OverlayState _overlayState;
+  late OverlayState _overlayState;
 
   // 位置动画
-  Animation<double> _yAnimation;
+  late Animation<double> _yAnimation;
 
   // 背景透明度动画
-  Animation<double> _alphaAnimation;
-  AnimationController _yAnimationController;
-  AnimationController _alphaAnimationController;
+  late Animation<double> _alphaAnimation;
+  late AnimationController? _yAnimationController;
+  late AnimationController? _alphaAnimationController;
 
-  _BrnActionSheetSelectedItemListContentWidget(
-      {this.itemWidget,
-      this.onDismiss,
-      this.itemTitleBuilder,
-      this.onItemDelete,
-      this.controller});
+  _BrnActionSheetSelectedItemListContentWidget({
+    this.itemWidget,
+    this.onDismiss,
+    this.itemTitleBuilder,
+    this.onItemDelete,
+    this.controller,
+  });
 
   void dismissWithAnimation() {
-    if (_yAnimationController.isCompleted) {
-      _yAnimationController.reverse();
+    if (_yAnimationController!.isCompleted) {
+      _yAnimationController!.reverse();
     }
-    if (_alphaAnimationController.isCompleted) {
-      _alphaAnimationController.reverse();
+    if (_alphaAnimationController!.isCompleted) {
+      _alphaAnimationController!.reverse();
     }
   }
 
@@ -250,14 +251,14 @@ class _BrnActionSheetSelectedItemListState<T>
     extends State<_BrnActionSheetSelectedItemListContentWidget<T>>
     with TickerProviderStateMixin {
   bool _isClosedByClear = false;
-  BrnSelectedListActionSheetController _controller;
+  late BrnSelectedListActionSheetController? _controller;
 
   @override
   initState() {
     super.initState();
 
-    _controller = widget.controller;
-    _controller?.addListener(_onListenHandler);
+    _controller = widget.controller!;
+    _controller!.addListener(_onListenHandler);
 
     this._initStartAnimation();
   }
@@ -266,10 +267,10 @@ class _BrnActionSheetSelectedItemListState<T>
   dispose() {
     //路由销毁时需要释放动画资源
     if (widget._yAnimationController != null) {
-      widget._yAnimationController.dispose();
+      widget._yAnimationController!.dispose();
     }
     if (widget._alphaAnimationController != null) {
-      widget._alphaAnimationController.dispose();
+      widget._alphaAnimationController!.dispose();
     }
     _controller?.removeListener(_onListenHandler);
     _controller = null;
@@ -277,14 +278,14 @@ class _BrnActionSheetSelectedItemListState<T>
   }
 
   void _onListenHandler() {
-    if (_controller.isShouldReloadData) {
+    if (_controller!.isShouldReloadData) {
       if (mounted) {
         setState(() {});
       }
-      _controller.isShouldReloadData = false;
-    } else if (_controller.isSelectedListDismissed) {
+      _controller!.isShouldReloadData = false;
+    } else if (_controller!.isSelectedListDismissed) {
       widget.dismissWithAnimation();
-      _controller.isSelectedListDismissed = false;
+      _controller!.isSelectedListDismissed = false;
     }
   }
 
@@ -295,20 +296,21 @@ class _BrnActionSheetSelectedItemListState<T>
     AnimationController alphaAnimationController = AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
     widget._alphaAnimationController = alphaAnimationController;
-    Animation yAnimation = Tween(begin: 65.0, end: this.getContentHeight())
-        .animate(yAnimationController)
-      ..addListener(() {
-        setState(() => {});
-      })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.dismissed) {
-          widget.onDismiss(_isClosedByClear);
-        }
-      });
+    Animation<double> yAnimation =
+        Tween(begin: 65.0, end: this.getContentHeight())
+            .animate(yAnimationController)
+              ..addListener(() {
+                setState(() => {});
+              })
+              ..addStatusListener((status) {
+                if (status == AnimationStatus.dismissed) {
+                  widget.onDismiss!(_isClosedByClear);
+                }
+              });
     widget._yAnimation = yAnimation;
-    Animation alphaAnimation = Tween(begin: 0.0, end: 0.7)
+    Animation<double> alphaAnimation = Tween(begin: 0.0, end: 0.7)
         .animate(alphaAnimationController)
-      ..addListener(() {});
+          ..addListener(() {});
     widget._alphaAnimation = alphaAnimation;
     yAnimationController.forward();
     alphaAnimationController.forward();
@@ -320,47 +322,44 @@ class _BrnActionSheetSelectedItemListState<T>
   }
 
   double getContentHeight() {
-    return widget.itemWidget.maxHeight;
+    return widget.itemWidget!.maxHeight;
   }
 
   void onClearAction() {
-    if (widget.itemWidget.onClear == null) {
+    if (widget.itemWidget!.onClear == null) {
       // 如果没有实现 onClear，执行默认弹窗并删除的逻辑
       this.dismissContent(true);
       BrnDialogManager.showConfirmDialog(context,
           title: "确定要清空已选列表吗?", cancel: '取消', confirm: '确定', onConfirm: () {
-        if (widget.itemWidget.onClearConfirmed != null) {
-          widget.itemWidget.onClearConfirmed();
+        if (widget.itemWidget!.onClearConfirmed != null) {
+          widget.itemWidget!.onClearConfirmed!();
         }
-        if (widget.itemWidget.items != null) {
-          widget.itemWidget.items
-              .removeRange(0, widget.itemWidget.items.length);
-        }
+        widget.itemWidget!.items
+            .removeRange(0, widget.itemWidget!.items.length);
       }, onCancel: () {
-        if (widget.itemWidget.onClearCanceled != null) {
-          widget.itemWidget.onClearCanceled();
+        if (widget.itemWidget!.onClearCanceled != null) {
+          widget.itemWidget!.onClearCanceled!();
         }
       });
     } else {
-      widget.itemWidget.onClear();
+      widget.itemWidget!.onClear!();
     }
   }
 
   void onDeleteItemAction(int idx) {
-    if (widget.itemWidget.items == null ||
-        idx >= widget.itemWidget.items.length) {
+    if (idx >= widget.itemWidget!.items.length) {
       debugPrint(
-          'idx:$idx out of range of selectedModelList:${widget.itemWidget.items.length}!!!');
+          'idx:$idx out of range of selectedModelList:${widget.itemWidget!.items.length}!!!');
       return;
     }
 
     bool shouldDelete = true;
     if (widget.onItemDelete != null) {
-      shouldDelete = widget.onItemDelete(idx, widget.itemWidget.items[idx]);
+      shouldDelete = widget.onItemDelete!(idx, widget.itemWidget!.items[idx]);
     }
     if (shouldDelete) {
       setState(() {
-        widget.itemWidget.items.remove(widget.itemWidget.items[idx]);
+        widget.itemWidget!.items.remove(widget.itemWidget!.items[idx]);
       });
     }
   }
@@ -368,10 +367,10 @@ class _BrnActionSheetSelectedItemListState<T>
   @override
   Widget build(BuildContext context) {
     // 顶部标题处理
-    String title =
-        (widget.itemWidget.title != null && widget.itemWidget.title.length > 0)
-            ? widget.itemWidget.title
-            : '已选列表';
+    String? title = (widget.itemWidget!.title != null &&
+            widget.itemWidget!.title!.length > 0)
+        ? widget.itemWidget!.title
+        : '已选列表';
     TextStyle titleStyle = const TextStyle(
         fontSize: 18,
         color: Color(0xff222222),
@@ -380,16 +379,15 @@ class _BrnActionSheetSelectedItemListState<T>
     Widget topTitle = Expanded(
         child: Padding(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 15),
-      child: widget.itemWidget.titleWidget ??
+      child: widget.itemWidget!.titleWidget ??
           Text(
-            title,
+            title ?? "",
             style: titleStyle,
           ),
     ));
-    List<Widget> topWidgetList = List();
+    List<Widget> topWidgetList = [];
     topWidgetList.add(topTitle);
-    if (widget.itemWidget.isClearButtonHidden != null &&
-        !widget.itemWidget.isClearButtonHidden) {
+    if (!widget.itemWidget!.isClearButtonHidden) {
       Widget clearWidget = GestureDetector(
         onTap: () {
           this.onClearAction();
@@ -409,13 +407,13 @@ class _BrnActionSheetSelectedItemListState<T>
 
     // 每一行 item 前的 icon
     Widget itemIcon;
-    if (widget.itemWidget.itemIconImage != null) {
+    if (widget.itemWidget!.itemIconImage != null) {
       itemIcon = Container(
           color: Colors.white,
           height: 50,
           width: 45,
           padding: const EdgeInsets.only(left: 20, right: 8),
-          child: widget.itemWidget.itemIconImage);
+          child: widget.itemWidget!.itemIconImage);
     } else {
       itemIcon = Container(color: Colors.white, width: 20);
     }
@@ -458,18 +456,15 @@ class _BrnActionSheetSelectedItemListState<T>
                       Expanded(
                         child: ListView.builder(
                           padding: EdgeInsets.zero,
-                          itemCount: widget.itemWidget.items != null
-                              ? widget.itemWidget.items.length
-                              : 0,
+                          itemCount: widget.itemWidget!.items.length,
                           itemBuilder: (BuildContext context, int index) {
                             // 是否展示左侧的图标
                             bool shouldHideIcon = false;
                             // 获取标题
                             Widget content = Container(color: Colors.white);
-                            if (widget.itemWidget.items != null &&
-                                index < widget.itemWidget.items.length) {
-                              var item = widget.itemTitleBuilder(
-                                  index, widget.itemWidget.items[index]);
+                            if (index < widget.itemWidget!.items.length) {
+                              var item = widget.itemTitleBuilder!(
+                                  index, widget.itemWidget!.items[index]);
                               if (item is String) {
                                 content = Text(
                                   item,
@@ -502,7 +497,7 @@ class _BrnActionSheetSelectedItemListState<T>
                                       ),
                                       Offstage(
                                         offstage: widget
-                                            .itemWidget.isDeleteButtonHidden,
+                                            .itemWidget!.isDeleteButtonHidden,
                                         child: GestureDetector(
                                           onTap: () {
                                             this.onDeleteItemAction(index);
