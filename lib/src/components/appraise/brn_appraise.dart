@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/appraise/brn_appraise_emoji_list_view.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_header.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_star_list_view.dart';
@@ -15,14 +13,14 @@ typedef BrnAppraiseIconClick = void Function(int index);
 
 /// 点击tag的回调
 /// selectedTags 所有选中标签的集合
-typedef BrnAppraiseTagClick = void Function(List<String> selectedTags);
+typedef BrnAppraiseTagClick = void Function(List<String>? selectedTags);
 
 /// 提交按钮点击事件回调
 /// index 选中的表情或者星星的index
 /// selectedTags 所有选中标签的集合
 /// input 自定义输入的内容
 typedef BrnAppraiseConfirmClick = void Function(
-    int index, List<String> selectedTags, String input);
+    int index, List<String>? selectedTags, String? input);
 
 /// 点击关闭的回掉
 typedef BrnAppraiseCloseClickCallBack = void Function(BuildContext context);
@@ -39,7 +37,7 @@ const BrnAppraiseConfig cConfig = BrnAppraiseConfig();
 
 class BrnAppraise extends StatefulWidget {
   /// 标题
-  final String title;
+  final String? title;
 
   /// 标题类型，取值[BrnAppraiseHeaderType]
   /// center 标题居中
@@ -59,16 +57,16 @@ class BrnAppraise extends StatefulWidget {
   final List<String> iconDescriptions;
 
   /// 标签
-  final List<String> tags;
+  final List<String>? tags;
 
   ///输入框允许提示文案
-  final String inputHintText;
+  final String? inputHintText;
 
   /// 提交按钮的点击回调
-  final BrnAppraiseConfirmClick onConfirm;
+  final BrnAppraiseConfirmClick? onConfirm;
 
   /// 评价组件的配置项
-  final BrnAppraiseConfig config;
+  final BrnAppraiseConfig? config;
 
   /// 评价组建每个评分对应的默认文案
   static const List<String> _defaultIconDescriptions = [
@@ -96,9 +94,9 @@ class BrnAppraise extends StatefulWidget {
 
 class _BrnAppraiseState extends State<BrnAppraise> {
   int _appraiseIndex = -1;
-  bool _enable;
-  String _inputText;
-  List<String> _selectedTag;
+  bool? _enable;
+  String? _inputText;
+  List<String>? _selectedTag;
 
   @override
   void initState() {
@@ -152,7 +150,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
             : EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 20);
     return BrnAppraiseHeader(
       showHeader: widget.config?.showHeader ?? true,
-      headerType: widget.headerType ?? BrnAppraiseHeaderType.spaceBetween,
+      headerType: widget.headerType,
       title: widget.title ?? '',
       maxLines: widget.config?.titleMaxLines ?? 1,
       headPadding: widget.config?.headerPadding ?? defaultPadding,
@@ -171,7 +169,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
             _appraiseIndex = index;
           });
           if (widget.config?.iconClickCallback != null) {
-            widget.config.iconClickCallback(index);
+            widget.config!.iconClickCallback!(index);
           }
         },
       );
@@ -185,7 +183,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
             _appraiseIndex = index;
           });
           if (widget.config?.iconClickCallback != null) {
-            widget.config.iconClickCallback(index);
+            widget.config!.iconClickCallback!(index);
           }
         },
       );
@@ -214,7 +212,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
         selectedTagsCallback: (list) {
           _selectedTag = tag2String(list);
           if (widget.config?.tagSelectCallback != null) {
-            widget.config.tagSelectCallback(_selectedTag);
+            widget.config!.tagSelectCallback!(_selectedTag);
           }
         },
       ),
@@ -238,7 +236,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
           onTextChange: (input) {
             _inputText = input;
             if (widget.config?.inputTextChangeCallback != null) {
-              widget.config.inputTextChangeCallback(input);
+              widget.config!.inputTextChangeCallback!(input);
             }
           },
         ),
@@ -258,7 +256,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
           onTap: () {
             if (_enable ?? _appraiseIndex != -1) {
               if (widget.onConfirm != null) {
-                widget.onConfirm(_appraiseIndex, _selectedTag, _inputText);
+                widget.onConfirm!(_appraiseIndex, _selectedTag, _inputText);
               }
             }
           },
@@ -269,10 +267,10 @@ class _BrnAppraiseState extends State<BrnAppraise> {
     return Container();
   }
 
-  List<BrnTagItemBean> string2Tag(List<String> tags) {
-    List<BrnTagItemBean> items = List();
+  List<BrnTagItemBean> string2Tag(List<String>? tags) {
+    List<BrnTagItemBean> items = [];
     if (tags?.isNotEmpty ?? false) {
-      for (int i = 0; i < tags.length; i++) {
+      for (int i = 0; i < tags!.length; i++) {
         items.add(BrnTagItemBean(name: tags[i], code: tags[i], index: i));
       }
     }
@@ -280,8 +278,8 @@ class _BrnAppraiseState extends State<BrnAppraise> {
   }
 
   List<String> tag2String(List<BrnTagItemBean> tags) {
-    List<String> result = List();
-    tags?.forEach((item) {
+    List<String> result = [];
+    tags.forEach((item) {
       result.add(item.name);
     });
     return result;
@@ -293,13 +291,13 @@ class BrnAppraiseConfig {
   final bool showHeader;
 
   /// 标题的padding
-  final EdgeInsets headerPadding;
+  final EdgeInsets? headerPadding;
 
   /// 标题的最大行数
   final int titleMaxLines;
 
   /// 取消的回调
-  final BrnAppraiseCloseClickCallBack onCancel;
+  final BrnAppraiseCloseClickCallBack? onCancel;
 
   /// 所需表情包的index列表，index最大值为4
   final List<int> indexes;
@@ -326,7 +324,7 @@ class BrnAppraiseConfig {
   final int maxHintLines;
 
   /// 输入框默认输入文案
-  final String inputDefaultText;
+  final String? inputDefaultText;
 
   /// 输入框的最大高度，默认为 120
   final double inputMaxHeight;
@@ -338,16 +336,16 @@ class BrnAppraiseConfig {
   final String confirmButtonText;
 
   /// 外部控制提交button的enable状态,null有效，不设置默认值
-  final bool isConfirmButtonEnabled;
+  final bool? isConfirmButtonEnabled;
 
   /// 点击icon的回调
-  final BrnAppraiseIconClick iconClickCallback;
+  final BrnAppraiseIconClick? iconClickCallback;
 
   /// 输入框改变的回调
-  final BrnInputTextChangeCallback inputTextChangeCallback;
+  final BrnInputTextChangeCallback? inputTextChangeCallback;
 
   /// 选择标签的回调
-  final BrnAppraiseTagClick tagSelectCallback;
+  final BrnAppraiseTagClick? tagSelectCallback;
 
   const BrnAppraiseConfig({
     this.showHeader = true,
