@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/appraise/brn_flutter_gif_image.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:flutter/material.dart';
@@ -8,35 +6,35 @@ import 'package:flutter/material.dart';
 
 /// 表情点击的回调
 /// index 点击的表情的index
-typedef BrnAppraiseEmojiClickCallback = void Function(int index);
+typedef BrnAppraiseEmojiClickCallback = void Function(int? index);
 
 class BrnAppraiseEmojiItem extends StatefulWidget {
   /// 加载的gif图名称,传入asserts/image 全路径
-  final String selectedName;
+  final String? selectedName;
 
   /// 未选中的图片,传入asserts/image 全路径
-  final String unselectedName;
+  final String? unselectedName;
 
   /// 默认图片,传入asserts/image 全路径
-  final String defaultName;
+  final String? defaultName;
 
   /// 表情所在的index
-  final int index;
+  final int? index;
 
   /// 选中的的index
-  final int selectedIndex;
+  final int? selectedIndex;
 
   /// 表情图片下面的说明
-  final String title;
+  final String? title;
 
   /// 加载的gif图帧数
   final double frameCount;
 
   /// 点击的回调
-  final BrnAppraiseEmojiClickCallback onTap;
+  final BrnAppraiseEmojiClickCallback? onTap;
 
   /// item的padding
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
   BrnAppraiseEmojiItem(
       {this.selectedName,
@@ -55,11 +53,11 @@ class BrnAppraiseEmojiItem extends StatefulWidget {
 
 class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
 
-  int _selectedIndex;
+  int? _selectedIndex;
 
-  GifImage _gif;
+  late GifImage _gif;
 
   @override
   void initState() {
@@ -71,12 +69,12 @@ class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
     );
     _gif = GifImage(
       controller: _controller,
-      image: AssetImage(widget.selectedName,
+      image: AssetImage(widget.selectedName!,
           package: BrnStrings.flutterPackageName),
       width: 34,
       height: 34,
       defaultImage: Image.asset(
-        widget.defaultName,
+        widget.defaultName!,
         width: 34,
         height: 34,
         package: BrnStrings.flutterPackageName,
@@ -120,7 +118,7 @@ class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
       onTap: () {
         if (_selectedIndex != widget.index) {
           if (widget.onTap != null) {
-            widget.onTap(widget.index);
+            widget.onTap!(widget.index);
           }
           _selectedIndex = widget.index;
           _reset();
@@ -132,7 +130,7 @@ class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
   Widget _getIcon() {
     if (_selectedIndex != widget.index) {
       return Image.asset(
-        _selectedIndex == -1 ? widget.defaultName : widget.unselectedName,
+        _selectedIndex == -1 ? widget.defaultName! : widget.unselectedName!,
         width: 34,
         height: 34,
         package: BrnStrings.flutterPackageName,
@@ -144,13 +142,13 @@ class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
   }
 
   void _reset() {
-    _controller.reset();
-    _controller.animateBack(widget.frameCount);
+    _controller!.reset();
+    _controller!.animateBack(widget.frameCount);
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 }
