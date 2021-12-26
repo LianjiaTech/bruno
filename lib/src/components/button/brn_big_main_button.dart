@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/bruno.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
@@ -37,24 +35,24 @@ const double _BVerticalPadding = 8;
 
 class BrnBigMainButton extends StatelessWidget {
   ///按钮显示文案,默认'确认'
-  final String title;
+  final String? title;
 
   ///是否可用,false 是置灰效果
   final bool isEnable;
 
   ///点击回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   ///默认父布局可用空间
-  final double width;
+  final double? width;
 
   ///背景颜色
-  final Color bgColor;
+  final Color? bgColor;
 
-  final BrnButtonConfig themeData;
+  final BrnButtonConfig? themeData;
 
   const BrnBigMainButton({
-    Key key,
+    Key? key,
     this.title = '确认',
     this.width,
     this.isEnable = true,
@@ -69,7 +67,7 @@ class BrnBigMainButton extends StatelessWidget {
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig
+        .buttonConfig!
         .merge(defaultThemeConfig);
 
     return BrnNormalButton(
@@ -77,14 +75,14 @@ class BrnBigMainButton extends StatelessWidget {
           width: width ?? double.infinity,
           height: defaultThemeConfig.bigButtonHeight),
       alignment: Alignment.center,
-      isEnable: isEnable ?? true,
+      isEnable: isEnable,
       text: title ?? '确认',
       backgroundColor: bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
       disableBackgroundColor: Color(0xFFCCCCCC),
       onTap: onTap,
       textColor: Colors.white,
       disableTextColor:
-          defaultThemeConfig.commonConfig.colorTextBaseInverse.withOpacity(0.7),
+          defaultThemeConfig.commonConfig.colorTextBaseInverse!.withOpacity(0.7),
       insertPadding: EdgeInsets.symmetric(
           horizontal: _BHorizontalPadding, vertical: _BVerticalPadding),
     );

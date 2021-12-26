@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
@@ -27,10 +25,10 @@ class BrnIconButton extends StatefulWidget {
   final String name;
 
   /// 需要传的icon
-  final Widget iconWidget;
+  final Widget? iconWidget;
 
   /// 点击的回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// 文字相对于图片的位置
   final Direction direction;
@@ -45,7 +43,7 @@ class BrnIconButton extends StatefulWidget {
   final double fontSize;
 
   ///  文字样式
-  final TextStyle style;
+  final TextStyle? style;
 
   /// 图文组合的宽度，默认 80
   final double widgetWidth;
@@ -60,8 +58,8 @@ class BrnIconButton extends StatefulWidget {
   final MainAxisAlignment mainAxisAlignment;
 
   const BrnIconButton({
-    Key key,
-    @required this.name,
+    Key? key,
+    required this.name,
     this.iconWidget,
     this.onTap,
     this.iconWidth = 24,
@@ -82,13 +80,13 @@ class BrnIconButton extends StatefulWidget {
 class _BrnIconButtonState extends State<BrnIconButton> {
   @override
   Widget build(BuildContext context) {
-    Container ctn;
+    Container? ctn;
     // 图文的方向 bottom、文字在下 icon在上 top、文字在上 icon在下
     // Left、文字在左 icon在右 right、文字在右 icon在左
     if (widget.direction == Direction.bottom) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Column(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -107,7 +105,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig
+                            .commonConfig!
                             .colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
@@ -117,8 +115,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
           ));
     } else if (widget.direction == Direction.top) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Column(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -132,7 +130,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig
+                            .commonConfig!
                             .colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
@@ -149,8 +147,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
           ));
     } else if (widget.direction == Direction.left) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Row(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -169,7 +167,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig
+                            .commonConfig!
                             .colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
@@ -179,8 +177,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
           ));
     } else if (widget.direction == Direction.right) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Row(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -194,7 +192,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig
+                            .commonConfig!
                             .colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
@@ -213,10 +211,10 @@ class _BrnIconButtonState extends State<BrnIconButton> {
       return GestureDetector(
         child: ctn,
         onTap: () {
-          widget?.onTap();
+          widget.onTap!();
         },
       );
     }
-    return ctn;
+    return ctn!;
   }
 }

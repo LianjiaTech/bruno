@@ -1,9 +1,6 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/button/brn_big_ghost_button.dart';
 import 'package:bruno/src/components/button/brn_normal_button.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
-import 'package:bruno/src/utils/brn_multi_click_util.dart';
 import 'package:flutter/material.dart';
 
 /// 页面的边框按钮,没有背景颜色，占据父节点分配的最大空间
@@ -43,23 +40,23 @@ class BrnBigOutlineButton extends StatelessWidget {
   final String title;
 
   ///边框的颜色
-  final Color lineColor;
+  final Color? lineColor;
 
   ///点击回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   ///显示的文案的颜色
-  final Color textColor;
+  final Color? textColor;
 
   ///是否可用，默认为true。false为不可用：置灰、不可点击。
   final bool isEnable;
 
   ///默认父布局可用空间
-  final double width;
-  final BrnButtonConfig themeData;
+  final double? width;
+  final BrnButtonConfig? themeData;
 
   const BrnBigOutlineButton({
-    Key key,
+    Key? key,
     this.title = '确认',
     this.lineColor,
     this.textColor,
@@ -75,16 +72,16 @@ class BrnBigOutlineButton extends StatelessWidget {
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig
+        .buttonConfig!
         .merge(defaultThemeConfig);
 
-    Color _lineColor =
+    Color? _lineColor =
         lineColor ?? defaultThemeConfig.commonConfig.borderColorBase;
 
     return BrnNormalButton.outline(
       borderWith: _BBorderWith,
-      radius: defaultThemeConfig.bigButtonRadius,
-      text: title ?? "",
+      radius: defaultThemeConfig.bigButtonRadius!,
+      text: title,
       disableLineColor: _lineColor,
       lineColor: _lineColor,
       textColor: textColor ?? defaultThemeConfig.commonConfig.colorTextBase,
