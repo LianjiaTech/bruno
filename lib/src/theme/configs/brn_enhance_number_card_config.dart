@@ -6,7 +6,7 @@ import 'package:bruno/src/theme/configs/brn_common_config.dart';
 /// 强化数字展示组件配置
 class BrnEnhanceNumberCardConfig extends BrnBaseConfig {
   /// 遵循外部主题配置
-  /// 默认为 [BrnDefaultConfigUtils.defaultNumberInfoConfig]
+  /// 默认为 [BrnDefaultConfigUtils.defaultEnhanceNumberInfoConfig]
   BrnEnhanceNumberCardConfig({
     this.runningSpace,
     this.itemRunningSpace,

@@ -42,11 +42,14 @@ class BrnDefaultConfigUtils {
     buttonConfig: defaultButtonConfig,
     actionSheetConfig: defaultActionSheetConfig,
     pickerConfig: defaultPickerConfig,
-    enhanceNumberCardConfig: defaultNumberInfoConfig,
+    enhanceNumberCardConfig: defaultEnhanceNumberInfoConfig,
     tabBarConfig: defaultTabBarConfig,
     selectionConfig: defaultSelectionConfig,
     galleryDetailConfig: defaultGalleryDetailConfig,
   );
+
+
+
 
   /// 全局默认配置
   static BrnCommonConfig defaultCommonConfig = BrnCommonConfig(
@@ -559,7 +562,7 @@ class BrnDefaultConfigUtils {
   );
 
   /// 数字增强信息配置
-  static BrnEnhanceNumberCardConfig defaultNumberInfoConfig =
+  static BrnEnhanceNumberCardConfig defaultEnhanceNumberInfoConfig =
       BrnEnhanceNumberCardConfig(
     runningSpace: 16,
     itemRunningSpace: 8,
