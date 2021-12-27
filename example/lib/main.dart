@@ -1,8 +1,11 @@
+import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  BrnInitializer.register(allThemeConfig: BrnAllThemeConfig(appBarConfig: BrnAppBarConfig(backgroundColor:Colors.orange)));
   runApp(MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

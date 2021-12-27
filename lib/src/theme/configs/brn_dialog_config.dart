@@ -1,4 +1,5 @@
 import 'package:bruno/src/theme/base/brn_base_config.dart';
+import 'package:bruno/src/theme/base/brn_default_config_utils.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -7,43 +8,74 @@ import 'package:flutter/material.dart';
 /// 描述: Dialog 弹框主配置类
 class BrnDialogConfig extends BrnBaseConfig {
   BrnDialogConfig({
-    this.dialogWidth,
-    this.radius,
-    this.iconPadding,
-    this.titlePaddingSm,
-    this.titlePaddingLg,
-    this.titleTextStyle,
-    this.titleTextAlign,
-    this.contentPaddingSm,
-    this.contentPaddingLg,
-    this.contentTextStyle,
-    this.contentTextAlign,
-    this.warningPaddingSm,
-    this.warningPaddingLg,
-    this.warningTextStyle,
-    this.warningTextAlign,
-    this.dividerPadding,
-    this.mainActionTextStyle,
-    this.assistActionsTextStyle,
-    this.mainActionBackgroundColor,
-    this.assistActionsBackgroundColor,
-    this.bottomHeight,
-    this.backgroundColor,
+    dialogWidth,
+    radius,
+    iconPadding,
+    titlePaddingSm,
+    titlePaddingLg,
+    titleTextStyle,
+    titleTextAlign,
+    contentPaddingSm,
+    contentPaddingLg,
+    contentTextStyle,
+    contentTextAlign,
+    warningPaddingSm,
+    warningPaddingLg,
+    warningTextStyle,
+    warningTextAlign,
+    dividerPadding,
+    mainActionTextStyle,
+    assistActionsTextStyle,
+    mainActionBackgroundColor,
+    assistActionsBackgroundColor,
+    bottomHeight,
+    backgroundColor,
     String configId = GLOBAL_CONFIG_ID,
-  }) : super(configId: configId);
+  })  : _dialogWidth = dialogWidth,
+        _radius = radius,
+        _iconPadding = iconPadding,
+        _titlePaddingSm = titlePaddingSm,
+        _titlePaddingLg = titlePaddingLg,
+        _titleTextStyle = titleTextStyle,
+        _titleTextAlign = titleTextAlign,
+        _contentPaddingSm = contentPaddingSm,
+        _contentPaddingLg = contentPaddingLg,
+        _contentTextStyle = contentTextStyle,
+        _contentTextAlign = contentTextAlign,
+        _warningPaddingSm = warningPaddingSm,
+        _warningPaddingLg = warningPaddingLg,
+        _warningTextStyle = warningTextStyle,
+        _warningTextAlign = warningTextAlign,
+        _dividerPadding = dividerPadding,
+        _mainActionTextStyle = mainActionTextStyle,
+        _assistActionsTextStyle = assistActionsTextStyle,
+        _mainActionBackgroundColor = mainActionBackgroundColor,
+        _assistActionsBackgroundColor = assistActionsBackgroundColor,
+        _bottomHeight = bottomHeight,
+        _backgroundColor = backgroundColor,
+        super(configId: configId);
 
   /// Dialog 宽度
   /// 默认为 300
-  double? dialogWidth;
+  double? _dialogWidth;
+
+  double get dialogWidth =>
+      _dialogWidth ?? BrnDefaultConfigUtils.defaultDialogConfig.dialogWidth;
 
   /// Dialog 四周圆角
   /// 默认为 [BrnCommonConfig.radiusLg]
-  double? radius;
+  double? _radius;
+
+  double get radius =>
+      _radius ?? BrnDefaultConfigUtils.defaultDialogConfig.radius;
 
   /// Dialog icon 距离顶部的边距
   ///
   /// EdgeInsets.only(top: [BrnCommonConfig.vSpacingXxl])
-  EdgeInsets? iconPadding;
+  EdgeInsets? _iconPadding;
+
+  EdgeInsets get iconPadding =>
+      _iconPadding ?? BrnDefaultConfigUtils.defaultDialogConfig.iconPadding;
 
   /// title 在顶部有 icon 时的边距
   ///
@@ -52,7 +84,11 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   left: [BrnCommonConfig.hSpacingXxl],
   ///   right: [BrnCommonConfig.hSpacingXxl],
   /// )
-  EdgeInsets? titlePaddingSm;
+  EdgeInsets? _titlePaddingSm;
+
+  EdgeInsets get titlePaddingSm =>
+      _titlePaddingSm ??
+      BrnDefaultConfigUtils.defaultDialogConfig.titlePaddingSm;
 
   /// title 当顶部无 icon 时的边距
   ///
@@ -61,7 +97,11 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   left: [BrnCommonConfig.hSpacingXxl],
   ///   right: [BrnCommonConfig.hSpacingXxl],
   /// )
-  EdgeInsets? titlePaddingLg;
+  EdgeInsets? _titlePaddingLg;
+
+  EdgeInsets get titlePaddingLg =>
+      _titlePaddingLg ??
+      BrnDefaultConfigUtils.defaultDialogConfig.titlePaddingLg;
 
   /// title 标题样式
   ///
@@ -70,11 +110,19 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeHead],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? titleTextStyle;
+  BrnTextStyle? _titleTextStyle;
+
+  BrnTextStyle get titleTextStyle =>
+      _titleTextStyle ??
+      BrnDefaultConfigUtils.defaultDialogConfig.titleTextStyle;
 
   /// 标题的文字对齐
   /// 默认为 [TextAlign.center]
-  TextAlign? titleTextAlign;
+  TextAlign? _titleTextAlign;
+
+  TextAlign get titleTextAlign =>
+      _titleTextAlign ??
+      BrnDefaultConfigUtils.defaultDialogConfig.titleTextAlign;
 
   /// content 当顶部有 title 或者 icon 时的边距
   ///
@@ -83,7 +131,11 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   left: [BrnCommonConfig.hSpacingXl],
   ///   right: [BrnCommonConfig.hSpacingXl],
   /// )
-  EdgeInsets? contentPaddingSm;
+  EdgeInsets? _contentPaddingSm;
+
+  EdgeInsets get contentPaddingSm =>
+      _contentPaddingSm ??
+      BrnDefaultConfigUtils.defaultDialogConfig.contentPaddingSm;
 
   /// content 当顶部无 title 或者 icon 时的边距
   ///
@@ -92,7 +144,11 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   left: [BrnCommonConfig.hSpacingXl],
   ///   right: [BrnCommonConfig.hSpacingXl],
   /// )
-  EdgeInsets? contentPaddingLg;
+  EdgeInsets? _contentPaddingLg;
+
+  EdgeInsets get contentPaddingLg =>
+      _contentPaddingLg ??
+      BrnDefaultConfigUtils.defaultDialogConfig.contentPaddingLg;
 
   /// message 内容样式
   ///
@@ -100,11 +156,19 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextImportant],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? contentTextStyle;
+  BrnTextStyle? _contentTextStyle;
+
+  BrnTextStyle get contentTextStyle =>
+      _contentTextStyle ??
+      BrnDefaultConfigUtils.defaultDialogConfig.contentTextStyle;
 
   /// 内容文字的对齐
   /// 默认为 [TextAlign.center]
-  TextAlign? contentTextAlign;
+  TextAlign? _contentTextAlign;
+
+  TextAlign get contentTextAlign =>
+      _contentTextAlign ??
+      BrnDefaultConfigUtils.defaultDialogConfig.contentTextAlign;
 
   /// warning 当顶部有 title/icon/content 时的边距
   ///
@@ -113,7 +177,11 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   left: [BrnCommonConfig.hSpacingXl],
   ///   right: [BrnCommonConfig.hSpacingXl],
   /// )
-  EdgeInsets? warningPaddingSm;
+  EdgeInsets? _warningPaddingSm;
+
+  EdgeInsets get warningPaddingSm =>
+      _warningPaddingSm ??
+      BrnDefaultConfigUtils.defaultDialogConfig.warningPaddingSm;
 
   /// warning 当顶部无 title/icon/content 时的边距
   ///
@@ -122,7 +190,11 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   left: [BrnCommonConfig.hSpacingXl],
   ///   right: [BrnCommonConfig.hSpacingXl],
   /// )
-  EdgeInsets? warningPaddingLg;
+  EdgeInsets? _warningPaddingLg;
+
+  EdgeInsets get warningPaddingLg =>
+      _warningPaddingLg ??
+      BrnDefaultConfigUtils.defaultDialogConfig.warningPaddingLg;
 
   /// 警告样式
   ///
@@ -130,16 +202,28 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.brandError],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? warningTextStyle;
+  BrnTextStyle? _warningTextStyle;
+
+  BrnTextStyle get warningTextStyle =>
+      _warningTextStyle ??
+      BrnDefaultConfigUtils.defaultDialogConfig.warningTextStyle;
 
   /// 警示文案文字的对齐
   /// 默认为 [TextAlign.center]
-  TextAlign? warningTextAlign;
+  TextAlign? _warningTextAlign;
+
+  TextAlign get warningTextAlign =>
+      _warningTextAlign ??
+      BrnDefaultConfigUtils.defaultDialogConfig.warningTextAlign;
 
   /// action 顶部 divider 的上方边距
   ///
   /// EdgeInsets.only(top: 28)
-  EdgeInsets? dividerPadding;
+  EdgeInsets? _dividerPadding;
+
+  EdgeInsets get dividerPadding =>
+      _dividerPadding ??
+      BrnDefaultConfigUtils.defaultDialogConfig.dividerPadding;
 
   /// 主色调按钮样式
   ///
@@ -148,11 +232,19 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? mainActionTextStyle;
+  BrnTextStyle? _mainActionTextStyle;
+
+  BrnTextStyle get mainActionTextStyle =>
+      _mainActionTextStyle ??
+      BrnDefaultConfigUtils.defaultDialogConfig.mainActionTextStyle;
 
   /// 主色调按钮的背景
   /// 默认为 [BrnCommonConfig.fillBase]
-  Color? mainActionBackgroundColor;
+  Color? _mainActionBackgroundColor;
+
+  Color get mainActionBackgroundColor =>
+      _mainActionBackgroundColor ??
+      BrnDefaultConfigUtils.defaultDialogConfig.mainActionBackgroundColor;
 
   /// 其他按钮的样式(超2个时按钮样式)
   /// BrnTextStyle(
@@ -160,19 +252,34 @@ class BrnDialogConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? assistActionsTextStyle;
+  BrnTextStyle? _assistActionsTextStyle;
+
+  BrnTextStyle get assistActionsTextStyle =>
+      _assistActionsTextStyle ??
+      BrnDefaultConfigUtils.defaultDialogConfig.assistActionsTextStyle;
 
   /// 其他按钮的背景
   /// 默认为 [BrnCommonConfig.fillBase]
-  Color? assistActionsBackgroundColor;
+  Color? _assistActionsBackgroundColor;
+
+  Color get assistActionsBackgroundColor =>
+      _assistActionsBackgroundColor ??
+      BrnDefaultConfigUtils.defaultDialogConfig.assistActionsBackgroundColor;
 
   /// 底部按钮高度
   /// 默认为 44.0
-  double? bottomHeight;
+  double? _bottomHeight;
+
+  double get bottomHeight =>
+      _bottomHeight ?? BrnDefaultConfigUtils.defaultDialogConfig.bottomHeight;
 
   /// Dialog背景
   /// 默认为 [BrnCommonConfig.fillBase]
-  Color? backgroundColor;
+  Color? _backgroundColor;
+
+  Color get backgroundColor =>
+      _backgroundColor ??
+      BrnDefaultConfigUtils.defaultDialogConfig.backgroundColor;
 
   /// 按优先级，打平 【Bruno 内置配置】 < 【用户全局的默认配置】 < 【用户特殊配置】 < 【临时组件配置】
   ///
@@ -192,92 +299,92 @@ class BrnDialogConfig extends BrnBaseConfig {
     );
 
     /// 用户全局组件配置
-    BrnDialogConfig? dialogConfig = BrnThemeConfigurator.instance
+    BrnDialogConfig dialogConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
         .dialogConfig;
 
-    dialogWidth ??= dialogConfig?.dialogWidth;
-    radius ??= commonConfig.radiusLg;
-    titlePaddingSm ??= EdgeInsets.only(
-      left: commonConfig.hSpacingXxl ?? 0,
-      right: commonConfig.hSpacingXxl ?? 0,
-      top: dialogConfig?.titlePaddingSm?.top ?? 0,
-      bottom: dialogConfig?.titlePaddingSm?.bottom ?? 0,
+    _dialogWidth ??= dialogConfig.dialogWidth;
+    _radius ??= commonConfig.radiusLg;
+    _titlePaddingSm ??= EdgeInsets.only(
+      left: commonConfig.hSpacingXxl,
+      right: commonConfig.hSpacingXxl,
+      top: dialogConfig.titlePaddingSm.top,
+      bottom: dialogConfig.titlePaddingSm.bottom,
     );
-    titlePaddingLg ??= EdgeInsets.only(
-      left: commonConfig.hSpacingXxl ?? 0,
-      right: commonConfig.hSpacingXxl ?? 0,
-      top: dialogConfig?.titlePaddingLg?.top ?? 0,
-      bottom: dialogConfig?.titlePaddingLg?.bottom ?? 0,
+    _titlePaddingLg ??= EdgeInsets.only(
+      left: commonConfig.hSpacingXxl,
+      right: commonConfig.hSpacingXxl,
+      top: dialogConfig.titlePaddingLg.top,
+      bottom: dialogConfig.titlePaddingLg.bottom,
     );
-    iconPadding ??= EdgeInsets.only(
-      left: dialogConfig?.iconPadding?.left ?? 0,
-      top: commonConfig.vSpacingXxl ?? 0,
-      right: dialogConfig?.iconPadding?.right ?? 0,
-      bottom: dialogConfig?.iconPadding?.bottom ?? 0,
+    _iconPadding ??= EdgeInsets.only(
+      left: dialogConfig.iconPadding.left,
+      top: commonConfig.vSpacingXxl,
+      right: dialogConfig.iconPadding.right,
+      bottom: dialogConfig.iconPadding.bottom,
     );
-    titleTextStyle = dialogConfig?.titleTextStyle?.merge(
+    _titleTextStyle = dialogConfig.titleTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeHead,
-      ).merge(titleTextStyle),
+      ).merge(_titleTextStyle),
     );
-    contentTextStyle = dialogConfig?.contentTextStyle?.merge(
+    _contentTextStyle = dialogConfig.contentTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextImportant,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(contentTextStyle),
+      ).merge(_contentTextStyle),
     );
-    warningTextStyle = dialogConfig?.warningTextStyle?.merge(
+    _warningTextStyle = dialogConfig.warningTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandError,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(warningTextStyle),
+      ).merge(_warningTextStyle),
     );
-    mainActionTextStyle = dialogConfig?.mainActionTextStyle?.merge(
+    _mainActionTextStyle = dialogConfig.mainActionTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(mainActionTextStyle),
+      ).merge(_mainActionTextStyle),
     );
-    assistActionsTextStyle = dialogConfig?.assistActionsTextStyle?.merge(
+    _assistActionsTextStyle = dialogConfig.assistActionsTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(assistActionsTextStyle),
+      ).merge(_assistActionsTextStyle),
     );
-    contentPaddingSm ??= EdgeInsets.only(
-      left: commonConfig.hSpacingXl ?? 0,
-      right: commonConfig.hSpacingXl ?? 0,
-      top: dialogConfig?.contentPaddingSm?.top ?? 0,
-      bottom: dialogConfig?.contentPaddingSm?.bottom ?? 0,
+    _contentPaddingSm ??= EdgeInsets.only(
+      left: commonConfig.hSpacingXl,
+      right: commonConfig.hSpacingXl,
+      top: dialogConfig.contentPaddingSm.top,
+      bottom: dialogConfig.contentPaddingSm.bottom,
     );
-    contentPaddingSm ??= EdgeInsets.only(
-      left: commonConfig.hSpacingXl ?? 0,
-      right: commonConfig.hSpacingXl ?? 0,
-      top: dialogConfig?.contentPaddingLg?.top ?? 0,
-      bottom: dialogConfig?.contentPaddingLg?.bottom ?? 0,
+    _contentPaddingSm ??= EdgeInsets.only(
+      left: commonConfig.hSpacingXl,
+      right: commonConfig.hSpacingXl,
+      top: dialogConfig.contentPaddingLg.top,
+      bottom: dialogConfig.contentPaddingLg.bottom,
     );
-    warningPaddingSm ??= EdgeInsets.only(
-      left: commonConfig.hSpacingXl ?? 0,
-      right: commonConfig.hSpacingXl ?? 0,
-      top: dialogConfig?.warningPaddingSm?.top ?? 0,
-      bottom: dialogConfig?.warningPaddingSm?.bottom ?? 0,
+    _warningPaddingSm ??= EdgeInsets.only(
+      left: commonConfig.hSpacingXl,
+      right: commonConfig.hSpacingXl,
+      top: dialogConfig.warningPaddingSm.top,
+      bottom: dialogConfig.warningPaddingSm.bottom,
     );
-    warningPaddingLg ??= EdgeInsets.only(
-      left: commonConfig.hSpacingXl ?? 0,
-      right: commonConfig.hSpacingXl ?? 0,
-      top: dialogConfig?.warningPaddingLg?.top ?? 0,
-      bottom: dialogConfig?.warningPaddingLg?.bottom ?? 0,
+    _warningPaddingLg ??= EdgeInsets.only(
+      left: commonConfig.hSpacingXl,
+      right: commonConfig.hSpacingXl,
+      top: dialogConfig.warningPaddingLg.top,
+      bottom: dialogConfig.warningPaddingLg.bottom,
     );
-    titleTextAlign ??= dialogConfig?.titleTextAlign;
-    contentTextAlign ??= dialogConfig?.contentTextAlign;
-    warningTextAlign ??= dialogConfig?.warningTextAlign;
-    mainActionBackgroundColor ??= commonConfig.fillBase;
-    assistActionsBackgroundColor ??= commonConfig.fillBase;
-    bottomHeight ??= dialogConfig?.bottomHeight;
-    dividerPadding ??= dialogConfig?.dividerPadding;
-    backgroundColor ??= commonConfig.fillBase;
+    _titleTextAlign ??= dialogConfig.titleTextAlign;
+    _contentTextAlign ??= dialogConfig.contentTextAlign;
+    _warningTextAlign ??= dialogConfig.warningTextAlign;
+    _mainActionBackgroundColor ??= commonConfig.fillBase;
+    _assistActionsBackgroundColor ??= commonConfig.fillBase;
+    _bottomHeight ??= dialogConfig.bottomHeight;
+    _dividerPadding ??= dialogConfig.dividerPadding;
+    _backgroundColor ??= commonConfig.fillBase;
   }
 
   BrnDialogConfig copyWith({
@@ -305,66 +412,59 @@ class BrnDialogConfig extends BrnBaseConfig {
     Color? backgroundColor,
   }) {
     return BrnDialogConfig(
-      dialogWidth: dialogWidth ?? this.dialogWidth,
-      radius: radius ?? this.radius,
-      iconPadding: iconPadding ?? this.iconPadding,
-      titlePaddingSm: titlePaddingSm ?? this.titlePaddingSm,
-      titlePaddingLg: titlePaddingLg ?? this.titlePaddingLg,
-      titleTextStyle: titleTextStyle ?? this.titleTextStyle,
-      titleTextAlign: titleTextAlign ?? this.titleTextAlign,
-      contentPaddingSm: contentPaddingSm ?? this.contentPaddingSm,
-      contentPaddingLg: contentPaddingLg ?? this.contentPaddingLg,
-      contentTextStyle: contentTextStyle ?? this.contentTextStyle,
-      contentTextAlign: contentTextAlign ?? this.contentTextAlign,
-      warningPaddingSm: warningPaddingSm ?? this.warningPaddingSm,
-      warningPaddingLg: warningPaddingLg ?? this.warningPaddingLg,
-      warningTextStyle: warningTextStyle ?? this.warningTextStyle,
-      warningTextAlign: warningTextAlign ?? this.warningTextAlign,
-      dividerPadding: dividerPadding ?? this.dividerPadding,
-      mainActionTextStyle: mainActionTextStyle ?? this.mainActionTextStyle,
-      assistActionsTextStyle:
-          assistActionsTextStyle ?? this.assistActionsTextStyle,
+      dialogWidth: dialogWidth ?? _dialogWidth,
+      radius: radius ?? _radius,
+      iconPadding: iconPadding ?? _iconPadding,
+      titlePaddingSm: titlePaddingSm ?? _titlePaddingSm,
+      titlePaddingLg: titlePaddingLg ?? _titlePaddingLg,
+      titleTextStyle: titleTextStyle ?? _titleTextStyle,
+      titleTextAlign: titleTextAlign ?? _titleTextAlign,
+      contentPaddingSm: contentPaddingSm ?? _contentPaddingSm,
+      contentPaddingLg: contentPaddingLg ?? _contentPaddingLg,
+      contentTextStyle: contentTextStyle ?? _contentTextStyle,
+      contentTextAlign: contentTextAlign ?? _contentTextAlign,
+      warningPaddingSm: warningPaddingSm ?? _warningPaddingSm,
+      warningPaddingLg: warningPaddingLg ?? _warningPaddingLg,
+      warningTextStyle: warningTextStyle ?? _warningTextStyle,
+      warningTextAlign: warningTextAlign ?? _warningTextAlign,
+      dividerPadding: dividerPadding ?? _dividerPadding,
+      mainActionTextStyle: mainActionTextStyle ?? _mainActionTextStyle,
+      assistActionsTextStyle: assistActionsTextStyle ?? _assistActionsTextStyle,
       mainActionBackgroundColor:
-          mainActionBackgroundColor ?? this.mainActionBackgroundColor,
+          mainActionBackgroundColor ?? _mainActionBackgroundColor,
       assistActionsBackgroundColor:
-          assistActionsBackgroundColor ?? this.assistActionsBackgroundColor,
-      bottomHeight: bottomHeight ?? this.bottomHeight,
-      backgroundColor: backgroundColor ?? this.backgroundColor,
+          assistActionsBackgroundColor ?? _assistActionsBackgroundColor,
+      bottomHeight: bottomHeight ?? _bottomHeight,
+      backgroundColor: backgroundColor ?? _backgroundColor,
     );
   }
 
   BrnDialogConfig merge(BrnDialogConfig? other) {
     if (other == null) return this;
     return copyWith(
-      dialogWidth: other.dialogWidth,
-      radius: other.radius,
-      iconPadding: other.iconPadding,
-      titlePaddingSm: other.titlePaddingSm,
-      titlePaddingLg: other.titlePaddingLg,
-      titleTextStyle:
-          titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
-      titleTextAlign: other.titleTextAlign,
-      contentPaddingSm: other.contentPaddingSm,
-      contentPaddingLg: other.contentPaddingLg,
-      contentTextStyle: contentTextStyle?.merge(other.contentTextStyle) ??
-          other.contentTextStyle,
-      contentTextAlign: other.contentTextAlign,
-      warningPaddingSm: other.warningPaddingSm,
-      warningPaddingLg: other.warningPaddingLg,
-      warningTextStyle: warningTextStyle?.merge(other.warningTextStyle) ??
-          other.warningTextStyle,
-      warningTextAlign: other.warningTextAlign,
-      dividerPadding: other.dividerPadding,
-      mainActionTextStyle:
-          mainActionTextStyle?.merge(other.mainActionTextStyle) ??
-              other.mainActionTextStyle,
+      dialogWidth: other._dialogWidth,
+      radius: other._radius,
+      iconPadding: other._iconPadding,
+      titlePaddingSm: other._titlePaddingSm,
+      titlePaddingLg: other._titlePaddingLg,
+      titleTextStyle: titleTextStyle.merge(other._titleTextStyle),
+      titleTextAlign: other._titleTextAlign,
+      contentPaddingSm: other._contentPaddingSm,
+      contentPaddingLg: other._contentPaddingLg,
+      contentTextStyle: contentTextStyle.merge(other._contentTextStyle),
+      contentTextAlign: other._contentTextAlign,
+      warningPaddingSm: other._warningPaddingSm,
+      warningPaddingLg: other._warningPaddingLg,
+      warningTextStyle: warningTextStyle.merge(other._warningTextStyle),
+      warningTextAlign: other._warningTextAlign,
+      dividerPadding: other._dividerPadding,
+      mainActionTextStyle: mainActionTextStyle.merge(other._mainActionTextStyle),
       assistActionsTextStyle:
-          assistActionsTextStyle?.merge(other.assistActionsTextStyle) ??
-              other.assistActionsTextStyle,
-      mainActionBackgroundColor: other.mainActionBackgroundColor,
-      assistActionsBackgroundColor: other.assistActionsBackgroundColor,
-      bottomHeight: other.bottomHeight,
-      backgroundColor: other.backgroundColor,
+          assistActionsTextStyle.merge(other._assistActionsTextStyle),
+      mainActionBackgroundColor: other._mainActionBackgroundColor,
+      assistActionsBackgroundColor: other._assistActionsBackgroundColor,
+      bottomHeight: other._bottomHeight,
+      backgroundColor: other._backgroundColor,
     );
   }
 }

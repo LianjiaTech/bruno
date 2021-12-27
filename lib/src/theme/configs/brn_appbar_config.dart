@@ -2,6 +2,7 @@ import 'package:bruno/src/components/navbar/brn_appbar_theme.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/theme/base/brn_base_config.dart';
+import 'package:bruno/src/theme/base/brn_default_config_utils.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -15,36 +16,58 @@ class BrnAppBarConfig extends BrnBaseConfig {
   /// BrnAppBar 主题配置，遵循外部主题配置
   /// 默认为 [BrnDefaultConfigUtils.defaultAppBarConfig]
   BrnAppBarConfig({
-    this.backgroundColor,
-    this.appBarHeight,
-    this.leadIconBuilder,
-    this.titleStyle,
-    this.actionsStyle,
-    this.titleMaxLength,
-    this.leftAndRightPadding,
-    this.itemSpacing,
-    this.titlePadding,
-    this.iconSize,
-    this.flexibleSpace,
-    this.systemUiOverlayStyle,
+    Color? backgroundColor,
+    double? appBarHeight,
+    BrnWidgetBuilder? leadIconBuilder,
+    BrnTextStyle? titleStyle,
+    BrnTextStyle? actionsStyle,
+    int? titleMaxLength,
+    double? leftAndRightPadding,
+    double? itemSpacing,
+    EdgeInsets? titlePadding,
+    double? iconSize,
+    Widget? flexibleSpace,
+    SystemUiOverlayStyle? systemUiOverlayStyle,
     String configId = GLOBAL_CONFIG_ID,
-  }) : super(configId: configId);
+  })  : _backgroundColor = backgroundColor,
+        _appBarHeight = appBarHeight,
+        _leadIconBuilder = leadIconBuilder,
+        _titleStyle = titleStyle,
+        _actionsStyle = actionsStyle,
+        _titleMaxLength = titleMaxLength,
+        _leftAndRightPadding = leftAndRightPadding,
+        _itemSpacing = itemSpacing,
+        _titlePadding = titlePadding,
+        _iconSize = iconSize,
+        _systemUiOverlayStyle = systemUiOverlayStyle,
+        super(configId: configId);
 
   BrnAppBarConfig.dark({
-    this.backgroundColor,
-    this.appBarHeight,
-    this.leadIconBuilder,
-    this.titleStyle,
-    this.actionsStyle,
-    this.titleMaxLength,
-    this.leftAndRightPadding,
-    this.itemSpacing,
-    this.titlePadding,
-    this.iconSize,
-    this.flexibleSpace,
-    this.systemUiOverlayStyle,
+    Color? backgroundColor,
+    double? appBarHeight,
+    BrnWidgetBuilder? leadIconBuilder,
+    BrnTextStyle? titleStyle,
+    BrnTextStyle? actionsStyle,
+    int? titleMaxLength,
+    double? leftAndRightPadding,
+    double? itemSpacing,
+    EdgeInsets? titlePadding,
+    double? iconSize,
+    Widget? flexibleSpace,
+    SystemUiOverlayStyle? systemUiOverlayStyle,
     String configId = GLOBAL_CONFIG_ID,
-  }) : super(configId: configId) {
+  })  : _backgroundColor = backgroundColor,
+        _appBarHeight = appBarHeight,
+        _leadIconBuilder = leadIconBuilder,
+        _titleStyle = titleStyle,
+        _actionsStyle = actionsStyle,
+        _titleMaxLength = titleMaxLength,
+        _leftAndRightPadding = leftAndRightPadding,
+        _itemSpacing = itemSpacing,
+        _titlePadding = titlePadding,
+        _iconSize = iconSize,
+        _systemUiOverlayStyle = systemUiOverlayStyle,
+        super(configId: configId) {
     backgroundColor = Color(0xff2E313B);
     leadIconBuilder = () => Image.asset(
           BrnAsset.ICON_BACK_WHITE,
@@ -67,54 +90,79 @@ class BrnAppBarConfig extends BrnBaseConfig {
   }
 
   BrnAppBarConfig.light({
-    this.backgroundColor,
-    this.appBarHeight,
-    this.leadIconBuilder,
-    this.titleStyle,
-    this.actionsStyle,
-    this.titleMaxLength,
-    this.leftAndRightPadding,
-    this.itemSpacing,
-    this.titlePadding,
-    this.iconSize,
-    this.flexibleSpace,
-    this.systemUiOverlayStyle,
+    Color? backgroundColor,
+    double? appBarHeight,
+    BrnWidgetBuilder? leadIconBuilder,
+    BrnTextStyle? titleStyle,
+    BrnTextStyle? actionsStyle,
+    int? titleMaxLength,
+    double? leftAndRightPadding,
+    double? itemSpacing,
+    EdgeInsets? titlePadding,
+    double? iconSize,
+    Widget? flexibleSpace,
+    SystemUiOverlayStyle? systemUiOverlayStyle,
     String configId = GLOBAL_CONFIG_ID,
-  }) : super(configId: configId) {
-    backgroundColor = Colors.white;
-    leadIconBuilder = () => Image.asset(
+  })  : _backgroundColor = backgroundColor,
+        _appBarHeight = appBarHeight,
+        _leadIconBuilder = leadIconBuilder,
+        _titleStyle = titleStyle,
+        _actionsStyle = actionsStyle,
+        _titleMaxLength = titleMaxLength,
+        _leftAndRightPadding = leftAndRightPadding,
+        _itemSpacing = itemSpacing,
+        _titlePadding = titlePadding,
+        _iconSize = iconSize,
+        _systemUiOverlayStyle = systemUiOverlayStyle,
+        super(configId: configId) {
+    _backgroundColor = Colors.white;
+    _leadIconBuilder = () => Image.asset(
           BrnAsset.ICON_BACK_BLACK,
           package: BrnStrings.flutterPackageName,
           width: BrnAppBarTheme.iconSize,
           height: BrnAppBarTheme.iconSize,
           fit: BoxFit.fitHeight,
         );
-    titleStyle = BrnTextStyle(
+    _titleStyle = BrnTextStyle(
       fontSize: BrnAppBarTheme.titleFontSize,
       fontWeight: FontWeight.w600,
       color: BrnAppBarTheme.lightTextColor,
     );
-    actionsStyle = BrnTextStyle(
+    _actionsStyle = BrnTextStyle(
       color: BrnAppBarTheme.lightTextColor,
       fontSize: BrnAppBarTheme.actionFontSize,
       fontWeight: FontWeight.w600,
     );
-    systemUiOverlayStyle = SystemUiOverlayStyle.dark;
+    _systemUiOverlayStyle = SystemUiOverlayStyle.dark;
   }
 
   /// AppBar 的背景色
-  Color? backgroundColor;
+  Color? _backgroundColor;
+
+  Color get backgroundColor =>
+      _backgroundColor ??
+      BrnDefaultConfigUtils.defaultAppBarConfig.backgroundColor;
 
   /// AppBar 的高度
-  double? appBarHeight;
+  double? _appBarHeight;
+
+  double get appBarHeight =>
+      _appBarHeight ?? BrnDefaultConfigUtils.defaultAppBarConfig.appBarHeight;
 
   /// 返回按钮的child widget，一般为Image
-  BrnWidgetBuilder? leadIconBuilder;
+  BrnWidgetBuilder? _leadIconBuilder;
+
+  BrnWidgetBuilder get leadIconBuilder =>
+      _leadIconBuilder ??
+      BrnDefaultConfigUtils.defaultAppBarConfig.leadIconBuilder;
 
   /// 标题样式，仅当直接 title 设置为 String 生效
   ///
   /// **注意**：`fontSize` 必须传大小，否则报错
-  BrnTextStyle? titleStyle;
+  BrnTextStyle? _titleStyle;
+
+  BrnTextStyle get titleStyle =>
+      _titleStyle ?? BrnDefaultConfigUtils.defaultAppBarConfig.titleStyle;
 
   /// 右侧文字按钮样式，仅当直接actions里面元素为BrnTextAction类型生效
   ///
@@ -125,30 +173,52 @@ class BrnAppBarConfig extends BrnBaseConfig {
   ///   fontSize: BrnAppBarTheme.actionFontSize,
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? actionsStyle;
+  BrnTextStyle? _actionsStyle;
+
+  BrnTextStyle get actionsStyle =>
+      _actionsStyle ?? BrnDefaultConfigUtils.defaultAppBarConfig.actionsStyle;
 
   /// AppBar title 的最大字符数 8
-  int? titleMaxLength;
+  int? _titleMaxLength;
+
+  int get titleMaxLength =>
+      _titleMaxLength ??
+      BrnDefaultConfigUtils.defaultAppBarConfig.titleMaxLength;
 
   /// 左右边距
-  double? leftAndRightPadding;
+  double? _leftAndRightPadding;
+
+  double get leftAndRightPadding =>
+      _leftAndRightPadding ??
+      BrnDefaultConfigUtils.defaultAppBarConfig.leftAndRightPadding;
 
   /// 元素间间距
-  double? itemSpacing;
+  double? _itemSpacing;
+
+  double get itemSpacing =>
+      _itemSpacing ?? BrnDefaultConfigUtils.defaultAppBarConfig.itemSpacing;
 
   /// title的padding
-  EdgeInsets? titlePadding;
+  EdgeInsets? _titlePadding;
+
+  EdgeInsets get titlePadding =>
+      _titlePadding ?? BrnDefaultConfigUtils.defaultAppBarConfig.titlePadding;
 
   /// leadIcon 宽高，需要相同
   /// 默认为 20
-  double? iconSize;
+  double? _iconSize;
 
-  /// [AppBar] 中 flexibleSpace
-  Widget? flexibleSpace;
+  double get iconSize =>
+      _iconSize ?? BrnDefaultConfigUtils.defaultAppBarConfig.iconSize;
+
 
   /// statusBar 样式
   /// 默认为 [SystemUiOverlayStyle.dark]
-  SystemUiOverlayStyle? systemUiOverlayStyle;
+  SystemUiOverlayStyle? _systemUiOverlayStyle;
+
+  SystemUiOverlayStyle get systemUiOverlayStyle =>
+      _systemUiOverlayStyle ??
+      BrnDefaultConfigUtils.defaultAppBarConfig.systemUiOverlayStyle;
 
   @override
   void initThemeConfig(
@@ -161,22 +231,21 @@ class BrnAppBarConfig extends BrnBaseConfig {
     );
 
     /// 用户全局组件配置
-    BrnAppBarConfig? appbarConfig = BrnThemeConfigurator.instance
+    BrnAppBarConfig appbarConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
         .appBarConfig;
 
-    this.backgroundColor ??= appbarConfig?.backgroundColor;
-    this.appBarHeight ??= appbarConfig?.appBarHeight;
-    this.leadIconBuilder ??= appbarConfig?.leadIconBuilder;
-    this.titleStyle = appbarConfig?.titleStyle?.merge(titleStyle);
-    this.actionsStyle = appbarConfig?.actionsStyle?.merge(actionsStyle);
-    this.titleMaxLength ??= appbarConfig?.titleMaxLength;
-    this.leftAndRightPadding ??= appbarConfig?.leftAndRightPadding;
-    this.itemSpacing ??= appbarConfig?.itemSpacing;
-    this.titlePadding ??= appbarConfig?.titlePadding;
-    this.iconSize ??= appbarConfig?.iconSize;
-    this.flexibleSpace ??= appbarConfig?.flexibleSpace;
-    this.systemUiOverlayStyle ??= appbarConfig?.systemUiOverlayStyle;
+    _backgroundColor ??= appbarConfig._backgroundColor;
+    _appBarHeight ??= appbarConfig._appBarHeight;
+    _leadIconBuilder ??= appbarConfig._leadIconBuilder;
+    _titleStyle = appbarConfig.titleStyle.merge(_titleStyle);
+    _actionsStyle = appbarConfig.actionsStyle.merge(_actionsStyle);
+    _titleMaxLength ??= appbarConfig._titleMaxLength;
+    _leftAndRightPadding ??= appbarConfig._leftAndRightPadding;
+    _itemSpacing ??= appbarConfig._itemSpacing;
+    _titlePadding ??= appbarConfig._titlePadding;
+    _iconSize ??= appbarConfig._iconSize;
+    _systemUiOverlayStyle ??= appbarConfig._systemUiOverlayStyle;
   }
 
   BrnAppBarConfig copyWith({
@@ -194,37 +263,34 @@ class BrnAppBarConfig extends BrnBaseConfig {
     SystemUiOverlayStyle? systemUiOverlayStyle,
   }) {
     return BrnAppBarConfig(
-      backgroundColor: backgroundColor ?? this.backgroundColor,
-      appBarHeight: appBarHeight ?? this.appBarHeight,
-      leadIconBuilder: leadIconBuilder ?? this.leadIconBuilder,
-      titleStyle: titleStyle ?? this.titleStyle,
-      actionsStyle: actionsStyle ?? this.actionsStyle,
-      titleMaxLength: titleMaxLength ?? this.titleMaxLength,
-      leftAndRightPadding: leftAndRightPadding ?? this.leftAndRightPadding,
-      itemSpacing: itemSpacing ?? this.itemSpacing,
-      titlePadding: titlePadding ?? this.titlePadding,
-      iconSize: iconSize ?? this.iconSize,
-      flexibleSpace: flexibleSpace ?? this.flexibleSpace,
-      systemUiOverlayStyle: systemUiOverlayStyle ?? this.systemUiOverlayStyle,
+      backgroundColor: backgroundColor ?? _backgroundColor,
+      appBarHeight: appBarHeight ?? _appBarHeight,
+      leadIconBuilder: leadIconBuilder ?? _leadIconBuilder,
+      titleStyle: titleStyle ?? _titleStyle,
+      actionsStyle: actionsStyle ?? _actionsStyle,
+      titleMaxLength: titleMaxLength ?? _titleMaxLength,
+      leftAndRightPadding: leftAndRightPadding ?? _leftAndRightPadding,
+      itemSpacing: itemSpacing ?? _itemSpacing,
+      titlePadding: titlePadding ?? _titlePadding,
+      iconSize: iconSize ?? _iconSize,
+      systemUiOverlayStyle: systemUiOverlayStyle ?? _systemUiOverlayStyle,
     );
   }
 
   BrnAppBarConfig merge(BrnAppBarConfig? other) {
     if (other == null) return this;
     return copyWith(
-      backgroundColor: other.backgroundColor,
-      appBarHeight: other.appBarHeight,
-      leadIconBuilder: other.leadIconBuilder,
-      titleStyle: titleStyle?.merge(other.titleStyle) ?? other.titleStyle,
-      actionsStyle:
-          actionsStyle?.merge(other.actionsStyle) ?? other.actionsStyle,
-      titleMaxLength: other.titleMaxLength,
-      leftAndRightPadding: other.leftAndRightPadding,
-      itemSpacing: other.itemSpacing,
-      titlePadding: other.titlePadding,
-      iconSize: other.iconSize,
-      flexibleSpace: other.flexibleSpace,
-      systemUiOverlayStyle: other.systemUiOverlayStyle,
+      backgroundColor: other._backgroundColor,
+      appBarHeight: other._appBarHeight,
+      leadIconBuilder: other._leadIconBuilder,
+      titleStyle: titleStyle.merge(other._titleStyle),
+      actionsStyle: actionsStyle.merge(other._actionsStyle),
+      titleMaxLength: other._titleMaxLength,
+      leftAndRightPadding: other._leftAndRightPadding,
+      itemSpacing: other._itemSpacing,
+      titlePadding: other._titlePadding,
+      iconSize: other._iconSize,
+      systemUiOverlayStyle: other._systemUiOverlayStyle,
     );
   }
 }
