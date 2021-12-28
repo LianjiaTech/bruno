@@ -109,7 +109,7 @@ class BrnSelectedListActionSheet<T> {
 
   OverlayEntry? _overlayEntry;
   double? _leftOffset;
-  double _bottomKeyOffset = 0;
+  late double _bottomKeyOffset = 0;
   double? _maxWidth;
 
   BrnSelectedListActionSheet({
