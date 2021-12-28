@@ -129,7 +129,7 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(titleTextStyle),
+      ).merge(_titleTextStyle),
     );
     _contentTextStyle = abnormalStateConfig.contentTextStyle.merge(
       BrnTextStyle(

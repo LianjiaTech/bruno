@@ -8,7 +8,6 @@ class ScrollActorTabExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BrnAppBar(
-        themeData: BrnAppBarConfig(backgroundColor: Colors.green),
         title: '锚点',
       ),
       body: BrnAnchorTab(

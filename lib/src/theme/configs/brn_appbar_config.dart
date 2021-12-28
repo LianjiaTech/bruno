@@ -26,7 +26,6 @@ class BrnAppBarConfig extends BrnBaseConfig {
     double? itemSpacing,
     EdgeInsets? titlePadding,
     double? iconSize,
-    Widget? flexibleSpace,
     SystemUiOverlayStyle? systemUiOverlayStyle,
     String configId = GLOBAL_CONFIG_ID,
   })  : _backgroundColor = backgroundColor,
@@ -43,86 +42,64 @@ class BrnAppBarConfig extends BrnBaseConfig {
         super(configId: configId);
 
   BrnAppBarConfig.dark({
-    Color? backgroundColor,
     double? appBarHeight,
-    BrnWidgetBuilder? leadIconBuilder,
-    BrnTextStyle? titleStyle,
-    BrnTextStyle? actionsStyle,
     int? titleMaxLength,
     double? leftAndRightPadding,
     double? itemSpacing,
     EdgeInsets? titlePadding,
     double? iconSize,
-    Widget? flexibleSpace,
-    SystemUiOverlayStyle? systemUiOverlayStyle,
     String configId = GLOBAL_CONFIG_ID,
-  })  : _backgroundColor = backgroundColor,
-        _appBarHeight = appBarHeight,
-        _leadIconBuilder = leadIconBuilder,
-        _titleStyle = titleStyle,
-        _actionsStyle = actionsStyle,
+  })  : _appBarHeight = appBarHeight,
         _titleMaxLength = titleMaxLength,
         _leftAndRightPadding = leftAndRightPadding,
         _itemSpacing = itemSpacing,
         _titlePadding = titlePadding,
         _iconSize = iconSize,
-        _systemUiOverlayStyle = systemUiOverlayStyle,
         super(configId: configId) {
-    backgroundColor = Color(0xff2E313B);
-    leadIconBuilder = () => Image.asset(
-          BrnAsset.ICON_BACK_WHITE,
-          package: BrnStrings.flutterPackageName,
-          width: BrnAppBarTheme.iconSize,
-          height: BrnAppBarTheme.iconSize,
-          fit: BoxFit.fitHeight,
-        );
-    titleStyle = BrnTextStyle(
+    _backgroundColor = Color(0xff2E313B);
+    _leadIconBuilder = () => Image.asset(
+      BrnAsset.ICON_BACK_WHITE,
+      package: BrnStrings.flutterPackageName,
+      width: BrnAppBarTheme.iconSize,
+      height: BrnAppBarTheme.iconSize,
+      fit: BoxFit.fitHeight,
+    );
+    _titleStyle = BrnTextStyle(
       fontSize: BrnAppBarTheme.titleFontSize,
       fontWeight: FontWeight.w600,
       color: BrnAppBarTheme.darkTextColor,
     );
-    actionsStyle = BrnTextStyle(
+    _actionsStyle = BrnTextStyle(
       color: BrnAppBarTheme.darkTextColor,
       fontSize: BrnAppBarTheme.actionFontSize,
       fontWeight: FontWeight.w600,
     );
-    systemUiOverlayStyle = SystemUiOverlayStyle.light;
+    _systemUiOverlayStyle = SystemUiOverlayStyle.light;
   }
 
   BrnAppBarConfig.light({
-    Color? backgroundColor,
     double? appBarHeight,
-    BrnWidgetBuilder? leadIconBuilder,
-    BrnTextStyle? titleStyle,
-    BrnTextStyle? actionsStyle,
     int? titleMaxLength,
     double? leftAndRightPadding,
     double? itemSpacing,
     EdgeInsets? titlePadding,
     double? iconSize,
-    Widget? flexibleSpace,
-    SystemUiOverlayStyle? systemUiOverlayStyle,
     String configId = GLOBAL_CONFIG_ID,
-  })  : _backgroundColor = backgroundColor,
-        _appBarHeight = appBarHeight,
-        _leadIconBuilder = leadIconBuilder,
-        _titleStyle = titleStyle,
-        _actionsStyle = actionsStyle,
+  })  : _appBarHeight = appBarHeight,
         _titleMaxLength = titleMaxLength,
         _leftAndRightPadding = leftAndRightPadding,
         _itemSpacing = itemSpacing,
         _titlePadding = titlePadding,
         _iconSize = iconSize,
-        _systemUiOverlayStyle = systemUiOverlayStyle,
         super(configId: configId) {
     _backgroundColor = Colors.white;
     _leadIconBuilder = () => Image.asset(
-          BrnAsset.ICON_BACK_BLACK,
-          package: BrnStrings.flutterPackageName,
-          width: BrnAppBarTheme.iconSize,
-          height: BrnAppBarTheme.iconSize,
-          fit: BoxFit.fitHeight,
-        );
+      BrnAsset.ICON_BACK_BLACK,
+      package: BrnStrings.flutterPackageName,
+      width: BrnAppBarTheme.iconSize,
+      height: BrnAppBarTheme.iconSize,
+      fit: BoxFit.fitHeight,
+    );
     _titleStyle = BrnTextStyle(
       fontSize: BrnAppBarTheme.titleFontSize,
       fontWeight: FontWeight.w600,
@@ -141,7 +118,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
 
   Color get backgroundColor =>
       _backgroundColor ??
-      BrnDefaultConfigUtils.defaultAppBarConfig.backgroundColor;
+          BrnDefaultConfigUtils.defaultAppBarConfig.backgroundColor;
 
   /// AppBar 的高度
   double? _appBarHeight;
@@ -154,7 +131,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
 
   BrnWidgetBuilder get leadIconBuilder =>
       _leadIconBuilder ??
-      BrnDefaultConfigUtils.defaultAppBarConfig.leadIconBuilder;
+          BrnDefaultConfigUtils.defaultAppBarConfig.leadIconBuilder;
 
   /// 标题样式，仅当直接 title 设置为 String 生效
   ///
@@ -183,14 +160,14 @@ class BrnAppBarConfig extends BrnBaseConfig {
 
   int get titleMaxLength =>
       _titleMaxLength ??
-      BrnDefaultConfigUtils.defaultAppBarConfig.titleMaxLength;
+          BrnDefaultConfigUtils.defaultAppBarConfig.titleMaxLength;
 
   /// 左右边距
   double? _leftAndRightPadding;
 
   double get leftAndRightPadding =>
       _leftAndRightPadding ??
-      BrnDefaultConfigUtils.defaultAppBarConfig.leftAndRightPadding;
+          BrnDefaultConfigUtils.defaultAppBarConfig.leftAndRightPadding;
 
   /// 元素间间距
   double? _itemSpacing;
@@ -211,20 +188,19 @@ class BrnAppBarConfig extends BrnBaseConfig {
   double get iconSize =>
       _iconSize ?? BrnDefaultConfigUtils.defaultAppBarConfig.iconSize;
 
-
   /// statusBar 样式
   /// 默认为 [SystemUiOverlayStyle.dark]
   SystemUiOverlayStyle? _systemUiOverlayStyle;
 
   SystemUiOverlayStyle get systemUiOverlayStyle =>
       _systemUiOverlayStyle ??
-      BrnDefaultConfigUtils.defaultAppBarConfig.systemUiOverlayStyle;
+          BrnDefaultConfigUtils.defaultAppBarConfig.systemUiOverlayStyle;
 
   @override
   void initThemeConfig(
-    String configId, {
-    BrnCommonConfig? currentLevelCommonConfig,
-  }) {
+      String configId, {
+        BrnCommonConfig? currentLevelCommonConfig,
+      }) {
     super.initThemeConfig(
       configId,
       currentLevelCommonConfig: currentLevelCommonConfig,
@@ -259,7 +235,6 @@ class BrnAppBarConfig extends BrnBaseConfig {
     double? itemSpacing,
     EdgeInsets? titlePadding,
     double? iconSize,
-    Widget? flexibleSpace,
     SystemUiOverlayStyle? systemUiOverlayStyle,
   }) {
     return BrnAppBarConfig(

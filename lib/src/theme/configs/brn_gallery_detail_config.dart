@@ -42,19 +42,6 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
 
   /// 黑色主题
   BrnGalleryDetailConfig.dark({
-    appbarTitleStyle,
-    appbarActionStyle,
-    appbarBackgroundColor,
-    appbarBrightness,
-    tabBarUnSelectedLabelStyle,
-    tabBarLabelStyle,
-    tabBarBackgroundColor,
-    pageBackgroundColor,
-    bottomBackgroundColor,
-    titleStyle,
-    contentStyle,
-    actionStyle,
-    iconColor,
     String configId = GLOBAL_CONFIG_ID,
   }) : super(configId: configId) {
     _appbarTitleStyle = BrnTextStyle(color: commonConfig.colorTextBaseInverse);
@@ -74,19 +61,6 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
 
   /// 白色主题
   BrnGalleryDetailConfig.light({
-    appbarTitleStyle,
-    appbarActionStyle,
-    appbarBackgroundColor,
-    appbarBrightness,
-    tabBarUnSelectedLabelStyle,
-    tabBarLabelStyle,
-    tabBarBackgroundColor,
-    pageBackgroundColor,
-    bottomBackgroundColor,
-    titleStyle,
-    contentStyle,
-    actionStyle,
-    iconColor,
     String configId = GLOBAL_CONFIG_ID,
   }) : super(configId: configId) {
     _appbarTitleStyle = BrnTextStyle(color: commonConfig.colorTextBase);
@@ -270,8 +244,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     );
     _appbarBrightness ??= galleryDetailConfig.appbarBrightness;
     _appbarBackgroundColor ??= galleryDetailConfig.appbarBackgroundColor;
-    _tabBarUnSelectedLabelStyle = galleryDetailConfig
-        .tabBarUnSelectedLabelStyle
+    _tabBarUnSelectedLabelStyle = galleryDetailConfig.tabBarUnSelectedLabelStyle
         .merge(BrnTextStyle(fontSize: commonConfig.fontSizeSubHead))
         .merge(_tabBarUnSelectedLabelStyle);
     _tabBarLabelStyle = galleryDetailConfig.tabBarLabelStyle
@@ -357,8 +330,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
       pageBackgroundColor: other._pageBackgroundColor,
       bottomBackgroundColor: other._bottomBackgroundColor,
       titleStyle: titleStyle.merge(other._titleStyle),
-      contentStyle:
-          contentStyle.merge(other._contentStyle),
+      contentStyle: contentStyle.merge(other._contentStyle),
       actionStyle: actionStyle.merge(other._actionStyle),
       iconColor: other._iconColor,
     );
