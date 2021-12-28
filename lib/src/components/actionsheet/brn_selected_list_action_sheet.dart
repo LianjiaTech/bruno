@@ -107,10 +107,10 @@ class BrnSelectedListActionSheet<T> {
   /// 视图隐藏时的回调，会把是否是清空按钮触发的销毁视图回传
   final void Function(bool isClosedByClearButton)? onListDismissed;
 
-  OverlayEntry? _overlayEntry;
-  double? _leftOffset;
-  late double _bottomKeyOffset = 0;
-  double? _maxWidth;
+  late OverlayEntry? _overlayEntry;
+  late double? _leftOffset;
+  late double? _maxWidth;
+  double _bottomKeyOffset = 0;
 
   BrnSelectedListActionSheet({
     required this.context,
