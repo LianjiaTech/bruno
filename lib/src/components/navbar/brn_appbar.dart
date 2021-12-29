@@ -276,12 +276,12 @@ class BrnAppBar extends PreferredSize {
         .merge(_defaultConfig);
 
     Widget flexibleSpace;
-    if (_defaultConfig.flexibleSpace != null) {
+    if (this.flexibleSpace != null) {
       flexibleSpace = Container(
         height: _defaultConfig.appBarHeight +
                 MediaQueryData.fromWindow(window)?.padding?.top ??
             0,
-        child: _defaultConfig.flexibleSpace,
+        child: this.flexibleSpace,
       );
     }
 

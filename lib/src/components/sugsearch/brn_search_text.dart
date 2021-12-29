@@ -271,7 +271,7 @@ class _SearchTextState extends State<BrnSearchText> {
                       child: GestureDetector(
                         onTap: () {
                           if (widget.onTextClear != null) {
-                            bool isIntercept = widget.onTextClear!() ?? false;
+                            bool isIntercept = widget.onTextClear!();
                             if (isIntercept) return;
                           }
                           textEditingController!.clear();
