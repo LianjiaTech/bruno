@@ -1,4 +1,5 @@
 import 'package:bruno/src/theme/base/brn_base_config.dart';
+import 'package:bruno/src/theme/base/brn_default_config_utils.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -8,19 +9,24 @@ class BrnPairInfoTableConfig extends BrnBaseConfig {
   /// 遵循外部主题配置
   /// 默认为 [BrnDefaultConfigUtils.defaultPairInfoTableConfig]
   BrnPairInfoTableConfig({
-    this.rowSpacing,
-    this.itemSpacing,
-    this.keyTextStyle,
-    this.valueTextStyle,
-    this.linkTextStyle,
+    double? rowSpacing,
+    double? itemSpacing,
+    BrnTextStyle? keyTextStyle,
+    BrnTextStyle? valueTextStyle,
+    BrnTextStyle? linkTextStyle,
     String configId: GLOBAL_CONFIG_ID,
-  }) : super(configId: configId);
+  })  : _rowSpacing = rowSpacing,
+        _itemSpacing = itemSpacing,
+        _keyTextStyle = keyTextStyle,
+        _valueTextStyle = valueTextStyle,
+        _linkTextStyle = linkTextStyle,
+        super(configId: configId);
 
   /// 行间距 纵向
-  double? rowSpacing;
+  double? _rowSpacing;
 
   /// BrnInfoModal 属性配置 行间距
-  double? itemSpacing;
+  double? _itemSpacing;
 
   /// BrnInfoModal key文字样式
   ///
@@ -29,7 +35,7 @@ class BrnPairInfoTableConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   ///   fontWeight: FontWeight.w400,
   /// )
-  BrnTextStyle? keyTextStyle;
+  BrnTextStyle? _keyTextStyle;
 
   /// BrnInfoModal value文字样式
   ///
@@ -38,7 +44,7 @@ class BrnPairInfoTableConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   ///   fontWeight: FontWeight.w400,
   /// )
-  BrnTextStyle? valueTextStyle;
+  BrnTextStyle? _valueTextStyle;
 
   /// BrnInfoModal 链接文字样式
   ///
@@ -47,7 +53,27 @@ class BrnPairInfoTableConfig extends BrnBaseConfig {
   ///   fontWeight: FontWeight.w400,
   ///   fontSize: [BrnCommonConfig.fontSizeBase]
   /// )
-  BrnTextStyle? linkTextStyle;
+  BrnTextStyle? _linkTextStyle;
+
+  double get rowSpacing =>
+      _rowSpacing ??
+      BrnDefaultConfigUtils.defaultPairInfoTableConfig.rowSpacing;
+
+  double get itemSpacing =>
+      _itemSpacing ??
+      BrnDefaultConfigUtils.defaultPairInfoTableConfig.itemSpacing;
+
+  BrnTextStyle get keyTextStyle =>
+      _keyTextStyle ??
+      BrnDefaultConfigUtils.defaultPairInfoTableConfig.keyTextStyle;
+
+  BrnTextStyle get valueTextStyle =>
+      _valueTextStyle ??
+      BrnDefaultConfigUtils.defaultPairInfoTableConfig.valueTextStyle;
+
+  BrnTextStyle get linkTextStyle =>
+      _linkTextStyle ??
+      BrnDefaultConfigUtils.defaultPairInfoTableConfig.linkTextStyle;
 
   @override
   void initThemeConfig(
@@ -60,30 +86,30 @@ class BrnPairInfoTableConfig extends BrnBaseConfig {
     );
 
     /// 用户全局组件配置
-    BrnPairInfoTableConfig? pairInfoTableConfig = BrnThemeConfigurator.instance
+    BrnPairInfoTableConfig pairInfoTableConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
         .pairInfoTableConfig;
 
-    rowSpacing ??= pairInfoTableConfig?.rowSpacing;
-    keyTextStyle = pairInfoTableConfig?.keyTextStyle?.merge(
+    _rowSpacing ??= pairInfoTableConfig._rowSpacing;
+    _keyTextStyle = pairInfoTableConfig.keyTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextSecondary,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(keyTextStyle),
+      ).merge(_keyTextStyle),
     );
-    valueTextStyle = pairInfoTableConfig?.valueTextStyle?.merge(
+    _valueTextStyle = pairInfoTableConfig.valueTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(valueTextStyle),
+      ).merge(_valueTextStyle),
     );
-    linkTextStyle = pairInfoTableConfig?.linkTextStyle?.merge(
+    _linkTextStyle = pairInfoTableConfig.linkTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(linkTextStyle),
+      ).merge(_linkTextStyle),
     );
-    itemSpacing ??= pairInfoTableConfig?.itemSpacing;
+    _itemSpacing ??= pairInfoTableConfig._itemSpacing;
   }
 
   BrnPairInfoTableConfig copyWith({
@@ -94,25 +120,22 @@ class BrnPairInfoTableConfig extends BrnBaseConfig {
     BrnTextStyle? linkTextStyle,
   }) {
     return BrnPairInfoTableConfig(
-      rowSpacing: rowSpacing ?? this.rowSpacing,
-      itemSpacing: itemSpacing ?? this.itemSpacing,
-      keyTextStyle: keyTextStyle ?? this.keyTextStyle,
-      valueTextStyle: valueTextStyle ?? this.valueTextStyle,
-      linkTextStyle: linkTextStyle ?? this.linkTextStyle,
+      rowSpacing: rowSpacing ?? _rowSpacing,
+      itemSpacing: itemSpacing ?? _itemSpacing,
+      keyTextStyle: keyTextStyle ?? _keyTextStyle,
+      valueTextStyle: valueTextStyle ?? _valueTextStyle,
+      linkTextStyle: linkTextStyle ?? _linkTextStyle,
     );
   }
 
   BrnPairInfoTableConfig merge(BrnPairInfoTableConfig? other) {
     if (other == null) return this;
     return copyWith(
-      rowSpacing: other.rowSpacing,
-      itemSpacing: other.itemSpacing,
-      keyTextStyle:
-          keyTextStyle?.merge(other.keyTextStyle) ?? other.keyTextStyle,
-      valueTextStyle:
-          valueTextStyle?.merge(other.valueTextStyle) ?? other.valueTextStyle,
-      linkTextStyle:
-          linkTextStyle?.merge(other.linkTextStyle) ?? other.linkTextStyle,
+      rowSpacing: other._rowSpacing,
+      itemSpacing: other._itemSpacing,
+      keyTextStyle: keyTextStyle.merge(other._keyTextStyle),
+      valueTextStyle: valueTextStyle.merge(other._valueTextStyle),
+      linkTextStyle: linkTextStyle.merge(other._linkTextStyle),
     );
   }
 }
@@ -121,23 +144,29 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
   /// 遵循外部主题配置
   /// 默认为 [BrnDefaultConfigUtils.defaultPairRichInfoGridConfig]
   BrnPairRichInfoGridConfig({
-    this.rowSpacing,
-    this.itemSpacing,
-    this.itemHeight,
-    this.keyTextStyle,
-    this.valueTextStyle,
-    this.linkTextStyle,
+    double? rowSpacing,
+    double? itemSpacing,
+    double? itemHeight,
+    BrnTextStyle? keyTextStyle,
+    BrnTextStyle? valueTextStyle,
+    BrnTextStyle? linkTextStyle,
     String configId: GLOBAL_CONFIG_ID,
-  }) : super(configId: configId);
+  })  : _rowSpacing = rowSpacing,
+        _itemSpacing = itemSpacing,
+        _itemHeight = itemHeight,
+        _keyTextStyle = keyTextStyle,
+        _valueTextStyle = valueTextStyle,
+        _linkTextStyle = linkTextStyle,
+        super(configId: configId);
 
   /// 行间距 纵向
-  double? rowSpacing;
+  double? _rowSpacing;
 
   /// 元素间距 横向
-  double? itemSpacing;
+  double? _itemSpacing;
 
   /// 元素高度
-  double? itemHeight;
+  double? _itemHeight;
 
   /// key文字样式
   ///
@@ -146,7 +175,7 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   ///   fontWeight: FontWeight.w400,
   /// )
-  BrnTextStyle? keyTextStyle;
+  BrnTextStyle? _keyTextStyle;
 
   /// value文字样式
   ///
@@ -155,7 +184,7 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextBase],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? valueTextStyle;
+  BrnTextStyle? _valueTextStyle;
 
   /// 链接文字样式
   ///
@@ -164,7 +193,31 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.brandPrimary],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? linkTextStyle;
+  BrnTextStyle? _linkTextStyle;
+
+  double get rowSpacing =>
+      _rowSpacing ??
+      BrnDefaultConfigUtils.defaultPairRichInfoGridConfig.rowSpacing;
+
+  double get itemSpacing =>
+      _itemSpacing ??
+      BrnDefaultConfigUtils.defaultPairRichInfoGridConfig.itemSpacing;
+
+  double get itemHeight =>
+      _itemHeight ??
+      BrnDefaultConfigUtils.defaultPairRichInfoGridConfig.itemHeight;
+
+  BrnTextStyle get keyTextStyle =>
+      _keyTextStyle ??
+      BrnDefaultConfigUtils.defaultPairRichInfoGridConfig.keyTextStyle;
+
+  BrnTextStyle get valueTextStyle =>
+      _valueTextStyle ??
+      BrnDefaultConfigUtils.defaultPairRichInfoGridConfig.valueTextStyle;
+
+  BrnTextStyle get linkTextStyle =>
+      _linkTextStyle ??
+      BrnDefaultConfigUtils.defaultPairRichInfoGridConfig.linkTextStyle;
 
   @override
   void initThemeConfig(
@@ -177,31 +230,31 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
     );
 
     /// 用户全局组件配置
-    BrnPairRichInfoGridConfig? pairRichInfoGridConfig = BrnThemeConfigurator
+    BrnPairRichInfoGridConfig pairRichInfoGridConfig = BrnThemeConfigurator
         .instance
         .getConfig(configId: configId)
         .pairRichInfoGridConfig;
 
-    rowSpacing ??= pairRichInfoGridConfig?.rowSpacing;
-    itemSpacing ??= pairRichInfoGridConfig?.itemSpacing;
-    itemHeight ??= pairRichInfoGridConfig?.itemHeight;
-    keyTextStyle = pairRichInfoGridConfig?.keyTextStyle?.merge(
+    _rowSpacing ??= pairRichInfoGridConfig._rowSpacing;
+    _itemSpacing ??= pairRichInfoGridConfig._itemSpacing;
+    _itemHeight ??= pairRichInfoGridConfig._itemHeight;
+    _keyTextStyle = pairRichInfoGridConfig.keyTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextSecondary,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(keyTextStyle),
+      ).merge(_keyTextStyle),
     );
-    valueTextStyle = pairRichInfoGridConfig?.valueTextStyle?.merge(
+    _valueTextStyle = pairRichInfoGridConfig.valueTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(valueTextStyle),
+      ).merge(_valueTextStyle),
     );
-    linkTextStyle = pairRichInfoGridConfig?.linkTextStyle?.merge(
+    _linkTextStyle = pairRichInfoGridConfig.linkTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(linkTextStyle),
+      ).merge(_linkTextStyle),
     );
   }
 
@@ -215,27 +268,24 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
     BrnTextStyle? titleTextsStyle,
   }) {
     return BrnPairRichInfoGridConfig(
-      rowSpacing: rowSpacing ?? this.rowSpacing,
-      itemSpacing: itemSpacing ?? this.itemSpacing,
-      itemHeight: itemHeight ?? this.itemHeight,
-      keyTextStyle: keyTextStyle ?? this.keyTextStyle,
-      valueTextStyle: valueTextStyle ?? this.valueTextStyle,
-      linkTextStyle: linkTextStyle ?? this.linkTextStyle,
+      rowSpacing: rowSpacing ?? _rowSpacing,
+      itemSpacing: itemSpacing ?? _itemSpacing,
+      itemHeight: itemHeight ?? _itemHeight,
+      keyTextStyle: keyTextStyle ?? _keyTextStyle,
+      valueTextStyle: valueTextStyle ?? _valueTextStyle,
+      linkTextStyle: linkTextStyle ?? _linkTextStyle,
     );
   }
 
   BrnPairRichInfoGridConfig merge(BrnPairRichInfoGridConfig? other) {
     if (other == null) return this;
     return copyWith(
-      rowSpacing: other.rowSpacing,
-      itemSpacing: other.itemSpacing,
-      itemHeight: other.itemHeight,
-      keyTextStyle:
-          keyTextStyle?.merge(other.keyTextStyle) ?? other.keyTextStyle,
-      valueTextStyle:
-          valueTextStyle?.merge(other.valueTextStyle) ?? other.valueTextStyle,
-      linkTextStyle:
-          linkTextStyle?.merge(other.linkTextStyle) ?? other.linkTextStyle,
+      rowSpacing: other._rowSpacing,
+      itemSpacing: other._itemSpacing,
+      itemHeight: other._itemHeight,
+      keyTextStyle: keyTextStyle.merge(other._keyTextStyle),
+      valueTextStyle: valueTextStyle.merge(other._valueTextStyle),
+      linkTextStyle: linkTextStyle.merge(other._linkTextStyle),
     );
   }
 }

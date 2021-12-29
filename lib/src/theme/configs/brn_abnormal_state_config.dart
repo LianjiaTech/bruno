@@ -1,4 +1,5 @@
 import 'package:bruno/src/theme/base/brn_base_config.dart';
+import 'package:bruno/src/theme/base/brn_default_config_utils.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -6,16 +7,24 @@ import 'package:bruno/src/theme/configs/brn_common_config.dart';
 /// 描述: 空页面配置类
 class BrnAbnormalStateConfig extends BrnBaseConfig {
   BrnAbnormalStateConfig({
-    this.titleTextStyle,
-    this.contentTextStyle,
-    this.operateTextStyle,
-    this.btnRadius,
-    this.singleTextStyle,
-    this.doubleTextStyle,
-    this.singleMinWidth,
-    this.doubleMinWidth,
+    BrnTextStyle? titleTextStyle,
+    BrnTextStyle? contentTextStyle,
+    BrnTextStyle? operateTextStyle,
+    double? btnRadius,
+    BrnTextStyle? singleTextStyle,
+    BrnTextStyle? doubleTextStyle,
+    double? singleMinWidth,
+    double? doubleMinWidth,
     String configId = GLOBAL_CONFIG_ID,
-  }) : super(configId: configId);
+  })  : _titleTextStyle = titleTextStyle,
+        _contentTextStyle = contentTextStyle,
+        _operateTextStyle = operateTextStyle,
+        _btnRadius = btnRadius,
+        _singleTextStyle = singleTextStyle,
+        _doubleTextStyle = doubleTextStyle,
+        _singleMinWidth = singleMinWidth,
+        _doubleMinWidth = doubleMinWidth,
+        super(configId: configId);
 
   /// 文案区域标题
   ///
@@ -24,7 +33,7 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? titleTextStyle;
+  BrnTextStyle? _titleTextStyle;
 
   /// 文案区域内容
   ///
@@ -32,7 +41,7 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextHint],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? contentTextStyle;
+  BrnTextStyle? _contentTextStyle;
 
   /// 操作区域文本样式
   ///
@@ -40,11 +49,11 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.brandPrimary],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? operateTextStyle;
+  BrnTextStyle? _operateTextStyle;
 
   /// 圆角
   /// default value is [BrnCommonConfig.radiusSm]
-  double? btnRadius;
+  double? _btnRadius;
 
   /// 单按钮文本样式
   ///
@@ -52,7 +61,7 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextBaseInverse],
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   /// )
-  BrnTextStyle? singleTextStyle;
+  BrnTextStyle? _singleTextStyle;
 
   /// 双按钮文本样式
   ///
@@ -60,15 +69,46 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.brandPrimary],
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   /// )
-  BrnTextStyle? doubleTextStyle;
+  BrnTextStyle? _doubleTextStyle;
 
   /// 单按钮的按钮最小宽度
   /// 默认值为 160
-  double? singleMinWidth;
+  double? _singleMinWidth;
 
   /// 多按钮的按钮最小宽度
   /// 默认值为 120
-  double? doubleMinWidth;
+  double? _doubleMinWidth;
+
+  BrnTextStyle get titleTextStyle =>
+      _titleTextStyle ??
+      BrnDefaultConfigUtils.defaultAbnormalStateConfig.titleTextStyle;
+
+  BrnTextStyle get contentTextStyle =>
+      _contentTextStyle ??
+      BrnDefaultConfigUtils.defaultAbnormalStateConfig.contentTextStyle;
+
+  BrnTextStyle get operateTextStyle =>
+      _operateTextStyle ??
+      BrnDefaultConfigUtils.defaultAbnormalStateConfig.operateTextStyle;
+
+  double get btnRadius =>
+      _btnRadius ?? BrnDefaultConfigUtils.defaultAbnormalStateConfig.btnRadius;
+
+  BrnTextStyle get singleTextStyle =>
+      _singleTextStyle ??
+      BrnDefaultConfigUtils.defaultAbnormalStateConfig.singleTextStyle;
+
+  BrnTextStyle get doubleTextStyle =>
+      _doubleTextStyle ??
+      BrnDefaultConfigUtils.defaultAbnormalStateConfig.doubleTextStyle;
+
+  double get singleMinWidth =>
+      _singleMinWidth ??
+      BrnDefaultConfigUtils.defaultAbnormalStateConfig.singleMinWidth;
+
+  double get doubleMinWidth =>
+      _doubleMinWidth ??
+      BrnDefaultConfigUtils.defaultAbnormalStateConfig.doubleMinWidth;
 
   @override
   void initThemeConfig(
@@ -81,43 +121,43 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
     );
 
     /// 用户全局组件配置
-    BrnAbnormalStateConfig? abnormalStateConfig = BrnThemeConfigurator.instance
+    BrnAbnormalStateConfig abnormalStateConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
         .abnormalStateConfig;
 
-    titleTextStyle = abnormalStateConfig?.titleTextStyle?.merge(
+    _titleTextStyle = abnormalStateConfig.titleTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(titleTextStyle),
+      ).merge(_titleTextStyle),
     );
-    contentTextStyle = abnormalStateConfig?.contentTextStyle?.merge(
+    _contentTextStyle = abnormalStateConfig.contentTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextHint,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(contentTextStyle),
+      ).merge(_contentTextStyle),
     );
-    operateTextStyle = abnormalStateConfig?.operateTextStyle?.merge(
+    _operateTextStyle = abnormalStateConfig.operateTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(operateTextStyle),
+      ).merge(_operateTextStyle),
     );
-    singleTextStyle = abnormalStateConfig?.singleTextStyle?.merge(
+    _singleTextStyle = abnormalStateConfig.singleTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBaseInverse,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(singleTextStyle),
+      ).merge(_singleTextStyle),
     );
-    doubleTextStyle = abnormalStateConfig?.doubleTextStyle?.merge(
+    _doubleTextStyle = abnormalStateConfig.doubleTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(doubleTextStyle),
+      ).merge(_doubleTextStyle),
     );
-    btnRadius ??= abnormalStateConfig?.btnRadius;
-    singleMinWidth ??= abnormalStateConfig?.singleMinWidth;
-    doubleMinWidth ??= abnormalStateConfig?.doubleMinWidth;
+    _btnRadius ??= abnormalStateConfig._btnRadius;
+    _singleMinWidth ??= abnormalStateConfig._singleMinWidth;
+    _doubleMinWidth ??= abnormalStateConfig._doubleMinWidth;
   }
 
   BrnAbnormalStateConfig copyWith({
@@ -131,33 +171,28 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
     double? doubleMinWidth,
   }) {
     return BrnAbnormalStateConfig(
-      titleTextStyle: titleTextStyle ?? this.titleTextStyle,
-      contentTextStyle: contentTextStyle ?? this.contentTextStyle,
-      operateTextStyle: operateTextStyle ?? this.operateTextStyle,
-      btnRadius: btnRadius ?? this.btnRadius,
-      singleTextStyle: singleTextStyle ?? this.singleTextStyle,
-      doubleTextStyle: doubleTextStyle ?? this.doubleTextStyle,
-      singleMinWidth: singleMinWidth ?? this.singleMinWidth,
-      doubleMinWidth: doubleMinWidth ?? this.doubleMinWidth,
+      titleTextStyle: titleTextStyle ?? _titleTextStyle,
+      contentTextStyle: contentTextStyle ?? _contentTextStyle,
+      operateTextStyle: operateTextStyle ?? _operateTextStyle,
+      btnRadius: btnRadius ?? _btnRadius,
+      singleTextStyle: singleTextStyle ?? _singleTextStyle,
+      doubleTextStyle: doubleTextStyle ?? _doubleTextStyle,
+      singleMinWidth: singleMinWidth ?? _singleMinWidth,
+      doubleMinWidth: doubleMinWidth ?? _doubleMinWidth,
     );
   }
 
   BrnAbnormalStateConfig merge(BrnAbnormalStateConfig? other) {
     if (other == null) return this;
     return copyWith(
-      titleTextStyle:
-          titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
-      contentTextStyle: contentTextStyle?.merge(other.contentTextStyle) ??
-          other.contentTextStyle,
-      operateTextStyle: operateTextStyle?.merge(other.operateTextStyle) ??
-          other.operateTextStyle,
-      btnRadius: other.btnRadius,
-      singleTextStyle: singleTextStyle?.merge(other.singleTextStyle) ??
-          other.singleTextStyle,
-      doubleTextStyle: doubleTextStyle?.merge(other.doubleTextStyle) ??
-          other.doubleTextStyle,
-      singleMinWidth: other.singleMinWidth,
-      doubleMinWidth: other.doubleMinWidth,
+      titleTextStyle: titleTextStyle.merge(other._titleTextStyle),
+      contentTextStyle: contentTextStyle.merge(other._contentTextStyle),
+      operateTextStyle: operateTextStyle.merge(other._operateTextStyle),
+      btnRadius: other._btnRadius,
+      singleTextStyle: singleTextStyle.merge(other._singleTextStyle),
+      doubleTextStyle: doubleTextStyle.merge(other._doubleTextStyle),
+      singleMinWidth: other._singleMinWidth,
+      doubleMinWidth: other._doubleMinWidth,
     );
   }
 }

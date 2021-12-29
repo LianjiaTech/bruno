@@ -1,3 +1,4 @@
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/theme/base/brn_base_config.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -7,16 +8,24 @@ import 'package:flutter/material.dart';
 /// 卡片标题 配置类
 class BrnCardTitleConfig extends BrnBaseConfig {
   BrnCardTitleConfig({
-    this.titleWithHeightTextStyle,
-    this.detailTextStyle,
-    this.accessoryTextStyle,
-    this.cardTitlePadding,
-    this.titleTextStyle,
-    this.subtitleTextStyle,
-    this.alignment,
-    this.cardBackgroundColor,
+    BrnTextStyle? titleWithHeightTextStyle,
+    BrnTextStyle? detailTextStyle,
+    BrnTextStyle? accessoryTextStyle,
+    EdgeInsets? cardTitlePadding,
+    BrnTextStyle? titleTextStyle,
+    BrnTextStyle? subtitleTextStyle,
+    PlaceholderAlignment? alignment,
+    Color? cardBackgroundColor,
     String configId = GLOBAL_CONFIG_ID,
-  }) : super(configId: configId);
+  })  : _titleWithHeightTextStyle = titleWithHeightTextStyle,
+        _detailTextStyle = detailTextStyle,
+        _accessoryTextStyle = accessoryTextStyle,
+        _cardTitlePadding = cardTitlePadding,
+        _titleTextStyle = titleTextStyle,
+        _subtitleTextStyle = subtitleTextStyle,
+        _alignment = alignment,
+        _cardBackgroundColor = cardBackgroundColor,
+        super(configId: configId);
 
   /// 标题外边距间距
   ///
@@ -24,7 +33,11 @@ class BrnCardTitleConfig extends BrnBaseConfig {
   ///   top: [BrnCommonConfig.vSpacingXl],
   ///   bottom: [BrnCommonConfig.vSpacingMd],
   /// )
-  EdgeInsets? cardTitlePadding;
+  EdgeInsets? _cardTitlePadding;
+
+  EdgeInsets get cardTitlePadding =>
+      _cardTitlePadding ??
+      BrnDefaultConfigUtils.defaultCardTitleConfig.cardTitlePadding;
 
   /// 标题文本样式
   ///
@@ -34,7 +47,11 @@ class BrnCardTitleConfig extends BrnBaseConfig {
   ///   fontWeight: FontWeight.w600,
   ///   height: 25 / 18,
   /// )
-  BrnTextStyle? titleWithHeightTextStyle;
+  BrnTextStyle? _titleWithHeightTextStyle;
+
+  BrnTextStyle get titleWithHeightTextStyle =>
+      _titleWithHeightTextStyle ??
+      BrnDefaultConfigUtils.defaultCardTitleConfig.titleWithHeightTextStyle;
 
   /// 标题文本样式
   ///
@@ -43,7 +60,11 @@ class BrnCardTitleConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeHead],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? titleTextStyle;
+  BrnTextStyle? _titleTextStyle;
+
+  BrnTextStyle get titleTextStyle =>
+      _titleTextStyle ??
+      BrnDefaultConfigUtils.defaultCardTitleConfig.titleTextStyle;
 
   /// 标题右边的副标题文本样式
   ///
@@ -51,7 +72,11 @@ class BrnCardTitleConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextSecondary],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? subtitleTextStyle;
+  BrnTextStyle? _subtitleTextStyle;
+
+  BrnTextStyle get subtitleTextStyle =>
+      _subtitleTextStyle ??
+      BrnDefaultConfigUtils.defaultCardTitleConfig.subtitleTextStyle;
 
   /// 详情文本样式
   ///
@@ -59,7 +84,11 @@ class BrnCardTitleConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextBase],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? detailTextStyle;
+  BrnTextStyle? _detailTextStyle;
+
+  BrnTextStyle get detailTextStyle =>
+      _detailTextStyle ??
+      BrnDefaultConfigUtils.defaultCardTitleConfig.detailTextStyle;
 
   /// 辅助文本样式
   ///
@@ -67,15 +96,26 @@ class BrnCardTitleConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextSecondary],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? accessoryTextStyle;
+  BrnTextStyle? _accessoryTextStyle;
+
+  BrnTextStyle get accessoryTextStyle =>
+      _accessoryTextStyle ??
+      BrnDefaultConfigUtils.defaultCardTitleConfig.accessoryTextStyle;
 
   /// 对齐方式
   /// 默认为 [PlaceholderAlignment.middle]
-  PlaceholderAlignment? alignment;
+  PlaceholderAlignment? _alignment;
+
+  PlaceholderAlignment get alignment =>
+      _alignment ?? BrnDefaultConfigUtils.defaultCardTitleConfig.alignment;
 
   /// 卡片背景
   /// 默认为 [BrnCommonConfig.fillBase]
-  Color? cardBackgroundColor;
+  Color? _cardBackgroundColor;
+
+  Color get cardBackgroundColor =>
+      _cardBackgroundColor ??
+      BrnDefaultConfigUtils.defaultCardTitleConfig.cardBackgroundColor;
 
   /// cardTitleConfig  获取逻辑详见 [BrnThemeConfigurator.getConfig] 方法
   @override
@@ -88,48 +128,48 @@ class BrnCardTitleConfig extends BrnBaseConfig {
       currentLevelCommonConfig: currentLevelCommonConfig,
     );
 
-    BrnCardTitleConfig? cardTitleConfig = BrnThemeConfigurator.instance
+    BrnCardTitleConfig cardTitleConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
         .cardTitleConfig;
 
-    cardBackgroundColor ??= commonConfig.fillBase;
-    cardTitlePadding ??= EdgeInsets.only(
-      left: cardTitleConfig?.cardTitlePadding?.left ?? 0,
-      top: commonConfig.vSpacingXl ?? 0,
-      right: cardTitleConfig?.cardTitlePadding?.right ?? 0,
-      bottom: commonConfig.vSpacingMd ?? 0,
+    _cardBackgroundColor ??= commonConfig.fillBase;
+    _cardTitlePadding ??= EdgeInsets.only(
+      left: cardTitleConfig.cardTitlePadding.left,
+      top: commonConfig.vSpacingXl,
+      right: cardTitleConfig.cardTitlePadding.right,
+      bottom: commonConfig.vSpacingMd,
     );
-    titleWithHeightTextStyle = cardTitleConfig?.titleWithHeightTextStyle?.merge(
+    _titleWithHeightTextStyle = cardTitleConfig.titleWithHeightTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeHead,
-      ).merge(titleWithHeightTextStyle),
+      ).merge(_titleWithHeightTextStyle),
     );
-    titleTextStyle = cardTitleConfig?.titleTextStyle?.merge(
+    _titleTextStyle = cardTitleConfig.titleTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeHead,
-      ).merge(titleTextStyle),
+      ).merge(_titleTextStyle),
     );
-    subtitleTextStyle = cardTitleConfig?.subtitleTextStyle?.merge(
+    _subtitleTextStyle = cardTitleConfig.subtitleTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(subtitleTextStyle),
+      ).merge(_subtitleTextStyle),
     );
-    accessoryTextStyle = cardTitleConfig?.accessoryTextStyle?.merge(
+    _accessoryTextStyle = cardTitleConfig.accessoryTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextSecondary,
         fontSize: commonConfig.fontSizeHead,
-      ).merge(accessoryTextStyle),
+      ).merge(_accessoryTextStyle),
     );
-    detailTextStyle = cardTitleConfig?.detailTextStyle?.merge(
+    _detailTextStyle = cardTitleConfig.detailTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(detailTextStyle),
+      ).merge(_detailTextStyle),
     );
-    alignment ??= cardTitleConfig?.alignment;
+    _alignment ??= cardTitleConfig._alignment;
   }
 
   BrnCardTitleConfig copyWith({
@@ -143,35 +183,30 @@ class BrnCardTitleConfig extends BrnBaseConfig {
     Color? cardBackgroundColor,
   }) {
     return BrnCardTitleConfig(
-      cardTitlePadding: cardTitlePadding ?? this.cardTitlePadding,
+      cardTitlePadding: cardTitlePadding ?? _cardTitlePadding,
       titleWithHeightTextStyle:
-          titleWithHeightTextStyle ?? this.titleWithHeightTextStyle,
-      titleTextStyle: titleTextStyle ?? this.titleTextStyle,
-      subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
-      detailTextStyle: detailTextStyle ?? this.detailTextStyle,
-      accessoryTextStyle: accessoryTextStyle ?? this.accessoryTextStyle,
-      alignment: alignment ?? this.alignment,
-      cardBackgroundColor: cardBackgroundColor ?? this.cardBackgroundColor,
+          titleWithHeightTextStyle ?? _titleWithHeightTextStyle,
+      titleTextStyle: titleTextStyle ?? _titleTextStyle,
+      subtitleTextStyle: subtitleTextStyle ?? _subtitleTextStyle,
+      detailTextStyle: detailTextStyle ?? _detailTextStyle,
+      accessoryTextStyle: accessoryTextStyle ?? _accessoryTextStyle,
+      alignment: alignment ?? _alignment,
+      cardBackgroundColor: cardBackgroundColor ?? _cardBackgroundColor,
     );
   }
 
   BrnCardTitleConfig merge(BrnCardTitleConfig? other) {
     if (other == null) return this;
     return copyWith(
-      cardTitlePadding: other.cardTitlePadding,
+      cardTitlePadding: other._cardTitlePadding,
       titleWithHeightTextStyle:
-          titleWithHeightTextStyle?.merge(other.titleWithHeightTextStyle) ??
-              other.titleWithHeightTextStyle,
-      titleTextStyle:
-          titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
-      subtitleTextStyle: subtitleTextStyle?.merge(other.subtitleTextStyle) ??
-          other.subtitleTextStyle,
-      detailTextStyle: detailTextStyle?.merge(other.detailTextStyle) ??
-          other.detailTextStyle,
-      accessoryTextStyle: accessoryTextStyle?.merge(other.accessoryTextStyle) ??
-          other.accessoryTextStyle,
-      alignment: other.alignment,
-      cardBackgroundColor: other.cardBackgroundColor,
+          titleWithHeightTextStyle.merge(other._titleWithHeightTextStyle),
+      titleTextStyle: titleTextStyle.merge(other._titleTextStyle),
+      subtitleTextStyle: subtitleTextStyle.merge(other._subtitleTextStyle),
+      detailTextStyle: detailTextStyle.merge(other._detailTextStyle),
+      accessoryTextStyle: accessoryTextStyle.merge(other._accessoryTextStyle),
+      alignment: other._alignment,
+      cardBackgroundColor: other._cardBackgroundColor,
     );
   }
 }
