@@ -251,7 +251,7 @@ class BrnSingleSelectDialogWidgetState
   }
 
   Widget _buildItem(BuildContext context, int index) {
-    if (widget.conditions == null || widget.conditions![index] == null) {
+    if (widget.conditions == null) {
       return Container();
     } else {
       return Container(

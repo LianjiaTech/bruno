@@ -289,29 +289,29 @@ class BrnDialog extends AlertDialog {
     final List<Widget> children = <Widget>[];
 
     if (_isShowIcon()) {
-      Widget generateIconWidget = _generateIconWidget(context, defaultConfig);
+      Widget generateIconWidget = _generateIconWidget(context, defaultConfig!);
       children.add(generateIconWidget);
     }
 
     if (_isShowTitle()) {
-      Widget generateTitleWidget = _generateTitleWidget(context, defaultConfig);
+      Widget generateTitleWidget = _generateTitleWidget(context, defaultConfig!);
       children.add(generateTitleWidget);
     }
 
     if (_isShowContent()) {
       Widget generateContentWidget =
-          _generateContentWidget(context, defaultConfig);
+          _generateContentWidget(context, defaultConfig!);
       children.add(generateContentWidget);
     }
 
     if (_isShowWarning()) {
       Widget generateWarningWidget =
-          _generateWarningWidget(context, defaultConfig);
+          _generateWarningWidget(context, defaultConfig!);
       children.add(generateWarningWidget);
     }
 
     children.add(Padding(
-      padding: defaultConfig.dividerPadding!,
+      padding: defaultConfig!.dividerPadding,
       child: SizedBox(
         height: 0,
         width: 0,
@@ -346,7 +346,7 @@ class BrnDialog extends AlertDialog {
     Widget _createWidget(Widget? widget) {
       return Center(
         child: Padding(
-          padding: dialogConfig.iconPadding!,
+          padding: dialogConfig.iconPadding,
           child: SizedBox(
             width: 36,
             height: 36,
@@ -401,7 +401,7 @@ class BrnDialog extends AlertDialog {
       return Flexible(
         child: DefaultTextStyle(
           child: contentWidget!,
-          style: (dialogConfig.contentTextStyle)!.generateTextStyle(),
+          style: (dialogConfig.contentTextStyle).generateTextStyle(),
         ),
       );
     }
@@ -411,7 +411,7 @@ class BrnDialog extends AlertDialog {
       child: Center(
         child: Text(
           messageText!,
-          style: (dialogConfig.contentTextStyle)?.generateTextStyle(),
+          style: (dialogConfig.contentTextStyle).generateTextStyle(),
           textAlign: dialogConfig.contentTextAlign,
         ),
       ),
@@ -424,7 +424,7 @@ class BrnDialog extends AlertDialog {
     if (warningWidget != null)
       return Flexible(
         child: DefaultTextStyle(
-          style: (dialogConfig.warningTextStyle)!.generateTextStyle(),
+          style: (dialogConfig.warningTextStyle).generateTextStyle(),
           child: warningWidget!,
         ),
       );
@@ -433,7 +433,7 @@ class BrnDialog extends AlertDialog {
       padding: _configWarningPadding(dialogConfig)!,
       child: Text(
         warningText!,
-        style: (dialogConfig.warningTextStyle)?.generateTextStyle(),
+        style: (dialogConfig.warningTextStyle).generateTextStyle(),
         textAlign: dialogConfig.warningTextAlign,
       ),
     );
@@ -469,7 +469,7 @@ class BrnDialog extends AlertDialog {
       ),
       constraints: BoxConstraints.tightFor(height: cBottomHeight),
       child: DefaultTextStyle(
-        style: (dialogConfig.mainActionTextStyle)!.generateTextStyle(),
+        style: (dialogConfig.mainActionTextStyle).generateTextStyle(),
         child: Center(
           child: widget,
         ),
@@ -507,7 +507,7 @@ class BrnDialog extends AlertDialog {
         ),
       ),
       child: DefaultTextStyle(
-        style: dialogConfig.assistActionsTextStyle!.generateTextStyle(),
+        style: dialogConfig.assistActionsTextStyle.generateTextStyle(),
         child: Center(
           child: widget,
         ),
@@ -557,7 +557,7 @@ class BrnDialog extends AlertDialog {
       );
     } else {
       return Container(
-        height: 3 * (defaultConfig.bottomHeight ?? 0 + 1),
+        height: 3 * (defaultConfig.bottomHeight),
         width: double.maxFinite,
         child: ListView.separated(
             shrinkWrap: true,

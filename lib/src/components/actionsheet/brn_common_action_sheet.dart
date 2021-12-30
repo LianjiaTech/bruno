@@ -101,7 +101,7 @@ class BrnCommonActionSheet extends StatelessWidget {
     themeData ??= BrnActionSheetConfig();
     themeData = BrnThemeConfigurator.instance
         .getConfig(configId: themeData!.configId)
-        .actionSheetConfig!
+        .actionSheetConfig
         .merge(themeData);
   }
 
@@ -122,8 +122,8 @@ class BrnCommonActionSheet extends StatelessWidget {
             color: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(themeData!.topRadius ?? 0.0),
-                topRight: Radius.circular(themeData!.topRadius ?? 0.0),
+                topLeft: Radius.circular(themeData!.topRadius),
+                topRight: Radius.circular(themeData!.topRadius),
               ),
             ),
           ),
@@ -174,7 +174,7 @@ class BrnCommonActionSheet extends StatelessWidget {
               title!,
               textAlign: TextAlign.center,
               maxLines: maxTitleLines,
-              style: themeData!.titleStyle!.generateTextStyle(),
+              style: themeData!.titleStyle.generateTextStyle(),
             ),
           ),
         ),
@@ -240,10 +240,10 @@ class BrnCommonActionSheet extends StatelessWidget {
         maxLines: 1,
         style: action.titleStyle ??
             (action.actionStyle == BrnCommonActionSheetItemStyle.alert
-                ? this.themeData!.itemTitleStyleAlert!.generateTextStyle()
+                ? this.themeData!.itemTitleStyleAlert.generateTextStyle()
                 : (action.actionStyle == BrnCommonActionSheetItemStyle.link
-                    ? this.themeData!.itemTitleStyleLink!.generateTextStyle()
-                    : this.themeData!.itemTitleStyle!.generateTextStyle())),
+                    ? this.themeData!.itemTitleStyleLink.generateTextStyle()
+                    : this.themeData!.itemTitleStyle.generateTextStyle())),
       ),
     ));
     hasTitle = true;
@@ -263,10 +263,10 @@ class BrnCommonActionSheet extends StatelessWidget {
             maxLines: 1,
             style: action.descStyle ??
                 (action.actionStyle == BrnCommonActionSheetItemStyle.alert
-                    ? this.themeData!.itemDescStyleAlert!.generateTextStyle()
+                    ? this.themeData!.itemDescStyleAlert.generateTextStyle()
                     : (action.actionStyle == BrnCommonActionSheetItemStyle.link
-                        ? this.themeData!.itemDescStyleLink!.generateTextStyle()
-                        : this.themeData!.itemDescStyle!.generateTextStyle())),
+                        ? this.themeData!.itemDescStyleLink.generateTextStyle()
+                        : this.themeData!.itemDescStyle.generateTextStyle())),
           ),
         ),
       );
@@ -291,7 +291,7 @@ class BrnCommonActionSheet extends StatelessWidget {
         child: Center(
           child: Text(
             cancelTitle ?? "取消",
-            style: this.themeData!.cancelStyle!.generateTextStyle(),
+            style: this.themeData!.cancelStyle.generateTextStyle(),
           ),
         ),
       ),

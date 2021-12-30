@@ -212,9 +212,10 @@ class BrnShareDialog extends StatelessWidget {
             BrnShareItemConstants.shareItemImagePathList[shareChannels![index]]);
       }
       //如果没图或没文字则不显示
-      if (title == null || image == null) {
-        continue;
-      }
+      //title\image不会为null看是不是需要处理不为空字符title.isEmpty
+      // if (title == null || image == null) {
+      //   continue;
+      // }
       // “分享”按钮容器
       shareItems.add(Container(
         width: 39,
