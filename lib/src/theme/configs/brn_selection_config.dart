@@ -1,4 +1,5 @@
 import 'package:bruno/src/theme/base/brn_base_config.dart';
+import 'package:bruno/src/theme/base/brn_default_config_utils.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -9,34 +10,60 @@ class BrnSelectionConfig extends BrnBaseConfig {
   /// 遵循外部主题配置
   /// 默认为 [BrnDefaultConfigUtils.defaultSelectionConfig]
   BrnSelectionConfig({
-    this.menuNormalTextStyle,
-    this.menuSelectedTextStyle,
-    this.tagNormalTextStyle,
-    this.tagSelectedTextStyle,
-    this.tagRadius,
-    this.tagNormalBackgroundColor,
-    this.tagSelectedBackgroundColor,
-    this.hintTextStyle,
-    this.rangeTitleTextStyle,
-    this.inputTextStyle,
-    this.itemNormalTextStyle,
-    this.itemSelectedTextStyle,
-    this.itemBoldTextStyle,
-    this.deepNormalBgColor,
-    this.deepSelectBgColor,
-    this.middleNormalBgColor,
-    this.middleSelectBgColor,
-    this.lightNormalBgColor,
-    this.lightSelectBgColor,
-    this.resetTextStyle,
-    this.titleForMoreTextStyle,
-    this.optionTextStyle,
-    this.moreTextStyle,
-    this.flayerNormalTextStyle,
-    this.flayerSelectedTextStyle,
-    this.flayerBoldTextStyle,
+    BrnTextStyle? menuNormalTextStyle,
+    BrnTextStyle? menuSelectedTextStyle,
+    BrnTextStyle? tagNormalTextStyle,
+    BrnTextStyle? tagSelectedTextStyle,
+    double? tagRadius,
+    Color? tagNormalBackgroundColor,
+    Color? tagSelectedBackgroundColor,
+    BrnTextStyle? hintTextStyle,
+    BrnTextStyle? rangeTitleTextStyle,
+    BrnTextStyle? inputTextStyle,
+    BrnTextStyle? itemNormalTextStyle,
+    BrnTextStyle? itemSelectedTextStyle,
+    BrnTextStyle? itemBoldTextStyle,
+    Color? deepNormalBgColor,
+    Color? deepSelectBgColor,
+    Color? middleNormalBgColor,
+    Color? middleSelectBgColor,
+    Color? lightNormalBgColor,
+    Color? lightSelectBgColor,
+    BrnTextStyle? resetTextStyle,
+    BrnTextStyle? titleForMoreTextStyle,
+    BrnTextStyle? optionTextStyle,
+    BrnTextStyle? moreTextStyle,
+    BrnTextStyle? flayerNormalTextStyle,
+    BrnTextStyle? flayerSelectedTextStyle,
+    BrnTextStyle? flayerBoldTextStyle,
     String configId = GLOBAL_CONFIG_ID,
-  }) : super(configId: configId);
+  })  : _menuNormalTextStyle = menuNormalTextStyle,
+        _menuSelectedTextStyle = menuSelectedTextStyle,
+        _tagNormalTextStyle = tagNormalTextStyle,
+        _tagSelectedTextStyle = tagSelectedTextStyle,
+        _tagRadius = tagRadius,
+        _tagNormalBackgroundColor = tagNormalBackgroundColor,
+        _tagSelectedBackgroundColor = tagSelectedBackgroundColor,
+        _hintTextStyle = hintTextStyle,
+        _rangeTitleTextStyle = rangeTitleTextStyle,
+        _inputTextStyle = inputTextStyle,
+        _itemNormalTextStyle = itemNormalTextStyle,
+        _itemSelectedTextStyle = itemSelectedTextStyle,
+        _itemBoldTextStyle = itemBoldTextStyle,
+        _deepNormalBgColor = deepNormalBgColor,
+        _deepSelectBgColor = deepSelectBgColor,
+        _middleNormalBgColor = middleNormalBgColor,
+        _middleSelectBgColor = middleSelectBgColor,
+        _lightNormalBgColor = lightNormalBgColor,
+        _lightSelectBgColor = lightSelectBgColor,
+        _resetTextStyle = resetTextStyle,
+        _titleForMoreTextStyle = titleForMoreTextStyle,
+        _optionTextStyle = optionTextStyle,
+        _moreTextStyle = moreTextStyle,
+        _flayerNormalTextStyle = flayerNormalTextStyle,
+        _flayerSelectedTextStyle = flayerSelectedTextStyle,
+        _flayerBoldTextStyle = flayerBoldTextStyle,
+        super(configId: configId);
 
   /// menu 正常文本样式
   ///
@@ -45,7 +72,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   ///   fontWeight: FontWeight.normal,
   /// )
-  BrnTextStyle? menuNormalTextStyle;
+  BrnTextStyle? _menuNormalTextStyle;
 
   /// menu 选中文本样式
   ///
@@ -54,7 +81,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? menuSelectedTextStyle;
+  BrnTextStyle? _menuSelectedTextStyle;
 
   /// tag 正常文本样式
   ///
@@ -63,7 +90,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeCaption],
   ///   fontWeight: FontWeight.w400,
   /// )
-  BrnTextStyle? tagNormalTextStyle;
+  BrnTextStyle? _tagNormalTextStyle;
 
   /// tag 选中文本样式
   ///
@@ -72,19 +99,19 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeCaption],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? tagSelectedTextStyle;
+  BrnTextStyle? _tagSelectedTextStyle;
 
   /// tag 圆角
   /// 默认为 [BrnCommonConfig.radiusSm]
-  double? tagRadius;
+  double? _tagRadius;
 
   /// tag 正常背景色
   /// 默认为 [BrnCommonConfig.fillBody]
-  Color? tagNormalBackgroundColor;
+  Color? _tagNormalBackgroundColor;
 
   /// tag 选中背景色
   /// 默认为 [BrnCommonConfig.brandPrimary].withOpacity(0.12)
-  Color? tagSelectedBackgroundColor;
+  Color? _tagSelectedBackgroundColor;
 
   /// 输入选项标题文本样式
   ///
@@ -93,7 +120,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? rangeTitleTextStyle;
+  BrnTextStyle? _rangeTitleTextStyle;
 
   /// 输入提示文本样式
   ///
@@ -101,7 +128,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextHint],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? hintTextStyle;
+  BrnTextStyle? _hintTextStyle;
 
   /// 输入框默认文本样式
   ///
@@ -109,7 +136,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextBase],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? inputTextStyle;
+  BrnTextStyle? _inputTextStyle;
 
   /// item 正常字体样式
   ///
@@ -117,7 +144,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextBase],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? itemNormalTextStyle;
+  BrnTextStyle? _itemNormalTextStyle;
 
   /// item 选中文本样式
   ///
@@ -126,7 +153,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? itemSelectedTextStyle;
+  BrnTextStyle? _itemSelectedTextStyle;
 
   /// item 仅加粗样式
   ///
@@ -135,31 +162,31 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? itemBoldTextStyle;
+  BrnTextStyle? _itemBoldTextStyle;
 
   /// 三级 item 背景色
   /// 默认为 Color(0xFFF0F0F0)
-  Color? deepNormalBgColor;
+  Color? _deepNormalBgColor;
 
   /// 三级 item 选中背景色
   /// 默认为 Color(0xFFF8F8F8)
-  Color? deepSelectBgColor;
+  Color? _deepSelectBgColor;
 
   /// 二级 item 背景色
   /// 默认为 Color(0xFFF8F8F8)
-  Color? middleNormalBgColor;
+  Color? _middleNormalBgColor;
 
   /// 二级 item 选中背景色
   /// 默认为 Colors.white
-  Color? middleSelectBgColor;
+  Color? _middleSelectBgColor;
 
   /// 一级 item 背景色
   /// 默认为 Colors.white
-  Color? lightNormalBgColor;
+  Color? _lightNormalBgColor;
 
   /// 一级 item 选中背景色
   /// 默认为 Colors.white
-  Color? lightSelectBgColor;
+  Color? _lightSelectBgColor;
 
   /// 重置按钮颜色
   ///
@@ -167,7 +194,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextImportant],
   ///   fontSize: [BrnCommonConfig.fontSizeCaption]
   /// )
-  BrnTextStyle? resetTextStyle;
+  BrnTextStyle? _resetTextStyle;
 
   /// 更多筛选-标题文本样式
   ///
@@ -176,7 +203,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? titleForMoreTextStyle;
+  BrnTextStyle? _titleForMoreTextStyle;
 
   /// 选项-显示文本
   ///
@@ -184,7 +211,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.brandPrimary],
   ///   fontSize: [BrnCommonConfig.fontSizeBase],
   /// )
-  BrnTextStyle? optionTextStyle;
+  BrnTextStyle? _optionTextStyle;
 
   /// 更多文本样式
   ///
@@ -192,7 +219,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   color: [BrnCommonConfig.colorTextSecondary],
   ///   fontSize: [BrnCommonConfig.fontSizeCaption],
   /// )
-  BrnTextStyle? moreTextStyle;
+  BrnTextStyle? _moreTextStyle;
 
   /// 跳转二级页-正常文本样式
   ///
@@ -201,7 +228,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.normal,
   /// )
-  BrnTextStyle? flayerNormalTextStyle;
+  BrnTextStyle? _flayerNormalTextStyle;
 
   /// 跳转二级页-选中文本样式
   ///
@@ -210,7 +237,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.w600,
   /// )
-  BrnTextStyle? flayerSelectedTextStyle;
+  BrnTextStyle? _flayerSelectedTextStyle;
 
   /// 跳转二级页-加粗文本样式
   ///
@@ -219,7 +246,110 @@ class BrnSelectionConfig extends BrnBaseConfig {
   ///   fontSize: [BrnCommonConfig.fontSizeSubHead],
   ///   fontWeight: FontWeight.w600
   /// )
-  BrnTextStyle? flayerBoldTextStyle;
+  BrnTextStyle? _flayerBoldTextStyle;
+
+  BrnTextStyle get menuNormalTextStyle =>
+      _menuNormalTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.menuNormalTextStyle;
+
+  BrnTextStyle get menuSelectedTextStyle =>
+      _menuSelectedTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.menuSelectedTextStyle;
+
+  BrnTextStyle get tagNormalTextStyle =>
+      _tagNormalTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.tagNormalTextStyle;
+
+  BrnTextStyle get tagSelectedTextStyle =>
+      _tagSelectedTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.tagSelectedTextStyle;
+
+  double get tagRadius =>
+      _tagRadius ?? BrnDefaultConfigUtils.defaultSelectionConfig.tagRadius;
+
+  Color get tagNormalBackgroundColor =>
+      _tagNormalBackgroundColor ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.tagNormalBackgroundColor;
+
+  Color get tagSelectedBackgroundColor =>
+      _tagSelectedBackgroundColor ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.tagSelectedBackgroundColor;
+
+  BrnTextStyle get rangeTitleTextStyle =>
+      _rangeTitleTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.rangeTitleTextStyle;
+
+  BrnTextStyle get hintTextStyle =>
+      _hintTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.hintTextStyle;
+
+  BrnTextStyle get inputTextStyle =>
+      _inputTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.inputTextStyle;
+
+  BrnTextStyle get itemNormalTextStyle =>
+      _itemNormalTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.itemNormalTextStyle;
+
+  BrnTextStyle get itemSelectedTextStyle =>
+      _itemSelectedTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.itemSelectedTextStyle;
+
+  BrnTextStyle get itemBoldTextStyle =>
+      _itemBoldTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.itemBoldTextStyle;
+
+  Color get deepNormalBgColor =>
+      _deepNormalBgColor ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.deepNormalBgColor;
+
+  Color get deepSelectBgColor =>
+      _deepSelectBgColor ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.deepSelectBgColor;
+
+  Color get middleNormalBgColor =>
+      _middleNormalBgColor ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.middleNormalBgColor;
+
+  Color get middleSelectBgColor =>
+      _middleSelectBgColor ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.middleSelectBgColor;
+
+  Color get lightNormalBgColor =>
+      _lightNormalBgColor ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.lightNormalBgColor;
+
+  Color get lightSelectBgColor =>
+      _lightSelectBgColor ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.lightSelectBgColor;
+
+  BrnTextStyle get resetTextStyle =>
+      _resetTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.resetTextStyle;
+
+  BrnTextStyle get titleForMoreTextStyle =>
+      _titleForMoreTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.titleForMoreTextStyle;
+
+  BrnTextStyle get optionTextStyle =>
+      _optionTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.optionTextStyle;
+
+  BrnTextStyle get moreTextStyle =>
+      _moreTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.moreTextStyle;
+
+  BrnTextStyle get flayerNormalTextStyle =>
+      _flayerNormalTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.flayerNormalTextStyle;
+
+  BrnTextStyle get flayerSelectedTextStyle =>
+      _flayerSelectedTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.flayerSelectedTextStyle;
+
+  BrnTextStyle get flayerBoldTextStyle =>
+      _flayerBoldTextStyle ??
+      BrnDefaultConfigUtils.defaultSelectionConfig.flayerBoldTextStyle;
 
   @override
   void initThemeConfig(
@@ -232,118 +362,119 @@ class BrnSelectionConfig extends BrnBaseConfig {
     );
 
     /// 用户全局筛选配置
-    BrnSelectionConfig? selectionConfig = BrnThemeConfigurator.instance
+    BrnSelectionConfig selectionConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
         .selectionConfig;
 
-    lightSelectBgColor ??= selectionConfig?.lightSelectBgColor;
-    lightNormalBgColor ??= selectionConfig?.lightNormalBgColor;
-    middleSelectBgColor ??= selectionConfig?.middleSelectBgColor;
-    middleNormalBgColor ??= selectionConfig?.middleNormalBgColor;
-    deepSelectBgColor ??= selectionConfig?.deepSelectBgColor;
-    deepNormalBgColor ??= selectionConfig?.deepNormalBgColor;
-    tagSelectedBackgroundColor ??= commonConfig.brandPrimary?.withOpacity(0.12);
-    tagNormalBackgroundColor ??= commonConfig.fillBody;
-    tagRadius ??= commonConfig.radiusSm;
-    flayerBoldTextStyle = selectionConfig?.flayerBoldTextStyle?.merge(
+    _lightSelectBgColor ??= selectionConfig._lightSelectBgColor;
+    _lightNormalBgColor ??= selectionConfig._lightNormalBgColor;
+    _middleSelectBgColor ??= selectionConfig._middleSelectBgColor;
+    _middleNormalBgColor ??= selectionConfig._middleNormalBgColor;
+    _deepSelectBgColor ??= selectionConfig._deepSelectBgColor;
+    _deepNormalBgColor ??= selectionConfig._deepNormalBgColor;
+    _tagSelectedBackgroundColor ??=
+        commonConfig.brandPrimary.withOpacity(0.12);
+    _tagNormalBackgroundColor ??= commonConfig.fillBody;
+    _tagRadius ??= commonConfig.radiusSm;
+    _flayerBoldTextStyle = selectionConfig.flayerBoldTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(flayerBoldTextStyle),
+      ).merge(_flayerBoldTextStyle),
     );
-    flayerSelectedTextStyle = selectionConfig?.flayerSelectedTextStyle?.merge(
+    _flayerSelectedTextStyle = selectionConfig.flayerSelectedTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(flayerSelectedTextStyle),
+      ).merge(_flayerSelectedTextStyle),
     );
-    flayerNormalTextStyle = selectionConfig?.flayerNormalTextStyle?.merge(
+    _flayerNormalTextStyle = selectionConfig.flayerNormalTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(flayerNormalTextStyle),
+      ).merge(_flayerNormalTextStyle),
     );
-    moreTextStyle = selectionConfig?.moreTextStyle?.merge(
+    _moreTextStyle = selectionConfig.moreTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextSecondary,
         fontSize: commonConfig.fontSizeCaption,
-      ).merge(moreTextStyle),
+      ).merge(_moreTextStyle),
     );
-    optionTextStyle = selectionConfig?.optionTextStyle?.merge(
+    _optionTextStyle = selectionConfig.optionTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(optionTextStyle),
+      ).merge(_optionTextStyle),
     );
-    titleForMoreTextStyle = selectionConfig?.titleForMoreTextStyle?.merge(
+    _titleForMoreTextStyle = selectionConfig.titleForMoreTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(titleForMoreTextStyle),
+      ).merge(_titleForMoreTextStyle),
     );
-    resetTextStyle = selectionConfig?.resetTextStyle?.merge(BrnTextStyle(
+    _resetTextStyle = selectionConfig.resetTextStyle.merge(BrnTextStyle(
       color: commonConfig.colorTextImportant,
       fontSize: commonConfig.fontSizeCaption,
-    ).merge(resetTextStyle));
-    itemBoldTextStyle = selectionConfig?.itemBoldTextStyle?.merge(
+    ).merge(_resetTextStyle));
+    _itemBoldTextStyle = selectionConfig.itemBoldTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(itemBoldTextStyle),
+      ).merge(_itemBoldTextStyle),
     );
-    itemSelectedTextStyle = selectionConfig?.itemSelectedTextStyle?.merge(
+    _itemSelectedTextStyle = selectionConfig.itemSelectedTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(itemSelectedTextStyle),
+      ).merge(_itemSelectedTextStyle),
     );
-    itemNormalTextStyle = selectionConfig?.itemNormalTextStyle?.merge(
+    _itemNormalTextStyle = selectionConfig.itemNormalTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(itemNormalTextStyle),
+      ).merge(_itemNormalTextStyle),
     );
-    inputTextStyle = selectionConfig?.inputTextStyle?.merge(
+    _inputTextStyle = selectionConfig.inputTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(inputTextStyle),
+      ).merge(_inputTextStyle),
     );
-    hintTextStyle = selectionConfig?.hintTextStyle?.merge(
+    _hintTextStyle = selectionConfig.hintTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextHint,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(hintTextStyle),
+      ).merge(_hintTextStyle),
     );
-    rangeTitleTextStyle = selectionConfig?.rangeTitleTextStyle?.merge(
+    _rangeTitleTextStyle = selectionConfig.rangeTitleTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeSubHead,
-      ).merge(rangeTitleTextStyle),
+      ).merge(_rangeTitleTextStyle),
     );
-    tagSelectedTextStyle = selectionConfig?.tagSelectedTextStyle?.merge(
+    _tagSelectedTextStyle = selectionConfig.tagSelectedTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeCaption,
-      ).merge(tagSelectedTextStyle),
+      ).merge(_tagSelectedTextStyle),
     );
-    tagNormalTextStyle = selectionConfig?.tagNormalTextStyle?.merge(
+    _tagNormalTextStyle = selectionConfig.tagNormalTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeCaption,
-      ).merge(tagNormalTextStyle),
+      ).merge(_tagNormalTextStyle),
     );
-    menuNormalTextStyle = selectionConfig?.menuNormalTextStyle?.merge(
+    _menuNormalTextStyle = selectionConfig.menuNormalTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.colorTextBase,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(menuNormalTextStyle),
+      ).merge(_menuNormalTextStyle),
     );
-    menuSelectedTextStyle = selectionConfig?.menuSelectedTextStyle?.merge(
+    _menuSelectedTextStyle = selectionConfig.menuSelectedTextStyle.merge(
       BrnTextStyle(
         color: commonConfig.brandPrimary,
         fontSize: commonConfig.fontSizeBase,
-      ).merge(menuSelectedTextStyle),
+      ).merge(_menuSelectedTextStyle),
     );
   }
 
@@ -376,97 +507,71 @@ class BrnSelectionConfig extends BrnBaseConfig {
     BrnTextStyle? flayerBoldTextStyle,
   }) {
     return BrnSelectionConfig(
-      menuNormalTextStyle: menuNormalTextStyle ?? this.menuNormalTextStyle,
-      menuSelectedTextStyle:
-          menuSelectedTextStyle ?? this.menuSelectedTextStyle,
-      tagNormalTextStyle: tagTextStyle ?? this.tagNormalTextStyle,
-      tagSelectedTextStyle: tagSelectedTextStyle ?? this.tagSelectedTextStyle,
-      tagRadius: tagRadius ?? this.tagRadius,
-      tagNormalBackgroundColor:
-          tagBackgroundColor ?? this.tagNormalBackgroundColor,
+      menuNormalTextStyle: menuNormalTextStyle ?? _menuNormalTextStyle,
+      menuSelectedTextStyle: menuSelectedTextStyle ?? _menuSelectedTextStyle,
+      tagNormalTextStyle: tagTextStyle ?? _tagNormalTextStyle,
+      tagSelectedTextStyle: tagSelectedTextStyle ?? _tagSelectedTextStyle,
+      tagRadius: tagRadius ?? _tagRadius,
+      tagNormalBackgroundColor: tagBackgroundColor ?? _tagNormalBackgroundColor,
       tagSelectedBackgroundColor:
-          tagSelectedBackgroundColor ?? this.tagSelectedBackgroundColor,
-      hintTextStyle: hintTextStyle ?? this.hintTextStyle,
-      rangeTitleTextStyle: rangeTitleTextStyle ?? this.rangeTitleTextStyle,
-      inputTextStyle: inputTextStyle ?? this.inputTextStyle,
-      itemNormalTextStyle: itemNormalTextStyle ?? this.itemNormalTextStyle,
-      itemSelectedTextStyle:
-          itemSelectedTextStyle ?? this.itemSelectedTextStyle,
-      itemBoldTextStyle: itemBoldTextStyle ?? this.itemBoldTextStyle,
-      deepNormalBgColor: deepNormalBgColor ?? this.deepNormalBgColor,
-      deepSelectBgColor: deepSelectBgColor ?? this.deepSelectBgColor,
-      middleNormalBgColor: middleNormalBgColor ?? this.middleNormalBgColor,
-      middleSelectBgColor: middleSelectBgColor ?? this.middleSelectBgColor,
-      lightNormalBgColor: lightNormalBgColor ?? this.lightNormalBgColor,
-      lightSelectBgColor: lightSelectBgColor ?? this.lightSelectBgColor,
-      resetTextStyle: resetTextStyle ?? this.resetTextStyle,
-      titleForMoreTextStyle:
-          titleForMoreTextStyle ?? this.titleForMoreTextStyle,
-      optionTextStyle: optionTextStyle ?? this.optionTextStyle,
-      moreTextStyle: moreTextStyle ?? this.moreTextStyle,
-      flayerNormalTextStyle:
-          flayerNormalTextStyle ?? this.flayerNormalTextStyle,
+          tagSelectedBackgroundColor ?? _tagSelectedBackgroundColor,
+      hintTextStyle: hintTextStyle ?? _hintTextStyle,
+      rangeTitleTextStyle: rangeTitleTextStyle ?? _rangeTitleTextStyle,
+      inputTextStyle: inputTextStyle ?? _inputTextStyle,
+      itemNormalTextStyle: itemNormalTextStyle ?? _itemNormalTextStyle,
+      itemSelectedTextStyle: itemSelectedTextStyle ?? _itemSelectedTextStyle,
+      itemBoldTextStyle: itemBoldTextStyle ?? _itemBoldTextStyle,
+      deepNormalBgColor: deepNormalBgColor ?? _deepNormalBgColor,
+      deepSelectBgColor: deepSelectBgColor ?? _deepSelectBgColor,
+      middleNormalBgColor: middleNormalBgColor ?? _middleNormalBgColor,
+      middleSelectBgColor: middleSelectBgColor ?? _middleSelectBgColor,
+      lightNormalBgColor: lightNormalBgColor ?? _lightNormalBgColor,
+      lightSelectBgColor: lightSelectBgColor ?? _lightSelectBgColor,
+      resetTextStyle: resetTextStyle ?? _resetTextStyle,
+      titleForMoreTextStyle: titleForMoreTextStyle ?? _titleForMoreTextStyle,
+      optionTextStyle: optionTextStyle ?? _optionTextStyle,
+      moreTextStyle: moreTextStyle ?? _moreTextStyle,
+      flayerNormalTextStyle: flayerNormalTextStyle ?? _flayerNormalTextStyle,
       flayerSelectedTextStyle:
-          flayerSelectedTextStyle ?? this.flayerSelectedTextStyle,
-      flayerBoldTextStyle: flayerBoldTextStyle ?? this.flayerBoldTextStyle,
+          flayerSelectedTextStyle ?? _flayerSelectedTextStyle,
+      flayerBoldTextStyle: flayerBoldTextStyle ?? _flayerBoldTextStyle,
     );
   }
 
   BrnSelectionConfig merge(BrnSelectionConfig other) {
     return copyWith(
-      menuNormalTextStyle:
-          menuNormalTextStyle?.merge(other.menuNormalTextStyle) ??
-              other.menuNormalTextStyle,
+      menuNormalTextStyle: menuNormalTextStyle.merge(other._menuNormalTextStyle),
       menuSelectedTextStyle:
-          menuSelectedTextStyle?.merge(other.menuSelectedTextStyle) ??
-              other.menuSelectedTextStyle,
-      tagTextStyle: tagNormalTextStyle?.merge(other.tagNormalTextStyle) ??
-          other.tagNormalTextStyle,
+          menuSelectedTextStyle.merge(other._menuSelectedTextStyle),
+      tagTextStyle: tagNormalTextStyle.merge(other._tagNormalTextStyle),
       tagSelectedTextStyle:
-          tagSelectedTextStyle?.merge(other.tagSelectedTextStyle) ??
-              other.tagSelectedTextStyle,
-      tagRadius: other.tagRadius,
-      tagBackgroundColor: other.tagNormalBackgroundColor,
-      tagSelectedBackgroundColor: other.tagSelectedBackgroundColor,
-      hintTextStyle:
-          hintTextStyle?.merge(other.hintTextStyle) ?? other.hintTextStyle,
-      rangeTitleTextStyle:
-          rangeTitleTextStyle?.merge(other.rangeTitleTextStyle) ??
-              other.rangeTitleTextStyle,
-      inputTextStyle:
-          inputTextStyle?.merge(other.inputTextStyle) ?? other.inputTextStyle,
-      itemNormalTextStyle:
-          itemNormalTextStyle?.merge(other.itemNormalTextStyle) ??
-              other.itemNormalTextStyle,
+          tagSelectedTextStyle.merge(other._tagSelectedTextStyle),
+      tagRadius: other._tagRadius,
+      tagBackgroundColor: other._tagNormalBackgroundColor,
+      tagSelectedBackgroundColor: other._tagSelectedBackgroundColor,
+      hintTextStyle: hintTextStyle.merge(other._hintTextStyle),
+      rangeTitleTextStyle: rangeTitleTextStyle.merge(other._rangeTitleTextStyle),
+      inputTextStyle: inputTextStyle.merge(other._inputTextStyle),
+      itemNormalTextStyle: itemNormalTextStyle.merge(other._itemNormalTextStyle),
       itemSelectedTextStyle:
-          itemSelectedTextStyle?.merge(other.itemSelectedTextStyle) ??
-              other.itemSelectedTextStyle,
-      itemBoldTextStyle: itemBoldTextStyle?.merge(other.itemBoldTextStyle) ??
-          other.itemBoldTextStyle,
-      deepNormalBgColor: other.deepNormalBgColor,
-      deepSelectBgColor: other.deepSelectBgColor,
-      middleNormalBgColor: other.middleNormalBgColor,
-      middleSelectBgColor: other.middleSelectBgColor,
-      lightNormalBgColor: other.lightNormalBgColor,
-      lightSelectBgColor: other.lightSelectBgColor,
-      resetTextStyle:
-          resetTextStyle?.merge(other.resetTextStyle) ?? other.resetTextStyle,
+          itemSelectedTextStyle.merge(other._itemSelectedTextStyle),
+      itemBoldTextStyle: itemBoldTextStyle.merge(other._itemBoldTextStyle),
+      deepNormalBgColor: other._deepNormalBgColor,
+      deepSelectBgColor: other._deepSelectBgColor,
+      middleNormalBgColor: other._middleNormalBgColor,
+      middleSelectBgColor: other._middleSelectBgColor,
+      lightNormalBgColor: other._lightNormalBgColor,
+      lightSelectBgColor: other._lightSelectBgColor,
+      resetTextStyle: resetTextStyle.merge(other._resetTextStyle),
       titleForMoreTextStyle:
-          titleForMoreTextStyle?.merge(other.titleForMoreTextStyle) ??
-              other.titleForMoreTextStyle,
-      optionTextStyle: optionTextStyle?.merge(other.optionTextStyle) ??
-          other.optionTextStyle,
-      moreTextStyle:
-          moreTextStyle?.merge(other.moreTextStyle) ?? other.moreTextStyle,
+          titleForMoreTextStyle.merge(other._titleForMoreTextStyle),
+      optionTextStyle: optionTextStyle.merge(other._optionTextStyle),
+      moreTextStyle: moreTextStyle.merge(other._moreTextStyle),
       flayerNormalTextStyle:
-          flayerNormalTextStyle?.merge(other.flayerNormalTextStyle) ??
-              other.flayerNormalTextStyle,
+          flayerNormalTextStyle.merge(other._flayerNormalTextStyle),
       flayerSelectedTextStyle:
-          flayerSelectedTextStyle?.merge(other.flayerSelectedTextStyle) ??
-              other.flayerSelectedTextStyle,
-      flayerBoldTextStyle:
-          flayerBoldTextStyle?.merge(other.flayerBoldTextStyle) ??
-              other.flayerBoldTextStyle,
+          flayerSelectedTextStyle.merge(other._flayerSelectedTextStyle),
+      flayerBoldTextStyle: flayerBoldTextStyle.merge(other._flayerBoldTextStyle),
     );
   }
 }
