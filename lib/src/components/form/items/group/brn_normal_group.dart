@@ -5,9 +5,8 @@ import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
-import 'package:bruno/src/utils/font/brn_font.dart';
+import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 ///
 /// 可展开收起组类型录入项
@@ -137,7 +136,7 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
                         widget.deleteLabel ?? "",
                         style: TextStyle(
                           color: Color(0xFFFA3F3F),
-                          fontSize: BrnFont.FONT_16,
+                          fontSize: BrnFonts.FONT_16,
                         ),
                       ),
                     ),
@@ -171,7 +170,7 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
   }
 
   List<Widget> getSubItem() {
-    List<Widget> result = List<Widget>();
+    List<Widget> result = <Widget>[];
 
     if (widget.children == null || widget.children.isEmpty) {
       return result;

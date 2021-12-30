@@ -158,16 +158,6 @@ class TestConfigUtils {
     titleMaxLength: 20,
     titleStyle: BrnTextStyle(color: Color(0xff222222), fontWeight: FontWeight.w600, fontSize: 24),
     actionsStyle: BrnTextStyle(color: Color(0xFF3072F6), fontWeight: FontWeight.w600, fontSize: 18),
-    flexibleSpace: Container(
-      width: double.infinity,
-      height: MediaQueryData.fromWindow(window).padding.top + 57,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-          Color(0xfffafafa),
-          Color(0xfff5f5f5),
-        ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-      ),
-    ),
   );
 
   static BrnButtonConfig defaultButtonConfig = BrnButtonConfig(

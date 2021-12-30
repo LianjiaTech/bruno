@@ -5,9 +5,19 @@ const String BRUNO_CONFIG_ID = 'BRUNO_CONFIG_ID';
 const String GLOBAL_CONFIG_ID = 'GLOBAL_CONFIG_ID';
 
 class BrnThemeConfigurator {
-  BrnThemeConfigurator._();
 
-  static late final BrnThemeConfigurator instance = BrnThemeConfigurator._();
+  BrnThemeConfigurator._(){
+    _checkAndInitBrunoConfig();
+  }
+
+  static  BrnThemeConfigurator? _instance;
+
+  static get instance {
+    if (null == _instance) {
+      _instance = BrnThemeConfigurator._();
+    }
+    return _instance!;
+  }
 
   Map<String, BrnAllThemeConfig> globalConfig = <String, BrnAllThemeConfig>{};
 
@@ -16,12 +26,10 @@ class BrnThemeConfigurator {
     BrnAllThemeConfig? allThemeConfig, {
     String configId = GLOBAL_CONFIG_ID,
   }) {
-    // 先赋值默认配置
-    _checkAndInitBrunoConfig();
     // 打平内部字段
     if (allThemeConfig != null) {
       // 赋值传入配置
-      instance.globalConfig[configId] = allThemeConfig
+      globalConfig[configId] = allThemeConfig
         ..initThemeConfig(configId);
     }
   }
@@ -31,7 +39,6 @@ class BrnThemeConfigurator {
   /// 2、若获取的为 null，则使用默认的全局配置。
   /// 3、若没有配置 GLOBAL_CONFIG_ID ，则使用 BRUNO 的配置。
   BrnAllThemeConfig getConfig({String configId = GLOBAL_CONFIG_ID}) {
-    _checkAndInitBrunoConfig();
 
     BrnAllThemeConfig? allThemeConfig = globalConfig[configId] ??
         globalConfig[GLOBAL_CONFIG_ID] ??
