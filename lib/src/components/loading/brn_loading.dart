@@ -1,7 +1,5 @@
+import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:flutter/material.dart';
-
-/// 加载组件默认的加载文案
-const String kLoadingContent = '加载中...';
 
 /// 页面或者弹窗中间的圆形加载框，左侧是可定制的加载文案[content]，比如：加载中、提交中等等
 ///
@@ -32,7 +30,7 @@ const String kLoadingContent = '加载中...';
 class BrnPageLoading extends StatelessWidget {
   final String content;
 
-  const BrnPageLoading({this.content = kLoadingContent});
+  const BrnPageLoading({this.content = BrnStrings.loadingContent});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +77,7 @@ class BrnLoadingDialog extends Dialog {
   /// 加载时的提示文案，默认为 `加载中...`
   final String content;
 
-  const BrnLoadingDialog({Key? key, this.content = kLoadingContent})
+  const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent})
       : super(key: key);
 
   @override
@@ -96,7 +94,7 @@ class BrnLoadingDialog extends Dialog {
   ///    rootNavigator，详见 [showDialog] 中的 [useRootNavigator]。
   static Future<T?> show<T>(
     BuildContext context, {
-    String content = kLoadingContent,
+    String content = BrnStrings.loadingContent,
     bool barrierDismissible = true,
     bool useRootNavigator = true,
   }) {
