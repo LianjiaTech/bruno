@@ -63,7 +63,8 @@ class EventBus {
   /// listener is affected. A paused listener will buffer events internally until
   /// resumed or cancelled. So it's usually better to just cancel and later
   /// subscribe again (avoids memory leak).
-  Stream<T> on<T>() {
+  ///
+  Stream on<T>() {
     if (T == dynamic) {
       return streamController.stream as Stream<T>;
     }
@@ -78,5 +79,20 @@ class EventBus {
   /// Destroy this [EventBus]. This is generally only in a testing context.
   void destroy() {
     _streamController.close();
+  }
+  static EventBus? _instance;
+
+  factory EventBus.init() {
+    if (_instance == null) {
+      _instance = EventBus();
+    }
+    return _instance!;
+  }
+
+  static EventBus get instance {
+    if (_instance == null) {
+      EventBus.init();
+    }
+    return _instance!;
   }
 }
