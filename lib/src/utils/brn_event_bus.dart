@@ -32,16 +32,15 @@ class EventBus {
 
   static EventBus? _instance;
 
-  factory EventBus.init() {
-    _instance = EventBus();
+  factory EventBus._() {
+    if(_instance == null) {
+      _instance = EventBus();
+    }
     return _instance!;
   }
 
   static EventBus get instance {
-    if (_instance == null) {
-      EventBus.init();
-    }
-    return _instance!;
+    return EventBus._();
   }
 
   StreamController _streamController;
@@ -64,7 +63,7 @@ class EventBus {
   /// resumed or cancelled. So it's usually better to just cancel and later
   /// subscribe again (avoids memory leak).
   ///
-  Stream on<T>() {
+  Stream<T> on<T>() {
     if (T == dynamic) {
       return streamController.stream as Stream<T>;
     }
@@ -80,19 +79,5 @@ class EventBus {
   void destroy() {
     _streamController.close();
   }
-  static EventBus? _instance;
 
-  factory EventBus.init() {
-    if (_instance == null) {
-      _instance = EventBus();
-    }
-    return _instance!;
-  }
-
-  static EventBus get instance {
-    if (_instance == null) {
-      EventBus.init();
-    }
-    return _instance!;
-  }
 }
