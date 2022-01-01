@@ -628,7 +628,7 @@ class BrnPopupListWindow {
     if (!BrunoTools.isEmpty(data)) {
       Size? maxWidthSize;
       for (String? entity in data!) {
-        Size size = BrnTextUtil.textSize(entity, textStyle);
+        Size size = BrnTextUtil.textSize(entity!, textStyle);
         if (maxWidthSize == null) {
           maxWidthSize = size;
         } else {

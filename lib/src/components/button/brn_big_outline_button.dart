@@ -78,15 +78,15 @@ class BrnBigOutlineButton extends StatelessWidget {
         .merge(defaultThemeConfig);
 
     Color? _lineColor =
-        lineColor ?? defaultThemeConfig.commonConfig!.borderColorBase;
+        lineColor ?? defaultThemeConfig.commonConfig.borderColorBase;
 
     return BrnNormalButton.outline(
       borderWith: _BBorderWith,
-      radius: defaultThemeConfig.bigButtonRadius!,
+      radius: defaultThemeConfig.bigButtonRadius,
       text: title,
       disableLineColor: _lineColor,
       lineColor: _lineColor,
-      textColor: textColor ?? defaultThemeConfig.commonConfig!.colorTextBase,
+      textColor: textColor ?? defaultThemeConfig.commonConfig.colorTextBase,
       disableTextColor: Color(0xFFCCCCCC),
       isEnable: isEnable,
       alignment: Alignment.center,

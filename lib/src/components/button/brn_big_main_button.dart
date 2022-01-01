@@ -79,12 +79,12 @@ class BrnBigMainButton extends StatelessWidget {
       alignment: Alignment.center,
       isEnable: isEnable,
       text: title ?? '确认',
-      backgroundColor: bgColor ?? defaultThemeConfig.commonConfig!.brandPrimary,
+      backgroundColor: bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
       disableBackgroundColor: Color(0xFFCCCCCC),
       onTap: onTap,
       textColor: Colors.white,
       disableTextColor:
-          defaultThemeConfig.commonConfig!.colorTextBaseInverse!.withOpacity(0.7),
+          defaultThemeConfig.commonConfig.colorTextBaseInverse.withOpacity(0.7),
       insertPadding: EdgeInsets.symmetric(
           horizontal: _BHorizontalPadding, vertical: _BVerticalPadding),
     );

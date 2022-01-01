@@ -120,10 +120,10 @@ class BrnSmallMainButton extends StatelessWidget {
           alignment: Alignment.center,
           text: title,
           backgroundColor:
-              bgColor ?? defaultThemeConfig.commonConfig!.brandPrimary,
+              bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
           disableBackgroundColor: Color(0xFFCCCCCC),
           borderRadius: BorderRadius.all(
-              Radius.circular(defaultThemeConfig.smallButtonRadius!)),
+              Radius.circular(defaultThemeConfig.smallButtonRadius)),
           onTap: onTap,
           textStyle: style,
           insertPadding: EdgeInsets.symmetric(

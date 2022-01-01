@@ -123,7 +123,7 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
     /// 用户全局组件配置
     BrnAbnormalStateConfig abnormalStateConfig = BrnThemeConfigurator.instance
         .getConfig(configId: configId)
-        .abnormalStateConfig!;
+        .abnormalStateConfig;
 
     _titleTextStyle = abnormalStateConfig.titleTextStyle.merge(
       BrnTextStyle(
