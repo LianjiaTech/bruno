@@ -6,7 +6,8 @@ class ToastExample extends StatefulWidget {
   _ToastExampleState createState() => _ToastExampleState();
 }
 
-class _ToastExampleState extends State<ToastExample> with TickerProviderStateMixin {
+class _ToastExampleState extends State<ToastExample>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,54 +15,75 @@ class _ToastExampleState extends State<ToastExample> with TickerProviderStateMix
         title: 'BrnToast示例',
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 50, bottom: 50),
-              child: Center(
-                child: RaisedButton(
-                  onPressed: () {
-                    BrnToast.show("普通长Toast", context, duration: BrnToast.LENGTH_LONG, gravity: 1);
-                  },
-                  child: Text("普通长Toast"),
-                ),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () {
+                  BrnToast.show(
+                    "普通长Toast",
+                    context,
+                    duration: BrnDuration.long,
+                    gravity: BrnToastGravity.center,
+                  );
+                },
+                child: Text("普通长Toast"),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 50, bottom: 50),
-              child: Center(
-                child: RaisedButton(
-                  onPressed: () {
-                    BrnToast.show("失败图标Toast", context,
-                        preIcon: Image.asset(
-                          "assets/image/icon_toast_fail.png",
-                          width: 24,
-                          height: 24,
-                        ),
-                        duration: BrnToast.LENGTH_SHORT);
-                  },
-                  child: Text("失败图标Toast"),
-                ),
+              ElevatedButton(
+                onPressed: () {
+                  BrnToast.show(
+                    "失败图标Toast",
+                    context,
+                    preIcon: Image.asset(
+                      "assets/image/icon_toast_fail.png",
+                      width: 24,
+                      height: 24,
+                    ),
+                    duration: BrnDuration.short,
+                  );
+                },
+                child: Text("失败图标Toast"),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 50, bottom: 50),
-              child: Center(
-                child: RaisedButton(
-                  onPressed: () {
-                    BrnToast.show("成功图标Toast", context,
-                        preIcon: Image.asset(
-                          "assets/image/icon_toast_success.png",
-                          width: 24,
-                          height: 24,
-                        ),
-                        duration: BrnToast.LENGTH_SHORT);
-                  },
-                  child: Text("成功图标Toast"),
-                ),
+              ElevatedButton(
+                onPressed: () {
+                  BrnToast.show(
+                    "成功图标Toast",
+                    context,
+                    preIcon: Image.asset(
+                      "assets/image/icon_toast_success.png",
+                      width: 24,
+                      height: 24,
+                    ),
+                    duration: BrnDuration.short,
+                  );
+                },
+                child: Text("成功图标Toast"),
               ),
-            )
-          ],
+              ElevatedButton(
+                onPressed: () {
+                  BrnToast.show(
+                      "自定义位置Toast",
+                      context,
+                      duration: BrnDuration.short,
+                      verticalOffset: 100,
+                      gravity: BrnToastGravity.bottom
+                  );
+                },
+                child: Text("自定义位置Toast"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  BrnToast.show(
+                    "自定义时长Toast",
+                    context,
+                    duration: Duration(seconds: 5),
+                  );
+                },
+                child: Text("自定义时长Toast(5s)"),
+              ),
+            ],
+          ),
         ),
       ),
     );
