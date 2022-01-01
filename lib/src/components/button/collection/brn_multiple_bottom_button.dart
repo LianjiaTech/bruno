@@ -198,7 +198,7 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                       BrnMultipleButtonArrowState.defaultStatus) {
                     //使用方主动设置箭头状态的时候
                     Widget? arrow;
-                    switch (value.arrowStatus) {
+                    switch (value.arrowStatus!) {
                       case BrnMultipleButtonArrowState.cantUnfold:
                         arrow = cantFoldWidget;
                         break;
