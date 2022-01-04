@@ -9,4 +9,5 @@ class BrnStrings {
   static const String noData = "暂无数据";
   static const String noSearchData = "暂无搜索结果";
   static const String clickPageRetry = "请点击页面重试";
+  static const String loadingContent = '加载中...';
 }
