@@ -1,3 +1,4 @@
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -40,7 +41,8 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     return BrnThemeConfigurator.instance
             .getConfig()
             .commonConfig
-            .brandPrimary;
+            ?.brandPrimary ??
+        const Color(0xFF0984F9);
   }
 
   int get currentIndex {
