@@ -187,8 +187,7 @@ class _BrnStepLineState extends State<BrnStepLine> {
             BrnThemeConfigurator.instance
                 .getConfig()
                 .commonConfig
-                ?.brandPrimary ??
-            const Color(0xFF0984F9));
+                .brandPrimary);
         return lineColor;
       }
     } else {
@@ -200,8 +199,7 @@ class _BrnStepLineState extends State<BrnStepLine> {
             BrnThemeConfigurator.instance
                 .getConfig()
                 .commonConfig
-                ?.brandPrimary ??
-            const Color(0xFF0984F9)
+                .brandPrimary
       ];
     }
   }
@@ -213,8 +211,7 @@ class _BrnStepLineState extends State<BrnStepLine> {
 
   Widget _buildHighLightCircle() {
     return _buildColorCircleWidget(widget.highlightColor ??
-        BrnThemeConfigurator.instance.getConfig().commonConfig?.brandPrimary ??
-        const Color(0xFF0984F9));
+        BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
   }
 
   Widget _buildColorCircleWidget(Color color) {
