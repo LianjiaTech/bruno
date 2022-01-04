@@ -223,8 +223,8 @@ class BrnDeleteTagController {
 
   List<String> get tags => notifier.value;
 
-  BrnDeleteTagController({required List<String> initTags}) {
-    _tags = initTags;
+  BrnDeleteTagController({List<String>? initTags}) {
+    _tags = initTags ?? [];
     notifier = ValueNotifier(_tags);
   }
 
