@@ -132,12 +132,12 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
   Widget _buildRating(RatingState state) {
     switch (state) {
       case RatingState.select:
-        return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STAR, 16, 16);
+        return BrunoTools.getAssetSizeImage(BrnAsset.iconStar, 16, 16);
       case RatingState.half:
-        return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STAR_HALF, 16, 16);
+        return BrunoTools.getAssetSizeImage(BrnAsset.iconStarHalf, 16, 16);
       case RatingState.unselect:
       default:
-        return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STAR, 16, 16,
+        return BrunoTools.getAssetSizeImage(BrnAsset.iconStar, 16, 16,
             color: Color(0xFFF0F0F0));
     }
   }

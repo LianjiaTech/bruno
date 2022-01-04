@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:math';
 
 import 'package:bruno/bruno.dart';
@@ -301,7 +303,7 @@ class _TextContentExampleState extends State<TextContentExample> {
                             ),
                             Transform.rotate(
                                 angle: pi,
-                                child: BrunoTools.getAssetImage('icons/icon_uparrow.png')),
+                                child: BrunoTools.getAssetImage('icons/icon_up_arrow.png')),
                           ],
                         ),
                         decoration: BoxDecoration(

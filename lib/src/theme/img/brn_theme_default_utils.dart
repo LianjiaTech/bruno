@@ -34,7 +34,7 @@ class BrnThemeImg {
 
   Image get checkedStatus =>
       _defaultBrunoImg.checkedStatus ??
-      BrunoTools.getAssetImage(BrnAsset.SELECT_CHECKED_STATUS);
+      BrunoTools.getAssetImage(BrnAsset.selectCheckedStatus);
 
   Image get stepIcon {
     return _defaultBrunoImg.stepIcon ??
@@ -56,7 +56,7 @@ class BrnDefaultThemeImgUtil extends BrnThemeImgUtils {
   @override
   Image get checkedStatus {
     return BrunoTools.getAssetImageWithBandColor(
-        BrnAsset.SELECT_CHECKED_STATUS);
+        BrnAsset.selectCheckedStatus);
   }
 
   @override

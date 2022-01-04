@@ -211,10 +211,10 @@ class DeleteTagItemWidget extends StatelessWidget {
       //删除图标
       deleteIcon: deleteIconSize != null
           ? BrunoTools.getAssetSizeImage(
-              BrnAsset.ICON_CLOSE, deleteIconSize.width, deleteIconSize.height,
+              BrnAsset.iconClose, deleteIconSize.width, deleteIconSize.height,
               color: deleteIconColor)
           : BrunoTools.getAssetImageWithColor(
-              BrnAsset.ICON_CLOSE, deleteIconColor),
+              BrnAsset.iconClose, deleteIconColor),
       onDeleted: () {
         debugPrint('$index');
         didDeleted(index);

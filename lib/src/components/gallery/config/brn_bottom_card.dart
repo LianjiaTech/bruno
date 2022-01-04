@@ -83,7 +83,7 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
                   Transform.rotate(
                     angle: pi,
                     child: BrunoTools.getAssetImageWithColor(
-                        BrnAsset.ICON_UPARROW, widget.themeData.iconColor),
+                        BrnAsset.iconUpArrow, widget.themeData.iconColor),
                   )
                 ],
               ),
@@ -119,7 +119,7 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
                                   ?.generateTextStyle()),
                         ),
                         BrunoTools.getAssetImageWithColor(
-                            BrnAsset.ICON_UPARROW, widget.themeData.iconColor)
+                            BrnAsset.iconUpArrow, widget.themeData.iconColor)
                       ],
                     ),
                   )

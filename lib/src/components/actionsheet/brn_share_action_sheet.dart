@@ -119,11 +119,11 @@ class BrnShareActionSheet extends StatelessWidget {
       channel = secondShareChannels[index];
     }
     // 判断是否为自定义标题
-    title = (channel.shareType == BrnShareItemConstants.SHARE_CUSTOM)
+    title = (channel.shareType == BrnShareItemConstants.shareCustom)
         ? (channel.customTitle ?? "")
         : BrnShareItemConstants.shareItemTitleList[channel.shareType];
     // 判断是否为自定义，如果不是自定义图标，则判断是否可点击（决定是否使用置灰图标）
-    image = (channel.shareType == BrnShareItemConstants.SHARE_CUSTOM)
+    image = (channel.shareType == BrnShareItemConstants.shareCustom)
         ? channel.customImage
         : (channel.canClick
             ? BrunoTools.getAssetImage(

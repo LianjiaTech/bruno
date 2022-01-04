@@ -58,7 +58,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
         super(configId: configId) {
     _backgroundColor = Color(0xff2E313B);
     _leadIconBuilder = () => Image.asset(
-      BrnAsset.ICON_BACK_WHITE,
+      BrnAsset.iconBackWhite,
       package: BrnStrings.flutterPackageName,
       width: BrnAppBarTheme.iconSize,
       height: BrnAppBarTheme.iconSize,
@@ -94,7 +94,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
         super(configId: configId) {
     _backgroundColor = Colors.white;
     _leadIconBuilder = () => Image.asset(
-      BrnAsset.ICON_BACK_BLACK,
+      BrnAsset.iconBackBlack,
       package: BrnStrings.flutterPackageName,
       width: BrnAppBarTheme.iconSize,
       height: BrnAppBarTheme.iconSize,

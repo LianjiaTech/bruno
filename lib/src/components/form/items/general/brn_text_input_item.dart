@@ -211,7 +211,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                         widget.unit ?? "",
                         style: TextStyle(
                           color: Color(0xFF101010),
-                          fontSize: BrnFonts.FONT_16,
+                          fontSize: BrnFonts.f16,
                         ),
                       )),
                 ),

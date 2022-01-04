@@ -135,7 +135,7 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
                           widget.operationLabel ?? "",
                           style: TextStyle(
                             color: widget.themeData.commonConfig.brandPrimary,
-                            fontSize: BrnFonts.FONT_16,
+                            fontSize: BrnFonts.f16,
                           ),
                         )),
                   ),

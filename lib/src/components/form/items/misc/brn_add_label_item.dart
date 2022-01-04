@@ -59,7 +59,7 @@ class BrnAddLabelState extends State<BrnAddLabel> {
                 .getConfig()
                 .commonConfig
                 .brandPrimary,
-            fontSize: BrnFonts.FONT_18,
+            fontSize: BrnFonts.f18,
           ),
         ),
       ),

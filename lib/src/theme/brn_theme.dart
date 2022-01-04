@@ -25,3 +25,6 @@ export 'configs/brn_tabbar_config.dart';
 export 'configs/brn_tag_config.dart';
 export 'img/brn_theme_default_utils.dart';
 export 'brn_initializer.dart';
+export 'brn_theme_configurator.dart';
+export 'img/brn_theme_default_utils.dart';
+

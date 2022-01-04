@@ -179,7 +179,7 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
                         "${widget.value}",
                         style: TextStyle(
                           color: Color(0xFF222222),
-                          fontSize: BrnFonts.FONT_16,
+                          fontSize: BrnFonts.f16,
                         ),
                       ),
                     ),
@@ -237,14 +237,14 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
 
   Image getAddIcon() {
     if (widget.isEdit != null && !widget.isEdit) {
-      return BrunoTools.getAssetImage(BrnAsset.ICON_ADD_DISABLE);
+      return BrunoTools.getAssetImage(BrnAsset.iconAddDisable);
     }
 
     if (isReachMaxLevel()) {
-      return BrunoTools.getAssetImage(BrnAsset.ICON_ADD_DISABLE);
+      return BrunoTools.getAssetImage(BrnAsset.iconAddDisable);
     }
 
-    return BrunoTools.getAssetImage(BrnAsset.ICON_ADD_ENABLE);
+    return BrunoTools.getAssetImage(BrnAsset.iconAddEnable);
   }
 
   bool isReachMaxLevel() {
@@ -263,14 +263,14 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
 
   Image getMinusIcon() {
     if (widget.isEdit != null && !widget.isEdit) {
-      return BrunoTools.getAssetImage(BrnAsset.ICON_MINUS_DISABLE);
+      return BrunoTools.getAssetImage(BrnAsset.iconMinusDisable);
     }
 
     if (isReachMinLevel()) {
-      return BrunoTools.getAssetImage(BrnAsset.ICON_MINUS_DISABLE);
+      return BrunoTools.getAssetImage(BrnAsset.iconMinusDisable);
     }
 
-    return BrunoTools.getAssetImage(BrnAsset.ICON_MINUS_ENABLE);
+    return BrunoTools.getAssetImage(BrnAsset.iconMinusEnable);
   }
 
   bool isReachMinLevel() {

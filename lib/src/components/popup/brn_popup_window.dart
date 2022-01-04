@@ -326,7 +326,7 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
                                     child: Padding(
                                       padding: EdgeInsets.only(left: 6),
                                       child: BrunoTools.getAssetImage(
-                                          BrnAsset.ICON_POPUP_CLOSE),
+                                          BrnAsset.iconPopupClose),
                                     ))
                                 : TextSpan(text: "")
                           ]))
@@ -346,7 +346,7 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
                                   ? Padding(
                                       padding: EdgeInsets.only(left: 6),
                                       child: BrunoTools.getAssetImage(
-                                          BrnAsset.ICON_POPUP_CLOSE),
+                                          BrnAsset.iconPopupClose),
                                     )
                                   : Text("")
                             ],
