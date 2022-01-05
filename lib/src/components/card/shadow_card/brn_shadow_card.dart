@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +11,16 @@ import 'package:flutter/material.dart';
 ///
 class BrnShadowCard extends StatelessWidget {
   ///背景色 默认Color(0xfffafafa)
-  final Color color;
+  final Color? color;
 
   ///阴影颜色 默认Color(0xffeeeeee)
-  final Color shadowColor;
+  final Color? shadowColor;
 
   ///阴影偏移量 默认是0
   final Offset offset;
 
   ///内边距 默认是0
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? padding;
 
   ///圆角 默认4.0
   final double circular;
@@ -38,7 +38,7 @@ class BrnShadowCard extends StatelessWidget {
   final double borderWidth;
 
   BrnShadowCard(
-      {@required this.child,
+      {required this.child,
       this.color,
       this.shadowColor,
       this.padding,
@@ -51,16 +51,12 @@ class BrnShadowCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double tempBorderWidth = 0;
-    if (this.borderWidth != null && this.borderWidth > 0) {
+    if (this.borderWidth > 0) {
       tempBorderWidth = this.borderWidth;
     }
     return Container(
       padding: padding ?? EdgeInsets.all(0),
-      child: this.child ??
-          Container(
-            width: 0,
-            height: 0,
-          ),
+      child: this.child,
       decoration: BoxDecoration(
           color: this.color ?? Color(0xfffafafa),
           borderRadius: BorderRadius.all(Radius.circular(circular)),
