@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -102,7 +100,7 @@ class BrnSearchText extends StatefulWidget {
     this.action,
     this.maxHeight = 60,
     this.innerPadding =
-        const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
+    const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
     this.outSideColor = Colors.white,
     this.innerColor = const Color(0xfff8f8f8),
     this.normalBorder,
@@ -198,11 +196,11 @@ class _SearchTextState extends State<BrnSearchText> {
                           child: Center(
                             child: Container(
                                 child: Image.asset(
-                              'assets/${BrnAsset.ICON_SEARCH}',
-                              package: BrnStrings.flutterPackageName,
-                              height: 16,
-                              width: 16,
-                            )),
+                                  'assets/${BrnAsset.ICON_SEARCH}',
+                                  package: BrnStrings.flutterPackageName,
+                                  height: 16,
+                                  width: 16,
+                                )),
                           ),
                         ),
                     Expanded(
@@ -216,7 +214,7 @@ class _SearchTextState extends State<BrnSearchText> {
                           // 光标颜色属性，绘制光标时使用的颜色。
                           cursorColor: BrnThemeConfigurator.instance
                               .getConfig()
-                              .commonConfig!
+                              .commonConfig
                               .brandPrimary,
                           // 光标宽度属性，光标的厚度，默认是2.0。
                           cursorWidth: 2.0,
@@ -226,7 +224,7 @@ class _SearchTextState extends State<BrnSearchText> {
                                   textBaseline: TextBaseline.alphabetic,
                                   color: BrnThemeConfigurator.instance
                                       .getConfig()
-                                      .commonConfig!
+                                      .commonConfig
                                       .colorTextBase,
                                   fontSize: 16),
                           // 装饰（`decoration`）属性，在文本字段周围显示的装饰。
@@ -278,7 +276,8 @@ class _SearchTextState extends State<BrnSearchText> {
                           if (this.widget.onTextChange != null) {
                             this
                                 .widget
-                                .onTextChange!(textEditingController!.value.text);
+                                .onTextChange!(
+                                textEditingController!.value.text);
                           }
                           setState(() {});
                         },
@@ -286,7 +285,7 @@ class _SearchTextState extends State<BrnSearchText> {
                           visible: textEditingController!.text.isNotEmpty,
                           child: Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            const EdgeInsets.symmetric(horizontal: 12.0),
                             child: BrunoTools.getAssetImage(
                               BrnAsset.ICON_DELETE_TEXT,
                             ),
@@ -314,7 +313,7 @@ class _SearchTextState extends State<BrnSearchText> {
                         style: TextStyle(
                             color: BrnThemeConfigurator.instance
                                 .getConfig()
-                                .commonConfig!
+                                .commonConfig
                                 .colorTextBase,
                             fontSize: 16,
                             height: 1),
