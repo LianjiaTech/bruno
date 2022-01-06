@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -42,13 +40,13 @@ class BrnRatingStar extends StatefulWidget {
   final bool canRatingZero;
 
   /// 单颗星星视图的自定义构造器
-  final BrnRatingStarBuilder starBuilder;
+  final BrnRatingStarBuilder? starBuilder;
 
   /// 如果设置了，就支持编辑
-  final ValueChanged<int> onSelected;
+  final ValueChanged<int>? onSelected;
 
   const BrnRatingStar({
-    Key key,
+    Key? key,
     this.count = DEFAULT_COUNT,
     this.selectedCount = 0,
     this.space = DEFAULT_SPACE,
@@ -62,7 +60,7 @@ class BrnRatingStar extends StatefulWidget {
 }
 
 class _BrnRatingStarState extends State<BrnRatingStar> {
-  double currSelected;
+  late double currSelected;
 
   @override
   void initState() {
@@ -86,7 +84,7 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
   }
 
   List<Widget> _getContent() {
-    List<Widget> list = List();
+    List<Widget> list = [];
     for (var i = 0; i < widget.count; i++) {
       RatingState state;
       if (i < currSelected.floor()) {
@@ -97,7 +95,7 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
         state = RatingState.unselect;
       }
       var rating = widget.starBuilder != null
-          ? widget.starBuilder(state)
+          ? widget.starBuilder!(state)
           : _buildRating(state);
 
       if (widget.onSelected != null) {
@@ -110,7 +108,7 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
             } else {
               currSelected = (i + 1).toDouble();
             }
-            widget.onSelected(currSelected.toInt());
+            widget.onSelected!(currSelected.toInt());
             setState(() {});
           },
           behavior: HitTestBehavior.opaque,
