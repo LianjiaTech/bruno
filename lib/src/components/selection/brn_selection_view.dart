@@ -115,9 +115,9 @@ class BrnSelectionView extends StatefulWidget {
       : super(key: key) {
     this.themeData ??= BrnSelectionConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData!.configId)
+        .getConfig(configId: this.themeData!.configId)
         .selectionConfig
-        .merge(themeData);
+        .merge(this.themeData!);
   }
 
   @override
