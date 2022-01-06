@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/tag/brn_tag_custom.dart';
 import 'package:flutter/material.dart';
 
@@ -17,17 +15,17 @@ import 'package:flutter/material.dart';
 ///
 class BrnStateTag extends StatelessWidget {
   final String tagText;
-  final Color backgroundColor;
-  final Color textColor;
   final TagState tagState;
+  final Color? backgroundColor;
+  final Color? textColor;
 
   //默认为等待状态,黄色
   const BrnStateTag(
-      {Key key,
-      this.tagText,
+      {Key? key,
+      required this.tagText,
+      this.tagState = TagState.waiting,
       this.backgroundColor,
-      this.textColor,
-      this.tagState = TagState.waiting})
+      this.textColor,})
       : super(key: key);
 
   @override

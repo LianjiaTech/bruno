@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -17,31 +15,31 @@ class BrnDeleteTag extends StatefulWidget {
   final List<String> tags;
 
   /// 标签控制器，用于主动添加和删除标签，如果使用场景只需要删除标签并进行回调可以不传控制器
-  final BrnDeleteTagController controller;
+  final BrnDeleteTagController? controller;
 
   /// 点击删除某个标签后的回调，参数包含
   /// 剩余的标签集合
   /// 被删除的标签内容
   /// 被删除的标签索引
-  final Function(List<String>, String, int) onTagDelete;
+  final Function(List<String>, String?, int)? onTagDelete;
 
   /// 垂直方向的间距
-  final double verticalSpacing;
+  final double? verticalSpacing;
 
   /// 水平方向的间距
-  final double horizontalSpacing;
+  final double? horizontalSpacing;
 
   /// 标签的字体颜色
-  final TextStyle tagTextStyle;
+  final TextStyle? tagTextStyle;
 
   /// 标签的圆角
-  final ShapeBorder shape;
+  final OutlinedBorder? shape;
 
   /// 标签背景色
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// 删除图标的颜色
-  final Color deleteIconColor;
+  final Color? deleteIconColor;
 
   /// true 流式展示，false 横向滑动展示，默认 true
   final bool softWrap;
@@ -50,14 +48,14 @@ class BrnDeleteTag extends StatefulWidget {
   final EdgeInsets padding;
 
   /// 主题配置信息，包含标签背景色、文本颜色等字段，非必传
-  BrnTagConfig themeData;
+  BrnTagConfig? themeData;
 
   /// delete Icon Size，不传默认使用 内置删除 icon 图片的的大小，
-  final Size deleteIconSize;
+  final Size? deleteIconSize;
 
   BrnDeleteTag(
-      {Key key,
-      this.tags,
+      {Key? key,
+      required this.tags,
       this.controller,
       this.onTagDelete,
       this.verticalSpacing,
@@ -68,15 +66,15 @@ class BrnDeleteTag extends StatefulWidget {
       this.deleteIconColor,
       this.deleteIconSize,
       this.softWrap = true,
-      this.padding,
+      this.padding = const EdgeInsets.fromLTRB(20, 0, 20, 0),
       this.themeData})
       : super(key: key) {
     themeData ??= BrnTagConfig();
-    themeData = themeData.merge(BrnTagConfig(
+    themeData = themeData!.merge(BrnTagConfig(
         tagBackgroundColor: this.backgroundColor,
         tagTextStyle: BrnTextStyle.withStyle(tagTextStyle)));
     themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
+        .getConfig(configId: themeData!.configId)
         .tagConfig
         .merge(themeData);
   }
@@ -86,20 +84,19 @@ class BrnDeleteTag extends StatefulWidget {
 }
 
 class _BrnDeleteTagState extends State<BrnDeleteTag> {
-  BrnDeleteTagController _controller;
+  late BrnDeleteTagController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        widget.controller ?? BrnDeleteTagController(initTags: widget.tags);
+    _controller = widget.controller ?? BrnDeleteTagController(initTags: widget.tags);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
         color: Colors.white,
-        child: ValueListenableBuilder(
+        child: ValueListenableBuilder<List<String>>(
           valueListenable: _controller.notifier,
           builder: (context, value, _) {
             return _buildContent(value);
@@ -109,8 +106,8 @@ class _BrnDeleteTagState extends State<BrnDeleteTag> {
 
   /// 根据标签集合构建标签 UI
   Widget _buildContent(List<String> tags) {
-    if (tags == null || tags.isEmpty) {
-      return Container();
+    if (tags.isEmpty) {
+      return SizedBox.shrink();
     }
 
     List<Widget> itemList = [];
@@ -120,28 +117,25 @@ class _BrnDeleteTagState extends State<BrnDeleteTag> {
         tags[i],
         _deleteTag,
         deleteIconSize: widget.deleteIconSize,
-        style: widget.themeData.tagTextStyle?.generateTextStyle(),
+        style: widget.themeData!.tagTextStyle.generateTextStyle(),
         shape: widget.shape,
-        backgroundColor: widget.themeData?.tagBackgroundColor,
+        backgroundColor: widget.themeData!.tagBackgroundColor,
         deleteIconColor: widget.deleteIconColor,
         themeData: widget.themeData,
       ));
     }
     Widget result;
-    if (widget.softWrap ?? true) {
+    if (widget.softWrap) {
       result = Wrap(
         spacing: widget.horizontalSpacing ?? 10,
-        runSpacing:
-            widget.verticalSpacing != null ? widget.verticalSpacing - 16 : -6,
+        runSpacing: widget.verticalSpacing != null ? widget.verticalSpacing! - 16 : -6,
         alignment: WrapAlignment.start,
         children: itemList,
       );
     } else {
       int tagIdx = 0;
       var finalTagList = itemList.map((tag) {
-        double rightPadding = (tagIdx == itemList.length - 1)
-            ? 0
-            : widget.horizontalSpacing ?? 12;
+        double rightPadding = (tagIdx == itemList.length - 1) ? 0 : widget.horizontalSpacing ?? 12;
         var padding = Padding(
           child: tag,
           padding: EdgeInsets.only(right: rightPadding),
@@ -160,7 +154,7 @@ class _BrnDeleteTagState extends State<BrnDeleteTag> {
 
     return Container(
       color: Colors.white,
-      padding: widget.padding ?? EdgeInsets.fromLTRB(20, 0, 20, 0),
+      padding: widget.padding,
       alignment: Alignment.centerLeft,
       child: result,
     );
@@ -168,9 +162,9 @@ class _BrnDeleteTagState extends State<BrnDeleteTag> {
 
   /// 删除指定 index 下标的标签，并且回调通知外部使用者
   void _deleteTag(int index) {
-    String result = _controller.deleteForIndex(index);
+    String? result = _controller.deleteForIndex(index);
     if (widget.onTagDelete != null) {
-      widget.onTagDelete(_controller.tags, result, index);
+      widget.onTagDelete!(_controller.tags, result, index);
     }
   }
 }
@@ -181,12 +175,12 @@ class DeleteTagItemWidget extends StatelessWidget {
   final int index;
   final String title;
   final Function(int) didDeleted;
-  final Size deleteIconSize;
-  final TextStyle style;
-  final ShapeBorder shape;
-  final Color backgroundColor;
-  final Color deleteIconColor;
-  BrnTagConfig themeData;
+  final Size? deleteIconSize;
+  final TextStyle? style;
+  final OutlinedBorder? shape;
+  final Color? backgroundColor;
+  final Color? deleteIconColor;
+  final BrnTagConfig? themeData;
 
   DeleteTagItemWidget(this.index, this.title, this.didDeleted,
       {this.deleteIconSize,
@@ -201,20 +195,17 @@ class DeleteTagItemWidget extends StatelessWidget {
     return Chip(
       padding: EdgeInsets.fromLTRB(10, 0, -3, 0),
       labelPadding: EdgeInsets.fromLTRB(0, 0, -3, 0),
-      backgroundColor: themeData.tagBackgroundColor,
+      backgroundColor: themeData!.tagBackgroundColor,
       label: Text(this.title,
-          overflow: TextOverflow.ellipsis,
-          style: themeData?.tagTextStyle?.generateTextStyle()),
+          overflow: TextOverflow.ellipsis, style: themeData!.tagTextStyle.generateTextStyle()),
       shape: shape ??
-          RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(themeData?.tagRadius)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(themeData!.tagRadius)),
       //删除图标
       deleteIcon: deleteIconSize != null
           ? BrunoTools.getAssetSizeImage(
-              BrnAsset.iconClose, deleteIconSize.width, deleteIconSize.height,
+              BrnAsset.iconClose, deleteIconSize!.width, deleteIconSize!.height,
               color: deleteIconColor)
-          : BrunoTools.getAssetImageWithColor(
-              BrnAsset.iconClose, deleteIconColor),
+          : BrunoTools.getAssetImageWithColor(BrnAsset.iconClose, deleteIconColor),
       onDeleted: () {
         debugPrint('$index');
         didDeleted(index);
@@ -225,15 +216,15 @@ class DeleteTagItemWidget extends StatelessWidget {
 
 /// 标签控制器，用于主动添加和删除标签
 class BrnDeleteTagController {
-  ValueNotifier<List<String>> notifier;
+  late ValueNotifier<List<String>> notifier;
 
   /// 控制器中存储的标签数据
-  List<String> _tags = List();
+  List<String> _tags = [];
 
   List<String> get tags => notifier.value;
 
-  BrnDeleteTagController({List<String> initTags}) {
-    _tags = initTags;
+  BrnDeleteTagController({List<String>? initTags}) {
+    _tags = initTags ?? [];
     notifier = ValueNotifier(_tags);
   }
 
@@ -262,8 +253,8 @@ class BrnDeleteTagController {
   }
 
   /// 删除指定 index 的标签，并返回其内容
-  String deleteForIndex(int index) {
-    if (_tags != null && _tags.length > index) {
+  String? deleteForIndex(int index) {
+    if (_tags.length > index) {
       String result = _tags.removeAt(index);
       _asyncData();
       return result;
@@ -273,17 +264,14 @@ class BrnDeleteTagController {
 
   /// 删除某个具体内容的标签，成功返回 true，失败返回 false
   bool deleteForTag(String tag) {
-    if (_tags != null) {
-      bool result = _tags.remove(tag);
-      _asyncData();
-      return result;
-    } else
-      return false;
+    bool result = _tags.remove(tag);
+    _asyncData();
+    return result;
   }
 
   void _asyncData() {
     // notifier 中的 value 引用是 _tags 所以直接赋值 _tags 不会触发回调
-    List<String> values = List();
+    List<String> values = [];
     _tags.forEach((e) => values.add(e));
     notifier.value = values;
   }
