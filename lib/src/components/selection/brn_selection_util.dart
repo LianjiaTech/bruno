@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/selection/bean/brn_selection_common_entity.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 
@@ -13,9 +11,9 @@ class BrnSelectionUtil {
       BrnSelectionEntity selectionEntity) {
     if (BrnSelectionFilterType.Checkbox == selectionEntity.filterType) {
       selectionEntity.isSelected = !selectionEntity.isSelected;
-      List<BrnSelectionEntity> allBrothers = selectionEntity.parent?.children;
+      List<BrnSelectionEntity>? allBrothers = selectionEntity.parent?.children;
       if (!BrunoTools.isEmpty(allBrothers)) {
-        for (BrnSelectionEntity entity in allBrothers) {
+        for (BrnSelectionEntity entity in allBrothers!) {
           if (entity != selectionEntity) {
             if (entity.filterType == BrnSelectionFilterType.Radio) {
               entity.isSelected = false;
@@ -47,21 +45,17 @@ class BrnSelectionUtil {
     int level = 0;
     BrnSelectionEntity rootEntity = entity;
     while (rootEntity.parent != null) {
-      rootEntity = rootEntity.parent;
+      rootEntity = rootEntity.parent!;
     }
 
-    if (rootEntity != null &&
-        rootEntity.children != null &&
-        rootEntity.children.length > 0) {
+    if (rootEntity.children.length > 0) {
       level = level > 1 ? level : 1;
       for (BrnSelectionEntity firstLevelEntity in rootEntity.children) {
-        if (firstLevelEntity.children != null &&
-            firstLevelEntity.children.length > 0) {
+        if (firstLevelEntity.children.length > 0) {
           level = level > 2 ? level : 2;
           for (BrnSelectionEntity secondLevelEntity
               in firstLevelEntity.children) {
-            if (secondLevelEntity.children != null &&
-                secondLevelEntity.children.length > 0) {
+            if (secondLevelEntity.children.length > 0) {
               level = 3;
               break;
             }
@@ -75,12 +69,10 @@ class BrnSelectionUtil {
   /// 返回状态为选中的子节点
   static List<BrnSelectionEntity> currentSelectListForEntity(
       BrnSelectionEntity entity) {
-    List<BrnSelectionEntity> list = List();
-    if (entity.children != null && entity.children.length > 0) {
-      for (BrnSelectionEntity entity in entity.children) {
-        if (entity.isSelected) {
-          list.add(entity);
-        }
+    List<BrnSelectionEntity> list = [];
+    for (BrnSelectionEntity entity in entity.children) {
+      if (entity.isSelected) {
+        list.add(entity);
       }
     }
     return list;
@@ -100,10 +92,9 @@ class BrnSelectionUtil {
   }
 
   /// 判断列表中是否有range类型
-  static BrnSelectionEntity getFilledCustomInputItem(
+  static BrnSelectionEntity? getFilledCustomInputItem(
       List<BrnSelectionEntity> list) {
-    BrnSelectionEntity filledCustomInputItem;
-    if (list == null) return filledCustomInputItem;
+    BrnSelectionEntity? filledCustomInputItem;
     for (BrnSelectionEntity entity in list) {
       if (entity.isSelected &&
           (BrnSelectionFilterType.Range == entity.filterType ||
@@ -113,7 +104,7 @@ class BrnSelectionUtil {
         filledCustomInputItem = entity;
         break;
       }
-      if (entity.children != null && entity.children.length > 0) {
+      if (entity.children.length > 0) {
         filledCustomInputItem = getFilledCustomInputItem(entity.children);
       }
       if (filledCustomInputItem != null) {
@@ -124,7 +115,7 @@ class BrnSelectionUtil {
   }
 
   /// 确定当前 Item 在第几层级
-  static int getCurrentListIndex(BrnSelectionEntity currentItem) {
+  static int getCurrentListIndex(BrnSelectionEntity? currentItem) {
     int listIndex = -1;
     if (currentItem != null) {
       listIndex = 0;

@@ -1,16 +1,14 @@
-// @dart=2.9
-
 class ItemEntity {
-  String key;
-  String name;
-  String value;
+  String? key;
+  late String name;
+  String? value;
 
-  ItemEntity({this.key, this.name, this.value});
+  ItemEntity({this.key, this.name = '', this.value});
 
-  ItemEntity.fromJson(Map<String, dynamic> map) {
+  ItemEntity.fromJson(Map<String, dynamic>? map) {
     if (map == null) return;
-    key = map['key'] ?? "";
-    name = map['title'] ?? "";
-    value = map['value'] ?? "";
+    key = map['key'] ?? '';
+    name = map['title'] ?? '';
+    value = map['value'] ?? '';
   }
 }

@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:async';
 
 import 'package:bruno/src/components/popup/brn_measure_size.dart';
@@ -23,36 +21,38 @@ class BrnFlatSelection extends StatefulWidget {
   final List<BrnSelectionEntity> entityDataList;
 
   /// 点击确定回调
-  final Function(Map<String, String>) confirmCallback;
+  final Function(Map<String, String>)? confirmCallback;
 
   /// 每行展示tag数量  默认真是3个
   final int preLineTagSize;
 
   /// 当[BrnSelectionEntity.filterType]为[BrnSelectionFilterType.Layer] or[BrnSelectionFilterType.CustomLayer]时
   /// 跳转到二级页面的自定义操作
-  final BrnOnCustomFloatingLayerClick onCustomFloatingLayerClick;
+  final BrnOnCustomFloatingLayerClick? onCustomFloatingLayerClick;
 
   /// controller.dispose() 操作交由外部处理
-  final BrnFlatSelectionController controller;
+  final BrnFlatSelectionController? controller;
 
   /// 是否需要配置子选项
   final bool isNeedConfigChild;
 
   /// 主题配置
   /// 如有对文本样式、圆角、间距等[BrnSelectionConfig]有特定要求可以配置该属性
-  BrnSelectionConfig themeData;
+  BrnSelectionConfig? themeData;
 
   BrnFlatSelection(
-      {this.entityDataList,
+      {Key? key,
+      required this.entityDataList,
       this.confirmCallback,
       this.onCustomFloatingLayerClick,
       this.preLineTagSize = 3,
       this.isNeedConfigChild = true,
       this.controller,
-      this.themeData}) {
+      this.themeData})
+      : super(key: key) {
     this.themeData ??= BrnSelectionConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
+        .getConfig(configId: themeData!.configId)
         .selectionConfig
         .merge(themeData);
   }
@@ -61,32 +61,25 @@ class BrnFlatSelection extends StatefulWidget {
   _BrnFlatSelectionState createState() => _BrnFlatSelectionState();
 }
 
-class _BrnFlatSelectionState extends State<BrnFlatSelection>
-    with SingleTickerProviderStateMixin {
-  List<BrnSelectionEntity> _originalSelectedItemsList;
+class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerProviderStateMixin {
+  List<BrnSelectionEntity> _originalSelectedItemsList = [];
 
-  StreamController<FlatClearEvent> clearController;
+  StreamController<FlatClearEvent> clearController = StreamController.broadcast();
   bool isValid = true;
-  BrnFlatSelectionController _controller;
 
-  var _lineWidth = 0.0;
+  double _lineWidth = 0.0;
 
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller;
 
-    if (widget.isNeedConfigChild ?? true) {
-      widget.entityDataList
-          ?.forEach((f) => f.configRelationshipAndDefaultValue());
+    if (widget.isNeedConfigChild) {
+      widget.entityDataList?.forEach((f) => f.configRelationshipAndDefaultValue());
     }
-    _controller?.addListener(_handleFlatControllerTick);
+    widget.controller?.addListener(_handleFlatControllerTick);
 
-    _originalSelectedItemsList = List();
-    _originalSelectedItemsList.clear();
-
-    List<BrnSelectionEntity> firstColumn = List();
-    if (widget.entityDataList != null && widget.entityDataList.length > 0) {
+    List<BrnSelectionEntity> firstColumn = [];
+    if (widget.entityDataList.length > 0) {
       for (BrnSelectionEntity entity in widget.entityDataList) {
         if (entity.isSelected) {
           firstColumn.add(entity);
@@ -94,18 +87,16 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
       }
     }
     _originalSelectedItemsList.addAll(firstColumn);
-    if (firstColumn != null && firstColumn.length > 0) {
+    if (firstColumn.length > 0) {
       for (BrnSelectionEntity firstEntity in firstColumn) {
-        if (firstEntity != null) {
-          List<BrnSelectionEntity> secondColumn =
-              BrnSelectionUtil.currentSelectListForEntity(firstEntity);
-          _originalSelectedItemsList.addAll(secondColumn);
-          if (secondColumn != null && secondColumn.length > 0) {
-            for (BrnSelectionEntity secondEntity in secondColumn) {
-              List<BrnSelectionEntity> thirdColumn =
-                  BrnSelectionUtil.currentSelectListForEntity(secondEntity);
-              _originalSelectedItemsList.addAll(thirdColumn);
-            }
+        List<BrnSelectionEntity> secondColumn =
+            BrnSelectionUtil.currentSelectListForEntity(firstEntity);
+        _originalSelectedItemsList.addAll(secondColumn);
+        if (secondColumn.length > 0) {
+          for (BrnSelectionEntity secondEntity in secondColumn) {
+            List<BrnSelectionEntity> thirdColumn =
+                BrnSelectionUtil.currentSelectListForEntity(secondEntity);
+            _originalSelectedItemsList.addAll(thirdColumn);
           }
         }
       }
@@ -114,29 +105,27 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
     for (BrnSelectionEntity entity in _originalSelectedItemsList) {
       entity.isSelected = true;
       if (entity.customMap != null) {
-        //ori 是存数据     customMap是用来展示ui的
-        entity.originalCustomMap = Map.from(entity.customMap);
+        // originalCustomMap 是用来存临时状态数据, customMap 用来展示 ui
+        entity.originalCustomMap = Map.from(entity.customMap!);
       }
     }
-
-    clearController = StreamController.broadcast();
   }
 
   void _handleFlatControllerTick() {
-    if (_controller.isResetSelectedOptions) {
+    if (widget.controller?.isResetSelectedOptions ?? false) {
       if (mounted) {
         setState(() {
           _resetSelectedOptions();
         });
       }
-      _controller.isResetSelectedOptions = false;
-    } else if (_controller.isCancelSelectedOptions) {
+      widget.controller?.isResetSelectedOptions = false;
+    } else if (widget.controller?.isCancelSelectedOptions ?? false) {
       // 外部关闭调用无UI更新操作
       _cancelSelectedOptions();
-      _controller.isCancelSelectedOptions = false;
-    } else if (_controller.isConfirmSelectedOptions) {
+      widget.controller?.isCancelSelectedOptions = false;
+    } else if (widget.controller?.isConfirmSelectedOptions ?? false) {
       _confirmSelectedOptions();
-      _controller.isConfirmSelectedOptions = false;
+      widget.controller?.isConfirmSelectedOptions = false;
     }
   }
 
@@ -145,7 +134,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
     return MeasureSize(
         onChange: (size) {
           setState(() {
-            _lineWidth = size.width;
+            _lineWidth = size?.width ?? 0;
           });
         },
         child: _buildSelectionListView());
@@ -153,13 +142,13 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
 
   @override
   void dispose() {
-    _controller?.removeListener(_handleFlatControllerTick);
+    widget.controller?.removeListener(_handleFlatControllerTick);
     super.dispose();
   }
 
   /// 取消
   _cancelSelectedOptions() {
-    if (widget.entityDataList == null || widget.entityDataList.length <= 0) {
+    if (widget.entityDataList.length <= 0) {
       return;
     }
     for (BrnSelectionEntity entity in widget.entityDataList) {
@@ -169,13 +158,11 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
     _originalSelectedItemsList.forEach((data) {
       data.isSelected = true;
       if (data.customMap != null) {
-        //ori 是存数据     customMap是用来展示ui的
+        // originalCustomMap 是用来存临时状态数据, customMap 用来展示 ui
         data.customMap = Map<String, String>();
-        if (data.originalCustomMap != null) {
-          data.originalCustomMap.forEach((key, value) {
-            data.customMap[key.toString()] = value.toString() ?? "";
-          });
-        }
+        data.originalCustomMap.forEach((key, value) {
+          data.customMap![key.toString()] = value.toString();
+        });
       }
     });
   }
@@ -183,7 +170,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
   /// 重置
   _resetSelectedOptions() {
     clearController.add(FlatClearEvent());
-    if (widget.entityDataList != null && widget.entityDataList.length > 0) {
+    if (widget.entityDataList.length > 0) {
       for (BrnSelectionEntity entity in widget.entityDataList) {
         _clearUIData(entity);
       }
@@ -205,9 +192,10 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
         data.isSelected = false;
       }
     });
-
-    widget.confirmCallback(
-        DefaultSelectionConverter().convertSelectedData(widget.entityDataList));
+    if (widget.confirmCallback != null) {
+      widget
+          .confirmCallback!(DefaultSelectionConverter().convertSelectedData(widget.entityDataList));
+    }
   }
 
   /// 标题+筛选条件的 列表
@@ -225,7 +213,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
                 onCustomFloatingLayerClick: widget.onCustomFloatingLayerClick,
                 preLineTagSize: widget.preLineTagSize,
                 parentWidth: _lineWidth,
-                themeData: widget.themeData,
+                themeData: widget.themeData!,
               );
             },
             itemCount: widget.entityDataList.length,
@@ -240,17 +228,15 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
     entity.isSelected = false;
     entity.customMap = Map<String, String>();
     if (BrnSelectionFilterType.Range == entity.filterType) {
-      entity.title = null;
+      entity.title = '';
     }
-    if (entity.children != null) {
-      for (BrnSelectionEntity subEntity in entity.children) {
-        _clearUIData(subEntity);
-      }
+    for (BrnSelectionEntity subEntity in entity.children) {
+      _clearUIData(subEntity);
     }
   }
 
   void _clearSelectedEntity() {
-    List<BrnSelectionEntity> tmp = List();
+    List<BrnSelectionEntity> tmp = [];
     BrnSelectionEntity node;
     tmp.addAll(widget.entityDataList);
     while (tmp.isNotEmpty) {

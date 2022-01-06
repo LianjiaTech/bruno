@@ -28,7 +28,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewSimpleSingleList
           children: <Widget>[
             BrnSimpleSelection.radio(
               menuName: widget._filterData.name,
-              menuKey: widget._filterData.key ?? defaultMenuKey,
+              menuKey: widget._filterData.key ?? 'defaultMenuKey',
               items: widget._filterData.children,
               defaultValue: widget._filterData.defaultValue,
               onSimpleSelectionChanged: (

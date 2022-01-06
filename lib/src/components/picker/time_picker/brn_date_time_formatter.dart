@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/time_picker/brn_date_picker_constants.dart';
@@ -12,25 +10,25 @@ import 'package:intl/intl.dart';
 const String DATE_FORMAT_SEPARATOR = r'[|,-\._: ]+';
 
 class DateTimeFormatter {
-  static DateTime convertStringToDate(String format, String date) {
+  static DateTime? convertStringToDate(String format, String date) {
     if (BrunoTools.isEmpty(format) || BrunoTools.isEmpty(date)) return null;
 
     return DateFormat(format).parse(date);
   }
 
-  static DateTime convertIntValueToDateTime(String value) {
+  static DateTime? convertIntValueToDateTime(String? value) {
     if (value == null) {
       return null;
     } else {
       return int.tryParse(value) != null
-          ? DateTime.fromMillisecondsSinceEpoch(int.tryParse(value))
+          ? DateTime.fromMillisecondsSinceEpoch(int.tryParse(value)!)
           : null;
     }
   }
 
   /// Get default value of date format.
   static String generateDateFormat(
-      String dateFormat, BrnDateTimePickerMode pickerMode) {
+      String? dateFormat, BrnDateTimePickerMode pickerMode) {
     if (dateFormat != null && dateFormat.length > 0) {
       return dateFormat;
     }
@@ -46,7 +44,7 @@ class DateTimeFormatter {
   }
 
   static String generateDateRangePickerFormat(
-      String dateFormat, BrnDateTimeRangePickerMode pickerMode) {
+      String? dateFormat, BrnDateTimeRangePickerMode pickerMode) {
     if (dateFormat != null && dateFormat.length > 0) {
       return dateFormat;
     }
@@ -70,15 +68,15 @@ class DateTimeFormatter {
   }
 
   /// Split date format to array.
-  static List<String> splitDateFormat(String dateFormat,
-      {BrnDateTimePickerMode mode}) {
+  static List<String> splitDateFormat(String? dateFormat,
+      {BrnDateTimePickerMode? mode}) {
     if (dateFormat == null || dateFormat.length == 0) {
       return [];
     }
     List<String> result = dateFormat.split(RegExp(DATE_FORMAT_SEPARATOR));
     if (mode == BrnDateTimePickerMode.datetime) {
       // datetime mode need join day format
-      List<String> temp = List<String>();
+      List<String> temp = [];
       StringBuffer dayFormat = StringBuffer();
       for (int i = 0; i < result.length; i++) {
         String format = result[i];

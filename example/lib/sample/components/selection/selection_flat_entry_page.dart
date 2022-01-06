@@ -31,7 +31,7 @@ class FlatSelectionEntryPage extends StatelessWidget {
               onPressed: () {
                 rootBundle.loadString('assets/flat_selection_filter.json').then((data) {
                   var datas =
-                      BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"]).list;
+                      BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"]).list;
                   void _configMaxSelectedCount(BrnSelectionEntity entity, int maxCount) {
                     entity.maxSelectedCount = maxCount;
                     if (entity.children != null && entity.children.length > 0) {
@@ -56,7 +56,7 @@ class FlatSelectionEntryPage extends StatelessWidget {
               onPressed: () {
                 rootBundle.loadString('assets/flat_selection_filter.json').then((data) {
                   var datas =
-                      BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"]).list;
+                      BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"]).list;
                   void _configMaxSelectedCount(BrnSelectionEntity entity, int maxCount) {
                     entity.maxSelectedCount = maxCount;
                     if (entity.children != null && entity.children.length > 0) {
@@ -81,7 +81,7 @@ class FlatSelectionEntryPage extends StatelessWidget {
               onPressed: () {
                 rootBundle.loadString('assets/flat_selection_filter.json').then((data) {
                   var datas =
-                      BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"]).list;
+                      BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"]).list;
                   void _configMaxSelectedCount(BrnSelectionEntity entity, int maxCount) {
                     entity.maxSelectedCount = maxCount;
                     if (entity.children != null && entity.children.length > 0) {

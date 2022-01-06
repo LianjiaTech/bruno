@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/selection/controller/brn_selection_view_date_picker_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +9,9 @@ class BrnSelectionDatePickerAnimationWidget extends StatefulWidget {
   final int animationMilliseconds;
 
   const BrnSelectionDatePickerAnimationWidget(
-      {Key key,
-      @required this.controller,
-      @required this.view,
+      {Key? key,
+      required this.controller,
+      required this.view,
       this.animationMilliseconds = 100})
       : super(key: key);
 
@@ -26,8 +24,8 @@ class _BrnSelectionDatePickerAnimationWidgetState
     extends State<BrnSelectionDatePickerAnimationWidget>
     with SingleTickerProviderStateMixin {
   bool _isControllerDisposed = false;
-  Animation<double> _animation;
-  AnimationController _controller;
+  Animation<double>? _animation;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -57,11 +55,7 @@ class _BrnSelectionDatePickerAnimationWidgetState
   }
 
   _showListViewWidget() {
-    if (widget.view == null) {
-      return;
-    }
-
-    _animation = Tween(begin: widget.controller.screenHeight, end: 300.0)
+    _animation = Tween(begin: MediaQuery.of(context).size.height, end: 300.0)
         .animate(_controller)
       ..addListener(() {
         //这行如果不写，没有动画效果
@@ -70,7 +64,7 @@ class _BrnSelectionDatePickerAnimationWidgetState
 
     if (_isControllerDisposed) return;
 
-    if (_animation.status == AnimationStatus.completed) {
+    if (_animation!.status == AnimationStatus.completed) {
       _controller.reverse();
     } else {
       _controller.forward();
