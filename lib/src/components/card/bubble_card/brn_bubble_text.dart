@@ -31,7 +31,7 @@ import 'package:bruno/src/utils/brn_tools.dart';
 ///
 class BrnBubbleText extends StatelessWidget {
   ///显示的文本
-  final String? text;
+  final String text;
 
   ///最多显示的行数
   final int? maxLines;
@@ -43,7 +43,11 @@ class BrnBubbleText extends StatelessWidget {
   final double radius;
 
   const BrnBubbleText(
-      {Key? key, this.text, this.maxLines, this.onExpanded, this.radius = 4})
+      {Key? key,
+      this.text = '',
+      this.maxLines,
+      this.onExpanded,
+      this.radius = 4})
       : super(key: key);
 
   @override
@@ -77,7 +81,7 @@ class BrnBubbleText extends StatelessWidget {
                     bottomRight: Radius.circular(radius))),
             padding: EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
             child: BrnExpandableText(
-              text: text ?? "",
+              text: text,
               maxLines: maxLines,
               color: Color(0xFFF8F8F8),
               onExpanded: onExpanded,
