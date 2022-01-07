@@ -330,12 +330,12 @@ class BrnRichGridInfo {
   }
 }
 
-TextStyle _getKeyStyle({required BrnPairRichInfoGridConfig themeData}) =>
-    themeData.keyTextStyle.generateTextStyle();
+TextStyle? _getKeyStyle({BrnPairRichInfoGridConfig? themeData}) =>
+    themeData?.keyTextStyle.generateTextStyle();
 
-TextStyle _getClickStyle(String? content, Color? clickColor,
-        {required BrnPairRichInfoGridConfig themeData}) =>
-    themeData.linkTextStyle.generateTextStyle();
+TextStyle? _getClickStyle(String? content, Color? clickColor,
+        {BrnPairRichInfoGridConfig? themeData}) =>
+    themeData?.linkTextStyle.generateTextStyle();
 
 TextStyle? _getValueStyle(String content,
         {BrnPairRichInfoGridConfig? themeData}) =>

@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 import 'dart:ui' as ui;
 
@@ -648,7 +646,7 @@ class BrnAlignPairInfo extends StatelessWidget with PairInfoPart {
       defaultVerticalAlignment: TableCellVerticalAlignment.baseline,
       textBaseline: TextBaseline.ideographic,
       columnWidths: <int, TableColumnWidth>{
-        0: customKeyWidth ?? _MaxWrapTableWidth(maxWidth: maxWith),
+        0: customKeyWidth ?? _MaxWrapTableWidth(maxWith),
         1: FlexColumnWidth()
       },
       border: TableBorder.all(color: Colors.transparent),
@@ -1063,7 +1061,7 @@ class BrnInfoModal {
 /// cells是这一列的布局信息，通过布局信息我们可以拿到 这一列的所有尺寸信息
 /// 进而通过对比 来实现 最大宽度的功能
 class _MaxWrapTableWidth extends TableColumnWidth {
-  final double? maxWidth;
+  final double maxWidth;
 
   @override
   double maxIntrinsicWidth(Iterable<RenderBox> cells, double containerWidth) {
@@ -1075,7 +1073,7 @@ class _MaxWrapTableWidth extends TableColumnWidth {
       }
     });
 
-    double screen = maxWidth!;
+    double screen = maxWidth;
     double width =
         screen * (double.parse(((107 / 375.0)).toStringAsPrecision(5)));
     return max > width ? width : max;
@@ -1086,5 +1084,5 @@ class _MaxWrapTableWidth extends TableColumnWidth {
     return 0;
   }
 
-  _MaxWrapTableWidth({this.maxWidth});
+  _MaxWrapTableWidth(this.maxWidth);
 }
