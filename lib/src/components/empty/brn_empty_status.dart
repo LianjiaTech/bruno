@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -27,8 +25,8 @@ class BrnAbnormalStateUtils {
   /// 通过状态获取对应空页面widget
   /// status: 页面状态类型为[EmptyState]
   static Widget getEmptyWidgetByState(BuildContext context,
-      AbnormalState status, BrnEmptyStatusIndexedActionClickCallback action,
-      {Image? img}) {
+      AbnormalState status,
+      {Image? img,BrnEmptyStatusIndexedActionClickCallback? action}) {
     if (AbnormalState.getDataFailed == status) {
       return BrnAbnormalStateWidget(
         img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
@@ -214,7 +212,9 @@ class BrnAbnormalStateWidget extends StatelessWidget {
   _buildOperateContentWidget() {
     if (OperateAreaType.SingleButton == operateAreaType) {
       return GestureDetector(
-        onTap: () => action!(0),
+        onTap: () {
+          if (action != null) action!(0);
+        },
         child: Container(
           constraints: BoxConstraints(minWidth: themeData!.singleMinWidth),
           padding: EdgeInsets.fromLTRB(48, 16, 48, 16),
@@ -222,7 +222,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
               color: themeData!.commonConfig.brandPrimary,
               borderRadius:
                   BorderRadius.all(Radius.circular(themeData!.btnRadius))),
-          child: Text(operateTexts?[0] ?? '',
+          child: Text(operateTexts![0] ?? '',
               textAlign: TextAlign.center,
               style: themeData!.singleTextStyle.generateTextStyle()),
         ),
@@ -232,7 +232,9 @@ class BrnAbnormalStateWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           GestureDetector(
-            onTap: () => action!(0),
+            onTap: () {
+              if (action != null) action!(0);
+            },
             child: Container(
               constraints: BoxConstraints(minWidth: themeData!.doubleMinWidth),
               padding: EdgeInsets.fromLTRB(36, 16, 36, 16),
@@ -240,7 +242,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                   color: themeData!.commonConfig.brandPrimary.withAlpha(0x14),
                   borderRadius:
                       BorderRadius.all(Radius.circular(themeData!.btnRadius))),
-              child: Text(operateTexts?[0] ?? '',
+              child: Text(operateTexts![0] ?? '',
                   textAlign: TextAlign.center,
                   style: themeData!.doubleTextStyle.generateTextStyle()),
             ),
@@ -250,7 +252,9 @@ class BrnAbnormalStateWidget extends StatelessWidget {
             color: Colors.transparent,
           ),
           GestureDetector(
-            onTap: () => action!(1),
+            onTap: () {
+              if (action != null) action!(1);
+            },
             child: Container(
               constraints: BoxConstraints(minWidth: themeData!.doubleMinWidth),
               padding: EdgeInsets.fromLTRB(36, 16, 36, 16),
@@ -258,7 +262,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                   color: themeData!.commonConfig.brandPrimary.withAlpha(0x14),
                   borderRadius:
                       BorderRadius.all(Radius.circular(themeData!.btnRadius))),
-              child: Text(operateTexts?[1] ?? '',
+              child: Text(operateTexts![1] ?? '',
                   textAlign: TextAlign.center,
                   style: themeData!.doubleTextStyle.generateTextStyle()),
             ),
@@ -267,8 +271,10 @@ class BrnAbnormalStateWidget extends StatelessWidget {
       );
     } else if (OperateAreaType.TextButton == operateAreaType) {
       return GestureDetector(
-          onTap: () => action!(0),
-          child: Text(operateTexts?[0] ??'',
+          onTap: () {
+            if (action != null) action!(0);
+          },
+          child: Text(operateTexts![0] ??'',
               style: themeData!.operateTextStyle.generateTextStyle()));
     }
     return Container();
