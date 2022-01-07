@@ -1,5 +1,4 @@
 import 'package:bruno/src/constants/brn_asset_constants.dart';
-import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/foundation.dart';
@@ -100,7 +99,7 @@ class BrnSearchText extends StatefulWidget {
     this.action,
     this.maxHeight = 60,
     this.innerPadding =
-    const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
+        const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
     this.outSideColor = Colors.white,
     this.innerColor = const Color(0xfff8f8f8),
     this.normalBorder,
@@ -194,13 +193,8 @@ class _SearchTextState extends State<BrnSearchText> {
                         Padding(
                           padding: const EdgeInsets.only(left: 14),
                           child: Center(
-                            child: Container(
-                                child: Image.asset(
-                                  'assets/${BrnAsset.ICON_SEARCH}',
-                                  package: BrnStrings.flutterPackageName,
-                                  height: 16,
-                                  width: 16,
-                                )),
+                            child: BrunoTools.getAssetSizeImage(
+                                BrnAsset.ICON_SEARCH, 16, 16),
                           ),
                         ),
                     Expanded(
@@ -274,9 +268,7 @@ class _SearchTextState extends State<BrnSearchText> {
                           }
                           textEditingController!.clear();
                           if (this.widget.onTextChange != null) {
-                            this
-                                .widget
-                                .onTextChange!(
+                            this.widget.onTextChange!(
                                 textEditingController!.value.text);
                           }
                           setState(() {});
@@ -285,7 +277,7 @@ class _SearchTextState extends State<BrnSearchText> {
                           visible: textEditingController!.text.isNotEmpty,
                           child: Padding(
                             padding:
-                            const EdgeInsets.symmetric(horizontal: 12.0),
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: BrunoTools.getAssetImage(
                               BrnAsset.ICON_DELETE_TEXT,
                             ),
