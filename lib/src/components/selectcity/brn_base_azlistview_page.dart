@@ -72,7 +72,7 @@ class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
             if (snapShot.connectionState == ConnectionState.done) {
               if (snapShot.hasError) {
                 return BrnAbnormalStateUtils.getEmptyWidgetByState(
-                    context, AbnormalState.networkConnectError, (index) {
+                    context, AbnormalState.networkConnectError,action:  (index) {
                   setState(() {});
                 });
               } else {
@@ -98,7 +98,7 @@ class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
 
     if (_dataList.isEmpty && top.isEmpty) {
       return BrnAbnormalStateUtils.getEmptyWidgetByState(
-          context, AbnormalState.noData, (index) {});
+          context, AbnormalState.noData,);
     }
 
     suspensionTag = top.isEmpty ? _dataList[0].tag : top[0].tag;

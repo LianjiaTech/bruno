@@ -56,16 +56,16 @@ class BrnSelectionMenuItemWidget extends StatelessWidget {
                   child: isHighLight
                       ? (active
                           ? BrunoTools.getAssetImageWithBandColor(
-                              BrnAsset.ICON_ARROWUP_SELECT,
+                              BrnAsset.iconArrowUpSelect,
                               configId: themeData.configId)
                           : BrunoTools.getAssetImageWithBandColor(
-                              BrnAsset.ICON_ARROWDOWN_SELECT))
+                              BrnAsset.iconArrowDownSelect))
                       : (active
                           ? BrunoTools.getAssetImageWithBandColor(
-                              BrnAsset.ICON_ARROWUP_SELECT,
+                              BrnAsset.iconArrowUpSelect,
                               configId: themeData.configId)
                           : BrunoTools.getAssetImage(
-                              BrnAsset.ICON_ARROWDOWN_UNSELECT)))
+                              BrnAsset.iconArrowDownUnSelect)))
             ],
           ),
         ),

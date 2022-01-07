@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/card_title/brn_action_title_example.dart';
 import 'package:example/sample/components/card_title/brn_common_title_example.dart';

@@ -159,7 +159,7 @@ class BrnShareDialog extends StatelessWidget {
               child: Container(
                 width: 30,
                 height: 30,
-                child: BrunoTools.getAssetImage(BrnAsset.ICON_PICKER_CLOSE),
+                child: BrunoTools.getAssetImage(BrnAsset.iconPickerClose),
               ),
               onTap: () {
                 Navigator.of(context).pop();
@@ -203,7 +203,7 @@ class BrnShareDialog extends StatelessWidget {
     for (int index = 0; index < shareChannels.length; index++) {
       title = null;
       image = null;
-      if (shareChannels[index] == BrnShareItemConstants.SHARE_CUSTOM) {
+      if (shareChannels[index] == BrnShareItemConstants.shareCustom) {
         // 获取自定义channel信息
         title = getCustomChannelTitle(index);
         image = getCustomChannelWidget(index);

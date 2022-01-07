@@ -200,7 +200,7 @@ class BrnTipInfoWidget extends StatelessWidget {
                       onClose();
                     },
                     child: BrunoTools.getAssetImageWithColor(
-                        BrnAsset.ICON_CLOSE, Colors.black),
+                        BrnAsset.iconClose, Colors.black),
                   ),
           ),
         ],
