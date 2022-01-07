@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/empty/abnormal_state_example.dart';
 import 'package:example/sample/home/list_item.dart';

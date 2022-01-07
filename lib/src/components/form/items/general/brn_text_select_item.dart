@@ -149,7 +149,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
   }
 }
 
-double _fontSize = BrnFonts.FONT_16;
+double _fontSize = BrnFonts.f16;
 StrutStyle _contentStructStyle = StrutStyle(
     forceStrutHeight: true, height: 1, leading: 0.5, fontSize: _fontSize);
 
@@ -291,7 +291,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
                     forceStrutHeight: true,
                     height: 1,
                     leading: 0.5,
-                    fontSize: BrnFonts.FONT_14),
+                    fontSize: BrnFonts.f14),
                 style: BrnFormUtil.getTipsTextStyle(widget.themeData),
               ),
             ),

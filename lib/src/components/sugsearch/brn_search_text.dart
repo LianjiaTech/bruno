@@ -194,7 +194,7 @@ class _SearchTextState extends State<BrnSearchText> {
                           padding: const EdgeInsets.only(left: 14),
                           child: Center(
                             child: BrunoTools.getAssetSizeImage(
-                                BrnAsset.ICON_SEARCH, 16, 16),
+                                BrnAsset.iconSearch, 16, 16),
                           ),
                         ),
                     Expanded(
@@ -279,7 +279,7 @@ class _SearchTextState extends State<BrnSearchText> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 12.0),
                             child: BrunoTools.getAssetImage(
-                              BrnAsset.ICON_DELETE_TEXT,
+                              BrnAsset.iconDeleteText,
                             ),
                           ),
                         ),

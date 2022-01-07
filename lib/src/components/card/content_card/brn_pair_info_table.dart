@@ -236,7 +236,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Expanded(child: valueWidget),
-          BrunoTools.getAssetImage(BrnAsset.ICON_RIGHT_ARROW),
+          BrunoTools.getAssetImage(BrnAsset.iconRightArrow),
         ],
       );
     }
@@ -271,7 +271,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   }
 
   BrnInfoModal _foldButtonWidget() {
-    Image img = BrunoTools.getAssetImage('icons/icon_uparrow.png');
+    Image img = BrunoTools.getAssetImage(BrnAsset.iconUpArrow);
     Transform trsm = Transform.rotate(angle: pi, child: img);
     Row row = Row(
       children: <Widget>[
@@ -330,7 +330,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   }
 
   BrnInfoModal _expandedButtonWidget() {
-    Image img = BrunoTools.getAssetImage('icons/icon_uparrow.png');
+    Image img = BrunoTools.getAssetImage(BrnAsset.iconUpArrow);
     Row row = Row(
       children: <Widget>[
         Padding(
@@ -473,7 +473,7 @@ mixin PairInfoPart {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Expanded(child: valueWidget),
-          BrunoTools.getAssetImage(BrnAsset.ICON_RIGHT_ARROW),
+          BrunoTools.getAssetImage(BrnAsset.iconRightArrow),
         ],
       );
     }
@@ -874,7 +874,7 @@ class BrnInfoModal {
                     keyCallback();
                   }
                 },
-                child: BrunoTools.getAssetImage(BrnAsset.ICON_QUESTION),
+                child: BrunoTools.getAssetImage(BrnAsset.iconQuestion),
               ),
               Text(
                 '：',
@@ -907,7 +907,7 @@ class BrnInfoModal {
                   valueCallback();
                 }
               },
-              child: BrunoTools.getAssetImage(BrnAsset.ICON_QUESTION),
+              child: BrunoTools.getAssetImage(BrnAsset.iconQuestion),
             )
           ],
         );
@@ -925,7 +925,7 @@ class BrnInfoModal {
               keyCallback();
             }
           },
-          child: BrunoTools.getAssetImage(BrnAsset.ICON_QUESTION),
+          child: BrunoTools.getAssetImage(BrnAsset.iconQuestion),
         ));
         keyGen.addText('：',
             textStyle: themeData.keyTextStyle?.generateTextStyle());
@@ -942,7 +942,7 @@ class BrnInfoModal {
               valueCallback();
             }
           },
-          child: BrunoTools.getAssetImage(BrnAsset.ICON_QUESTION),
+          child: BrunoTools.getAssetImage(BrnAsset.iconQuestion),
         ));
       }
       valueWidget = valueGen.build();

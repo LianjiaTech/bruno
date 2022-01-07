@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -762,9 +764,9 @@ class DialogEntryPage extends StatelessWidget {
     BrnShareDialog brnShareDialog = new BrnShareDialog(
       context: context,
       shareChannels: [
-        BrnShareItemConstants.SHARE_WEIXIN,
-        BrnShareItemConstants.SHARE_LINK,
-        BrnShareItemConstants.SHARE_CUSTOM
+        BrnShareItemConstants.shareWeiXin,
+        BrnShareItemConstants.shareLink,
+        BrnShareItemConstants.shareCustom
       ],
       titleText: "测试标题",
       descText: "测试辅助信息测试辅助信息测试辅助信息测试辅助信息测试辅助信息",
@@ -792,11 +794,11 @@ class DialogEntryPage extends StatelessWidget {
     BrnShareDialog brnShareDialog = new BrnShareDialog(
       context: context,
       shareChannels: [
-        BrnShareItemConstants.SHARE_WEIXIN,
-        BrnShareItemConstants.SHARE_CUSTOM,
-        BrnShareItemConstants.SHARE_CUSTOM,
-        BrnShareItemConstants.SHARE_LINK,
-        BrnShareItemConstants.SHARE_CUSTOM
+        BrnShareItemConstants.shareWeiXin,
+        BrnShareItemConstants.shareCustom,
+        BrnShareItemConstants.shareCustom,
+        BrnShareItemConstants.shareLink,
+        BrnShareItemConstants.shareCustom
       ],
       titleText: "测试标题",
       descText: "测试辅助信息测试辅助信息测试辅助信息测试辅助信息测试辅助信息",

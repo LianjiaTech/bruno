@@ -129,9 +129,9 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
 
     if (_isExpanded) {
       arrowIcon =
-          BrunoTools.getAssetSizeImage(BrnAsset.ICON_DOWN_ARROW, 12, 12);
+          BrunoTools.getAssetSizeImage(BrnAsset.iconDownArrow, 12, 12);
     } else {
-      arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_UP_ARROW, 12, 12);
+      arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconUpArrow, 12, 12);
     }
   }
 

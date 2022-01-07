@@ -244,7 +244,7 @@ class BrnSingleSelectDialogWidgetState
                               child: Padding(
                                 padding: EdgeInsets.all(15),
                                 child: BrunoTools.getAssetImage(
-                                    BrnAsset.ICON_PICKER_CLOSE),
+                                    BrnAsset.iconPickerClose),
                               )))
                       : Container()
                 ],

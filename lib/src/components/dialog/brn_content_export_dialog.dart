@@ -102,7 +102,7 @@ class BrnContentExportWidget extends StatelessWidget {
               behavior: HitTestBehavior.opaque,
               child: Padding(
                 padding: EdgeInsets.all(15),
-                child: BrunoTools.getAssetImage(BrnAsset.ICON_PICKER_CLOSE),
+                child: BrunoTools.getAssetImage(BrnAsset.iconPickerClose),
               )));
     }
     return Container();

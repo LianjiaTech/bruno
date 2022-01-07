@@ -76,7 +76,7 @@ class BrnDeleteTag extends StatefulWidget {
     themeData = BrnThemeConfigurator.instance
         .getConfig(configId: themeData!.configId)
         .tagConfig
-        .merge(themeData);
+        .merge(this.themeData!);
   }
 
   @override
@@ -203,9 +203,9 @@ class DeleteTagItemWidget extends StatelessWidget {
       //删除图标
       deleteIcon: deleteIconSize != null
           ? BrunoTools.getAssetSizeImage(
-              BrnAsset.ICON_CLOSE, deleteIconSize!.width, deleteIconSize!.height,
+              BrnAsset.iconClose, deleteIconSize!.width, deleteIconSize!.height,
               color: deleteIconColor)
-          : BrunoTools.getAssetImageWithColor(BrnAsset.ICON_CLOSE, deleteIconColor),
+          : BrunoTools.getAssetImageWithColor(BrnAsset.iconClose, deleteIconColor),
       onDeleted: () {
         debugPrint('$index');
         didDeleted(index);

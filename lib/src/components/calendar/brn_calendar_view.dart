@@ -177,9 +177,9 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                 color: Colors.transparent,
                 padding: EdgeInsets.only(left: 15),
                 child: isPreIconEnable
-                    ? BrunoTools.getAssetImage(BrnAsset.ICON_CALENDAR_PRE_MONTH)
+                    ? BrunoTools.getAssetImage(BrnAsset.iconCalendarPreMonth)
                     : BrunoTools.getAssetImageWithColor(
-                        BrnAsset.ICON_CALENDAR_PRE_MONTH, Color(0xFFCCCCCC)),
+                        BrnAsset.iconCalendarPreMonth, Color(0xFFCCCCCC)),
                 alignment: Alignment.center,
               ),
             ),
@@ -218,9 +218,9 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                 padding: EdgeInsets.only(right: 15),
                 child: isNextIconEnable
                     ? BrunoTools.getAssetImage(
-                        BrnAsset.ICON_CALENDAR_NEXT_MONTH)
+                        BrnAsset.iconCalendarNextMonth)
                     : BrunoTools.getAssetImageWithColor(
-                        BrnAsset.ICON_CALENDAR_NEXT_MONTH, Color(0xFFCCCCCC)),
+                        BrnAsset.iconCalendarNextMonth, Color(0xFFCCCCCC)),
                 alignment: Alignment.center,
               ),
             )
