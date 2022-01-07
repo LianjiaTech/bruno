@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 /// ISuspension Bean.
 abstract class ISuspensionBean {
   bool isShowSuspension = false;
-  String? name;
-  String? tag; //Suspension Tag
+  String name = "";
+  String tag = ""; //Suspension Tag
 }
 
 /// AzListView Header.
@@ -32,7 +32,7 @@ class SuspensionUtil {
       } else if (a.tag == "#" || b.tag == "@") {
         return 1;
       } else {
-        return a.tag!.compareTo(b.tag!);
+        return a.tag.compareTo(b.tag);
       }
     });
   }
@@ -44,7 +44,7 @@ class SuspensionUtil {
     if (list != null && list.isNotEmpty) {
       String? tempTag;
       for (int i = 0, length = list.length; i < length; i++) {
-        String tag = list[i].tag!;
+        String tag = list[i].tag;
         if (tag.length > 2) tag = tag.substring(0, 2);
         if (tempTag != tag) {
           indexData.add(tag);

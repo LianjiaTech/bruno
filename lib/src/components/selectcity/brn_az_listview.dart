@@ -18,9 +18,9 @@ typedef Widget IndexHintBuilder(BuildContext context, String hint);
 
 /// _Header.
 class _Header extends ISuspensionBean {
-  String? tag;
+  String tag = "";
 
-  String? getSuspensionTag() => tag;
+  String getSuspensionTag() => tag;
 
   @override
   bool get isShowSuspension => false;

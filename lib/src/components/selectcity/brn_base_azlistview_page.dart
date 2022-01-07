@@ -39,8 +39,8 @@ abstract class BaseAZListViewPage extends StatefulWidget {
 
   //每个modal 对应的 tag，默认是拼音来设置
   String createTagByModal(ISuspensionBean bean) {
-    if (bean.name != null && bean.name!.isNotEmpty) {
-      String pinyin = PinyinHelper.getPinyinE(bean.name!);
+    if (bean.name.isNotEmpty) {
+      String pinyin = PinyinHelper.getPinyinE(bean.name);
       return pinyin.substring(0, 1).toUpperCase();
     }
     return "";

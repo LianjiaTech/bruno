@@ -107,7 +107,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   void _handleList(List<BrnSelectCityModel>? list) {
     if (list == null || list.isEmpty) return;
     for (int i = 0, length = list.length; i < length; i++) {
-      String pinyin = PinyinHelper.getPinyinE(list[i].name!);
+      String pinyin = PinyinHelper.getPinyinE(list[i].name);
       String tag = pinyin.substring(0, 1).toUpperCase();
       list[i].namePinyin = pinyin;
       if (RegExp("[A-Z]").hasMatch(tag)) {
@@ -164,7 +164,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
                   padding: EdgeInsets.all(0),
                   color: Color(0xFFF8F8F8),
                   child: Text(
-                    e.name!,
+                    e.name,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF222222),
@@ -216,7 +216,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
         SizedBox(
           height: _itemHeight.toDouble(),
           child: ListTile(
-            title: Text(model.name!),
+            title: Text(model.name),
             onTap: () {
               debugPrint("OnItemClick: $model");
               if (widget.onValueChanged != null) {
@@ -304,7 +304,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
     }
     if (_suspensionTag.isEmpty || _suspensionTag == '') {
       if (_cityList.isNotEmpty) {
-        _suspensionTag = _cityList.first.tag!;
+        _suspensionTag = _cityList.first.tag;
       }
     }
     return Expanded(
@@ -370,9 +370,9 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
     List<BrnSelectCityModel> cList = [];
     for (int index = 0; index < _cityList.length; index++) {
       BrnSelectCityModel cInfo = _cityList[index];
-      if (cInfo.name!.contains(searchText) ||
-          cInfo.tag!.contains(searchText) ||
-          cInfo.tag!.contains(searchText.toUpperCase())) {
+      if (cInfo.name.contains(searchText) ||
+          cInfo.tag.contains(searchText) ||
+          cInfo.tag.contains(searchText.toUpperCase())) {
         cList.add(cInfo);
       }
     }
