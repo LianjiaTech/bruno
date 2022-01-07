@@ -152,8 +152,7 @@ class BrnTagConfig extends BrnBaseConfig {
     );
   }
 
-  BrnTagConfig merge(BrnTagConfig? other) {
-    if (other == null) return this;
+  BrnTagConfig merge(BrnTagConfig other) {
     return copyWith(
       textStyle: tagTextStyle.merge(other._tagTextStyle),
       selectTextStyle: selectTagTextStyle.merge(other._selectTagTextStyle),

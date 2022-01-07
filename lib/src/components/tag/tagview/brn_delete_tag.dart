@@ -76,7 +76,7 @@ class BrnDeleteTag extends StatefulWidget {
     themeData = BrnThemeConfigurator.instance
         .getConfig(configId: themeData!.configId)
         .tagConfig
-        .merge(themeData);
+        .merge(this.themeData!);
   }
 
   @override
