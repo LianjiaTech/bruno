@@ -92,7 +92,7 @@ class BrnSelectTag extends StatefulWidget {
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
         .tagConfig
-        .merge(this.themeData!);
+        .merge(this.themeData);
   }
 
   @override

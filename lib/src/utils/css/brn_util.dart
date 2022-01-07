@@ -11,7 +11,7 @@ class BrnConvertUtil {
     Color defaultColor = const Color(0xffffffff),
   }) {
     Color? color =
-        BrnThemeConfigurator.instance.getConfig().commonConfig?.brandPrimary;
+        BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
     if (hexColor.isEmpty) return color;
     hexColor = hexColor.toUpperCase().replaceAll('#', '');
     hexColor = hexColor.replaceAll('0X', '');
