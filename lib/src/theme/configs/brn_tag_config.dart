@@ -153,15 +153,16 @@ class BrnTagConfig extends BrnBaseConfig {
   }
 
   BrnTagConfig merge(BrnTagConfig? other) {
+    if (other == null) return this;
     return copyWith(
-      textStyle: tagTextStyle.merge(other?._tagTextStyle),
-      selectTextStyle: selectTagTextStyle.merge(other?._selectTagTextStyle),
-      radius: other?._tagRadius,
-      backgroundColor: other?._tagBackgroundColor,
-      selectedBackgroundColor: other?._selectedTagBackgroundColor,
-      height: other?._tagHeight,
-      width: other?._tagWidth,
-      tagMinWidth: other?._tagMinWidth,
+      textStyle: tagTextStyle.merge(other._tagTextStyle),
+      selectTextStyle: selectTagTextStyle.merge(other._selectTagTextStyle),
+      radius: other._tagRadius,
+      backgroundColor: other._tagBackgroundColor,
+      selectedBackgroundColor: other._selectedTagBackgroundColor,
+      height: other._tagHeight,
+      width: other._tagWidth,
+      tagMinWidth: other._tagMinWidth,
     );
   }
 }
