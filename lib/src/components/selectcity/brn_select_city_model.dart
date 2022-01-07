@@ -1,19 +1,17 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/selectcity/brn_az_common.dart';
 
 class BrnSelectCityModel extends ISuspensionBean {
-  String name;
-  String tagIndex;
-  String namePinyin;
-  String tag;
-  String cityCode;
+  String? name;
+  String? tagIndex;
+  String? namePinyin;
+  String? tag;
+  String? cityCode;
 
   BrnSelectCityModel({
     this.name,
     this.tagIndex,
     this.namePinyin,
-    this.tag,
+    this.tag = "",
     this.cityCode,
   });
 
@@ -29,8 +27,8 @@ class BrnSelectCityModel extends ISuspensionBean {
         'cityCode': cityCode
       };
 
-  String getSuspensionTag() => tagIndex;
+  String? getSuspensionTag() => tagIndex;
 
   @override
-  String toString() => "CityBean {" + " \"name\":\"" + name + "\"" + '}';
+  String toString() => "CityBean {" + " \"name\":\"" + name! + "\"" + '}';
 }
