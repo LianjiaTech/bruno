@@ -222,7 +222,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
               color: themeData!.commonConfig.brandPrimary,
               borderRadius:
                   BorderRadius.all(Radius.circular(themeData!.btnRadius))),
-          child: Text(operateTexts![0] ?? '',
+          child: Text(operateTexts?[0] ?? '',
               textAlign: TextAlign.center,
               style: themeData!.singleTextStyle.generateTextStyle()),
         ),
@@ -242,7 +242,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                   color: themeData!.commonConfig.brandPrimary.withAlpha(0x14),
                   borderRadius:
                       BorderRadius.all(Radius.circular(themeData!.btnRadius))),
-              child: Text(operateTexts![0] ?? '',
+              child: Text(operateTexts?[0] ?? '',
                   textAlign: TextAlign.center,
                   style: themeData!.doubleTextStyle.generateTextStyle()),
             ),
@@ -262,7 +262,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                   color: themeData!.commonConfig.brandPrimary.withAlpha(0x14),
                   borderRadius:
                       BorderRadius.all(Radius.circular(themeData!.btnRadius))),
-              child: Text(operateTexts![1] ?? '',
+              child: Text(operateTexts?[1] ?? '',
                   textAlign: TextAlign.center,
                   style: themeData!.doubleTextStyle.generateTextStyle()),
             ),
@@ -274,7 +274,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
           onTap: () {
             if (action != null) action!(0);
           },
-          child: Text(operateTexts![0] ??'',
+          child: Text(operateTexts?[0] ??'',
               style: themeData!.operateTextStyle.generateTextStyle()));
     }
     return Container();
