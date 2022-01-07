@@ -117,9 +117,9 @@ class BrnFormUtil {
 
   static Widget getPrefixIcon(String type) {
     if (type == BrnPrefixIconType.TYPE_ADD) {
-      return BrunoTools.getAssetImageWithBandColor(BrnAsset.ICON_ADD_FORM_ITEM);
+      return BrunoTools.getAssetImageWithBandColor(BrnAsset.iconAddFormItem);
     } else if (type == BrnPrefixIconType.TYPE_REMOVE) {
-      return BrunoTools.getAssetImage(BrnAsset.ICON_REMOVE_FORM_ITEM);
+      return BrunoTools.getAssetImage(BrnAsset.iconRemoveFormItem);
     } else {
       return Container();
     }
@@ -146,7 +146,7 @@ class BrnFormUtil {
       padding:
           isRequire ? EdgeInsets.only(right: 2) : EdgeInsets.only(right: 0),
       child: isRequire
-          ? BrunoTools.getAssetSizeImage(BrnAsset.ICON_REQUIRE_RED, 8, 8,
+          ? BrunoTools.getAssetSizeImage(BrnAsset.iconRequireRed, 8, 8,
               color: Color(0xFFFA3F3F))
           : null,
     );
@@ -155,11 +155,11 @@ class BrnFormUtil {
   /// 视觉同学要求修改右箭头图标
   static Image getRightArrowIcon() {
     return BrunoTools.getAssetSizeImage(
-        BrnAsset.ICON_RIGHT_ARROW, rightArrowSize, rightArrowSize);
+        BrnAsset.iconRightArrow, rightArrowSize, rightArrowSize);
   }
 
   static Image getQuestionMarkIcon() {
-    return BrunoTools.getAssetImage(BrnAsset.ICON_QUESTION);
+    return BrunoTools.getAssetImage(BrnAsset.iconQuestion);
   }
 
   /// 设置录入项总的padding, 不包括顶部和底部padding

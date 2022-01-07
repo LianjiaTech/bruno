@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:async';
 
 import 'package:bruno/bruno.dart';
@@ -393,31 +395,31 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   void _showShareSevenStyle(BuildContext context) {
     List<BrnShareItem> firstRowList = List();
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIXIN,
+      BrnShareItemConstants.shareWeiXin,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_BROWSER,
+      BrnShareItemConstants.shareBrowser,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_COPY_LINK,
+      BrnShareItemConstants.shareCopyLink,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_FRIEND,
+      BrnShareItemConstants.shareFriend,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_LINK,
+      BrnShareItemConstants.shareLink,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_QQ,
+      BrnShareItemConstants.shareQQ,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_CUSTOM,
+      BrnShareItemConstants.shareCustom,
       customImage: BrunoTools.getAssetImage("images/icon_custom_share.png"),
       customTitle: "自定义",
       canClick: true,
@@ -437,35 +439,35 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
     List<BrnShareItem> firstRowList = List();
     List<BrnShareItem> secondRowList = List();
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_QZONE,
+      BrnShareItemConstants.shareQZone,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_SAVE_IMAGE,
+      BrnShareItemConstants.shareSaveImage,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_SMS,
+      BrnShareItemConstants.shareSms,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIBO,
+      BrnShareItemConstants.shareWeiBo,
       canClick: true,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_QZONE,
+      BrnShareItemConstants.shareQZone,
       canClick: false,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_SAVE_IMAGE,
+      BrnShareItemConstants.shareSaveImage,
       canClick: false,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_SMS,
+      BrnShareItemConstants.shareSms,
       canClick: false,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIBO,
+      BrnShareItemConstants.shareWeiBo,
       canClick: false,
     ));
     BrnShareActionSheet actionSheet = new BrnShareActionSheet(
@@ -491,15 +493,15 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
     List<BrnShareItem> firstRowList = List();
     List<BrnShareItem> secondRowList = List();
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIXIN,
+      BrnShareItemConstants.shareWeiXin,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_FRIEND,
+      BrnShareItemConstants.shareFriend,
       canClick: true,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_CUSTOM,
+      BrnShareItemConstants.shareCustom,
       customImage: BrunoTools.getAssetImage("images/icon_custom_share.png"),
       customTitle: "自定义",
       canClick: true,
@@ -518,11 +520,11 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   void _showShareTwoStyle(BuildContext context) {
     List<BrnShareItem> firstRowList = List();
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIXIN,
+      BrnShareItemConstants.shareWeiXin,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_FRIEND,
+      BrnShareItemConstants.shareFriend,
       canClick: true,
     ));
     BrnShareActionSheet actionSheet = new BrnShareActionSheet(

@@ -47,7 +47,7 @@ class BrnPickerEntity {
 
     /// 默认支持最大选中个数为 65535
     this.maxSelectedCount =
-        maxSelectedCount ?? BrnSelectionConstant.MAX_SELECT_COUNT;
+        maxSelectedCount ?? BrnSelectionConstant.maxSelectCount;
   }
 
   static BrnPickerEntity fromMap(Map<String, dynamic> map) {
@@ -65,7 +65,7 @@ class BrnPickerEntity {
         int.tryParse(map['maxSelectedCount']) != null) {
       entity.maxSelectedCount = int.tryParse(map['maxSelectedCount']);
     } else {
-      entity.maxSelectedCount = BrnSelectionConstant.MAX_SELECT_COUNT;
+      entity.maxSelectedCount = BrnSelectionConstant.maxSelectCount;
     }
     entity.extMap = map['ext'] ?? {};
 //    entity.children = map['children'] ?? [];

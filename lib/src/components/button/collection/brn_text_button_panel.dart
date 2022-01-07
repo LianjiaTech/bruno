@@ -155,8 +155,8 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
       );
 
       Widget imageWidget = _isExpanded
-          ? BrunoTools.getAssetImage(BrnAsset.ICON_UP_ARROW)
-          : BrunoTools.getAssetImage(BrnAsset.ICON_DOWN_ARROW);
+          ? BrunoTools.getAssetImage(BrnAsset.iconUpArrow)
+          : BrunoTools.getAssetImage(BrnAsset.iconDownArrow);
 
       return GestureDetector(
           child: Row(

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/form/group_example/expansion_group_example.dart';
 import 'package:example/sample/components/form/group_example/group_add_example.dart';

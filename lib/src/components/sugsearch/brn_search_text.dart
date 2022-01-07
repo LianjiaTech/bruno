@@ -198,7 +198,7 @@ class _SearchTextState extends State<BrnSearchText> {
                           child: Center(
                             child: Container(
                                 child: Image.asset(
-                              'assets/${BrnAsset.ICON_SEARCH}',
+                              'assets/${BrnAsset.iconSearch}',
                               package: BrnStrings.flutterPackageName,
                               height: 16,
                               width: 16,
@@ -288,7 +288,7 @@ class _SearchTextState extends State<BrnSearchText> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 12.0),
                             child: BrunoTools.getAssetImage(
-                              BrnAsset.ICON_DELETE_TEXT,
+                              BrnAsset.iconDeleteText,
                             ),
                           ),
                         ),

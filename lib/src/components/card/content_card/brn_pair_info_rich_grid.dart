@@ -239,7 +239,7 @@ class BrnRichGridInfo {
           child: Padding(
             padding: EdgeInsets.only(left: isKey ? 0 : 4),
             child: BrunoTools.getAssetSizeImage(
-                BrnAsset.ICON_PAIR_INFO_QUESTION, 14, 14),
+                BrnAsset.iconPairInfoQuestion, 14, 14),
           ));
     }
 

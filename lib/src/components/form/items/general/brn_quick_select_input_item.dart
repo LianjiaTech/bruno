@@ -346,7 +346,7 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
           child: Text(
             str,
             style: TextStyle(
-              fontSize: BrnFonts.FONT_12,
+              fontSize: BrnFonts.f12,
             ),
           ),
           onPressed: () {

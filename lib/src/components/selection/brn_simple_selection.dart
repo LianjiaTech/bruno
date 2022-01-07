@@ -47,7 +47,7 @@ class BrnSimpleSelection extends StatefulWidget {
     @required this.onSimpleSelectionChanged,
     this.onMenuItemClick,
   })  : this.isRadio = true,
-        this.maxSelectedCount = BrnSelectionConstant.MAX_SELECT_COUNT,
+        this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
         super(key: key);
 
   /// 多选构造函数
