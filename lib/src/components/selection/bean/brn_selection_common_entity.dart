@@ -124,7 +124,7 @@ class BrnSelectionEntity {
       this.type,
       this.showType,
       this.isCustomTitleHighLight = false,
-      this.maxSelectedCount = BrnSelectionConstant.MAX_SELECT_COUNT}) {
+      this.maxSelectedCount = BrnSelectionConstant.maxSelectCount}) {
     this.filterType = parserFilterTypeWithType(this.type);
     this.filterShowType = parserShowType(this.showType);
     this.originalCustomMap = Map();
@@ -136,7 +136,7 @@ class BrnSelectionEntity {
     this.value,
     this.title = '',
     this.type,
-  })  : this.maxSelectedCount = BrnSelectionConstant.MAX_SELECT_COUNT,
+  })  : this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
         this.isCustomTitleHighLight = false,
         this.isSelected = false,
         this.children = [],
@@ -148,7 +148,7 @@ class BrnSelectionEntity {
   }
 
   BrnSelectionEntity.fromJson(Map<String, dynamic>? map)
-      : this.maxSelectedCount = BrnSelectionConstant.MAX_SELECT_COUNT,
+      : this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
         this.isCustomTitleHighLight = false,
         this.isSelected = false,
         this.children = [],
@@ -388,7 +388,7 @@ class BrnSelectionEntity {
 
   BrnSelectionEntity getRootEntity(BrnSelectionEntity rootEntity) {
     if (rootEntity.parent == null ||
-        rootEntity.parent!.maxSelectedCount == BrnSelectionConstant.MAX_SELECT_COUNT) {
+        rootEntity.parent!.maxSelectedCount == BrnSelectionConstant.maxSelectCount) {
       return rootEntity;
     } else {
       return getRootEntity(rootEntity.parent!);

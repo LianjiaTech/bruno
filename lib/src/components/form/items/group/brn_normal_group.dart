@@ -136,7 +136,7 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
                         widget.deleteLabel ?? "",
                         style: TextStyle(
                           color: Color(0xFFFA3F3F),
-                          fontSize: BrnFonts.FONT_16,
+                          fontSize: BrnFonts.f16,
                         ),
                       ),
                     ),

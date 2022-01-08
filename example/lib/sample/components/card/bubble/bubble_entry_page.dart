@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/card/bubble/common_bubble_example.dart';
 import 'package:example/sample/components/card/bubble/brn_expanded_bubble_example.dart';

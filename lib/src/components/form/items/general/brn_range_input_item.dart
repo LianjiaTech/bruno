@@ -233,7 +233,7 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                           widget.minUnit ?? "",
                           style: TextStyle(
                             color: Color(0xFF101010),
-                            fontSize: BrnFonts.FONT_16,
+                            fontSize: BrnFonts.f16,
                           ),
                         )),
                     Container(
@@ -242,7 +242,7 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                           "—",
                           style: TextStyle(
                             color: Color(0xFF101010),
-                            fontSize: BrnFonts.FONT_16,
+                            fontSize: BrnFonts.f16,
                           ),
                         )),
                     Container(
@@ -288,7 +288,7 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                           widget.maxUnit ?? "",
                           style: TextStyle(
                             color: Color(0xFF101010),
-                            fontSize: BrnFonts.FONT_16,
+                            fontSize: BrnFonts.f16,
                           ),
                         )),
                   ],

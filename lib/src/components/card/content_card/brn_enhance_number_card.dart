@@ -248,10 +248,10 @@ class BrnEnhanceNumberCard extends StatelessWidget {
     );
     if (model.iconTapCallBack != null) {
       Widget icon =
-          BrunoTools.getAssetSizeImage(BrnAsset.ICON_QUESTION, 14, 14);
+          BrunoTools.getAssetSizeImage(BrnAsset.iconQuestion, 14, 14);
 
       if (model.numberInfoIcon == BrnNumberInfoIcon.ARROW) {
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_RIGHT_ARROW, 14, 14);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconRightArrow, 14, 14);
       }
       debugPrint('${tp.height}');
       debugPrint(model.title);

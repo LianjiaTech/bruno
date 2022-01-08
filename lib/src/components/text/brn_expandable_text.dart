@@ -118,7 +118,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
       style: TextStyle(
           color: BrnThemeConfigurator.instance
               .getConfig()
-              .commonConfig!
+              .commonConfig
               .brandPrimary,
           fontSize: 14),
     );
@@ -161,7 +161,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
           fontWeight: FontWeight.w400,
           color: BrnThemeConfigurator.instance
               .getConfig()
-              .commonConfig!
+              .commonConfig
               .colorTextBase,
         );
     return style;
@@ -173,7 +173,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
         style: TextStyle(
           color: BrnThemeConfigurator.instance
               .getConfig()
-              .commonConfig!
+              .commonConfig
               .brandPrimary,
           fontSize: 14,
         ),

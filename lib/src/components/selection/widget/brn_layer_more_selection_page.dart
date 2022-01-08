@@ -6,7 +6,6 @@ import 'package:bruno/src/components/toast/brn_toast.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
-import 'package:bruno/src/theme/img/brn_theme_default_utils.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -432,8 +431,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
             height: 16,
             width: 16,
             child: entity.isSelected
-                ? BrnThemeImg.instance.checkedStatus
-                : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
+              ? BrunoTools.getAssetImage(BrnAsset.selectCheckedStatus)
+              : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
           )
         ],
       );

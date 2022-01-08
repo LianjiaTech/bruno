@@ -405,7 +405,7 @@ class BrnDefaultConfigUtils {
     backgroundColor: Colors.white,
     appBarHeight: BrnAppBarTheme.appBarHeight,
     leadIconBuilder: () => Image.asset(
-      BrnAsset.ICON_BACK_BLACK,
+      BrnAsset.iconBackBlack,
       package: BrnStrings.flutterPackageName,
       width: BrnAppBarTheme.iconSize,
       height: BrnAppBarTheme.iconSize,

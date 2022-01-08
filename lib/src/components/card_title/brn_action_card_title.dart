@@ -142,7 +142,7 @@ class BrnActionCardTitle extends StatelessWidget {
   }
 
   Widget _arrowWidget() {
-    return BrunoTools.getAssetSizeImage(BrnAsset.ICON_RIGHT_ARROW, 16, 16);
+    return BrunoTools.getAssetSizeImage(BrnAsset.iconRightArrow, 16, 16);
   }
 
   Widget _accessoryTextWidget(BrnCardTitleConfig defaultConfig) {

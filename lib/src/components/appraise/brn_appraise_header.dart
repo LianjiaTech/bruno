@@ -102,7 +102,7 @@ class BrnAppraiseHeader extends StatelessWidget {
                 }
                 Navigator.of(context).pop();
               },
-              child: BrunoTools.getAssetImage(BrnAsset.ICON_PICKER_CLOSE),
+              child: BrunoTools.getAssetImage(BrnAsset.iconPickerClose),
             ),
           ],
         ),

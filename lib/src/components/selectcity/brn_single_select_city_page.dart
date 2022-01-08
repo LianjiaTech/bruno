@@ -168,7 +168,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF222222),
-                      fontSize: BrnFonts.FONT_12,
+                      fontSize: BrnFonts.f12,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
