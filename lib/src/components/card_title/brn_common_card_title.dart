@@ -118,10 +118,7 @@ class BrnCommonCardTitle extends StatelessWidget {
     List<Widget> children = [];
     children.add(Expanded(child: _titleWidget(context, defaultConfig)));
 
-    Widget accessory = Container(
-      height: 0,
-      width: 0,
-    );
+    Widget accessory = SizedBox();
     // 左侧的文本的行高是25，那么右侧的widget最大为25
     if (this.accessoryWidget != null) {
       accessory = Container(
@@ -170,10 +167,7 @@ class BrnCommonCardTitle extends StatelessWidget {
 
   ///标题widget
   Widget _titleWidget(BuildContext context, BrnCardTitleConfig defaultConfig) {
-    Widget subWidget = Container(
-      height: 0,
-      width: 0,
-    );
+    Widget subWidget = SizedBox(height: 0, width: 0);
 
     if (subTitleWidget != null) {
       subWidget = _subTitleWidgetFromWidget();

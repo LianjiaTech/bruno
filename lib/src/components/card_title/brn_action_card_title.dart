@@ -134,7 +134,7 @@ class BrnActionCardTitle extends StatelessWidget {
       );
     }
 
-    return Container();
+    return SizedBox();
   }
 
   Widget _arrowWidget() {
