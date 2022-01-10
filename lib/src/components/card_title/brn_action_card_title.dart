@@ -92,7 +92,7 @@ class BrnActionCardTitle extends StatelessWidget {
                 child: _titleWidget(defaultConfig),
               ),
               //子widget的展示
-              _sub(defaultConfig)!,
+              _sub(defaultConfig),
             ],
           ),
         ),
@@ -119,9 +119,9 @@ class BrnActionCardTitle extends StatelessWidget {
   }
 
   // 如果传入了subTitleWidget 则以subTitleWidget为主
-  Widget? _sub(BrnCardTitleConfig defaultConfig) {
+  Widget _sub(BrnCardTitleConfig defaultConfig) {
     if (subTitleWidget != null) {
-      return subTitleWidget;
+      return subTitleWidget!;
     }
 
     if (subTitle != null) {
