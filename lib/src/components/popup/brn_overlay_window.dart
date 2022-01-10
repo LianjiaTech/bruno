@@ -35,7 +35,7 @@ class BrnOverlayWindow extends StatefulWidget {
   }
 
   /// BrnOverlayWindow 工具方发，用于快速弹出 Overlay，
-  /// 返回 [BrnOverlayController] 用于控制 Overlaywindow 的隐藏
+  /// 返回 [BrnOverlayController] 用于控制 OverlayWindow 的隐藏
   /// [targetKey] 锚点 Widget 的 key，用于 OverlayWindow 的定位
   /// [popDirection] OverlayWindow 相对于 key 的展示位置， 默认 bottom
   /// [content] 要展示的内容
@@ -44,21 +44,20 @@ class BrnOverlayWindow extends StatefulWidget {
   static BrnOverlayController showOverlayWindow(BuildContext context, Key targetKey,
       {Widget content,
       BrnOverlayPopDirection popDirection,
-      bool autoDismissOnTouchOutSide,
+      bool autoDismissOnTouchOutSide = true,
       Function onDismiss}) {
     assert(content != null);
     assert(targetKey != null);
-    assert(content != null);
 
     if (content == null || targetKey == null) return null;
 
     BrnOverlayController overlayController;
     OverlayEntry entry = OverlayEntry(builder: (context) {
       return GestureDetector(
-          behavior: (autoDismissOnTouchOutSide ?? true)
+          behavior: (autoDismissOnTouchOutSide)
               ? HitTestBehavior.opaque
               : HitTestBehavior.deferToChild,
-          onTap: (autoDismissOnTouchOutSide ?? true)
+          onTap: (autoDismissOnTouchOutSide)
               ? () {
                   overlayController?.removeOverlay();
                   if (onDismiss != null) {

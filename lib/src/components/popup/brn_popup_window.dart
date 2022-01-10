@@ -430,12 +430,14 @@ class BrnPopupListWindow {
   /// [popKey] 依附的组件和BrnPopUpWindow组件共同持有的GlobalKey
   /// [data] 要显示的文本数据列表
   /// [popDirection] 箭头的方向
+  /// [autoDismissOnItemClick] 点击展示选项时，是否进行 pop 操作，浮层自动消失。
   /// [itemBuilder] 自定义 item 构造方法
   /// [onItemClick] item 点击回调
   static void showButtonPanelPopList(context, GlobalKey popKey,
       {List<String> data,
       BrnPopupDirection popDirection = BrnPopupDirection.bottom,
       BrnPopupListItemBuilder itemBuilder,
+      bool autoDismissOnItemClick = false,
       BrnPopupListItemClick onItemClick}) {
     TextStyle textStyle = TextStyle(
         color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase, fontSize: 16);
@@ -471,7 +473,7 @@ class BrnPopupListWindow {
                       padding: EdgeInsets.only(top: 6, bottom: 6),
                       child: Column(
                         children: _getItems(context, minWidth, maxWidth, itemBuilder, textStyle,
-                            data, onItemClick, null),
+                            data, autoDismissOnItemClick, onItemClick, null),
                       ),
                     ),
                   ),
@@ -488,12 +490,14 @@ class BrnPopupListWindow {
   /// [data] 要显示的文本数据列表
   /// [popDirection] 箭头的方向
   /// [offset] 距离targetView偏移量
+  /// [autoDismissOnItemClick] 点击展示选项时，是否进行 pop 操作，在 onItemClick 回调之前使浮层消失。
   /// [onItemClick] item 点击回调
   /// [onDismiss] popUpWindow消失回调
   static void showPopListWindow(context, GlobalKey popKey,
       {List<String> data,
       BrnPopupDirection popDirection = BrnPopupDirection.bottom,
       double offset = 0,
+      bool autoDismissOnItemClick = true,
       BrnPopupListItemClick onItemClick,
       VoidCallback onDismiss}) {
     double arrowHeight = 6.0;
@@ -532,7 +536,7 @@ class BrnPopupListWindow {
                       padding: EdgeInsets.only(top: 6, bottom: 6),
                       child: Column(
                         children: _getItems(context, minWidth, maxWidth, null, textStyle, data,
-                            onItemClick, onDismiss),
+                            autoDismissOnItemClick, onItemClick, onDismiss),
                       ),
                     ),
                   ),
@@ -552,6 +556,7 @@ class BrnPopupListWindow {
       BrnPopupListItemBuilder itemBuilder,
       TextStyle textStyle,
       List<String> data,
+      bool autoDismissOnItemClick,
       BrnPopupListItemClick onItemClick,
       VoidCallback onDismiss) {
     double textMaxWidth =
@@ -566,13 +571,14 @@ class BrnPopupListWindow {
     return data?.map((f) {
           return GestureDetector(
               onTap: () {
-                if (onItemClick != null) {
-                  dynamic isIntercept = onItemClick(data.indexOf(f), f);
-                  if ((isIntercept is bool) && isIntercept) return;
+                if (autoDismissOnItemClick) {
+                  Navigator.pop(context);
+                  if (onDismiss != null) {
+                    onDismiss();
+                  }
                 }
-                Navigator.pop(context);
-                if (onDismiss != null) {
-                  onDismiss();
+                if (onItemClick != null) {
+                  onItemClick(data.indexOf(f), f);
                 }
               },
               child: Container(

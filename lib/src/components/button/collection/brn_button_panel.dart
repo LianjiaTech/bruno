@@ -211,17 +211,17 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
                         fontSize: 16));
               },
               popDirection: widget.popDirection,
+              autoDismissOnItemClick: false,
               onItemClick: (index, item) {
                 // 按钮不可用的时候，点击无响应；
                 if (widget.secondaryButtonOnTap != null) {
                   if (_secondaryButtonList[index + 2].isEnable) {
+                    Navigator.pop(context);
                     widget.secondaryButtonOnTap(index + 2);
-                    return false;
-                  } else {
-                    return true;
                   }
+                } else {
+                  Navigator.pop(context);
                 }
-                return false;
               });
         },
       );
