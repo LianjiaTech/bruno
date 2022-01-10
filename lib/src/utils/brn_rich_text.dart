@@ -35,7 +35,7 @@ class BrnRichTextGenerator {
                   BrnThemeConfigurator.instance
                       .getConfig()
                       .commonConfig
-                      ?.brandPrimary,
+                      .brandPrimary,
               fontWeight: fontWeight ?? FontWeight.normal,
               fontSize: fontSize ?? 16,
             ),
@@ -70,7 +70,7 @@ class BrnRichTextGenerator {
                   BrnThemeConfigurator.instance
                       .getConfig()
                       .commonConfig
-                      ?.colorTextBase,
+                      .colorTextBase,
               fontSize: fontSize ?? 16,
               fontWeight: fontWeight ?? FontWeight.normal,
             ),
