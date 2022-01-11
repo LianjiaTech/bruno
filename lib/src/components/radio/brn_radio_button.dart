@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -23,10 +21,10 @@ class BrnRadioButton extends StatelessWidget {
 
   /// 选择按钮的padding
   /// 默认EdgeInsets.all(5)
-  final EdgeInsets iconPadding;
+  final EdgeInsets? iconPadding;
 
   /// 配合使用的控件，比如卡片或者text
-  final Widget child;
+  final Widget? child;
 
   /// 控件是否在选择按钮的右边，
   /// true时 控件在选择按钮右边
@@ -43,9 +41,9 @@ class BrnRadioButton extends StatelessWidget {
   final MainAxisSize mainAxisSize;
 
   const BrnRadioButton({
-    Key key,
-    @required this.radioIndex,
-    @required this.onValueChangedAtIndex,
+    Key? key,
+    required this.radioIndex,
+    required this.onValueChangedAtIndex,
     this.disable = false,
     this.isSelected = false,
     this.iconPadding,
