@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:flutter/material.dart';
 
@@ -27,35 +27,35 @@ class CustomWidthUnderlineTabIndicator extends Decoration {
   final double width;
 
   @override
-  Decoration lerpFrom(Decoration a, double t) {
+  Decoration? lerpFrom(Decoration? a, double t) {
     if (a is CustomWidthUnderlineTabIndicator) {
       return CustomWidthUnderlineTabIndicator(
         borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
-        insets: EdgeInsetsGeometry.lerp(a.insets, insets, t),
+        insets: EdgeInsetsGeometry.lerp(a.insets, insets, t)!,
       );
     }
     return super.lerpFrom(a, t);
   }
 
   @override
-  Decoration lerpTo(Decoration b, double t) {
+  Decoration? lerpTo(Decoration? b, double t) {
     if (b is CustomWidthUnderlineTabIndicator) {
       return CustomWidthUnderlineTabIndicator(
         borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
-        insets: EdgeInsetsGeometry.lerp(insets, b.insets, t),
+        insets: EdgeInsetsGeometry.lerp(insets, b.insets, t)!,
       );
     }
     return super.lerpTo(b, t);
   }
 
   @override
-  _UnderlinePainter createBoxPainter([VoidCallback onChanged]) {
+  _UnderlinePainter createBoxPainter([VoidCallback? onChanged]) {
     return _UnderlinePainter(this, width, onChanged);
   }
 }
 
 class _UnderlinePainter extends BoxPainter {
-  _UnderlinePainter(this.decoration, this.width, VoidCallback onChanged)
+  _UnderlinePainter(this.decoration, this.width, VoidCallback? onChanged)
       : assert(decoration != null),
         super(onChanged);
 
@@ -72,7 +72,7 @@ class _UnderlinePainter extends BoxPainter {
     assert(textDirection != null);
     final Rect indicator = insets.resolve(textDirection).deflateRect(rect);
     //希望的宽度
-    double wantWidth = width ?? 24;
+    double wantWidth = width;
     //取中间坐标
     double cw = (indicator.left + indicator.right) / 2;
     return Rect.fromLTWH(cw - wantWidth / 2,
@@ -83,8 +83,8 @@ class _UnderlinePainter extends BoxPainter {
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
     assert(configuration != null);
     assert(configuration.size != null);
-    final Rect rect = offset & configuration.size;
-    final TextDirection textDirection = configuration.textDirection;
+    final Rect rect = offset & configuration.size!;
+    final TextDirection textDirection = configuration.textDirection!;
     final Rect indicator =
         _indicatorRectFor(rect, textDirection).deflate(borderSide.width / 2.0);
     final Paint paint = borderSide.toPaint()..strokeCap = StrokeCap.round;
