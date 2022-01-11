@@ -564,7 +564,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
 
     if (_currentStartSelectedDate != null && _currentEndSelectedDate != null) {
       if (!_currentEndSelectedDate!.isAfter(_currentStartSelectedDate!)) {
-        final DateTime? d = _currentStartSelectedDate;
+        final DateTime d = _currentStartSelectedDate!;
         _currentStartSelectedDate = _currentEndSelectedDate;
         _currentEndSelectedDate = d;
       }
