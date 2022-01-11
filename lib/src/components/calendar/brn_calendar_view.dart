@@ -333,17 +333,11 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                                         .withOpacity(0.14)
                                     : Colors.transparent)
                                 : Colors.transparent,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: _isStartDateRadius(date)
+                            borderRadius: BorderRadius.horizontal(
+                              left: _isStartDateRadius(date)
                                   ? const Radius.circular(24.0)
                                   : const Radius.circular(0.0),
-                              topLeft: _isStartDateRadius(date)
-                                  ? const Radius.circular(24.0)
-                                  : const Radius.circular(0.0),
-                              topRight: _isEndDateRadius(date)
-                                  ? const Radius.circular(24.0)
-                                  : const Radius.circular(0.0),
-                              bottomRight: _isEndDateRadius(date)
+                              right: _isEndDateRadius(date)
                                   ? const Radius.circular(24.0)
                                   : const Radius.circular(0.0),
                             ),
