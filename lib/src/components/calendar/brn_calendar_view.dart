@@ -74,7 +74,7 @@ class BrnCalendarView extends StatefulWidget {
 class _CustomCalendarViewState extends State<BrnCalendarView> {
   List<DateTime> dateList = <DateTime>[];
   late DateTime _currentDate;
-  DisplayMode? _displayMode;
+  late DisplayMode _displayMode;
   late DateTime _minDate, _maxDate;
   DateTime? _currentStartSelectedDate, _currentEndSelectedDate;
 
