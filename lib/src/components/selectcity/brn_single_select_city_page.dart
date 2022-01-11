@@ -206,7 +206,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   }
 
   Widget _buildListItem(BrnSelectCityModel model) {
-    String? susTag = model.getSuspensionTag();
+    String susTag = model.getSuspensionTag();
     return Column(
       children: <Widget>[
         Offstage(
