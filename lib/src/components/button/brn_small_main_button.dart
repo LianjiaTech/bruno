@@ -74,8 +74,7 @@ class BrnSmallMainButton extends StatelessWidget {
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig!
-        .merge(defaultThemeConfig);
+        .buttonConfig.merge(defaultThemeConfig);
 
     TextPainter textPainter =
         TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);

@@ -275,8 +275,8 @@ class BrnTitleSelectInputFormItemState
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           return snapshot.data
               ? BrunoTools.getAssetImageWithBandColor(
-                  BrnAsset.ICON_SELECTED_UP_TRIANGLE)
-              : BrunoTools.getAssetImage(BrnAsset.ICON_UNSELECT_DOWN_TRIANGLE);
+                  BrnAsset.iconSelectedUpTriangle)
+              : BrunoTools.getAssetImage(BrnAsset.iconUnSelectDownTriangle);
         },
       ),
     );
@@ -298,7 +298,7 @@ class BrnTitleSelectInputFormItemState
         border: InputBorder.none,
         hintStyle: TextStyle(
             color: Color(0xFFCCCCCC),
-            fontSize: BrnFonts.FONT_16,
+            fontSize: BrnFonts.f16,
             textBaseline: TextBaseline.alphabetic),
         hintText: widget.hint ?? '请输入',
         counterText: "",

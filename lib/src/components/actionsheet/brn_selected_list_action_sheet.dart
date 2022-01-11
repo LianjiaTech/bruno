@@ -513,7 +513,7 @@ class _BrnActionSheetSelectedItemListState<T>
                                               padding: const EdgeInsets.only(
                                                   left: 5, right: 20),
                                               child: BrunoTools.getAssetImage(
-                                                  BrnAsset.ICON_TRASH_BIN)),
+                                                  BrnAsset.iconTrashBin)),
                                         ),
                                       ),
                                     ],

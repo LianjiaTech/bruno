@@ -107,8 +107,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig!
-                            .colorTextSecondary,
+                            .commonConfig.colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -132,8 +131,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig!
-                            .colorTextSecondary,
+                            .commonConfig.colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -169,8 +167,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig!
-                            .colorTextSecondary,
+                            .commonConfig.colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -194,8 +191,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig!
-                            .colorTextSecondary,
+                            .commonConfig.colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
                 ),

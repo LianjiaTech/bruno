@@ -193,13 +193,13 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
 
   Image getStar(int index, int selectCount, int sum) {
     if (selectCount <= 0) {
-      return BrunoTools.getAssetImage(BrnAsset.ICON_STAR_UNSELECT);
+      return BrunoTools.getAssetImage(BrnAsset.iconStarUnSelect);
     }
 
     if (index < selectCount) {
-      return BrunoTools.getAssetImage(BrnAsset.ICON_STAR_SELECT);
+      return BrunoTools.getAssetImage(BrnAsset.iconStarSelect);
     }
 
-    return BrunoTools.getAssetImage(BrnAsset.ICON_STAR_UNSELECT);
+    return BrunoTools.getAssetImage(BrnAsset.iconStarUnSelect);
   }
 }

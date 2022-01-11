@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +9,11 @@ class BrnCheckbox extends StatefulWidget {
   /// value 选项发生变化产生的回调
   /// int 选项的index
   /// bool 选项的选中状态，true表示选中，false未选中
-  final void Function(int, bool?) onValueChangedAtIndex;
+  final void Function(int, bool) onValueChangedAtIndex;
 
   /// 初始值，是否被选择
   /// 默认false
-  final bool? isSelected;
+  final bool isSelected;
 
   /// 是否禁用当前选项
   /// 默认false
@@ -62,7 +60,7 @@ class BrnCheckbox extends StatefulWidget {
 }
 
 class BrnCheckboxState extends State<BrnCheckbox> {
-  bool? _isSelected;
+  late bool _isSelected;
 
   @override
   void initState() {
@@ -81,16 +79,16 @@ class BrnCheckboxState extends State<BrnCheckbox> {
       mainAxisAlignment: widget.mainAxisAlignment,
       mainAxisSize: widget.mainAxisSize,
       selectedImage: BrunoTools.getAssetImageWithBandColor(
-          BrnAsset.ICON_RADIO_MULTI_SELECTED),
-      unselectedImage: BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_UNSELECTED),
+          BrnAsset.iconRadioMultiSelected),
+      unselectedImage: BrunoTools.getAssetImage(BrnAsset.iconRadioUnSelected),
       disSelectedImage:
-          BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_SINGLE_SELECTED),
+          BrunoTools.getAssetImage(BrnAsset.iconRadioDisableSingleSelected),
       disUnselectedImage:
-          BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_UNSELECTED),
+          BrunoTools.getAssetImage(BrnAsset.iconRadioDisableUnselected),
       child: widget.child,
       onRadioItemClick: () {
         setState(() {
-          _isSelected = !_isSelected!;
+          _isSelected = !_isSelected;
         });
         widget.onValueChangedAtIndex(widget.radioIndex, _isSelected);
       },

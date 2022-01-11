@@ -215,8 +215,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
                 color: enableSecondaryButton
                     ? BrnThemeConfigurator.instance
                         .getConfig()
-                        .commonConfig!
-                        .brandAuxiliary
+                        .commonConfig.brandAuxiliary
                     : Color(0xFFCCCCCC),
                 borderRadius: BorderRadius.all(Radius.circular(6.0)),
               ),
@@ -233,9 +232,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
                         ? Colors.white
                         : BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig!
-                            .colorTextBaseInverse!
-                            .withOpacity(0.7),
+                            .commonConfig.colorTextBaseInverse.withOpacity(0.7),
                   ),
                 ),
               )),
@@ -258,8 +255,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
             color: enableMainButton
                 ? BrnThemeConfigurator.instance
                     .getConfig()
-                    .commonConfig!
-                    .brandPrimary
+                    .commonConfig.brandPrimary
                 : Color(0xFFCCCCCC),
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
           ),
@@ -276,9 +272,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
                     ? Colors.white
                     : BrnThemeConfigurator.instance
                         .getConfig()
-                        .commonConfig!
-                        .colorTextBaseInverse!
-                        .withOpacity(0.7),
+                        .commonConfig.colorTextBaseInverse.withOpacity(0.7),
               ),
             ),
           )),

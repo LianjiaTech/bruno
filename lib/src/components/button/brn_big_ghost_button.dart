@@ -57,8 +57,7 @@ class BrnBigGhostButton extends StatelessWidget {
     BrnButtonConfig defaultThemeConfig = themeData ?? BrnButtonConfig();
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig!
-        .merge(defaultThemeConfig);
+        .buttonConfig.merge(defaultThemeConfig);
 
     return BrnNormalButton(
       borderRadius: BorderRadius.circular(defaultThemeConfig.bigButtonRadius),

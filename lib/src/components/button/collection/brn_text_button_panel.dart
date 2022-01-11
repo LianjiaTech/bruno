@@ -117,8 +117,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
           fontWeight: FontWeight.w500,
           color: BrnThemeConfigurator.instance
               .getConfig()
-              .commonConfig!
-              .brandPrimary),
+              .commonConfig.brandPrimary),
     );
 
     return GestureDetector(
@@ -155,8 +154,8 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
       );
 
       Widget imageWidget = _isExpanded
-          ? BrunoTools.getAssetImage(BrnAsset.ICON_UP_ARROW)
-          : BrunoTools.getAssetImage(BrnAsset.ICON_DOWN_ARROW);
+          ? BrunoTools.getAssetImage(BrnAsset.iconUpArrow)
+          : BrunoTools.getAssetImage(BrnAsset.iconDownArrow);
 
       return GestureDetector(
           child: Row(

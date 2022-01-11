@@ -335,7 +335,7 @@ class __MoreArrowState extends State<_MoreArrow> {
   @override
   Widget build(BuildContext context) {
     String asset =
-        isExpanded ? BrnAsset.ICON_UP_ARROW : BrnAsset.ICON_DOWN_ARROW;
+        isExpanded ? BrnAsset.iconUpArrow : BrnAsset.iconDownArrow;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -670,7 +670,7 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
                 Container(
                   height: 16,
                   width: 16,
-                  child: BrunoTools.getAssetImage(BrnAsset.ICON_RIGHT_ARROW),
+                  child: BrunoTools.getAssetImage(BrnAsset.iconRightArrow),
                 )
               ],
             ),

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 /// 描述: radio组件
@@ -13,7 +11,7 @@ class BrnRadioCore extends StatefulWidget {
 
   /// 初始值，是否被选择
   /// 默认false
-  final bool? isSelected;
+  final bool isSelected;
 
   /// 是否禁用当前选项
   /// 默认false
@@ -72,7 +70,7 @@ class BrnRadioCore extends StatefulWidget {
 }
 
 class _BrnRadioCoreState extends State<BrnRadioCore> {
-  bool? _isSelected;
+  late bool _isSelected;
   late bool _disable;
 
   @override
@@ -103,7 +101,7 @@ class _BrnRadioCoreState extends State<BrnRadioCore> {
 
     Widget icon = Container(
       padding: widget.iconPadding ?? EdgeInsets.all(5),
-      child: this._isSelected!
+      child: this._isSelected
           ? (this._disable ? widget.disSelectedImage : widget.selectedImage)
           : (this._disable
               ? widget.disUnselectedImage
@@ -135,7 +133,9 @@ class _BrnRadioCoreState extends State<BrnRadioCore> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         if (widget.disable == true) return;
-        widget.onRadioItemClick!();
+        if (widget.onRadioItemClick != null) {
+          widget.onRadioItemClick!();
+        }
 //        if (widget.onValueChangedAtIndex != null) {
 //          if (widget.radioType == BrnRadioType.single) {
 //            // 单选

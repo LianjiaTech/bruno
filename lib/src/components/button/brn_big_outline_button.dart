@@ -74,8 +74,7 @@ class BrnBigOutlineButton extends StatelessWidget {
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig!
-        .merge(defaultThemeConfig);
+        .buttonConfig.merge(defaultThemeConfig);
 
     Color? _lineColor =
         lineColor ?? defaultThemeConfig.commonConfig.borderColorBase;

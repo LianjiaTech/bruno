@@ -329,9 +329,9 @@ class BrnTabBarState extends State<BrnTabBar> {
               ],
             ),
             child: !_brnTabbarController.isShow
-                ? BrunoTools.getAssetImage(BrnAsset.ICON_TRIANGLE_DOWN)
+                ? BrunoTools.getAssetImage(BrnAsset.iconTriangleDown)
                 : BrunoTools.getAssetImageWithBandColor(
-                    BrnAsset.ICON_TRIANGLE_UP)),
+                    BrnAsset.iconTriangleUp)),
       ),
     );
   }

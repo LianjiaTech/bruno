@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -66,12 +64,12 @@ class BrnRadioButton extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       selectedImage: BrunoTools.getAssetImageWithBandColor(
-          BrnAsset.ICON_RADIO_SINGLE_SELECTED),
-      unselectedImage: BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_UNSELECTED),
+          BrnAsset.iconRadioSingleSelected),
+      unselectedImage: BrunoTools.getAssetImage(BrnAsset.iconRadioUnSelected),
       disSelectedImage:
-          BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_MULTI_SELECTED),
+          BrunoTools.getAssetImage(BrnAsset.iconRadioDisableMultiSelected),
       disUnselectedImage:
-          BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_UNSELECTED),
+          BrunoTools.getAssetImage(BrnAsset.iconRadioDisableUnselected),
       child: child,
       onRadioItemClick: () {
         onValueChangedAtIndex(radioIndex, true);

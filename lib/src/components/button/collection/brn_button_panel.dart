@@ -202,12 +202,10 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
                         color: _secondaryButtonList![index + 2].isEnable
                             ? BrnThemeConfigurator.instance
                                 .getConfig()
-                                .commonConfig!
-                                .colorTextBase
+                                .commonConfig.colorTextBase
                             : BrnThemeConfigurator.instance
                                 .getConfig()
-                                .commonConfig!
-                                .colorTextHint,
+                                .commonConfig.colorTextHint,
                         fontSize: 16));
               },
               popDirection: widget.popDirection,
