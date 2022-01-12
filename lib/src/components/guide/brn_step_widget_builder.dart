@@ -1,5 +1,3 @@
-// @dart=2.9
-
 part of brn_intro;
 
 /// 引导组件所处的方位
@@ -8,7 +6,10 @@ enum GuideDirection { left, right, topLeft, bottomLeft, topRight, bottomRight }
 /// 单步引导组件
 class StepWidgetBuilder {
   static Map _smartGetPosition(
-      {Size size, Size screenSize, Offset offset, GuideMode introMode}) {
+      {required Size size,
+      required Size screenSize,
+      required Offset offset,
+      required GuideMode introMode}) {
     double height = size.height;
     double width = size.width;
     double screenWidth = screenSize.width;
@@ -166,8 +167,8 @@ class StepWidgetBuilder {
   //showSkipLabel表示是否展示跳过按钮
   //showClose表示是否展示关闭按钮
   static Widget Function(StepWidgetParams params) useDefaultTheme(
-      {@required List<BrnTipInfoBean> tipInfo,
-      String Function(int currentStepIndex, int stepCount) buttonTextBuilder,
+      {required List<BrnTipInfoBean> tipInfo,
+      String Function(int currentStepIndex, int stepCount)? buttonTextBuilder,
       bool showStepLabel = true,
       bool showSkipLabel = true,
       bool showClose = true}) {
