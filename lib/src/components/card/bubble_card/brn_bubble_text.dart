@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/components/text/brn_expandable_text.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -34,16 +34,20 @@ class BrnBubbleText extends StatelessWidget {
   final String text;
 
   ///最多显示的行数
-  final int maxLines;
+  final int? maxLines;
 
   ///展开收起回调
-  final TextExpandedCallback onExpanded;
+  final TextExpandedCallback? onExpanded;
 
   ///气泡的圆角 默认是4
   final double radius;
 
   const BrnBubbleText(
-      {Key key, this.text, this.maxLines, this.onExpanded, this.radius = 4})
+      {Key? key,
+      this.text = '',
+      this.maxLines,
+      this.onExpanded,
+      this.radius = 4})
       : super(key: key);
 
   @override
@@ -72,12 +76,12 @@ class BrnBubbleText extends StatelessWidget {
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(0),
-                    topRight: Radius.circular(radius ?? 4),
-                    bottomLeft: Radius.circular(radius ?? 4),
-                    bottomRight: Radius.circular(radius ?? 4))),
+                    topRight: Radius.circular(radius),
+                    bottomLeft: Radius.circular(radius),
+                    bottomRight: Radius.circular(radius))),
             padding: EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
             child: BrnExpandableText(
-              text: text ?? "",
+              text: text,
               maxLines: maxLines,
               color: Color(0xFFF8F8F8),
               onExpanded: onExpanded,
