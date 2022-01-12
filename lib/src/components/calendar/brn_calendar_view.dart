@@ -4,6 +4,12 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+///单选日期回调函数
+typedef CalendarDateChange = Function(DateTime date);
+
+///范围选择日期回调函数
+typedef CalendarRangeDateChange = Function(DateTimeRange range);
+
 /// 展示模式，周视图模式，月视图模式
 enum DisplayMode { Week, Month }
 
@@ -25,10 +31,52 @@ class BrnCalendarView extends StatefulWidget {
       this.initStartSelectedDate,
       this.initEndSelectedDate,
       this.initDisplayDate,
-      required this.startEndDateChange,
+      @Deprecated('使用BrnCalendarView.date或BrnCalendarView.rangeDate')
+          this.startEndDateChange,
+      this.dateChange,
+      this.rangeDateChange,
       this.minDate,
       this.maxDate})
       : assert(weekNames.length == 7),
+        assert(
+            selectMode == SelectMode.SINGLE && dateChange != null ||
+                selectMode == SelectMode.RANGE && rangeDateChange != null ||
+                startEndDateChange != null,
+            '必须添加日期选择的回调函数'),
+        super(key: key);
+
+  const BrnCalendarView.single(
+      {Key? key,
+      this.displayMode = DisplayMode.Month,
+      this.weekNames = _defaultWeekNames,
+      this.showControllerBar = true,
+      this.initStartSelectedDate,
+      this.initEndSelectedDate,
+      this.initDisplayDate,
+      required CalendarDateChange this.dateChange,
+      this.minDate,
+      this.maxDate})
+      : this.selectMode = SelectMode.SINGLE,
+        this.startEndDateChange = null,
+        this.rangeDateChange = null,
+        assert(weekNames.length == 7),
+        super(key: key);
+
+  const BrnCalendarView.range(
+      {Key? key,
+      this.displayMode = DisplayMode.Month,
+      this.weekNames = _defaultWeekNames,
+      this.showControllerBar = true,
+      this.initStartSelectedDate,
+      this.initEndSelectedDate,
+      this.initDisplayDate,
+      required CalendarRangeDateChange this.rangeDateChange,
+      this.minDate,
+      this.maxDate})
+      : this.selectMode = SelectMode.RANGE,
+        this.startEndDateChange = null,
+        this.dateChange = null,
+        assert(weekNames.length == 7),
         super(key: key);
 
   /// 展示模式， Week, Month
@@ -64,8 +112,13 @@ class BrnCalendarView extends StatefulWidget {
   /// 默认当前时间
   final DateTime? initDisplayDate;
 
-  final Function(DateTime? startSelectedDate, DateTime? endSelectedDate)
+  /// 选择日期回调
+  @Deprecated('使用BrnCalendarView.date或BrnCalendarView.rangeDate')
+  final Function(DateTime startSelectedDate, DateTime endSelectedDate)?
       startEndDateChange;
+
+  final CalendarDateChange? dateChange;
+  final CalendarRangeDateChange? rangeDateChange;
 
   @override
   _CustomCalendarViewState createState() => _CustomCalendarViewState();
@@ -535,8 +588,15 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
     _currentEndSelectedDate = date;
     setState(() {
       try {
-        widget.startEndDateChange(
-            _currentStartSelectedDate, _currentEndSelectedDate);
+        if (widget.startEndDateChange != null) {
+          widget.startEndDateChange!(
+            _currentStartSelectedDate!,
+            _currentEndSelectedDate!,
+          );
+        }
+        if (widget.dateChange != null) {
+          widget.dateChange!(date);
+        }
       } catch (_) {}
     });
   }
@@ -571,8 +631,16 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
     }
     setState(() {
       try {
-        widget.startEndDateChange(
-            _currentStartSelectedDate, _currentEndSelectedDate);
+        if (widget.startEndDateChange != null) {
+          widget.startEndDateChange!(
+              _currentStartSelectedDate!, _currentEndSelectedDate!);
+        }
+        if (widget.rangeDateChange != null) {
+          widget.rangeDateChange!(DateTimeRange(
+            start: _currentStartSelectedDate!,
+            end: _currentEndSelectedDate!,
+          ));
+        }
       } catch (_) {}
     });
   }
