@@ -41,8 +41,7 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     return BrnThemeConfigurator.instance
             .getConfig()
             .commonConfig
-            ?.brandPrimary ??
-        const Color(0xFF0984F9);
+            .brandPrimary;
   }
 
   int get currentIndex {
@@ -174,19 +173,19 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     Widget icon;
     switch (index) {
       case 1:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_2, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStep2, 20, 20);
         break;
       case 2:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_3, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStep3, 20, 20);
         break;
       case 3:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_4, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStep4, 20, 20);
         break;
       case 4:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_5, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStep5, 20, 20);
         break;
       default:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_DOING, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStepDoing, 20, 20);
         break;
     }
     return icon;
@@ -220,7 +219,7 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     }
 
     /// 使用组件默认的icon
-    return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_COMPLETED, 20, 20,
+    return BrunoTools.getAssetSizeImage(BrnAsset.iconStepCompleted, 20, 20,
         color: primary);
   }
 
@@ -236,7 +235,7 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
       return doingIcon;
     }
     // 使用组件默认的icon
-    return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_DOING, 20, 20,
+    return BrunoTools.getAssetSizeImage(BrnAsset.iconStepDoing, 20, 20,
         color: primary);
   }
 }
