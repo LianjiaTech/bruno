@@ -265,7 +265,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
               },
               child: Padding(
                 padding: EdgeInsets.all(4),
-                child: BrunoTools.getAssetImage(BrnAsset.ICON_PICKER_CLOSE),
+                child: BrunoTools.getAssetImage(BrnAsset.iconPickerClose),
               ))
         ],
       ),

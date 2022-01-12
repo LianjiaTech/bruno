@@ -10,13 +10,10 @@ class BrnThemeConfigurator {
     _checkAndInitBrunoConfig();
   }
 
-  static  BrnThemeConfigurator? _instance;
+  static final BrnThemeConfigurator _instance = BrnThemeConfigurator._();
 
-  static get instance {
-    if (null == _instance) {
-      _instance = BrnThemeConfigurator._();
-    }
-    return _instance!;
+  static BrnThemeConfigurator get instance {
+    return _instance;
   }
 
   Map<String, BrnAllThemeConfig> globalConfig = <String, BrnAllThemeConfig>{};

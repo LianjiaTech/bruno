@@ -142,14 +142,14 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
 
   Widget _selectedCountWidget() {
     Image unfoldWidget = BrunoTools.getAssetImageWithColor(
-        BrnAsset.ICON_SELECTED_UP_TRIANGLE,
+        BrnAsset.iconSelectedUpTriangle,
         BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
 
     Image foldWidget =
-        BrunoTools.getAssetImage(BrnAsset.ICON_UNSELECT_DOWN_TRIANGLE);
+        BrunoTools.getAssetImage(BrnAsset.iconUnSelectDownTriangle);
 
     Image cantFoldWidget = BrunoTools.getAssetImageWithColor(
-        BrnAsset.ICON_UNSELECT_DOWN_TRIANGLE, Color(0XCCCCCCCC));
+        BrnAsset.iconUnSelectDownTriangle, Color(0XCCCCCCCC));
 
     return GestureDetector(
       onTap: () {

@@ -36,29 +36,29 @@ class BrnAppraiseEmojiListView extends StatefulWidget {
 class _BrnAppraiseEmojiListViewState extends State<BrnAppraiseEmojiListView> {
   /// 未选中表情，灰色
   List _unselectedIcons = [
-    BrnAsset.ICON_APPRAISE_BAD_UNSELECTED,
-    BrnAsset.ICON_APPRAISE_NOT_GOOD_UNSELECTED,
-    BrnAsset.ICON_APPRAISE_OK_UNSELECTED,
-    BrnAsset.ICON_APPRAISE_GOOD_UNSELECTED,
-    BrnAsset.ICON_APPRAISE_SURPRISE_UNSELECTED,
+    BrnAsset.iconAppraiseBadUnselected,
+    BrnAsset.iconAppraiseNotGoodUnselected,
+    BrnAsset.iconAppraiseOkUnselected,
+    BrnAsset.iconAppraiseGoodUnselected,
+    BrnAsset.iconAppraiseSurpriseUnselected,
   ];
 
   /// 默认表情，黄色
   List _defaultIcons = [
-    BrnAsset.ICON_APPRAISE_BAD_DEFAULT,
-    BrnAsset.ICON_APPRAISE_NOT_GOOD_DEFAULT,
-    BrnAsset.ICON_APPRAISE_OK_DEFAULT,
-    BrnAsset.ICON_APPRAISE_GOOD_DEFAULT,
-    BrnAsset.ICON_APPRAISE_SURPRISE_DEFAULT,
+    BrnAsset.iconAppraiseBadDefault,
+    BrnAsset.iconAppraiseNotGoodDefault,
+    BrnAsset.iconAppraiseOkDefault,
+    BrnAsset.iconAppraiseGoodDefault,
+    BrnAsset.iconAppraiseSurpriseDefault,
   ];
 
   /// 选中表情，gif
   List _selectedIcons = [
-    BrnAsset.ICON_APPRAISE_BAD_SELECTED,
-    BrnAsset.ICON_APPRAISE_NOT_GOOD_SELECTED,
-    BrnAsset.ICON_APPRAISE_OK_SELECTED,
-    BrnAsset.ICON_APPRAISE_GOOD_SELECTED,
-    BrnAsset.ICON_APPRAISE_SURPRISE_SELECTED,
+    BrnAsset.iconAppraiseBadSelected,
+    BrnAsset.iconAppraiseNotGoodSelected,
+    BrnAsset.iconAppraiseOkSelected,
+    BrnAsset.iconAppraiseGoodSelected,
+    BrnAsset.iconAppraiseSurpriseSelected,
   ];
 
   int _selectedIndex = -1;

@@ -227,7 +227,7 @@ class _ExpansionElementState extends State<ExpansionElementWidget>
                         widget.deleteText ?? "",
                         style: TextStyle(
                           color: Color(0xFFFA3F3F),
-                          fontSize: BrnFonts.FONT_16,
+                          fontSize: BrnFonts.f16,
                         ),
                       ),
                     ),

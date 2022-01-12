@@ -270,7 +270,7 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
               Padding(
                 padding: EdgeInsets.only(right: 8.0),
                 child:
-                    BrunoTools.getAssetSizeImage(BrnAsset.ICON_SEARCH, 16, 16),
+                    BrunoTools.getAssetSizeImage(BrnAsset.iconSearch, 16, 16),
               ),
               Expanded(
                 child: TextField(
@@ -343,7 +343,7 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
                         right: valueNotifier.value ? 24 : 20,
                         left: valueNotifier.value ? 24 : 20),
                     child: Image.asset(
-                      'assets/${BrnAsset.ICON_DELETE_TEXT}',
+                      'assets/${BrnAsset.iconDeleteText}',
                       color: _defaultClearIconColor,
                       scale: 3.0,
                       height: 16,

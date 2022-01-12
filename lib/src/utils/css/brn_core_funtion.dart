@@ -45,7 +45,7 @@ class BrnConvert {
           color: BrnThemeConfigurator.instance
               .getConfig()
               .commonConfig
-              ?.colorTextImportant,
+              .colorTextImportant,
         );
 
     final List<TextSpan> spans = [];
@@ -94,7 +94,7 @@ class BrnConvert {
                     color: BrnThemeConfigurator.instance
                         .getConfig()
                         .commonConfig
-                        ?.brandPrimary,
+                        .brandPrimary,
                   );
                   tag.linkUrl = attr.value;
                   break;
