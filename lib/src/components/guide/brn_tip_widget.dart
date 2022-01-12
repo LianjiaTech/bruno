@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/button/brn_icon_button.dart';
 import 'package:bruno/src/components/guide/brn_flutter_guide.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
@@ -12,12 +10,12 @@ enum GuideMode { force, soft }
 /// 默认的引导组件包含，强和弱两种交互模式
 class BrnTipInfoWidget extends StatelessWidget {
   final GuideDirection direction;
-  final void Function() onClose;
-  final void Function() onNext;
-  final void Function() onSkip;
+  final void Function()? onClose;
+  final void Function()? onNext;
+  final void Function()? onSkip;
 
   final double width;
-  final double height;
+  final double? height;
   final BrnTipInfoBean info;
   final GuideMode mode;
 
@@ -26,21 +24,21 @@ class BrnTipInfoWidget extends StatelessWidget {
 
   /// Total number of guide pages
   final int stepCount;
-  final num arrowPadding;
-  final String nextTip;
+  final double? arrowPadding;
+  final String? nextTip;
 
   const BrnTipInfoWidget(
-      {Key key,
+      {Key? key,
       this.onClose,
       this.onNext,
       this.onSkip,
-      @required this.width,
-      @required this.height,
-      this.currentStepIndex,
-      this.stepCount,
-      this.info,
+      required this.width,
+      this.height,
+      this.currentStepIndex = 0,
+      required this.stepCount,
+      required this.info,
       this.mode = GuideMode.force,
-      this.direction,
+      required this.direction,
       this.arrowPadding,
       this.nextTip})
       : super(key: key);
@@ -162,7 +160,7 @@ class BrnTipInfoWidget extends StatelessWidget {
   }
 
   Widget buildImage() {
-    if (info.imgUrl == null || info.imgUrl.isEmpty) return Row();
+    if (info.imgUrl.isEmpty) return Row();
     double imageSize = width - 16;
     return Padding(
       padding: EdgeInsets.only(top: 14),
@@ -197,7 +195,7 @@ class BrnTipInfoWidget extends StatelessWidget {
                 ? Row()
                 : GestureDetector(
                     onTap: () {
-                      onClose();
+                      onClose!();
                     },
                     child: BrunoTools.getAssetImageWithColor(
                         BrnAsset.iconClose, Colors.black),
@@ -209,7 +207,7 @@ class BrnTipInfoWidget extends StatelessWidget {
   }
 
   Widget buildMessage() {
-    if (info.message == null) return Row();
+    if (info.message.isEmpty) return Row();
     return Padding(
       padding: EdgeInsets.only(top: 6),
       child: Text('${info.message}',
@@ -236,7 +234,7 @@ class BrnTipInfoWidget extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
                         onTap: () {
-                          onSkip();
+                          onSkip!();
                         },
                         child: Text(
                           '跳过 (${currentStepIndex + 1}/$stepCount)',
@@ -266,12 +264,13 @@ class BrnTipInfoWidget extends StatelessWidget {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          onNext();
+                          onNext!();
                         },
                         child: Text(
-                          nextTip ?? stepCount == currentStepIndex + 1
-                              ? '我知道了'
-                              : '下一步',
+                          nextTip ??
+                              (stepCount == currentStepIndex + 1
+                                  ? '我知道了'
+                                  : '下一步'),
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
                       ),
@@ -302,7 +301,7 @@ class BrnTipInfoWidget extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
                         onTap: () {
-                          onSkip();
+                          onSkip!();
                         },
                         child: Text(
                           '跳过 (${currentStepIndex + 1}/$stepCount)',
@@ -324,12 +323,13 @@ class BrnTipInfoWidget extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
                         onTap: () {
-                          onNext();
+                          onNext!();
                         },
                         child: Text(
-                          nextTip ?? stepCount == currentStepIndex + 1
-                              ? '我知道了'
-                              : '下一步',
+                          nextTip ??
+                              (stepCount == currentStepIndex + 1
+                                  ? '我知道了'
+                                  : '下一步'),
                           style: TextStyle(
                               color: BrnThemeConfigurator.instance
                                   .getConfig()
@@ -359,7 +359,7 @@ class CustomTrianglePainter extends CustomPainter {
   CustomTrianglePainter(
       {this.color = Colors.white,
       this.borderColor = const Color(0XFFCCCCCC),
-      @required this.direction});
+      required this.direction});
 
   @override
   void paint(Canvas canvas, Size size) {

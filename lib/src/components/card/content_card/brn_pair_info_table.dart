@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:math';
 import 'dart:ui' as ui;
 
@@ -87,21 +85,21 @@ class BrnPairInfoTable extends StatefulWidget {
   final bool isFolded;
 
   /// 每一行的间距 默认4
-  final double rowDistance;
+  final double? rowDistance;
 
   /// key和value的间距 默认2
-  final double itemSpacing;
+  final double? itemSpacing;
 
-  final BrnPairInfoTableConfig themeData;
+  final BrnPairInfoTableConfig? themeData;
 
   ///对齐情况下，自定义的key展示规则
   ///默认是最大的Key展示长度是107
   ///可以参考[_MaxWrapTableWidth]实现自定义的展示规则，指定长度等
-  final TableColumnWidth customKeyWidth;
+  final TableColumnWidth? customKeyWidth;
 
   BrnPairInfoTable({
-    Key key,
-    @required this.children,
+    Key? key,
+    required this.children,
     this.isValueAlign = true,
     this.expandAtIndex = -1,
     this.rowDistance,
@@ -117,35 +115,35 @@ class BrnPairInfoTable extends StatefulWidget {
 
 class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   //当前的展示状态
-  bool _isFolded;
+  late bool _isFolded;
 
   //指定索引位置去具备展开功能
-  int _expandAtIndex;
+  late int _expandAtIndex;
 
   // 收起状态显示的孩子
-  List<BrnInfoModal> foldList;
+  List<BrnInfoModal>? foldList;
 
   // 展开状态显示的孩子
-  List<BrnInfoModal> expandedList;
+  List<BrnInfoModal?>? expandedList;
 
   // 在页面呈现的孩子
-  List<BrnInfoModal> showList;
+  List<BrnInfoModal?>? showList;
 
   // 指定位置的最原始 modal
-  BrnInfoModal indexModal;
+  BrnInfoModal? indexModal;
 
   // 是否具备展开收起功能 如果不展示则显示全部
   bool canExpanded = false;
 
-  BrnPairInfoTableConfig themeData;
+  BrnPairInfoTableConfig? themeData;
 
   @override
   void initState() {
     themeData = widget.themeData ?? BrnPairInfoTableConfig();
     themeData =
-        themeData.merge(BrnPairInfoTableConfig(rowSpacing: widget.rowDistance));
+        themeData!.merge(BrnPairInfoTableConfig(rowSpacing: widget.rowDistance));
     themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
+        .getConfig(configId: themeData!.configId)
         .pairInfoTableConfig
         .merge(themeData);
 
@@ -171,9 +169,9 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     super.didUpdateWidget(oldWidget);
     themeData ??= BrnPairInfoTableConfig();
     themeData =
-        themeData.merge(BrnPairInfoTableConfig(rowSpacing: widget.rowDistance));
+        themeData!.merge(BrnPairInfoTableConfig(rowSpacing: widget.rowDistance));
     themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
+        .getConfig(configId: themeData!.configId)
         .pairInfoTableConfig
         .merge(themeData);
   }
@@ -211,21 +209,21 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     return showWidget;
   }
 
-  Widget _finalValueWidget(BrnInfoModal data, {double itemSpacing}) {
-    Widget valueWidget;
+  Widget _finalValueWidget(BrnInfoModal data, {double? itemSpacing}) {
+    Widget? valueWidget;
 
     if (data.valuePart is String) {
       valueWidget = _valueTitleText(data.valuePart,
           isValueAlign: widget.isValueAlign,
           isArrow: data.isArrow,
-          themeData: themeData);
+          themeData: themeData!);
     } else {
       valueWidget = data.valuePart;
 
       if (valueWidget == null) {
         valueWidget = Text(
           '--',
-          style: themeData.valueTextStyle?.generateTextStyle(),
+          style: themeData!.valueTextStyle?.generateTextStyle(),
         );
       }
     }
@@ -241,7 +239,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
       );
     }
     return Padding(
-      padding: EdgeInsets.only(left: itemSpacing ?? themeData.itemSpacing),
+      padding: EdgeInsets.only(left: itemSpacing ?? themeData!.itemSpacing),
       child: valueWidget,
     );
   }
@@ -262,8 +260,8 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   /// 张开状态的孩子
   /// 替换最后的value 为具备收起功能的 value
   /// 替换index的value 为原始的value
-  List<BrnInfoModal> _generateExpandedList() {
-    List<BrnInfoModal> finalChildren = List<BrnInfoModal>.of(widget.children);
+  List<BrnInfoModal?> _generateExpandedList() {
+    List<BrnInfoModal?> finalChildren = List<BrnInfoModal?>.of(widget.children);
     BrnInfoModal foldRowWidget = _expandedButtonWidget();
     finalChildren[_expandAtIndex] = indexModal;
     finalChildren[widget.children.length - 1] = foldRowWidget;
@@ -281,7 +279,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
             '展开',
             style: TextStyle(
               fontSize: 14,
-              color: themeData.commonConfig.colorTextSecondary,
+              color: themeData!.commonConfig.colorTextSecondary,
             ),
           ),
         ),
@@ -313,9 +311,9 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
 
     /// 将原有的value显示替换为 stack
     BrnInfoModal brnMetaInfoModal = BrnInfoModal(
-      isArrow: indexModal.isArrow,
-      keyPart: indexModal.keyPart,
-      valuePart: indexModal.valuePart,
+      isArrow: indexModal!.isArrow,
+      keyPart: indexModal!.keyPart,
+      valuePart: indexModal!.valuePart,
     );
     Container stack = Container(
       child: Stack(
@@ -339,7 +337,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
             '收起',
             style: TextStyle(
               fontSize: 14,
-              color: themeData.commonConfig.colorTextSecondary,
+              color: themeData!.commonConfig.colorTextSecondary,
             ),
           ),
         ),
@@ -391,7 +389,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   Widget _valueTitleText(String text,
       {bool isValueAlign = true,
       bool isArrow = false,
-      BrnPairInfoTableConfig themeData}) {
+      required BrnPairInfoTableConfig themeData}) {
     bool isSingle;
     if (isArrow) {
       isSingle = true;
@@ -420,9 +418,9 @@ mixin PairInfoPart {
   bool isValueAlign();
 
   BrnPairInfoTableConfig configDefaultThemeData(
-      BrnPairInfoTableConfig themeData,
-      {double rowDistance,
-      double itemSpacing}) {
+      BrnPairInfoTableConfig? themeData,
+      {double? rowDistance,
+      double? itemSpacing}) {
     BrnPairInfoTableConfig defaultThemeData;
     defaultThemeData = themeData ?? BrnPairInfoTableConfig();
     defaultThemeData = defaultThemeData.merge(BrnPairInfoTableConfig(
@@ -434,8 +432,8 @@ mixin PairInfoPart {
     return defaultThemeData;
   }
 
-  Widget finalKeyWidget(BrnInfoModal data, BrnPairInfoTableConfig themeData) {
-    Widget keyWidget;
+  Widget? finalKeyWidget(BrnInfoModal data, BrnPairInfoTableConfig themeData) {
+    Widget? keyWidget;
     if (data.keyPart is String) {
       keyWidget = keyOrValueTitleText(true, data.keyPart.toString(),
           isValueAlign: isValueAlign(),
@@ -448,8 +446,8 @@ mixin PairInfoPart {
   }
 
   Widget finalValueWidget(BrnInfoModal data, BrnPairInfoTableConfig themeData,
-      {double itemSpacing}) {
-    Widget valueWidget;
+      {double? itemSpacing}) {
+    Widget? valueWidget;
 
     if (data.valuePart is String) {
       valueWidget = keyOrValueTitleText(false, data.valuePart,
@@ -486,7 +484,7 @@ mixin PairInfoPart {
   Widget keyOrValueTitleText(bool isKey, String text,
       {bool isValueAlign = true,
       bool isArrow = false,
-      BrnPairInfoTableConfig themeData}) {
+      BrnPairInfoTableConfig? themeData}) {
     bool isSingle;
     if (isArrow) {
       isSingle = true;
@@ -510,8 +508,8 @@ mixin PairInfoPart {
       overflow: isSingle ? TextOverflow.ellipsis : TextOverflow.clip,
       maxLines: isSingle ? 1 : null,
       style: isKey
-          ? themeData.keyTextStyle?.generateTextStyle()
-          : themeData.valueTextStyle?.generateTextStyle(),
+          ? themeData!.keyTextStyle?.generateTextStyle()
+          : themeData!.valueTextStyle?.generateTextStyle(),
     );
     return keyOrValue;
   }
@@ -519,19 +517,19 @@ mixin PairInfoPart {
 
 class BrnFollowPairInfo extends StatelessWidget with PairInfoPart {
   /// 待展示的文本信息集合
-  final List<BrnInfoModal> children;
+  final List<BrnInfoModal?>? children;
 
   /// 每一行的间距
-  final double rowDistance;
+  final double? rowDistance;
 
   /// key和value的间距
-  final double itemSpacing;
+  final double? itemSpacing;
 
-  final BrnPairInfoTableConfig themeData;
+  final BrnPairInfoTableConfig? themeData;
 
   BrnFollowPairInfo({
-    Key key,
-    @required this.children,
+    Key? key,
+    required this.children,
     this.rowDistance,
     this.itemSpacing,
     this.themeData,
@@ -553,13 +551,13 @@ class BrnFollowPairInfo extends StatelessWidget with PairInfoPart {
       builder: (context, constraints) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: children.map((data) {
+          children: children!.map((data) {
             index++;
             return Padding(
               padding:
-                  EdgeInsets.only(top: (index == 0) ? 0 : themeData.rowSpacing),
+                  EdgeInsets.only(top: (index == 0) ? 0 : themeData!.rowSpacing),
               child: _buildSingleInfo(
-                  data, constraints.maxWidth / 2, defaultThemeConfig),
+                  data!, constraints.maxWidth / 2, defaultThemeConfig),
             );
           }).toList(),
         );
@@ -574,7 +572,7 @@ class BrnFollowPairInfo extends StatelessWidget with PairInfoPart {
       value = GestureDetector(
         onTap: () {
           if (infoModal.valueClickCallback != null) {
-            infoModal.valueClickCallback();
+            infoModal.valueClickCallback!();
           }
         },
         child: value,
@@ -603,20 +601,20 @@ class BrnFollowPairInfo extends StatelessWidget with PairInfoPart {
 
 class BrnAlignPairInfo extends StatelessWidget with PairInfoPart {
   /// 待展示的文本信息集合
-  final List<BrnInfoModal> children;
+  final List<BrnInfoModal?>? children;
 
   ///控件的背景色 默认为白色
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// 每一行的间距
-  final double rowDistance;
+  final double? rowDistance;
 
   /// key和value的间距
-  final double itemSpacing;
+  final double? itemSpacing;
 
-  final TableColumnWidth customKeyWidth;
+  final TableColumnWidth? customKeyWidth;
 
-  final BrnPairInfoTableConfig themeData;
+  final BrnPairInfoTableConfig? themeData;
 
   BrnAlignPairInfo(
       {this.children,
@@ -648,14 +646,14 @@ class BrnAlignPairInfo extends StatelessWidget with PairInfoPart {
       defaultVerticalAlignment: TableCellVerticalAlignment.baseline,
       textBaseline: TextBaseline.ideographic,
       columnWidths: <int, TableColumnWidth>{
-        0: customKeyWidth ?? _MaxWrapTableWidth(maxWidth: maxWith),
+        0: customKeyWidth ?? _MaxWrapTableWidth(maxWith),
         1: FlexColumnWidth()
       },
       border: TableBorder.all(color: Colors.transparent),
-      children: children.map((data) {
+      children: children!.map((data) {
         index++;
         return _buildSingleInfo(
-            data, index == children.length - 1, defaultThemeConfig);
+            data!, index == children!.length - 1, defaultThemeConfig);
       }).toList(),
     );
     return table;
@@ -677,14 +675,14 @@ class BrnAlignPairInfo extends StatelessWidget with PairInfoPart {
       value = GestureDetector(
         onTap: () {
           if (infoModal.valueClickCallback != null) {
-            infoModal.valueClickCallback();
+            infoModal.valueClickCallback!();
           }
         },
         child: value,
       );
     }
     return TableRow(
-        children: [finalKeyWidget(infoModal, defaultThemeConfig), value]);
+        children: [finalKeyWidget(infoModal, defaultThemeConfig)!, value]);
   }
 }
 
@@ -705,7 +703,7 @@ class BrnInfoModal {
   final bool isArrow;
 
   /// value的点击回调
-  final VoidCallback valueClickCallback;
+  final VoidCallback? valueClickCallback;
 
   BrnInfoModal(
       {this.keyPart,
@@ -729,14 +727,14 @@ class BrnInfoModal {
     String keyTitle,
     String valueTitle,
     String clickValue, {
-    double fontSize,
-    double itemSpacing,
-    TextStyle valueTextStyle,
-    Function(String clickValue) clickCallback,
+    double? fontSize,
+    double? itemSpacing,
+    TextStyle? valueTextStyle,
+    Function(String? clickValue)? clickCallback,
     bool isArrow = false,
-    VoidCallback valueClickCallback,
-    Color linkColor,
-    BrnPairInfoTableConfig themeData,
+    VoidCallback? valueClickCallback,
+    Color? linkColor,
+    BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
     themeData = themeData.merge(BrnPairInfoTableConfig(
@@ -824,15 +822,15 @@ class BrnInfoModal {
     String valueTitle, {
     bool keyShow = false,
     bool valueShow = true,
-    double fontSize,
-    double itemSpacing,
-    TextStyle keyTextStyle,
-    TextStyle valueTextStyle,
-    Function keyCallback,
-    Function valueCallback,
+    double? fontSize,
+    double? itemSpacing,
+    TextStyle? keyTextStyle,
+    TextStyle? valueTextStyle,
+    Function? keyCallback,
+    Function? valueCallback,
     bool isArrow = false,
-    VoidCallback valueClickCallback,
-    BrnPairInfoTableConfig themeData,
+    VoidCallback? valueClickCallback,
+    BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
     themeData = themeData.merge(BrnPairInfoTableConfig(
@@ -966,14 +964,14 @@ class BrnInfoModal {
   static BrnInfoModal keyHeadIconInfo(
     String keyTitle,
     String valueTitle, {
-    Widget headIcon,
-    double fontSize,
-    double itemSpacing,
-    TextStyle keyTextStyle,
-    TextStyle valueTextStyle,
+    Widget? headIcon,
+    double? fontSize,
+    double? itemSpacing,
+    TextStyle? keyTextStyle,
+    TextStyle? valueTextStyle,
     bool isArrow = false,
-    VoidCallback valueClickCallback,
-    BrnPairInfoTableConfig themeData,
+    VoidCallback? valueClickCallback,
+    BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
     themeData = themeData.merge(BrnPairInfoTableConfig(
@@ -1017,13 +1015,13 @@ class BrnInfoModal {
   static BrnInfoModal valueRichTextInfo(
     String keyTitle,
     String valueTitle, {
-    double fontSize,
-    double itemSpacing,
-    TextStyle valueTextStyle,
+    double? fontSize,
+    required double itemSpacing,
+    TextStyle? valueTextStyle,
     bool isArrow = false,
-    BrnHyperLinkCallback richTextLinkClick,
-    VoidCallback valueClickCallback,
-    BrnPairInfoTableConfig themeData,
+    BrnHyperLinkCallback? richTextLinkClick,
+    VoidCallback? valueClickCallback,
+    BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
     themeData = themeData.merge(BrnPairInfoTableConfig(
@@ -1086,5 +1084,5 @@ class _MaxWrapTableWidth extends TableColumnWidth {
     return 0;
   }
 
-  _MaxWrapTableWidth({this.maxWidth});
+  _MaxWrapTableWidth(this.maxWidth);
 }
