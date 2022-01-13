@@ -148,7 +148,7 @@ class BrnAppBar extends PreferredSize {
       this.actions,
       this.backgroundColor,
       this.bottom,
-      this.elevation=0,
+      this.elevation = 0,
       this.automaticallyImplyLeading = true,
       this.brightness,
       this.toolbarOpacity = 1.0,
@@ -163,8 +163,8 @@ class BrnAppBar extends PreferredSize {
       this.shape,
       this.iconTheme,
       this.actionsIconTheme,
-      this.excludeHeaderSemantics=false,
-      this.primary=true,
+      this.excludeHeaderSemantics = false,
+      this.primary = true,
       this.textTheme,
       this.titleSpacing})
       : assert(
@@ -188,8 +188,8 @@ class BrnAppBar extends PreferredSize {
       this.shape,
       this.iconTheme,
       this.actionsIconTheme,
-      this.excludeHeaderSemantics=false,
-      this.primary=true,
+      this.excludeHeaderSemantics = false,
+      this.primary = true,
       this.textTheme,
       this.titleSpacing})
       : this.actions = null,
@@ -336,16 +336,13 @@ class BrnAppBar extends PreferredSize {
       if (actions.isEmpty) {
         return actionList;
       }
-      List<Widget>? tmp = (actions as List<Widget>?)?.map((_) {
+      List<Widget> tmp = (actions as List<Widget>).map((_) {
         return (_ is BrnTextAction) ? _warpRealAction(_) : _;
       }).toList();
 
-      if (tmp != null) {
-        for (int i = 0, n = tmp.length; i < n; i++) {
-          actionList.add(tmp[i]);
-          if (i != n - 1)
-            actionList.add(SizedBox(width: themeData.itemSpacing));
-        }
+      for (int i = 0, n = tmp.length; i < n; i++) {
+        actionList.add(tmp[i]);
+        if (i != n - 1) actionList.add(SizedBox(width: themeData.itemSpacing));
       }
     } else {
       Widget realAction =
@@ -495,7 +492,7 @@ class BrnAppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     BrnAppBarConfig _defaultThemeData = themeData ?? BrnAppBarConfig();
     _defaultThemeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData!.configId)
+        .getConfig(configId: _defaultThemeData.configId)
         .appBarConfig
         .merge(this.themeData);
 
@@ -506,7 +503,7 @@ class BrnAppBarTitle extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       constraints: BoxConstraints.loose(Size.fromWidth(
-          (_defaultThemeData.titleStyle.generateTextStyle().fontSize ?? 14) *
+          (_defaultThemeData.titleStyle.generateTextStyle().fontSize ?? 18) *
               (_defaultThemeData.titleMaxLength + 1))),
     );
   }
