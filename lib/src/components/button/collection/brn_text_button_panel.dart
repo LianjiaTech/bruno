@@ -38,7 +38,7 @@ class BrnTextButtonPanel extends StatefulWidget {
 }
 
 class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
-  GlobalKey? _popWindowKey;
+  late GlobalKey _popWindowKey;
 
   /// 更多按钮的展开收起状态
   bool _isExpanded = false;

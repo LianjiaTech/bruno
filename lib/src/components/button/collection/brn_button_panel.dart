@@ -61,7 +61,7 @@ class BrnButtonPanel extends StatefulWidget {
 }
 
 class _BrnButtonPanelState extends State<BrnButtonPanel> {
-  GlobalKey? _popWindowKey;
+  late GlobalKey _popWindowKey;
 
   List<BrnButtonPanelConfig>? _secondaryButtonList = [];
 
