@@ -64,7 +64,7 @@ class BrnSelectionEntity {
   String? defaultValue;
 
   /// 显示的文案
-  late String title;
+  String title;
 
   /// 显示的文案
   String? subTitle;
@@ -148,7 +148,8 @@ class BrnSelectionEntity {
   }
 
   BrnSelectionEntity.fromJson(Map<String, dynamic>? map)
-      : this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
+      : this.title = '',
+        this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
         this.isCustomTitleHighLight = false,
         this.isSelected = false,
         this.children = [],
@@ -162,7 +163,7 @@ class BrnSelectionEntity {
     value = map['value'] ?? '';
     if (map['maxSelectedCount'] != null && int.tryParse(map['maxSelectedCount']) != null) {
       maxSelectedCount =
-          int.tryParse(map['maxSelectedCount']) ?? BrnSelectionConstant.MAX_SELECT_COUNT;
+          int.tryParse(map['maxSelectedCount']) ?? BrnSelectionConstant.maxSelectCount;
     }
     extMap = map['ext'] ?? {};
     children = []

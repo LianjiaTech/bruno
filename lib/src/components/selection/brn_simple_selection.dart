@@ -53,7 +53,7 @@ class BrnSimpleSelection extends StatefulWidget {
     required this.menuName,
     this.menuKey = _defaultMenuKey,
     this.defaultValue,
-    this.maxSelectedCount = BrnSelectionConstant.MAX_SELECT_COUNT,
+    this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
     required this.items,
     required this.onSimpleSelectionChanged,
     this.onMenuItemClick,

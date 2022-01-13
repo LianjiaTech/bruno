@@ -1,12 +1,11 @@
 class ItemEntity {
   String? key;
-  late String name;
+  String name;
   String? value;
 
   ItemEntity({this.key, this.name = '', this.value});
 
-  ItemEntity.fromJson(Map<String, dynamic>? map) {
-    if (map == null) return;
+  ItemEntity.fromJson(Map<String, dynamic> map) : this.name = '' {
     key = map['key'] ?? '';
     name = map['title'] ?? '';
     value = map['value'] ?? '';
