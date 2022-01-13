@@ -35,7 +35,7 @@ const double _BVerticalPadding = 8;
 
 class BrnBigMainButton extends StatelessWidget {
   ///按钮显示文案,默认'确认'
-  final String? title;
+  final String title;
 
   ///是否可用,false 是置灰效果
   final bool isEnable;
@@ -75,7 +75,7 @@ class BrnBigMainButton extends StatelessWidget {
           height: defaultThemeConfig.bigButtonHeight),
       alignment: Alignment.center,
       isEnable: isEnable,
-      text: title ?? '确认',
+      text: title,
       backgroundColor: bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
       disableBackgroundColor: Color(0xFFCCCCCC),
       onTap: onTap,

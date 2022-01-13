@@ -63,7 +63,7 @@ class BrnButtonPanel extends StatefulWidget {
 class _BrnButtonPanelState extends State<BrnButtonPanel> {
   late GlobalKey _popWindowKey;
 
-  List<BrnButtonPanelConfig>? _secondaryButtonList = [];
+  List<BrnButtonPanelConfig> _secondaryButtonList = [];
 
   @override
   void initState() {
@@ -82,11 +82,10 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
   void initSecondaryButton() {
     _secondaryButtonList = [];
     if (widget.secondaryButtonList?.isNotEmpty ?? false) {
-      _secondaryButtonList = widget.secondaryButtonList;
+      _secondaryButtonList = widget.secondaryButtonList!;
     } else if (widget.secondaryButtonNameList?.isNotEmpty ?? false) {
       widget.secondaryButtonNameList!.forEach((name) {
-        _secondaryButtonList!
-            .add(BrnButtonPanelConfig(name: name, isEnable: true));
+        _secondaryButtonList.add(BrnButtonPanelConfig(name: name, isEnable: true));
       });
     }
   }
@@ -95,7 +94,7 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
   Widget build(BuildContext context) {
     List<Widget> list = <Widget>[];
 
-    if (_secondaryButtonList!.length > 2) {
+    if (_secondaryButtonList.length > 2) {
       //次按钮两个以上特殊处理，所有button等分
       list.add(
         _moreButton(),
@@ -116,7 +115,7 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
       ));
     } else {
       // 次按钮两个以下优先显示主按钮，剩下的地方平分给次按钮
-      if (_secondaryButtonList!.length == 2) {
+      if (_secondaryButtonList.length == 2) {
         list.add(
           Flexible(
               child: Row(
@@ -131,7 +130,7 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
             ],
           )),
         );
-      } else if (_secondaryButtonList!.length == 1) {
+      } else if (_secondaryButtonList.length == 1) {
         list.add(
           Flexible(child: _secondaryButton(0)),
         );
@@ -160,10 +159,10 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
   }
 
   Widget _secondaryButton(int btnIndex) {
-    String? name = _secondaryButtonList![btnIndex].name;
+    String? name = _secondaryButtonList[btnIndex].name;
     BrnSmallOutlineButton button = BrnSmallOutlineButton(
-      title: name,
-      isEnable: _secondaryButtonList![btnIndex].isEnable,
+      title: name ?? '确认',
+      isEnable: _secondaryButtonList[btnIndex].isEnable,
       onTap: () {
         if (widget.secondaryButtonOnTap != null) {
           widget.secondaryButtonOnTap!(btnIndex);
@@ -178,10 +177,10 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
 
   /// 更多按钮
   Widget _moreButton() {
-    if (null != _secondaryButtonList && _secondaryButtonList!.length > 2) {
+    if (_secondaryButtonList.length > 2) {
       List<String?> list = [];
-      for (int i = 2; i < _secondaryButtonList!.length; i++) {
-        list.add(_secondaryButtonList![i].name);
+      for (int i = 2; i < _secondaryButtonList.length; i++) {
+        list.add(_secondaryButtonList[i].name);
       }
 
       return GestureDetector(
@@ -199,7 +198,7 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
-                        color: _secondaryButtonList![index + 2].isEnable
+                        color: _secondaryButtonList[index + 2].isEnable
                             ? BrnThemeConfigurator.instance
                                 .getConfig()
                                 .commonConfig.colorTextBase
@@ -212,7 +211,7 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
               onItemClick: (index, item) {
                 // 按钮不可用的时候，点击无响应；
                 if (widget.secondaryButtonOnTap != null) {
-                  if (_secondaryButtonList![index + 2].isEnable) {
+                  if (_secondaryButtonList[index + 2].isEnable) {
                     widget.secondaryButtonOnTap!(index + 2);
                     return false;
                   } else {
