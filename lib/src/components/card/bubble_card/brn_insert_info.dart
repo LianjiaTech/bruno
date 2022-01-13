@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -28,7 +28,7 @@ class BrnInsertInfo extends StatelessWidget {
   final String infoText;
   final int maxLines;
 
-  const BrnInsertInfo({Key key, @required this.infoText, this.maxLines = 2})
+  const BrnInsertInfo({Key? key, required this.infoText, this.maxLines = 2})
       : super(key: key);
 
   @override

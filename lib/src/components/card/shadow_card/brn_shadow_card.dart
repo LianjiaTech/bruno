@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
@@ -38,10 +36,10 @@ class BrnShadowCard extends StatelessWidget {
   final double borderWidth;
 
   BrnShadowCard(
-      {@required this.child,
-      this.color,
-      this.shadowColor,
-      this.padding,
+      {required this.child,
+      this.color = const Color(0xfffafafa),
+      this.shadowColor = const Color(0xffeeeeee),
+      this.padding = const EdgeInsets.all(0),
       this.circular = 4.0,
       this.blurRadius = 5.0,
       this.spreadRadius = 0,
@@ -51,18 +49,14 @@ class BrnShadowCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double tempBorderWidth = 0;
-    if (this.borderWidth != null && this.borderWidth > 0) {
+    if (this.borderWidth > 0) {
       tempBorderWidth = this.borderWidth;
     }
     return Container(
-      padding: padding ?? EdgeInsets.all(0),
-      child: this.child ??
-          Container(
-            width: 0,
-            height: 0,
-          ),
+      padding: padding,
+      child: this.child,
       decoration: BoxDecoration(
-          color: this.color ?? Color(0xfffafafa),
+          color: this.color,
           borderRadius: BorderRadius.all(Radius.circular(circular)),
           border: tempBorderWidth != 0
               ? Border.all(
@@ -74,7 +68,7 @@ class BrnShadowCard extends StatelessWidget {
               : Border.all(style: BorderStyle.none),
           boxShadow: [
             BoxShadow(
-                color: this.shadowColor ?? Color(0xffeeeeee),
+                color: this.shadowColor,
                 offset: this.offset, //阴影xy轴偏移量
                 blurRadius: this.blurRadius, //阴影模糊程度
                 spreadRadius: this.spreadRadius //阴影扩散程度

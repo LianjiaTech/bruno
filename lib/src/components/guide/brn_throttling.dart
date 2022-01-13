@@ -1,15 +1,13 @@
-// @dart=2.9
-
 part of brn_intro;
 
 ///  Throttling
 ///  Have method [throttle]
 class _Throttling {
-  Duration _duration;
-  Timer _timer;
+  late Duration _duration;
+  Timer? _timer;
 
   _Throttling({Duration duration = const Duration(seconds: 1)})
-      : assert(duration is Duration && !duration.isNegative) {
+      : assert(!duration.isNegative) {
     _duration = duration;
   }
 
