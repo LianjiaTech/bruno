@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/charts/brn_doughunt_chart/brn_doughnut_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -26,21 +24,22 @@ class DoughnutChartLegend extends StatelessWidget {
   final List<BrnDoughnutDataItem> data;
 
   DoughnutChartLegend(
-      {this.legendStyle = BrnDoughnutChartLegendStyle.wrap, this.data});
+      {this.legendStyle = BrnDoughnutChartLegendStyle.wrap,
+      required this.data});
 
   @override
   Widget build(BuildContext context) {
     if (BrnDoughnutChartLegendStyle.list == this.legendStyle) {
-      List<Widget> items = List();
-      this.data?.forEach((BrnDoughnutDataItem item) {
+      List<Widget> items = [];
+      this.data.forEach((BrnDoughnutDataItem item) {
         items.add(this.genItem(item));
       });
       return Column(
         children: items,
       );
     } else if (BrnDoughnutChartLegendStyle.wrap == this.legendStyle) {
-      List<Widget> items = List();
-      this.data?.forEach((BrnDoughnutDataItem item) {
+      List<Widget> items = [];
+      this.data.forEach((BrnDoughnutDataItem item) {
         items.add(this.genItem(item));
       });
 
@@ -70,7 +69,7 @@ class DoughnutChartLegend extends StatelessWidget {
           width: 6,
         ),
         Text(
-          item.title ?? '',
+          item.title,
           style: TextStyle(color: Colors.black),
         ),
       ],
