@@ -334,7 +334,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
     // 用于控制timer只加载一次
     var started = false;
     // 计时器
-    var periodTimer;
+    Timer periodTimer;
     List<BrnCommonActionSheetItem> actions = List();
     actions.add(BrnCommonActionSheetItem(
       '倒计时:$countdown',
@@ -369,7 +369,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
                     actions[0].desc = '倒计时:$times';
                   });
                 } else if (countdown == 0) {
-                  periodTimer.onCancel();
+                  periodTimer.cancel();
                 }
               });
             }
@@ -380,7 +380,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
                 BrnCommonActionSheetItem actionEle,
               ) {
                 // 点击后立即停止计时
-                periodTimer.onCancel();
+                periodTimer.cancel();
                 var title = actionEle.title;
                 BrnToast.show("title: $title, index: $index", context);
               },
@@ -388,7 +388,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
           });
           // then用来在pop折后停止timer，如果不需要在pop后进行操作，不需要使用then
         }).then((value) {
-      periodTimer.onCancel();
+      periodTimer.cancel();
     });
   }
 
