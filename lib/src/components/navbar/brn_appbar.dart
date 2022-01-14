@@ -272,11 +272,14 @@ class BrnAppBar extends PreferredSize {
         .appBarConfig
         .merge(_defaultConfig);
 
-    Widget flexibleSpace = Container(
-      height: _defaultConfig.appBarHeight +
-          MediaQueryData.fromWindow(window).padding.top,
-      child: this.flexibleSpace,
-    );
+    Widget? flexibleSpace;
+    if (this.flexibleSpace != null) {
+      flexibleSpace = Container(
+        height: _defaultConfig.appBarHeight +
+            MediaQueryData.fromWindow(window).padding.top,
+        child: this.flexibleSpace,
+      );
+    }
 
     return AppBar(
       key: key,
@@ -290,10 +293,7 @@ class BrnAppBar extends PreferredSize {
       backgroundColor: _defaultConfig.backgroundColor,
       actions: _wrapActions(_defaultConfig),
       bottom: _buildBarBottom(),
-      systemOverlayStyle:
-          (brightness == null || (brightness == Brightness.light))
-              ? SystemUiOverlayStyle.light
-              : SystemUiOverlayStyle.dark,
+      brightness: brightness ?? Brightness.light,
       toolbarOpacity: toolbarOpacity,
       bottomOpacity: bottomOpacity,
       flexibleSpace: flexibleSpace,
