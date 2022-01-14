@@ -193,8 +193,8 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
         onTap: () {
           BrnPopupListWindow.showButtonPanelPopList(context, _popWindowKey,
               data: list,
-              itemBuilder: (int index, String? item) {
-                return Text(item!,
+              itemBuilder: (int index, String item) {
+                return Text(item,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
