@@ -42,7 +42,7 @@ class BrnProgressBarChart extends StatefulWidget {
   /// 是否可点击回调
   final OnBarItemClickInterceptor? onBarItemClickInterceptor;
 
-  /// 选中柱状图时候的回调
+  /// 选中柱状图时候的回调(暂仅支持垂直柱状图)
   final BrnProgressBarChartSelectCallback? barChartSelectCallback;
 
   /// 图表高度，竖直柱状图有效，默认300
