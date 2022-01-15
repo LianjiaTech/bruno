@@ -1,7 +1,4 @@
-// @dart=2.9
-
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:bruno/src/components/charts/broken_line/brn_base_painter.dart';
 import 'package:bruno/src/components/charts/broken_line/brn_line_data.dart';
@@ -18,25 +15,25 @@ class BrnLinePainter extends BrnBasePainter {
   double xyLineWidth = 0.5;
 
   /// x轴的颜色
-  Color xDialColor;
+  Color? xDialColor;
 
   ///y轴的颜色
-  Color yDialColor;
+  Color? yDialColor;
 
   /// 刻度的宽度或者高度
   double rulerWidth;
 
   /// x轴最小值，最大值，用来计算内部绘制点的x轴位置
-  double xDialMin, xDialMax;
+  double? xDialMin, xDialMax;
 
   /// y轴最小值，最大值，用来计算内部绘制点的y轴位置
-  double yDialMin, yDialMax;
+  double? yDialMin, yDialMax;
 
   /// x轴 刻度
-  List<BrnDialItem> xDialValues;
+  List<BrnDialItem>? xDialValues;
 
   /// y轴左侧刻度显示，不传则没有
-  List<BrnDialItem> yDialValues;
+  List<BrnDialItem>? yDialValues;
 
   /// x、y轴的辅助线
   bool isShowHintX, isShowHintY;
@@ -45,12 +42,12 @@ class BrnLinePainter extends BrnBasePainter {
   bool hintLineSolid;
 
   /// 辅助线颜色
-  Color hintLineColor;
+  Color? hintLineColor;
 
   /// 绘制线条的参数内容
   List<BrnPointsLine> lines;
 
-  bool isShowXText, isShowYText;
+  bool? isShowXText, isShowYText;
 
   bool showPointDashLine;
 
@@ -63,27 +60,27 @@ class BrnLinePainter extends BrnBasePainter {
   /// 图标距离 widget 顶部的 padding
   static const double paddingTop = 10;
 
-  double selectX;
-  double selectY;
-  double _startX = 0.0,
+  double? selectX;
+  double? selectY;
+  double? _startX = 0.0,
       _endX = 0.0,
       _startY = 0.0,
       _endY = 0.0,
       _fixedHeight,
       _fixedWidth;
-  List<LineCanvasModel> _lineCanvasModels;
+  late List<LineCanvasModel> _lineCanvasModels;
 
-  List<List<Point>> _linePointPositions = List();
+  List<List<Point>> _linePointPositions = [];
 
-  double get startX => _startX;
+  double? get startX => _startX;
 
-  double get startY => _startY;
+  double? get startY => _startY;
 
-  double get endX => _endX;
+  double? get endX => _endX;
 
-  double get endY => _endY;
+  double? get endY => _endY;
 
-  double get fixedHeight => _fixedHeight;
+  double? get fixedHeight => _fixedHeight;
 
   BrnLinePainter(
     this.lines, {
@@ -107,7 +104,7 @@ class BrnLinePainter extends BrnBasePainter {
   }) {
     if (xDialValues == null) {
       for (var i = 1; i < lines.length; i++) {
-        assert(lines[i - 1].points.length == lines[i].points.length,
+        assert(lines[i - 1].points!.length == lines[i].points!.length,
             '折线${i - 1}和$i条线的节点数不一致');
       }
     }
@@ -166,11 +163,8 @@ class BrnLinePainter extends BrnBasePainter {
         .colorTextSecondary;
     hintLineColor ??=
         BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-    hintLineSolid ??= true;
-    xyLineWidth ??= 0.5;
     xDialMin ??= 0;
     xDialMax ??= 1;
-
     yDialMin ??= 0;
     yDialMax ??= 1;
   }
@@ -179,49 +173,49 @@ class BrnLinePainter extends BrnBasePainter {
   void _initBorder(Size size) {
     _endX = size.width;
     _startY = size.height;
-    if (isShowXText) {
+    if (isShowXText!) {
       _endY = 20.0;
     }
-    _fixedHeight = _startY - _endY - paddingTop;
-    _fixedWidth = _endX - _startX;
+    _fixedHeight = _startY! - _endY! - paddingTop;
+    _fixedWidth = _endX! - _startX!;
   }
 
   ///计算Path
   void _initPath(Canvas canvas, Paint xyPaint) {
     _lineCanvasModels = [];
-    if (lines != null && lines.isNotEmpty) {
+    if (lines.isNotEmpty) {
       _linePointPositions.clear();
       // 计算点和线的 数据，用于渲染。
       for (var item in lines) {
-        var paths = <Path>[], shadowPaths = <Path>[];
+        var paths = <Path?>[], shadowPaths = <Path?>[];
         var pointArr = <Point>[];
 
-        if (item.points != null && item.points.isNotEmpty) {
-          var _path = Path();
-          var _shadowPath = Path();
+        if (item.points != null && item.points!.isNotEmpty) {
+          Path? _path = Path();
+          Path _shadowPath = Path();
 
-          if (xDialValues != null && xDialValues.isNotEmpty) {
-            for (var i = 0; i < item.points.length; i++) {
-              var xPosition = _startX +
-                  ((item.points[i].x - xDialMin) /
-                      (xDialMax - xDialMin) *
-                      _fixedWidth);
-              var yPosition = _startY -
-                  ((item.points[i].y - yDialMin) /
-                      (yDialMax - yDialMin) *
-                      _fixedHeight);
+          if (xDialValues != null && xDialValues!.isNotEmpty) {
+            for (var i = 0; i < item.points!.length; i++) {
+              var xPosition = _startX! +
+                  ((item.points![i].x - xDialMin!) /
+                      (xDialMax! - xDialMin!) *
+                      _fixedWidth!);
+              var yPosition = _startY! -
+                  ((item.points![i].y - yDialMin!) /
+                      (yDialMax! - yDialMin!) *
+                      _fixedHeight!);
               pointArr.add(Point(xPosition, yPosition));
             }
           } else {
             var xScaleCount = item.points?.length ?? 0;
-            var W = _fixedWidth /
+            var W = _fixedWidth! /
                 (xScaleCount > 1 ? (xScaleCount - 1) : 1); //两个点之间的x方向距离
-            for (var i = 0; i < item.points.length; i++) {
-              var xPosition = _startX + W * i;
-              var yPosition = _startY -
-                  ((item.points[i].y - yDialMin) /
-                      (yDialMax - yDialMin) *
-                      _fixedHeight);
+            for (var i = 0; i < item.points!.length; i++) {
+              var xPosition = _startX! + W * i;
+              var yPosition = _startY! -
+                  ((item.points![i].y - yDialMin!) /
+                      (yDialMax! - yDialMin!) *
+                      _fixedHeight!);
               pointArr.add(Point(xPosition, yPosition));
             }
           }
@@ -232,20 +226,23 @@ class BrnLinePainter extends BrnBasePainter {
             /// 生成 Shadow path。
             _shadowPath = _getSmoothLinePath(pointArr);
             _shadowPath
-              ..lineTo(pointArr[pointArr.length - 1].x, _fixedHeight)
-              ..lineTo(pointArr[0].x, _fixedHeight)
+              ..lineTo(pointArr[pointArr.length - 1].x as double, _fixedHeight!)
+              ..lineTo(pointArr[0].x as double, _fixedHeight!)
               ..close();
           } else {
-            _path.moveTo(pointArr[0].x, pointArr[0].y);
-            _shadowPath.moveTo(pointArr[0].x, pointArr[0].y);
+            _path.moveTo(pointArr[0].x as double, pointArr[0].y as double);
+            _shadowPath.moveTo(
+                pointArr[0].x as double, pointArr[0].y as double);
             for (var i = 1; i < pointArr.length; i++) {
-              _path.lineTo(pointArr[i].x, pointArr[i].y);
-              _shadowPath.lineTo(pointArr[i].x, pointArr[i].y);
+              _path.lineTo(pointArr[i].x as double, pointArr[i].y as double);
+              _shadowPath.lineTo(
+                  pointArr[i].x as double, pointArr[i].y as double);
 
               if (i == pointArr.length - 1) {
                 _shadowPath
-                  ..lineTo(pointArr[pointArr.length - 1].x, _fixedHeight)
-                  ..lineTo(pointArr[0].x, _fixedHeight)
+                  ..lineTo(
+                      pointArr[pointArr.length - 1].x as double, _fixedHeight!)
+                  ..lineTo(pointArr[0].x as double, _fixedHeight!)
                   ..close();
               }
             }
@@ -271,11 +268,12 @@ class BrnLinePainter extends BrnBasePainter {
 
   /// Draws smooth lines between each point.
   Path _getSmoothLinePath(List<Point> points) {
-    var targetPoints = List<Point>();
+    var targetPoints = <Point>[];
     targetPoints.addAll(points);
     targetPoints.add(Point(
         points[points.length - 1].x * 2, points[points.length - 1].y * 2));
-    var x0, y0, x1, y1, t0, path = Path();
+    double? x0, y0, x1, y1, t0;
+    var path = Path();
     for (int i = 0; i < targetPoints.length; i++) {
       var t1;
       var x = targetPoints[i].x;
@@ -283,23 +281,23 @@ class BrnLinePainter extends BrnBasePainter {
       if (x == x1 && y == y1) break;
       switch (i) {
         case 0:
-          path.moveTo(x, y);
+          path.moveTo(x as double, y as double);
           break;
         case 1:
           break;
         case 2:
-          t1 = MonotoneX.slope3(x0, y0, x1, y1, x, y);
+          t1 = MonotoneX.slope3(x0!, y0!, x1!, y1!, x as double, y as double);
           MonotoneX.point(
               path, x0, y0, x1, y1, MonotoneX.slope2(x0, y0, x1, y1, t1), t1);
           break;
         default:
-          t1 = MonotoneX.slope3(x0, y0, x1, y1, x, y);
-          MonotoneX.point(path, x0, y0, x1, y1, t0, t1);
+          t1 = MonotoneX.slope3(x0!, y0!, x1!, y1!, x as double, y as double);
+          MonotoneX.point(path, x0, y0, x1, y1, t0!, t1);
       }
       x0 = x1;
       y0 = y1;
-      x1 = x;
-      y1 = y;
+      x1 = x as double;
+      y1 = y as double;
       t0 = t1;
     }
     return path;
@@ -308,42 +306,46 @@ class BrnLinePainter extends BrnBasePainter {
   ///x,y轴
   void _drawXy(Canvas canvas, Paint paint) {
     if (isShowHintY) {
-      canvas.drawLine(Offset(_startX, _startY),
-          Offset(_startX, _endY - basePadding), paint..color = yDialColor); //y轴
+      canvas.drawLine(
+          Offset(_startX!, _startY!),
+          Offset(_startX!, _endY! - basePadding),
+          paint..color = yDialColor!); //y轴
     }
 
-    if (lines != null && lines.isNotEmpty) {
+    if (lines.isNotEmpty) {
       //绘制x轴的文字部分
       for (var item in lines) {
-        if (item.points != null && item.points.isNotEmpty && item.isShowXDial) {
-          _drawXRuler(canvas, paint..color = xDialColor, item.points);
+        if (item.points != null &&
+            item.points!.isNotEmpty &&
+            item.isShowXDial) {
+          _drawXRuler(canvas, paint..color = xDialColor!, item.points);
         }
       }
     }
   }
 
   ///x轴刻度 & 辅助线
-  void _drawXRuler(Canvas canvas, Paint paint, List<BrnPointData> points) {
-    if (xDialValues != null && xDialValues.isNotEmpty) {
+  void _drawXRuler(Canvas canvas, Paint paint, List<BrnPointData>? points) {
+    if (xDialValues != null && xDialValues!.isNotEmpty) {
       // 获取刻度长度
-      for (var i = 0; i < xDialValues.length; i++) {
+      for (var i = 0; i < xDialValues!.length; i++) {
         ///绘制x轴文本
         var tpX = TextPainter(
             textAlign: TextAlign.center,
             ellipsis: '.',
             text: TextSpan(
-                text: xDialValues[i].dialText,
-                style: xDialValues[i].dialTextStyle),
+                text: xDialValues![i].dialText,
+                style: xDialValues![i].dialTextStyle),
             textDirection: TextDirection.ltr)
           ..layout();
         // 开始绘制刻度
         _drawXRuleByPointPosition(
             tpX,
             canvas,
-            _startX +
-                (xDialValues[i].value - xDialMin) /
-                    (xDialMax - xDialMin) *
-                    _fixedWidth,
+            _startX! +
+                (xDialValues![i].value - xDialMin!) /
+                    (xDialMax! - xDialMin!) *
+                    _fixedWidth!,
             paint);
       }
     }
@@ -351,30 +353,31 @@ class BrnLinePainter extends BrnBasePainter {
 
   void _drawXRuleByPointPosition(
       TextPainter tpX, Canvas canvas, double xPosition, Paint paint) {
-    tpX.paint(canvas, Offset(xPosition - tpX.width / 2, _startY + textPadding));
+    tpX.paint(
+        canvas, Offset(xPosition - tpX.width / 2, _startY! + textPadding));
 
     // 绘制与 X 轴对应的垂直辅助线
     if (isShowHintY) {
       var tempPath = Path()
-        ..moveTo(xPosition, _startY)
-        ..lineTo(xPosition, _endY - basePadding);
+        ..moveTo(xPosition, _startY!)
+        ..lineTo(xPosition, _endY! - basePadding);
       if (hintLineSolid) {
-        canvas.drawPath(tempPath, paint..color = hintLineColor);
+        canvas.drawPath(tempPath, paint..color = hintLineColor!);
       } else {
         canvas.drawPath(
           dashPath(
             tempPath,
             dashArray: CircularIntervalList<double>(<double>[4.0, 2.0]),
           ),
-          paint..color = hintLineColor,
+          paint..color = hintLineColor!,
         );
       }
     }
 
     // 绘制 x轴刻度
     if (isShowHintX) {
-      canvas.drawLine(Offset(xPosition, _startY),
-          Offset(xPosition, _startY + rulerWidth), paint..color = xDialColor);
+      canvas.drawLine(Offset(xPosition, _startY!),
+          Offset(xPosition, _startY! + rulerWidth), paint..color = xDialColor!);
     }
   }
 
@@ -383,17 +386,17 @@ class BrnLinePainter extends BrnBasePainter {
     _lineCanvasModels.forEach((element) {
       //阴影区域
       if (element.shadowPaths != null && element.shaderColors != null) {
-        element.shadowPaths.forEach((shadowPathElement) {
+        element.shadowPaths!.forEach((shadowPathElement) {
           var shader = LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   tileMode: TileMode.clamp,
-                  colors: element.shaderColors)
+                  colors: element.shaderColors!)
               .createShader(
-                  Rect.fromLTWH(_startX, _endY, _fixedWidth, _fixedHeight));
+                  Rect.fromLTWH(_startX!, _endY!, _fixedWidth!, _fixedHeight!));
           canvas
             ..drawPath(
-                shadowPathElement,
+                shadowPathElement!,
                 Paint()
                   ..shader = shader
                   ..isAntiAlias = true
@@ -402,14 +405,14 @@ class BrnLinePainter extends BrnBasePainter {
       }
       if (element.paths != null) {
         //路径
-        element.paths.forEach((pathElement) {
+        element.paths!.forEach((pathElement) {
           var pathPaint = Paint()
             ..isAntiAlias = true
-            ..strokeWidth = element.pathWidth
+            ..strokeWidth = element.pathWidth!
             ..strokeCap = StrokeCap.round
-            ..color = element.pathColor
+            ..color = element.pathColor!
             ..style = PaintingStyle.stroke;
-          canvas.drawPath(pathElement, pathPaint);
+          canvas.drawPath(pathElement!, pathPaint);
         });
       }
       if (element.points != null) {
@@ -418,25 +421,25 @@ class BrnLinePainter extends BrnBasePainter {
         // 圆环宽度 strokeWidth = element.pointRadius - element.pointInnerRadius
         // 实际 drawCircle 半径 outerR = (element.pointRadius - element.pointInnerRadius)/2 + element.pointInnerRadius
         // 内部半径 innerR = element.pointInnerRadius
-        element.points.forEach((pointElement) {
+        element.points!.forEach((pointElement) {
           var pointPaint = Paint()
             ..isAntiAlias = true
             ..strokeCap = StrokeCap.round
-            ..color = element.pointColor
-            ..strokeWidth = element.pointRadius - element.pointInnerRadius
+            ..color = element.pointColor!
+            ..strokeWidth = element.pointRadius! - element.pointInnerRadius!
             ..style = PaintingStyle.stroke; //描边为居中描边
           canvas.drawCircle(
-              Offset(pointElement.x, pointElement.y),
-              (element.pointRadius - element.pointInnerRadius) / 2 +
-                  element.pointInnerRadius,
+              Offset(pointElement.x as double, pointElement.y as double),
+              (element.pointRadius! - element.pointInnerRadius!) / 2 +
+                  element.pointInnerRadius!,
               pointPaint);
         });
 
         //内圆
         int currentLineIndex = _lineCanvasModels.indexOf(element);
 
-        element.points.forEach((pointElement) {
-          int currentPointIndex = element.points.indexOf(pointElement);
+        element.points!.forEach((pointElement) {
+          int currentPointIndex = element.points!.indexOf(pointElement);
           Color color = Colors.white;
 
           var pointPaintBg = Paint()
@@ -444,20 +447,24 @@ class BrnLinePainter extends BrnBasePainter {
             ..strokeCap = StrokeCap.round
             ..color = color
             ..style = PaintingStyle.fill;
-          canvas.drawCircle(Offset(pointElement.x, pointElement.y),
-              element.pointInnerRadius, pointPaintBg);
+          canvas.drawCircle(
+              Offset(pointElement.x as double, pointElement.y as double),
+              element.pointInnerRadius!,
+              pointPaintBg);
 
           if (currentLineIndex == lineSelectIndex &&
               currentPointIndex == pointSelectIndex) {
-            color = element.pointInnerColor;
+            color = element.pointInnerColor!;
           }
           var pointPaint = Paint()
             ..isAntiAlias = true
             ..strokeCap = StrokeCap.round
             ..color = color
             ..style = PaintingStyle.fill;
-          canvas.drawCircle(Offset(pointElement.x, pointElement.y),
-              element.pointInnerRadius, pointPaint);
+          canvas.drawCircle(
+              Offset(pointElement.x as double, pointElement.y as double),
+              element.pointInnerRadius!,
+              pointPaint);
         });
       }
     });
@@ -470,12 +477,12 @@ class BrnLinePainter extends BrnBasePainter {
 
     var x = _linePointPositions[lineSelectIndex][pointSelectIndex].x;
     var xPath = Path()
-      ..moveTo(x, _startY)
-      ..lineTo(x, _endY - basePadding);
+      ..moveTo(x as double, _startY!)
+      ..lineTo(x, _endY! - basePadding);
     var y = _linePointPositions[lineSelectIndex][pointSelectIndex].y;
     var yPath = Path()
-      ..moveTo(_startX, y)
-      ..lineTo(_endX, y);
+      ..moveTo(_startX!, y as double)
+      ..lineTo(_endX!, y);
     if (showPointDashLine) {
       canvas.drawPath(
         dashPath(
@@ -506,26 +513,26 @@ class BrnLinePainter extends BrnBasePainter {
   }
 
   void _drawPointDisplayText(Canvas canvas) {
-    if (_linePointPositions != null && _linePointPositions.isNotEmpty) {
+    if (_linePointPositions.isNotEmpty) {
       for (int lineIndex = 0;
           lineIndex < _linePointPositions.length;
           lineIndex++) {
         BrnPointsLine item = lines[lineIndex];
         if (item.isShowPointText &&
             item.points != null &&
-            item.points.isNotEmpty) {
-          var length = item.points.length;
+            item.points!.isNotEmpty) {
+          var length = item.points!.length;
           for (var i = 0; i < length; i++) {
-            if (item.points[i].pointText == null ||
-                item.points[i].pointText.length == 0) {
+            if (item.points![i].pointText == null ||
+                item.points![i].pointText!.length == 0) {
               continue;
             }
             var tpX = TextPainter(
                 textAlign: TextAlign.center,
                 ellipsis: '.',
                 text: TextSpan(
-                    text: '${item.points[i].pointText}',
-                    style: item.points[i].pointTextStyle),
+                    text: '${item.points![i].pointText}',
+                    style: item.points![i].pointTextStyle),
                 textDirection: TextDirection.ltr)
               ..layout();
             double adjustOffset = isAdjustPosition(lineIndex,
@@ -535,10 +542,10 @@ class BrnLinePainter extends BrnBasePainter {
             tpX.paint(
                 canvas,
                 Offset(
-                    (item.points[i].offset?.dx ?? 0) +
+                    (item.points![i].offset.dx) +
                         _linePointPositions[lineIndex][i].x -
                         tpX.width / 2,
-                    (item.points[i].offset?.dy ?? 0) +
+                    (item.points![i].offset.dy) +
                         _linePointPositions[lineIndex][i].y +
                         adjustOffset));
           }
@@ -562,19 +569,13 @@ class BrnLinePainter extends BrnBasePainter {
 
   List<Point<num>> getSameXValuePoints(
       Point currentPoint, List<List<Point<num>>> lines) {
-    List<Point<num>> sameXPoints = List();
-    if (lines != null) {
-      for (int lineIndex = 0; lineIndex < lines.length; lineIndex++) {
-        List<Point<num>> linePoints = lines[lineIndex];
-        if (linePoints != null) {
-          for (int pointIndex = 0;
-              pointIndex < linePoints.length;
-              pointIndex++) {
-            if (currentPoint.x == linePoints[pointIndex].x &&
-                currentPoint != linePoints[pointIndex]) {
-              sameXPoints.add(linePoints[pointIndex]);
-            }
-          }
+    List<Point<num>> sameXPoints = [];
+    for (int lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+      List<Point<num>> linePoints = lines[lineIndex];
+      for (int pointIndex = 0; pointIndex < linePoints.length; pointIndex++) {
+        if (currentPoint.x == linePoints[pointIndex].x &&
+            currentPoint != linePoints[pointIndex]) {
+          sameXPoints.add(linePoints[pointIndex]);
         }
       }
     }
@@ -584,18 +585,18 @@ class BrnLinePainter extends BrnBasePainter {
 
 //绘制图表的计算之后的结果模型集
 class LineCanvasModel {
-  List<Path> paths;
-  Color pathColor;
-  double pathWidth;
+  List<Path?>? paths;
+  Color? pathColor;
+  double? pathWidth;
 
-  List<Path> shadowPaths;
-  List<Color> shaderColors;
+  List<Path?>? shadowPaths;
+  List<Color>? shaderColors;
 
-  List<Point> points;
-  Color pointColor;
-  double pointRadius;
-  double pointInnerRadius;
-  Color pointInnerColor;
+  List<Point>? points;
+  Color? pointColor;
+  double? pointRadius;
+  double? pointInnerRadius;
+  Color? pointInnerColor;
   bool showPointText;
 
   LineCanvasModel({
