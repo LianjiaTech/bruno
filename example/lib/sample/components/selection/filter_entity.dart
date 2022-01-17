@@ -9,11 +9,9 @@ class BrnFilterEntity {
   List<ItemEntity> children;
 
   BrnFilterEntity.fromJson(Map<String, dynamic> map) {
-    if (map == null) return;
-    key = map['key'] ?? "";
-    name = map['title'] ?? "";
-    defaultValue = map['defaultValue'] ?? "";
-    children = List<ItemEntity>()
-      ..addAll((map['children'] as List ?? []).map((o) => ItemEntity.fromJson(o)));
+    key = map['key'] ?? '';
+    name = map['title'] ?? '';
+    defaultValue = map['defaultValue'] ?? '';
+    children = []..addAll((map['children'] as List ?? []).map((o) => ItemEntity.fromJson(o)));
   }
 }

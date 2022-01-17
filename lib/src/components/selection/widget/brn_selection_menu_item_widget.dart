@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -11,19 +9,19 @@ typedef void ItemClickFunction();
 class BrnSelectionMenuItemWidget extends StatelessWidget {
   final String title;
   final bool isHighLight;
-  final int index;
   final bool active;
-  final ItemClickFunction itemClickFunction;
+  final ItemClickFunction? itemClickFunction;
 
   BrnSelectionConfig themeData;
 
   BrnSelectionMenuItemWidget(
-      {@required this.title,
+      {Key? key,
+      required this.title,
       this.isHighLight = false,
-      this.index,
       this.active = false,
       this.itemClickFunction,
-      this.themeData});
+      required this.themeData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +74,7 @@ class BrnSelectionMenuItemWidget extends StatelessWidget {
 
   void _menuItemTapped() {
     if (this.itemClickFunction != null) {
-      this.itemClickFunction();
+      this.itemClickFunction!();
     }
   }
 }

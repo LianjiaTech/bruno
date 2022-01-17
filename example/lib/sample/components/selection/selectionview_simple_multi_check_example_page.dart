@@ -30,7 +30,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewSimpleMultiCheck
           children: <Widget>[
             BrnSimpleSelection.checkbox(
               menuName: widget._filterData.name,
-              menuKey: widget._filterData.key ?? defaultMenuKey,
+              menuKey: widget._filterData.key ?? 'defaultMenuKey',
               items: widget._filterData.children,
               maxSelectedCount: 4,
               defaultValue: widget._filterData.defaultValue,
