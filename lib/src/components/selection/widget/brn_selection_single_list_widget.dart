@@ -193,7 +193,7 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
   void configMultiLevelList(BrnSelectionEntity selectedEntity, int currentListIndex) {
     /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
     if (BrnSelectionFilterType.Radio == selectedEntity.filterType) {
-      selectedEntity.parent?.children?.where((f) => f != selectedEntity)?.forEach((f) {
+      selectedEntity.parent?.children.where((f) => f != selectedEntity).forEach((f) {
         f.clearChildSelection();
         f.isSelected = false;
       });
@@ -201,7 +201,7 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
     } else if (BrnSelectionFilterType.Checkbox == selectedEntity.filterType) {
       /// 选中【不限】清除同一级别其他的状态
       if (selectedEntity.isUnLimit()) {
-        selectedEntity.parent?.children?.where((f) => f != selectedEntity)?.forEach((f) {
+        selectedEntity.parent?.children.where((f) => f != selectedEntity).forEach((f) {
           f.clearChildSelection();
           f.isSelected = false;
         });

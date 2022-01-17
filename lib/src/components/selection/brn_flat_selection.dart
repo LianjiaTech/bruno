@@ -246,7 +246,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerPr
         BrnToast.show('您输入的区间有误', context);
         return;
       }
-      node.children?.forEach((data) {
+      node.children.forEach((data) {
         tmp.add(data);
       });
     }

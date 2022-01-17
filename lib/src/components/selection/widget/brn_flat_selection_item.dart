@@ -430,7 +430,7 @@ class _MoreRangeWidget extends StatefulWidget {
 
 class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
   /// 最小值 输入框监听
-  late TextEditingController minController = TextEditingController();
+  TextEditingController minController = TextEditingController();
 
   /// 最大值 输入框监听
   TextEditingController maxController = TextEditingController();
@@ -650,8 +650,7 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
                   }
                   widget.onCustomFloatingLayerClick!(entityIndex, widget.selectionEntity,
                       (List<BrnSelectionEntity> customFloatingLayerParams) {
-                    widget.selectionEntity.children?.clear();
-                    widget.selectionEntity.children = [];
+                    widget.selectionEntity.children.clear();
                     widget.selectionEntity.children.addAll(customFloatingLayerParams);
                     widget.selectionEntity.configDefaultValue();
                     setState(() {});

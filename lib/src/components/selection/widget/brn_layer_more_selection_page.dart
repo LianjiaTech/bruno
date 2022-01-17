@@ -216,9 +216,9 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                 }
               });
             } else {
-              _firstList[index].parent?.children?.where((data) {
+              _firstList[index].parent?.children.where((data) {
                 return data.filterType != BrnSelectionFilterType.Checkbox;
-              })?.forEach((data) {
+              }).forEach((data) {
                 data.isSelected = false;
                 data.clearChildSelection();
               });
@@ -348,9 +348,9 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
               _currentFirstEntity!.isSelected = true;
               _currentFirstEntity!.children[index].isSelected = true;
             } else {
-              _currentFirstEntity!.children?.where((data) {
+              _currentFirstEntity!.children.where((data) {
                 return data.filterType != BrnSelectionFilterType.Checkbox;
-              })?.forEach((data) {
+              }).forEach((data) {
                 data.isSelected = false;
               });
               if (!_currentFirstEntity!.children[index].isSelected) {

@@ -22,7 +22,6 @@ class BrnSelectionAnimationWidget extends StatefulWidget {
 class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidget>
     with SingleTickerProviderStateMixin {
   bool _isControllerDisposed = false;
-  Animation<double>? _animation;
   late AnimationController _animationController;
 
   @override
@@ -51,11 +50,7 @@ class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidge
   }
 
   _showListViewWidget() {
-    if (widget.view == null) {
-      return;
-    }
-
-    _animation = Tween(
+    Animation<double> animation = Tween(
             begin: 0.0,
             end: MediaQuery.of(context).size.height - (widget.controller.listViewTop ?? 0))
         .animate(_animationController)
@@ -64,9 +59,11 @@ class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidge
             setState(() {});
           });
 
-    if (_isControllerDisposed) return;
+    if (_isControllerDisposed) {
+      return;
+    }
 
-    if (_animation!.status == AnimationStatus.completed) {
+    if (animation.status == AnimationStatus.completed) {
       _animationController.reverse();
     } else {
       _animationController.forward();

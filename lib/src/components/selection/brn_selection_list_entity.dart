@@ -6,9 +6,9 @@ class BrnSelectionEntityListBean {
   BrnSelectionEntityListBean(this.list);
 
   static BrnSelectionEntityListBean? fromJson(Map<String, dynamic>? map) {
-    if (map == null) return null;
-    BrnSelectionEntityListBean bean =
-        BrnSelectionEntityListBean((map['list'] ?? []).map((o) => BrnSelectionEntity.fromJson(o)));
+    if (map == null || map['list'] == null) return null;
+    BrnSelectionEntityListBean bean = BrnSelectionEntityListBean(null);
+    bean.list = (map['list'] as List).map((o) => BrnSelectionEntity.fromMap(o)).toList();
     return bean;
   }
 }

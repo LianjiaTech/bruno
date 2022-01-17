@@ -147,7 +147,30 @@ class BrnSelectionEntity {
     this.isSelected = false;
   }
 
-  BrnSelectionEntity.fromJson(Map<String, dynamic>? map)
+  /// 建议使用 [BrnSelectionEntity.fromJson]
+  static BrnSelectionEntity fromMap(Map<String, dynamic> map) {
+    BrnSelectionEntity entity = BrnSelectionEntity();
+    entity.title = map['title'] ?? '';
+    entity.subTitle = map['subTitle'] ?? '';
+    entity.key = map['key'] ?? '';
+    entity.type = map['type'] ?? '';
+    entity.defaultValue = map['defaultValue'] ?? "";
+    entity.value = map['value'] ?? "";
+    if (map['maxSelectedCount'] != null &&
+        int.tryParse(map['maxSelectedCount']) != null) {
+      entity.maxSelectedCount = int.tryParse(map['maxSelectedCount']) ?? BrnSelectionConstant.maxSelectCount;
+    } else {
+      entity.maxSelectedCount = BrnSelectionConstant.maxSelectCount;
+    }
+    entity.extMap = map['ext'] ?? {};
+    entity.children = []..addAll((map['children'] as List ?? [])
+          .map((o) => BrnSelectionEntity.fromMap(o)));
+    entity.filterType = entity.parserFilterTypeWithType(map['type'] ?? "");
+    return entity;
+  }
+
+
+  BrnSelectionEntity.fromJson(Map<dynamic, dynamic>? map)
       : this.title = '',
         this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
         this.isCustomTitleHighLight = false,
