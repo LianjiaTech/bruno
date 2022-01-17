@@ -1,8 +1,6 @@
-// @dart=2.9
-
-import 'package:bruno/bruno.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
+import 'brn_normal_button.dart';
 
 /// 页面中的主按钮,支持动态设置背景颜色，置灰
 ///
@@ -43,18 +41,18 @@ class BrnBigMainButton extends StatelessWidget {
   final bool isEnable;
 
   ///点击回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   ///默认父布局可用空间
-  final double width;
+  final double? width;
 
   ///背景颜色
-  final Color bgColor;
+  final Color? bgColor;
 
-  final BrnButtonConfig themeData;
+  final BrnButtonConfig? themeData;
 
   const BrnBigMainButton({
-    Key key,
+    Key? key,
     this.title = '确认',
     this.width,
     this.isEnable = true,
@@ -69,16 +67,15 @@ class BrnBigMainButton extends StatelessWidget {
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig
-        .merge(defaultThemeConfig);
+        .buttonConfig.merge(defaultThemeConfig);
 
     return BrnNormalButton(
       constraints: BoxConstraints.tightFor(
           width: width ?? double.infinity,
           height: defaultThemeConfig.bigButtonHeight),
       alignment: Alignment.center,
-      isEnable: isEnable ?? true,
-      text: title ?? '确认',
+      isEnable: isEnable,
+      text: title,
       backgroundColor: bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
       disableBackgroundColor: Color(0xFFCCCCCC),
       onTap: onTap,

@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:math';
 
@@ -34,35 +34,35 @@ const double _BMinWidth = 84;
 const double _BBorderWith = 1;
 
 class BrnSmallOutlineButton extends StatelessWidget {
-  /// 按钮显示文案,默认'确认'
+  /// 按钮显示文案,默认'确认
   final String title;
 
   /// 点击的回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   ///是否可用，默认为true。false为不可用：置灰、不可点击。
   final bool isEnable;
 
   /// 边框的颜色，边框颜色，
-  final Color lineColor;
+  final Color? lineColor;
 
   /// 文字颜色
-  final Color textColor;
+  final Color? textColor;
 
   ///圆角
-  final double radius;
+  final double? radius;
 
   ///宽度
-  final double width;
+  final double? width;
 
   ///字体weigh
-  final FontWeight fontWeight;
+  final FontWeight? fontWeight;
 
   ///字体大小
   final double fontSize;
 
   /// 配置样式
-  final BrnButtonConfig themeData;
+  final BrnButtonConfig? themeData;
 
   /// 传入属性优先级最高，未传入的走默认配置，更多请看[BrnSmallSecondaryOutlineButtonConfig.defaultConfig]
   const BrnSmallOutlineButton({
@@ -88,8 +88,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
     ));
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig
-        .merge(defaultThemeConfig);
+        .buttonConfig.merge(defaultThemeConfig);
 
     TextPainter textPainter =
         TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
@@ -123,7 +122,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
           ),
           borderWith: _BBorderWith,
           radius: defaultThemeConfig.smallButtonRadius,
-          text: title ?? "",
+          text: title,
           disableLineColor: defaultThemeConfig.commonConfig.borderColorBase,
           lineColor: defaultThemeConfig.commonConfig.borderColorBase,
           textColor: textColor ?? defaultThemeConfig.commonConfig.colorTextBase,
