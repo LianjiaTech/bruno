@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/components/button/brn_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -35,10 +35,10 @@ class BrnVerticalIconButton extends StatelessWidget {
   final Widget iconWidget;
 
   /// 按钮点击的回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const BrnVerticalIconButton(
-      {Key key, @required this.name, @required this.iconWidget, this.onTap})
+      {Key? key, required this.name, required this.iconWidget, this.onTap})
       : super(key: key);
 
   @override
