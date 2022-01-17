@@ -230,10 +230,22 @@ class _BottomNavigationTile extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Text(
         /// 设置未读数 > item.maxBadgeNo 则报加+ 默认 99
-        '${int.parse(item.badgeNo!) > item.maxBadgeNo ? '${item.maxBadgeNo}+' : item.badgeNo}',
+        _getUnReadText(),
         style: TextStyle(fontSize: 10, color: Colors.white),
       ),
     );
+  }
+
+  String _getUnReadText(){
+    int _badgeNo = 0;
+    try {
+      if (item.badgeNo != null) {
+        _badgeNo = int.parse(item.badgeNo!);
+      }
+    } catch (e) {
+      debugPrint('badgeNo has FormatException');
+    }
+    return '${_badgeNo > item.maxBadgeNo ? '${item.maxBadgeNo}+' : _badgeNo}';
   }
 
   /// 构建底字体缩放动画

@@ -1,5 +1,3 @@
-
-
 import 'dart:ui';
 
 import 'package:badges/badges.dart';
@@ -179,10 +177,10 @@ class BrnTabBarState extends State<BrnTabBar> {
   late EdgeInsets _badgePadding;
 
   /// 小红点上偏移量
-  late double _paddingTop = 0;
+  double _paddingTop = 0;
 
   /// 小红点右偏移量
-  late double _paddingRight = 0;
+  double _paddingRight = 0;
 
   /// 小红点圆角
   late BorderRadiusGeometry _borderRadius;
@@ -233,8 +231,8 @@ class BrnTabBarState extends State<BrnTabBar> {
   }
 
   void _handleTabIndexChangeTick() {
-    if (widget.controller!.index.toDouble() ==
-        widget.controller!.animation!.value) {
+    if (widget.controller?.index.toDouble() ==
+        widget.controller?.animation?.value) {
       _brnTabbarController.selectIndex = widget.controller?.index ?? 0;
       _brnTabbarController.isShow = false;
     }
@@ -553,7 +551,8 @@ class BrnTabBarState extends State<BrnTabBar> {
 
   // 展开更多
   void showMoreWindow(BuildContext context) {
-    final RenderBox dropDownItemRenderBox = context.findRenderObject() as RenderBox;
+    final RenderBox dropDownItemRenderBox =
+        context.findRenderObject() as RenderBox;
     var position =
         dropDownItemRenderBox.localToGlobal(Offset.zero, ancestor: null);
     var size = dropDownItemRenderBox.size;
@@ -572,7 +571,7 @@ class BrnTabBarState extends State<BrnTabBar> {
         },
         child: Container(
           padding: EdgeInsets.only(
-            top: _brnTabbarController.top,
+            top: _brnTabbarController.top!,
           ),
           child: Stack(
             children: <Widget>[
@@ -584,7 +583,7 @@ class BrnTabBarState extends State<BrnTabBar> {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height -
-                        _brnTabbarController.top,
+                        _brnTabbarController.top!,
                     child: Padding(
                       padding: EdgeInsets.all(0),
                       child: _TabBarOverlayWidget(
@@ -614,7 +613,7 @@ class BrnTabBarState extends State<BrnTabBar> {
   }
 
   void resetEntry() {
-    _brnTabbarController.entry!.remove();
+    _brnTabbarController.entry?.remove();
     _brnTabbarController.entry = null;
   }
 
@@ -772,7 +771,7 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
         height: widget.tagHeight,
         width: _tagWidth,
         child: Text(
-          badgeTab.text!,
+          badgeTab.text ?? '',
           textAlign: TextAlign.center,
           maxLines: 1,
           softWrap: true,

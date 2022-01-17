@@ -105,7 +105,7 @@ class BrnTriangleIndicator extends Decoration {
     return BrnTriangleIndicator(
       color: Color.lerp(a?.color, b?.color, t),
       gradient: Gradient.lerp(a?.gradient, b?.gradient, t),
-      image: t < 0.5 ? a!.image : b!.image,
+      image: t < 0.5 ? a?.image : b?.image,
       shadows: BoxShadow.lerpList(a?.shadows, b?.shadows, t),
       shape: ShapeBorder.lerp(a?.shape, b?.shape, t),
     );

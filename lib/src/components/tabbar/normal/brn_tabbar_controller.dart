@@ -8,7 +8,7 @@ class BrnTabbarController extends ChangeNotifier {
   ///
   /// 更多选项距离顶部距离
   ///
-  late double top;
+  double? top;
 
   ///
   /// 是否显示更多选项弹框

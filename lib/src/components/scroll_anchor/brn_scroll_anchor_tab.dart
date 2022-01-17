@@ -40,31 +40,31 @@ class BrnAnchorTab extends StatefulWidget {
 class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     with SingleTickerProviderStateMixin {
   //用于控制 滑动
-  late ScrollController scrollController;
+  late ScrollController _scrollController;
 
   //用于 滑动 和 tab 之间的通信
-  late StreamController<int?> streamController;
+  late StreamController<int?> _streamController;
 
   //用于控制tab
-  late TabController tabController;
+  late TabController _tabController;
 
   //滑动组件的 key
-  late GlobalKey key;
+  late GlobalKey _key;
 
   //当前选中的索引
   int currentIndex = 0;
 
   //滑动组件的元素、
-  late List<Widget> bodyWidgetList;
+  late List<Widget> _bodyWidgetList;
 
   //滑动组件的元素的key
-  late List<GlobalKey> bodyKeyList;
+  late List<GlobalKey> _bodyKeyList;
 
   //每个元素在滑动组件中的位置
-  late List<double> cardOffsetList;
+  late List<double> _cardOffsetList;
 
   //tab
-  late List<BadgeTab> tabList;
+  late List<BadgeTab> _tabList;
 
   //是否点击滑动
   bool tab = false;
@@ -74,16 +74,16 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
   @override
   void initState() {
-    streamController = StreamController();
-    scrollController = ScrollController();
+    _streamController = StreamController();
+    _scrollController = ScrollController();
 
-    key = GlobalKey();
-    cardOffsetList = List.filled(widget.itemCount, -1.0);
-    bodyWidgetList = [];
-    bodyKeyList = [];
-    tabList = [];
+    _key = GlobalKey();
+    _cardOffsetList = List.filled(widget.itemCount, -1.0);
+    _bodyWidgetList = [];
+    _bodyKeyList = [];
+    _tabList = [];
 
-    tabController = TabController(length: widget.itemCount, vsync: this);
+    _tabController = TabController(length: widget.itemCount, vsync: this);
 
     fillKeyList();
     fillList();
@@ -91,11 +91,11 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
     WidgetsBinding.instance!.addPostFrameCallback((da) {
       fillOffset();
-      scrollController.addListener(() {
+      _scrollController.addListener(() {
         updateOffset();
-        currentIndex = createIndex(scrollController.offset);
+        currentIndex = createIndex(_scrollController.offset);
         //防止再次 发送消息
-        if (!tab) streamController.add(currentIndex);
+        if (!tab) _streamController.add(currentIndex);
       });
     });
 
@@ -109,9 +109,9 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
       children: <Widget>[
         StreamBuilder<int?>(
           initialData: currentIndex,
-          stream: streamController.stream,
+          stream: _streamController.stream,
           builder: (context, snap) {
-            tabController.index = currentIndex;
+            _tabController.index = currentIndex;
             return BrnTabBar(
               indicatorColor: widget.tabBarStyle.indicatorColor,
               indicatorWeight: widget.tabBarStyle.indicatorWeight,
@@ -122,14 +122,14 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
               unselectedLabelColor: widget.tabBarStyle.unselectedLabelColor,
               unselectedLabelStyle: widget.tabBarStyle.unselectedLabelStyle,
               dragStartBehavior: widget.tabBarStyle.dragStartBehavior,
-              controller: tabController,
-              tabs: tabList,
+              controller: _tabController,
+              tabs: _tabList,
               onTap: (state, index) {
                 state.refreshBadgeState(index);
                 currentIndex = index;
                 tab = true;
-                scrollController
-                    .animateTo(cardOffsetList[index],
+                _scrollController
+                    .animateTo(_cardOffsetList[index],
                         duration: Duration(milliseconds: 100),
                         curve: Curves.linear)
                     .whenComplete(() {
@@ -148,10 +148,10 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: bodyWidgetList,
+              children: _bodyWidgetList,
             ),
-            key: key,
-            controller: scrollController,
+            key: _key,
+            controller: _scrollController,
           ),
         )
       ],
@@ -160,9 +160,9 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
   void fillList() {
     for (int i = 0, n = widget.itemCount; i < n; i++) {
-      bodyWidgetList.add(
+      _bodyWidgetList.add(
         Container(
-            key: bodyKeyList[i],
+            key: _bodyKeyList[i],
             child: widget.widgetIndexedBuilder(context, i)),
       );
     }
@@ -170,44 +170,44 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
   void fillKeyList() {
     for (int i = 0, n = widget.itemCount; i < n; i++) {
-      bodyKeyList.add(GlobalKey());
+      _bodyKeyList.add(GlobalKey());
     }
   }
 
   void fillOffset() {
-    Offset globalToLocal = (key.currentContext!.findRenderObject() as RenderBox)
+    Offset globalToLocal = (_key.currentContext!.findRenderObject() as RenderBox)
         .localToGlobal(Offset.zero);
     listDy = globalToLocal.dy;
 
     for (int i = 0, n = widget.itemCount; i < n; i++) {
-      if (cardOffsetList[i] == -1.0) if (bodyKeyList[i].currentContext !=
+      if (_cardOffsetList[i] == -1.0) if (_bodyKeyList[i].currentContext !=
           null) {
         double cardOffset =
-            (bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
+            (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
                 .localToGlobal(Offset.zero) //相对于原点 控件的位置
                 .dy; //y点坐标
 
-        cardOffsetList[i] = cardOffset + scrollController.offset - listDy;
+        _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
       }
     }
   }
 
   void fillTab() {
       for (int i = 0, n = widget.itemCount; i < n; i++) {
-        tabList.add(widget.tabIndexedBuilder(context, i));
+        _tabList.add(widget.tabIndexedBuilder(context, i));
       }
   }
 
   void updateOffset() {
     for (int i = 0, n = widget.itemCount; i < n; i++) {
-      if (cardOffsetList[i] == -1.0) if (bodyKeyList[i].currentContext !=
+      if (_cardOffsetList[i] == -1.0) if (_bodyKeyList[i].currentContext !=
           null) {
         double cardOffset =
-            (bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
+            (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
                 .localToGlobal(Offset.zero) //相对于原点 控件的位置
                 .dy; //y点坐标
 
-        cardOffsetList[i] = cardOffset + scrollController.offset - listDy;
+        _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
       }
     }
   }
@@ -216,7 +216,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
   int createIndex(double offset) {
     int index = 0;
     for (int i = 0, n = widget.itemCount; i < n; i++) {
-      if (offset >= cardOffsetList[i] && (offset <= cardOffsetList[i + 1])) {
+      if (offset >= _cardOffsetList[i] && (offset <= _cardOffsetList[i + 1])) {
         return i;
       }
     }
@@ -226,9 +226,9 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
   @override
   void dispose() {
     super.dispose();
-    tabController.dispose();
-    streamController.close();
-    scrollController.dispose();
+    _tabController.dispose();
+    _streamController.close();
+    _scrollController.dispose();
   }
 }
 
