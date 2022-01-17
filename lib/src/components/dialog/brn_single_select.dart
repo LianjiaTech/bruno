@@ -79,7 +79,7 @@ class BrnSingleSelectDialog extends Dialog {
 class BrnSingleSelectDialogWidget extends StatefulWidget {
   final bool isClose;
   final String title;
-  final List<String?>? conditions;
+  final List<String>? conditions;
   final String submitText;
   final BrnSingleSelectOnSubmitCallback? onSubmitClick;
   final BrnSingleSelectOnItemClickCallback? onItemClick; //可供埋点需求用
@@ -95,10 +95,10 @@ class BrnSingleSelectDialogWidget extends StatefulWidget {
   BrnDialogConfig? themeData;
 
   BrnSingleSelectDialogWidget(
-      {required this.isClose,
-      required this.title,
+      {this.isClose = true,
+      this.title = "",
       this.conditions,
-      required this.submitText,
+      this.submitText = "",
       this.submitBgColor,
       this.onSubmitClick,
       this.onItemClick,
@@ -251,7 +251,7 @@ class BrnSingleSelectDialogWidgetState
   }
 
   Widget _buildItem(BuildContext context, int index) {
-    if (widget.conditions == null || widget.conditions![index] == null) {
+    if (widget.conditions == null) {
       return Container();
     } else {
       return Container(
@@ -277,7 +277,7 @@ class BrnSingleSelectDialogWidgetState
                       }
                     });
                   },
-                  child: Text(widget.conditions![index]!,
+                  child: Text(widget.conditions![index],
                       style: TextStyle(
                           fontWeight:
                               widget.conditions![index] == widget.checkedItem

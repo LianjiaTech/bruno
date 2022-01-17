@@ -278,8 +278,8 @@ class BrnDialog extends AlertDialog {
 
   @override
   Widget build(BuildContext context) {
-    BrnDialogConfig? defaultConfig = _convertStyleToConfig();
-    defaultConfig = themeData ?? BrnDialogConfig();
+    BrnDialogConfig? defaultConfig =
+        _convertStyleToConfig() ?? BrnDialogConfig();
 
     defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultConfig.configId)
@@ -408,7 +408,7 @@ class BrnDialog extends AlertDialog {
       padding: _configContentPadding(dialogConfig),
       child: Center(
         child: Text(
-          messageText!,
+          messageText ?? "",
           style: dialogConfig.contentTextStyle.generateTextStyle(),
           textAlign: dialogConfig.contentTextAlign,
         ),

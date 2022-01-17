@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class BrnScrollableTextDialog extends Dialog {
   /// 标题
-  final String title;
+  final String? title;
 
   /// 是否可关闭 默认true支持关闭
   final bool isClose;
@@ -38,7 +38,7 @@ class BrnScrollableTextDialog extends Dialog {
   final bool isShowOperateWidget;
 
   const BrnScrollableTextDialog(
-      {required this.title,
+      {this.title,
       this.isClose = true,
       required this.contentText,
       this.textColor = const Color(0xFF666666),
@@ -98,7 +98,7 @@ class BrnScrollableText extends StatelessWidget {
 
   const BrnScrollableText(
       {this.title,
-      required this.isClose,
+      this.isClose = true,
       required this.contentText,
       this.textColor,
       this.textFontSize,
@@ -106,7 +106,7 @@ class BrnScrollableText extends StatelessWidget {
       this.onSubmitClick,
       this.submitBgColor,
       this.linksCallback,
-      required this.isShowOperateWidget});
+      this.isShowOperateWidget = true});
 
   @override
   Widget build(BuildContext context) {

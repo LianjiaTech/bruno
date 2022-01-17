@@ -137,18 +137,18 @@ class MultiSelect extends StatefulWidget {
   final bool isShowOperateWidget;
 
   MultiSelect({
-    required this.isClose,
+    this.isClose = true,
     this.title,
     this.messageText,
     this.messageWidget,
     this.customWidget,
-    required this.isCustomFollowScroll,
+    this.isCustomFollowScroll = true,
     required this.conditions,
     this.submitText,
     this.submitBgColor,
     this.onSubmitClick,
     this.onItemClick,
-    required this.isShowOperateWidget,
+    this.isShowOperateWidget = true,
   });
 
   @override

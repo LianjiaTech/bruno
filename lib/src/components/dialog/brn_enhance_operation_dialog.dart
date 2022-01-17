@@ -67,7 +67,7 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
     required this.context,
     this.titleText,
     this.descText,
-    required this.mainButtonText,
+    this.mainButtonText = '确认',
     this.secondaryButtonText,
     this.onMainButtonClick,
     this.onSecondaryButtonClick,
@@ -87,7 +87,7 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
       child: BrnDialog(
         themeData: themeData,
         iconImage: (iconType == BrnDialogConstants.ICON_CUSTOM)
-            ? customIconWidget as Image?
+            ? customIconWidget as Image
             : BrunoTools.getAssetImage(
                 BrnDialogConstants.shareItemImagePathList[iconType]),
         titleText: titleText,
