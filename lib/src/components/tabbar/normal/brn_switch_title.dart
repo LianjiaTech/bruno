@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/components/tabbar/indicator/brn_custom_width_indicator.dart';
@@ -17,7 +17,7 @@ class BrnSwitchTitle extends StatefulWidget {
 
   /// 选中时的回调
   /// index 选中的title的索引
-  final void Function(int index) onSelect;
+  final void Function(int index)? onSelect;
 
   /// 标题的 padding，默认 `EdgeInsets.fromLTRB(0, 14, 20, 14)`
   final EdgeInsets padding;
@@ -30,17 +30,17 @@ class BrnSwitchTitle extends StatefulWidget {
 
   /// 控制tab切换，默认不需要传递
   /// 只在需要外部控制tab切换时传递
-  final TabController controller;
+  final TabController? controller;
 
   /// 选中时的标题样式，默认 `TextStyle(fontWeight: FontWeight.w600,fontSize: 18)`
-  final TextStyle selectedTextStyle;
+  final TextStyle? selectedTextStyle;
 
   /// 未选中时的标题样式，默认 `TextStyle(fontWeight: FontWeight.w600,fontSize: 18)`
-  final TextStyle unselectedTextStyle;
+  final TextStyle? unselectedTextStyle;
 
   const BrnSwitchTitle(
-      {Key key,
-      @required this.nameList,
+      {Key? key,
+      required this.nameList,
       this.defaultSelectIndex = 0,
       this.onSelect,
       this.indicatorWeight = 2.0,
@@ -59,7 +59,7 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
     with TickerProviderStateMixin {
   static final Color _color = Color(0XFF243238);
 
-  TabController _controller;
+  TabController? _controller;
 
   int _defaultSelectIndex = 0;
 
@@ -68,7 +68,7 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
     super.didUpdateWidget(oldWidget);
     _defaultSelectIndex = widget.defaultSelectIndex;
     if (_controller != null) {
-      _controller.index = _defaultSelectIndex;
+      _controller!.index = _defaultSelectIndex;
     }
   }
 
@@ -86,7 +86,7 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
 
   @override
   Widget build(BuildContext context) {
-    if (widget.nameList != null && widget.nameList.length > 1) {
+    if (widget.nameList.length > 1) {
       return Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +112,7 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
       Text tx = Text(name);
 
       /// 有下划线的时候，需要将下划线的高度3减去
-      double tempBottomPadding = widget.padding?.bottom ?? 0;
+      double tempBottomPadding = widget.padding.bottom;
       double bottomPadding = widget.nameList.length == 1
           ? tempBottomPadding
           : tempBottomPadding - 3;
@@ -122,20 +122,20 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
 
       return Container(
         padding: EdgeInsets.fromLTRB(
-            widget.padding?.left ?? 0,
-            widget.padding?.top ?? 0,
-            widget.padding?.right ?? 0,
+            widget.padding.left,
+            widget.padding.top,
+            widget.padding.right,
             bottomPadding),
         child: tx,
       );
     }).toList();
 
     Decoration _indicator = CustomWidthUnderlineTabIndicator(
-      width: widget.indicatorWidth ?? 24.0,
+      width: widget.indicatorWidth,
       insets: EdgeInsets.only(
-          left: widget.padding?.left ?? 0, right: widget.padding?.right ?? 0),
+          left: widget.padding.left, right: widget.padding.right),
       borderSide: BorderSide(
-        width: widget.indicatorWeight ?? 2.0,
+        width: widget.indicatorWeight,
         color:
             BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
       ),
@@ -175,7 +175,7 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
         indicatorWeight: 0,
         onTap: (index) {
           if (null != widget.onSelect && widget.nameList.length > 1) {
-            widget.onSelect(index);
+            widget.onSelect!(index);
           }
         },
       ),
