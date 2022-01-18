@@ -112,8 +112,8 @@ class BrnDefaultConfigUtils {
 
     /// 文本字号
     ///
-    /// 特殊数据展示，DIN Condensed数字字体，用于强吸引
-    fontSizeDIN: 28,
+    /// 特殊数据展示，Bebas 数字字体，用于强吸引
+    fontSizeBebas: 28,
 
     /// 标题字体
     /// 名称/页面大标题
@@ -471,7 +471,7 @@ class BrnDefaultConfigUtils {
   static BrnEnhanceNumberCardConfig defaultNumberInfoConfig = BrnEnhanceNumberCardConfig(
     runningSpace: 16,
     itemRunningSpace: 8,
-    titleTextStyle: BrnTextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+    titleTextStyle: BrnTextStyle(fontSize: 28, fontWeight: FontWeight.w500),
     descTextStyle: BrnTextStyle(fontSize: 12, color: defaultCommonConfig.colorTextSecondary),
     dividerWidth: 0.5,
   );

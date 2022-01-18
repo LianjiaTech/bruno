@@ -100,9 +100,9 @@ class BrnCommonConfig extends BrnBaseConfig {
 
   /// 文本字号
   ///
-  /// 特殊数据展示，DIN Condensed数字字体，用于强吸引
+  /// 特殊数据展示，Bebas 数字字体，用于强吸引
   /// default value is 28
-  double fontSizeDIN;
+  double fontSizeBebas;
 
   /// 标题字体
   /// 名称/页面大标题
@@ -234,7 +234,7 @@ class BrnCommonConfig extends BrnBaseConfig {
     this.fillMask,
     this.borderColorBase,
     this.dividerColorBase,
-    this.fontSizeDIN,
+    this.fontSizeBebas,
     this.fontSizeHeadLg,
     this.fontSizeBase,
     this.fontSizeHead,
@@ -289,7 +289,7 @@ class BrnCommonConfig extends BrnBaseConfig {
     this.fillMask,
     this.borderColorBase,
     this.dividerColorBase,
-    this.fontSizeDIN,
+    this.fontSizeBebas,
     this.fontSizeHeadLg,
     this.fontSizeBase,
     this.fontSizeHead,
@@ -347,7 +347,7 @@ class BrnCommonConfig extends BrnBaseConfig {
     this.brandImportantValue ??= commonConfig.brandImportantValue;
     this.borderColorBase ??= commonConfig.borderColorBase;
     this.dividerColorBase ??= commonConfig.dividerColorBase;
-    this.fontSizeDIN ??= commonConfig.fontSizeDIN;
+    this.fontSizeBebas ??= commonConfig.fontSizeBebas;
     this.fontSizeHeadLg ??= commonConfig.fontSizeHeadLg;
     this.fontSizeBase ??= commonConfig.fontSizeBase;
     this.fontSizeHead ??= commonConfig.fontSizeHead;
