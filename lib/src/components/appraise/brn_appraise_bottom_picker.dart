@@ -1,7 +1,6 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_header.dart';
+import 'package:bruno/src/components/appraise/brn_appraise_config.dart';
 import 'package:flutter/material.dart';
 
 /// 描述: 评价组件bottom picker，
@@ -9,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class BrnAppraiseBottomPicker extends StatefulWidget {
   /// 标题
-  final String title;
+  final String? title;
 
   /// 标题类型
   final BrnAppraiseHeaderType headerType;
@@ -23,13 +22,13 @@ class BrnAppraiseBottomPicker extends StatefulWidget {
   final List<String> iconDescriptions;
 
   /// 标签
-  final List<String> tags;
+  final List<String>? tags;
 
   ///输入框允许提示文案
-  final String inputHintText;
+  final String? inputHintText;
 
   /// 提交按钮的点击回调
-  final BrnAppraiseConfirmClick onConfirm;
+  final BrnAppraiseConfirmClick? onConfirm;
 
   /// 评价组件的配置项
   final BrnAppraiseConfig config;
@@ -44,6 +43,7 @@ class BrnAppraiseBottomPicker extends StatefulWidget {
   ];
 
   BrnAppraiseBottomPicker({
+    Key? key,
     this.title,
     this.headerType = BrnAppraiseHeaderType.spaceBetween,
     this.type = BrnAppraiseType.Star,
@@ -51,8 +51,8 @@ class BrnAppraiseBottomPicker extends StatefulWidget {
     this.tags,
     this.inputHintText,
     this.onConfirm,
-    this.config,
-  });
+    this.config = const BrnAppraiseConfig(),
+  }) : super(key: key);
 
   @override
   _BrnAppraiseBottomPickerState createState() =>
@@ -76,7 +76,7 @@ class _BrnAppraiseBottomPickerState extends State<BrnAppraiseBottomPicker> {
           inputHintText: widget.inputHintText,
           onConfirm: (index, list, input) {
             if (widget.onConfirm != null) {
-              widget.onConfirm(index, list, input);
+              widget.onConfirm!(index, list, input);
             }
           },
           config: widget.config,
