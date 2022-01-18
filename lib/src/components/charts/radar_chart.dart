@@ -207,30 +207,30 @@ class RenderRadarChart extends RenderBox
   Offset _overflowOffset = Offset.zero;
   Offset _centerOffset = Offset.zero;
 
-  double? _radius;
-  double? _markerMargin;
-  int? _sideCount;
-  double? _maxValue;
-  int? _levelCount;
-  Color? _axisLineColor;
-  bool? _crossedAxiLine;
-  double? _rotateAngle;
-  List<Offset>? _offset;
+  double _radius;
+  double _markerMargin;
+  int _sideCount;
+  double _maxValue;
+  int _levelCount;
+  Color _axisLineColor;
+  bool _crossedAxiLine;
+  double _rotateAngle;
+  List<Offset> _offset;
 
-  BrnRadarChartDataProvider? _dataProvider;
+  BrnRadarChartDataProvider _dataProvider;
 
   RenderRadarChart({
-    double? radius,
-    double? markerMargin,
-    int? sideCount,
-    double? maxValue,
-    double? rotateAngle,
-    List<Offset>? offset,
-    BrnRadarChartDataProvider? provider,
-    int? levelCount,
-    Color? axisLineColor,
-    bool? crossedAxisLine,
-    double? animateProgress,
+    required double radius,
+    required double markerMargin,
+    required int sideCount,
+    required double maxValue,
+    required double rotateAngle,
+    required List<Offset> offset,
+    required BrnRadarChartDataProvider provider,
+    required int levelCount,
+    required Color axisLineColor,
+    required bool crossedAxisLine,
+    required double animateProgress,
   })  : _radius = radius,
         _markerMargin = markerMargin,
         _maxValue = maxValue,
@@ -247,91 +247,91 @@ class RenderRadarChart extends RenderBox
         _animateProgress = animateProgress,
         _sideCount = sideCount;
 
-  double? _animateProgress;
+  double _animateProgress;
 
-  double? get animateProgress => _animateProgress;
+  double get animateProgress => _animateProgress;
 
-  set animateProgress(double? value) {
+  set animateProgress(double value) {
     if (value == _animateProgress) return;
     _animateProgress = value;
     markNeedsPaint();
   }
 
-  double? get radius => _radius;
+  double get radius => _radius;
 
-  set radius(double? value) {
+  set radius(double value) {
     if (value == _radius) return;
     _radius = value;
     markNeedsLayout();
   }
 
-  double? get markerMargin => _markerMargin;
+  double get markerMargin => _markerMargin;
 
-  set markerMargin(double? value) {
+  set markerMargin(double value) {
     if (value == _markerMargin) return;
     _markerMargin = value;
     markNeedsLayout();
   }
 
-  int? get sideCount => _sideCount;
+  int get sideCount => _sideCount;
 
-  set sideCount(int? value) {
+  set sideCount(int value) {
     if (value == _sideCount) return;
     _sideCount = value;
     markNeedsLayout();
   }
 
-  double? get maxValue => _maxValue;
+  double get maxValue => _maxValue;
 
-  set maxValue(double? value) {
+  set maxValue(double value) {
     if (value == _maxValue) return;
     _maxValue = value;
     markNeedsPaint();
   }
 
-  int? get levelCount => _levelCount;
+  int get levelCount => _levelCount;
 
-  set levelCount(int? value) {
+  set levelCount(int value) {
     if (value == _levelCount) return;
     _levelCount = value;
     markNeedsPaint();
   }
 
-  BrnRadarChartDataProvider? get dataProvider => _dataProvider;
+  BrnRadarChartDataProvider get dataProvider => _dataProvider;
 
-  set dataProvider(BrnRadarChartDataProvider? value) {
+  set dataProvider(BrnRadarChartDataProvider value) {
     if (value == _dataProvider) return;
     _dataProvider = value;
     markNeedsPaint();
   }
 
-  Color? get axisLineColor => _axisLineColor;
+  Color get axisLineColor => _axisLineColor;
 
-  set axisLineColor(Color? value) {
+  set axisLineColor(Color value) {
     if (value == _axisLineColor) return;
     _axisLineColor = value;
     markNeedsPaint();
   }
 
-  double? get rotateAngle => _rotateAngle;
+  double get rotateAngle => _rotateAngle;
 
-  set rotateAngle(double? value) {
+  set rotateAngle(double value) {
     if (value == _rotateAngle) return;
     _rotateAngle = value;
     markNeedsLayout();
   }
 
-  List<Offset>? get offset => _offset;
+  List<Offset> get offset => _offset;
 
-  set offset(List<Offset>? value) {
+  set offset(List<Offset> value) {
     if (value == _offset) return;
     _offset = value;
     markNeedsLayout();
   }
 
-  bool? get crossedAxisLine => _crossedAxiLine;
+  bool get crossedAxisLine => _crossedAxiLine;
 
-  set crossedAxisLine(bool? value) {
+  set crossedAxisLine(bool value) {
     if (value == _crossedAxiLine) return;
     _crossedAxiLine = value;
     markNeedsPaint();
@@ -353,24 +353,24 @@ class RenderRadarChart extends RenderBox
     while (child != null) {
       final BrnRadarChartParentData childParentData =
           child.parentData as BrnRadarChartParentData;
-      double angle = (2 * pi * i / _sideCount! + _rotateAngle!) % (2 * pi);
-      x = _radius! * sin(angle);
+      double angle = (2 * pi * i / _sideCount + _rotateAngle) % (2 * pi);
+      x = _radius * sin(angle);
       if (x >= 0) {
         if (angle == 0 || angle == pi) {
           x = x + mainChildSizeGetter(child) / 2;
         } else if (angle == pi / 2) {
-          x = x + _markerMargin! + mainChildSizeGetter(child);
+          x = x + _markerMargin + mainChildSizeGetter(child);
         } else {
-          x = x + mainChildSizeGetter(child) + _markerMargin! * sin(angle);
+          x = x + mainChildSizeGetter(child) + _markerMargin * sin(angle);
         }
       } else {
         if (angle == pi * 3 / 2) {
-          x = x - _markerMargin! - mainChildSizeGetter(child);
+          x = x - _markerMargin - mainChildSizeGetter(child);
         } else {
-          x = x - mainChildSizeGetter(child) + _markerMargin! * sin(angle);
+          x = x - mainChildSizeGetter(child) + _markerMargin * sin(angle);
         }
       }
-      x = x + _offset![i].dx;
+      x = x + _offset[i].dx;
       minX = min(x, minX);
       maxX = max(x, maxX);
       child = childParentData.nextSibling;
@@ -388,27 +388,27 @@ class RenderRadarChart extends RenderBox
     while (child != null) {
       final BrnRadarChartParentData childParentData =
           child.parentData as BrnRadarChartParentData;
-      double angle = (2 * pi * i / _sideCount! + _rotateAngle!) % (2 * pi);
-      y = _radius! * cos(angle);
+      double angle = (2 * pi * i / _sideCount + _rotateAngle) % (2 * pi);
+      y = _radius * cos(angle);
 
       if (y >= 0) {
         if (angle == 0) {
-          y = y + mainChildSizeGetter(child) + _markerMargin!;
+          y = y + mainChildSizeGetter(child) + _markerMargin;
         } else if (angle == pi / 2) {
           y = y + mainChildSizeGetter(child) / 2;
         } else {
-          y = y + mainChildSizeGetter(child) + _markerMargin! * cos(angle);
+          y = y + mainChildSizeGetter(child) + _markerMargin * cos(angle);
         }
       } else {
         if (angle == pi) {
-          y = y - mainChildSizeGetter(child) - _markerMargin!;
+          y = y - mainChildSizeGetter(child) - _markerMargin;
         } else if (angle == pi * 3 / 2) {
           y = y - mainChildSizeGetter(child) / 2;
         } else {
-          y = y - mainChildSizeGetter(child) + _markerMargin! * cos(angle);
+          y = y - mainChildSizeGetter(child) + _markerMargin * cos(angle);
         }
       }
-      y = y + _offset![i].dy;
+      y = y + _offset[i].dy;
       minY = min(y, minY);
       maxY = max(y, maxY);
       child = childParentData.nextSibling;
@@ -460,44 +460,44 @@ class RenderRadarChart extends RenderBox
       BoxConstraints childConstraints = constraints.loosen();
       child.layout(childConstraints, parentUsesSize: true);
       final Size childSize = child.size;
-      double angle = (2 * pi * i / _sideCount! + _rotateAngle!) % (2 * pi);
-      x = _radius! * sin(angle);
-      y = _radius! * cos(angle);
+      double angle = (2 * pi * i / _sideCount + _rotateAngle) % (2 * pi);
+      x = _radius * sin(angle);
+      y = _radius * cos(angle);
       if (y >= 0) {
         if (angle == 0) {
-          y = y + childSize.height + _markerMargin! * cos(angle);
+          y = y + childSize.height + _markerMargin * cos(angle);
         } else if (angle == pi / 2) {
           y = y + childSize.height / 2;
         } else {
-          y = y + childSize.height + _markerMargin! * cos(angle);
+          y = y + childSize.height + _markerMargin * cos(angle);
         }
       } else {
         if (angle == pi) {
-          y = y - childSize.height + _markerMargin! * cos(angle);
+          y = y - childSize.height + _markerMargin * cos(angle);
         } else if (angle == pi * 3 / 2) {
           y = y - child.size.height / 2;
         } else {
-          y = y - childSize.height + _markerMargin! * cos(angle);
+          y = y - childSize.height + _markerMargin * cos(angle);
         }
       }
-      y = y + _offset![i].dy;
+      y = y + _offset[i].dy;
 
       if (x >= 0) {
         if (angle == 0 || angle == pi) {
           x = x + child.size.width / 2;
         } else if (angle == pi / 2) {
-          x = x + _markerMargin! + childSize.width;
+          x = x + _markerMargin + childSize.width;
         } else {
-          x = x + childSize.width + _markerMargin! * sin(angle);
+          x = x + childSize.width + _markerMargin * sin(angle);
         }
       } else {
         if (angle == pi * 3 / 2) {
-          x = x - _markerMargin! - child.size.width;
+          x = x - _markerMargin - child.size.width;
         } else {
-          x = x - childSize.width + _markerMargin! * sin(angle);
+          x = x - childSize.width + _markerMargin * sin(angle);
         }
       }
-      x = x + _offset![i].dx;
+      x = x + _offset[i].dx;
       minX = min(x, minX);
       maxX = max(x, maxX);
       minY = min(y, minY);
@@ -522,31 +522,31 @@ class RenderRadarChart extends RenderBox
     child = firstChild;
     i = 0;
     while (child != null) {
-      double angle = (2 * pi * i / _sideCount! + _rotateAngle!) % (2 * pi);
-      double x = _radius! * sin(angle); //在以多边形中心为原点的坐标
-      double y = _radius! * cos(angle); //在以多边形中心为原点的坐标
+      double angle = (2 * pi * i / _sideCount + _rotateAngle) % (2 * pi);
+      double x = _radius * sin(angle); //在以多边形中心为原点的坐标
+      double y = _radius * cos(angle); //在以多边形中心为原点的坐标
       final BrnRadarChartParentData childParentData =
           child.parentData as BrnRadarChartParentData;
 
       //转换到左上角为原点中的坐标
       if (y >= 0) {
         if (angle == 0) {
-          y = size.height / 2 - y - child.size.height - _markerMargin!;
+          y = size.height / 2 - y - child.size.height - _markerMargin;
         } else if (angle == pi / 2) {
           y = size.height / 2 - y - child.size.height / 2;
         } else {
           y = size.height / 2 -
               y -
               child.size.height -
-              _markerMargin! * cos(angle);
+              _markerMargin * cos(angle);
         }
       } else {
         if (angle == pi) {
-          y = size.height / 2 - y + _markerMargin!;
+          y = size.height / 2 - y + _markerMargin;
         } else if (angle == pi * 3 / 2) {
           y = size.height / 2 - y - child.size.height / 2;
         } else {
-          y = size.height / 2 - y - _markerMargin! * cos(angle);
+          y = size.height / 2 - y - _markerMargin * cos(angle);
         }
       }
 
@@ -554,21 +554,21 @@ class RenderRadarChart extends RenderBox
         if (angle == 0 || angle == pi) {
           x = size.width / 2 + x - child.size.width / 2;
         } else if (angle == pi / 2) {
-          x = size.width / 2 + x + _markerMargin!;
+          x = size.width / 2 + x + _markerMargin;
         } else {
-          x = size.width / 2 + x + _markerMargin! * sin(angle);
+          x = size.width / 2 + x + _markerMargin * sin(angle);
         }
       } else {
         if (angle == pi * 3 / 2) {
-          x = size.width / 2 + x - _markerMargin! - child.size.width;
+          x = size.width / 2 + x - _markerMargin - child.size.width;
         } else {
           x = size.width / 2 +
               x -
               child.size.width +
-              _markerMargin! * sin(angle);
+              _markerMargin * sin(angle);
         }
       }
-      childParentData.offset = Offset(x, y) + _offset![i] + _centerOffset;
+      childParentData.offset = Offset(x, y) + _offset[i] + _centerOffset;
       child = childParentData.nextSibling;
       i++;
     }
@@ -594,7 +594,7 @@ class RenderRadarChart extends RenderBox
     //translate the canvas's top left to widget'center since flutter canvas rotate pivot can only be the top left.
     canvas.translate(
         translateX + _centerOffset.dx, translateY + _centerOffset.dy);
-    canvas.rotate(_rotateAngle!);
+    canvas.rotate(_rotateAngle);
     _drawBackground(canvas, rect.size, translateX, translateY);
     _drawRadar(canvas);
     canvas.restore();
@@ -614,18 +614,18 @@ class RenderRadarChart extends RenderBox
     double translateX,
     double translateY,
   ) {
-    _axisPainter..color = _axisLineColor!;
+    _axisPainter..color = _axisLineColor;
     _axisPainter..strokeWidth = 0.5;
     //calculate the side length of polygon.
-    double centralAngle = 2 * pi / _sideCount!;
-    if (_crossedAxiLine!) {
-      for (int i = 0; i < _sideCount!; i++) {
+    double centralAngle = 2 * pi / _sideCount;
+    if (_crossedAxiLine) {
+      for (int i = 0; i < _sideCount; i++) {
         canvas.save();
-        canvas.rotate(2 * pi * i / _sideCount!);
+        canvas.rotate(2 * pi * i / _sideCount);
         Path path = Path();
         path
           ..moveTo(0, 0)
-          ..lineTo(0, -_radius!);
+          ..lineTo(0, -_radius);
         canvas.drawPath(
             dashPath(
               path,
@@ -636,8 +636,8 @@ class RenderRadarChart extends RenderBox
       }
     }
 
-    for (int i = 1; i <= _levelCount!; i++) {
-      double r = _radius! * i / _levelCount!;
+    for (int i = 1; i <= _levelCount; i++) {
+      double r = _radius * i / _levelCount;
       double sideLength = 2 * r * sin(centralAngle / 2);
       double dx = sideLength * sin((pi - centralAngle) / 2);
       double dy = sideLength * cos((pi - centralAngle) / 2);
@@ -647,9 +647,9 @@ class RenderRadarChart extends RenderBox
       double px2 = px1 + dx;
       double py2 = py1 + dy;
       //draw the polygon
-      for (int i = 0; i < _sideCount!; i++) {
+      for (int i = 0; i < _sideCount; i++) {
         canvas.save();
-        canvas.rotate(2 * pi * i / _sideCount!);
+        canvas.rotate(2 * pi * i / _sideCount);
         Path path = Path();
         path
           ..moveTo(px1, py1)
@@ -661,16 +661,16 @@ class RenderRadarChart extends RenderBox
   }
 
   void _drawRadar(Canvas canvas) {
-    int radarCount = _dataProvider!.getRadarCount();
+    int radarCount = _dataProvider.getRadarCount();
     for (int radarIndex = 0; radarIndex < radarCount; radarIndex++) {
-      BrnRadarChartStyle radarStyle = _dataProvider!.getRadarStyle(radarIndex);
+      BrnRadarChartStyle radarStyle = _dataProvider.getRadarStyle(radarIndex);
       _radarPainter
         ..isAntiAlias = true
         ..color = radarStyle.strokeColor
         ..strokeWidth = radarStyle.strokeWidth;
-      List<double> values = _dataProvider!.getRadarValues(radarIndex);
+      List<double> values = _dataProvider.getRadarValues(radarIndex);
       Path path = Path();
-      double percent = values[0] / _maxValue!;
+      double percent = values[0] / _maxValue;
       double angle = 0;
       if (percent > 1) {
         percent = 1;
@@ -679,15 +679,15 @@ class RenderRadarChart extends RenderBox
       }
       double x, y;
       List<Offset> dotPosition = [];
-      x = _radius! * percent * sin(angle) * _animateProgress!;
-      y = -_radius! * percent * cos(angle) * _animateProgress!;
+      x = _radius * percent * sin(angle) * _animateProgress;
+      y = -_radius * percent * cos(angle) * _animateProgress;
       dotPosition.add(Offset(x, y));
       path.moveTo(x, y);
-      for (int i = 1; i < _sideCount!; i++) {
-        angle = 2 * pi * i / _sideCount!;
-        percent = values[i] / _maxValue!;
-        x = _radius! * percent * sin(angle) * _animateProgress!;
-        y = -_radius! * percent * cos(angle) * _animateProgress!;
+      for (int i = 1; i < _sideCount; i++) {
+        angle = 2 * pi * i / _sideCount;
+        percent = values[i] / _maxValue;
+        x = _radius * percent * sin(angle) * _animateProgress;
+        y = -_radius * percent * cos(angle) * _animateProgress;
         path.lineTo(x, y);
         dotPosition.add(Offset(x, y));
       }
