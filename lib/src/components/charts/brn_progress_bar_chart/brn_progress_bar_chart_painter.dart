@@ -133,7 +133,7 @@ class BrnProgressBarBundle {
 /// 根据参数对 x y 坐标轴以及柱状图进行绘制
 class BrnProgressBarChartPainter extends CustomPainter {
   /// 柱状图的样式
-  final BarChartStyle? barChartStyle;
+  final BarChartStyle barChartStyle;
 
   /// x轴
   final ChartAxis xAxis;
@@ -148,7 +148,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
   final double barGroupSpace;
 
   /// 单个柱形宽度
-  final double? singleBarWidth;
+  final double singleBarWidth;
 
   /// 柱状图的最大值，柱状图的宽/高会依此值计算
   final double barMaxValue;
@@ -186,12 +186,12 @@ class BrnProgressBarChartPainter extends CustomPainter {
   final double _xAxisHeight = 22;
 
   BrnProgressBarChartPainter(
-      {this.barChartStyle,
+      {required this.barChartStyle,
       required this.xAxis,
       required this.yAxis,
       required this.barBundleList,
       required this.barGroupSpace,
-      this.singleBarWidth,
+      required this.singleBarWidth,
       required this.barMaxValue,
       this.drawX = true,
       this.drawY = true,
@@ -301,11 +301,11 @@ class BrnProgressBarChartPainter extends CustomPainter {
         //水平方向的柱状图
         Offset leftTop = Offset(
             this.yAxisRect.right,
-            (barBundleCount * this.singleBarWidth! + this.barGroupSpace) *
+            (barBundleCount * this.singleBarWidth + this.barGroupSpace) *
                     barGroupIndex +
                 this.yAxis.leadingSpace);
         double width = this.contentRect.width * barItem.percentage;
-        double height = this.singleBarWidth!;
+        double height = this.singleBarWidth;
         Rect barRect = Rect.fromLTWH(leftTop.dx, leftTop.dy, width, height);
         barItem.barRect = barRect;
 
@@ -324,11 +324,11 @@ class BrnProgressBarChartPainter extends CustomPainter {
         Offset leftBottom = Offset(
             this.yAxisRect.width +
                 this.xAxis.leadingSpace +
-                barBundleIndex * this.singleBarWidth! +
-                (barBundleCount * this.singleBarWidth! + this.barGroupSpace) *
+                barBundleIndex * this.singleBarWidth +
+                (barBundleCount * this.singleBarWidth + this.barGroupSpace) *
                     barGroupIndex,
             this.xAxisRect.top);
-        double width = this.singleBarWidth!;
+        double width = this.singleBarWidth;
         double height = this.contentRect.height * barItem.percentage;
         Rect barRect =
             Rect.fromLTWH(leftBottom.dx, leftBottom.dy - height, width, height);
@@ -338,9 +338,9 @@ class BrnProgressBarChartPainter extends CustomPainter {
         barItem.barGroupAxisCenter = Offset(
             this.yAxisRect.width +
                 this.xAxis.leadingSpace +
-                (barBundleCount * this.singleBarWidth! + this.barGroupSpace) *
+                (barBundleCount * this.singleBarWidth + this.barGroupSpace) *
                     barGroupIndex +
-                (barBundleCount * this.singleBarWidth!) / 2,
+                (barBundleCount * this.singleBarWidth) / 2,
             this.xAxisRect.top);
 
         // BarHintRect
