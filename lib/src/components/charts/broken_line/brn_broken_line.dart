@@ -295,11 +295,11 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
 
   void _fillLeftTopPoint(
       BrnLineTouchData? lineTouchData,
-      double? startX,
-      double? endX,
-      double? startY,
-      double? endY,
-      double? fixedHeight,
+      double startX,
+      double endX,
+      double startY,
+      double endY,
+      double fixedHeight,
       Point selectedPoint) {
     if (lineTouchData == null) return;
 
@@ -314,13 +314,13 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
     var selectY = selectedPoint.y;
     double y = 0;
     double x = 0;
-    if (selectY <= (startY! - endY!) / 2) {
+    if (selectY <= (startY - endY) / 2) {
       y = selectY + padding;
     } else {
       y = selectY - (lineTouchData.tipWindowSize.height) - padding;
     }
 
-    if (selectX <= (endX! - startX!) / 2) {
+    if (selectX <= (endX - startX) / 2) {
       x = selectX + padding;
     } else {
       x = selectX - (lineTouchData.tipWindowSize.width) - padding;

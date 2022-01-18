@@ -63,20 +63,20 @@ class BrnLinePainter extends BrnBasePainter {
   double? selectX;
   double? selectY;
   double _startX = 0.0, _endX = 0.0, _startY = 0.0, _endY = 0.0;
-  double? _fixedHeight, _fixedWidth;
+  late double _fixedHeight, _fixedWidth;
   late List<LineCanvasModel> _lineCanvasModels;
 
   List<List<Point>> _linePointPositions = [];
 
-  double? get startX => _startX;
+  double get startX => _startX;
 
-  double? get startY => _startY;
+  double get startY => _startY;
 
-  double? get endX => _endX;
+  double get endX => _endX;
 
-  double? get endY => _endY;
+  double get endY => _endY;
 
-  double? get fixedHeight => _fixedHeight;
+  double get fixedHeight => _fixedHeight;
 
   BrnLinePainter(
     this.lines, {
@@ -194,23 +194,23 @@ class BrnLinePainter extends BrnBasePainter {
               var xPosition = _startX +
                   ((item.points![i].x - xDialMin!) /
                       (xDialMax! - xDialMin!) *
-                      _fixedWidth!);
+                      _fixedWidth);
               var yPosition = _startY -
                   ((item.points![i].y - yDialMin) /
                       (yDialMax - yDialMin) *
-                      _fixedHeight!);
+                      _fixedHeight);
               pointArr.add(Point(xPosition, yPosition));
             }
           } else {
             var xScaleCount = item.points?.length ?? 0;
-            var W = _fixedWidth! /
+            var W = _fixedWidth /
                 (xScaleCount > 1 ? (xScaleCount - 1) : 1); //两个点之间的x方向距离
             for (var i = 0; i < item.points!.length; i++) {
               var xPosition = _startX + W * i;
               var yPosition = _startY -
                   ((item.points![i].y - yDialMin) /
                       (yDialMax - yDialMin) *
-                      _fixedHeight!);
+                      _fixedHeight);
               pointArr.add(Point(xPosition, yPosition));
             }
           }
@@ -221,8 +221,8 @@ class BrnLinePainter extends BrnBasePainter {
             /// 生成 Shadow path。
             _shadowPath = _getSmoothLinePath(pointArr);
             _shadowPath
-              ..lineTo(pointArr[pointArr.length - 1].x as double, _fixedHeight!)
-              ..lineTo(pointArr[0].x as double, _fixedHeight!)
+              ..lineTo(pointArr[pointArr.length - 1].x as double, _fixedHeight)
+              ..lineTo(pointArr[0].x as double, _fixedHeight)
               ..close();
           } else {
             _path.moveTo(pointArr[0].x as double, pointArr[0].y as double);
@@ -236,8 +236,8 @@ class BrnLinePainter extends BrnBasePainter {
               if (i == pointArr.length - 1) {
                 _shadowPath
                   ..lineTo(
-                      pointArr[pointArr.length - 1].x as double, _fixedHeight!)
-                  ..lineTo(pointArr[0].x as double, _fixedHeight!)
+                      pointArr[pointArr.length - 1].x as double, _fixedHeight)
+                  ..lineTo(pointArr[0].x as double, _fixedHeight)
                   ..close();
               }
             }
@@ -340,7 +340,7 @@ class BrnLinePainter extends BrnBasePainter {
             _startX +
                 (xDialValues![i].value - xDialMin!) /
                     (xDialMax! - xDialMin!) *
-                    _fixedWidth!,
+                    _fixedWidth,
             paint);
       }
     }
@@ -387,7 +387,7 @@ class BrnLinePainter extends BrnBasePainter {
                   tileMode: TileMode.clamp,
                   colors: element.shaderColors!)
               .createShader(
-                  Rect.fromLTWH(_startX, _endY, _fixedWidth!, _fixedHeight!));
+                  Rect.fromLTWH(_startX, _endY, _fixedWidth, _fixedHeight));
           canvas
             ..drawPath(
                 shadowPathElement!,
