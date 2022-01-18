@@ -85,8 +85,8 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
     });
 
     EventBus.instance.on<ClearSelectionFocusEvent>().listen((ClearSelectionFocusEvent event) {
-      _minFocusNode?.unfocus();
-      _maxFocusNode?.unfocus();
+      _minFocusNode.unfocus();
+      _maxFocusNode.unfocus();
     });
 
     super.initState();
@@ -117,7 +117,7 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
                 Container(
                   child: Text(
                     "至",
-                    style: widget.themeData.inputTextStyle?.generateTextStyle(),
+                    style: widget.themeData.inputTextStyle.generateTextStyle(),
                   ),
                 ),
                 getRangeTextField(true),
@@ -132,7 +132,7 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
   Widget getRangeTextField(bool isMax) {
     return Expanded(
       child: TextFormField(
-        style: widget.themeData.inputTextStyle?.generateTextStyle(),
+        style: widget.themeData.inputTextStyle.generateTextStyle(),
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         keyboardType: TextInputType.numberWithOptions(),
         onChanged: (input) {
@@ -143,7 +143,7 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
         cursorColor: widget.themeData.commonConfig.brandPrimary,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
-          hintStyle: widget.themeData.hintTextStyle?.generateTextStyle(),
+          hintStyle: widget.themeData.hintTextStyle.generateTextStyle(),
           hintText: (isMax ? '最大值' : '最小值'),
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(

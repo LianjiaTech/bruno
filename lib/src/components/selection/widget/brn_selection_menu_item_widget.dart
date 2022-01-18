@@ -45,8 +45,8 @@ class BrnSelectionMenuItemWidget extends StatelessWidget {
                   maxLines: 1,
                   softWrap: true,
                   style: isHighLight
-                      ? themeData.menuSelectedTextStyle?.generateTextStyle()
-                      : themeData.menuNormalTextStyle?.generateTextStyle(),
+                      ? themeData.menuSelectedTextStyle.generateTextStyle()
+                      : themeData.menuNormalTextStyle.generateTextStyle(),
                 ),
               )),
               Padding(

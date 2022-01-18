@@ -105,7 +105,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
         setState(() {
           if (!event.filter) {
             //将所有tag设置为未选中
-            event.rangeEntity.parent?.currentTagListForEntity()?.forEach((data) {
+            event.rangeEntity.parent?.currentTagListForEntity().forEach((data) {
               data.clearSelectedEntity();
             });
           }
@@ -177,7 +177,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
         Expanded(
           child: Text(
             widget.selectionEntity.title,
-            style: widget.themeData?.titleForMoreTextStyle.generateTextStyle(),
+            style: widget.themeData.titleForMoreTextStyle.generateTextStyle(),
           ),
         ),
       ],
@@ -231,8 +231,8 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
                 }
 
                 data.parent?.children
-                    ?.where((_) => _.filterType == BrnSelectionFilterType.Radio)
-                    ?.forEach((f) => f.isSelected = false);
+                    .where((_) => _.filterType == BrnSelectionFilterType.Radio)
+                    .forEach((f) => f.isSelected = false);
                 data.isSelected = !data.isSelected;
                 //用于发送 标签点击事件
                 streamController.add(SelectEvent());
@@ -272,7 +272,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
           borderRadius: BorderRadius.circular(widget.themeData.tagRadius)),
       height: 34,
       child: Text(
-        showName ?? '',
+        showName,
         maxLines: 2,
         textAlign: TextAlign.center,
         style: entity.isSelected ? _selectedTextStyle() : _tagTextStyle(),
@@ -281,11 +281,11 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
   }
 
   TextStyle? _tagTextStyle() {
-    return widget.themeData?.tagNormalTextStyle.generateTextStyle();
+    return widget.themeData.tagNormalTextStyle.generateTextStyle();
   }
 
   TextStyle? _selectedTextStyle() {
-    return widget.themeData?.tagSelectedTextStyle.generateTextStyle();
+    return widget.themeData.tagSelectedTextStyle.generateTextStyle();
   }
 
   void _showDatePicker(BrnSelectionEntity data) {

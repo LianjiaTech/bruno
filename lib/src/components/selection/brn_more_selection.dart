@@ -61,7 +61,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
     animation = Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
     _controller.forward();
 
-    _originalSelectedItemsList.addAll(widget.entityData.allSelectedList() ?? []);
+    _originalSelectedItemsList.addAll(widget.entityData.allSelectedList());
     for (BrnSelectionEntity entity in _originalSelectedItemsList) {
       entity.isSelected = true;
       if (entity.customMap != null) {
@@ -128,7 +128,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
   @override
   void dispose() {
     super.dispose();
-    _controller?.dispose();
+    _controller.dispose();
   }
 
   /// 左侧为透明黑，点击直接退出页面

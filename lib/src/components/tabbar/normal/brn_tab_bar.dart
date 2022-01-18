@@ -676,7 +676,7 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
     return MeasureSize(
       onChange: (size) {
         setState(() {
-          _parentWidth = size.width;
+          _parentWidth = size?.width ?? 0.0;
         });
       },
       child: Container(

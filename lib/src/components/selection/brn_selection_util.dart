@@ -28,12 +28,12 @@ class BrnSelectionUtil {
       }
     }
     if (BrnSelectionFilterType.Radio == selectionEntity.filterType) {
-      selectionEntity?.parent?.clearChildSelection();
+      selectionEntity.parent?.clearChildSelection();
       selectionEntity.isSelected = true;
     }
 
     if (BrnSelectionFilterType.Date == selectionEntity.filterType) {
-      selectionEntity?.parent?.clearChildSelection();
+      selectionEntity.parent?.clearChildSelection();
 
       /// 日期类型时在外部 Picker 点击确定时设置 选中状态
       selectionEntity.isSelected = true;
@@ -133,22 +133,16 @@ class BrnSelectionUtil {
   /// !!! 在设置 isSelected = true之前进行 check。
   /// 返回 true 符合条件，false 不符合条件
   static bool checkMaxSelectionCount(BrnSelectionEntity entity) {
-    if (entity == null) return false;
     return entity.getLimitedRootSelectedChildCount() <
         entity.getLimitedRootMaxSelectedCount();
   }
 
 //设置数据为未选中状态
   static void resetSelectionDatas(BrnSelectionEntity entity) {
-    if (entity == null) {
-      return;
-    }
-    entity?.isSelected = false;
-    entity?.customMap = Map();
-    if (entity.children != null) {
-      for (BrnSelectionEntity subEntity in entity.children) {
-        resetSelectionDatas(subEntity);
-      }
+    entity.isSelected = false;
+    entity.customMap = Map();
+    for (BrnSelectionEntity subEntity in entity.children) {
+      resetSelectionDatas(subEntity);
     }
   }
 }

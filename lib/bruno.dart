@@ -84,7 +84,6 @@ export 'src/components/loading/brn_loading.dart';
 
 //导航栏
 export 'src/components/navbar/brn_appbar.dart';
-export 'src/components/navbar/brn_empty_appbar.dart';
 
 //搜索bar
 export 'src/components/navbar/brn_search_bar.dart';

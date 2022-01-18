@@ -84,7 +84,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
   @override
   void dispose() {
     super.dispose();
-    _controller?.dispose();
+    _controller.dispose();
   }
 
   ///左侧是黑色浮层
@@ -290,11 +290,11 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildLeftItem(int index) {
     //如果房山 被选中了或者房山处于正在选择的状态 则加粗
-    TextStyle? textStyle = widget.themeData?.flayerNormalTextStyle.generateTextStyle();
+    TextStyle? textStyle = widget.themeData.flayerNormalTextStyle.generateTextStyle();
     if (index == _currentIndex) {
-      textStyle = widget.themeData?.flayerSelectedTextStyle.generateTextStyle();
+      textStyle = widget.themeData.flayerSelectedTextStyle.generateTextStyle();
     } else if ((_firstList[index].isSelected) && _firstList[index].selectedList().isNotEmpty) {
-      textStyle = widget.themeData?.flayerBoldTextStyle.generateTextStyle();
+      textStyle = widget.themeData.flayerBoldTextStyle.generateTextStyle();
     }
 
     List<BrnSelectionEntity> list = _firstList[index].selectedList();
@@ -389,7 +389,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   void _initData() {
     //填充一级筛选数据
-    _firstList = widget.entityData.children ?? [];
+    _firstList = widget.entityData.children;
     //找到一级需要显示 的索引
     for (int i = 0; i < _firstList.length; i++) {
       if (_firstList[i].selectedList().isNotEmpty) {
@@ -446,8 +446,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
       return Text(entity.title,
           textAlign: TextAlign.left,
           style: entity.isSelected
-              ? widget.themeData?.flayerSelectedTextStyle.generateTextStyle()
-              : widget.themeData?.flayerNormalTextStyle.generateTextStyle());
+              ? widget.themeData.flayerSelectedTextStyle.generateTextStyle()
+              : widget.themeData.flayerNormalTextStyle.generateTextStyle());
     }
   }
 
