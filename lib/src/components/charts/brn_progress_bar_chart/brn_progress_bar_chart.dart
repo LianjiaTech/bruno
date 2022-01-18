@@ -28,7 +28,7 @@ class BrnProgressBarChart extends StatefulWidget {
   final double singleBarWidth;
 
   /// 柱状图的最大值，柱状图的宽/高会依此值计算，默认 0
-  final double? barMaxValue;
+  final double barMaxValue;
 
   /// 柱状图方向，默认 BarChartStyle.vertical
   final BarChartStyle barChartStyle;
@@ -58,7 +58,7 @@ class BrnProgressBarChart extends StatefulWidget {
       required this.barBundleList,
       this.barGroupSpace = 30,
       this.singleBarWidth = 30,
-      this.barMaxValue,
+      this.barMaxValue = 0,
       this.selectedHintTextColor = Colors.white,
       this.selectedHintTextBackgroundColor = Colors.black,
       this.onBarItemClickInterceptor,

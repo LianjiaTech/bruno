@@ -145,13 +145,13 @@ class BrnProgressBarChartPainter extends CustomPainter {
   final List<BrnProgressBarBundle> barBundleList;
 
   /// 条形间距
-  final double? barGroupSpace;
+  final double barGroupSpace;
 
   /// 单个柱形宽度
   final double? singleBarWidth;
 
   /// 柱状图的最大值，柱状图的宽/高会依此值计算
-  final double? barMaxValue;
+  final double barMaxValue;
   final bool drawX;
   final bool drawY;
   final bool drawBar;
@@ -179,7 +179,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
   Rect yAxisRect = Rect.zero;
 
   /// 最大数据
-  double? maxValue = 0;
+  double maxValue = 0;
 
   final double _yTextAxisSpace = 10;
   final double _yTextMaxWidth = 50;
@@ -190,9 +190,9 @@ class BrnProgressBarChartPainter extends CustomPainter {
       required this.xAxis,
       required this.yAxis,
       required this.barBundleList,
-      this.barGroupSpace,
+      required this.barGroupSpace,
       this.singleBarWidth,
-      this.barMaxValue,
+      required this.barMaxValue,
       this.drawX = true,
       this.drawY = true,
       this.drawBar = true,
@@ -276,12 +276,12 @@ class BrnProgressBarChartPainter extends CustomPainter {
     }
 
     // 找到柱状图最大值
-    if (null != this.barMaxValue && 0 != this.barMaxValue) {
+    if (0 != this.barMaxValue) {
       this.maxValue = this.barMaxValue;
     } else {
       this.barBundleList.forEach((BrnProgressBarBundle barbundle) {
         barbundle.barList.forEach((BrnProgressBarItem barItem) {
-          if (barItem.value > this.maxValue!) this.maxValue = barItem.value;
+          if (barItem.value > this.maxValue) this.maxValue = barItem.value;
         });
       });
     }
@@ -291,17 +291,17 @@ class BrnProgressBarChartPainter extends CustomPainter {
     int barBundleCount = this.barBundleList.length;
     this.barItemEnumerator((int barBundleIndex, BrnProgressBarBundle barBundle,
         int barGroupIndex, BrnProgressBarItem barItem) {
-      barItem.percentage = barItem.value / this.maxValue!;
+      barItem.percentage = barItem.value / this.maxValue;
 
       if (null != barItem.hintValue) {
-        barItem.hintPercentage = barItem.hintValue! / this.maxValue!;
+        barItem.hintPercentage = barItem.hintValue! / this.maxValue;
       }
 
       if (BarChartStyle.horizontal == this.barChartStyle) {
         //水平方向的柱状图
         Offset leftTop = Offset(
             this.yAxisRect.right,
-            (barBundleCount * this.singleBarWidth! + this.barGroupSpace!) *
+            (barBundleCount * this.singleBarWidth! + this.barGroupSpace) *
                     barGroupIndex +
                 this.yAxis.leadingSpace);
         double width = this.contentRect.width * barItem.percentage;
@@ -325,7 +325,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
             this.yAxisRect.width +
                 this.xAxis.leadingSpace +
                 barBundleIndex * this.singleBarWidth! +
-                (barBundleCount * this.singleBarWidth! + this.barGroupSpace!) *
+                (barBundleCount * this.singleBarWidth! + this.barGroupSpace) *
                     barGroupIndex,
             this.xAxisRect.top);
         double width = this.singleBarWidth!;
@@ -338,7 +338,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
         barItem.barGroupAxisCenter = Offset(
             this.yAxisRect.width +
                 this.xAxis.leadingSpace +
-                (barBundleCount * this.singleBarWidth! + this.barGroupSpace!) *
+                (barBundleCount * this.singleBarWidth! + this.barGroupSpace) *
                     barGroupIndex +
                 (barBundleCount * this.singleBarWidth!) / 2,
             this.xAxisRect.top);
