@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/base/input_item_interface.dart';
@@ -14,7 +14,7 @@ class BrnFormUtil {
 
   /// 获取添加、删除图标
   static Widget buildPrefixIcon(String prefixIconType, bool isEdit,
-      BuildContext context, VoidCallback onAddTap, VoidCallback onRemoveTap) {
+      BuildContext context, VoidCallback? onAddTap, VoidCallback? onRemoveTap) {
     return Offstage(
       offstage: prefixIconType == BrnPrefixIconType.TYPE_NORMAL,
       child: Container(
@@ -35,13 +35,13 @@ class BrnFormUtil {
   }
 
   /// 获取错误提示widget
-  static Widget buildErrorWidget(String error, BrnFormItemConfig themeData) {
+  static Widget buildErrorWidget(String error, BrnFormItemConfig? themeData) {
     return Container(
       padding: errorEdgeInsets(themeData),
       child: Offstage(
-          offstage: (error == null || error.isEmpty),
+          offstage: (error.isEmpty),
           child: Text(
-            error ?? "",
+            error,
             style: getErrorTextStyle(themeData),
           )),
     );
@@ -49,7 +49,7 @@ class BrnFormUtil {
 
   /// 获取子标题Widget
   static Widget buildSubTitleWidget(
-      String subTitle, BrnFormItemConfig themeData) {
+      String? subTitle, BrnFormItemConfig? themeData) {
     return Offstage(
       offstage: (subTitle == null || subTitle.isEmpty),
       child: Container(
@@ -64,14 +64,14 @@ class BrnFormUtil {
   /// 获取必填项
   static Widget buildRequireWidget(bool isRequire) {
     return Offstage(
-      offstage: (isRequire == null || !isRequire),
+      offstage: (!isRequire),
       child: BrnFormUtil.getRequireIcon(isRequire),
     );
   }
 
   /// 获取问号
   static Widget buildTipLabelWidget(
-      String tipLabel, VoidCallback onTip, BrnFormItemConfig themeData) {
+      String? tipLabel, VoidCallback? onTip, BrnFormItemConfig? themeData) {
     return Offstage(
       offstage: (tipLabel == null),
       child: GestureDetector(
@@ -99,19 +99,16 @@ class BrnFormUtil {
   }
 
   /// 获取二级标题Widget
-  static Widget buildTitleWidget(String title, BrnFormItemConfig themeData) {
+  static Widget buildTitleWidget(String title, BrnFormItemConfig? themeData) {
     return Container(
         child: Text(
-      title ?? "",
+      title,
       style: BrnFormUtil.getTitleTextStyle(themeData),
     ));
   }
 
   /// 录入项是否可编辑
   static bool isEdit(bool isEdit) {
-    if (isEdit == null) {
-      return true;
-    }
     return isEdit;
   }
 
@@ -126,7 +123,7 @@ class BrnFormUtil {
   }
 
   static Widget getPrefixIconWithDisable(String type, bool isEnabled) {
-    return (isEnabled ?? true)
+    return (isEnabled)
         ? BrnFormUtil.getPrefixIcon(type)
         : ColorFiltered(
             colorFilter: ColorFilter.mode(
@@ -140,7 +137,6 @@ class BrnFormUtil {
   }
 
   static Widget getRequireIcon(bool isRequire) {
-    isRequire ??= false;
 
     return Container(
       padding:
@@ -164,13 +160,11 @@ class BrnFormUtil {
 
   /// 设置录入项总的padding, 不包括顶部和底部padding
   static EdgeInsets computeItemEdgeInsets2(String type, bool isRequire) {
-    isRequire ??= false;
     return EdgeInsets.fromLTRB(0, 0, 20, 14);
   }
 
   /// 设置内容行padding, 包括顶部和底部padding
   static EdgeInsets computeEdgeInsets2(String type, bool isRequire) {
-    isRequire ??= false;
     if (isRequire && type == BrnPrefixIconType.TYPE_NORMAL) {
       return EdgeInsets.only(left: 10, top: 14);
     }
@@ -179,14 +173,13 @@ class BrnFormUtil {
   }
 
   static EdgeInsets computeErrorEdgeInsets(String type, bool isRequire) {
-    isRequire ??= false;
     return EdgeInsets.only(
       left: 20,
       top: 4,
     );
   }
 
-  static TextInputType getInputType(String type) {
+  static TextInputType getInputType(String? type) {
     TextInputType inputType = TextInputType.text;
 
     if (type == null || type.isEmpty) {
@@ -234,7 +227,7 @@ class BrnFormUtil {
 
   /// 处理点击"添加/删除"按钮动作
   static void notifyAddRemoveTap(BuildContext context, String prefixIconType,
-      VoidCallback onAddTap, VoidCallback onRemoveTap) {
+      VoidCallback? onAddTap, VoidCallback? onRemoveTap) {
     if (BrnPrefixIconType.TYPE_ADD == prefixIconType) {
       if (onAddTap != null) {
         onAddTap();
@@ -247,21 +240,21 @@ class BrnFormUtil {
   }
 
   /// 处理点击"添加/删除"按钮动作
-  static void notifyAddTap(BuildContext context, VoidCallback onAddTap) {
+  static void notifyAddTap(BuildContext context, VoidCallback? onAddTap) {
     if (onAddTap != null) {
       onAddTap();
     }
   }
 
   /// 处理点击"添加/删除"按钮动作
-  static void notifyRemoveTap(BuildContext context, VoidCallback onRemoveTap) {
+  static void notifyRemoveTap(BuildContext context, VoidCallback? onRemoveTap) {
     if (onRemoveTap != null) {
       onRemoveTap();
     }
   }
 
   /// 处理点击"按钮"动作
-  static void notifyTap(BuildContext context, VoidCallback onWidgetTap) {
+  static void notifyTap(BuildContext context, VoidCallback? onWidgetTap) {
     if (onWidgetTap != null) {
       onWidgetTap();
     }
@@ -269,14 +262,14 @@ class BrnFormUtil {
 
   /// 处理 输入状态 变化
   static void notifyInputChanged(
-      ValueChanged<String> onTextChanged, String newStr) {
+      ValueChanged<String>? onTextChanged, String newStr) {
     if (onTextChanged != null) {
       onTextChanged(/*oldStr, */ newStr);
     }
   }
 
   /// 处理 开关 变化
-  static void notifySwitchChanged(OnBrnFormSwitchChanged onSwitchChanged,
+  static void notifySwitchChanged(OnBrnFormSwitchChanged? onSwitchChanged,
       BuildContext context, bool oldValue, bool newValue) {
     if (onSwitchChanged != null) {
       onSwitchChanged(oldValue, newValue);
@@ -284,7 +277,7 @@ class BrnFormUtil {
   }
 
   /// 处理 数字值 变化
-  static void notifyValueChanged(OnBrnFormValueChanged onValueChanged,
+  static void notifyValueChanged(OnBrnFormValueChanged? onValueChanged,
       BuildContext context, int oldVal, int newVal) {
     if (onValueChanged != null) {
       onValueChanged(oldVal, newVal);
@@ -292,22 +285,22 @@ class BrnFormUtil {
   }
 
   /// 处理 单选选中状态变化
-  static void notifyRadioStatusChanged(OnBrnFormRadioValueChanged onTextChanged,
-      BuildContext context, Object oldVal, Object newVal) {
+  static void notifyRadioStatusChanged(OnBrnFormRadioValueChanged? onTextChanged,
+      BuildContext context, Object? oldVal, Object? newVal) {
     if (onTextChanged != null) {
-      onTextChanged(oldVal, newVal);
+      onTextChanged(oldVal as String?, newVal as String?);
     }
   }
 
   /// 处理 多选选中状态变化
   static void notifyMultiChoiceStatusChanged(
-    OnBrnFormMultiChoiceValueChanged onChoiceChanged,
+    OnBrnFormMultiChoiceValueChanged? onChoiceChanged,
     BuildContext context,
     Object oldVal,
-    Object newVal,
+    Object? newVal,
   ) {
     if (onChoiceChanged != null) {
-      onChoiceChanged(oldVal, newVal);
+      onChoiceChanged(oldVal as List<String>, newVal as List<String>?);
     }
   }
 
@@ -316,19 +309,18 @@ class BrnFormUtil {
   ///
 
   /// 选项之间的间距
-  static EdgeInsets optionsMiddlePadding(BrnFormItemConfig themeData) {
+  static EdgeInsets? optionsMiddlePadding(BrnFormItemConfig? themeData) {
     return themeData?.optionsMiddlePadding;
   }
 
   /// 走主题配置 上下右间距
-  static EdgeInsets itemEdgeInsets(BrnFormItemConfig themeData) {
+  static EdgeInsets? itemEdgeInsets(BrnFormItemConfig? themeData) {
     return themeData?.formPadding;
   }
 
   /// 标题行的左间距
-  static EdgeInsets titleEdgeInsets(
-      String type, bool isRequire, BrnFormItemConfig themeData) {
-    isRequire ??= false;
+  static EdgeInsets? titleEdgeInsets(
+      String type, bool isRequire, BrnFormItemConfig? themeData) {
     if (isRequire && type == BrnPrefixIconType.TYPE_NORMAL) {
       return themeData?.titlePaddingSm;
     }
@@ -336,96 +328,94 @@ class BrnFormUtil {
   }
 
   /// 标题行的左间距
-  static EdgeInsets titleEdgeInsetsForHead(
-      bool isRequire, BrnFormItemConfig themeData) {
-    isRequire ??= false;
+  static EdgeInsets? titleEdgeInsetsForHead(
+      bool isRequire, BrnFormItemConfig? themeData) {
     return isRequire ? themeData?.titlePaddingSm : themeData?.titlePaddingLg;
   }
 
   /// 子标题的右上间距
-  static EdgeInsets subTitleEdgeInsets(BrnFormItemConfig themeData) {
+  static EdgeInsets? subTitleEdgeInsets(BrnFormItemConfig? themeData) {
     return themeData?.subTitlePadding;
   }
 
   /// error的右上间距
-  static EdgeInsets errorEdgeInsets(BrnFormItemConfig themeData) {
+  static EdgeInsets? errorEdgeInsets(BrnFormItemConfig? themeData) {
     return themeData?.errorPadding;
   }
 
   /// 提示文本样式
-  static TextStyle getTipsTextStyle(BrnFormItemConfig themeData) {
-    return themeData?.tipsTextStyle?.generateTextStyle();
+  static TextStyle? getTipsTextStyle(BrnFormItemConfig? themeData) {
+    return themeData?.tipsTextStyle.generateTextStyle();
   }
 
   /// 获取 右侧 输入、选择默认文本样式
-  static TextStyle getHintTextStyle(BrnFormItemConfig themeData,
+  static TextStyle? getHintTextStyle(BrnFormItemConfig? themeData,
       {double height = 0}) {
     if (height > 0) {
       return BrnTextStyle(height: height)
           .merge(themeData?.hintTextStyle)
-          ?.generateTextStyle();
+          .generateTextStyle();
     }
-    return themeData?.hintTextStyle?.generateTextStyle();
+    return themeData?.hintTextStyle.generateTextStyle();
   }
 
   /// 获取是否可编辑的字体
-  static TextStyle getIsEditTextStyle(BrnFormItemConfig themeData, bool isEdit,
+  static TextStyle? getIsEditTextStyle(BrnFormItemConfig? themeData, bool isEdit,
       {double height = 0}) {
-    isEdit ??= true;
     if (height > 0) {
       return isEdit
           ? BrnTextStyle(height: height)
               .merge(themeData?.contentTextStyle)
-              ?.generateTextStyle()
+              .generateTextStyle()
           : BrnTextStyle(height: height)
               .merge(themeData?.disableTextStyle)
-              ?.generateTextStyle();
+              .generateTextStyle();
     }
     return isEdit
-        ? themeData?.contentTextStyle?.generateTextStyle()
-        : themeData?.disableTextStyle?.generateTextStyle();
+        ? themeData?.contentTextStyle.generateTextStyle()
+        : themeData?.disableTextStyle.generateTextStyle();
   }
 
   /// 获取标题文本样式
-  static TextStyle getTitleTextStyle(BrnFormItemConfig themeData,
+  static TextStyle? getTitleTextStyle(BrnFormItemConfig? themeData,
       {double height = 0}) {
     if (height > 0) {
       return BrnTextStyle(height: height)
           .merge(themeData?.titleTextStyle)
-          ?.generateTextStyle();
+          .generateTextStyle();
     }
-    return themeData?.titleTextStyle?.generateTextStyle();
+    return themeData?.titleTextStyle.generateTextStyle();
   }
 
   /// 获取标题文本样式
-  static TextStyle getHeadTitleTextStyle(BrnFormItemConfig themeData,
+  static TextStyle? getHeadTitleTextStyle(BrnFormItemConfig? themeData,
       {bool isBold = false}) {
     if (isBold) {
       return themeData?.headTitleTextStyle
-          ?.merge(BrnTextStyle(fontWeight: FontWeight.w600))
-          ?.generateTextStyle();
+          .merge(BrnTextStyle(fontWeight: FontWeight.w600))
+          .generateTextStyle();
     }
-    return themeData?.headTitleTextStyle?.generateTextStyle();
+    return themeData?.headTitleTextStyle.generateTextStyle();
   }
 
   /// 获取左侧辅助样式
-  static TextStyle getSubTitleTextStyle(BrnFormItemConfig themeData) {
-    return themeData?.subTitleTextStyle?.generateTextStyle();
+  static TextStyle? getSubTitleTextStyle(BrnFormItemConfig? themeData) {
+    return themeData?.subTitleTextStyle.generateTextStyle();
   }
 
   /// 获取error 文本样式
-  static TextStyle getErrorTextStyle(BrnFormItemConfig themeData) {
-    return themeData?.errorTextStyle?.generateTextStyle();
+  static TextStyle? getErrorTextStyle(BrnFormItemConfig? themeData) {
+    return themeData?.errorTextStyle.generateTextStyle();
   }
 
   /// 获取选项文本样式
-  static TextStyle getOptionTextStyle(BrnFormItemConfig themeData) {
-    return themeData?.optionTextStyle?.generateTextStyle();
+  static TextStyle? getOptionTextStyle(BrnFormItemConfig? themeData) {
+    return themeData?.optionTextStyle.generateTextStyle();
   }
 
   /// 获取选中选项文本样式
-  static TextStyle getOptionSelectedTextStyle(BrnFormItemConfig themeData) {
-    return themeData?.optionSelectedTextStyle?.generateTextStyle();
+  static TextStyle? getOptionSelectedTextStyle(BrnFormItemConfig? themeData) {
+    return themeData?.optionSelectedTextStyle.generateTextStyle();
   }
 
   ///
@@ -445,7 +435,7 @@ class BrnFormUtil {
   /// 当左右内容超出默认比例且「无」提示语，则按比例  4:6 布局
   /// 有用户自定义比例时用用户自定义比例
   static double getAutoLayoutContentRatio(
-      {bool tipLabelHidden, double layoutRatio}) {
+      {required bool tipLabelHidden, double? layoutRatio}) {
     double defaultRatio = tipLabelHidden
         ? BrnFormUtil.contentRatio
         : 1 - BrnFormUtil.contentRatio;

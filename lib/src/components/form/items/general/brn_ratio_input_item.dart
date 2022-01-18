@@ -1,7 +1,6 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
-import 'package:bruno/src/components/form/base/input_item_interface.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
@@ -18,7 +17,7 @@ import 'package:flutter/widgets.dart';
 // ignore: must_be_immutable
 class BrnRatioInputFormItem extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
-  final String label;
+  final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
   String type = BrnInputItemType.TEXT_INPUT_RATIO_TYPE;
@@ -27,14 +26,14 @@ class BrnRatioInputFormItem extends StatefulWidget {
   final String title;
 
   /// 录入项子标题
-  final String subTitle;
+  final String? subTitle;
 
   /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
   /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
   /// 2. 若赋值为非空字符串时 展示"问号图标&文案"，
   /// 3. 若不赋值或赋值为null时 不显示提示项
   /// 默认值为 3
-  final String tipLabel;
+  final String? tipLabel;
 
   /// 录入项前缀图标样式 "添加项" "删除项" 详见 PrefixIconType类
   final String prefixIconType;
@@ -54,30 +53,30 @@ class BrnRatioInputFormItem extends StatefulWidget {
   final bool isPrefixIconEnabled;
 
   /// 点击"+"图标回调
-  final VoidCallback onAddTap;
+  final VoidCallback? onAddTap;
 
   /// 点击"-"图标回调
-  final VoidCallback onRemoveTap;
+  final VoidCallback? onRemoveTap;
 
   /// 点击"？"图标回调
-  final VoidCallback onTip;
+  final VoidCallback? onTip;
 
   ///内容
   final String hint;
 
   /// 输入内容类型
-  final String inputType;
-  final TextEditingController controller;
-  List<TextInputFormatter> inputFormatters;
+  final String? inputType;
+  final TextEditingController? controller;
+  List<TextInputFormatter>? inputFormatters;
 
   /// 输入回调
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
 
   /// form配置
-  BrnFormItemConfig themeData;
+  BrnFormItemConfig? themeData;
 
   BrnRatioInputFormItem(
-      {Key key,
+      {Key? key,
       this.label,
       this.title: "",
       this.subTitle,
@@ -99,7 +98,7 @@ class BrnRatioInputFormItem extends StatefulWidget {
       : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
   }
@@ -111,12 +110,11 @@ class BrnRatioInputFormItem extends StatefulWidget {
 }
 
 class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
-  TextEditingController _controller;
+  late TextEditingController _controller;
 
   @override
   void initState() {
     _controller = widget.controller ?? TextEditingController();
-
     super.initState();
   }
 
@@ -177,7 +175,7 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
                           border: InputBorder.none,
                           hintStyle:
                               BrnFormUtil.getHintTextStyle(widget.themeData),
-                          hintText: widget.hint ?? '请输入',
+                          hintText: widget.hint,
                           counterText: "",
                           contentPadding: EdgeInsets.all(0),
                           isDense: true,
@@ -215,8 +213,6 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
   void dispose() {
     super.dispose();
     // 如果controller由外部创建不需要销毁, 若由内部创建则需要销毁
-    if (widget.controller == null) {
-      _controller?.dispose();
-    }
+      _controller.dispose();
   }
 }

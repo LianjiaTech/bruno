@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 class BrnPrefixIconType {
   static const String TYPE_NORMAL = "type_normal";

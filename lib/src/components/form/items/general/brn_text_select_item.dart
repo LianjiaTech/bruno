@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:math';
 
@@ -21,19 +21,19 @@ import 'package:flutter/widgets.dart';
 ///
 // ignore: must_be_immutable
 class BrnTextSelectFormItem extends StatefulWidget {
-  final String label;
+  final String? label;
 
   /// 录入项的唯一标识，主要用于录入类型页面框架中
-  String type = BrnInputItemType.TEXT_SELECT_INPUT_TYPE;
+  final String type = BrnInputItemType.TEXT_SELECT_INPUT_TYPE;
 
   /// 录入项类型，主要用于录入类型页面框架中
   final String title;
 
   /// 录入项标题
-  final String subTitle;
+  final String? subTitle;
 
   /// 录入项子标题
-  final String tipLabel;
+  final String? tipLabel;
 
   /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
   /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
@@ -53,41 +53,41 @@ class BrnTextSelectFormItem extends StatefulWidget {
   final bool isEdit;
 
   /// 点击"+"图标回调
-  final VoidCallback onAddTap;
+  final VoidCallback? onAddTap;
 
   /// 点击"-"图标回调
-  final VoidCallback onRemoveTap;
+  final VoidCallback? onRemoveTap;
 
   /// 点击"？"图标回调
-  final VoidCallback onTip;
+  final VoidCallback? onTip;
 
   /// 点击录入区回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// 录入项 hint 提示
   final String hint;
 
   /// 录入项 值
-  final String value;
+  final String? value;
 
   /// 选中文本最大行数
   final int valueMaxLines;
 
   /// title最大行数
-  final int titleMaxLines;
+  final int? titleMaxLines;
 
   ///是否自动布局
-  bool _isAutoLayout;
+  bool? _isAutoLayout;
 
   /// 行布局比例值   左边「标题+问号+提示语」  右边「选项值」
   /// 左:右 比例值  例如  左:右 = 6:4   则 ratio = 1.5
-  double layoutRatio;
+  double? layoutRatio;
 
   /// form配置
-  BrnFormItemConfig themeData;
+  BrnFormItemConfig? themeData;
 
   BrnTextSelectFormItem({
-    Key key,
+    Key? key,
     this.label,
     this.title: "",
     this.subTitle,
@@ -109,13 +109,13 @@ class BrnTextSelectFormItem extends StatefulWidget {
     this._isAutoLayout = false;
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
   }
 
   BrnTextSelectFormItem.autoLayout(
-      {Key key,
+      {Key? key,
       this.label,
       this.title: "",
       this.subTitle,
@@ -138,7 +138,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
     this._isAutoLayout = true;
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
   }
@@ -179,7 +179,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
 
   double _getTitleMaxWidth(BuildContext context, BoxConstraints constraints) {
     double contentRatio = BrnFormUtil.getAutoLayoutContentRatio(
-        tipLabelHidden: widget.tipLabel == null || widget.tipLabel.isEmpty,
+        tipLabelHidden: widget.tipLabel == null || widget.tipLabel!.isEmpty,
         layoutRatio: widget.layoutRatio);
     double maxWidth = min(
         constraints.maxWidth * contentRatio,
@@ -237,7 +237,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   GestureDetector _buildRightWidget(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (widget.isEdit != null && !widget.isEdit) {
+        if (!widget.isEdit) {
           return;
         }
 
@@ -269,7 +269,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       child: GestureDetector(
         onTap: () {
           if (widget.onTip != null) {
-            widget.onTip();
+            widget.onTip!();
           }
         },
         child: Row(
@@ -304,7 +304,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   // 标题widget
   Widget _buildTitleTextWidget() {
     return Text(
-      widget.title ?? "",
+      widget.title,
       overflow: widget.titleMaxLines == null
           ? TextOverflow.clip
           : TextOverflow.ellipsis,
@@ -344,7 +344,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   // 计算Text所占宽度
   double _calculateTextWidth(BuildContext context) {
     TextPainter painter;
-    if (widget.value != null && widget.value.isNotEmpty) {
+    if (widget.value != null && widget.value!.isNotEmpty) {
       painter = TextPainter(
           locale: Localizations.localeOf(context),
           textAlign: TextAlign.end,
@@ -374,11 +374,11 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   }
 
   Widget buildText() {
-    if (widget.value != null && widget.value.isNotEmpty) {
+    if (widget.value != null && widget.value!.isNotEmpty) {
       return Text(
-        widget.value,
+        widget.value!,
         overflow: TextOverflow.ellipsis,
-        maxLines: widget.valueMaxLines ?? 1,
+        maxLines: widget.valueMaxLines ,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
         style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit,
@@ -394,8 +394,8 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
     }
   }
 
-  String getCalculateText() {
-    String value = '请选择';
+  String? getCalculateText() {
+    String? value = '请选择';
     if (!BrunoTools.isEmpty(widget.value)) {
       value = widget.value;
     } else if (!BrunoTools.isEmpty(widget.hint)) {
@@ -408,7 +408,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   // fontSize : 文字的大小；
   // maxLines：文本支持最大多少行
   static double calculateTextHeight(
-      BuildContext context, String value, double fontSize, int maxLines) {
+      BuildContext context, String? value, double fontSize, int maxLines) {
     TextPainter painter = TextPainter(
 
         // AUTO：华为手机如果不指定locale的时候，该方法算出来的文字高度是比系统计算偏小的。
