@@ -191,7 +191,7 @@ class BrnLinePainter extends BrnBasePainter {
         var pointArr = <Point>[];
 
         if (item.points != null && item.points!.isNotEmpty) {
-          Path? _path = Path();
+          Path _path = Path();
           Path _shadowPath = Path();
 
           if (xDialValues != null && xDialValues!.isNotEmpty) {
