@@ -12,8 +12,8 @@ const double _basePadding = 0;
 const double _contentTopPadding = 10;
 
 class BrnLineYPainter extends BrnBasePainter {
-  int lineSelectIndex = -1;
-  int pointSelectIndex = -1;
+  final int lineSelectIndex;
+  final int pointSelectIndex;
 
   /// xy轴线条的宽度
   double xyLineWidth = 0.5;
@@ -25,16 +25,16 @@ class BrnLineYPainter extends BrnBasePainter {
   Color? yColor;
 
   /// y轴刻度的偏移量
-  double yHintLineOffset;
+  final double yHintLineOffset;
 
   /// 刻度的宽度或者高度
   double rulerWidth;
 
   /// y轴最大值，用来计算内部绘制点的y轴位置
-  double? yMin, yMax;
+  final double yMin, yMax;
 
   /// y轴左侧刻度显示，不传则没有
-  List<BrnDialItem>? yDialValues;
+  final List<BrnDialItem>? yDialValues;
 
   /// x、y轴的辅助线
   bool isShowXHintLine, isShowYHintLine;
@@ -57,21 +57,21 @@ class BrnLineYPainter extends BrnBasePainter {
 
   BrnLineYPainter(
     this.lines, {
-    this.lineSelectIndex = -1,
-    this.pointSelectIndex = -1,
-    this.yHintLineOffset = 20,
-    this.xColor,
-    this.yColor,
-    this.rulerWidth = 4,
-    this.yMin,
-    this.yMax,
-    this.yDialValues,
-    this.isShowXHintLine = true,
-    this.isShowYHintLine = false,
-    this.isHintLineSolid = true,
-    this.hintLineColor,
-    this.isShowXDialText = false,
-    this.isShowYDialText = false,
+    required this.lineSelectIndex,
+    required this.pointSelectIndex,
+    required this.yHintLineOffset,
+    required this.xColor,
+    required this.yColor,
+    required this.rulerWidth,
+    required this.yMin,
+    required this.yMax,
+    required this.yDialValues,
+    required this.isShowXHintLine,
+    required this.isShowYHintLine,
+    required this.isHintLineSolid,
+    required this.hintLineColor,
+    required this.isShowXDialText,
+    required this.isShowYDialText,
   });
 
   @override
@@ -106,9 +106,6 @@ class BrnLineYPainter extends BrnBasePainter {
         .colorTextSecondary;
     hintLineColor ??=
         BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-
-    yMin ??= 0;
-    yMax ??= 1;
   }
 
   /// 计算边界
@@ -150,7 +147,7 @@ class BrnLineYPainter extends BrnBasePainter {
       var ydialValue = yDialValues![i];
 
       // 绘制y轴文本
-      var yLength = (ydialValue.value - yMin!) / (yMax! - yMin!) * _fixedHeight;
+      var yLength = (ydialValue.value - yMin) / (yMax - yMin) * _fixedHeight;
       var textY = TextPainter(
           textAlign: TextAlign.right,
           ellipsis: '.',

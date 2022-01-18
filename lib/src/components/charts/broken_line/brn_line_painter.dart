@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
 
 class BrnLinePainter extends BrnBasePainter {
-  int lineSelectIndex = -1;
-  int pointSelectIndex = -1;
+  final int lineSelectIndex;
+  final int pointSelectIndex;
 
   /// xy轴线条的宽度
   double xyLineWidth = 0.5;
@@ -21,13 +21,13 @@ class BrnLinePainter extends BrnBasePainter {
   Color? yDialColor;
 
   /// 刻度的宽度或者高度
-  double rulerWidth;
+  final double rulerWidth;
 
   /// x轴最小值，最大值，用来计算内部绘制点的x轴位置
   double? xDialMin, xDialMax;
 
   /// y轴最小值，最大值，用来计算内部绘制点的y轴位置
-  double? yDialMin, yDialMax;
+  final double yDialMin, yDialMax;
 
   /// x轴 刻度
   List<BrnDialItem>? xDialValues;
@@ -47,9 +47,9 @@ class BrnLinePainter extends BrnBasePainter {
   /// 绘制线条的参数内容
   List<BrnPointsLine> lines;
 
-  bool? isShowXText, isShowYText;
+  bool isShowXText, isShowYText;
 
-  bool showPointDashLine;
+  final bool showPointDashLine;
 
   /// 默认的边距
   static const double basePadding = 0;
@@ -62,12 +62,8 @@ class BrnLinePainter extends BrnBasePainter {
 
   double? selectX;
   double? selectY;
-  double? _startX = 0.0,
-      _endX = 0.0,
-      _startY = 0.0,
-      _endY = 0.0,
-      _fixedHeight,
-      _fixedWidth;
+  double _startX = 0.0, _endX = 0.0, _startY = 0.0, _endY = 0.0;
+  double? _fixedHeight, _fixedWidth;
   late List<LineCanvasModel> _lineCanvasModels;
 
   List<List<Point>> _linePointPositions = [];
@@ -84,23 +80,24 @@ class BrnLinePainter extends BrnBasePainter {
 
   BrnLinePainter(
     this.lines, {
-    this.lineSelectIndex = -1,
-    this.pointSelectIndex = -1,
-    this.showPointDashLine = true,
-    this.xDialColor,
-    this.yDialColor,
-    this.rulerWidth = 4,
-    this.xDialMin,
-    this.xDialMax,
-    this.xDialValues,
-    this.yDialMin,
-    this.yDialMax,
-    this.yDialValues,
-    this.isShowHintX = true,
-    this.isShowHintY = false,
-    this.hintLineSolid = true,
-    this.hintLineColor,
+    required this.lineSelectIndex,
+    required this.pointSelectIndex,
+    required this.showPointDashLine,
+    required this.xDialColor,
+    required this.yDialColor,
+    required this.rulerWidth,
+    required this.xDialMin,
+    required this.xDialMax,
+    required this.xDialValues,
+    required this.yDialMin,
+    required this.yDialMax,
+    required this.yDialValues,
+    required this.isShowHintX,
+    required this.isShowHintY,
+    required this.hintLineSolid,
+    required this.hintLineColor,
     this.isShowXText = false,
+    this.isShowYText = false,
   }) {
     if (xDialValues == null) {
       for (var i = 1; i < lines.length; i++) {
@@ -165,19 +162,17 @@ class BrnLinePainter extends BrnBasePainter {
         BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
     xDialMin ??= 0;
     xDialMax ??= 1;
-    yDialMin ??= 0;
-    yDialMax ??= 1;
   }
 
   ///计算边界
   void _initBorder(Size size) {
     _endX = size.width;
     _startY = size.height;
-    if (isShowXText!) {
+    if (isShowXText) {
       _endY = 20.0;
     }
-    _fixedHeight = _startY! - _endY! - paddingTop;
-    _fixedWidth = _endX! - _startX!;
+    _fixedHeight = _startY - _endY - paddingTop;
+    _fixedWidth = _endX - _startX;
   }
 
   ///计算Path
@@ -196,13 +191,13 @@ class BrnLinePainter extends BrnBasePainter {
 
           if (xDialValues != null && xDialValues!.isNotEmpty) {
             for (var i = 0; i < item.points!.length; i++) {
-              var xPosition = _startX! +
+              var xPosition = _startX +
                   ((item.points![i].x - xDialMin!) /
                       (xDialMax! - xDialMin!) *
                       _fixedWidth!);
-              var yPosition = _startY! -
-                  ((item.points![i].y - yDialMin!) /
-                      (yDialMax! - yDialMin!) *
+              var yPosition = _startY -
+                  ((item.points![i].y - yDialMin) /
+                      (yDialMax - yDialMin) *
                       _fixedHeight!);
               pointArr.add(Point(xPosition, yPosition));
             }
@@ -211,10 +206,10 @@ class BrnLinePainter extends BrnBasePainter {
             var W = _fixedWidth! /
                 (xScaleCount > 1 ? (xScaleCount - 1) : 1); //两个点之间的x方向距离
             for (var i = 0; i < item.points!.length; i++) {
-              var xPosition = _startX! + W * i;
-              var yPosition = _startY! -
-                  ((item.points![i].y - yDialMin!) /
-                      (yDialMax! - yDialMin!) *
+              var xPosition = _startX + W * i;
+              var yPosition = _startY -
+                  ((item.points![i].y - yDialMin) /
+                      (yDialMax - yDialMin) *
                       _fixedHeight!);
               pointArr.add(Point(xPosition, yPosition));
             }
@@ -307,8 +302,8 @@ class BrnLinePainter extends BrnBasePainter {
   void _drawXy(Canvas canvas, Paint paint) {
     if (isShowHintY) {
       canvas.drawLine(
-          Offset(_startX!, _startY!),
-          Offset(_startX!, _endY! - basePadding),
+          Offset(_startX, _startY),
+          Offset(_startX, _endY - basePadding),
           paint..color = yDialColor!); //y轴
     }
 
@@ -342,7 +337,7 @@ class BrnLinePainter extends BrnBasePainter {
         _drawXRuleByPointPosition(
             tpX,
             canvas,
-            _startX! +
+            _startX +
                 (xDialValues![i].value - xDialMin!) /
                     (xDialMax! - xDialMin!) *
                     _fixedWidth!,
@@ -353,14 +348,13 @@ class BrnLinePainter extends BrnBasePainter {
 
   void _drawXRuleByPointPosition(
       TextPainter tpX, Canvas canvas, double xPosition, Paint paint) {
-    tpX.paint(
-        canvas, Offset(xPosition - tpX.width / 2, _startY! + textPadding));
+    tpX.paint(canvas, Offset(xPosition - tpX.width / 2, _startY + textPadding));
 
     // 绘制与 X 轴对应的垂直辅助线
     if (isShowHintY) {
       var tempPath = Path()
-        ..moveTo(xPosition, _startY!)
-        ..lineTo(xPosition, _endY! - basePadding);
+        ..moveTo(xPosition, _startY)
+        ..lineTo(xPosition, _endY - basePadding);
       if (hintLineSolid) {
         canvas.drawPath(tempPath, paint..color = hintLineColor!);
       } else {
@@ -376,8 +370,8 @@ class BrnLinePainter extends BrnBasePainter {
 
     // 绘制 x轴刻度
     if (isShowHintX) {
-      canvas.drawLine(Offset(xPosition, _startY!),
-          Offset(xPosition, _startY! + rulerWidth), paint..color = xDialColor!);
+      canvas.drawLine(Offset(xPosition, _startY),
+          Offset(xPosition, _startY + rulerWidth), paint..color = xDialColor!);
     }
   }
 
@@ -393,7 +387,7 @@ class BrnLinePainter extends BrnBasePainter {
                   tileMode: TileMode.clamp,
                   colors: element.shaderColors!)
               .createShader(
-                  Rect.fromLTWH(_startX!, _endY!, _fixedWidth!, _fixedHeight!));
+                  Rect.fromLTWH(_startX, _endY, _fixedWidth!, _fixedHeight!));
           canvas
             ..drawPath(
                 shadowPathElement!,
@@ -477,12 +471,12 @@ class BrnLinePainter extends BrnBasePainter {
 
     var x = _linePointPositions[lineSelectIndex][pointSelectIndex].x;
     var xPath = Path()
-      ..moveTo(x as double, _startY!)
-      ..lineTo(x, _endY! - basePadding);
+      ..moveTo(x as double, _startY)
+      ..lineTo(x, _endY - basePadding);
     var y = _linePointPositions[lineSelectIndex][pointSelectIndex].y;
     var yPath = Path()
-      ..moveTo(_startX!, y as double)
-      ..lineTo(_endX!, y);
+      ..moveTo(_startX, y as double)
+      ..lineTo(_endX, y);
     if (showPointDashLine) {
       canvas.drawPath(
         dashPath(
