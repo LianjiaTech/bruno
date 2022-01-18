@@ -27,7 +27,7 @@ class BrnProgressBarChart extends StatefulWidget {
   /// 单个柱形宽度，默认 30
   final double singleBarWidth;
 
-  /// 柱状图的最大值，柱状图的宽/高会依此值计算，默认 0
+  /// 柱状图的最大值，柱状图的宽/高会依此值计算，默认 0，为0时自动计算柱状图最大值
   final double barMaxValue;
 
   /// 柱状图方向，默认 BarChartStyle.vertical
@@ -72,7 +72,6 @@ class BrnProgressBarChart extends StatefulWidget {
       assert(barBundleList[0].barList.length == xAxis.axisItemList.length,
           '竖直柱状图个数与X轴坐标数目要相等');
     }
-    assert(0 != this.barMaxValue, '柱状图最大值不能为0');
   }
 
   @override
