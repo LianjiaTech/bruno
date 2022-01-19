@@ -177,7 +177,7 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
             scrollDirection: Axis.horizontal,
             child: GestureDetector(
               onPanDown: (DragDownDetails e) {
-                for (var i = 0; i < widget.lines[0].points!.length; i++) {
+                for (var i = 0; i < widget.lines[0].points.length; i++) {
                   int lineIndex =
                       _lineWithXPainter.lineIndexCompute(e.localPosition, i);
                   if (lineIndex >= 0) {
@@ -186,7 +186,7 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
                     Point selectedPoint = _lineWithXPainter.selectedPoint(
                         lineSelectIndex, pointSelectIndex);
                     _fillLeftTopPoint(
-                        widget.lines[lineSelectIndex].points![pointSelectIndex]
+                        widget.lines[lineSelectIndex].points[pointSelectIndex]
                             .lineTouchData,
                         _lineWithXPainter.startX,
                         _lineWithXPainter.endX,
@@ -229,7 +229,7 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
                 ),
                 (lineSelectIndex >= 0 && pointSelectIndex >= 0)
                     ? _buildTouchTipWidget(
-                        widget.lines[lineSelectIndex].points![pointSelectIndex])
+                        widget.lines[lineSelectIndex].points[pointSelectIndex])
                     : const SizedBox.shrink(),
               ]),
             ),
@@ -242,9 +242,7 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
   Widget _buildTouchTipWidget(BrnPointData pointData) {
     Widget touchTipWidget;
     BrnLineTouchData? selectLinePoint = pointData.lineTouchData;
-    if (selectLinePoint != null &&
-        pointData.isClickable &&
-        selectLinePoint.onTouch != null) {
+    if (pointData.isClickable && selectLinePoint.onTouch != null) {
       var content = selectLinePoint.onTouch!();
       if (content is String) {
         touchTipWidget = Positioned(
@@ -288,15 +286,13 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
   }
 
   void _fillLeftTopPoint(
-      BrnLineTouchData? lineTouchData,
+      BrnLineTouchData lineTouchData,
       double startX,
       double endX,
       double startY,
       double endY,
       double fixedHeight,
       Point selectedPoint) {
-    if (lineTouchData == null) return;
-
     if (pointSelectIndex < 0 && lineSelectIndex < 0) {
       lineTouchData.x = -1.0;
       lineTouchData.y = -1.0;

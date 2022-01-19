@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +33,7 @@ class BrnPointData {
   /// 折线节点的点击击事件是否可用
   bool isClickable;
 
-  BrnLineTouchData? lineTouchData;
+  BrnLineTouchData lineTouchData;
 
   BrnPointData(
       {this.x = 0,
@@ -44,7 +42,7 @@ class BrnPointData {
       this.pointText,
       this.pointTextStyle,
       this.isClickable: true,
-      this.lineTouchData}) {
+      required this.lineTouchData}) {
     pointText ??= '$y';
     pointTextStyle ??= TextStyle(
         fontWeight: FontWeight.w500,
@@ -79,7 +77,7 @@ class BrnLineTouchData {
 /// 每条线的定义
 class BrnPointsLine {
   /// 点集合
-  List<BrnPointData>? points;
+  List<BrnPointData> points;
 
   /// 线宽
   double lineWidth;
@@ -122,7 +120,7 @@ class BrnPointsLine {
       this.pointInnerRadius,
       this.pointInnerColor,
       this.isCurve = false,
-      this.points,
+      required this.points,
       this.isShowPoint: true,
       this.isShowPointText = false,
       this.shaderColors,

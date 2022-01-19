@@ -101,7 +101,7 @@ class BrnLinePainter extends BrnBasePainter {
   }) {
     if (xDialValues == null) {
       for (var i = 1; i < lines.length; i++) {
-        assert(lines[i - 1].points!.length == lines[i].points!.length,
+        assert(lines[i - 1].points.length == lines[i].points.length,
             '折线${i - 1}和$i条线的节点数不一致');
       }
     }
@@ -185,30 +185,30 @@ class BrnLinePainter extends BrnBasePainter {
         var paths = <Path?>[], shadowPaths = <Path?>[];
         var pointArr = <Point>[];
 
-        if (item.points != null && item.points!.isNotEmpty) {
+        if (item.points.isNotEmpty) {
           Path _path = Path();
           Path _shadowPath = Path();
 
           if (xDialValues != null && xDialValues!.isNotEmpty) {
-            for (var i = 0; i < item.points!.length; i++) {
+            for (var i = 0; i < item.points.length; i++) {
               var xPosition = _startX +
-                  ((item.points![i].x - xDialMin!) /
+                  ((item.points[i].x - xDialMin!) /
                       (xDialMax! - xDialMin!) *
                       _fixedWidth);
               var yPosition = _startY -
-                  ((item.points![i].y - yDialMin) /
+                  ((item.points[i].y - yDialMin) /
                       (yDialMax - yDialMin) *
                       _fixedHeight);
               pointArr.add(Point(xPosition, yPosition));
             }
           } else {
-            var xScaleCount = item.points?.length ?? 0;
+            var xScaleCount = item.points.length;
             var W = _fixedWidth /
                 (xScaleCount > 1 ? (xScaleCount - 1) : 1); //两个点之间的x方向距离
-            for (var i = 0; i < item.points!.length; i++) {
+            for (var i = 0; i < item.points.length; i++) {
               var xPosition = _startX + W * i;
               var yPosition = _startY -
-                  ((item.points![i].y - yDialMin) /
+                  ((item.points[i].y - yDialMin) /
                       (yDialMax - yDialMin) *
                       _fixedHeight);
               pointArr.add(Point(xPosition, yPosition));
@@ -310,9 +310,7 @@ class BrnLinePainter extends BrnBasePainter {
     if (lines.isNotEmpty) {
       //绘制x轴的文字部分
       for (var item in lines) {
-        if (item.points != null &&
-            item.points!.isNotEmpty &&
-            item.isShowXDial) {
+        if (item.points.isNotEmpty && item.isShowXDial) {
           _drawXRuler(canvas, paint..color = xDialColor!, item.points);
         }
       }
@@ -320,7 +318,7 @@ class BrnLinePainter extends BrnBasePainter {
   }
 
   ///x轴刻度 & 辅助线
-  void _drawXRuler(Canvas canvas, Paint paint, List<BrnPointData>? points) {
+  void _drawXRuler(Canvas canvas, Paint paint, List<BrnPointData> points) {
     if (xDialValues != null && xDialValues!.isNotEmpty) {
       // 获取刻度长度
       for (var i = 0; i < xDialValues!.length; i++) {
@@ -512,21 +510,19 @@ class BrnLinePainter extends BrnBasePainter {
           lineIndex < _linePointPositions.length;
           lineIndex++) {
         BrnPointsLine item = lines[lineIndex];
-        if (item.isShowPointText &&
-            item.points != null &&
-            item.points!.isNotEmpty) {
-          var length = item.points!.length;
+        if (item.isShowPointText && item.points.isNotEmpty) {
+          var length = item.points.length;
           for (var i = 0; i < length; i++) {
-            if (item.points![i].pointText == null ||
-                item.points![i].pointText!.length == 0) {
+            if (item.points[i].pointText == null ||
+                item.points[i].pointText!.length == 0) {
               continue;
             }
             var tpX = TextPainter(
                 textAlign: TextAlign.center,
                 ellipsis: '.',
                 text: TextSpan(
-                    text: '${item.points![i].pointText}',
-                    style: item.points![i].pointTextStyle),
+                    text: '${item.points[i].pointText}',
+                    style: item.points[i].pointTextStyle),
                 textDirection: TextDirection.ltr)
               ..layout();
             double adjustOffset = isAdjustPosition(lineIndex,
@@ -536,10 +532,10 @@ class BrnLinePainter extends BrnBasePainter {
             tpX.paint(
                 canvas,
                 Offset(
-                    (item.points![i].offset.dx) +
+                    (item.points[i].offset.dx) +
                         _linePointPositions[lineIndex][i].x -
                         tpX.width / 2,
-                    (item.points![i].offset.dy) +
+                    (item.points[i].offset.dy) +
                         _linePointPositions[lineIndex][i].y +
                         adjustOffset));
           }
