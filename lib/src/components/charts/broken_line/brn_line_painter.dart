@@ -182,7 +182,7 @@ class BrnLinePainter extends BrnBasePainter {
       _linePointPositions.clear();
       // 计算点和线的 数据，用于渲染。
       for (var item in lines) {
-        var paths = <Path?>[], shadowPaths = <Path?>[];
+        var paths = <Path>[], shadowPaths = <Path>[];
         var pointArr = <Point>[];
 
         if (item.points.isNotEmpty) {
@@ -253,10 +253,10 @@ class BrnLinePainter extends BrnBasePainter {
             shadowPaths: shadowPaths,
             shaderColors: item.shaderColors,
             points: item.isShowPoint ? pointArr : null,
-            pointColor: item.pointColor,
-            pointInnerColor: item.pointInnerColor,
+            pointColor: item.pointColor!,
+            pointInnerColor: item.pointInnerColor!,
             pointRadius: item.pointRadius,
-            pointInnerRadius: item.pointInnerRadius));
+            pointInnerRadius: item.pointInnerRadius!));
       }
     }
   }
@@ -388,25 +388,23 @@ class BrnLinePainter extends BrnBasePainter {
                   Rect.fromLTWH(_startX, _endY, _fixedWidth, _fixedHeight));
           canvas
             ..drawPath(
-                shadowPathElement!,
+                shadowPathElement,
                 Paint()
                   ..shader = shader
                   ..isAntiAlias = true
                   ..style = PaintingStyle.fill);
         });
       }
-      if (element.paths != null) {
-        //路径
-        element.paths!.forEach((pathElement) {
-          var pathPaint = Paint()
-            ..isAntiAlias = true
-            ..strokeWidth = element.pathWidth!
-            ..strokeCap = StrokeCap.round
-            ..color = element.pathColor!
-            ..style = PaintingStyle.stroke;
-          canvas.drawPath(pathElement!, pathPaint);
-        });
-      }
+      //路径
+      element.paths.forEach((pathElement) {
+        var pathPaint = Paint()
+          ..isAntiAlias = true
+          ..strokeWidth = element.pathWidth
+          ..strokeCap = StrokeCap.round
+          ..color = element.pathColor
+          ..style = PaintingStyle.stroke;
+        canvas.drawPath(pathElement, pathPaint);
+      });
       if (element.points != null) {
         //点
         // 画圆环的计算规则是：
@@ -417,13 +415,13 @@ class BrnLinePainter extends BrnBasePainter {
           var pointPaint = Paint()
             ..isAntiAlias = true
             ..strokeCap = StrokeCap.round
-            ..color = element.pointColor!
-            ..strokeWidth = element.pointRadius! - element.pointInnerRadius!
+            ..color = element.pointColor
+            ..strokeWidth = element.pointRadius - element.pointInnerRadius
             ..style = PaintingStyle.stroke; //描边为居中描边
           canvas.drawCircle(
               Offset(pointElement.x as double, pointElement.y as double),
-              (element.pointRadius! - element.pointInnerRadius!) / 2 +
-                  element.pointInnerRadius!,
+              (element.pointRadius - element.pointInnerRadius) / 2 +
+                  element.pointInnerRadius,
               pointPaint);
         });
 
@@ -441,12 +439,12 @@ class BrnLinePainter extends BrnBasePainter {
             ..style = PaintingStyle.fill;
           canvas.drawCircle(
               Offset(pointElement.x as double, pointElement.y as double),
-              element.pointInnerRadius!,
+              element.pointInnerRadius,
               pointPaintBg);
 
           if (currentLineIndex == lineSelectIndex &&
               currentPointIndex == pointSelectIndex) {
-            color = element.pointInnerColor!;
+            color = element.pointInnerColor;
           }
           var pointPaint = Paint()
             ..isAntiAlias = true
@@ -455,7 +453,7 @@ class BrnLinePainter extends BrnBasePainter {
             ..style = PaintingStyle.fill;
           canvas.drawCircle(
               Offset(pointElement.x as double, pointElement.y as double),
-              element.pointInnerRadius!,
+              element.pointInnerRadius,
               pointPaint);
         });
       }
@@ -575,31 +573,31 @@ class BrnLinePainter extends BrnBasePainter {
 
 //绘制图表的计算之后的结果模型集
 class LineCanvasModel {
-  List<Path?>? paths;
-  Color? pathColor;
-  double? pathWidth;
+  final List<Path> paths;
+  final Color pathColor;
+  final double pathWidth;
 
-  List<Path?>? shadowPaths;
-  List<Color>? shaderColors;
+  final List<Path>? shadowPaths;
+  final List<Color>? shaderColors;
 
-  List<Point>? points;
-  Color? pointColor;
-  double? pointRadius;
-  double? pointInnerRadius;
-  Color? pointInnerColor;
-  bool showPointText;
+  final List<Point>? points;
+  final Color pointColor;
+  final double pointRadius;
+  final double pointInnerRadius;
+  final Color pointInnerColor;
+  final bool showPointText;
 
-  LineCanvasModel({
-    this.paths,
-    this.pathColor,
-    this.pathWidth,
-    this.shadowPaths,
-    this.shaderColors,
-    this.points,
-    this.pointColor,
-    this.pointRadius,
-    this.pointInnerRadius,
-    this.pointInnerColor,
+  const LineCanvasModel({
+    required this.paths,
+    required this.pathColor,
+    required this.pathWidth,
+    required this.shadowPaths,
+    required this.shaderColors,
+    required this.points,
+    required this.pointColor,
+    required this.pointRadius,
+    required this.pointInnerRadius,
+    required this.pointInnerColor,
     this.showPointText = false,
   });
 }
