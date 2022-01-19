@@ -49,7 +49,7 @@ class DoughnutChartLegend extends StatelessWidget {
         children: items,
       );
     } else {
-      return Container();
+      return const SizedBox.shrink();
     }
   }
 

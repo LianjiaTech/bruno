@@ -230,7 +230,7 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
                 (lineSelectIndex >= 0 && pointSelectIndex >= 0)
                     ? _buildTouchTipWidget(
                         widget.lines[lineSelectIndex].points![pointSelectIndex])
-                    : Container(),
+                    : const SizedBox.shrink(),
               ]),
             ),
           ),
@@ -278,16 +278,10 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
                 width: selectLinePoint.tipWindowSize.width,
                 child: content));
       } else {
-        touchTipWidget = Container(
-          height: 0,
-          width: 0,
-        );
+        touchTipWidget = const SizedBox.shrink();
       }
     } else {
-      touchTipWidget = Container(
-        height: 0,
-        width: 0,
-      );
+      touchTipWidget = const SizedBox.shrink();
     }
 
     return touchTipWidget;
