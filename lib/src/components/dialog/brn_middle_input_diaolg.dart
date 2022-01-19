@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +6,13 @@ import 'package:flutter/services.dart';
 /// 可输入文字的弹窗。从上至下依次是 标题[title]、提示信息[message]、输入框，底部左右两个按钮，左边取消，右边确定。
 class BrnMiddleInputDialog {
   /// 标题
-  final String title;
+  final String? title;
 
   /// 辅助提示信息
-  final String message;
+  final String? message;
 
   /// 输入框占位文字
-  final String hintText;
+  final String? hintText;
 
   /// 最多可输入多少字符，默认20个
   final int maxLength;
@@ -26,13 +24,13 @@ class BrnMiddleInputDialog {
   final String confirmText;
 
   /// 点击确定时的回调，参数为输入框中的字符
-  final void Function(String value) onConfirm;
+  final void Function(String value)? onConfirm;
 
   /// 弹窗样式。具体参见 [BrnDialogStyle]
-  final BrnDialogStyle dialogStyle;
+  final BrnDialogStyle? dialogStyle;
 
   /// 点击取消时的回调
-  final VoidCallback onCancel;
+  final VoidCallback? onCancel;
 
   /// 点击蒙层背景，弹窗是否可关闭。默认为 true，可关闭
   final bool barrierDismissible;
@@ -44,16 +42,16 @@ class BrnMiddleInputDialog {
   final int minLines;
 
   /// 可输入的最多行数。超过 [maxLines] 指定的行数后，输入内容会变成可滑动
-  final int maxLines;
+  final int? maxLines;
 
   /// 焦点控制 [FocusNode]
-  final FocusNode inputFocusNode;
+  final FocusNode? inputFocusNode;
 
   /// 输入控制器。如果有初始状态的填充文字，可以通过 [inputEditingController] 设置
-  final TextEditingController inputEditingController;
+  final TextEditingController? inputEditingController;
 
   /// 输入内容格式控制器
-  final List<TextInputFormatter> inputFormatters;
+  final List<TextInputFormatter>? inputFormatters;
 
   /// 键盘操作按钮类型,参见系统的 [TextField.textInputAction]，默认为 [TextInputAction.newline]
   final TextInputAction textInputAction;
@@ -86,11 +84,11 @@ class BrnMiddleInputDialog {
   }
 
   void _doShow(BuildContext context) {
-    String _value = inputEditingController?.text;
+    String _value = inputEditingController?.text ?? "";
     var dialogMessageWidgets = <Widget>[];
-    if (message != null && message.length > 0) {
+    if (message != null && message!.length > 0) {
       dialogMessageWidgets.add(Text(
-        message,
+        message!,
         style: cContentTextStyle,
         textAlign: cContentTextAlign,
       ));
@@ -102,12 +100,13 @@ class BrnMiddleInputDialog {
     if (inputFormatters == null) {
       tmpInputFormatters = [LengthLimitingTextInputFormatter(maxLength)];
     } else {
-      tmpInputFormatters = List()
-        ..addAll(inputFormatters)
+      tmpInputFormatters = []
+        ..addAll(inputFormatters!)
         ..add(LengthLimitingTextInputFormatter(maxLength));
     }
 
     dialogMessageWidgets.add(TextField(
+      maxLengthEnforcement: MaxLengthEnforcement.enforced,
       textInputAction: this.textInputAction,
       focusNode: inputFocusNode,
       controller: inputEditingController,
@@ -116,7 +115,7 @@ class BrnMiddleInputDialog {
       //光标颜色
       cursorColor:
           BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
-      autofocus: autoFocus ?? false,
+      autofocus: autoFocus,
       //光标圆角弧度
       cursorRadius: Radius.circular(2.0),
       style: TextStyle(
@@ -125,7 +124,6 @@ class BrnMiddleInputDialog {
               .getConfig()
               .commonConfig
               .colorTextBase),
-      maxLengthEnforced: true,
       onChanged: (value) {
         _value = value;
       },
@@ -163,7 +161,7 @@ class BrnMiddleInputDialog {
         cancel: cancelText,
         confirm: confirmText,
         title: title,
-        barrierDismissible: barrierDismissible ?? true,
+        barrierDismissible: barrierDismissible,
         dialogStyle: dialogStyle ?? BrnDialogStyle(),
         messageWidget: Padding(
           padding: const EdgeInsets.only(top: 12, left: 24, right: 24),
@@ -172,9 +170,9 @@ class BrnMiddleInputDialog {
             children: dialogMessageWidgets,
           ),
         ), onConfirm: () {
-      if (onConfirm != null) onConfirm(_value);
+      if (onConfirm != null) onConfirm!(_value);
     }, onCancel: () {
-      if (onCancel != null) onCancel();
+      if (onCancel != null) onCancel!();
     });
   }
 }

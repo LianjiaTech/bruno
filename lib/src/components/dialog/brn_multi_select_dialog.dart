@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/dialog/brn_content_export_dialog.dart';
 import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
@@ -38,10 +36,10 @@ class BrnMultiSelectDialog extends Dialog {
   final String title;
 
   /// 描述文案
-  final String messageText;
+  final String? messageText;
 
   /// 描述widget
-  final Widget messageWidget;
+  final Widget? messageWidget;
 
   /// 选项集合
   final List<MultiSelectItem> conditions;
@@ -50,16 +48,16 @@ class BrnMultiSelectDialog extends Dialog {
   final String submitText;
 
   /// 点击操作按钮
-  final BrnMultiSelectDialogClickSubmitCallback onSubmitClick;
+  final BrnMultiSelectDialogClickSubmitCallback? onSubmitClick;
 
   /// 点击选项操作 可供埋点需求用
-  final BrnMultiSelectDialogOnItemClickCallback onItemClick;
+  final BrnMultiSelectDialogOnItemClickCallback? onItemClick;
 
   /// 操作按钮背景色
-  final Color submitBgColor;
+  final Color? submitBgColor;
 
   /// 自定义widget
-  final Widget customWidget;
+  final Widget? customWidget;
 
   /// 是否支持滚动 默认true支持滚动
   final bool isCustomFollowScroll;
@@ -70,7 +68,7 @@ class BrnMultiSelectDialog extends Dialog {
   BrnMultiSelectDialog({
     this.isClose = true,
     this.title = "",
-    this.conditions,
+    required this.conditions,
     this.messageText,
     this.messageWidget,
     this.customWidget,
@@ -106,31 +104,31 @@ class MultiSelect extends StatefulWidget {
   final bool isClose;
 
   /// 标题
-  final String title;
+  final String? title;
 
   /// 描述文案
-  final String messageText;
+  final String? messageText;
 
   /// 描述widget
-  final Widget messageWidget;
+  final Widget? messageWidget;
 
   /// 选项集合
   final List<MultiSelectItem> conditions;
 
   /// 操作按钮文案
-  final String submitText;
+  final String? submitText;
 
   /// 点击操作按钮
-  final BrnMultiSelectDialogClickSubmitCallback onSubmitClick;
+  final BrnMultiSelectDialogClickSubmitCallback? onSubmitClick;
 
   /// 点击选项操作
-  final BrnMultiSelectDialogOnItemClickCallback onItemClick;
+  final BrnMultiSelectDialogOnItemClickCallback? onItemClick;
 
   /// 操作按钮背景色
-  final Color submitBgColor;
+  final Color? submitBgColor;
 
   /// 自定义widget
-  final Widget customWidget;
+  final Widget? customWidget;
 
   /// 是否支持滚动
   final bool isCustomFollowScroll;
@@ -139,18 +137,18 @@ class MultiSelect extends StatefulWidget {
   final bool isShowOperateWidget;
 
   MultiSelect({
-    this.isClose,
+    this.isClose = true,
     this.title,
     this.messageText,
     this.messageWidget,
     this.customWidget,
-    this.isCustomFollowScroll,
-    this.conditions,
+    this.isCustomFollowScroll = true,
+    required this.conditions,
     this.submitText,
     this.submitBgColor,
     this.onSubmitClick,
     this.onItemClick,
-    this.isShowOperateWidget,
+    this.isShowOperateWidget = true,
   });
 
   @override
@@ -177,7 +175,7 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) =>
                                 _buildItem(context, index),
-                            itemCount: widget.conditions?.length),
+                            itemCount: widget.conditions.length),
                         widget.customWidget != null
                             ? Container(
                                 child: widget.customWidget,
@@ -197,7 +195,7 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                         child: ListView.builder(
                             itemBuilder: (context, index) =>
                                 _buildItem(context, index),
-                            itemCount: widget.conditions?.length),
+                            itemCount: widget.conditions.length),
                       ),
                       widget.customWidget != null
                           ? Container(
@@ -220,14 +218,14 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
       submitBgColor: widget.submitBgColor,
       isShowOperateWidget: widget.isShowOperateWidget,
       onSubmit: () {
-        List<MultiSelectItem> tempList = List();
+        List<MultiSelectItem> tempList = [];
         if (widget.onSubmitClick != null) {
-          for (int i = 0; i < widget.conditions?.length; i++) {
+          for (int i = 0; i < widget.conditions.length; i++) {
             if (widget.conditions[i].isChecked) {
               tempList.add(widget.conditions[i]);
             }
           }
-          if (widget.onSubmitClick(tempList)) Navigator.of(context).pop();
+          if (widget.onSubmitClick!(tempList)) Navigator.of(context).pop();
         }
       },
     );
@@ -248,7 +246,7 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
         padding: EdgeInsets.only(bottom: 8, left: 20, right: 20),
         child: Center(
           child: Text(
-            widget.messageText,
+            widget.messageText!,
             style: cContentTextStyle,
           ),
         ),
@@ -258,59 +256,55 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
   }
 
   Widget _buildItem(BuildContext context, int index) {
-    if (widget.conditions[index] == null) {
-      return Container();
-    } else {
-      return GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () {
-            setState(() {
-              widget.conditions[index].isChecked =
-                  !widget.conditions[index].isChecked;
-            });
-            if (widget.onItemClick != null) {
-              widget.onItemClick(context, index);
-            }
-          },
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                        child: Text(widget.conditions[index].content,
-                            style: TextStyle(
-                                fontWeight: widget.conditions[index].isChecked
-                                    ? FontWeight.w600
-                                    : FontWeight.normal,
-                                fontSize: 16,
-                                color: widget.conditions[index].isChecked
-                                    ? BrnThemeConfigurator.instance
-                                        .getConfig()
-                                        .commonConfig
-                                        .brandPrimary
-                                    : BrnThemeConfigurator.instance
-                                        .getConfig()
-                                        .commonConfig
-                                        .colorTextBase))),
-                    Container(
-                        alignment: Alignment.center,
-                        height: 44,
-                        child: widget.conditions[index].isChecked
-                            ? BrunoTools.getAssetImageWithBandColor(
-                                BrnAsset.iconMultiSelected)
-                            : BrunoTools.getAssetImage(BrnAsset.iconUnSelect)),
-                  ],
-                ),
+    return GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          setState(() {
+            widget.conditions[index].isChecked =
+                !widget.conditions[index].isChecked;
+          });
+          if (widget.onItemClick != null) {
+            widget.onItemClick!(context, index);
+          }
+        },
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                      child: Text(widget.conditions[index].content,
+                          style: TextStyle(
+                              fontWeight: widget.conditions[index].isChecked
+                                  ? FontWeight.w600
+                                  : FontWeight.normal,
+                              fontSize: 16,
+                              color: widget.conditions[index].isChecked
+                                  ? BrnThemeConfigurator.instance
+                                      .getConfig()
+                                      .commonConfig
+                                      .brandPrimary
+                                  : BrnThemeConfigurator.instance
+                                      .getConfig()
+                                      .commonConfig
+                                      .colorTextBase))),
+                  Container(
+                      alignment: Alignment.center,
+                      height: 44,
+                      child: widget.conditions[index].isChecked
+                          ? BrunoTools.getAssetImageWithBandColor(
+                              BrnAsset.iconMultiSelected)
+                          : BrunoTools.getAssetImage(BrnAsset.iconUnSelect)),
+                ],
               ),
-              index != widget.conditions.length - 1
-                  ? Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      child: BrnLine())
-                  : Container()
-            ],
-          ));
-    }
+            ),
+            index != widget.conditions.length - 1
+                ? Padding(
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: BrnLine())
+                : Container()
+          ],
+        ));
   }
 }
