@@ -215,7 +215,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
   }
 
   static double maxYAxisWidth(ChartAxis yAxis) {
-    Size getTextAreaSize(String? text, TextStyle textStyle) {
+    Size getTextAreaSize(String text, TextStyle textStyle) {
       TextPainter textPainter = TextPainter(
         text: TextSpan(text: text, style: textStyle),
         textDirection: TextDirection.ltr,
@@ -625,7 +625,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
       if (null != barItem.showBarValueText) {
         TextPainter textPainter = TextPainter(
             text: TextSpan(
-                text: barItem.showBarValueText ?? '',
+                text: barItem.showBarValueText!,
                 style: barItem.showBarValueTextStyle),
             textDirection: TextDirection.ltr)
           ..layout(maxWidth: double.infinity, minWidth: 0);
@@ -749,7 +749,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
     });
   }
 
-  Size getTextAreaSize(String? text, TextStyle textStyle) {
+  Size getTextAreaSize(String text, TextStyle textStyle) {
     TextPainter textPainter = TextPainter(
       text: TextSpan(text: text, style: textStyle),
       textDirection: TextDirection.ltr,
