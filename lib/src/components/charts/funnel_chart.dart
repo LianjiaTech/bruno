@@ -576,7 +576,7 @@ class BrnFunnelRender extends RenderFunnelChart {
       }
 
       //绘制layer文案
-      double? safeLeft, safeTop, safeRight, safeBottom;
+      late double safeLeft, safeTop, safeRight, safeBottom;
       if (_shape == FunnelShape.LeftAndRight) {
         safeTop = i * layerHeight + i * layerMargin;
         if (alignment == MarkerAlignment.right) {
@@ -719,7 +719,7 @@ abstract class BrnFunnelLayerPainter {
   ///[canvas] 提供的画布，对画布进行旋转裁剪等特殊操作，一定要调用[canvas.save()]操作。
   ///[left],[top],[right],[bottom]是提供给调用者绘制的一个安全区域，超过这个区域限制，可能会被截断
   ///[layerIndex] 漏斗的layer index。
-  void paintLayer(Canvas canvas, double left, double? top, double right,
+  void paintLayer(Canvas canvas, double left, double top, double right,
       double bottom, int layerIndex);
 }
 
