@@ -56,9 +56,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: Condensed
+     - family: Bebas
        fonts:
-         - asset: assets/fonts/DINCondensed-Bold.ttf
+         - asset: assets/fonts/Bebas-Regular.ttf
 #           weight: 700
   #   - family: Trajan Pro
   #     fonts:
