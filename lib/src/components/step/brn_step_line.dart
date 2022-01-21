@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +5,10 @@ import 'package:flutter/material.dart';
 ///[timeAxisSize]时间轴的大小必须要的。
 ///
 ///线条顶部小圆点的大小
-final double _roundSize = 12;
+const double _roundSize = 12;
 
 /// 线条和小圆点之间的间距
-final int _roundSpace = 4;
+const double _roundSpace = 4;
 
 /// 在[contentWidget]的左侧自动添加 竖向步骤条的组件
 ///
@@ -87,7 +85,7 @@ class BrnStepLine extends StatefulWidget {
   ///整体是否是灰色，true 则使用normalColor，否则使用highlightColor
   final bool isGrey;
 
-  ///边框线的颜色：必须是Color 或者 List<Color>，如果未null，则会根据isGrey来使用normalColor或highlightColor
+  ///边框线的颜色：必须是Color 或者 List<Color>，如果为null，则会根据isGrey来使用normalColor或highlightColor
   final dynamic lineColor;
 
   /// 边框包裹的widget
@@ -112,17 +110,17 @@ class BrnStepLine extends StatefulWidget {
   final double contentLeftPadding;
 
   /// 普通状态(isGrey=true)的颜色，默认值： Color(0xffeeeeee)
-  final Color normalColor;
+  final Color? normalColor;
 
   /// 高亮状态(isGrey=false)的颜色，默认值，主题色
-  final Color highlightColor;
+  final Color? highlightColor;
 
   /// 自定义icon的widget
-  final Widget iconWidget;
+  final Widget? iconWidget;
 
   const BrnStepLine({
-    Key key,
-    @required this.contentWidget,
+    Key? key,
+    required this.contentWidget,
     this.isGrey = false,
     this.lineColor,
     this.lineWidth = 2,
@@ -131,10 +129,10 @@ class BrnStepLine extends StatefulWidget {
     this.dashLength = 4,
     this.dashSpace = 4,
     this.contentLeftPadding = 12,
-    this.normalColor = const Color(0xffeeeeee),
+    this.normalColor,
     this.highlightColor,
     this.iconWidget,
-  });
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -149,12 +147,13 @@ class _BrnStepLineState extends State<BrnStepLine> {
       children: <Widget>[
         CustomPaint(
           painter: _BrnStepLinePainter(
-              paintWidth: widget.lineWidth,
-              iconTopPadding: widget.iconTopPadding,
-              lineColor: _buildLineColor(),
-              isDash: widget.isDashLine,
-              dashLength: widget.dashLength,
-              dashSpace: widget.dashSpace),
+            paintWidth: widget.lineWidth,
+            iconTopPadding: widget.iconTopPadding,
+            lineColor: _buildLineColor(),
+            isDash: widget.isDashLine,
+            dashLength: widget.dashLength,
+            dashSpace: widget.dashSpace,
+          ),
           child: Container(
             padding: EdgeInsets.only(left: widget.contentLeftPadding),
             child: Container(
@@ -171,7 +170,7 @@ class _BrnStepLineState extends State<BrnStepLine> {
   }
 
   List<Color> _buildLineColor() {
-    List<Color> lineColor = List();
+    List<Color> lineColor = [];
 
     if (widget.lineColor != null) {
       if (widget.lineColor is Color) {
@@ -193,19 +192,18 @@ class _BrnStepLineState extends State<BrnStepLine> {
       }
     } else {
       if (widget.isGrey) {
-        return List<Color>()..add(widget.normalColor ?? Color(0xffeeeeee));
+        return [widget.normalColor ?? const Color(0xffeeeeee)];
       }
-      return List<Color>()
-        ..add(widget.highlightColor ??
-            BrnThemeConfigurator.instance
-                .getConfig()
-                .commonConfig
-                .brandPrimary);
+      return [
+        widget.highlightColor ??
+            BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary
+      ];
     }
   }
 
   Widget _buildGreyCircle() {
-    return _buildColorCircleWidget(widget.normalColor ?? Color(0xffeeeeee));
+    return _buildColorCircleWidget(
+        widget.normalColor ?? const Color(0xffeeeeee));
   }
 
   Widget _buildHighLightCircle() {
@@ -237,38 +235,39 @@ class _BrnStepLineState extends State<BrnStepLine> {
 class _BrnStepLinePainter extends CustomPainter {
   final List<Color> lineColor;
 
-  //边框的宽度
+  /// 边框的宽度
   final double paintWidth;
 
-  //icon距离顶部的padding
+  /// icon距离顶部的padding
   final double iconTopPadding;
 
-  //是否绘制虚线
+  /// 是否绘制虚线
   final bool isDash;
 
-  //虚线的间隔
+  /// 虚线的间隔
   final double dashSpace;
 
-  //虚线的长度
+  /// 虚线的长度
   final double dashLength;
 
   _BrnStepLinePainter(
-      {this.lineColor,
-      this.paintWidth = 1,
-      this.iconTopPadding,
-      this.isDash,
-      this.dashSpace,
-      this.dashLength});
+      {required this.lineColor,
+        this.paintWidth = 1,
+        required this.iconTopPadding,
+        required this.isDash,
+        required this.dashSpace,
+        required this.dashLength});
 
-  Paint _paint = Paint()
-    ..strokeCap = StrokeCap.round //画笔笔触类型
-    ..isAntiAlias = true; //是否启动抗锯齿; //画笔的宽度
+  final Paint _paint = Paint()
+    ..strokeCap = StrokeCap.round // 画笔笔触类型
+    ..isAntiAlias = true; // 是否启动抗锯齿;
 
   @override
   void paint(Canvas canvas, Size size) {
     _paint.style = PaintingStyle.stroke; // 画线模式
-    _paint.strokeWidth = this.paintWidth;
-    // 总长度 16是icon的长度 4是线条不通栏
+    _paint.strokeWidth = paintWidth;
+
+    /// 总长度 16是icon的长度 4是线条不通栏
     double height = size.height - 16 - 4;
     if (height <= 0) {
       return;
@@ -290,7 +289,7 @@ class _BrnStepLinePainter extends CustomPainter {
     int count = (height / (dashLength + dashSpace)).ceil();
 
     for (int i = 0, n = count; i < n; i++) {
-      Path path = new Path();
+      Path path = Path();
       path.moveTo(_roundSize / 2, temp);
       if (temp + dashLength < size.height - _roundSpace) {
         temp += dashLength;
@@ -314,7 +313,8 @@ class _BrnStepLinePainter extends CustomPainter {
 
   void _drawFillLine(double height, Canvas canvas) {
     double selection = height / lineColor.length;
-    //起始的位置 12是icon的长度 4是线条不通栏 化线的起点：icon的长度+自定义的icon的偏移量
+
+    /// 起始的位置 12是icon的长度 4是线条不通栏 化线的起点：icon的长度+自定义的icon的偏移量
     double temp = 12 + 4 + iconTopPadding;
     for (int i = 0, n = lineColor.length; i < n; ++i) {
       _paint.color = lineColor[i];

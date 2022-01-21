@@ -1,12 +1,11 @@
-// @dart=2.9
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class BrnHorizontalStepExamplePage extends StatefulWidget {
   final String title;
 
-  BrnHorizontalStepExamplePage({this.title});
+  const BrnHorizontalStepExamplePage({Key? key, required this.title})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -14,49 +13,164 @@ class BrnHorizontalStepExamplePage extends StatefulWidget {
   }
 }
 
-class BrnHorizontalStepExamplePageState extends State<BrnHorizontalStepExamplePage> {
-  int _index;
-  BrnHorizontalStepsManager _stepsManager = BrnHorizontalStepsManager();
+class BrnHorizontalStepExamplePageState
+    extends State<BrnHorizontalStepExamplePage> {
+  late int _index;
+  double sliderValue = 2;
+  late BrnStepsController _controller;
+  late ValueNotifier<double> valueNotifier;
 
   @override
   void initState() {
-    _index = 1;
     super.initState();
+    _index = 0;
+    _controller = BrnStepsController(currentIndex: _index);
+    valueNotifier = ValueNotifier(sliderValue);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BrnAppBar(
-          title: widget.title,
-          actions: controlSteps(context),
-        ),
-        body: _stepsManager.buildSteps(currentIndex: _index, isCompleted: false, steps: <BrunoStep>[
-          BrunoStep(
-            stepContentText: "文案步骤",
+      appBar: BrnAppBar(title: widget.title),
+      body: Column(
+        children: [
+          SliverBrnHorizontalStep(
+            controller: _controller,
+            valueNotifier: valueNotifier,
           ),
-          BrunoStep(
-            stepContentText: "文案步骤",
+          const Text('步骤个数：'),
+          SliderWidget(
+            initValue: sliderValue,
+            valueNotifier: valueNotifier,
           ),
-          BrunoStep(
-            stepContentText: "文案步骤",
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                child: const Text('上一步'),
+                onPressed: () {
+                  _controller.backStep();
+                },
+              ),
+              ElevatedButton(
+                child: const Text('下一步'),
+                onPressed: () {
+                  _controller.forwardStep();
+                },
+              ),
+            ],
           ),
-          BrunoStep(
-            stepContentText: "文案步骤",
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                child: const Text('跳至第3步'),
+                onPressed: () {
+                  _controller.setCurrentIndex(2);
+                },
+              ),
+              ElevatedButton(
+                child: const Text('完成'),
+                onPressed: () {
+                  _controller.setCompleted();
+                },
+              ),
+            ],
           ),
-        ]));
+        ],
+      ),
+    );
+  }
+}
+
+/// 自定义 widget
+class SliderWidget extends StatefulWidget {
+  const SliderWidget({
+    Key? key,
+    required this.initValue,
+    required this.valueNotifier,
+  }) : super(key: key);
+  final double initValue;
+  final ValueNotifier<double> valueNotifier;
+
+  @override
+  _SliderWidgetState createState() => _SliderWidgetState();
+}
+
+class _SliderWidgetState extends State<SliderWidget> {
+  late double sliderValue;
+
+  @override
+  void initState() {
+    super.initState();
+    sliderValue = widget.initValue;
   }
 
-  List<Widget> controlSteps(BuildContext context) {
-    List<Widget> result = List<Widget>();
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      value: sliderValue,
+      min: 2,
+      max: 5,
+      divisions: 3,
+      onChanged: (value) {
+        setState(() {
+          sliderValue = value;
+          widget.valueNotifier.value = value;
+        });
+      },
+    );
+  }
+}
 
-    result.add(BrnTextAction("上一步", iconPressed: () {
-      _stepsManager.backStep();
-    }));
+/// 自定义 widget
+class SliverBrnHorizontalStep extends StatefulWidget {
+  const SliverBrnHorizontalStep({
+    Key? key,
+    required this.controller,
+    required this.valueNotifier,
+  }) : super(key: key);
+  final BrnStepsController controller;
+  final ValueNotifier<double> valueNotifier;
 
-    result.add(BrnTextAction("下一步", iconPressed: () {
-      _stepsManager.forwardStep();
-    }));
-    return result;
+  @override
+  _SliverBrnHorizontalStepsState createState() => _SliverBrnHorizontalStepsState();
+}
+
+class _SliverBrnHorizontalStepsState extends State<SliverBrnHorizontalStep> {
+  List<BrunoStep> brunoSteps() {
+    final List<BrunoStep> _list = [];
+    final int value = widget.valueNotifier.value.toInt();
+    for (int i = 0; i < value; i++) {
+      _list.add(BrunoStep(stepContentText: ('第${i + 1}步')));
+    }
+    return _list;
+  }
+
+  void _onChange() {
+    setState(() {
+      brunoSteps();
+      widget.controller.setCurrentIndex(0);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.valueNotifier.addListener(_onChange);
+  }
+
+  @override
+  void dispose() {
+    widget.valueNotifier.removeListener(_onChange);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BrnHorizontalSteps(
+      steps: brunoSteps(),
+      controller: widget.controller,
+    );
   }
 }
