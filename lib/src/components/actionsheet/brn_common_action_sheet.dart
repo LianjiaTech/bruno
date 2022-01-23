@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:ui';
 
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -28,16 +26,16 @@ class BrnCommonActionSheetItem {
   String title;
 
   /// 辅助信息
-  String desc;
+  String? desc;
 
   /// 样式 [BrnActionSheetActionStyle]
   final BrnCommonActionSheetItemStyle actionStyle;
 
   /// 主标题文本样式
-  final TextStyle titleStyle;
+  final TextStyle? titleStyle;
 
   /// 辅助信息文本样式
-  final TextStyle descStyle;
+  final TextStyle? descStyle;
 
   BrnCommonActionSheetItem(
     this.title, {
@@ -57,19 +55,19 @@ class BrnCommonActionSheet extends StatelessWidget {
   final List<BrnCommonActionSheetItem> actions;
 
   /// ActionSheet 标题
-  final String title;
+  final String? title;
 
   /// title区域widget, 与 title 字段互斥，当 titleWidget 不为 null 时优先使用 titleWidget。
-  final Widget titleWidget;
+  final Widget? titleWidget;
 
   /// Action 之间分割线颜色，默认值 Color(0xfff0f0f0)
-  final Color separatorLineColor;
+  final Color? separatorLineColor;
 
   /// 取消按钮与 Action 之间的分割线的颜色，默认值 Color(0xfff8f8f8)
   final Color spaceColor;
 
   /// 取消按钮文本
-  final String cancelTitle;
+  final String? cancelTitle;
 
   /// 标题最大行数，默认为2
   final int maxTitleLines;
@@ -79,16 +77,16 @@ class BrnCommonActionSheet extends StatelessWidget {
   final double maxSheetHeight;
 
   /// Action Item 的点击事件
-  final BrnCommonActionSheetItemClickCallBack clickCallBack;
+  final BrnCommonActionSheetItemClickCallBack? clickCallBack;
 
   /// Action Item 点击事件拦截回调
-  final BrnCommonActionSheetItemClickInterceptor onItemClickInterceptor;
+  final BrnCommonActionSheetItemClickInterceptor? onItemClickInterceptor;
 
   /// 主题定制
-  BrnActionSheetConfig themeData;
+  BrnActionSheetConfig? themeData;
 
   BrnCommonActionSheet({
-    @required this.actions,
+    required this.actions,
     this.title,
     this.titleWidget,
     this.cancelTitle,
@@ -99,10 +97,10 @@ class BrnCommonActionSheet extends StatelessWidget {
     this.maxSheetHeight = 0,
     this.onItemClickInterceptor,
     this.themeData,
-  }) : assert(actions != null) {
+  }) {
     themeData ??= BrnActionSheetConfig();
     themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
+        .getConfig(configId: themeData!.configId)
         .actionSheetConfig
         .merge(themeData);
   }
@@ -124,8 +122,8 @@ class BrnCommonActionSheet extends StatelessWidget {
             color: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(themeData.topRadius),
-                topRight: Radius.circular(themeData.topRadius),
+                topLeft: Radius.circular(themeData!.topRadius),
+                topRight: Radius.circular(themeData!.topRadius),
               ),
             ),
           ),
@@ -137,11 +135,11 @@ class BrnCommonActionSheet extends StatelessWidget {
 
   /// 构建actionSheet的按钮
   Widget _configActionWidgets(BuildContext context, double _maxSheetHeight) {
-    List<Widget> widgets = List();
+    List<Widget> widgets = [];
     // 构建整体标题
     if (titleWidget != null) {
       // 如果传入了则直接使用
-      widgets.add(titleWidget);
+      widgets.add(titleWidget!);
     } else if (title != null && title.toString().trim() != "") {
       // 如果只传入title则根据文案构建默认title
       widgets.add(_configTitleActions());
@@ -149,7 +147,7 @@ class BrnCommonActionSheet extends StatelessWidget {
     widgets.add(_configListActions(context));
     // 添加间隔
     widgets.add(Divider(
-      color: spaceColor ?? Color(0xfff8f8f8),
+      color: spaceColor,
       thickness: 8,
       height: 8,
     ));
@@ -170,13 +168,13 @@ class BrnCommonActionSheet extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          padding: themeData.titlePadding,
+          padding: themeData!.titlePadding,
           child: Center(
             child: Text(
-              title,
+              title!,
               textAlign: TextAlign.center,
               maxLines: maxTitleLines,
-              style: themeData.titleStyle.generateTextStyle(),
+              style: themeData!.titleStyle.generateTextStyle(),
             ),
           ),
         ),
@@ -184,7 +182,7 @@ class BrnCommonActionSheet extends StatelessWidget {
           //有标题则添加分割线
           thickness: 1,
           height: 1,
-          color: separatorLineColor ?? themeData.commonConfig.dividerColorBase,
+          color: separatorLineColor ?? themeData!.commonConfig.dividerColorBase,
         ),
       ],
     );
@@ -192,22 +190,22 @@ class BrnCommonActionSheet extends StatelessWidget {
 
   /// 构建列表widget
   Widget _configListActions(BuildContext context) {
-    List<Widget> tiles = List();
+    List<Widget> tiles = [];
     //构建列表内容
     for (int index = 0; index < actions.length; index++) {
       tiles.add(
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           child: Container(
-            padding: themeData.contentPadding,
+            padding: themeData!.contentPadding,
             child: _configTile(actions[index]),
           ),
           onTap: () {
             if (onItemClickInterceptor == null ||
-                !onItemClickInterceptor(index, actions[index])) {
+                !onItemClickInterceptor!(index, actions[index])) {
               // 推荐使用回调方法处理点击事件!!!!!!!!!!
               if (clickCallBack != null) {
-                clickCallBack(index, actions[index]);
+                clickCallBack!(index, actions[index]);
               }
               // 如果未拦截，则pop掉当前页面，并且携带信息（不建议使用此信息进行点击时间处理）
               Navigator.of(context).pop([index, actions[index]]);
@@ -218,7 +216,7 @@ class BrnCommonActionSheet extends StatelessWidget {
       tiles.add(Divider(
         thickness: 1,
         height: 1,
-        color: separatorLineColor ?? themeData.commonConfig.dividerColorBase,
+        color: separatorLineColor ?? themeData!.commonConfig.dividerColorBase,
       ));
     }
     return Flexible(
@@ -233,7 +231,7 @@ class BrnCommonActionSheet extends StatelessWidget {
   // 配置每个选项内部信息
   // action 每个item配置项 [BrnCommonActionSheetItem]
   Widget _configTile(BrnCommonActionSheetItem action) {
-    List<Widget> tileElements = List();
+    List<Widget> tileElements = [];
     bool hasTitle = false;
     // 如果有标题则添加标题
     if (action.title != null) {
@@ -243,10 +241,10 @@ class BrnCommonActionSheet extends StatelessWidget {
           maxLines: 1,
           style: action.titleStyle ??
               (action.actionStyle == BrnCommonActionSheetItemStyle.alert
-                  ? this.themeData.itemTitleStyleAlert.generateTextStyle()
+                  ? this.themeData!.itemTitleStyleAlert.generateTextStyle()
                   : (action.actionStyle == BrnCommonActionSheetItemStyle.link
-                      ? this.themeData.itemTitleStyleLink.generateTextStyle()
-                      : this.themeData.itemTitleStyle.generateTextStyle())),
+                      ? this.themeData!.itemTitleStyleLink.generateTextStyle()
+                      : this.themeData!.itemTitleStyle.generateTextStyle())),
         ),
       ));
       hasTitle = true;
@@ -262,15 +260,15 @@ class BrnCommonActionSheet extends StatelessWidget {
       tileElements.add(
         Center(
           child: Text(
-            action.desc,
+            action.desc!,
             textAlign: TextAlign.center,
             maxLines: 1,
             style: action.descStyle ??
                 (action.actionStyle == BrnCommonActionSheetItemStyle.alert
-                    ? this.themeData.itemDescStyleAlert.generateTextStyle()
+                    ? this.themeData!.itemDescStyleAlert.generateTextStyle()
                     : (action.actionStyle == BrnCommonActionSheetItemStyle.link
-                        ? this.themeData.itemDescStyleLink.generateTextStyle()
-                        : this.themeData.itemDescStyle.generateTextStyle())),
+                        ? this.themeData!.itemDescStyleLink.generateTextStyle()
+                        : this.themeData!.itemDescStyle.generateTextStyle())),
           ),
         ),
       );
@@ -294,8 +292,8 @@ class BrnCommonActionSheet extends StatelessWidget {
         padding: EdgeInsets.only(top: 12, bottom: 12),
         child: Center(
           child: Text(
-            (cancelTitle != null) ? cancelTitle : "取消",
-            style: this.themeData.cancelStyle.generateTextStyle(),
+            cancelTitle ?? "取消",
+            style: this.themeData!.cancelStyle.generateTextStyle(),
           ),
         ),
       ),
