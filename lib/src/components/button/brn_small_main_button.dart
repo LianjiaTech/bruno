@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:math';
 
@@ -36,20 +36,20 @@ class BrnSmallMainButton extends StatelessWidget {
   final String title;
 
   ///点击回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   ///是否可用，默认为true。false为不可用：置灰、不可点击。
   final bool isEnable;
-  final Color textColor;
-  final Color bgColor;
-  final double radius;
-  final FontWeight fontWeight;
-  final double fontSize;
-  final double maxWidth;
-  final double width;
+  final Color? textColor;
+  final Color? bgColor;
+  final double? radius;
+  final FontWeight? fontWeight;
+  final double? fontSize;
+  final double? maxWidth;
+  final double? width;
 
   /// 配置样式
-  final BrnButtonConfig themeData;
+  final BrnButtonConfig? themeData;
 
   /// 传入属性优先级最高，未传入的走默认配置，更多请看[BrnSmallMainButtonConfig.defaultConfig]
   const BrnSmallMainButton({
@@ -74,8 +74,7 @@ class BrnSmallMainButton extends StatelessWidget {
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig
-        .merge(defaultThemeConfig);
+        .buttonConfig.merge(defaultThemeConfig);
 
     TextPainter textPainter =
         TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
@@ -101,8 +100,8 @@ class BrnSmallMainButton extends StatelessWidget {
         } else {
           //外部要求最大宽度
           if (maxWidth != null) {
-            if (_maxWidth > maxWidth) {
-              _maxWidth = maxWidth;
+            if (_maxWidth > maxWidth!) {
+              _maxWidth = maxWidth!;
             }
           }
         }
@@ -112,13 +111,13 @@ class BrnSmallMainButton extends StatelessWidget {
         }
 
         return BrnNormalButton(
-          isEnable: isEnable ?? true,
+          isEnable: isEnable,
           constraints: BoxConstraints(
             minWidth: this.width ?? _minWidth,
             maxWidth: this.width ?? _maxWidth,
           ),
           alignment: Alignment.center,
-          text: title ?? '确认',
+          text: title,
           backgroundColor:
               bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
           disableBackgroundColor: Color(0xFFCCCCCC),

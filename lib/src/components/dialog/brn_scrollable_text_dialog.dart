@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/dialog/brn_content_export_dialog.dart';
 import 'package:bruno/src/utils/css/brn_core_funtion.dart';
 import 'package:bruno/src/utils/css/brn_css_2_text.dart';
@@ -10,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class BrnScrollableTextDialog extends Dialog {
   /// 标题
-  final String title;
+  final String? title;
 
   /// 是否可关闭 默认true支持关闭
   final bool isClose;
@@ -25,16 +23,16 @@ class BrnScrollableTextDialog extends Dialog {
   final double textFontSize;
 
   /// 提交按钮文字
-  final String submitText;
+  final String? submitText;
 
   /// 操作按钮背景色
-  final Color submitBgColor;
+  final Color? submitBgColor;
 
   /// 提交操作
-  final VoidCallback onSubmitClick;
+  final VoidCallback? onSubmitClick;
 
   /// 富文本超链接点击回调
-  final BrnHyperLinkCallback linksCallback;
+  final BrnHyperLinkCallback? linksCallback;
 
   /// 是否展示底部操作区域 默认true展示
   final bool isShowOperateWidget;
@@ -42,7 +40,7 @@ class BrnScrollableTextDialog extends Dialog {
   const BrnScrollableTextDialog(
       {this.title,
       this.isClose = true,
-      this.contentText,
+      required this.contentText,
       this.textColor = const Color(0xFF666666),
       this.textFontSize = 16,
       this.submitText,
@@ -69,7 +67,7 @@ class BrnScrollableTextDialog extends Dialog {
 
 class BrnScrollableText extends StatelessWidget {
   /// 标题
-  final String title;
+  final String? title;
 
   /// 是否可关闭
   final bool isClose;
@@ -78,37 +76,37 @@ class BrnScrollableText extends StatelessWidget {
   final String contentText;
 
   /// 文字颜色
-  final Color textColor;
+  final Color? textColor;
 
   /// 文字字体
-  final double textFontSize;
+  final double? textFontSize;
 
   /// 提交按钮文字
-  final String submitText;
+  final String? submitText;
 
   /// 提交操作
-  final VoidCallback onSubmitClick;
+  final VoidCallback? onSubmitClick;
 
   /// 操作按钮背景色
-  final Color submitBgColor;
+  final Color? submitBgColor;
 
   /// 富文本超链接点击回调
-  final BrnHyperLinkCallback linksCallback;
+  final BrnHyperLinkCallback? linksCallback;
 
   /// 是否展示底部操作区域
   final bool isShowOperateWidget;
 
   const BrnScrollableText(
       {this.title,
-      this.isClose,
-      this.contentText,
+      this.isClose = true,
+      required this.contentText,
       this.textColor,
       this.textFontSize,
       this.submitText,
       this.onSubmitClick,
       this.submitBgColor,
       this.linksCallback,
-      this.isShowOperateWidget});
+      this.isShowOperateWidget = true});
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +131,9 @@ class BrnScrollableText extends StatelessWidget {
       submitText: submitText,
       submitBgColor: submitBgColor,
       onSubmit: () {
-        onSubmitClick();
+        if (onSubmitClick != null) {
+          onSubmitClick!();
+        }
         Navigator.pop(context);
       },
       isShowOperateWidget: isShowOperateWidget,

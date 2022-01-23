@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:collection' show Queue;
 import 'dart:math' as math;
@@ -12,9 +12,9 @@ const double _kActiveFontSize = 10.0;
 const double _kInactiveFontSize = 9.0;
 const double _kTopMargin = 6.0;
 const double _kBottomMargin = 0.0;
-const double _kmiddleInterval = 4.0;
+const double _kMiddleInterval = 4.0;
 
-/// Tabbar显示状态
+/// tabBar显示状态
 enum BrnBottomTabBarDisplayType {
   /// 固定显示状态
   fixed,
@@ -28,8 +28,8 @@ enum BrnBottomTabBarDisplayType {
 /// 特别注意：默认关闭点击动画，为固定显示状态
 class BrnBottomTabBar extends StatefulWidget {
   BrnBottomTabBar({
-    Key key,
-    @required this.items,
+    Key? key,
+    required this.items,
     this.onTap,
     this.currentIndex = 0,
     BrnBottomTabBarDisplayType type = BrnBottomTabBarDisplayType.fixed,
@@ -38,25 +38,22 @@ class BrnBottomTabBar extends StatefulWidget {
     this.isAnimation = false,
     this.badgeColor,
     this.isInkResponse = false,
-  })  : assert(items != null),
-        assert(items.length >= 1),
+  })  : assert(items.length >= 1),
         assert(
           items.every((BrnBottomTabBarItem item) => item.title != null) == true,
           'Every item must have a non-null title',
         ),
         assert(0 <= currentIndex && currentIndex < items.length),
-        assert(iconSize != null),
-        type = type ??
-            (items.length <= 3
+        type = items.length <= 3
                 ? BrnBottomTabBarDisplayType.fixed
-                : BrnBottomTabBarDisplayType.shifting),
+                : BrnBottomTabBarDisplayType.shifting,
         super(key: key);
 
   /// 动画是否可见，默认：true
   final bool isAnimation;
 
   /// 未读弹窗背景颜色，默认：fixedColor
-  final Color badgeColor;
+  final Color? badgeColor;
 
   /// InkResponse:是否可访问, 默认：true
   final bool isInkResponse;
@@ -65,7 +62,7 @@ class BrnBottomTabBar extends StatefulWidget {
   final List<BrnBottomTabBarItem> items;
 
   /// Tab点击之后的回调函数
-  final ValueChanged<int> onTap;
+  final ValueChanged<int>? onTap;
 
   /// 当前活动项的索引值
   final int currentIndex;
@@ -74,7 +71,7 @@ class BrnBottomTabBar extends StatefulWidget {
   final BrnBottomTabBarDisplayType type;
 
   /// 底部Tab所选中时的颜色
-  final Color fixedColor;
+  final Color? fixedColor;
 
   /// Tab中图标的大小
   final double iconSize;
@@ -98,29 +95,29 @@ class _BottomNavigationTile extends StatelessWidget {
     this.isAnimation = true,
     this.isInkResponse = true,
     this.badgeColor,
-  }) : assert(selected != null);
+  }) ;
 
   final BrnBottomTabBarDisplayType type;
   final BrnBottomTabBarItem item;
   final Animation<double> animation;
   final double iconSize;
-  final VoidCallback onTap;
-  final ColorTween colorTween;
-  final double flex;
+  final VoidCallback? onTap;
+  final ColorTween? colorTween;
+  final double? flex;
   final bool selected;
-  final String indexLabel;
+  final String? indexLabel;
   final bool isAnimation;
   final bool isInkResponse;
-  final Color badgeColor;
+  final Color? badgeColor;
 
   /// 构建icon
   Widget _buildIcon() {
-    double tweenStart;
-    Color iconColor;
+    double? tweenStart;
+    Color? iconColor;
     switch (type) {
       case BrnBottomTabBarDisplayType.fixed:
         tweenStart = 8.0;
-        iconColor = colorTween.evaluate(animation);
+        iconColor = colorTween?.evaluate(animation);
         break;
       case BrnBottomTabBarDisplayType.shifting:
         tweenStart = 16.0;
@@ -150,7 +147,7 @@ class _BottomNavigationTile extends StatelessWidget {
     );
   }
 
-  /// 构建固定Lable
+  /// 构建固定Label
   /// 修改icon与text间距在这里修改
   Widget _buildFixedLabel() {
     double scale = isAnimation
@@ -164,11 +161,11 @@ class _BottomNavigationTile extends StatelessWidget {
       heightFactor: 1.0,
       child: Container(
         margin: const EdgeInsets.only(
-            bottom: _kBottomMargin, top: _kmiddleInterval),
+            bottom: _kBottomMargin, top: _kMiddleInterval),
         child: DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: _kActiveFontSize,
-            color: colorTween.evaluate(animation),
+            color: colorTween?.evaluate(animation),
           ),
 
           /// 使用矩阵变化控制字体大小
@@ -186,7 +183,7 @@ class _BottomNavigationTile extends StatelessWidget {
     );
   }
 
-  /// 构建可变Lable
+  /// 构建可变Label
   Widget _buildShiftingLabel() {
     return Align(
       alignment: Alignment.bottomCenter,
@@ -208,7 +205,7 @@ class _BottomNavigationTile extends StatelessWidget {
               fontSize: _kActiveFontSize,
               color: Colors.blue,
             ),
-            child: item.title,
+            child: item.title!,
           ),
         ),
       ),
@@ -216,8 +213,8 @@ class _BottomNavigationTile extends StatelessWidget {
   }
 
   /// 构建未读消息弹窗
-  Widget _buildBadge() {
-    if (item.badge == null && (item.badgeNo == null || item.badgeNo.isEmpty)) {
+  Widget? _buildBadge() {
+    if (item.badge == null && (item.badgeNo == null || item.badgeNo!.isEmpty)) {
       return Container();
     }
     if (item.badge != null) {
@@ -233,15 +230,27 @@ class _BottomNavigationTile extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Text(
         /// 设置未读数 > item.maxBadgeNo 则报加+ 默认 99
-        '${int.parse(item.badgeNo) > item.maxBadgeNo ? '${item.maxBadgeNo}+' : item.badgeNo}',
+        _getUnReadText(),
         style: TextStyle(fontSize: 10, color: Colors.white),
       ),
     );
   }
 
+  String _getUnReadText(){
+    int _badgeNo = 0;
+    try {
+      if (item.badgeNo != null) {
+        _badgeNo = int.parse(item.badgeNo!);
+      }
+    } catch (e) {
+      debugPrint('badgeNo has FormatException');
+    }
+    return '${_badgeNo > item.maxBadgeNo ? '${item.maxBadgeNo}+' : _badgeNo}';
+  }
+
   /// 构建底字体缩放动画
   /// label: 传入的文字组件
-  Widget _buildInkWidget(Widget label) {
+  Widget _buildInkWidget(Widget? label) {
     if (isInkResponse) {
       return InkResponse(
         onTap: onTap,
@@ -251,7 +260,7 @@ class _BottomNavigationTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             _buildIcon(),
-            label,
+            label!,
           ],
         ),
       );
@@ -264,7 +273,7 @@ class _BottomNavigationTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             _buildIcon(),
-            label,
+            label!,
           ],
         ));
   }
@@ -275,15 +284,15 @@ class _BottomNavigationTile extends StatelessWidget {
     /// 需要将flex分配中的更改划分为更小的块
     /// 制作流畅的动画。我们通过将flex值相乘来实现这一点
     /// (这是一个整数)乘以一个大数。
-    int size;
-    Widget label;
+    late int size;
+    Widget? label;
     switch (type) {
       case BrnBottomTabBarDisplayType.fixed:
         size = 1;
         label = _buildFixedLabel();
         break;
       case BrnBottomTabBarDisplayType.shifting:
-        size = (flex * 1000.0).round();
+        size = (flex! * 1000.0).round();
         label = _buildShiftingLabel();
         break;
     }
@@ -296,7 +305,7 @@ class _BottomNavigationTile extends StatelessWidget {
         selected: selected,
         child: Stack(
           children: <Widget>[
-            Positioned(right: 4, top: 4, child: _buildBadge()),
+            Positioned(right: 4, top: 4, child: _buildBadge()!),
             _buildInkWidget(label),
             Semantics(
               label: indexLabel,
@@ -312,13 +321,13 @@ class _BottomNavigationTile extends StatelessWidget {
 class _BottomTabBarState extends State<BrnBottomTabBar>
     with TickerProviderStateMixin {
   List<AnimationController> _controllers = <AnimationController>[];
-  List<CurvedAnimation> _animations;
+  late List<CurvedAnimation> _animations;
 
   /// 当前正在执行图标变色逻辑的队列
   final Queue<_Circle> _circles = Queue<_Circle>();
 
   /// 执行完动画之后的背景颜色
-  Color _backgroundColor;
+  Color? _backgroundColor;
 
   static final Animatable<double> _flexTween =
       Tween<double>(begin: 1.0, end: 1.5);
@@ -375,7 +384,7 @@ class _BottomTabBarState extends State<BrnBottomTabBar>
         _Circle(
           state: this,
           index: index,
-          color: widget.items[index].backgroundColor,
+          color: widget.items[index].backgroundColor!,
           vsync: this,
         )..controller.addStatusListener(
             (AnimationStatus status) {
@@ -429,13 +438,12 @@ class _BottomTabBarState extends State<BrnBottomTabBar>
   List<Widget> _createTiles() {
     final MaterialLocalizations localizations =
         MaterialLocalizations.of(context);
-    assert(localizations != null);
     final List<Widget> children = <Widget>[];
     switch (widget.type) {
       case BrnBottomTabBarDisplayType.fixed:
         final ThemeData themeData = Theme.of(context);
         final TextTheme textTheme = themeData.textTheme;
-        Color themeColor;
+        Color? themeColor;
         switch (themeData.brightness) {
           case Brightness.light:
             themeColor = themeData.primaryColor;
@@ -445,7 +453,7 @@ class _BottomTabBarState extends State<BrnBottomTabBar>
             break;
         }
         final ColorTween colorTween = ColorTween(
-          begin: textTheme.caption.color,
+          begin: textTheme.caption!.color,
           end: widget.fixedColor ?? themeColor,
         );
         for (int i = 0; i < widget.items.length; i += 1) {
@@ -456,7 +464,7 @@ class _BottomTabBarState extends State<BrnBottomTabBar>
               _animations[i],
               widget.iconSize,
               onTap: () {
-                if (widget.onTap != null) widget.onTap(i);
+                if (widget.onTap != null) widget.onTap!(i);
               },
               colorTween: colorTween,
               selected: i == widget.currentIndex,
@@ -480,7 +488,7 @@ class _BottomTabBarState extends State<BrnBottomTabBar>
               _animations[i],
               widget.iconSize,
               onTap: () {
-                if (widget.onTap != null) widget.onTap(i);
+                if (widget.onTap != null) widget.onTap!(i);
               },
               flex: _evaluateFlex(_animations[i]),
               selected: i == widget.currentIndex,
@@ -520,7 +528,7 @@ class _BottomTabBarState extends State<BrnBottomTabBar>
     /// 下标题距底部距离
     final double additionalBottomPadding =
         math.max(MediaQuery.of(context).padding.bottom - _kBottomMargin, 0.0);
-    Color backgroundColor;
+    Color? backgroundColor;
     switch (widget.type) {
       case BrnBottomTabBarDisplayType.fixed:
         break;
@@ -579,13 +587,11 @@ class _BottomTabBarState extends State<BrnBottomTabBar>
 /// 功能：实现点击飞溅动画
 class _Circle {
   _Circle({
-    @required this.state,
-    @required this.index,
-    @required this.color,
-    @required TickerProvider vsync,
-  })  : assert(state != null),
-        assert(index != null),
-        assert(color != null) {
+    required this.state,
+    required this.index,
+    required this.color,
+    required TickerProvider vsync,
+  }) {
     controller = AnimationController(
       duration: kThemeAnimationDuration,
       vsync: vsync,
@@ -600,8 +606,8 @@ class _Circle {
   final _BottomTabBarState state;
   final int index;
   final Color color;
-  AnimationController controller;
-  CurvedAnimation animation;
+  late AnimationController controller;
+  late CurvedAnimation animation;
 
   double get horizontalLeadingOffset {
     double weightSum(Iterable<Animation<double>> animations) {
@@ -631,10 +637,9 @@ class _Circle {
 /// 绘制动画色彩飞溅的圆圈
 class _RadialPainter extends CustomPainter {
   _RadialPainter({
-    @required this.circles,
-    @required this.textDirection,
-  })  : assert(circles != null),
-        assert(textDirection != null);
+    required this.circles,
+    required this.textDirection,
+  });
 
   final List<_Circle> circles;
   final TextDirection textDirection;
@@ -663,7 +668,7 @@ class _RadialPainter extends CustomPainter {
       final Paint paint = Paint()..color = circle.color;
       final Rect rect = Rect.fromLTWH(0.0, 0.0, size.width, size.height);
       canvas.clipRect(rect);
-      double leftFraction;
+      late double leftFraction;
       switch (textDirection) {
         case TextDirection.rtl:
           leftFraction = 1.0 - circle.horizontalLeadingOffset;
