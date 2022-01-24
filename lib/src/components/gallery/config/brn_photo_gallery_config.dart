@@ -14,7 +14,7 @@ class BrnPhotoGroupConfig extends BrnBasicGroupConfig {
   final BrnGalleryDetailConfig? themeData;
 
   /// 通过 [urls] 列表生成配置
-  BrnPhotoGroupConfig.url({this.title, @required this.urls, this.themeData})
+  BrnPhotoGroupConfig.url({this.title, required this.urls, this.themeData})
       : super(
             title: title,
             configList: urls
