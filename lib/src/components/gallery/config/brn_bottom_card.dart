@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:math';
 
 import 'package:bruno/src/constants/brn_asset_constants.dart';
@@ -7,21 +5,21 @@ import 'package:bruno/src/theme/configs/brn_gallery_detail_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-/// fold 收起状态
-/// unfold 展开状态
-/// cantFold 不可折叠的状态，描述信息直接展开
+/// [fold] 收起状态
+/// [unfold] 展开状态
+/// [cantFold] 不可折叠的状态，描述信息直接展开
 enum PhotoBottomCardState { fold, unFold, cantFold }
 
 // ignore: must_be_immutable
 class BrnPhotoBottomCard extends StatefulWidget {
-  final String name;
-  final String des;
+  final String? name;
+  final String? des;
   final PhotoBottomCardState model;
   final double contentHeight;
-  BrnGalleryDetailConfig themeData;
+  BrnGalleryDetailConfig? themeData;
 
   BrnPhotoBottomCard(
-      {Key key,
+      {Key? key,
       this.name,
       this.des,
       this.model = PhotoBottomCardState.cantFold,
@@ -35,7 +33,7 @@ class BrnPhotoBottomCard extends StatefulWidget {
 
 class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
     with TickerProviderStateMixin {
-  PhotoBottomCardState state;
+  PhotoBottomCardState? state;
 
   @override
   void initState() {
@@ -47,14 +45,14 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: widget.themeData.bottomBackgroundColor,
+      color: widget.themeData!.bottomBackgroundColor,
       child: state == PhotoBottomCardState.cantFold
           ? buildCantFoldWidget()
           : buildFoldableWidget(),
     );
   }
 
-  //构建可折叠的card
+  /// 构建可折叠的card
   Widget buildFoldableWidget() {
     if (state == PhotoBottomCardState.fold) {
       return Container(
@@ -64,7 +62,7 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(widget.name ?? "",
-                style: widget.themeData.titleStyle?.generateTextStyle()),
+                style: widget.themeData!.titleStyle.generateTextStyle()),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -78,12 +76,12 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
                     padding: EdgeInsets.only(right: 4),
                     child: Text('展开',
                         style:
-                            widget.themeData.actionStyle?.generateTextStyle()),
+                            widget.themeData!.actionStyle.generateTextStyle()),
                   ),
                   Transform.rotate(
                     angle: pi,
                     child: BrunoTools.getAssetImageWithColor(
-                        BrnAsset.iconUpArrow, widget.themeData.iconColor),
+                        BrnAsset.iconUpArrow, widget.themeData!.iconColor),
                   )
                 ],
               ),
@@ -102,7 +100,7 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(widget.name ?? "",
-                      style: widget.themeData.titleStyle?.generateTextStyle()),
+                      style: widget.themeData!.titleStyle.generateTextStyle()),
                   GestureDetector(
                     onTap: () {
                       setState(() {
@@ -115,11 +113,11 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
                         Padding(
                           padding: EdgeInsets.only(right: 4),
                           child: Text('收起',
-                              style: widget.themeData.actionStyle
-                                  ?.generateTextStyle()),
+                              style: widget.themeData!.actionStyle
+                                  .generateTextStyle()),
                         ),
                         BrunoTools.getAssetImageWithColor(
-                            BrnAsset.iconUpArrow, widget.themeData.iconColor)
+                            BrnAsset.iconUpArrow, widget.themeData!.iconColor)
                       ],
                     ),
                   )
@@ -128,7 +126,7 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
             ),
             Text(
               widget.des ?? "",
-              style: widget.themeData.contentStyle?.generateTextStyle(),
+              style: widget.themeData!.contentStyle.generateTextStyle(),
             )
           ],
         ),
@@ -136,7 +134,7 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
     }
   }
 
-  //构建不可折叠的card,content是一个ScrollView
+  /// 构建不可折叠的 card, content 是一个 ScrollView
   Widget buildCantFoldWidget() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -148,18 +146,18 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
             padding: EdgeInsets.only(top: 16, bottom: 12, left: 20, right: 20),
             child: Text(
               widget.name ?? "",
-              style: widget.themeData.titleStyle?.generateTextStyle(),
+              style: widget.themeData!.titleStyle.generateTextStyle(),
             ),
           ),
         ),
         Container(
-            height: widget.contentHeight ?? 150,
+            height: widget.contentHeight,
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Padding(
                   child: Text(
                     widget.des ?? "",
-                    style: widget.themeData.contentStyle?.generateTextStyle(),
+                    style: widget.themeData!.contentStyle.generateTextStyle(),
                   ),
                   padding: EdgeInsets.only(left: 20, right: 20)),
             ))
