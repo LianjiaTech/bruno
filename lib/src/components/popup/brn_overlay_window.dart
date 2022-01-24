@@ -19,13 +19,13 @@ class BrnOverlayWindow extends StatefulWidget {
   final BrnOverlayPopDirection popDirection;
 
   /// 要展示的内容
-  final Widget? content;
+  final Widget content;
 
   const BrnOverlayWindow({
     required this.context,
     required this.targetKey,
     this.popDirection = BrnOverlayPopDirection.bottom,
-    this.content,
+    this.content = const SizedBox.shrink(),
   });
 
   @override
@@ -100,13 +100,13 @@ class _BrnOverlayWindowState extends State<BrnOverlayWindow> {
     this._showRect = _getWidgetGlobalRect(widget.targetKey);
     this._screenSize = window.physicalSize / window.devicePixelRatio;
     if (this._showRect == null) {
-      return Container();
+      return const SizedBox.shrink();
     }
     _calculateOffset(this._showRect!);
     return _buildContent(this._showRect!);
   }
 
-  Widget _buildContent(Rect showRectNonNull) {
+  Widget _buildContent(Rect showRect) {
     var contentPart = Material(
         color: Colors.transparent,
         child: MeasureSize(
@@ -115,19 +115,19 @@ class _BrnOverlayWindowState extends State<BrnOverlayWindow> {
                 _targetViewSize = size;
               });
             },
-            child: widget.content ?? Container()));
+            child: widget.content));
     var placeHolderPart = GestureDetector();
     Widget realContent;
 
     double marginTop =
-        showRectNonNull.top + (showRectNonNull.height - _targetViewSize.height) / 2;
+        showRect.top + (showRect.height - _targetViewSize.height) / 2;
     if (_screenSize.height - marginTop < _targetViewSize.height) {
       marginTop = max(0, _screenSize.height - _targetViewSize.height);
     }
     marginTop = max(0, marginTop);
 
     double marginLeft =
-        showRectNonNull.left + (showRectNonNull.width - _targetViewSize.width) / 2;
+        showRect.left + (showRect.width - _targetViewSize.width) / 2;
     if (_screenSize.width - marginLeft < _targetViewSize.width) {
       marginLeft = max(0, _screenSize.width - _targetViewSize.width);
     }
@@ -223,16 +223,16 @@ class _BrnOverlayWindowState extends State<BrnOverlayWindow> {
   ///
   /// 计算popUpWindow显示的位置
   ///
-  void _calculateOffset(Rect showRectNonNull) {
+  void _calculateOffset(Rect showRect) {
     if (widget.popDirection == BrnOverlayPopDirection.left) {
-      _left = showRectNonNull.left;
+      _left = showRect.left;
     } else if (widget.popDirection == BrnOverlayPopDirection.right) {
-      _right = showRectNonNull.right;
+      _right = showRect.right;
     } else if (widget.popDirection == BrnOverlayPopDirection.bottom) {
-      _bottom = showRectNonNull.bottom;
+      _bottom = showRect.bottom;
     } else if (widget.popDirection == BrnOverlayPopDirection.top) {
       // 在targetView上方
-      _top = showRectNonNull.top;
+      _top = showRect.top;
     }
   }
 }

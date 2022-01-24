@@ -221,26 +221,26 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
   }
 
   // 计算popUpWindow显示的位置
-  void _calculateOffset(Rect showRectNonNull) {
-    if (showRectNonNull.center.dx < _screenSize.width / 2) {
+  void _calculateOffset(Rect showRect) {
+    if (showRect.center.dx < _screenSize.width / 2) {
       // popUpWindow向右侧延伸
       _expandedRight = true;
-      _left = showRectNonNull.left;
+      _left = showRect.left;
     } else {
       // popUpWindow向左侧延伸
       _expandedRight = false;
-      _right = _screenSize.width - showRectNonNull.right + widget.spaceMargin;
+      _right = _screenSize.width - showRect.right + widget.spaceMargin;
     }
     if (_popDirection == BrnPopupDirection.bottom) {
       // 在targetView下方
-      _top = showRectNonNull.height + showRectNonNull.top + widget.offset;
+      _top = showRect.height + showRect.top + widget.offset;
       if ((_screenSize.height - _top) < widget.turnOverFromBottom) {
         _popDirection = BrnPopupDirection.top;
-        _bottom = _screenSize.height - showRectNonNull.top + widget.offset;
+        _bottom = _screenSize.height - showRect.top + widget.offset;
       }
     } else if (_popDirection == BrnPopupDirection.top) {
       // 在targetView上方
-      _bottom = _screenSize.height - showRectNonNull.top + widget.offset;
+      _bottom = _screenSize.height - showRect.top + widget.offset;
     }
   }
 
