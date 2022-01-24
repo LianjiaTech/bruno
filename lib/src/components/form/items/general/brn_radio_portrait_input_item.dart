@@ -61,7 +61,7 @@ class BrnRadioPortraitInputFormItem extends StatefulWidget {
   String? value;
 
   /// 选项
-  List<String?>? options;
+  List<String>? options;
 
   /// 局部禁用list
   List<bool>? enableList;
@@ -110,7 +110,7 @@ class BrnRadioPortraitInputFormItemState
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -123,7 +123,7 @@ class BrnRadioPortraitInputFormItemState
               children: <Widget>[
                 Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       BrnFormUtil.buildPrefixIcon(
@@ -134,9 +134,9 @@ class BrnRadioPortraitInputFormItemState
                           widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
                       BrnFormUtil.buildTitleWidget(
-                          widget.title, widget.themeData),
+                          widget.title, widget.themeData!),
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -145,9 +145,9 @@ class BrnRadioPortraitInputFormItemState
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData),
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!),
 
           Container(
             padding: EdgeInsets.only(left: 20, top: 14),
@@ -185,7 +185,7 @@ class BrnRadioPortraitInputFormItemState
             mainAxisSize: MainAxisSize.max,
             disable: getRadioEnableState(index),
             radioIndex: index,
-            isSelected: index == widget.options!.indexOf(widget.value),
+            isSelected: index == widget.options!.indexOf(widget.value ?? ''),
             onValueChangedAtIndex: (int position, bool isSelected) {
               if (getRadioEnableState(position)) {
                 return;
@@ -206,25 +206,25 @@ class BrnRadioPortraitInputFormItemState
     return result;
   }
 
-  TextStyle? getOptionTextStyle(String? opt, int index) {
-    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData);
+  TextStyle getOptionTextStyle(String? opt, int index) {
+    TextStyle result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
     if (opt == null) {
       return result;
     }
 
     if (opt == widget.value) {
-      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData);
+      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData!);
     }
 
     if (!widget.isEdit) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit);
     }
 
     if (widget.enableList != null &&
         widget.enableList!.isNotEmpty &&
         widget.enableList!.length > index &&
         !widget.enableList![index]) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, false);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, false);
     }
 
     return result;

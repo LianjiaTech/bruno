@@ -118,7 +118,7 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -131,7 +131,7 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
               children: <Widget>[
                 Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       BrnFormUtil.buildPrefixIcon(
@@ -142,9 +142,9 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
                           widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
                       BrnFormUtil.buildTitleWidget(
-                          widget.title, widget.themeData),
+                          widget.title, widget.themeData!),
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -211,9 +211,9 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );

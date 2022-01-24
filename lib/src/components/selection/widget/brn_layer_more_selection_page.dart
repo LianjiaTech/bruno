@@ -290,7 +290,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildLeftItem(int index) {
     //如果房山 被选中了或者房山处于正在选择的状态 则加粗
-    TextStyle? textStyle = widget.themeData.flayerNormalTextStyle.generateTextStyle();
+    TextStyle textStyle = widget.themeData.flayerNormalTextStyle.generateTextStyle();
     if (index == _currentIndex) {
       textStyle = widget.themeData.flayerSelectedTextStyle.generateTextStyle();
     } else if ((_firstList[index].isSelected) && _firstList[index].selectedList().isNotEmpty) {

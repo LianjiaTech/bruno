@@ -2,10 +2,10 @@
 
 import 'dart:math';
 
-import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/base/input_item_interface.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
+import 'package:bruno/src/components/radio/brn_radio_button.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:flutter/material.dart';
@@ -155,7 +155,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -163,10 +163,10 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
               ? _buildAutoLayoutTitleWidget(context)
               : _buildTitleWidget(context),
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
           // 错误提示
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );
@@ -192,7 +192,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
           Flexible(
             child: Container(
               padding: BrnFormUtil.titleEdgeInsets(
-                  widget.prefixIconType, widget.isRequire, widget.themeData),
+                  widget.prefixIconType, widget.isRequire, widget.themeData!),
               child: Row(
                 children: <Widget>[
                   BrnFormUtil.buildPrefixIcon(
@@ -244,7 +244,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
               child: Text(
                 widget.tipLabel ?? "",
                 overflow: TextOverflow.ellipsis,
-                style: BrnFormUtil.getTipsTextStyle(widget.themeData),
+                style: BrnFormUtil.getTipsTextStyle(widget.themeData!),
               ),
             ),
           ],
@@ -263,15 +263,10 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
 
   /// 计算Text所占宽度
   double _calculateTextWidth(BuildContext context) {
-    List<String>? options;
-    if (widget.options != null && widget.options!.isNotEmpty) {
-      // 模型里边的数据
-      options = widget.options;
-    }
-
+    List<String>? options = widget.options;
     // 计算所有备选文案的文字长度
     double totalTextWidth = 0;
-    if (options!.isNotEmpty) {
+    if (options != null && options.isNotEmpty) {
       int idx = -1;
       for (String? item in options) {
         idx += 1;
@@ -286,7 +281,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
         // 6 是备选文案和单选按钮之间的间距
         // 16 是 radio 按钮的宽度
         double optionWidth = painter.width +
-            BrnFormUtil.optionsMiddlePadding(widget.themeData)!.left +
+            BrnFormUtil.optionsMiddlePadding(widget.themeData!)!.left +
             _kRadioTitleLeftPadding +
             _kRadioIconWidth;
         totalTextWidth += optionWidth;
@@ -301,7 +296,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
             ? TextOverflow.clip
             : TextOverflow.ellipsis,
         maxLines: widget.titleMaxLines,
-        style: BrnFormUtil.getTitleTextStyle(widget.themeData));
+        style: BrnFormUtil.getTitleTextStyle(widget.themeData!));
   }
 
   Row _buildTitleWidget(BuildContext context) {
@@ -314,7 +309,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
           ),
           child: Container(
             padding: BrnFormUtil.titleEdgeInsets(
-                widget.prefixIconType, widget.isRequire, widget.themeData),
+                widget.prefixIconType, widget.isRequire, widget.themeData!),
             child: Row(
               children: <Widget>[
                 // 添加/删除图标
@@ -358,7 +353,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
 
       result.add(
         Container(
-          padding: BrnFormUtil.optionsMiddlePadding(widget.themeData),
+          padding: BrnFormUtil.optionsMiddlePadding(widget.themeData!),
           child: Row(
             children: <Widget>[
               BrnRadioButton(
@@ -371,7 +366,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
                     )),
                 disable: getRadioEnableState(index),
                 radioIndex: index,
-                isSelected: index == widget.options!.indexOf(widget.value ?? ""),
+                isSelected: index == widget.options!.indexOf(widget.value ?? ''),
                 onValueChangedAtIndex: (int position, bool selected) {
                   if (getRadioEnableState(position)) {
                     return;
@@ -394,24 +389,24 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
   }
 
   TextStyle? getOptionTextStyle(String? opt, int index) {
-    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData);
+    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
     if (opt == null) {
       return result;
     }
 
     if (opt == widget.value) {
-      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData);
+      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData!);
     }
 
     if (!widget.isEdit) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit);
     }
 
     if (widget.enableList != null &&
         widget.enableList!.isNotEmpty &&
         widget.enableList!.length > index &&
         !widget.enableList![index]) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, false);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, false);
     }
 
     return result;

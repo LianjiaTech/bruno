@@ -108,7 +108,7 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -117,7 +117,7 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
             children: <Widget>[
               Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: ConstrainedBox(
                       constraints: BoxConstraints(
                         maxHeight: 25,
@@ -132,9 +132,9 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
                               widget.onRemoveTap),
                           BrnFormUtil.buildRequireWidget(widget.isRequire),
                           BrnFormUtil.buildTitleWidget(
-                              widget.title, widget.themeData),
+                              widget.title, widget.themeData!),
                           BrnFormUtil.buildTipLabelWidget(
-                              widget.tipLabel, widget.onTip, widget.themeData),
+                              widget.tipLabel, widget.onTip, widget.themeData!),
                         ],
                       ))),
               Row(
@@ -145,9 +145,9 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );

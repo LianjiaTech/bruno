@@ -201,7 +201,7 @@ class _ExpansionElementState extends State<ExpansionElementWidget>
                             child: Text(
                               widget.title,
                               style: BrnFormUtil.getHeadTitleTextStyle(
-                                  widget.themeData,
+                                  widget.themeData!,
                                   isBold: true),
                             )),
                         RotationTransition(
@@ -245,7 +245,7 @@ class _ExpansionElementState extends State<ExpansionElementWidget>
               offstage: (widget.subtitle == null || widget.subtitle!.isEmpty),
               child: Text(
                 widget.subtitle ?? "",
-                style: BrnFormUtil.getSubTitleTextStyle(widget.themeData),
+                style: BrnFormUtil.getSubTitleTextStyle(widget.themeData!),
               ),
             ),
           ),

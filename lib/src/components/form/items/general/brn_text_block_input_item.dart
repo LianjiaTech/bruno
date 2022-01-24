@@ -134,7 +134,7 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -144,7 +144,7 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
             ),
             child: Container(
               padding: BrnFormUtil.titleEdgeInsets(
-                  widget.prefixIconType, widget.isRequire, widget.themeData),
+                  widget.prefixIconType, widget.isRequire, widget.themeData!),
               child: Row(
                 children: <Widget>[
                   // 添加/删除 按钮
@@ -158,24 +158,24 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
                   BrnFormUtil.buildRequireWidget(widget.isRequire),
 
                   // title
-                  BrnFormUtil.buildTitleWidget(widget.title, widget.themeData),
+                  BrnFormUtil.buildTitleWidget(widget.title, widget.themeData!),
 
                   BrnFormUtil.buildTipLabelWidget(
-                      widget.tipLabel, widget.onTip, widget.themeData),
+                      widget.tipLabel, widget.onTip, widget.themeData!),
                 ],
               ),
             ),
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
           // 错误提示
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData),
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!),
 
           // 输入框
           Container(
-            padding: BrnFormUtil.errorEdgeInsets(widget.themeData),
+            padding: BrnFormUtil.errorEdgeInsets(widget.themeData!),
             child: TextField(
               keyboardType: BrnFormUtil.getInputType(widget.inputType),
               controller: _controller,
@@ -186,11 +186,11 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
               textAlign: TextAlign.left,
               enabled: widget.isEdit,
               style: BrnFormUtil.getIsEditTextStyle(
-                  widget.themeData, widget.isEdit),
+                  widget.themeData!, widget.isEdit),
               inputFormatters: widget.inputFormatters,
               decoration: InputDecoration(
                 hintText: widget.hint ,
-                hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData),
+                hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData!),
                 contentPadding: EdgeInsets.all(0),
                 border: InputBorder.none,
                 isDense: true,

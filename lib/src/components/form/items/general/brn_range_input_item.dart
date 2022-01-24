@@ -156,7 +156,7 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -169,7 +169,7 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
               children: <Widget>[
                 Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       BrnFormUtil.buildPrefixIcon(
@@ -180,9 +180,9 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                           widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
                       BrnFormUtil.buildTitleWidget(
-                          widget.title, widget.themeData),
+                          widget.title, widget.themeData!),
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -201,11 +201,11 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                           maxLines: 1,
                           maxLength: widget.leftMaxCount,
                           style: BrnFormUtil.getIsEditTextStyle(
-                              widget.themeData, widget.isEdit),
+                              widget.themeData!, widget.isEdit),
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle:
-                                BrnFormUtil.getHintTextStyle(widget.themeData),
+                                BrnFormUtil.getHintTextStyle(widget.themeData!),
                             hintText: widget.hintMin,
                             counterText: "",
                             contentPadding: EdgeInsets.all(0),
@@ -256,11 +256,11 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                           maxLines: 1,
                           maxLength: widget.rightMaxCount,
                           style: BrnFormUtil.getIsEditTextStyle(
-                              widget.themeData, widget.isEdit),
+                              widget.themeData!, widget.isEdit),
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle:
-                                BrnFormUtil.getHintTextStyle(widget.themeData),
+                                BrnFormUtil.getHintTextStyle(widget.themeData!),
                             hintText: widget.hintMax,
                             counterText: "",
                             contentPadding: EdgeInsets.all(0),
@@ -297,9 +297,9 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );

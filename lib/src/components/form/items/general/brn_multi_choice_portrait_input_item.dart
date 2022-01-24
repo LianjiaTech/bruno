@@ -106,7 +106,7 @@ class BrnMultiChoicePortraitInputFormItem extends StatefulWidget {
 class BrnMultiChoicePortraitInputFormItemState
     extends State<BrnMultiChoicePortraitInputFormItem> {
   // 标记选项的选中状态，内部变量无须初始化。初始化选中状态通过设置value字段设置
-  List<bool?>? _selectStatus;
+  List<bool> _selectStatus = [];
 
   @override
   void initState() {
@@ -118,7 +118,7 @@ class BrnMultiChoicePortraitInputFormItemState
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -131,7 +131,7 @@ class BrnMultiChoicePortraitInputFormItemState
               children: <Widget>[
                 Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       BrnFormUtil.buildPrefixIcon(
@@ -142,9 +142,9 @@ class BrnMultiChoicePortraitInputFormItemState
                           widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
                       BrnFormUtil.buildTitleWidget(
-                          widget.title, widget.themeData),
+                          widget.title, widget.themeData!),
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -153,9 +153,9 @@ class BrnMultiChoicePortraitInputFormItemState
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData),
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!),
 
           Container(
             padding: EdgeInsets.only(left: 20, top: 14),
@@ -188,18 +188,18 @@ class BrnMultiChoicePortraitInputFormItemState
           mainAxisSize: MainAxisSize.max,
           radioIndex: index,
           disable: getRadioEnableState(index),
-          isSelected: (_selectStatus != null && index < _selectStatus!.length)
-              ? _selectStatus![index]!
+          isSelected: (index < _selectStatus.length)
+              ? _selectStatus[index]
               : false,
           onValueChangedAtIndex: (position, value) {
-            _selectStatus![position] = value;
+            _selectStatus[position] = value;
             List<String> oldValue = <String>[]..addAll(widget.value);
 
             setState(() {
               widget.value.clear();
 
-              for (int i = 0; i < _selectStatus!.length; ++i) {
-                if (_selectStatus![i]!) {
+              for (int i = 0; i < _selectStatus.length; ++i) {
+                if (_selectStatus[i]) {
                   widget.value.add(widget.options[i]);
                 }
               }
@@ -217,23 +217,23 @@ class BrnMultiChoicePortraitInputFormItemState
   }
 
   TextStyle? getOptionTextStyle(int index) {
-    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData);
-    if (index < 0 || index >= _selectStatus!.length) {
+    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
+    if (index < 0 || index >= _selectStatus.length) {
       return result;
     }
 
-    if (_selectStatus![index]!) {
-      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData);
+    if (_selectStatus[index]) {
+      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData!);
     }
 
     if (!widget.isEdit) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit);
     }
 
     if (widget.enableList.isNotEmpty &&
         widget.enableList.length > index &&
         !widget.enableList[index]) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, false);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, false);
     }
 
     return result;
@@ -254,12 +254,10 @@ class BrnMultiChoicePortraitInputFormItemState
   void _initSelectedStatus() {
     if (widget.options.isNotEmpty) {
       _selectStatus = List.filled(widget.options.length, false);
-    } else {
-      _selectStatus = <bool>[];
     }
 
-    for (int index = 0; index < _selectStatus!.length; ++index) {
-      _selectStatus![index] = false;
+    for (int index = 0; index < _selectStatus.length; ++index) {
+      _selectStatus[index] = false;
     }
 
     if (widget.value.isEmpty) {
@@ -272,7 +270,7 @@ class BrnMultiChoicePortraitInputFormItemState
       if (pos < 0) {
         return;
       }
-      _selectStatus![pos] = true;
+      _selectStatus[pos] = true;
     }
   }
 }

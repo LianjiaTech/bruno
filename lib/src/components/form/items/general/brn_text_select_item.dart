@@ -168,10 +168,10 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
               : _buildTitleWidget(context),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
           // 错误提示
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );
@@ -292,7 +292,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
                     height: 1,
                     leading: 0.5,
                     fontSize: BrnFonts.f14),
-                style: BrnFormUtil.getTipsTextStyle(widget.themeData),
+                style: BrnFormUtil.getTipsTextStyle(widget.themeData!),
               ),
             ),
           ],
@@ -310,7 +310,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           : TextOverflow.ellipsis,
       maxLines: widget.titleMaxLines,
       strutStyle: _contentStructStyle,
-      style: BrnFormUtil.getTitleTextStyle(widget.themeData, height: 1),
+      style: BrnFormUtil.getTitleTextStyle(widget.themeData!, height: 1),
     );
   }
 
@@ -353,7 +353,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           text: TextSpan(
             text: widget.value,
             style: BrnFormUtil.getIsEditTextStyle(
-                widget.themeData, widget.isEdit,
+                widget.themeData!, widget.isEdit,
                 height: 1),
           ));
     } else {
@@ -364,7 +364,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           strutStyle: _contentStructStyle,
           text: TextSpan(
             text: widget.hint,
-            style: BrnFormUtil.getHintTextStyle(widget.themeData, height: 1),
+            style: BrnFormUtil.getHintTextStyle(widget.themeData!, height: 1),
           ));
     }
     painter.layout();
@@ -381,7 +381,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
         maxLines: widget.valueMaxLines ,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
-        style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit,
+        style: BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit,
             height: 1),
       );
     } else {
@@ -389,15 +389,15 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
         widget.hint,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
-        style: BrnFormUtil.getHintTextStyle(widget.themeData, height: 1),
+        style: BrnFormUtil.getHintTextStyle(widget.themeData!, height: 1),
       );
     }
   }
 
-  String? getCalculateText() {
-    String? value = '请选择';
+  String getCalculateText() {
+    String value = '请选择';
     if (!BrunoTools.isEmpty(widget.value)) {
-      value = widget.value;
+      value = widget.value!;
     } else if (!BrunoTools.isEmpty(widget.hint)) {
       value = widget.hint;
     }

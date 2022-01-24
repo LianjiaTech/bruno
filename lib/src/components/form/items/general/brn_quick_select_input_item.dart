@@ -129,7 +129,7 @@ class BrnTextQuickSelectFormItemState
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -141,7 +141,7 @@ class BrnTextQuickSelectFormItemState
               children: <Widget>[
                 Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       BrnFormUtil.buildPrefixIcon(
@@ -156,11 +156,11 @@ class BrnTextQuickSelectFormItemState
 
                       // 主标题
                       BrnFormUtil.buildTitleWidget(
-                          widget.title, widget.themeData),
+                          widget.title, widget.themeData!),
 
                       // 问号提示
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -193,7 +193,7 @@ class BrnTextQuickSelectFormItemState
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
           /// 快捷按钮区
           Container(
@@ -210,7 +210,7 @@ class BrnTextQuickSelectFormItemState
               )),
 
           /// 错误提示
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );
@@ -221,13 +221,13 @@ class BrnTextQuickSelectFormItemState
       return Text(
         widget.value!,
         textAlign: TextAlign.end,
-        style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit),
+        style: BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit),
       );
     } else {
       return Text(
         widget.hint,
         textAlign: TextAlign.end,
-        style: BrnFormUtil.getHintTextStyle(widget.themeData),
+        style: BrnFormUtil.getHintTextStyle(widget.themeData!),
       );
     }
   }
@@ -272,7 +272,7 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return getQuickButtons()!;
+    return getQuickButtons();
   }
 
   @override
@@ -302,13 +302,13 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
     }
   }
 
-  Widget? getQuickButtons() {
+  Widget getQuickButtons() {
     if (!widget.isEdit) {
       return Container();
     }
 
     if (widget.btns != null) {
-      return widget.btns;
+      return widget.btns!;
     } else if (widget.btnsTxt != null) {
       if (widget.isBtnsScroll!) {
         return ListView(
@@ -322,7 +322,7 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
         );
       }
     } else {
-      return Container();
+      return SizedBox.shrink();
     }
   }
 

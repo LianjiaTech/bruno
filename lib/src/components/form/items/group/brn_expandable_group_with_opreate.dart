@@ -17,7 +17,7 @@ class BrnExpandFormGroup extends StatefulWidget {
   final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  String type = BrnInputItemType.NORMAL_GROUP_TYPE;
+  final String type = BrnInputItemType.NORMAL_GROUP_TYPE;
 
   /// 录入项标题
   final String title;
@@ -54,7 +54,7 @@ class BrnExpandFormGroup extends StatefulWidget {
   final String? deleteLabel;
 
   /// 内部子项
-  final List<Widget>? children;
+  final List<Widget> children;
 
   BrnExpandFormGroup({
     Key? key,
@@ -69,7 +69,7 @@ class BrnExpandFormGroup extends StatefulWidget {
     this.onTip,
     this.isExpand = true,
     this.deleteLabel,
-    this.children,
+    required this.children,
   });
 
   @override
@@ -102,11 +102,11 @@ class BrnExpandFormGroupState extends State<BrnExpandFormGroup> {
   List<Widget> getSubItem() {
     List<Widget> result = [];
 
-    if (widget.children == null || widget.children!.isEmpty) {
+    if (widget.children.isEmpty) {
       return result;
     }
 
-    for (Widget w in widget.children!) {
+    for (Widget w in widget.children) {
       result.add(BrnLine());
       result.add(w);
     }

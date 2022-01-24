@@ -52,7 +52,7 @@ class BrnNormalFormGroup extends StatefulWidget {
   final String? deleteLabel;
 
   /// 内部子项
-  final List<Widget>? children;
+  final List<Widget> children;
 
   /// form配置
   BrnFormItemConfig? themeData;
@@ -69,7 +69,7 @@ class BrnNormalFormGroup extends StatefulWidget {
     this.onRemoveTap,
     this.onTip,
     this.deleteLabel,
-    this.children,
+    required this.children,
   }) : super() {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
@@ -112,7 +112,7 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
                             child: Text(
                               widget.title,
                               style: BrnFormUtil.getHeadTitleTextStyle(
-                                  widget.themeData,
+                                  widget.themeData!,
                                   isBold: true),
                             )),
                       ],
@@ -148,12 +148,12 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
           // 副标题
           Container(
             alignment: Alignment.centerLeft,
-            padding: BrnFormUtil.subTitleEdgeInsets(widget.themeData),
+            padding: BrnFormUtil.subTitleEdgeInsets(widget.themeData!),
             child: Offstage(
               offstage: (widget.subTitle == null || widget.subTitle!.isEmpty),
               child: Text(
                 widget.subTitle ?? "",
-                style: BrnFormUtil.getSubTitleTextStyle(widget.themeData),
+                style: BrnFormUtil.getSubTitleTextStyle(widget.themeData!),
               ),
             ),
           ),
@@ -171,11 +171,11 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
   List<Widget> getSubItem() {
     List<Widget> result = <Widget>[];
 
-    if (widget.children == null || widget.children!.isEmpty) {
+    if (widget.children.isEmpty) {
       return result;
     }
 
-    for (Widget w in widget.children!) {
+    for (Widget w in widget.children) {
       result.add(BrnLine());
       result.add(w);
     }

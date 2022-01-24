@@ -31,8 +31,6 @@ class BrnCalendarView extends StatefulWidget {
       this.initStartSelectedDate,
       this.initEndSelectedDate,
       this.initDisplayDate,
-      @Deprecated('使用BrnCalendarView.date或BrnCalendarView.rangeDate')
-          this.startEndDateChange,
       this.dateChange,
       this.rangeDateChange,
       this.minDate,
@@ -40,9 +38,7 @@ class BrnCalendarView extends StatefulWidget {
       : assert(weekNames.length == 7),
         assert(
             selectMode == SelectMode.SINGLE && dateChange != null ||
-                selectMode == SelectMode.RANGE && rangeDateChange != null ||
-                startEndDateChange != null,
-            '必须添加日期选择的回调函数'),
+                selectMode == SelectMode.RANGE && rangeDateChange != null),
         super(key: key);
 
   const BrnCalendarView.single(
@@ -57,7 +53,6 @@ class BrnCalendarView extends StatefulWidget {
       this.minDate,
       this.maxDate})
       : this.selectMode = SelectMode.SINGLE,
-        this.startEndDateChange = null,
         this.rangeDateChange = null,
         assert(weekNames.length == 7),
         super(key: key);
@@ -74,7 +69,6 @@ class BrnCalendarView extends StatefulWidget {
       this.minDate,
       this.maxDate})
       : this.selectMode = SelectMode.RANGE,
-        this.startEndDateChange = null,
         this.dateChange = null,
         assert(weekNames.length == 7),
         super(key: key);
@@ -112,12 +106,10 @@ class BrnCalendarView extends StatefulWidget {
   /// 默认当前时间
   final DateTime? initDisplayDate;
 
-  /// 选择日期回调
-  @Deprecated('使用BrnCalendarView.date或BrnCalendarView.rangeDate')
-  final Function(DateTime startSelectedDate, DateTime endSelectedDate)?
-      startEndDateChange;
-
+  /// single 类型选择日期回调
   final CalendarDateChange? dateChange;
+
+  /// range 类型选择日期回调
   final CalendarRangeDateChange? rangeDateChange;
 
   @override
@@ -588,12 +580,6 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
     _currentEndSelectedDate = date;
     setState(() {
       try {
-        if (widget.startEndDateChange != null) {
-          widget.startEndDateChange!(
-            _currentStartSelectedDate!,
-            _currentEndSelectedDate!,
-          );
-        }
         if (widget.dateChange != null) {
           widget.dateChange!(date);
         }
@@ -628,21 +614,18 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
       if (date.isAfter(_currentEndSelectedDate!)) {
         _currentEndSelectedDate = date;
       }
+      setState(() {
+        try {
+          if (widget.rangeDateChange != null) {
+            widget.rangeDateChange!(DateTimeRange(
+              start: _currentStartSelectedDate!,
+              end: _currentEndSelectedDate!,
+            ));
+          }
+        } catch (_) {}
+      });
     }
-    setState(() {
-      try {
-        if (widget.startEndDateChange != null) {
-          widget.startEndDateChange!(
-              _currentStartSelectedDate!, _currentEndSelectedDate!);
-        }
-        if (widget.rangeDateChange != null) {
-          widget.rangeDateChange!(DateTimeRange(
-            start: _currentStartSelectedDate!,
-            end: _currentEndSelectedDate!,
-          ));
-        }
-      } catch (_) {}
-    });
+
   }
 
   String _getChinaWeekName(int weekOfDay) {

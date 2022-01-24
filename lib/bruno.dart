@@ -124,9 +124,9 @@ export 'src/components/form/items/general/brn_title_select_input_item.dart';
 export 'src/components/form/items/misc/brn_title_item.dart';
 export 'src/components/form/items/misc/brn_add_label_item.dart';
 export 'src/components/form/items/group/brn_normal_group.dart';
-export 'src/components/form/undetermined/brn_expandable_group.dart';
-export 'src/components/form/undetermined/brn_portrait_radio_group.dart';
-export 'src/components/form/items/group/brn_expand_group.dart';
+export 'src/components/form/items/group/brn_expandable_group.dart';
+export 'src/components/form/items/group/brn_portrait_radio_group.dart';
+export 'src/components/form/items/group/brn_expandable_group_with_opreate.dart';
 
 // 新增表单项
 export 'src/components/form/items/title/brn_base_title_item.dart';

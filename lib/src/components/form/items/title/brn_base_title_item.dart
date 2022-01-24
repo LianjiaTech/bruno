@@ -88,7 +88,7 @@ class BrnTitleState extends State<BrnBaseTitle> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -101,7 +101,7 @@ class BrnTitleState extends State<BrnBaseTitle> {
               children: <Widget>[
                 Container(
                   padding: BrnFormUtil.titleEdgeInsetsForHead(
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       // 必填项符号
@@ -112,7 +112,7 @@ class BrnTitleState extends State<BrnBaseTitle> {
 
                       // 问号提示
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -133,7 +133,7 @@ class BrnTitleState extends State<BrnBaseTitle> {
           ),
 
           // 错误提示
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );
@@ -143,22 +143,22 @@ class BrnTitleState extends State<BrnBaseTitle> {
     if (widget.titleWidget != null) {
       return widget.titleWidget!;
     } else {
-      return BrnFormUtil.buildTitleWidget(widget.title, widget.themeData);
+      return BrnFormUtil.buildTitleWidget(widget.title, widget.themeData!);
     }
   }
 
   Widget getSubTitleWidget() {
     if (widget.subTitleWidget != null) {
       return Container(
-        padding: BrnFormUtil.subTitleEdgeInsets(widget.themeData),
+        padding: BrnFormUtil.subTitleEdgeInsets(widget.themeData!),
         child: widget.subTitleWidget,
       );
     } else {
       return Container(
-          padding: BrnFormUtil.subTitleEdgeInsets(widget.themeData),
+          padding: BrnFormUtil.subTitleEdgeInsets(widget.themeData!),
           child: Text(
             widget.subTitle ?? "",
-            style: BrnFormUtil.getSubTitleTextStyle(widget.themeData),
+            style: BrnFormUtil.getSubTitleTextStyle(widget.themeData!),
           ));
     }
   }

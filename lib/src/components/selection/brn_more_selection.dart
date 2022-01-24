@@ -47,8 +47,8 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
     with SingleTickerProviderStateMixin {
   List<BrnSelectionEntity> _originalSelectedItemsList = [];
   late AnimationController _controller;
-  late Animation<Offset> animation;
-  StreamController<ClearEvent> clearController = StreamController.broadcast();
+  late Animation<Offset> _animation;
+  StreamController<ClearEvent> _clearController = StreamController.broadcast();
   bool isValid = true;
 
   @override
@@ -58,7 +58,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    animation = Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
+    _animation = Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
     _controller.forward();
 
     _originalSelectedItemsList.addAll(widget.entityData.allSelectedList());
@@ -83,7 +83,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
             animation: _controller,
             builder: (context, child) {
               return SlideTransition(
-                position: animation,
+                position: _animation,
                 child: child,
               );
             },
@@ -101,7 +101,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
               animation: _controller,
               builder: (context, child) {
                 return SlideTransition(
-                  position: animation,
+                  position: _animation,
                   child: child,
                 );
               },
@@ -129,6 +129,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
   void dispose() {
     super.dispose();
     _controller.dispose();
+    _clearController.close();
   }
 
   /// 左侧为透明黑，点击直接退出页面
@@ -174,7 +175,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
     return ListView.builder(
       itemBuilder: (context, index) {
         return BrnMoreSelectionWidget(
-            clearController: clearController,
+            clearController: _clearController,
             selectionEntity: widget.entityData.children[index],
             onCustomFloatingLayerClick: widget.onCustomFloatingLayerClick,
             themeData: widget.themeData);
@@ -190,7 +191,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
       themeData: widget.themeData,
       clearCallback: () {
         setState(() {
-          clearController.add(ClearEvent());
+          _clearController.add(ClearEvent());
           _clearUIData(widget.entityData);
         });
       },

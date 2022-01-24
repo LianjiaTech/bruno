@@ -183,7 +183,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
                           child: Text(
                             widget.title,
                             style: BrnFormUtil.getHeadTitleTextStyle(
-                                widget.themeData,
+                                widget.themeData!,
                                 isBold: true),
                           )),
                       // 副标题
@@ -199,7 +199,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
                             // ignore: deprecated_member_use_from_same_package
                             widget.subtitle ?? "",
                             style: BrnFormUtil.getSubTitleTextStyle(
-                                widget.themeData),
+                                widget.themeData!),
                           ),
                         ),
                       ),

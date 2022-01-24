@@ -1,7 +1,7 @@
-import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/base/input_item_interface.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
+import 'package:bruno/src/components/radio/brn_checkbox.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +105,7 @@ class BrnMultiChoiceInputFormItem extends StatefulWidget {
 class BrnMultiChoiceInputFormItemState
     extends State<BrnMultiChoiceInputFormItem> {
   // 标记选项的选中状态，内部变量无须初始化。初始化选中状态通过设置value字段设置
-  List<bool?>? _selectStatus;
+  List<bool> _selectStatus = <bool>[];
 
   @override
   void initState() {
@@ -117,7 +117,7 @@ class BrnMultiChoiceInputFormItemState
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -130,7 +130,7 @@ class BrnMultiChoiceInputFormItemState
                 ),
                 child: Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       BrnFormUtil.buildPrefixIcon(
@@ -141,9 +141,9 @@ class BrnMultiChoiceInputFormItemState
                           widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
                       BrnFormUtil.buildTitleWidget(
-                          widget.title, widget.themeData),
+                          widget.title, widget.themeData!),
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -158,9 +158,9 @@ class BrnMultiChoiceInputFormItemState
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );
@@ -177,7 +177,7 @@ class BrnMultiChoiceInputFormItemState
       final int pos = index;
       result.add(
         Container(
-          padding: BrnFormUtil.optionsMiddlePadding(widget.themeData),
+          padding: BrnFormUtil.optionsMiddlePadding(widget.themeData!),
           child: Row(
             children: <Widget>[
               BrnCheckbox(
@@ -192,18 +192,18 @@ class BrnMultiChoiceInputFormItemState
                 radioIndex: index,
                 disable: getRadioEnableState(index),
                 isSelected:
-                    (_selectStatus != null && pos < _selectStatus!.length)
-                        ? _selectStatus![pos]!
+                    (pos < _selectStatus.length)
+                        ? _selectStatus[pos]
                         : false,
                 onValueChangedAtIndex: (position, value) {
-                  _selectStatus![position] = value;
+                  _selectStatus[position] = value;
                   List<String> oldValue = <String>[]..addAll(widget.value);
 
                   setState(() {
                     widget.value.clear();
 
-                    for (int i = 0; i < _selectStatus!.length; ++i) {
-                      if (_selectStatus![i]!) {
+                    for (int i = 0; i < _selectStatus.length; ++i) {
+                      if (_selectStatus[i]) {
                         widget.value.add(widget.options[i]);
                       }
                     }
@@ -223,23 +223,23 @@ class BrnMultiChoiceInputFormItemState
   }
 
   TextStyle? getOptionTextStyle(int index) {
-    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData);
-    if (index < 0 || index >= _selectStatus!.length) {
+    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
+    if (index < 0 || index >= _selectStatus.length) {
       return result;
     }
 
-    if (_selectStatus![index]!) {
-      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData);
+    if (_selectStatus[index]) {
+      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData!);
     }
 
     if (!widget.isEdit) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit);
     }
 
     if (widget.enableList.isNotEmpty &&
         widget.enableList.length > index &&
         !widget.enableList[index]) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, false);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, false);
     }
 
     return result;
@@ -260,12 +260,10 @@ class BrnMultiChoiceInputFormItemState
   void _initSelectedStatus() {
     if (widget.options.isNotEmpty) {
       _selectStatus = List.filled(widget.options.length, false);
-    } else {
-      _selectStatus = <bool>[];
     }
 
-    for (int index = 0; index < _selectStatus!.length; ++index) {
-      _selectStatus![index] = false;
+    for (int index = 0; index < _selectStatus.length; ++index) {
+      _selectStatus[index] = false;
     }
 
     if (widget.value.isEmpty) {
@@ -278,7 +276,7 @@ class BrnMultiChoiceInputFormItemState
       if (pos < 0) {
         return;
       }
-      _selectStatus![pos] = true;
+      _selectStatus[pos] = true;
     }
   }
 }

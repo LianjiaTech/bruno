@@ -280,11 +280,11 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
     );
   }
 
-  TextStyle? _tagTextStyle() {
+  TextStyle _tagTextStyle() {
     return widget.themeData.tagNormalTextStyle.generateTextStyle();
   }
 
-  TextStyle? _selectedTextStyle() {
+  TextStyle _selectedTextStyle() {
     return widget.themeData.tagSelectedTextStyle.generateTextStyle();
   }
 

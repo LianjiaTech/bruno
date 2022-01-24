@@ -78,7 +78,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
   final int selectedIndex;
 
   /// title选择列表
-  final List<String>? selectList;
+  final List<String> selectList;
   final List<TextInputFormatter>? inputFormatters;
 
   /// 输入文本变化回调
@@ -93,6 +93,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
 
   BrnTitleSelectInputFormItem(
       {Key? key,
+      required this.selectList,
       this.label,
       this.title = "",
       this.subTitle,
@@ -109,7 +110,6 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
       this.maxCount,
       this.inputType = BrnInputType.TEXT,
       this.selectedIndex = -1,
-      this.selectList,
       this.inputFormatters,
       this.onChanged,
       this.onTitleSelected,
@@ -146,7 +146,7 @@ class BrnTitleSelectInputFormItemState
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -166,8 +166,8 @@ class BrnTitleSelectInputFormItemState
               ],
             ),
           ),
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!),
         ],
       ),
     );
@@ -176,7 +176,7 @@ class BrnTitleSelectInputFormItemState
   Widget _buildLeftMenu() {
     return Container(
       padding: BrnFormUtil.titleEdgeInsets(
-          widget.prefixIconType, widget.isRequire, widget.themeData),
+          widget.prefixIconType, widget.isRequire, widget.themeData!),
       child: Row(
         children: <Widget>[
           BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit,
@@ -188,7 +188,7 @@ class BrnTitleSelectInputFormItemState
           _buildTriangle(),
 
           BrnFormUtil.buildTipLabelWidget(
-              widget.tipLabel, widget.onTip, widget.themeData),
+              widget.tipLabel, widget.onTip, widget.themeData!),
         ],
       ),
     );
@@ -258,7 +258,7 @@ class BrnTitleSelectInputFormItemState
             builder: (context, AsyncSnapshot<String> snapshot) {
               return Text(
                 snapshot.data!,
-                style: BrnFormUtil.getTitleTextStyle(widget.themeData),
+                style: BrnFormUtil.getTitleTextStyle(widget.themeData!),
               );
             },
           ),
@@ -289,7 +289,7 @@ class BrnTitleSelectInputFormItemState
       controller: _controller,
       enabled: widget.isEdit,
       maxLength: widget.maxCount,
-      style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit),
+      style: BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit),
       onChanged: (text) {
         BrnFormUtil.notifyInputChanged(widget.onChanged, text);
       },
@@ -333,13 +333,13 @@ class BrnTitleSelectInputFormItemState
 
 // ignore: must_be_immutable
 class TitleSelectPopWidget extends StatefulWidget {
-  List<String>? /*!*/ selectList;
+  List<String> selectList;
   int? selectedIndex;
   final Function(String item, int index) selectCallback;
   BrnFormItemConfig? themeData;
 
   TitleSelectPopWidget(
-      {this.selectList,
+      {required this.selectList,
       this.selectedIndex,
       required this.selectCallback,
       this.themeData});
@@ -352,8 +352,8 @@ class _TitleSelectPopWidgetState extends State<TitleSelectPopWidget> {
   @override
   Widget build(BuildContext context) {
     List<Widget> showList = [];
-    for (int i = 0, n = widget.selectList!.length; i < n; ++i) {
-      showList.add(selectItem(widget.selectList![i], i, i == n - 1));
+    for (int i = 0, n = widget.selectList.length; i < n; ++i) {
+      showList.add(selectItem(widget.selectList[i], i, i == n - 1));
     }
     return Container(
       padding: EdgeInsets.only(left: 16, right: 16),

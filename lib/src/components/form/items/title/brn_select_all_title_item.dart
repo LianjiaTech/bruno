@@ -154,11 +154,11 @@ class BrnSelectAllTitleState extends State<BrnSelectAllTitle> {
 
   TextStyle? getOptionTextStyle(BrnFormItemConfig? themeData) {
     if (_selectState) {
-      return BrnFormUtil.getOptionSelectedTextStyle(widget.themeData);
+      return BrnFormUtil.getOptionSelectedTextStyle(widget.themeData!);
     }
     if (!widget.isEdit) {
-      return BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit);
+      return BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit);
     }
-    return BrnFormUtil.getOptionTextStyle(widget.themeData);
+    return BrnFormUtil.getOptionTextStyle(widget.themeData!);
   }
 }

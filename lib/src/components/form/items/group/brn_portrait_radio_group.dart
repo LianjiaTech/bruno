@@ -1,6 +1,6 @@
-import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
+import 'package:bruno/src/components/radio/brn_radio_button.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:flutter/material.dart';
@@ -170,7 +170,7 @@ class BrnPortraitRadioGroupState extends State<BrnPortraitRadioGroup> {
                     overflow:
                         widget.isCollapseContent ? TextOverflow.ellipsis : null,
                     maxLines: widget.isCollapseContent ? 1 : null,
-                    style: BrnFormUtil.getSubTitleTextStyle(widget.themeData),
+                    style: BrnFormUtil.getSubTitleTextStyle(widget.themeData!),
                   ),
                 ),
               )
@@ -206,21 +206,21 @@ class BrnPortraitRadioGroupState extends State<BrnPortraitRadioGroup> {
   }
 
   TextStyle? getOptionTextStyle(BrnPortraitRadioGroupOption opt, int index) {
-    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData);
+    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
 
     if (isSameOption(opt, _selectedOption)) {
-      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData);
+      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData!);
     }
 
     if (!widget.isEdit) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit);
     }
 
     if (widget.enableList != null &&
         widget.enableList!.isNotEmpty &&
         widget.enableList!.length > index &&
         !widget.enableList![index]) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, false);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, false);
     }
 
     return result;
