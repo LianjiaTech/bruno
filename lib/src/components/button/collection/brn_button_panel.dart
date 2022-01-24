@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/button/brn_small_main_button.dart';
 import 'package:bruno/src/components/button/brn_small_outline_button.dart';
 import 'package:bruno/src/components/popup/brn_popup_window.dart';
@@ -178,9 +176,9 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
   /// 更多按钮
   Widget _moreButton() {
     if (_secondaryButtonList.length > 2) {
-      List<String?> list = [];
+      List<String> list = [];
       for (int i = 2; i < _secondaryButtonList.length; i++) {
-        list.add(_secondaryButtonList[i].name);
+        list.add(_secondaryButtonList[i].name ?? '');
       }
 
       return GestureDetector(
