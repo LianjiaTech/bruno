@@ -111,9 +111,9 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   }
 
   dispose() {
-    _scrollController?.removeListener(_closeSelectionPopupWindow);
-    _refreshTitleSubscription?.cancel();
-    _closeSelectionPopupWindowSubscription?.cancel();
+    _scrollController.removeListener(_closeSelectionPopupWindow);
+    _refreshTitleSubscription.cancel();
+    _closeSelectionPopupWindowSubscription.cancel();
     listViewController.hide();
     super.dispose();
   }
@@ -160,7 +160,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
             flex: 10,
             child: Container(
               height: 0.5,
-              color: widget.themeData?.commonConfig.dividerColorBase,
+              color: widget.themeData.commonConfig.dividerColorBase,
             ),
           )
         ],

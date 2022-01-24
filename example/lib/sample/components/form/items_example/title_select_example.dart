@@ -22,7 +22,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
   @override
   void initState() {
     super.initState();
-    _list = List();
+    _list = [];
     _list.add('手机号');
     _list.add('座机');
   }

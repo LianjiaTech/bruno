@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -12,23 +10,23 @@ import 'package:flutter/widgets.dart';
 // ignore: must_be_immutable
 class BrnTitleFormItem extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
-  final String label;
+  final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  String type = BrnInputItemType.LABEL_TITLE;
+  final String type = BrnInputItemType.LABEL_TITLE;
 
   /// 录入项标题
   final String title;
 
   /// 录入项子标题
-  final String subTitle;
+  final String? subTitle;
 
   /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
   /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
   /// 2. 若赋值为非空字符串时 展示"问号图标&文案"，
   /// 3. 若不赋值或赋值为null时 不显示提示项
   /// 默认值为 3
-  final String tipLabel;
+  final String? tipLabel;
 
   /// 录入项前缀图标样式 "添加项" "删除项" 详见 PrefixIconType类
   final String prefixIconType;
@@ -43,27 +41,27 @@ class BrnTitleFormItem extends StatefulWidget {
   final bool isRequire;
 
   /// 点击"？"图标回调
-  final VoidCallback onTip;
+  final VoidCallback? onTip;
 
   /// 点击操作区标识
-  final String operationLabel;
+  final String? operationLabel;
 
   /// 点击回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// form配置
-  BrnFormItemConfig themeData;
+  BrnFormItemConfig? themeData;
 
   BrnTitleFormItem(
-      {Key key,
+      {Key? key,
       this.label,
-      this.title: "",
+      this.title = "",
       this.subTitle,
       this.tipLabel,
-      this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
-      this.error: "",
-      this.isEdit: true,
-      this.isRequire: false,
+      this.prefixIconType = BrnPrefixIconType.TYPE_NORMAL,
+      this.error = "",
+      this.isEdit = true,
+      this.isRequire = false,
       this.onTip,
       this.operationLabel,
       this.onTap,
@@ -71,7 +69,7 @@ class BrnTitleFormItem extends StatefulWidget {
       : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
   }
@@ -87,7 +85,7 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -100,20 +98,20 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
               children: <Widget>[
                 Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       // 主标题
                       Container(
                           child: Text(
-                        widget.title ?? "",
+                        widget.title,
                         style:
-                            BrnFormUtil.getHeadTitleTextStyle(widget.themeData),
+                            BrnFormUtil.getHeadTitleTextStyle(widget.themeData!),
                       )),
 
                       // 问号提示
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -134,7 +132,7 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
                         child: Text(
                           widget.operationLabel ?? "",
                           style: TextStyle(
-                            color: widget.themeData.commonConfig.brandPrimary,
+                            color: widget.themeData!.commonConfig.brandPrimary,
                             fontSize: BrnFonts.f16,
                           ),
                         )),
@@ -145,10 +143,10 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
           // 错误提示
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );

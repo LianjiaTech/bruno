@@ -63,7 +63,6 @@ class StepInputExamplePage extends StatelessWidget {
               title: "自然到访保护期",
               subTitle: "这里是副标题",
               tipLabel: "标签",
-              value: 0,
               maxLimit: 5,
               minLimit: 1,
               onTip: () {
@@ -96,7 +95,6 @@ class StepInputExamplePage extends StatelessWidget {
               title: "自然到访保护期",
               subTitle: "这里是副标题",
               tipLabel: "标签",
-              value: 0,
               maxLimit: 5,
               minLimit: 1,
               onTip: () {

@@ -74,7 +74,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerPr
     super.initState();
 
     if (widget.isNeedConfigChild) {
-      widget.entityDataList?.forEach((f) => f.configRelationshipAndDefaultValue());
+      widget.entityDataList.forEach((f) => f.configRelationshipAndDefaultValue());
     }
     widget.controller?.addListener(_handleFlatControllerTick);
 

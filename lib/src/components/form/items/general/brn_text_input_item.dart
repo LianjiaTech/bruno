@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -17,23 +15,23 @@ import 'package:flutter/services.dart';
 // ignore: must_be_immutable
 class BrnTextInputFormItem extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
-  final String label;
+  final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  String type = BrnInputItemType.TEXT_INPUT_TYPE;
+  final String type = BrnInputItemType.TEXT_INPUT_TYPE;
 
   /// 录入项标题
   final String title;
 
   /// 录入项子标题
-  final String subTitle;
+  final String? subTitle;
 
   /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
   /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
   /// 2. 若赋值为非空字符串时 展示"问号图标&文案"，
   /// 3. 若不赋值或赋值为null时 不显示提示项
   /// 默认值为 3
-  final String tipLabel;
+  final String? tipLabel;
 
   /// 录入项前缀图标样式 "添加项" "删除项" 详见 [BrnPrefixIconType] 类
   final String prefixIconType;
@@ -53,55 +51,54 @@ class BrnTextInputFormItem extends StatefulWidget {
   final bool isPrefixIconEnabled;
 
   /// 点击"+"图标回调
-  final VoidCallback onAddTap;
+  final VoidCallback? onAddTap;
 
   /// 点击"-"图标回调
-  final VoidCallback onRemoveTap;
+  final VoidCallback? onRemoveTap;
 
   /// 点击"？"图标回调
-  final VoidCallback onTip;
+  final VoidCallback? onTip;
 
   /// 固定内容
-  final String prefixText;
+  final String? prefixText;
 
   /// 提示文案
   final String hint;
 
   /// 单位
-  final String unit;
+  final String? unit;
 
   /// 输入内容类型
-  final String inputType;
+  final String? inputType;
 
   /// 最大可输入字符数
-  final int maxCharCount;
-  List<TextInputFormatter> inputFormatters;
+  final int? maxCharCount;
+  final List<TextInputFormatter>? inputFormatters;
 
   /// 输入变化回调
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   /// form配置
-  BrnFormItemConfig themeData;
+  BrnFormItemConfig? themeData;
 
   BrnTextInputFormItem({
-    Key key,
+    Key? key,
     this.label,
-    this.type: BrnInputItemType.TEXT_INPUT_TYPE,
-    this.title: "",
+    this.title = "",
     this.subTitle,
     this.tipLabel,
-    this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
-    this.error: "",
-    this.isEdit: true,
-    this.isRequire: false,
-    this.isPrefixIconEnabled: false,
+    this.prefixIconType = BrnPrefixIconType.TYPE_NORMAL,
+    this.error = "",
+    this.isEdit = true,
+    this.isRequire = false,
+    this.isPrefixIconEnabled = false,
     this.onAddTap,
     this.onRemoveTap,
     this.onTip,
     this.prefixText,
-    this.hint: "请输入",
+    this.hint = "请输入",
     this.unit,
     this.maxCharCount,
     this.inputType,
@@ -112,7 +109,7 @@ class BrnTextInputFormItem extends StatefulWidget {
   }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
   }
@@ -124,7 +121,7 @@ class BrnTextInputFormItem extends StatefulWidget {
 }
 
 class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
-  TextEditingController _controller;
+  late TextEditingController _controller;
 
   @override
   void initState() {
@@ -136,7 +133,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -148,7 +145,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
               children: <Widget>[
                 Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       BrnFormUtil.buildPrefixIcon(
@@ -159,7 +156,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                           widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
                       BrnFormUtil.buildTitleWidget(
-                          widget.title, widget.themeData),
+                          widget.title, widget.themeData!),
                       Offstage(
                         offstage: (widget.prefixText == null),
                         child: Container(
@@ -167,11 +164,11 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                             child: Text(
                               widget.prefixText ?? "",
                               style: BrnFormUtil.getTitleTextStyle(
-                                  widget.themeData),
+                                  widget.themeData!),
                             )),
                       ),
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -182,11 +179,11 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                     maxLines: 1,
                     maxLength: widget.maxCharCount,
                     style: BrnFormUtil.getIsEditTextStyle(
-                        widget.themeData, widget.isEdit),
+                        widget.themeData!, widget.isEdit),
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData),
-                      hintText: widget.hint ?? '请输入',
+                      hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData!),
+                      hintText: widget.hint,
                       counterText: "",
                       contentPadding: EdgeInsets.all(0),
                       isDense: true,
@@ -218,8 +215,8 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
               ],
             ),
           ),
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );
@@ -231,7 +228,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
 
     // 如果controller由外部创建不需要销毁, 若由内部创建则需要销毁
     if (widget.controller == null) {
-      _controller?.dispose();
+      _controller.dispose();
     }
   }
 }

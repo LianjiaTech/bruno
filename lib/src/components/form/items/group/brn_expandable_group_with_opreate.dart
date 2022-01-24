@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/items/group/element_expand_widget.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
@@ -16,23 +14,23 @@ import 'package:flutter/widgets.dart';
 // ignore: must_be_immutable
 class BrnExpandFormGroup extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
-  final String label;
+  final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  String type = BrnInputItemType.NORMAL_GROUP_TYPE;
+  final String type = BrnInputItemType.NORMAL_GROUP_TYPE;
 
   /// 录入项标题
   final String title;
 
   /// 录入项子标题
-  final String subTitle;
+  final String? subTitle;
 
   /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
   /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
   /// 2. 若赋值为非空字符串时 展示"问号图标&文案"，
   /// 3. 若不赋值或赋值为null时 不显示提示项
   /// 默认值为 3
-  final String tipLabel;
+  final String? tipLabel;
 
   /// 录入项错误提示
   final String error;
@@ -44,35 +42,35 @@ class BrnExpandFormGroup extends StatefulWidget {
   final bool isEdit;
 
   /// 点击"-"图标回调
-  final VoidCallback onRemoveTap;
+  final VoidCallback? onRemoveTap;
 
   /// 点击"？"图标回调
-  final VoidCallback onTip;
+  final VoidCallback? onTip;
 
   /// 初始是否为展开状态
   final bool isExpand;
 
   /// 右侧文案
-  final String deleteLabel;
+  final String? deleteLabel;
 
   /// 内部子项
-  List<Widget> children;
+  final List<Widget> children;
 
   BrnExpandFormGroup({
-    Key key,
+    Key? key,
     this.label,
-    this.title: "",
+    this.title = "",
     this.subTitle,
     this.tipLabel,
-    this.error: "",
-    this.isEdit: true,
-    this.isRequire: false,
+    this.error = "",
+    this.isEdit = true,
+    this.isRequire = false,
     this.onRemoveTap,
     this.onTip,
-    this.isExpand: true,
+    this.isExpand = true,
     this.deleteLabel,
-    this.children,
-  });
+    required this.children,
+  }) : super(key: key);
 
   @override
   BrnExpandFormGroupState createState() {
@@ -85,7 +83,7 @@ class BrnExpandFormGroupState extends State<BrnExpandFormGroup> {
   Widget build(BuildContext context) {
     return Container(
       child: ExpansionElementWidget(
-        title: widget.title ?? "",
+        title: widget.title,
         subtitle: widget.subTitle,
         deleteText: widget.deleteLabel,
         initiallyExpanded: widget.isExpand,
@@ -102,17 +100,15 @@ class BrnExpandFormGroupState extends State<BrnExpandFormGroup> {
   }
 
   List<Widget> getSubItem() {
-    List<Widget> result = List<Widget>();
+    List<Widget> result = [];
 
-    if (widget.children == null || widget.children.isEmpty) {
+    if (widget.children.isEmpty) {
       return result;
     }
 
     for (Widget w in widget.children) {
-      if (w != null) {
-        result.add(BrnLine());
-        result.add(w);
-      }
+      result.add(BrnLine());
+      result.add(w);
     }
 
     return result;
