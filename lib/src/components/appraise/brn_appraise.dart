@@ -7,6 +7,7 @@ import 'package:bruno/src/components/input/brn_input_text.dart';
 import 'package:bruno/src/components/picker/brn_tags_picker_config.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_config.dart';
 import 'package:flutter/material.dart';
+import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 
 /// /// /// /// /// /// /// /// /// /
 /// 描述: 评价组件

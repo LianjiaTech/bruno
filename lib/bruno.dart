@@ -152,6 +152,7 @@ export 'src/components/appraise/brn_appraise_emoji_list_view.dart';
 export 'src/components/appraise/brn_appraise_header.dart';
 export 'src/components/appraise/brn_appraise.dart';
 export 'src/components/appraise/brn_appraise_config.dart';
+export 'src/components/appraise/brn_appraise_interface.dart';
 export 'src/components/appraise/brn_appraise_star_list_view.dart';
 
 //大图预览

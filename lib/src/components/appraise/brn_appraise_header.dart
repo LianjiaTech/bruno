@@ -1,8 +1,8 @@
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
-import 'package:bruno/src/components/appraise/brn_appraise_config.dart';
 import 'package:flutter/material.dart';
+import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 
 /// 描述: 评价组件title
 class BrnAppraiseHeader extends StatelessWidget {

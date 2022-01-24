@@ -2,13 +2,14 @@ import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_header.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_config.dart';
 import 'package:flutter/material.dart';
+import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 
 /// 描述: 评价组件bottom picker，
 /// 对BrnAppraise做了一层封装，可直接使用在showDialog里面
 
 class BrnAppraiseBottomPicker extends StatefulWidget {
   /// 标题
-  final String? title;
+  final String title;
 
   /// 标题类型
   final BrnAppraiseHeaderType headerType;
@@ -25,7 +26,7 @@ class BrnAppraiseBottomPicker extends StatefulWidget {
   final List<String>? tags;
 
   ///输入框允许提示文案
-  final String? inputHintText;
+  final String inputHintText;
 
   /// 提交按钮的点击回调
   final BrnAppraiseConfirmClick? onConfirm;
@@ -44,12 +45,12 @@ class BrnAppraiseBottomPicker extends StatefulWidget {
 
   BrnAppraiseBottomPicker({
     Key? key,
-    this.title,
+    this.title = '',
     this.headerType = BrnAppraiseHeaderType.spaceBetween,
     this.type = BrnAppraiseType.Star,
     this.iconDescriptions = _defaultIconDescriptions,
     this.tags,
-    this.inputHintText,
+    this.inputHintText = '',
     this.onConfirm,
     this.config = const BrnAppraiseConfig(),
   }) : super(key: key);
