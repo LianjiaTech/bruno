@@ -70,7 +70,7 @@ class BrnNormalFormGroup extends StatefulWidget {
     this.onTip,
     this.deleteLabel,
     required this.children,
-  }) : super() {
+  }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)

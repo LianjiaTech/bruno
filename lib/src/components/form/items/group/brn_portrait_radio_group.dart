@@ -55,12 +55,8 @@ class BrnPortraitRadioGroup extends StatefulWidget {
         this.selectedOption = options.indexOf(selectedOption) > -1
             ? BrnPortraitRadioGroupOption(
                 title: options[options.indexOf(selectedOption)])
-            : BrnPortraitRadioGroupOption()
-//    int selectedIndex = options.indexOf(selectedOption);
-//    if (selectedIndex > -1) {
-//      this.selectedOption = this.options![selectedIndex];
-//    }
-  {
+            : BrnPortraitRadioGroupOption(),
+        super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
@@ -78,7 +74,7 @@ class BrnPortraitRadioGroup extends StatefulWidget {
     this.onChanged,
     this.isCollapseContent = false,
     this.themeData,
-  }) {
+  }) :super(key: key){
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
@@ -205,8 +201,8 @@ class BrnPortraitRadioGroupState extends State<BrnPortraitRadioGroup> {
     return src.title == dst.title && src.subTitle == dst.subTitle;
   }
 
-  TextStyle? getOptionTextStyle(BrnPortraitRadioGroupOption opt, int index) {
-    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
+  TextStyle getOptionTextStyle(BrnPortraitRadioGroupOption opt, int index) {
+    TextStyle result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
 
     if (isSameOption(opt, _selectedOption)) {
       result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData!);

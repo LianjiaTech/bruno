@@ -27,10 +27,10 @@ class BrnAddLabel extends StatefulWidget {
   BrnAddLabel({
     Key? key,
     this.label,
-    this.title= "",
-    this.isEdit= true,
+    this.title = "",
+    this.isEdit = true,
     this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   BrnAddLabelState createState() {

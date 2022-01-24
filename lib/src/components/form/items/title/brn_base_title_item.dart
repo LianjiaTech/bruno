@@ -64,7 +64,7 @@ class BrnBaseTitle extends StatefulWidget {
     this.customActionWidget,
     this.onTip,
     this.themeData,
-  }) {
+  }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)

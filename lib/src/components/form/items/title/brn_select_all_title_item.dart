@@ -78,7 +78,7 @@ class BrnSelectAllTitle extends StatefulWidget {
     this.selectState = true,
     this.themeData,
     this.customActionWidget,
-  }) {
+  }):super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
@@ -152,7 +152,7 @@ class BrnSelectAllTitleState extends State<BrnSelectAllTitle> {
     }
   }
 
-  TextStyle? getOptionTextStyle(BrnFormItemConfig? themeData) {
+  TextStyle getOptionTextStyle(BrnFormItemConfig? themeData) {
     if (_selectState) {
       return BrnFormUtil.getOptionSelectedTextStyle(widget.themeData!);
     }

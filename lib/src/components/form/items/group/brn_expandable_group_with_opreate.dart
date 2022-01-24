@@ -70,7 +70,7 @@ class BrnExpandFormGroup extends StatefulWidget {
     this.isExpand = true,
     this.deleteLabel,
     required this.children,
-  });
+  }) : super(key: key);
 
   @override
   BrnExpandFormGroupState createState() {

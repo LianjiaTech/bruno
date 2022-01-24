@@ -87,7 +87,7 @@ class BrnStarsFormItem extends StatefulWidget {
       this.value: 0,
       this.onChanged,
       this.themeData})
-      : super() {
+      : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)

@@ -204,9 +204,9 @@ class BrnTitleSelectInputFormItemState
               return;
             }
 
-            RenderBox trigle =
-                _globalKey.currentContext?.findRenderObject() as RenderBox;
-            Offset offset = trigle.localToGlobal(Offset.zero);
+            RenderBox? trigle =
+                _globalKey.currentContext?.findRenderObject() as RenderBox?;
+            Offset? offset = trigle?.localToGlobal(Offset.zero);
             final RenderBox button = context.findRenderObject() as RenderBox;
             final RenderBox overlay =
                 Overlay.of(context)!.context.findRenderObject() as RenderBox;
@@ -219,9 +219,9 @@ class BrnTitleSelectInputFormItemState
             );
 
             var relativeRect = RelativeRect.fromLTRB(
-                position.left + offset.dx,
+                position.left + (offset?.dx ?? 0.0),
                 position.top + 44,
-                position.right + offset.dx,
+                position.right + (offset?.dx ?? 0.0),
                 position.bottom + 44);
             _showController.add(true);
             Navigator.push(

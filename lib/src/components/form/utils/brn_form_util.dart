@@ -377,7 +377,7 @@ class BrnFormUtil {
   }
 
   /// 获取标题文本样式
-  static TextStyle? getTitleTextStyle(BrnFormItemConfig themeData,
+  static TextStyle getTitleTextStyle(BrnFormItemConfig themeData,
       {double height = 0}) {
     if (height > 0) {
       return BrnTextStyle(height: height)

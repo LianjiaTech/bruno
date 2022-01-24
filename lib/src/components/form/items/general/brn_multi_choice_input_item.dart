@@ -88,7 +88,7 @@ class BrnMultiChoiceInputFormItem extends StatefulWidget {
       this.enableList = const <bool>[],
       this.onChanged,
       this.themeData})
-      : super() {
+      : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
@@ -222,8 +222,8 @@ class BrnMultiChoiceInputFormItemState
     return result;
   }
 
-  TextStyle? getOptionTextStyle(int index) {
-    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
+  TextStyle getOptionTextStyle(int index) {
+    TextStyle result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
     if (index < 0 || index >= _selectStatus.length) {
       return result;
     }

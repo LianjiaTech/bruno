@@ -340,7 +340,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
     );
   }
 
-  List<Widget> getRadioList(List<String?>? options) {
+  List<Widget> getRadioList(List<String>? options) {
     List<Widget> result = [];
     String? option;
     if (options == null || options.isEmpty) {
@@ -361,7 +361,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
                 child: Container(
                     padding: EdgeInsets.only(left: _kRadioTitleLeftPadding),
                     child: Text(
-                      option!,
+                      option,
                       style: getOptionTextStyle(option, index),
                     )),
                 disable: getRadioEnableState(index),
@@ -388,8 +388,8 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
     return result;
   }
 
-  TextStyle? getOptionTextStyle(String? opt, int index) {
-    TextStyle? result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
+  TextStyle getOptionTextStyle(String? opt, int index) {
+    TextStyle result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
     if (opt == null) {
       return result;
     }
