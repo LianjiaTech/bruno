@@ -136,13 +136,13 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
   }
 
   /// 根据page的位置反查groupIndex和index
-  List<int?> _getGroupIndexAndIndex(int pagePosition) {
-    List<int?> result = <int?>[];
+  List<int> _getGroupIndexAndIndex(int pagePosition) {
+    List<int> result = <int>[];
     MapEntry entry = _groupStartPosition.entries.toList().firstWhere((entry) {
       return (entry.value > pagePosition);
     });
     result.add(entry.key - 1);
-    result.add(pagePosition - (_groupStartPosition[entry.key - 1]) as int?);
+    result.add(pagePosition - (_groupStartPosition[entry.key - 1]) as int);
     return result;
   }
 
@@ -232,14 +232,14 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
 
   Future<void>? _moveToIndex(index) {
     // 改变 title
-    List<int?> pos = _getGroupIndexAndIndex(index);
-    _indexTitle = "${pos[1]! + 1}/${_groupCount[pos[0]]}";
-    _groupTitle = _allConfig[pos[0]!].title ?? "";
+    List<int> pos = _getGroupIndexAndIndex(index);
+    _indexTitle = "${pos[1] + 1}/${_groupCount[pos[0]]}";
+    _groupTitle = _allConfig[pos[0]].title ?? "";
     _curIndex = pos[1];
     // 处理是是否需要切换 tab
     if (_curTab != pos[0]) {
       _curTab = pos[0];
-      _tabController!.animateTo(pos[0]!);
+      _tabController!.animateTo(pos[0]);
     }
     _titleNotifier!.value =
         _assorted ? "$_groupTitle($_indexTitle)" : "$_indexTitle";
@@ -258,7 +258,7 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
         themeData: _appBarConfig,
         title: ValueListenableBuilder(
           valueListenable: _titleNotifier!,
-          builder: (c, dynamic v, _) {
+          builder: (c, String? v, _) {
             return Text(
               v ?? "",
               style: _appBarConfig!.titleStyle.generateTextStyle(),
