@@ -535,8 +535,8 @@ class BrnSelectionEntity {
     if (this.filterType == BrnSelectionFilterType.Range ||
         this.filterType == BrnSelectionFilterType.DateRange ||
         this.filterType == BrnSelectionFilterType.DateRangeCalendar) {
-      DateTime minTime = DateTime.parse(DATE_PICKER_MIN_DATETIME);
-      DateTime maxTime = DateTime.parse(DATE_PICKER_MAX_DATETIME);
+      DateTime minTime = DateTime.parse(datePickerMinDatetime);
+      DateTime maxTime = DateTime.parse(datePickerMaxDatetime);
       int limitMin = int.tryParse(extMap['min']?.toString() ?? "") ??
           (this.filterType == BrnSelectionFilterType.DateRange ||
                   this.filterType == BrnSelectionFilterType.DateRangeCalendar

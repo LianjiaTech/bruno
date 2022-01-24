@@ -495,7 +495,7 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
           item: widget.rangeEntity,
           isNeedTitle: false,
           showTextSize: 14,
-          dateFormat: DATETIME_PICKER_DATE_FORMAT,
+          dateFormat: datetimePickerDateFormat,
           minTextEditingController: minController,
           maxTextEditingController: maxController,
           themeData: widget.themeData,

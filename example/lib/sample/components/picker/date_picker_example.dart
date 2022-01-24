@@ -156,7 +156,7 @@ class DatePickerExamplePage extends StatelessWidget {
     format = 'HH时:mm分';
     BrnPickerTitleConfig timePickerTheme = BrnPickerTitleConfig(
         title: BrnPickerTitleConfig.Default.title,
-        showTitle: PICKER_SHOW_TITLE_DEFAULT,
+        showTitle: pickerShowTitleDefault,
         titleContent: "选择时间范围");
     BrnDateRangePicker.showDatePicker(context,
         minDateTime: DateTime.parse(MIN_DATETIME),
