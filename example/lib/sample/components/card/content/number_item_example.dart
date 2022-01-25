@@ -178,12 +178,13 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
                             transform: Matrix4.translationValues(0, 1, 0),
                             child: Text('3',
                                 style: TextStyle(
+                                  height: 1.0,
                                   textBaseline: TextBaseline.ideographic,
                                   color: Color(0xFF222222),
                                   package: BrnStrings.flutterPackageName,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                   fontSize: 28,
-                                  fontFamily: 'Condensed',
+                                  fontFamily: 'Bebas',
                                 )),
                           ),
                           Padding(
@@ -204,12 +205,13 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
                             transform: Matrix4.translationValues(0, 1, 0),
                             child: Text('1',
                                 style: TextStyle(
+                                  height: 1.0,
                                   textBaseline: TextBaseline.ideographic,
                                   color: Color(0xFF222222),
                                   package: BrnStrings.flutterPackageName,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 28,
-                                  fontFamily: 'Condensed',
+                                  fontFamily: 'Bebas',
                                 )),
                           ),
                           Padding(
