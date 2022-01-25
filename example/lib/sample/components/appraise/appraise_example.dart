@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -82,6 +80,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
                 config: BrnAppraiseConfig(
                     showConfirmButton: false,
                     starAppraiseHint: '星星未选择时的文案',
+                    inputDefaultText: '这是一段默认文字',
                     inputTextChangeCallback: (input) {
                       BrnToast.show('输入的内容为' + input, context);
                     },
@@ -230,10 +229,10 @@ class _AppraiseExampleState extends State<AppraiseExample> {
   void showToast(int index, List<String> selectedTags, String input,
       BuildContext context) {
     String str = '选中的评价为$index';
-    if (selectedTags?.isNotEmpty ?? false) {
+    if (selectedTags.isNotEmpty) {
       str = str + ',选中的标签为:' + selectedTags.toString();
     }
-    if (input?.isNotEmpty ?? false) {
+    if (input.isNotEmpty) {
       str = str + '，输入的内容为:' + input;
     }
     BrnToast.show(str, context);
