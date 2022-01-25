@@ -63,7 +63,7 @@ class BrnGalleryDetailPage extends StatefulWidget {
 class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     with TickerProviderStateMixin {
   /// title 关联的通知，因为 title 与图片所处的位置关联
-  ValueNotifier<String?>? _titleNotifier;
+  ValueNotifier<String>? _titleNotifier;
   TabController? _tabController;
   List<BrnBasicGroupConfig> _allConfig = <BrnBasicGroupConfig>[];
   int? _curTab;
@@ -167,7 +167,7 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
 
   void _buildViews() {
     _reset();
-    _titleNotifier = ValueNotifier<String?>(null);
+    _titleNotifier = ValueNotifier<String>('');
     _tabController = TabController(
         length: _allConfig.length, vsync: this, initialIndex: _curTab!)
       ..addListener(() {
@@ -215,7 +215,7 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     _groupTitle = _allConfig[_curTab!].title ?? "";
     _indexTitle =
         "${_curIndex! + 1}/${_allConfig[_curTab!].configList!.length}";
-    _titleNotifier!.value =
+    _titleNotifier?.value =
         _assorted ? "$_groupTitle($_indexTitle)" : "$_indexTitle";
 
     _columnViews.add(Expanded(
@@ -241,7 +241,7 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
       _curTab = pos[0];
       _tabController!.animateTo(pos[0]);
     }
-    _titleNotifier!.value =
+    _titleNotifier?.value =
         _assorted ? "$_groupTitle($_indexTitle)" : "$_indexTitle";
     return null;
   }
@@ -258,9 +258,9 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
         themeData: _appBarConfig,
         title: ValueListenableBuilder(
           valueListenable: _titleNotifier!,
-          builder: (c, String? v, _) {
+          builder: (c, String v, _) {
             return Text(
-              v ?? "",
+              v,
               style: _appBarConfig!.titleStyle.generateTextStyle(),
             );
           },
