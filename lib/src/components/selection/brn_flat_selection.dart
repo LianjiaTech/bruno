@@ -134,7 +134,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerPr
     return MeasureSize(
         onChange: (size) {
           setState(() {
-            _lineWidth = size?.width ?? 0;
+            _lineWidth = size.width;
           });
         },
         child: _buildSelectionListView());
