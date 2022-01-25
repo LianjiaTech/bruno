@@ -23,7 +23,7 @@ class BrnMultiColumnListWidget extends StatefulWidget {
   Color selectedColor;
   Color? backgroundColor;
   Color? selectedBackgroundColor;
-  int? flex;
+  int flex;
   BrnOnEntityTap? singleListItemPick;
   int? currentListIndex;
   double maxHeight;
@@ -36,7 +36,7 @@ class BrnMultiColumnListWidget extends StatefulWidget {
     this.maxHeight = 0,
     this.backgroundColor,
     this.selectedBackgroundColor,
-    this.flex,
+    this.flex = 1,
     this.focusedIndex,
     this.singleListItemPick,
     this.onSelectEntityInterceptor,
@@ -70,7 +70,7 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: widget.flex!,
+      flex: widget.flex,
       child: Container(
         constraints: (widget.maxHeight == 0)
             ? BoxConstraints.expand()

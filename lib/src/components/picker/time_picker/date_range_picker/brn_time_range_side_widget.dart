@@ -44,7 +44,7 @@ class BrnTimeRangeSideWidget extends StatefulWidget {
     this.maxDateTime,
     this.initialStartDateTime,
     this.dateFormat: datetimeRangePickerTimeFormat,
-    this.locale: DATETIME_PICKER_LOCALE_DEFAULT,
+    this.locale: datetimePickerLocaleDefault,
     this.minuteDivider = 1,
     this.onChange,
     this.onInitSelectChange,
@@ -118,18 +118,18 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
       this._minuteDivider = minuteDivider;
     }
 
-    // limit the range of hour
-    this._hourRange = _calcHourRange();
-    this._minuteRange = _calcMinuteRange();
-
     this._currStartHour = initStartTime.hour;
+    this._hourRange = _calcHourRange();
     this._currStartHour =
         min(max(_hourRange.first, _currStartHour), _hourRange.last);
 
     this._currStartMinute = initStartTime.minute;
+    this._minuteRange = _calcMinuteRange();
     this._currStartMinute =
         min(max(_minuteRange.first, _currStartMinute), _minuteRange.last);
     _currStartMinute -= _currStartMinute % _minuteDivider;
+
+
     _onInitSelectedChange();
     // create scroll controller
     _startHourScrollCtrl = FixedExtentScrollController(

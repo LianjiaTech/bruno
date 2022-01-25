@@ -95,8 +95,8 @@ class BrnSelectTagsWithInputPickerWidget extends StatefulWidget {
   final int? maxLength;
   final String? hintText;
   final Color? cursorColor;
-  final bool? forceShowTextInput;
-  final bool? multiSelect;
+  final bool forceShowTextInput;
+  final bool multiSelect;
   final String? defaultText;
   final TextEditingController? textEditingController;
   final BrnTagsInputPickerConfig? tagPickerBean;
@@ -110,8 +110,8 @@ class BrnSelectTagsWithInputPickerWidget extends StatefulWidget {
       this.maxLength,
       this.hintText,
       this.cursorColor,
-      this.forceShowTextInput,
-      this.multiSelect,
+      this.forceShowTextInput = false,
+      this.multiSelect = false,
       this.defaultText,
       this.textEditingController,
       this.tagPickerBean,
@@ -218,18 +218,21 @@ class _BrnSelectTagsWithInputPickerWidgetState
   void _dataSetup() {
     List<BrnTagInputItemBean> tagItems = [];
     List<BrnTagInputItemBean> tagSelectedItems = [];
-    for (BrnTagInputItemBean item in widget.tagPickerBean!.tagItemSource) {
-      tagItems.add(item);
-      //选中的按钮
-      if (item.isSelect == true && item.name != null) {
-        tagSelectedItems.add(item);
+    if (widget.tagPickerBean != null) {
+      for (BrnTagInputItemBean item in widget.tagPickerBean!.tagItemSource) {
+        tagItems.add(item);
+        //选中的按钮
+        if (item.isSelect == true ) {
+          tagSelectedItems.add(item);
+        }
       }
     }
+
 
     this._sourceTags = tagItems;
     // 重新排序，name 越长，越靠后
     this._sourceTags.sort((left, right) {
-      return (left.name!.length).compareTo(right.name!.length);
+      return (left.name.length).compareTo(right.name.length);
     });
 
     // 默认选中tags
@@ -244,7 +247,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            widget.title!,
+            widget.title ?? '',
             style: TextStyle(
               color: BrnThemeConfigurator.instance
                   .getConfig()
@@ -293,17 +296,17 @@ class _BrnSelectTagsWithInputPickerWidgetState
   }
 
   Widget _tagsArea(BuildContext context) {
-    Color selectedTagTitleColor = widget.tagPickerBean!.selectedTagTitleColor ??
+    Color selectedTagTitleColor = widget.tagPickerBean?.selectedTagTitleColor ??
         BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
-    Color tagTitleColor = widget.tagPickerBean!.tagTitleColor ??
+    Color tagTitleColor = widget.tagPickerBean?.tagTitleColor ??
         BrnThemeConfigurator.instance
             .getConfig()
             .commonConfig
             .colorTextImportant;
     Color tagBackgroundColor =
-        widget.tagPickerBean!.tagBackgroundColor ?? Color(0xffF8F8F8);
+        widget.tagPickerBean?.tagBackgroundColor ?? Color(0xffF8F8F8);
     Color selectedTagBackgroundColor =
-        widget.tagPickerBean!.selectedTagBackgroundColor ??
+        widget.tagPickerBean?.selectedTagBackgroundColor ??
             BrnThemeConfigurator.instance
                 .getConfig()
                 .commonConfig
@@ -351,7 +354,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
 
   void _clickTag(bool selected, BrnTagInputItemBean tagName) {
     if (selected) {
-      if (!widget.multiSelect!) {
+      if (!widget.multiSelect) {
         this._selectedTags.forEach((tagItem) {
           tagItem.isSelect = false;
         });
@@ -451,12 +454,20 @@ class _BrnSelectTagsWithInputPickerWidgetState
   }
 
   bool isCommitBtnEnable() {
+    bool needExpend = false;
+    for (int i = 0; i < this._selectedTags.length; i++) {
+      BrnTagInputItemBean brnTagInputItemBean = this._selectedTags[i];
+      if (true == brnTagInputItemBean.needExpend) {
+        needExpend = true;
+        break;
+      }
+    }
     return this._selectedTags.length > 0 &&
-        (isShowTextInput() ? _textEditingController!.text.length > 0 : true);
+        (needExpend ? _textEditingController!.text.length > 0 : true);
   }
 
   bool isShowTextInput() {
-    if (widget.forceShowTextInput!) {
+    if (widget.forceShowTextInput) {
       return true;
     }
     for (int i = 0; i < this._selectedTags.length; i++) {
@@ -476,7 +487,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
 /// 数据源
 class BrnTagInputItemBean {
   /// 标签展示的文案
-  String? name;
+  String name;
 
   ///选中状态
   bool isSelect;
@@ -491,7 +502,7 @@ class BrnTagInputItemBean {
   Map? ext;
 
   BrnTagInputItemBean({
-    this.name,
+    this.name = '',
     this.isSelect = false,
     this.index,
     this.needExpend = false,

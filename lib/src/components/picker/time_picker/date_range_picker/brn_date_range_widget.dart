@@ -55,7 +55,7 @@ class BrnDateRangeWidget extends StatefulWidget {
     this.initialStartDateTime,
     this.initialEndDateTime,
     this.dateFormat: datetimeRangePickerDateFormat,
-    this.locale: DATETIME_PICKER_LOCALE_DEFAULT,
+    this.locale: datetimePickerLocaleDefault,
     this.pickerTitleConfig: BrnPickerTitleConfig.Default,
     this.onCancel,
     this.onChange,

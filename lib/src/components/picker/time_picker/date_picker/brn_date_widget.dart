@@ -26,7 +26,7 @@ class BrnDateWidget extends StatefulWidget {
     this.maxDateTime,
     this.initialDateTime,
     this.dateFormat = datetimePickerDateFormat,
-    this.locale = DATETIME_PICKER_LOCALE_DEFAULT,
+    this.locale = datetimePickerLocaleDefault,
     this.pickerTitleConfig= BrnPickerTitleConfig.Default,
     this.onCancel,
     this.onChange,

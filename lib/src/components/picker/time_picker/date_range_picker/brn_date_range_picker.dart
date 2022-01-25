@@ -44,11 +44,11 @@ class BrnDateRangePicker {
     DateTime? initialEndDateTime,
     String? dateFormat,
     int minuteDivider = 1,
-    DateTimePickerLocale locale = DATETIME_PICKER_LOCALE_DEFAULT,
+    DateTimePickerLocale locale = datetimePickerLocaleDefault,
     BrnDateTimeRangePickerMode pickerMode = BrnDateTimeRangePickerMode.date,
     BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
     DateVoidCallback? onCancel,
-    required DateVoidCallback? onClose,
+    DateVoidCallback? onClose,
     DateRangeValueCallback? onChange,
     DateRangeValueCallback? onConfirm,
     BrnPickerConfig? themeData,
@@ -121,7 +121,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
     this.initialEndDateTime,
     this.minuteDivider = 1,
     this.dateFormat,
-    this.locale = DATETIME_PICKER_LOCALE_DEFAULT,
+    this.locale = datetimePickerLocaleDefault,
     this.pickerMode = BrnDateTimeRangePickerMode.date,
     this.pickerTitleConfig = BrnPickerTitleConfig.Default,
     this.onCancel,
@@ -236,8 +236,7 @@ class _DatePickerComponent extends StatelessWidget {
         builder: (BuildContext context, Widget? child) {
           return ClipRect(
             child: CustomSingleChildLayout(
-              delegate: _BottomPickerLayout(route.animation!.value,
-                  contentHeight: _pickerHeight),
+              delegate: _BottomPickerLayout(route.animation!.value, _pickerHeight),
               child: BrnPickerClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(route.themeData!.cornerRadius),
@@ -254,10 +253,10 @@ class _DatePickerComponent extends StatelessWidget {
 }
 
 class _BottomPickerLayout extends SingleChildLayoutDelegate {
-  _BottomPickerLayout(this.progress, {this.contentHeight});
+  _BottomPickerLayout(this.progress, this.contentHeight);
 
   final double progress;
-  final double? contentHeight;
+  final double contentHeight;
 
   @override
   BoxConstraints getConstraintsForChild(BoxConstraints constraints) {
@@ -265,7 +264,7 @@ class _BottomPickerLayout extends SingleChildLayoutDelegate {
       minWidth: constraints.maxWidth,
       maxWidth: constraints.maxWidth,
       minHeight: 0.0,
-      maxHeight: contentHeight!,
+      maxHeight: contentHeight,
     );
   }
 

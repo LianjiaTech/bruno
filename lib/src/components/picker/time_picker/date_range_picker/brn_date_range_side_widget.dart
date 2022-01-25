@@ -43,7 +43,7 @@ class BrnDateRangeSideWidget extends StatefulWidget {
     this.maxDateTime,
     this.initialStartDateTime,
     this.dateFormat = datetimeRangePickerDateFormat,
-    this.locale = DATETIME_PICKER_LOCALE_DEFAULT,
+    this.locale = datetimePickerLocaleDefault,
     this.onInitSelectChange,
     this.onChange,
   }) : super(key: key) {
@@ -74,7 +74,7 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
       _dayScrollCtrl;
 
   late Map<String, FixedExtentScrollController?> _scrollCtrlMap;
-  late Map<String, List<int>?> _valueRangeMap;
+  late Map<String, List<int>> _valueRangeMap;
 
   bool _isChangeDateRange = false;
 

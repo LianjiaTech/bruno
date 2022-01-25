@@ -32,7 +32,7 @@ abstract class BrnMultiDataPickerDelegate {
   int numberOfRowsInComponent(int component);
 
   /// 定义某列某行所显示的内容，component 代表列的索引，index 代表 第component列中的第 index 个元素
-  String? titleForRowInComponent(int component, int index);
+  String titleForRowInComponent(int component, int index);
 
   /// 定义每列内容的高度
   double? rowHeightForComponent(int component);
@@ -108,7 +108,7 @@ class BrnMultiDataPicker extends StatefulWidget {
       this.titleTextStyle,
       this.confirmTextStyle,
       this.cancelTextStyle,
-      this.pickerTitles = const [],
+      this.pickerTitles,
       this.pickerTitleFontSize,
       this.pickerTitleColor,
       this.textFontSize,
@@ -291,7 +291,7 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
               i++) {
             list.add(Center(
               child: Text(
-                widget.delegate.titleForRowInComponent(component, i) ?? '',
+                widget.delegate.titleForRowInComponent(component, i),
                 style: _selectedIndexList[component] == i
                     ? widget.themeData!.itemTextSelectedStyle.generateTextStyle()
                     : widget.themeData!.itemTextStyle.generateTextStyle(),
@@ -338,8 +338,6 @@ class MyPicker extends StatefulWidget {
   ///数据选择改变回调
   final ValueChanged<int>? changed;
 
-  final Key? key;
-
   /// 数据显示高度
   final double itemExtent;
 
@@ -351,15 +349,15 @@ class MyPicker extends StatefulWidget {
   final Color? lineColor;
 
   MyPicker({
+    Key? key,
     this.createWidgetList,
     this.changed,
-    this.key,
     this.scrollBehavior,
     this.itemExtent = 45,
     this.controller,
     this.backgroundColor = Colors.white,
     this.lineColor,
-  });
+  }) : super(key: key);
 
   @override
   State createState() {

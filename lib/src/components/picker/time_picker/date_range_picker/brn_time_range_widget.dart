@@ -63,7 +63,7 @@ class BrnTimeRangeWidget extends StatefulWidget {
     this.initialStartDateTime,
     this.initialEndDateTime,
     this.dateFormat: datetimeRangePickerTimeFormat,
-    this.locale: DATETIME_PICKER_LOCALE_DEFAULT,
+    this.locale: datetimePickerLocaleDefault,
     this.pickerTitleConfig: BrnPickerTitleConfig.Default,
     this.minuteDivider = 1,
     this.onCancel,
@@ -139,24 +139,20 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
     }
 
     this._currStartHour = initStartTime.hour;
-    this._currStartMinute = initStartTime.minute;
-
-    this._currEndHour = initEndTime.hour;
-    this._currEndMinute = initEndTime.minute;
-
-    // limit the range of hour
     this._hourRange = _calcHourRange();
-    this._minuteRange = _calcMinuteRange();
-
     this._currStartHour =
         min(max(_hourRange.first, _currStartHour), _hourRange.last);
-    this._currEndHour = min(_currEndHour, _hourRange.last);
-    // limit the range of minute
 
+    this._currStartMinute = initStartTime.minute;
+    this._minuteRange = _calcMinuteRange();
     this._currStartMinute =
         min(max(_minuteRange.first, _currStartMinute), _minuteRange.last);
     _currStartMinute -= _currStartMinute % _minuteDivider;
 
+    this._currEndHour = initEndTime.hour;
+    this._currEndHour = min(_currEndHour, _hourRange.last);
+
+    this._currEndMinute = initEndTime.minute;
     this._currEndMinute = min(_currEndMinute, _minuteRange.last);
     _currEndMinute -= _currEndMinute % _minuteDivider;
 
@@ -351,7 +347,7 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
               alignment: Alignment.center,
               child: Text(
                 "至",
-                style: widget.themeData!.itemTextStyle as TextStyle? ?? pickerItemTextStyle,
+                style: widget.themeData!.itemTextStyle.generateTextStyle(),
               ),
             );
           },

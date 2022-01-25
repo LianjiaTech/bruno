@@ -71,7 +71,7 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
               Container(
                   child: Expanded(
                 child: Text(
-                  item.name! + _getSelectedItemCount(item),
+                  item.name + _getSelectedItemCount(item),
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,

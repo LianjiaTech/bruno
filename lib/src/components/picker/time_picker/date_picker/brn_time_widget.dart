@@ -23,7 +23,7 @@ class BrnTimeWidget extends StatefulWidget {
     this.maxDateTime,
     this.initDateTime,
     this.dateFormat: datetimePickerTimeFormat,
-    this.locale: DATETIME_PICKER_LOCALE_DEFAULT,
+    this.locale: datetimePickerLocaleDefault,
     this.pickerTitleConfig: BrnPickerTitleConfig.Default,
     this.minuteDivider = 1,
     this.onCancel,
@@ -68,7 +68,7 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
       _secondScrollCtrl;
 
   late Map<String, FixedExtentScrollController?> _scrollCtrlMap;
-  late Map<String, List<int>?> _valueRangeMap;
+  late Map<String, List<int>> _valueRangeMap;
 
   bool _isChangeTimeRange = false;
 

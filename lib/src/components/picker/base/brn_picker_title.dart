@@ -13,7 +13,7 @@ class BrnPickerTitle extends StatelessWidget {
   final BrnPickerTitleConfig pickerTitleConfig;
   final DateTimePickerLocale? locale;
   final DateVoidCallback onCancel, onConfirm;
-  late BrnPickerConfig? themeData;
+  BrnPickerConfig? themeData;
 
   BrnPickerTitle({
     Key? key,
