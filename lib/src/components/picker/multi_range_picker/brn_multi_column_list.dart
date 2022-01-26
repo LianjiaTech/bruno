@@ -36,7 +36,7 @@ class BrnMultiColumnListWidget extends StatefulWidget {
     this.maxHeight = 0,
     this.backgroundColor,
     this.selectedBackgroundColor,
-    this.flex = 1,
+    required this.flex,
     this.focusedIndex,
     this.singleListItemPick,
     this.onSelectEntityInterceptor,

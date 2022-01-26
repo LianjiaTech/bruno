@@ -49,8 +49,8 @@ class BrnMultiColumnPickerUtil {
   /// !!! 在设置 isSelected = true之前进行 check。
   /// 返回 true 符合条件，false 不符合条件
   static bool isSelectedCountExceed(BrnPickerEntity? entity) {
-    if (entity == null && entity?.parent == null) return false;
-    return entity!.parent!.getSelectedChildCount() <
+    if (entity == null || entity.parent == null) return false;
+    return entity.parent!.getSelectedChildCount() <
         entity.parent!.maxSelectedCount;
   }
 }

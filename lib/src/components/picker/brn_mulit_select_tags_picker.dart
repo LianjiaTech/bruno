@@ -85,8 +85,8 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
   final double itemHeight;
 
   /// 操作类型属性
-  late List _selectedTags;
-  late List _sourceTags;
+  late List<BrnTagItemBean> _selectedTags;
+  late List<BrnTagItemBean> _sourceTags;
 
   @override
   void show() {
@@ -282,8 +282,8 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
   }
 
   void _dataSetup() {
-    List tagItems = [];
-    List tagSelectItems = [];
+    List<BrnTagItemBean> tagItems = [];
+    List<BrnTagItemBean> tagSelectItems = [];
     for (BrnTagItemBean item in this.tagPickerConfig.tagItemSource) {
       tagItems.add(item);
       //选中的按钮
