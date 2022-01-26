@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/components/picker/brn_tags_picker_config.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +23,12 @@ typedef BrnMultiSelectedTagsCallback = void Function(
 
 class BrnMultiSelectTags extends StatefulWidget {
   ///当点击到最大数目时的点击事件
-  final VoidCallback onMaxSelectClick;
+  final VoidCallback? onMaxSelectClick;
 
-  ///一行多少个数据
+  ///一行多少个数据，默认 2
   final int brnCrossAxisCount;
 
-  ///最多选择多少个item - 默认可以无限选
+  ///最多选择多少个item - 默认0，可以无限选
   final int maxSelectItemCount;
 
   /// 本类属性
@@ -40,12 +38,12 @@ class BrnMultiSelectTags extends StatefulWidget {
   final BrnMultiSelectTagText<BrnTagItemBean> tagText;
 
   /// 已选中列表
-  final BrnMultiSelectedTagsCallback selectedTagsCallback;
+  final BrnMultiSelectedTagsCallback? selectedTagsCallback;
 
   /// 没有数据时的样式
-  final Widget emptyWidget;
+  final Widget? emptyWidget;
 
-  /// 没有数据时的样式
+  /// 没有数据时的样式，如果为 null，默认 EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0, bottom: 0.0)
   final EdgeInsets padding;
 
   ///是等分样式还是流式布局样式 默认等分
@@ -55,25 +53,26 @@ class BrnMultiSelectTags extends StatefulWidget {
   final bool multiSelect;
 
   /// 滑动选项
-  final ScrollPhysics physics;
+  final ScrollPhysics? physics;
 
-  /// 最小宽度
+  /// 最小宽度，默认 75
   final double minWidth;
 
   BrnMultiSelectTags({
-    @required this.tagPickerBean,
-    @required this.tagText,
+    Key? key,
+    required this.tagPickerBean,
+    required this.tagText,
     this.onMaxSelectClick,
     this.maxSelectItemCount = 0,
-    this.brnCrossAxisCount,
+    this.brnCrossAxisCount = 2,
     this.tagStyle = BrnMultiSelectStyle.average,
     this.selectedTagsCallback,
     this.emptyWidget,
-    this.padding,
+    this.padding = const EdgeInsets.symmetric(horizontal: 20),
     this.multiSelect = true,
     this.physics,
-    this.minWidth,
-  });
+    this.minWidth = 75,
+  }) : super(key: key);
 
   @override
   _BrnMultiSelectTagsState createState() => _BrnMultiSelectTagsState();
@@ -81,8 +80,8 @@ class BrnMultiSelectTags extends StatefulWidget {
 
 class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
   /// 操作类型属性
-  List<BrnTagItemBean> _selectedTags;
-  List<BrnTagItemBean> _sourceTags;
+  List<BrnTagItemBean> _selectedTags = [];
+  List<BrnTagItemBean> _sourceTags = [];
 
   @override
   void initState() {
@@ -92,7 +91,7 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.tagPickerBean?.tagItemSource?.isNotEmpty ?? false) {
+    if (widget.tagPickerBean.tagItemSource?.isNotEmpty ?? false) {
       return _buildContent(context);
     } else {
       return widget.emptyWidget ??
@@ -115,7 +114,7 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
 
   ///等宽度的布局
   Widget _buildGridViewWidget(BuildContext context) {
-    int brnCrossAxisCount = widget.brnCrossAxisCount ?? 2;
+    int brnCrossAxisCount = widget.brnCrossAxisCount;
     double width = (MediaQuery.of(context).size.width -
             (brnCrossAxisCount - 1) * 12 -
             40) /
@@ -124,8 +123,7 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
     double brnChildAspectRatio = width / 34.0;
 
     return Container(
-      padding: widget.padding ??
-          EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0, bottom: 0.0),
+      padding: widget.padding,
       constraints: BoxConstraints(maxHeight: 322, minHeight: 120),
       child: GridView.count(
         shrinkWrap: true,
@@ -148,7 +146,7 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
   ///流式布局
   Widget _buildWrapViewWidget(BuildContext context) {
     return Container(
-        padding: widget.padding ?? EdgeInsets.symmetric(horizontal: 20),
+        padding: widget.padding,
         child: Wrap(
           spacing: 12,
           runSpacing: 12,
@@ -160,8 +158,8 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
   }
 
   void _dataSetup() {
-    List<BrnTagItemBean> tagItems = List();
-    List<BrnTagItemBean> tagSelectItems = List();
+    List<BrnTagItemBean> tagItems = [];
+    List<BrnTagItemBean> tagSelectItems = [];
     for (BrnTagItemBean item in widget.tagPickerBean.tagItemSource) {
       tagItems.add(item);
       //选中的按钮
@@ -178,14 +176,14 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
   void _clickTag(bool selected, BrnTagItemBean tagName) {
     if (!widget.multiSelect) {
       /// 单选
-      _sourceTags?.forEach((tag) {
+      _sourceTags.forEach((tag) {
         tag.isSelect = false;
       });
-      _selectedTags?.clear();
+      _selectedTags.clear();
       tagName.isSelect = true;
       _selectedTags.add(tagName);
       if (widget.selectedTagsCallback != null) {
-        widget.selectedTagsCallback(_selectedTags);
+        widget.selectedTagsCallback!(_selectedTags);
       }
     } else {
       /// 多选
@@ -197,7 +195,7 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
         _selectedTags.remove(tagName);
       }
       if (widget.selectedTagsCallback != null) {
-        widget.selectedTagsCallback(_selectedTags);
+        widget.selectedTagsCallback!(_selectedTags);
       }
     }
   }
@@ -228,7 +226,7 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
         setState(() {});
       },
       child: Container(
-        constraints: BoxConstraints(minWidth: widget.minWidth ?? 75),
+        constraints: BoxConstraints(minWidth: widget.minWidth),
         decoration: BoxDecoration(
             color: bgColor, borderRadius: BorderRadius.circular(3.0)),
         padding: padding,

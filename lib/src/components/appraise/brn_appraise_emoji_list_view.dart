@@ -1,9 +1,7 @@
-// @dart=2.9
-
-import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_emoji_item.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 
 /// 描述: 表情评价列表
 ///       最多支持5个表情，默认也是5个，支持选择任意个数，
@@ -17,16 +15,18 @@ class BrnAppraiseEmojiListView extends StatefulWidget {
   final List<String> titles;
 
   /// 点击回调
-  final BrnAppraiseIconClick onTap;
+  final BrnAppraiseIconClick? onTap;
 
   static const List<String> _defaultTitles = ['不好', '还行', '满意', '很棒', '超惊喜'];
 
   BrnAppraiseEmojiListView(
-      {this.indexes = const [0, 1, 2, 3, 4],
+      {Key? key,
+      this.indexes = const [0, 1, 2, 3, 4],
       this.titles = _defaultTitles,
       this.onTap})
-      : assert((indexes?.length ?? 0) > 0),
-        assert(titles?.length == 5);
+      : assert(indexes.length > 0),
+        assert(titles.length == 5),
+        super(key: key);
 
   @override
   _BrnAppraiseEmojiListViewState createState() =>
@@ -65,11 +65,11 @@ class _BrnAppraiseEmojiListViewState extends State<BrnAppraiseEmojiListView> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.indexes?.isEmpty ?? true) {
+    if (widget.indexes.isEmpty) {
       return Container();
     }
 
-    List<BrnAppraiseEmojiItem> list = List();
+    List<BrnAppraiseEmojiItem> list = [];
     for (int i = 0; i < widget.indexes.length; i++) {
       list.add(BrnAppraiseEmojiItem(
         selectedName: _selectedIcons[widget.indexes[i]],
@@ -83,7 +83,7 @@ class _BrnAppraiseEmojiListViewState extends State<BrnAppraiseEmojiListView> {
         onTap: (index) {
           _selectedIndex = index;
           if (widget.onTap != null) {
-            widget.onTap(index);
+            widget.onTap!(_selectedIndex);
           }
         },
       ));

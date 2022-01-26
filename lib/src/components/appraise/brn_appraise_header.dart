@@ -1,39 +1,39 @@
-// @dart=2.9
-
-import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
+import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 
 /// 描述: 评价组件title
-
 class BrnAppraiseHeader extends StatelessWidget {
-  /// 是否显示标题
+  /// 是否显示标题，默认为 true，显示
   final bool showHeader;
 
-  /// 标题文字
+  /// 标题文字，默认 ''
   final String title;
 
-  /// 标题最大行数
+  /// 标题最大行数，默认为 1
   final int maxLines;
 
-  /// 标题类型
+  /// 标题类型，默认 [BrnAppraiseHeaderType.spaceBetween]
   final BrnAppraiseHeaderType headerType;
 
-  /// 标题的padding
-  final EdgeInsets headPadding;
+  /// 标题的 padding，为 null 时为默认 padding。
+  /// headerType 为 spaceBetween 时默认为 EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 20)
+  /// headerType 为 center 时默认为 EdgeInsets.only(top: 20, bottom: 20)
+  final EdgeInsets? headPadding;
 
   /// 点击关闭的回掉
-  final BrnAppraiseCloseClickCallBack cancelCallBack;
+  final BrnAppraiseCloseClickCallBack? cancelCallBack;
 
   BrnAppraiseHeader(
-      {this.showHeader = true,
+      {Key? key,
+      this.showHeader = true,
       this.title = '',
       this.maxLines = 1,
       this.headerType = BrnAppraiseHeaderType.spaceBetween,
       this.headPadding,
-      this.cancelCallBack});
+      this.cancelCallBack}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +44,16 @@ class BrnAppraiseHeader extends StatelessWidget {
         return _centerHeader();
       }
     }
-    return Container();
+    return SizedBox.shrink();
   }
 
   Widget _centerHeader() {
     return Container(
       color: Colors.white,
-      padding: headPadding ?? EdgeInsets.only(top: 20, bottom: 20),
+      padding: headPadding ?? const EdgeInsets.only(top: 20, bottom: 20),
       child: Text(
-        title ?? '',
-        maxLines: maxLines ?? 1,
+        title,
+        maxLines: maxLines,
         style: TextStyle(
           color: BrnThemeConfigurator.instance
               .getConfig()
@@ -69,7 +69,7 @@ class BrnAppraiseHeader extends StatelessWidget {
   Widget _spaceHeader(BuildContext context) {
     return Container(
       color: Colors.white,
-      height: 38 + (maxLines ?? 1) * 22.0,
+      height: 38 + maxLines * 22.0,
       child: Padding(
         padding: headPadding ??
             EdgeInsets.only(left: 20, top: 16, right: 16, bottom: 20),
@@ -81,8 +81,8 @@ class BrnAppraiseHeader extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: 4, right: 12),
                 child: Text(
-                  title ?? '',
-                  maxLines: maxLines ?? 1,
+                  title,
+                  maxLines: maxLines,
                   style: TextStyle(
                     color: BrnThemeConfigurator.instance
                         .getConfig()
@@ -98,7 +98,7 @@ class BrnAppraiseHeader extends StatelessWidget {
             InkWell(
               onTap: () {
                 if (cancelCallBack != null) {
-                  cancelCallBack(context);
+                  cancelCallBack!(context);
                 }
                 Navigator.of(context).pop();
               },
