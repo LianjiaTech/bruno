@@ -78,8 +78,8 @@ class TestConfigUtils {
 
     /// 文本字号
     ///
-    /// 特殊数据展示，DIN Condensed数字字体，用于强吸引
-    fontSizeDIN: 28,
+    /// 特殊数据展示，Bebas 数字字体，用于强吸引
+    fontSizeBebas: 28,
 
     /// 标题字体
     /// 名称/页面大标题
