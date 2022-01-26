@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +83,7 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
                       lastDesc: '后',
                       numberInfoIcon: BrnNumberInfoIcon.ARROW,
                       iconTapCallBack: (data) {
-                        BrnToast.show(data.title, context);
+                        BrnToast.show(data.title!, context);
                       }),
                   BrnNumberInfoItemModel(
                     title: '数字信息数字信息数字信息数字信息数字信息数字信息',

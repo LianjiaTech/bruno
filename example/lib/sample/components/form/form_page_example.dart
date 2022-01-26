@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 
@@ -11,13 +11,14 @@ class FormPageExample extends StatefulWidget {
 }
 
 class _FormPageExampleState extends State<FormPageExample> {
-  List<String> selectedOptions = List();
-  String commentStr;
-  BrnPortraitRadioGroupOption selectedValue;
+  List<String> selectedOptions = [];
+  String? commentStr;
+  late BrnPortraitRadioGroupOption selectedValue;
 
   @override
   void initState() {
     super.initState();
+    selectedValue = BrnPortraitRadioGroupOption();
   }
 
   @override
@@ -45,10 +46,10 @@ class _FormPageExampleState extends State<FormPageExample> {
                             '$index 不在我服务范围',
                             '$index 其他'
                           ],
-                          selectedOption: selectedValue?.title,
-                          onChanged: (BrnPortraitRadioGroupOption old,
+                          selectedOption: selectedValue.title ?? '',
+                          onChanged: (BrnPortraitRadioGroupOption? old,
                               BrnPortraitRadioGroupOption newList) {
-                            BrnToast.show(newList.title, context);
+                            BrnToast.show(newList.title!, context);
                             selectedValue = newList;
                             commentStr = '';
                             setState(() {});
@@ -71,9 +72,9 @@ class _FormPageExampleState extends State<FormPageExample> {
                                 subTitle: 'subtitlesubtn你好  哈哈哈哈哈哈啊哈哈哈哈哈子标题哈哈哈 子标题子标题');
                           }),
                           selectedOption: selectedValue,
-                          onChanged: (BrnPortraitRadioGroupOption old,
+                          onChanged: (BrnPortraitRadioGroupOption? old,
                               BrnPortraitRadioGroupOption newList) {
-                            BrnToast.show(newList.title, context);
+                            BrnToast.show(newList.title!, context);
                             selectedValue = newList;
                             commentStr = '';
                             setState(() {});

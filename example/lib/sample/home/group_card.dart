@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
@@ -7,10 +7,10 @@ import 'package:example/sample/home/expandable_container_widget.dart';
 import 'package:flutter/material.dart';
 
 class GroupCard extends StatefulWidget {
-  final GroupInfo groupInfo;
+  final GroupInfo? groupInfo;
 
   GroupCard({
-    Key key,
+    Key? key,
     this.groupInfo,
   }) : super(key: key);
 
@@ -23,19 +23,19 @@ class GroupCard extends StatefulWidget {
 class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixin {
   static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
   static final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
-  BrnExpandableContainerController _controller;
-  Widget _arrowIcon;
-  Animation<double> _iconTurns;
-  bool _initExpand;
-  AnimationController _animationController;
+  BrnExpandableContainerController? _controller;
+  Widget? _arrowIcon;
+  late Animation<double> _iconTurns;
+  late bool _initExpand;
+  AnimationController? _animationController;
 
   @override
   void initState() {
     super.initState();
     _controller = BrnExpandableContainerController();
     _animationController = AnimationController(duration: Duration(milliseconds: 200), vsync: this);
-    _initExpand = widget.groupInfo.isExpand;
-    _iconTurns = _animationController.drive(_halfTween.chain(_easeInTween));
+    _initExpand = widget.groupInfo!.isExpand;
+    _iconTurns = _animationController!.drive(_halfTween.chain(_easeInTween));
     if (_initExpand) {
       _arrowIcon = Icon(Icons.keyboard_arrow_up);
     } else {
@@ -64,7 +64,7 @@ class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixi
           } else {
             _arrowIcon = Icon(Icons.keyboard_arrow_down);
           }
-          widget.groupInfo.isExpand = isExpand;
+          widget.groupInfo!.isExpand = isExpand;
         },
         headerBuilder: (_) {
           return GestureDetector(
@@ -78,7 +78,7 @@ class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixi
                 children: <Widget>[
                   Expanded(
                       child: Text(
-                    widget.groupInfo.groupName,
+                    widget.groupInfo!.groupName,
                     style: TextStyle(color: Color(0xFF222222), fontSize: 18),
                   )),
                   RotationTransition(
@@ -96,6 +96,9 @@ class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixi
   }
 
   Widget _getContentWidget() {
+    if(widget.groupInfo == null || widget.groupInfo!.children == null){
+      return SizedBox.shrink();
+    }
     return ListView.builder(
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -104,14 +107,14 @@ class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixi
         return Container(
           color: Colors.white,
           child: ListItem(
-            isSupportTheme: widget.groupInfo?.children[index]?.isSupportTheme,
+            isSupportTheme: widget.groupInfo?.children![index].isSupportTheme ?? false,
             isShowLine: !(index == 0),
-            title: widget.groupInfo?.children[index].groupName,
-            describe: widget.groupInfo?.children[index].desc,
+            title: widget.groupInfo?.children![index].groupName ?? '',
+            describe: widget.groupInfo?.children![index].desc ?? '',
             onPressed: () {
               if (widget.groupInfo?.children != null &&
-                  widget.groupInfo?.children[index].navigatorPage != null) {
-                widget.groupInfo?.children[index].navigatorPage(context);
+                  widget.groupInfo?.children![index].navigatorPage != null) {
+                widget.groupInfo?.children![index].navigatorPage!(context);
               }
             },
           ),

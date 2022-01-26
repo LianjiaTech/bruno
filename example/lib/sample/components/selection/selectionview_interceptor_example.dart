@@ -1,11 +1,11 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class SelectionViewCloseOrInterceptorExamplePage extends StatefulWidget {
   final String _title;
-  final List<BrnSelectionEntity> _filterData;
+  final List<BrnSelectionEntity>? _filterData;
 
   SelectionViewCloseOrInterceptorExamplePage(this._title, this._filterData);
 
@@ -14,9 +14,9 @@ class SelectionViewCloseOrInterceptorExamplePage extends StatefulWidget {
 }
 
 class _SelectionViewExamplePageState extends State<SelectionViewCloseOrInterceptorExamplePage> {
-  List<BrnSelectionEntity> items;
+  List<BrnSelectionEntity>? items;
 
-  BrnSelectionViewController controller;
+  BrnSelectionViewController? controller;
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewCloseOrIntercept
             child: GestureDetector(
               child: Text("点击关闭弹窗"),
               onTap: () {
-                controller.closeSelectionView();
+                controller!.closeSelectionView();
               },
             ),
           ),
@@ -48,24 +48,24 @@ class _SelectionViewExamplePageState extends State<SelectionViewCloseOrIntercept
             child: GestureDetector(
               child: Text("点击刷新筛选 Title， 清除【双列】Filter 项"),
               onTap: () {
-                widget._filterData[1].configRelationshipAndDefaultValue();
-                widget._filterData[1].clearChildSelection();
-                controller.refreshSelectionTitle();
+                widget._filterData![1].configRelationshipAndDefaultValue();
+                widget._filterData![1].clearChildSelection();
+                controller!.refreshSelectionTitle();
               },
             ),
           ),
           BrnSelectionView(
             selectionViewController: controller,
-            originalSelectionData: widget._filterData,
+            originalSelectionData: widget._filterData!,
             onSelectionChanged: (int menuIndex,
                 Map<String, String> filterParams,
                 Map<String, String> customParams,
                 BrnSetCustomSelectionMenuTitle setCustomTitleFunction) {
               BrnToast.show('选中 ${filterParams.toString()}，但筛选条件被清除了', context);
               if (menuIndex == 1 && filterParams != null && filterParams['two_list_key'] != null) {
-                widget._filterData[1].clearChildSelection();
-                widget._filterData[1].configRelationshipAndDefaultValue();
-                controller.refreshSelectionTitle();
+                widget._filterData![1].clearChildSelection();
+                widget._filterData![1].configRelationshipAndDefaultValue();
+                controller!.refreshSelectionTitle();
               }
             },
             onMenuClickInterceptor: (index) {

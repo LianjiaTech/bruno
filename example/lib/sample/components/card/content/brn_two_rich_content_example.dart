@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -54,11 +54,11 @@ class _BrnTwoRichContentExampleState extends State<BrnTwoRichContentExample> {
                     },
                     clickTitle: "可点击内容",
                     clickCallback: (value) {
-                      BrnToast.show(value, context);
+                      BrnToast.show(value!, context);
                     }),
                 BrnRichGridInfo.valueLastClickInfo('名称', '内容内容', clickTitle: "可点击内容",
                     clickCallback: (value) {
-                  BrnToast.show(value, context);
+                  BrnToast.show(value!, context);
                 }),
               ],
             ),

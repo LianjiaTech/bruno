@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:math';
 
@@ -6,14 +6,14 @@ import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class StepLineExample extends StatefulWidget {
-  const StepLineExample({Key key}) : super(key: key);
+  const StepLineExample({Key? key}) : super(key: key);
 
   @override
   _StepLineExampleState createState() => _StepLineExampleState();
 }
 
 class _StepLineExampleState extends State<StepLineExample> {
-  int count;
+  int? count;
 
   @override
   void initState() {

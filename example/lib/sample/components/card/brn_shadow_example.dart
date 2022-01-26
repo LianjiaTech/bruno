@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:math';
 
@@ -11,14 +11,6 @@ class BrnShadowExample extends StatefulWidget {
 }
 
 class _BrnShadowExampleState extends State<BrnShadowExample> {
-  int count;
-
-  @override
-  void initState() {
-    super.initState();
-    count = 0;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

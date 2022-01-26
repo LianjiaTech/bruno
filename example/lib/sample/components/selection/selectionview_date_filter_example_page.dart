@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class SelectionViewDateFilterExamplePage extends StatefulWidget {
 }
 
 class _SelectionViewExamplePageState extends State<SelectionViewDateFilterExamplePage> {
-  List<BrnSelectionEntity> _filterData;
+  late List<BrnSelectionEntity> _filterData;
 
   _SelectionViewExamplePageState(List<BrnSelectionEntity> filters) {
     _filterData = filters;

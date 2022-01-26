@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
@@ -301,7 +301,7 @@ class DialogEntryPage extends StatelessWidget {
                       //光标圆角弧度
                       cursorRadius: Radius.circular(2.0),
                       style: TextStyle(fontSize: 14, color: Color(0xFF222222)),
-                      maxLengthEnforced: true,
+                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
                       onChanged: (value) {},
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(8.0),
@@ -328,7 +328,7 @@ class DialogEntryPage extends StatelessWidget {
                       state(() {});
                     },
                     onSubmitClick: (data) {
-                      BrnToast.show(data, context);
+                      BrnToast.show(data!, context);
                     });
               },
             ));
@@ -336,7 +336,7 @@ class DialogEntryPage extends StatelessWidget {
 
   ///多选弹框
   void _showMiddleMultiSelectDialog(BuildContext context) {
-    List<MultiSelectItem> data = new List();
+    List<MultiSelectItem> data =  [];
     data.add(new MultiSelectItem("100", "感兴趣待跟进"));
     data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
     data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));
@@ -363,7 +363,7 @@ class DialogEntryPage extends StatelessWidget {
 
   void _showMiddleMultiSelectWithMessageWidgetDialog(BuildContext context) {
     String hintText = "感兴趣待跟进";
-    List<MultiSelectItem> data = new List();
+    List<MultiSelectItem> data =  [];
     data.add(new MultiSelectItem("100", "感兴趣待跟进"));
     data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
     data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));
@@ -432,7 +432,7 @@ class DialogEntryPage extends StatelessWidget {
 
   ///多选弹框
   void _showMiddleMultiSelectWithMessageDialog(BuildContext context) {
-    List<MultiSelectItem> data = new List();
+    List<MultiSelectItem> data =  [];
     data.add(new MultiSelectItem("100", "感兴趣待跟进"));
     data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
     data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));
@@ -469,7 +469,7 @@ class DialogEntryPage extends StatelessWidget {
           padding: const EdgeInsets.only(top: 6, left: 24, right: 24),
           child: BrnCSS2Text.toTextView(
               "这是一条增使用标签修改文字颜色的example\<font color = '#8ac6d1'\>我是带颜色的文字</font>，"
-              "这是颜色标签后边的文字", linksCallback: (String text, String linkUrl) {
+              "这是颜色标签后边的文字", linksCallback: (String? text, String? linkUrl) {
             BrnToast.show('$text clicked!  Url is $linkUrl', context);
           }),
         ),
@@ -723,7 +723,7 @@ class DialogEntryPage extends StatelessWidget {
 
   ///对话框样式九：标准的对话框：有标题、双按钮、有警示文案和辅助信息
   void _showStyle9_1Dialog(BuildContext context) {
-    bool status = false;
+    bool? status = false;
     BrnDialogManager.showConfirmDialog(context,
         title: "标题内容？",
         cancel: '取消',
@@ -732,7 +732,7 @@ class DialogEntryPage extends StatelessWidget {
           return Row(children: <Widget>[
             Checkbox(
               value: status,
-              onChanged: (bool aaa) {
+              onChanged: (bool? aaa) {
                 status = aaa;
                 setState(() {});
               },
@@ -880,8 +880,8 @@ class DialogEntryPage extends StatelessWidget {
                 "文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文"
                 "呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表",
             submitText: "提交",
-            linksCallback: (String text, String url) {
-              BrnToast.show(text, context);
+            linksCallback: (String? text, String? url) {
+              BrnToast.show(text!, context);
             },
             onSubmitClick: () {
               BrnToast.show("点击了纯文本弹框", context);

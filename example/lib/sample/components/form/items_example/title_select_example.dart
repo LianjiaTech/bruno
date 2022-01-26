@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class TitleSelectInputExamplePage extends StatefulWidget {
 }
 
 class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
-  List<String> _list;
+  late List<String> _list;
   TextEditingController controller = TextEditingController()..text = '123456';
 
   @override

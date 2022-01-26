@@ -1,10 +1,10 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class AbnomalStateExample extends StatelessWidget {
-  final int caseIndex;
+  final int? caseIndex;
 
   AbnomalStateExample({this.caseIndex});
 
@@ -17,8 +17,8 @@ class AbnomalStateExample extends StatelessWidget {
         body: _buildEmpty(caseIndex, context));
   }
 
-  Widget _buildEmpty(int index, BuildContext context) {
-    Widget widget;
+  Widget? _buildEmpty(int? index, BuildContext context) {
+    Widget? widget;
     switch (index) {
       case 0:
         widget = BrnAbnormalStateWidget(
