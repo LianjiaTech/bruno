@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
@@ -13,33 +11,29 @@ import 'package:flutter/material.dart';
 /// 分割线所在位置
 enum BrnDashedLinePosition {
   /// 头部
-  DashedLineTrailing,
+  trailing,
 
   /// 尾部
-  DashedLineLeading,
+  leading,
 }
+
+/// 默认虚线方向
+const Axis _normalAxis = Axis.horizontal;
+
+/// 默认虚线长度
+const double _normalDashedLength = 8;
+
+/// 默认虚线厚度
+const double _normalDashedThickness = 1;
+
+/// 默认间距
+const double _normalDashedSpacing = 4;
+
+/// 默认位置，头部
+const BrnDashedLinePosition _normalPosition = BrnDashedLinePosition.leading;
 
 /// 虚线分割线
 class BrnDashedLine extends StatelessWidget {
-  /// 默认虚线方向
-  static const Axis _normalAxis = Axis.horizontal;
-
-  /// 默认虚线长度
-  static const double _normalDashedLength = 8;
-
-  /// 默认虚线厚度
-  static const double _normalDashedThickness = 1;
-
-  /// 默认间距
-  static const double _normalDashedSpacing = 4;
-
-  /// 默认颜色
-  static Color _normalColor =
-      BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase;
-
-  /// 默认位置，头部
-  static const BrnDashedLinePosition _normalPosition =
-      BrnDashedLinePosition.DashedLineLeading;
 
   /// 虚线方向，默认值[_normalAxis]
   final Axis axis;
@@ -54,7 +48,7 @@ class BrnDashedLine extends StatelessWidget {
   final double dashedSpacing;
 
   /// 颜色，默认值[_normalColor]
-  final Color color;
+  final Color? color;
 
   /// 虚线的Widget
   final Widget contentWidget;
@@ -66,28 +60,28 @@ class BrnDashedLine extends StatelessWidget {
   final BrnDashedLinePosition position;
 
   BrnDashedLine({
-    Key key,
-    @required this.contentWidget,
-    this.axis,
-    this.dashedLength,
-    this.dashedThickness,
-    this.dashedSpacing,
+    Key? key,
+    required this.contentWidget,
+    this.axis = _normalAxis,
+    this.dashedLength = _normalDashedLength,
+    this.dashedThickness = _normalDashedThickness,
+    this.dashedSpacing = _normalDashedSpacing,
     this.color,
-    this.dashedOffset,
-    this.position,
+    this.dashedOffset = 0.0,
+    this.position = _normalPosition,
   });
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: BrnDashedPainter(
-          axis: this.axis ?? _normalAxis,
-          dashedLength: this.dashedLength ?? _normalDashedLength,
-          dashedThickness: this.dashedThickness ?? _normalDashedThickness,
-          dashedSpacing: this.dashedSpacing ?? _normalDashedSpacing,
-          color: this.color ?? _normalColor,
-          dashedOffset: this.dashedOffset ?? 0,
-          position: this.position ?? _normalPosition),
+          axis: this.axis,
+          dashedLength: this.dashedLength ,
+          dashedThickness: this.dashedThickness,
+          dashedSpacing: this.dashedSpacing ,
+          color: this.color ,
+          dashedOffset: this.dashedOffset,
+          position: this.position),
       child: this.contentWidget,
     );
   }
@@ -107,22 +101,22 @@ class BrnDashedPainter extends CustomPainter {
   final double dashedSpacing;
 
   /// 颜色
-  final Color color;
+  final Color? color;
 
   /// 距离边缘的位置
-  final double dashedOffset;
+  final double? dashedOffset;
 
   /// 分割线所在位置
-  final BrnDashedLinePosition position;
+  final BrnDashedLinePosition? position;
 
   BrnDashedPainter({
-    this.axis,
-    this.dashedLength,
-    this.dashedThickness,
-    this.dashedSpacing,
+    this.axis = _normalAxis,
+    this.dashedLength = _normalDashedLength,
+    this.dashedThickness = _normalDashedThickness,
+    this.dashedSpacing = _normalDashedSpacing,
     this.color,
-    this.dashedOffset,
-    this.position,
+    this.dashedOffset = 0.0,
+    this.position = _normalPosition,
   });
 
   @override
@@ -130,7 +124,7 @@ class BrnDashedPainter extends CustomPainter {
     var paint = Paint() // 创建一个画笔并配置其属性
       ..strokeWidth = this.dashedThickness // 画笔的宽度
       ..isAntiAlias = true // 是否抗锯齿
-      ..color = this.color; // 画笔颜色
+      ..color = this.color?? BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase; // 画笔颜色
 
     var maxWidth = size.width; // size获取到宽度
     var maxHeight = size.height; // size获取到宽度
@@ -139,12 +133,12 @@ class BrnDashedPainter extends CustomPainter {
       double startX = 0;
       final space = (this.dashedSpacing + this.dashedLength);
       double height = 0;
-      if (this.position == BrnDashedLinePosition.DashedLineLeading) {
+      if (this.position == BrnDashedLinePosition.leading) {
         // 头部
-        height = dashedOffset + this.dashedThickness / 2;
+        height = dashedOffset! + this.dashedThickness / 2;
       } else {
         // 尾部
-        height = size.height - dashedOffset - this.dashedThickness / 2;
+        height = size.height - dashedOffset! - this.dashedThickness / 2;
       }
       while (startX < maxWidth) {
         if ((maxWidth - startX) < this.dashedLength) {
@@ -161,12 +155,12 @@ class BrnDashedPainter extends CustomPainter {
       double startY = 0;
       final space = (this.dashedSpacing + this.dashedLength);
       double width = 0;
-      if (this.position == BrnDashedLinePosition.DashedLineLeading) {
+      if (this.position == BrnDashedLinePosition.leading) {
         // 头部
-        width = dashedOffset + this.dashedThickness / 2;
+        width = dashedOffset! + this.dashedThickness / 2;
       } else {
         // 尾部
-        width = size.width - dashedOffset - this.dashedThickness / 2;
+        width = size.width - dashedOffset! - this.dashedThickness / 2;
       }
       while (startY < maxHeight) {
         if ((maxHeight - startY) < this.dashedLength) {
