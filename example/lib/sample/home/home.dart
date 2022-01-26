@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
         child: ListView.builder(
             shrinkWrap: true,
-            itemCount: list?.length,
+            itemCount: list.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 padding: EdgeInsets.only(top: 10),

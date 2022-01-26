@@ -31,7 +31,7 @@ class ListItem extends StatefulWidget {
     this.titleFontSize,
     this.titleColor,
     this.describe = "",
-    this.describeColor: Colors.grey,
+    this.describeColor = const Color(0xFF999999),
     this.rightWidget,
     this.imgPath,
     this.isSupportTheme = false,
@@ -93,7 +93,7 @@ class _ListItemState extends State<ListItem> {
               Padding(padding: EdgeInsets.all(2)),
               Text(
                 widget.describe,
-                style: TextStyle(color: widget.describeColor ?? Color(0xFF999999), fontSize: 12),
+                style: TextStyle(color: widget.describeColor, fontSize: 12),
               ),
               BrnLine(
                 height: 14,
