@@ -34,11 +34,11 @@ class DateTimeFormatter {
     }
     switch (pickerMode) {
       case BrnDateTimePickerMode.date:
-        return DATETIME_PICKER_DATE_FORMAT;
+        return datetimePickerDateFormat;
       case BrnDateTimePickerMode.time:
-        return DATETIME_PICKER_TIME_FORMAT;
+        return datetimePickerTimeFormat;
       case BrnDateTimePickerMode.datetime:
-        return DATETIME_PICKER_DATETIME_FORMAT;
+        return datetimePickerDatetimeFormat;
     }
     return '';
   }
@@ -50,9 +50,9 @@ class DateTimeFormatter {
     }
     switch (pickerMode) {
       case BrnDateTimeRangePickerMode.date:
-        return DATETIME_RANGE_PICKER_DATE_FORMAT;
+        return datetimeRangePickerDateFormat;
       case BrnDateTimeRangePickerMode.time:
-        return DATETIME_RANGE_PICKER_TIME_FORMAT;
+        return datetimeRangePickerTimeFormat;
     }
     return '';
   }
@@ -99,7 +99,7 @@ class DateTimeFormatter {
         temp.insert(0, dayFormat.toString());
       } else {
         // add default date format
-        temp.insert(0, DATETIME_PICKER_DATE_FORMAT);
+        temp.insert(0, datetimePickerDateFormat);
       }
       result = temp;
     }

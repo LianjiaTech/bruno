@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
@@ -7,8 +7,7 @@ import 'package:bruno/src/components/picker/brn_picker_cliprrect.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
-///数据选择控件高度
-const pickerHeight = 240.0;
+import 'base/brn_picker_constants.dart';
 
 /// 可以自定义实现 item Widget样式，更灵活
 /// [isSelect] 是否被选中
@@ -36,7 +35,7 @@ abstract class BrnMultiDataPickerDelegate {
   String titleForRowInComponent(int component, int index);
 
   /// 定义每列内容的高度
-  double rowHeightForComponent(int component);
+  double? rowHeightForComponent(int component);
 
   /// 定义选择更改后的操作
   void selectRowInComponent(int component, int row);
@@ -52,7 +51,7 @@ class BrnMultiDataPicker extends StatefulWidget {
   final String title;
 
   ///多级数据选择标题文案样式
-  final TextStyle titleTextStyle;
+  final TextStyle? titleTextStyle;
 
   /// 多级数据选择弹窗所要覆盖页面的context
   final BuildContext context;
@@ -61,50 +60,50 @@ class BrnMultiDataPicker extends StatefulWidget {
   final BrnMultiDataPickerDelegate delegate;
 
   ///多级数据选择确认文案样式
-  final TextStyle confirmTextStyle;
+  final TextStyle? confirmTextStyle;
 
   ///多级数据选择取消文案样式
-  final TextStyle cancelTextStyle;
+  final TextStyle? cancelTextStyle;
 
   /// 多级数据选择每一级的默认标题
-  final List<String> pickerTitles;
+  final List<String>? pickerTitles;
 
   /// 多级数据选择每一级默认标题的字体大小
-  final double pickerTitleFontSize;
+  final double? pickerTitleFontSize;
 
   /// 多级数据选择每一级默认标题的文案颜色
-  final Color pickerTitleColor;
+  final Color? pickerTitleColor;
 
   /// 多级数据选择数据字体大小
-  final double textFontSize;
+  final double? textFontSize;
 
   /// 多级数据选择数据文案颜色
-  final Color textColor;
+  final Color? textColor;
 
   /// 多级数据选择数据选中文案颜色
-  final Color textSelectedColor;
+  final Color? textSelectedColor;
 
   /// 多级数据选择数据widget容器
-  final List<FixedExtentScrollController> controllers = List();
+  final List<FixedExtentScrollController> controllers = [];
 
   /// 多级数据选择确认点击回调
-  final ConfirmButtonClick confirmClick;
+  final ConfirmButtonClick? confirmClick;
 
   /// 选择轮盘的滚动行为
-  final ScrollBehavior behavior;
+  final ScrollBehavior? behavior;
 
   /// 返回自定义 itemWidget 的回调
-  final BrnMultiDataPickerCreateWidgetCallback createItemWidget;
+  final BrnMultiDataPickerCreateWidgetCallback? createItemWidget;
 
   /// 是否复位数据位置。默认 true
   final bool sync;
 
-  BrnPickerConfig themeData;
+  BrnPickerConfig? themeData;
 
   BrnMultiDataPicker(
-      {Key key,
-      @required this.context,
-      @required this.delegate,
+      {Key? key,
+      required this.context,
+      required this.delegate,
       this.title = "",
       this.titleTextStyle,
       this.confirmTextStyle,
@@ -119,10 +118,9 @@ class BrnMultiDataPicker extends StatefulWidget {
       this.confirmClick,
       this.createItemWidget,
       this.themeData,
-      this.sync = true})
-      : assert(delegate != null) {
+      this.sync = true}) {
     this.themeData ??= BrnPickerConfig();
-    this.themeData = this.themeData.merge(BrnPickerConfig(
+    this.themeData = this.themeData!.merge(BrnPickerConfig(
           cancelTextStyle: BrnTextStyle.withStyle(cancelTextStyle),
           confirmTextStyle: BrnTextStyle.withStyle(confirmTextStyle),
           titleTextStyle: BrnTextStyle.withStyle(titleTextStyle),
@@ -132,7 +130,7 @@ class BrnMultiDataPicker extends StatefulWidget {
         ));
 
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .pickerConfig
         .merge(this.themeData);
   }
@@ -155,7 +153,7 @@ class BrnMultiDataPicker extends StatefulWidget {
 }
 
 class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
-  List _selectedIndexList = List();
+  List _selectedIndexList = [];
 
   @override
   void initState() {
@@ -168,7 +166,7 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.themeData.pickerHeight + widget.themeData.titleHeight,
+      height: widget.themeData!.pickerHeight + widget.themeData!.titleHeight,
       child: Material(
         type: MaterialType.transparency,
         child: new Column(
@@ -176,8 +174,8 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
           children: <Widget>[
             BrnPickerClipRRect(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(widget.themeData.cornerRadius),
-                topRight: Radius.circular(widget.themeData.cornerRadius),
+                topLeft: Radius.circular(widget.themeData!.cornerRadius),
+                topRight: Radius.circular(widget.themeData!.cornerRadius),
               ),
               child: _configHeaderWidget(),
             ),
@@ -200,7 +198,8 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
       },
       onConfirm: () {
         Navigator.of(context).pop(_selectedIndexList);
-        widget?.confirmClick(_selectedIndexList);
+        if (widget.confirmClick != null)
+          widget.confirmClick!(_selectedIndexList);
       },
     );
   }
@@ -218,7 +217,7 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
   }
 
   List<Widget> _pickersWithTitle() {
-    List<Widget> pickersWithTitle = List();
+    List<Widget> pickersWithTitle = [];
     for (int i = 0; i < widget.delegate.numberOfComponent(); i++) {
       int initRow = widget.delegate.initSelectedRowForComponent(i);
       FixedExtentScrollController controller =
@@ -236,7 +235,7 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 25),
                   child: Text(
-                    widget.pickerTitles[i],
+                    widget.pickerTitles == null ? '' : widget.pickerTitles![i],
                     style: TextStyle(
                         fontSize: widget.pickerTitleFontSize,
                         color: widget.pickerTitleColor),
@@ -252,7 +251,7 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
 
   //picker数据
   List<Widget> _pickers() {
-    List<Widget> pickers = List();
+    List<Widget> pickers = [];
     for (int i = 0; i < widget.delegate.numberOfComponent(); i++) {
       int initRow = widget.delegate.initSelectedRowForComponent(i);
       FixedExtentScrollController controller =
@@ -268,25 +267,25 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
   //构建单列数据
   Widget _configSinglePicker(int component) {
     return MyPicker(
-      backgroundColor: widget.themeData.backgroundColor,
-      lineColor: widget.themeData.dividerColor,
+      backgroundColor: widget.themeData!.backgroundColor,
+      lineColor: widget.themeData!.dividerColor,
       controller: widget.controllers[component],
       key: Key(component.toString()),
       createWidgetList: () {
         if (widget.createItemWidget != null) {
-          List<Widget> widgetList = List();
+          List<Widget> widgetList = [];
           for (int i = 0;
               i < widget.delegate.numberOfRowsInComponent(component);
               i++) {
             bool isSelect = _selectedIndexList[component] == i;
             widgetList.add(widget.createItemWidget != null
-                ? widget.createItemWidget(
+                ? widget.createItemWidget!(
                     isSelect, component, i, _selectedIndexList)
                 : Container());
           }
           return widgetList;
         } else {
-          List<Widget> list = List();
+          List<Widget> list = [];
           for (int i = 0;
               i < widget.delegate.numberOfRowsInComponent(component);
               i++) {
@@ -294,8 +293,8 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
               child: Text(
                 widget.delegate.titleForRowInComponent(component, i),
                 style: _selectedIndexList[component] == i
-                    ? widget.themeData.itemTextSelectedStyle.generateTextStyle()
-                    : widget.themeData.itemTextStyle.generateTextStyle(),
+                    ? widget.themeData!.itemTextSelectedStyle.generateTextStyle()
+                    : widget.themeData!.itemTextStyle.generateTextStyle(),
               ),
             ));
           }
@@ -303,7 +302,7 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
         }
       },
       itemExtent: widget.delegate.rowHeightForComponent(component) ??
-          widget.themeData.itemHeight,
+          widget.themeData!.itemHeight,
       changed: (int index) {
         widget.delegate.selectRowInComponent(component, index);
         _selectedIndexList[component] = index;
@@ -311,7 +310,7 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
           for (int i = component + 1;
               i < widget.delegate.numberOfComponent();
               i++) {
-            List list = List();
+            List list = [];
             for (int j = 0;
                 j < widget.delegate.numberOfRowsInComponent(component);
                 j++) {
@@ -334,33 +333,31 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
 /// 一级数据选择widget
 class MyPicker extends StatefulWidget {
   ///创建数据widget列表
-  final CreateWidgetList createWidgetList;
+  final CreateWidgetList? createWidgetList;
 
   ///数据选择改变回调
-  final ValueChanged<int> changed;
-
-  final Key key;
+  final ValueChanged<int>? changed;
 
   /// 数据显示高度
   final double itemExtent;
 
   /// 滚动行为
-  final ScrollBehavior scrollBehavior;
+  final ScrollBehavior? scrollBehavior;
 
-  final FixedExtentScrollController controller;
+  final FixedExtentScrollController? controller;
   final Color backgroundColor;
-  final Color lineColor;
+  final Color? lineColor;
 
   MyPicker({
+    Key? key,
     this.createWidgetList,
     this.changed,
-    this.key,
     this.scrollBehavior,
     this.itemExtent = 45,
     this.controller,
     this.backgroundColor = Colors.white,
     this.lineColor,
-  });
+  }) : super(key: key);
 
   @override
   State createState() {
@@ -371,7 +368,7 @@ class MyPicker extends StatefulWidget {
 class _MyPickerState extends State<MyPicker> {
   @override
   Widget build(BuildContext context) {
-    var children = widget.createWidgetList();
+    var children = widget.createWidgetList!();
     return Container(
       child: ScrollConfiguration(
         behavior: widget.scrollBehavior ?? _DefaultScrollBehavior(),
@@ -383,7 +380,7 @@ class _MyPickerState extends State<MyPicker> {
           lineColor: widget.lineColor,
           onSelectedItemChanged: (index) {
             if (widget.changed != null) {
-              widget.changed(index);
+              widget.changed!(index);
             }
           },
           children: children.length > 0
