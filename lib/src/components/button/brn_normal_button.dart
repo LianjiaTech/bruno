@@ -80,22 +80,22 @@ class BrnNormalButton extends StatelessWidget {
   final String text;
 
   /// 按钮的文字颜色 默认白色[_BTextColor]
-  final Color? textColor;
+  final Color textColor;
 
   /// 按钮的文字大小 默认[_BFontSize]
-  final double? fontSize;
+  final double fontSize;
 
   /// 按钮不可用的文字颜色
   final Color? disableTextColor;
 
-  /// 按钮不可用背景色 默认[_BDisableBackgroundColor]
-  final Color? disableBackgroundColor;
-
   /// 按钮背景色 默认[_BBackgroundColor]
-  final Color? backgroundColor;
+  final Color backgroundColor;
+
+  /// 按钮不可用背景色 默认[_BDisableBackgroundColor]
+  final Color disableBackgroundColor;
 
   /// 按钮内边距 默认水平[_BHorizontalPadding] 垂直[_BVerticalPadding]
-  final EdgeInsetsGeometry? insertPadding;
+  final EdgeInsetsGeometry insertPadding;
 
   /// 按钮的修饰 默认实色背景
   final Decoration? decoration;
@@ -107,68 +107,72 @@ class BrnNormalButton extends StatelessWidget {
   final TextStyle? textStyle;
 
   /// 按钮的文本Weight 默认是[FontWeight.bold]
-  final FontWeight? fontWeight;
+  final FontWeight fontWeight;
 
   /// 按钮的布局约束 默认是自适应大小
-  final BoxConstraints? constraints;
+  final BoxConstraints constraints;
 
   /// 按钮的内部对齐 默认为null
   final Alignment? alignment;
 
   /// 按钮圆角大小
-  final BorderRadiusGeometry? borderRadius;
+  final BorderRadiusGeometry borderRadius;
 
-  BrnNormalButton(
-      {required this.text,
-      this.backgroundColor,
-      this.isEnable = true,
-      this.onTap,
-      this.insertPadding,
-      this.decoration,
-      this.child,
-      this.textStyle,
-      this.fontWeight,
-      this.fontSize,
-      this.textColor,
-      this.disableTextColor,
-      this.disableBackgroundColor,
-      this.constraints,
-      this.borderRadius,
-      this.alignment});
+  BrnNormalButton({
+    Key? key,
+    required this.text,
+    this.backgroundColor = _BBackgroundColor,
+    this.isEnable = true,
+    this.onTap,
+    this.insertPadding =
+        const EdgeInsets.symmetric(vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
+    this.decoration,
+    this.child,
+    this.textStyle,
+    this.fontWeight = _BFontWeight,
+    this.fontSize = _BFontSize,
+    this.textColor = _BTextColor,
+    this.disableTextColor,
+    this.disableBackgroundColor = _BDisableBackgroundColor,
+    this.constraints = const BoxConstraints.tightFor(),
+    this.borderRadius = const BorderRadius.all(Radius.circular(_BRadius)),
+    this.alignment,
+  }) : super(key: key);
 
   BrnNormalButton.outline({
+    Key? key,
     Color? disableLineColor,
     Color? lineColor,
     double radius = 6,
     double borderWith = 1.0,
     required this.text,
     this.isEnable = true,
-    this.backgroundColor,
-    this.disableBackgroundColor,
+    this.backgroundColor = _BBackgroundColor,
+    this.disableBackgroundColor = _BDisableBackgroundColor,
     this.alignment,
     this.child,
     this.onTap,
-    this.textColor,
-    this.fontSize,
+    this.textColor = _BTextColor,
+    this.fontWeight = _BFontWeight,
+    this.fontSize = _BFontSize,
     this.disableTextColor,
-    this.insertPadding,
+    this.insertPadding =
+        const EdgeInsets.symmetric(vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
     this.textStyle,
-    this.fontWeight,
-    this.constraints,
-    this.borderRadius,
-  }) : decoration = _OutlineBoxDecorationCreator.createOutlineBoxDecoration(
+    this.constraints = const BoxConstraints.tightFor(),
+    this.borderRadius = const BorderRadius.all(Radius.circular(_BRadius)),
+  })  : decoration = _OutlineBoxDecorationCreator.createOutlineBoxDecoration(
             isEnable: isEnable,
             disableBackgroundColor: disableBackgroundColor,
             disableLineColor: disableLineColor,
             lineColor: lineColor,
             backgroundColor: backgroundColor,
             radius: radius,
-            borderWith: borderWith);
+            borderWith: borderWith),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Color? bgColor = _getBackgroundColor();
-
     return GestureDetector(
       onTap: () {
         if (BrnMultiClickUtils.isMultiClick()) {
@@ -180,11 +184,9 @@ class BrnNormalButton extends StatelessWidget {
       },
       child: Container(
         alignment: alignment,
-        decoration: decoration ?? _getBoxDecoration(bgColor),
-        constraints: constraints ?? BoxConstraints.tightFor(),
-        padding: insertPadding ??
-            EdgeInsets.symmetric(
-                vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
+        decoration: decoration ?? _getBoxDecoration(_getBackgroundColor()),
+        constraints: constraints,
+        padding: insertPadding,
         child: child ??
             Text(
               text,
@@ -196,65 +198,48 @@ class BrnNormalButton extends StatelessWidget {
     );
   }
 
-  TextStyle? _getTextStyle() {
+  TextStyle _getTextStyle() {
     if (textStyle != null) {
-      return textStyle;
+      return textStyle!;
     }
-    Color? textColor;
+    Color textColor;
     if (isEnable) {
       textColor = this.textColor;
-      if (textColor == null) {
-        textColor = _BTextColor;
-      }
     } else {
-      textColor = this.disableTextColor;
-      if (textColor == null) {
-        textColor = (this.textColor ?? _BTextColor).withOpacity(0.7);
-      }
+      textColor = this.disableTextColor ?? (this.textColor).withOpacity(0.7);
     }
 
     return TextStyle(
-      fontSize: fontSize ?? _BFontSize,
+      fontSize: fontSize,
       color: textColor,
-      fontWeight: fontWeight ?? _BFontWeight,
+      fontWeight: fontWeight,
     );
   }
 
-  Color? _getBackgroundColor() {
-    Color? bgColor;
-    if (isEnable) {
-      bgColor = backgroundColor;
-      if (bgColor == null) {
-        bgColor = _BBackgroundColor;
-      }
-    } else {
-      bgColor = disableBackgroundColor;
-      if (bgColor == null) {
-        bgColor = _BDisableBackgroundColor;
-      }
-    }
-    return bgColor;
+  Color _getBackgroundColor() {
+    return isEnable ? backgroundColor : disableBackgroundColor;
   }
 
   BoxDecoration _getBoxDecoration(Color? bgColor) {
     return BoxDecoration(
       color: bgColor,
-      borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(_BRadius)),
+      borderRadius: borderRadius,
     );
   }
 }
 
 class _OutlineBoxDecorationCreator {
-  static BoxDecoration createOutlineBoxDecoration(
-      {required bool isEnable,
-      Color? disableLineColor,
-      Color? lineColor,
-      Color? disableBackgroundColor,
-      Color? backgroundColor,
-      double radius = 6,
-      double borderWith = 1.0}) {
+  static BoxDecoration createOutlineBoxDecoration({
+    required bool isEnable,
+    Color? disableLineColor,
+    Color? lineColor,
+    required Color backgroundColor,
+    required Color disableBackgroundColor,
+    double radius = 6,
+    double borderWith = 1.0,
+  }) {
     Color _lineColor = isEnable ? lineColor! : disableLineColor!;
-    Color? _bgColor = isEnable ? backgroundColor : disableBackgroundColor;
+    Color _bgColor = isEnable ? backgroundColor : disableBackgroundColor;
 
     return BoxDecoration(
         border: Border.all(color: _lineColor, width: borderWith),

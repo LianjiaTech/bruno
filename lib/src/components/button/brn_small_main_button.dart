@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/button/brn_normal_button.dart';
@@ -40,11 +38,11 @@ class BrnSmallMainButton extends StatelessWidget {
 
   ///是否可用，默认为true。false为不可用：置灰、不可点击。
   final bool isEnable;
-  final Color? textColor;
   final Color? bgColor;
-  final double? radius;
-  final FontWeight? fontWeight;
+  final Color textColor;
+  final FontWeight fontWeight;
   final double? fontSize;
+  final double? radius;
   final double? maxWidth;
   final double? width;
 
@@ -53,38 +51,39 @@ class BrnSmallMainButton extends StatelessWidget {
 
   /// 传入属性优先级最高，未传入的走默认配置，更多请看[BrnSmallMainButtonConfig.defaultConfig]
   const BrnSmallMainButton({
+    Key? key,
     this.title = '确认',
     this.onTap,
     this.isEnable = true,
-    this.textColor,
     this.bgColor,
-    this.fontWeight,
+    this.textColor = Colors.white,
+    this.fontWeight = FontWeight.w600,
     this.fontSize,
     this.radius,
     this.maxWidth,
     this.width,
     this.themeData,
-  });
+  }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
     BrnButtonConfig defaultThemeConfig = themeData ?? BrnButtonConfig();
-    defaultThemeConfig = defaultThemeConfig.merge(BrnButtonConfig(
-        smallButtonFontSize: fontSize, smallButtonRadius: radius));
+    defaultThemeConfig = defaultThemeConfig
+        .merge(BrnButtonConfig(smallButtonFontSize: fontSize, smallButtonRadius: radius));
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig.merge(defaultThemeConfig);
+        .buttonConfig
+        .merge(defaultThemeConfig);
 
-    TextPainter textPainter =
-        TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
+    TextPainter textPainter = TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
 
     return LayoutBuilder(
       builder: (_, con) {
         TextStyle style = TextStyle(
           fontSize: defaultThemeConfig.smallButtonFontSize,
-          fontWeight: fontWeight ?? FontWeight.w600,
-          color: textColor ?? Colors.white,
+          fontWeight: fontWeight,
+          color: textColor,
         );
         textPainter.textDirection = TextDirection.ltr;
         textPainter.text = TextSpan(text: title, style: style);
@@ -118,15 +117,11 @@ class BrnSmallMainButton extends StatelessWidget {
           ),
           alignment: Alignment.center,
           text: title,
-          backgroundColor:
-              bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
+          backgroundColor: bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
           disableBackgroundColor: Color(0xFFCCCCCC),
-          borderRadius: BorderRadius.all(
-              Radius.circular(defaultThemeConfig.smallButtonRadius)),
+          borderRadius: BorderRadius.all(Radius.circular(defaultThemeConfig.smallButtonRadius)),
           onTap: onTap,
           textStyle: style,
-          insertPadding: EdgeInsets.symmetric(
-              vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
         );
       },
     );

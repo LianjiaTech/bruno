@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/popup/brn_popup_window.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -26,37 +24,25 @@ class BrnTextButtonPanel extends StatefulWidget {
   /// 默认值为PopDirection.bottom
   final BrnPopupDirection popDirection;
 
-  const BrnTextButtonPanel(
-      {Key? key,
-      required this.nameList,
-      this.onTap,
-      this.popDirection = BrnPopupDirection.bottom})
-      : super(key: key);
+  const BrnTextButtonPanel({
+    Key? key,
+    required this.nameList,
+    this.onTap,
+    this.popDirection = BrnPopupDirection.bottom,
+  }) : super(key: key);
 
   @override
   _BrnTextButtonPanelState createState() => _BrnTextButtonPanelState();
 }
 
 class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
-  late GlobalKey _popWindowKey;
+  late GlobalKey _popWindowKey = GlobalKey();
 
   /// 更多按钮的展开收起状态
   bool _isExpanded = false;
 
   /// 展示的文本按钮的最大数目，超过这个数目时展示更多
   int _maxNum = 4;
-
-  @override
-  void initState() {
-    super.initState();
-    _popWindowKey = GlobalKey();
-  }
-
-  @override
-  void didUpdateWidget(covariant BrnTextButtonPanel oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _popWindowKey = GlobalKey();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +61,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
     List<Widget> widgetList = <Widget>[];
     //文本按钮不超过4个，就全不显示
     //超过4个的话，就只显示3个，剩下的显示在更多里
-    int length = widget.nameList.length <= _maxNum
-        ? widget.nameList.length
-        : _maxNum - 1;
+    int length = widget.nameList.length <= _maxNum ? widget.nameList.length : _maxNum - 1;
     for (int textIndex = 0; textIndex < length; textIndex++) {
       Widget operationWidget = _operationWidgetAtIndex(textIndex);
       widgetList.add(operationWidget);
@@ -115,9 +99,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
       style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w500,
-          color: BrnThemeConfigurator.instance
-              .getConfig()
-              .commonConfig.brandPrimary),
+          color: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary),
     );
 
     return GestureDetector(
@@ -187,7 +169,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
             });
           });
     } else {
-      return Container();
+      return SizedBox.shrink();
     }
   }
 }

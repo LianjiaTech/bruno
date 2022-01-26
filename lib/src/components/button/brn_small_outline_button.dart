@@ -8,9 +8,6 @@ import 'package:flutter/material.dart';
 
 /// 边框 小、次按钮，小灰框，默认按钮确认,支持自定义边框、文字颜色
 
-Color greyColor = Color(0xffD7D7D7);
-Color normalColor = Color(0xffF0F0F0);
-
 /// 小的边框按钮
 /// 该按钮有一个最小的宽度84，在此基础上，宽度随着文本内容的多少变更
 ///
@@ -24,7 +21,7 @@ Color normalColor = Color(0xffF0F0F0);
 /// 默认水平间距
 const double _BHorizontalPadding = 6;
 
-/// 默认垂直间距
+/// 默认垂直间距，目前该字段未被使用
 const double _BVerticalPadding = 8;
 
 /// 默认最小宽度
@@ -56,7 +53,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
   final double? width;
 
   ///字体weigh
-  final FontWeight? fontWeight;
+  final FontWeight fontWeight;
 
   ///字体大小
   final double fontSize;
@@ -66,6 +63,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
 
   /// 传入属性优先级最高，未传入的走默认配置，更多请看[BrnSmallSecondaryOutlineButtonConfig.defaultConfig]
   const BrnSmallOutlineButton({
+    Key? key,
     this.title = '确认',
     this.onTap,
     this.isEnable = true,
@@ -74,9 +72,9 @@ class BrnSmallOutlineButton extends StatelessWidget {
     this.radius,
     this.width,
     this.fontSize = 14,
-    this.fontWeight,
+    this.fontWeight = FontWeight.w600,
     this.themeData,
-  });
+  }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +95,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
       builder: (_, con) {
         TextStyle style = TextStyle(
           fontSize: defaultThemeConfig.smallButtonFontSize,
-          fontWeight: fontWeight ?? FontWeight.w600,
+          fontWeight: fontWeight,
         );
 
         textPainter.textDirection = TextDirection.ltr;
@@ -132,8 +130,6 @@ class BrnSmallOutlineButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
           fontSize: defaultThemeConfig.smallButtonFontSize,
           onTap: onTap,
-          insertPadding: EdgeInsets.symmetric(
-              vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
           backgroundColor: Colors.white,
           disableBackgroundColor: Color(0xffcccccc).withOpacity(0.1),
         );

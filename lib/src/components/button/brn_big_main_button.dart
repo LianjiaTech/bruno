@@ -82,8 +82,6 @@ class BrnBigMainButton extends StatelessWidget {
       textColor: Colors.white,
       disableTextColor:
           defaultThemeConfig.commonConfig.colorTextBaseInverse.withOpacity(0.7),
-      insertPadding: EdgeInsets.symmetric(
-          horizontal: _BHorizontalPadding, vertical: _BVerticalPadding),
     );
   }
 }
