@@ -1,3 +1,4 @@
+import 'package:bruno/src/constants/brn_constants.dart';
 import 'package:bruno/src/utils/brn_multi_click_util.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +8,6 @@ const Color _BBackgroundColor = Color(0xFF0984F9);
 const Color _BDisableBackgroundColor = Color(0xFFCCCCCC);
 const FontWeight _BFontWeight = FontWeight.bold;
 const double _BRadius = 6;
-const double _BHorizontalPadding = 16;
-const double _BVerticalPadding = 8;
 
 /// 通用按钮，支持用户设置背景色、是否可用等属性
 /// 若[BrnBigMainButton]、[BrnSmallMainButton]、[BrnBigOutlineButton]不能满足用户需要
@@ -124,8 +123,9 @@ class BrnNormalButton extends StatelessWidget {
     this.backgroundColor = _BBackgroundColor,
     this.isEnable = true,
     this.onTap,
-    this.insertPadding =
-        const EdgeInsets.symmetric(vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
+    this.insertPadding = const EdgeInsets.symmetric(
+        vertical: BrnButtonConstant.verticalPadding,
+        horizontal: BrnButtonConstant.horizontalPadding),
     this.decoration,
     this.child,
     this.textStyle,
@@ -156,8 +156,9 @@ class BrnNormalButton extends StatelessWidget {
     this.fontWeight = _BFontWeight,
     this.fontSize = _BFontSize,
     this.disableTextColor,
-    this.insertPadding =
-        const EdgeInsets.symmetric(vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
+    this.insertPadding = const EdgeInsets.symmetric(
+        vertical: BrnButtonConstant.verticalPadding,
+        horizontal: BrnButtonConstant.horizontalPadding),
     this.textStyle,
     this.constraints = const BoxConstraints.tightFor(),
     this.borderRadius = const BorderRadius.all(Radius.circular(_BRadius)),

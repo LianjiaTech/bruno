@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bruno/src/components/button/brn_normal_button.dart';
+import 'package:bruno/src/constants/brn_constants.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -19,12 +20,6 @@ import 'package:flutter/material.dart';
 ///  * [BrnSmallOutlineButton], 小主色调按钮
 ///
 ///
-
-/// 默认水平间距
-const double _BHorizontalPadding = 6;
-
-/// 默认垂直间距
-const double _BVerticalPadding = 8;
 
 /// 默认最小宽度
 const double _BMinWidth = 84;
@@ -90,7 +85,7 @@ class BrnSmallMainButton extends StatelessWidget {
         textPainter.layout(maxWidth: con.maxWidth);
         double textWidth = textPainter.width;
         //按钮本身大小
-        double _maxWidth = textWidth + _BHorizontalPadding * 2;
+        double _maxWidth = textWidth + BrnButtonConstant.horizontalPadding * 2;
         double _minWidth = min(_BMinWidth, con.maxWidth);
 
         //保证最小宽度是 （84、可用空间）的最小值
