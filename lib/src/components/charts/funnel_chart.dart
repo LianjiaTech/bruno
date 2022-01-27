@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:math';
 import 'dart:ui' as ui;
 
@@ -62,11 +60,11 @@ class BrnFunnelChart extends MultiChildRenderObjectWidget {
   ];
 
   BrnFunnelChart({
-    Key key,
-    @required this.layerCount,
-    @required this.markerCount,
-    @required this.layerPainter,
-    @required MarkerBuilder builder,
+    Key? key,
+    required this.layerCount,
+    required this.markerCount,
+    required this.layerPainter,
+    required MarkerBuilder builder,
     this.shape = FunnelShape.LeftAndRight,
     this.maxLayerWidth = 200,
     this.minLayerWidth = 0,
@@ -74,8 +72,7 @@ class BrnFunnelChart extends MultiChildRenderObjectWidget {
     this.layerMargin = 0,
     this.childOffset = Offset.zero,
     this.alignment = MarkerAlignment.right,
-  })  : assert(layerCount != null),
-        assert(maxLayerWidth >= minLayerWidth),
+  })  : assert(maxLayerWidth >= minLayerWidth),
         assert(layerCount - markerCount == 0 || layerCount - markerCount == 1),
         assert(() {
           if (shape == FunnelShape.LeftOrRight &&
@@ -88,7 +85,7 @@ class BrnFunnelChart extends MultiChildRenderObjectWidget {
         super(
             key: key,
             children: () {
-              List<Widget> children = List();
+              List<Widget> children = [];
               for (int i = 0; i < markerCount; i++) {
                 children.add(builder(i));
               }
@@ -97,10 +94,10 @@ class BrnFunnelChart extends MultiChildRenderObjectWidget {
 
   ///漏斗图默认Bruno风格的命名构造函数，[layerCount]不能大于[defaultLayerColors.length]。
   BrnFunnelChart.defaultStyle({
-    Key key,
-    @required this.layerCount,
-    @required this.markerCount,
-    @required MarkerBuilder builder,
+    Key? key,
+    required this.layerCount,
+    required this.markerCount,
+    required MarkerBuilder builder,
     this.maxLayerWidth = 200,
     this.minLayerWidth = 0,
     this.layerHeight = 40,
@@ -109,15 +106,13 @@ class BrnFunnelChart extends MultiChildRenderObjectWidget {
   })  : this.layerPainter = BrnDefaultFunnelLayerPainter(),
         this.shape = FunnelShape.LeftAndRight,
         this.alignment = MarkerAlignment.right,
-        assert(layerCount != null &&
-            layerCount <= defaultLayerColors.length &&
-            layerCount >= 0),
+        assert(layerCount <= defaultLayerColors.length && layerCount >= 0),
         assert(maxLayerWidth >= minLayerWidth),
         assert(layerCount - markerCount == 0 || layerCount - markerCount == 1),
         super(
             key: key,
             children: () {
-              List<Widget> children = List();
+              List<Widget> children = [];
               for (int i = 0; i < markerCount; i++) {
                 children.add(builder(i));
               }
@@ -161,14 +156,14 @@ abstract class RenderFunnelChart extends RenderBox
         ContainerRenderObjectMixin<RenderBox, BrnFunnelChartParentData>,
         RenderBoxContainerDefaultsMixin<RenderBox, BrnFunnelChartParentData> {
   RenderFunnelChart({
-    double layerMargin,
-    double layerHeight,
-    int layerCount,
-    double maxLayerWidth,
-    double minLayerWidth,
-    Offset childOffset,
-    MarkerAlignment alignment,
-    BrnFunnelLayerPainter layerPainter,
+    required double layerMargin,
+    required double layerHeight,
+    required int layerCount,
+    required double maxLayerWidth,
+    required double minLayerWidth,
+    required Offset childOffset,
+    required MarkerAlignment alignment,
+    required BrnFunnelLayerPainter layerPainter,
   })  : _layerMargin = layerMargin,
         _layerHeight = layerHeight,
         _layerCount = layerCount,
@@ -277,20 +272,20 @@ abstract class RenderFunnelChart extends RenderBox
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {Offset position}) {
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
     return defaultHitTestChildren(result, position: position);
   }
 
   @override
   double computeMinIntrinsicWidth(double height) {
     return getIntrinsicDimensionHorizontal(
-        height, (RenderBox child) => child.getMinIntrinsicWidth(height));
+        height, (RenderBox child) => child.getMinIntrinsicWidth(height))!;
   }
 
   @override
   double computeMaxIntrinsicWidth(double height) {
     return getIntrinsicDimensionHorizontal(
-        height, (RenderBox child) => child.getMinIntrinsicWidth(height));
+        height, (RenderBox child) => child.getMinIntrinsicWidth(height))!;
   }
 
   @override
@@ -306,11 +301,11 @@ abstract class RenderFunnelChart extends RenderBox
   }
 
   @override
-  double computeDistanceToActualBaseline(TextBaseline baseline) {
+  double? computeDistanceToActualBaseline(TextBaseline baseline) {
     return defaultComputeDistanceToHighestActualBaseline(baseline);
   }
 
-  double getIntrinsicDimensionHorizontal(
+  double? getIntrinsicDimensionHorizontal(
       double height, double mainChildSizeGetter(RenderBox child));
 
   double getIntrinsicDimensionVertical(
@@ -324,17 +319,17 @@ class BrnFunnelRender extends RenderFunnelChart {
   static const double HALF_PIXEL = 0.5;
 
   BrnFunnelRender({
-    double layerHeight,
-    double layerMargin,
-    int layerCount,
-    double maxLayerWidth,
-    double minLayerWidth,
-    Offset childOffset,
-    bool gradient,
-    List<Color> layerColors,
-    MarkerAlignment alignment,
-    BrnFunnelLayerPainter layerPainter,
-    FunnelShape shape,
+    required double layerHeight,
+    required double layerMargin,
+    required int layerCount,
+    required double maxLayerWidth,
+    required double minLayerWidth,
+    required Offset childOffset,
+    bool? gradient,
+    List<Color>? layerColors,
+    required MarkerAlignment alignment,
+    required BrnFunnelLayerPainter layerPainter,
+    required FunnelShape shape,
   })  : _shape = shape,
         _paint = Paint()..isAntiAlias = true,
         super(
@@ -352,19 +347,20 @@ class BrnFunnelRender extends RenderFunnelChart {
   Paint _paint;
 
   bool _hasVisualOverflow = false;
-  Offset _overflowOffset;
-  Offset _centerOffset;
+  late Offset _overflowOffset;
+  late Offset _centerOffset;
 
   @override
-  double getIntrinsicDimensionHorizontal(
+  double? getIntrinsicDimensionHorizontal(
       double height, double mainChildSizeGetter(RenderBox child)) {
-    double extent = maxLayerWidth;
+    double? extent = maxLayerWidth;
     double intrinsicHeight = getIntrinsicDimensionVertical(null, null);
-    RenderBox child = firstChild;
+    RenderBox? child = firstChild;
     if (_alignment == MarkerAlignment.center) {
       while (child != null) {
-        final BrnFunnelChartParentData childParentData = child.parentData;
-        extent = max(extent, mainChildSizeGetter(child));
+        final BrnFunnelChartParentData childParentData =
+            child.parentData as BrnFunnelChartParentData;
+        extent = max(extent!, mainChildSizeGetter(child));
         child = childParentData.nextSibling;
       }
     } else {
@@ -380,10 +376,11 @@ class BrnFunnelRender extends RenderFunnelChart {
             childOffset.dx;
 
         if (child == firstChild) {
-          extent = max(extent, left + mainChildSizeGetter(child));
+          extent = max(extent!, left + mainChildSizeGetter(child));
         }
         num++;
-        BrnFunnelChartParentData childParentData = child.parentData;
+        BrnFunnelChartParentData childParentData =
+            child.parentData as BrnFunnelChartParentData;
         child = childParentData.nextSibling;
       }
     }
@@ -392,7 +389,7 @@ class BrnFunnelRender extends RenderFunnelChart {
 
   @override
   double getIntrinsicDimensionVertical(
-      double width, double mainChildSizeGetter(RenderBox child)) {
+      double? width, double mainChildSizeGetter(RenderBox child)?) {
     return layerCount * layerHeight + (layerCount - 1) * layerMargin;
   }
 
@@ -405,8 +402,8 @@ class BrnFunnelRender extends RenderFunnelChart {
             ? layerMargin * childCount
             : layerMargin * (layerCount - 1));
 
-    RenderBox child = firstChild;
-    double top, bottom, left, right;
+    RenderBox? child = firstChild;
+    late double top, bottom, left, right;
     int num = 0;
     while (child != null) {
       if (alignment == MarkerAlignment.center) {
@@ -439,8 +436,9 @@ class BrnFunnelRender extends RenderFunnelChart {
             childOffset.dx;
       }
 
-      final BrnFunnelChartParentData childParentData = child.parentData;
-      BoxConstraints childConstraints;
+      final BrnFunnelChartParentData childParentData =
+          child.parentData as BrnFunnelChartParentData;
+      late BoxConstraints childConstraints;
       if (alignment == MarkerAlignment.center) {
         childConstraints = BoxConstraints(
             minWidth: 0,
@@ -484,7 +482,7 @@ class BrnFunnelRender extends RenderFunnelChart {
       _hasVisualOverflow = true;
     }
     size = constraints.constrain(intrinsicSize);
-    _centerOffset = centerOffset(size - intrinsicSize);
+    _centerOffset = centerOffset(size - intrinsicSize as ui.Offset);
     if (_centerOffset.dx >= 0 && _centerOffset.dy >= 0) {
       //当实际尺寸比必须尺寸大时，需要居中偏移一下
       if (alignment == MarkerAlignment.left) {
@@ -505,7 +503,8 @@ class BrnFunnelRender extends RenderFunnelChart {
     num = 0;
     child = firstChild;
     while (child != null) {
-      final BrnFunnelChartParentData childParentData = child.parentData;
+      final BrnFunnelChartParentData childParentData =
+          child.parentData as BrnFunnelChartParentData;
       if (alignment == MarkerAlignment.center) {
         childParentData.offset =
             Offset(0, ((num * layerMargin) + (num + 1) * layerHeight)) +
@@ -538,7 +537,7 @@ class BrnFunnelRender extends RenderFunnelChart {
   void paintFunnel(PaintingContext context, Offset offset) {
     Canvas canvas = context.canvas;
     canvas.save();
-    Rect rect = (offset + _centerOffset ?? Offset.zero) & size;
+    Rect rect = (offset + _centerOffset) & size;
     canvas.clipRect(rect);
     _paint.blendMode = BlendMode.srcOver;
     canvas.saveLayer(rect, _paint);
@@ -546,7 +545,7 @@ class BrnFunnelRender extends RenderFunnelChart {
 
     //绘制漏斗layer
     for (int i = 0; i < layerCount; i++) {
-      Offset topLeft, bottomRight;
+      late Offset topLeft, bottomRight;
       if (alignment == MarkerAlignment.center) {
         topLeft = Offset((size.width - maxLayerWidth) / 2,
             i * layerHeight + i * layerMargin);
@@ -566,22 +565,18 @@ class BrnFunnelRender extends RenderFunnelChart {
       //绘制layer背景色
       if (!layerPainter.isGradient(i)) {
         //单色背景
-        if (layerPainter.getLayerColors(i) != null) {
-          _paint.color = layerPainter.getLayerColors(i)[0];
-          canvas.drawRect(Rect.fromPoints(topLeft, bottomRight), _paint);
-        }
+        _paint.color = layerPainter.getLayerColors(i)[0];
+        canvas.drawRect(Rect.fromPoints(topLeft, bottomRight), _paint);
       } else {
         //渐变背景
-        if (layerPainter.getLayerColors(i) != null) {
-          ui.Gradient gradient = ui.Gradient.linear(
-              topLeft, bottomRight, layerPainter.getLayerColors(i));
-          _paint.shader = gradient;
-          canvas.drawRect(Rect.fromPoints(topLeft, bottomRight), _paint);
-        }
+        ui.Gradient gradient = ui.Gradient.linear(
+            topLeft, bottomRight, layerPainter.getLayerColors(i));
+        _paint.shader = gradient;
+        canvas.drawRect(Rect.fromPoints(topLeft, bottomRight), _paint);
       }
 
       //绘制layer文案
-      double safeLeft, safeTop, safeRight, safeBottom;
+      late double safeLeft, safeTop, safeRight, safeBottom;
       if (_shape == FunnelShape.LeftAndRight) {
         safeTop = i * layerHeight + i * layerMargin;
         if (alignment == MarkerAlignment.right) {
@@ -642,7 +637,7 @@ class BrnFunnelRender extends RenderFunnelChart {
       ..blendMode = BlendMode.dstOut
       ..style = PaintingStyle.fill
       ..shader = null;
-    double topLeftX;
+    late double topLeftX;
     if (alignment == MarkerAlignment.center) {
       topLeftX = (size.width - maxLayerWidth) / 2;
     } else if (alignment == MarkerAlignment.right) {
@@ -744,7 +739,7 @@ class BrnDefaultFunnelLayerPainter extends BrnFunnelLayerPainter {
   }) : _textPainter = TextPainter()..textDirection = TextDirection.ltr;
 
   @override
-  void paintLayer(Canvas canvas, double left, double top, double right,
+  void paintLayer(Canvas canvas, double left, double? top, double right,
       double bottom, int layerIndex) {
     if (layerIndex >= titles.length) {
       return;
@@ -757,7 +752,7 @@ class BrnDefaultFunnelLayerPainter extends BrnFunnelLayerPainter {
     _textPainter.paint(
       canvas,
       Offset((left + right - _textPainter.width) / 2,
-          (top + bottom - _textPainter.height) / 2),
+          (top! + bottom - _textPainter.height) / 2),
     );
   }
 

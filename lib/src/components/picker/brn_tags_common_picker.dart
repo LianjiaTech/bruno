@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
@@ -13,21 +13,22 @@ enum BrnCommonPickBackType {
 }
 
 typedef TagsPickerContentBuilder = Widget Function(
-    BuildContext context, VoidCallback onUpdate);
+    BuildContext context, VoidCallback? onUpdate);
 
 /// 创建时传入Builder 或者 子类实现 createBuilder 函数
+// ignore: must_be_immutable
 class CommonTagsPicker extends StatefulWidget {
   final BuildContext context;
-  final ValueChanged onConfirm;
-  final VoidCallback onCancel;
-  final TagsPickerContentBuilder contentBuilder;
+  final ValueChanged? onConfirm;
+  final VoidCallback? onCancel;
+  final TagsPickerContentBuilder? contentBuilder;
   final BrnPickerTitleConfig pickerTitleConfig;
 
-  BrnPickerConfig themeData;
+  BrnPickerConfig? themeData;
 
   CommonTagsPicker(
-      {Key key,
-      @required this.context,
+      {Key? key,
+      required this.context,
       this.onConfirm,
       this.onCancel,
       this.contentBuilder,
@@ -36,7 +37,7 @@ class CommonTagsPicker extends StatefulWidget {
       : super(key: key) {
     this.themeData ??= BrnPickerConfig();
     this.themeData = this
-        .themeData
+        .themeData!
         .merge(BrnThemeConfigurator.instance.getConfig().pickerConfig);
   }
 
@@ -49,11 +50,11 @@ class CommonTagsPicker extends StatefulWidget {
         }).then((type) {
       if (type == BrnCommonPickBackType.confirm) {
         if (onConfirm != null) {
-          onConfirm(getConfirmData());
+          onConfirm!(getConfirmData());
         }
       } else {
         if (onCancel != null) {
-          onCancel();
+          onCancel!();
         }
       }
     });
@@ -61,7 +62,7 @@ class CommonTagsPicker extends StatefulWidget {
 
   /// 子类重写实现builder
   @protected
-  Widget createBuilder(BuildContext context, VoidCallback onUpdate) {
+  Widget? createBuilder(BuildContext context, VoidCallback? onUpdate) {
     return null;
   }
 
@@ -80,7 +81,7 @@ class CommonTagsPicker extends StatefulWidget {
 }
 
 class _CommonPickerState extends State<CommonTagsPicker> {
-  VoidCallback _onUpdate;
+  VoidCallback? _onUpdate;
 
   @override
   void initState() {
@@ -135,9 +136,9 @@ class _CommonPickerState extends State<CommonTagsPicker> {
 
   /// 创建内容视图
   Widget _createContentWidget() {
-    Widget contentWidget;
+    Widget? contentWidget;
     if (widget.contentBuilder != null) {
-      contentWidget = widget.contentBuilder(context, _onUpdate);
+      contentWidget = widget.contentBuilder!(context, _onUpdate);
     } else {
       contentWidget = widget.createBuilder(context, _onUpdate);
     }
@@ -150,7 +151,7 @@ class _CommonPickerState extends State<CommonTagsPicker> {
       );
     }
     return Container(
-      padding: EdgeInsets.only(top: widget.themeData.titleHeight), // 流出头部视图
+      padding: EdgeInsets.only(top: widget.themeData!.titleHeight), // 流出头部视图
       child: ListView(
         shrinkWrap: true, // 列表高度自适应
         controller: ScrollController(keepScrollOffset: false), // 若视图小于弹窗则不滑动

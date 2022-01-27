@@ -38,7 +38,7 @@ class _BrnSelectionDatePickerAnimationWidgetState
   }
 
   dispose() {
-    widget.controller?.removeListener(_onController);
+    widget.controller.removeListener(_onController);
     _controller.dispose();
     _isControllerDisposed = true;
     super.dispose();

@@ -38,7 +38,7 @@ class DefaultSelectionQuickFilterConverter implements BrnSelectionConverterDeleg
 Map<String, String> getSelectionParamsWithConfigChild(List<BrnSelectionEntity>? selectedResults) {
   Map<String, String> params = Map();
   if (selectedResults == null) return params;
-  selectedResults?.forEach((f) => f.configRelationshipAndDefaultValue());
+  selectedResults.forEach((f) => f.configRelationshipAndDefaultValue());
   return getSelectionParams(selectedResults);
 }
 

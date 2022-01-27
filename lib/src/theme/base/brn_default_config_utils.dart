@@ -531,7 +531,7 @@ class BrnDefaultConfigUtils {
   );
 
   static BrnPickerConfig defaultPickerConfig = BrnPickerConfig(
-    backgroundColor: PICKER_BACKGROUND_COLOR,
+    backgroundColor: pickerBackgroundColor,
     cancelTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextBase,
       fontSize: defaultCommonConfig.fontSizeSubHead,
@@ -546,9 +546,9 @@ class BrnDefaultConfigUtils {
       fontWeight: FontWeight.w600,
       decoration: TextDecoration.none,
     ),
-    pickerHeight: PICKER_HEIGHT,
-    titleHeight: PICKER_TITLE_HEIGHT,
-    itemHeight: PICKER_ITEM_HEIGHT,
+    pickerHeight: pickerHeight,
+    titleHeight: pickerTitleHeight,
+    itemHeight: pickerItemHeight,
     dividerColor: Color(0xFFF0F0F0),
     itemTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextBase,

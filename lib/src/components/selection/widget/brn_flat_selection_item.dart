@@ -206,7 +206,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
       children: <Widget>[
         Expanded(
           child: Text(
-            widget.selectionEntity.title ?? "",
+            widget.selectionEntity.title,
             style: widget.themeData.titleForMoreTextStyle.generateTextStyle(),
           ),
         ),
@@ -480,8 +480,8 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
       widget.rangeEntity.customMap!['min'] = minInput;
 
       if (minInput.isNotEmpty && maxInput.isNotEmpty) {
-        int? inputMin = int.tryParse(minController.text ?? '');
-        int? inputMax = int.tryParse(maxController.text ?? '');
+        int? inputMin = int.tryParse(minController.text);
+        int? inputMax = int.tryParse(maxController.text);
 
         if (inputMin != null &&
             inputMin >= min &&
@@ -612,7 +612,7 @@ class FilterLayerTypeWidget extends StatefulWidget {
 class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
   @override
   Widget build(BuildContext context) {
-    widget.selectionEntity?.configDefaultValue();
+    widget.selectionEntity.configDefaultValue();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -687,7 +687,7 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
 
   bool isEmptyCondition() {
     String condition = getCondition();
-    return condition == null || condition.isEmpty;
+    return condition.isEmpty;
   }
 
   String getCondition() {

@@ -82,7 +82,7 @@ class PickerEntryPage extends StatelessWidget {
               describe: "底部级联选择框",
               onPressed: () {
                 rootBundle.loadString('assets/list_picker.json').then((data) {
-                  List<BrnPickerEntity> _selectionData = List()
+                  List<BrnPickerEntity> _selectionData = []
                     ..addAll((JsonDecoder().convert(data)["data"]['list'] as List ?? [])
                         .map((o) => BrnPickerEntity.fromMap(o)));
                   if (_selectionData != null && _selectionData.length > 0) {
@@ -100,7 +100,7 @@ class PickerEntryPage extends StatelessWidget {
               describe: "底部级联选择框（Title 动态改变）",
               onPressed: () {
                 rootBundle.loadString('assets/list_picker.json').then((data) {
-                  List<BrnPickerEntity> _selectionData = List()
+                  List<BrnPickerEntity> _selectionData = []
                     ..addAll((JsonDecoder().convert(data)["data"]['list'] as List ?? [])
                         .map((o) => BrnPickerEntity.fromMap(o)));
                   if (_selectionData != null && _selectionData.length > 0) {
@@ -131,7 +131,7 @@ class PickerEntryPage extends StatelessWidget {
 
   ///多选弹框
   void _showBottomMultiSelectPicker(BuildContext context) {
-    List<BrnMultiSelectBottomPickerItem> items = new List();
+    List<BrnMultiSelectBottomPickerItem> items = [];
     items.add(new BrnMultiSelectBottomPickerItem("100", "这里是标题1"));
     items.add(new BrnMultiSelectBottomPickerItem("101", "这里是标题2"));
     items.add(new BrnMultiSelectBottomPickerItem("102", "这里是标题3", isChecked: true));
@@ -353,7 +353,7 @@ class PickerEntryPage extends StatelessWidget {
     List<BrnTagInputItemBean> items = List();
     for (int i = 0; i < tags.length; i++) {
       String it = tags[i];
-      BrnTagInputItemBean item = BrnTagInputItemBean(name: it, index: i, needExplane: (i % 2 == 0));
+      BrnTagInputItemBean item = BrnTagInputItemBean(name: it, index: i, needExpend: (i % 2 == 0));
       items.add(item);
     }
 
@@ -371,8 +371,8 @@ class PickerEntryPage extends StatelessWidget {
                 tagItemSource: items,
                 tagTitleFontSize: 12,
                 tagTitleColor: Color(0xff222222),
-                tagBackgroudColor: Color(0xffF8F8F8),
-                selectedTagBackgroudColor: Color(0x140984F9),
+                tagBackgroundColor: Color(0xffF8F8F8),
+                selectedTagBackgroundColor: Color(0x140984F9),
                 selectedTagTitleColor: Color(0xFF0984F9),
               ),
               onTagValueGetter: (choice) {

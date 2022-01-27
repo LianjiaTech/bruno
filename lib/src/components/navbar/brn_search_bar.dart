@@ -167,7 +167,7 @@ class _SearchInputWidget extends StatefulWidget {
       this.textEditingController,
       this.searchBarInputChangeCallback,
       this.searchBarInputSubmitCallback,
-      this.hint,
+      this.hint= '请输入搜索内容',
       this.hintStyle,
       this.inputTextStyle,
       this.showDivider = true,
@@ -308,7 +308,7 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
                             color: _defaultHintTextColor,
                           ),
                       // 提示文本属性，提示字段接受哪种输入的文本。
-                      hintText: widget.hint ?? "请输入搜索内容",
+                      hintText: widget.hint,
                     ),
                     // 在改变属性，当正在编辑的文本发生更改时调用。
                     onChanged: (content) {

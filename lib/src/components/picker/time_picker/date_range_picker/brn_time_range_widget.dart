@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:math';
 
@@ -16,32 +16,32 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class BrnTimeRangeWidget extends StatefulWidget {
   /// 可选最小时间
-  final DateTime minDateTime;
+  final DateTime? minDateTime;
 
   /// 可选最大时间
-  final DateTime maxDateTime;
+  final DateTime? maxDateTime;
 
   /// 初始开始选中时间
-  final DateTime initialStartDateTime;
+  final DateTime? initialStartDateTime;
 
   /// 初始结束选中时间
-  final DateTime initialEndDateTime;
+  final DateTime? initialEndDateTime;
 
   /// 是否限制 Picker 选择的时间范围（开始时间≤结束时间）
   final isLimitTimeRange;
 
   /// 时间格式
-  final String dateFormat;
+  final String? dateFormat;
   final DateTimePickerLocale locale;
 
   /// cancel 回调
-  final DateVoidCallback onCancel;
+  final DateVoidCallback? onCancel;
 
   /// 选中时间变化时的回调，返回选中的开始、结束时间
-  final DateRangeValueCallback onChange;
+  final DateRangeValueCallback? onChange;
 
   /// 确定回调，返回选中的开始、结束时间
-  final DateRangeValueCallback onConfirm;
+  final DateRangeValueCallback? onConfirm;
 
   /// Picker title  相关内容配置
   final BrnPickerTitleConfig pickerTitleConfig;
@@ -50,20 +50,20 @@ class BrnTimeRangeWidget extends StatefulWidget {
   final int minuteDivider;
 
   /// Picker 主题配置
-  BrnPickerConfig themeData;
+  BrnPickerConfig? themeData;
 
   /// 内部变量，记录左右两侧是否触发了滚动
   bool _isFirstScroll = false, _isSecondScroll = false;
 
   BrnTimeRangeWidget({
-    Key key,
+    Key? key,
     this.minDateTime,
     this.maxDateTime,
     this.isLimitTimeRange = true,
     this.initialStartDateTime,
     this.initialEndDateTime,
-    this.dateFormat: DATETIME_RANGE_PICKER_TIME_FORMAT,
-    this.locale: DATETIME_PICKER_LOCALE_DEFAULT,
+    this.dateFormat: datetimeRangePickerTimeFormat,
+    this.locale: datetimePickerLocaleDefault,
     this.pickerTitleConfig: BrnPickerTitleConfig.Default,
     this.minuteDivider = 1,
     this.onCancel,
@@ -71,12 +71,12 @@ class BrnTimeRangeWidget extends StatefulWidget {
     this.onConfirm,
     this.themeData,
   }) : super(key: key) {
-    DateTime minTime = minDateTime ?? DateTime.parse(DATE_PICKER_MIN_DATETIME);
-    DateTime maxTime = maxDateTime ?? DateTime.parse(DATE_PICKER_MAX_DATETIME);
+    DateTime minTime = minDateTime ?? DateTime.parse(datePickerMinDatetime);
+    DateTime maxTime = maxDateTime ?? DateTime.parse(datePickerMaxDatetime);
     assert(minTime.compareTo(maxTime) < 0);
     this.themeData ??= BrnPickerConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .pickerConfig
         .merge(this.themeData);
   }
@@ -93,28 +93,28 @@ class BrnTimeRangeWidget extends StatefulWidget {
 class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
   final int _defaultMinuteDivider = 1;
 
-  int _minuteDivider;
-  DateTime _minTime, _maxTime;
-  int _currStartHour, _currStartMinute;
-  int _currEndHour, _currEndMinute;
-  List<int> _hourRange, _minuteRange;
-  List<int> _startSelectedIndex;
-  List<int> _endSelectedIndex;
-  DateTime _startSelectedDateTime;
-  DateTime _endSelectedDateTime;
+  late int _minuteDivider;
+  late DateTime _minTime, _maxTime;
+  late int _currStartHour, _currStartMinute;
+  late int _currEndHour, _currEndMinute;
+  late List<int> _hourRange, _minuteRange;
+  late List<int> _startSelectedIndex;
+  late List<int> _endSelectedIndex;
+  late DateTime _startSelectedDateTime;
+  late DateTime _endSelectedDateTime;
 
-  _TimePickerWidgetState(DateTime minTime, DateTime maxTime,
-      DateTime initStartTime, DateTime initEndTime, int minuteDivider) {
+  _TimePickerWidgetState(DateTime? minTime, DateTime? maxTime,
+      DateTime? initStartTime, DateTime? initEndTime, int minuteDivider) {
     _initData(minTime, maxTime, initStartTime, initEndTime, minuteDivider);
   }
 
-  void _initData(DateTime minTime, DateTime maxTime, DateTime initStartTime,
-      DateTime initEndTime, int minuteDivider) {
+  void _initData(DateTime? minTime, DateTime? maxTime, DateTime? initStartTime,
+      DateTime? initEndTime, int? minuteDivider) {
     if (minTime == null) {
-      minTime = DateTime.parse(DATE_PICKER_MIN_DATETIME);
+      minTime = DateTime.parse(datePickerMinDatetime);
     }
     if (maxTime == null) {
-      maxTime = DateTime.parse(DATE_PICKER_MAX_DATETIME);
+      maxTime = DateTime.parse(datePickerMaxDatetime);
     }
     DateTime now = DateTime.now();
     this._minTime = DateTime(now.year, now.month, now.day, minTime.hour,
@@ -139,24 +139,20 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
     }
 
     this._currStartHour = initStartTime.hour;
-    this._currStartMinute = initStartTime.minute;
-
-    this._currEndHour = initEndTime.hour;
-    this._currEndMinute = initEndTime.minute;
-
-    // limit the range of hour
     this._hourRange = _calcHourRange();
-    this._minuteRange = _calcMinuteRange();
-
     this._currStartHour =
         min(max(_hourRange.first, _currStartHour), _hourRange.last);
-    this._currEndHour = min(_currEndHour, _hourRange.last);
-    // limit the range of minute
 
+    this._currStartMinute = initStartTime.minute;
+    this._minuteRange = _calcMinuteRange();
     this._currStartMinute =
         min(max(_minuteRange.first, _currStartMinute), _minuteRange.last);
     _currStartMinute -= _currStartMinute % _minuteDivider;
 
+    this._currEndHour = initEndTime.hour;
+    this._currEndHour = min(_currEndHour, _hourRange.last);
+
+    this._currEndMinute = initEndTime.minute;
     this._currEndMinute = min(_currEndMinute, _minuteRange.last);
     _currEndMinute -= _currEndMinute % _minuteDivider;
 
@@ -200,7 +196,7 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
   /// pressed cancel widget
   void _onPressedCancel() {
     if (widget.onCancel != null) {
-      widget.onCancel();
+      widget.onCancel!();
     }
     Navigator.pop(context);
   }
@@ -208,7 +204,7 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
   /// pressed confirm widget
   void _onPressedConfirm() {
     if (widget.onConfirm != null) {
-      widget.onConfirm(_startSelectedDateTime, _endSelectedDateTime,
+      widget.onConfirm!(_startSelectedDateTime, _endSelectedDateTime,
           _startSelectedIndex, _endSelectedIndex);
     }
     Navigator.pop(context);
@@ -229,12 +225,12 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
       widget._isSecondScroll = false;
     }
 
-    List<Widget> pickers = List<Widget>();
+    List<Widget> pickers = [];
     pickers.add(Expanded(
         flex: 6,
         child: Container(
-            height: widget.themeData.pickerHeight,
-            color: widget.themeData.backgroundColor,
+            height: widget.themeData!.pickerHeight,
+            color: widget.themeData!.backgroundColor,
             child: BrnTimeRangeSideWidget(
               key: firstGlobalKey,
               dateFormat: widget.dateFormat,
@@ -260,8 +256,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
     pickers.add(Expanded(
         flex: 6,
         child: Container(
-            height: widget.themeData.pickerHeight,
-            color: widget.themeData.backgroundColor,
+            height: widget.themeData!.pickerHeight,
+            color: widget.themeData!.backgroundColor,
             child: BrnTimeRangeSideWidget(
               key: secondGlobalKey,
               dateFormat: widget.dateFormat,
@@ -336,22 +332,22 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
     return Expanded(
       flex: 1,
       child: Container(
-        height: widget.themeData.pickerHeight,
+        height: widget.themeData!.pickerHeight,
         decoration: BoxDecoration(
             border: Border(left: BorderSide.none, right: BorderSide.none),
-            color: widget.themeData.backgroundColor),
+            color: widget.themeData!.backgroundColor),
         child: BrnPicker.builder(
-          backgroundColor: widget.themeData.backgroundColor,
-          lineColor: widget.themeData.dividerColor,
-          itemExtent: widget.themeData.itemHeight,
+          backgroundColor: widget.themeData!.backgroundColor,
+          lineColor: widget.themeData!.dividerColor,
+          itemExtent: widget.themeData!.itemHeight,
           childCount: 1,
           itemBuilder: (context, index) {
             return Container(
-              height: widget.themeData.itemHeight,
+              height: widget.themeData!.itemHeight,
               alignment: Alignment.center,
               child: Text(
                 "至",
-                style: widget.themeData.itemTextStyle ?? PICKER_ITEM_TEXT_STYLE,
+                style: widget.themeData!.itemTextStyle.generateTextStyle(),
               ),
             );
           },

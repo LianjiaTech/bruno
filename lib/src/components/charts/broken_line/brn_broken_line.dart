@@ -1,13 +1,9 @@
-// @dart=2.9
-
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:bruno/src/components/charts/broken_line/brn_line_data.dart';
 import 'package:bruno/src/components/charts/broken_line/brn_line_painter.dart';
 import 'package:bruno/src/components/charts/broken_line/brn_line_y_painter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 /// 适用于需要折线图，曲线图的场景
 /// 支持数据过多时左右滑动查看数据
@@ -23,16 +19,16 @@ class BrnBrokenLine extends StatefulWidget {
   final EdgeInsets contentPadding;
 
   /// 绘制的背景色
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// xy轴线条的宽度，默认 2
   final double xyDialLineWidth;
 
   /// xy轴的颜色
-  final Color xDialColor, yDialColor;
+  final Color? xDialColor, yDialColor;
 
   /// x轴最小值，最大值，用来计算内部绘制点的x轴位置
-  final double xDialMin, xDialMax;
+  final double? xDialMin, xDialMax;
 
   /// y轴最小值，最大值，用来计算内部绘制点的y轴位置
   final double yDialMin, yDialMax;
@@ -41,10 +37,10 @@ class BrnBrokenLine extends StatefulWidget {
   final double dialWidth;
 
   /// y轴左侧刻度显示，不传则没有
-  final List<BrnDialItem> yDialValues;
+  final List<BrnDialItem>? yDialValues;
 
   /// x 轴刻度
-  final List<BrnDialItem> xDialValues;
+  final List<BrnDialItem>? xDialValues;
 
   /// x轴的辅助线是否展示，默认 true
   final bool isShowXHintLine;
@@ -56,7 +52,7 @@ class BrnBrokenLine extends StatefulWidget {
   final bool isHintLineSolid;
 
   /// 辅助线颜色
-  final Color hintLineColor;
+  final Color? hintLineColor;
 
   /// 是否展示 x 坐标刻度，默认 false
   final bool isShowXDialText;
@@ -74,9 +70,9 @@ class BrnBrokenLine extends StatefulWidget {
   final bool isTipWindowAutoDismiss;
 
   BrnBrokenLine({
-    Key key,
-    @required this.size,
-    @required this.lines,
+    Key? key,
+    required this.size,
+    required this.lines,
     this.contentPadding = const EdgeInsets.only(left: 10, right: 10),
     this.backgroundColor,
     this.xyDialLineWidth = 2,
@@ -88,8 +84,8 @@ class BrnBrokenLine extends StatefulWidget {
     this.xDialMin,
     this.xDialMax,
     this.xDialValues,
-    this.yDialMin,
-    this.yDialMax,
+    required this.yDialMin,
+    required this.yDialMax,
     this.yDialValues,
     this.isShowXHintLine = true,
     this.isShowYHintLine = false,
@@ -98,10 +94,7 @@ class BrnBrokenLine extends StatefulWidget {
     this.isTipWindowAutoDismiss = true,
     this.isShowXDialText = false,
     this.isShowYDialText = false,
-  })  : assert(size != null),
-        assert(yDialMin != null),
-        assert(yDialMax != null),
-        super(key: key) {
+  }) : super(key: key) {
     /// 设置自定义 X 轴时，检查 x轴的最大、最小刻度范围
     if (xDialValues != null) {
       assert(xDialMin != null);
@@ -158,9 +151,8 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
       isShowYDialText: widget.isShowYDialText,
     );
     //y 轴宽度 = Y 轴刻度宽度+ chartLeftPadding（SingleChildScrollView padding）+ y 轴偏移量 yAxisWidth
-    var yWidth = widget.size.width +
-        (widget.contentPadding?.left ?? 10) +
-        (widget.yHintLineOffset == null ? 20.0 : widget.yHintLineOffset);
+    var yWidth =
+        widget.size.width + widget.contentPadding.left + widget.yHintLineOffset;
     return Stack(
       children: [
         CustomPaint(
@@ -176,12 +168,12 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
               : null,
         ),
         Padding(
-          padding: EdgeInsets.only(left: widget.yHintLineOffset ?? 20.0),
+          padding: EdgeInsets.only(left: widget.yHintLineOffset),
           child: SingleChildScrollView(
             padding: EdgeInsets.only(
-                left: widget.contentPadding?.left ?? 10,
+                left: widget.contentPadding.left,
                 bottom: 25,
-                right: widget.contentPadding?.right ?? 10),
+                right: widget.contentPadding.right),
             scrollDirection: Axis.horizontal,
             child: GestureDetector(
               onPanDown: (DragDownDetails e) {
@@ -207,14 +199,14 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
                 }
               },
               onLongPressUp: () {
-                if (widget.isTipWindowAutoDismiss ?? true) {
+                if (widget.isTipWindowAutoDismiss) {
                   pointSelectIndex = -1;
                   lineSelectIndex = -1;
                   setState(() {});
                 }
               },
               onTapUp: (tapUpDetail) {
-                if (widget.isTipWindowAutoDismiss ?? true) {
+                if (widget.isTipWindowAutoDismiss) {
                   pointSelectIndex = -1;
                   lineSelectIndex = -1;
                   setState(() {});
@@ -238,7 +230,7 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
                 (lineSelectIndex >= 0 && pointSelectIndex >= 0)
                     ? _buildTouchTipWidget(
                         widget.lines[lineSelectIndex].points[pointSelectIndex])
-                    : Container(),
+                    : const SizedBox.shrink(),
               ]),
             ),
           ),
@@ -249,19 +241,16 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
 
   Widget _buildTouchTipWidget(BrnPointData pointData) {
     Widget touchTipWidget;
-    BrnLineTouchData selectLinePoint = pointData?.lineTouchData;
-    if (selectLinePoint != null &&
-        pointData.isClickable != null &&
-        pointData.isClickable &&
-        selectLinePoint.onTouch != null) {
-      var content = selectLinePoint.onTouch();
+    BrnLineTouchData? selectLinePoint = pointData.lineTouchData;
+    if (pointData.isClickable && selectLinePoint.onTouch != null) {
+      var content = selectLinePoint.onTouch!();
       if (content is String) {
         touchTipWidget = Positioned(
           top: selectLinePoint.y,
           left: selectLinePoint.x,
           child: Container(
-            height: selectLinePoint.tipWindowSize?.height,
-            width: selectLinePoint.tipWindowSize?.width,
+            height: selectLinePoint.tipWindowSize.height,
+            width: selectLinePoint.tipWindowSize.width,
             padding: EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
             child: Center(child: Text(content)),
             decoration: BoxDecoration(
@@ -283,20 +272,14 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
             top: selectLinePoint.y,
             left: selectLinePoint.x,
             child: Container(
-                height: selectLinePoint.tipWindowSize?.height,
-                width: selectLinePoint.tipWindowSize?.width,
+                height: selectLinePoint.tipWindowSize.height,
+                width: selectLinePoint.tipWindowSize.width,
                 child: content));
       } else {
-        touchTipWidget = Container(
-          height: 0,
-          width: 0,
-        );
+        touchTipWidget = const SizedBox.shrink();
       }
     } else {
-      touchTipWidget = Container(
-        height: 0,
-        width: 0,
-      );
+      touchTipWidget = const SizedBox.shrink();
     }
 
     return touchTipWidget;
@@ -310,8 +293,6 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
       double endY,
       double fixedHeight,
       Point selectedPoint) {
-    if (selectedPoint == null || lineTouchData == null) return;
-
     if (pointSelectIndex < 0 && lineSelectIndex < 0) {
       lineTouchData.x = -1.0;
       lineTouchData.y = -1.0;
@@ -326,16 +307,16 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
     if (selectY <= (startY - endY) / 2) {
       y = selectY + padding;
     } else {
-      y = selectY - (lineTouchData?.tipWindowSize?.height ?? 0.0) - padding;
+      y = selectY - (lineTouchData.tipWindowSize.height) - padding;
     }
 
     if (selectX <= (endX - startX) / 2) {
       x = selectX + padding;
     } else {
-      x = selectX - (lineTouchData?.tipWindowSize?.width ?? 0.0) - padding;
+      x = selectX - (lineTouchData.tipWindowSize.width) - padding;
     }
 
-    lineTouchData.x = x + lineTouchData.tipOffset?.dx ?? 0;
-    lineTouchData.y = y + lineTouchData.tipOffset?.dy ?? 0;
+    lineTouchData.x = x + lineTouchData.tipOffset.dx;
+    lineTouchData.y = y + lineTouchData.tipOffset.dy;
   }
 }

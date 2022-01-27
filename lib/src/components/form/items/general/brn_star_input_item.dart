@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/base/input_item_interface.dart';
@@ -19,7 +19,7 @@ import 'package:flutter/widgets.dart';
 // ignore: must_be_immutable
 class BrnStarsFormItem extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
-  final String label;
+  final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
   String type = BrnInputItemType.STAR_INPUT_TYPE;
@@ -28,14 +28,14 @@ class BrnStarsFormItem extends StatefulWidget {
   final String title;
 
   /// 录入项子标题
-  final String subTitle;
+  final String? subTitle;
 
   /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
   /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
   /// 2. 若赋值为非空字符串时 展示"问号图标&文案"，
   /// 3. 若不赋值或赋值为null时 不显示提示项
   /// 默认值为 3
-  final String tipLabel;
+  final String? tipLabel;
 
   /// 录入项前缀图标样式 "添加项" "删除项" 详见 PrefixIconType类
   final String prefixIconType;
@@ -50,13 +50,13 @@ class BrnStarsFormItem extends StatefulWidget {
   final bool isEdit;
 
   /// 点击"+"图标回调
-  final VoidCallback onAddTap;
+  final VoidCallback? onAddTap;
 
   /// 点击"-"图标回调
-  final VoidCallback onRemoveTap;
+  final VoidCallback? onRemoveTap;
 
   /// 点击"？"图标回调
-  final VoidCallback onTip;
+  final VoidCallback? onTip;
 
   /// 特有字段
   int value;
@@ -65,13 +65,13 @@ class BrnStarsFormItem extends StatefulWidget {
   final int sumStar;
 
   /// 星值数量变化回调
-  final OnBrnFormValueChanged onChanged;
+  final OnBrnFormValueChanged? onChanged;
 
   /// form配置
-  BrnFormItemConfig themeData;
+  BrnFormItemConfig? themeData;
 
   BrnStarsFormItem(
-      {Key key,
+      {Key? key,
       this.label,
       this.title: "",
       this.subTitle,
@@ -87,10 +87,10 @@ class BrnStarsFormItem extends StatefulWidget {
       this.value: 0,
       this.onChanged,
       this.themeData})
-      : super() {
+      : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
   }
@@ -102,13 +102,13 @@ class BrnStarsFormItem extends StatefulWidget {
 }
 
 class BrnStarsFormItemState extends State<BrnStarsFormItem> {
-  List<Widget> _result = List();
+  List<Widget> _result = [];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -117,7 +117,7 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
             children: <Widget>[
               Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: ConstrainedBox(
                       constraints: BoxConstraints(
                         maxHeight: 25,
@@ -132,9 +132,9 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
                               widget.onRemoveTap),
                           BrnFormUtil.buildRequireWidget(widget.isRequire),
                           BrnFormUtil.buildTitleWidget(
-                              widget.title, widget.themeData),
+                              widget.title, widget.themeData!),
                           BrnFormUtil.buildTipLabelWidget(
-                              widget.tipLabel, widget.onTip, widget.themeData),
+                              widget.tipLabel, widget.onTip, widget.themeData!),
                         ],
                       ))),
               Row(
@@ -145,9 +145,9 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );
@@ -184,10 +184,6 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
   }
 
   bool isEnable() {
-    if (widget.isEdit == null) {
-      return true;
-    }
-
     return widget.isEdit;
   }
 

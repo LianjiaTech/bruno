@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -8,12 +6,11 @@ import 'package:flutter/widgets.dart';
 /// [borderRadius] 默认值为 BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
 class BrnPickerClipRRect extends ClipRRect {
   const BrnPickerClipRRect({
-    Key key,
+    Key? key,
     BorderRadius borderRadius = const BorderRadius.only(
       topLeft: Radius.circular(8.0),
       topRight: Radius.circular(8.0),
     ),
-    Widget child,
-  })  : assert(borderRadius != null),
-        super(key: key, borderRadius: borderRadius, child: child);
+    Widget? child,
+  }) : super(key: key, borderRadius: borderRadius, child: child);
 }

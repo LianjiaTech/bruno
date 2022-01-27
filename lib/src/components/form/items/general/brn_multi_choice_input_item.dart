@@ -1,10 +1,7 @@
-// @dart=2.9
-
-import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/base/input_item_interface.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
-import 'package:bruno/src/components/radio/brn_radio_core.dart';
+import 'package:bruno/src/components/radio/brn_checkbox.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:flutter/material.dart';
@@ -19,23 +16,23 @@ import 'package:flutter/widgets.dart';
 // ignore: must_be_immutable
 class BrnMultiChoiceInputFormItem extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
-  final String label;
+  final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  String type = BrnInputItemType.MULTI_CHOICE_INPUT_TYPE;
+  final String type = BrnInputItemType.MULTI_CHOICE_INPUT_TYPE;
 
   /// 录入项标题
   final String title;
 
   /// 录入项子标题
-  final String subTitle;
+  final String? subTitle;
 
   /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
   /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
   /// 2. 若赋值为非空字符串时 展示"问号图标&文案"，
   /// 3. 若不赋值或赋值为null时 不显示提示项
   /// 默认值为 3
-  final String tipLabel;
+  final String? tipLabel;
 
   /// 录入项前缀图标样式 "添加项" "删除项" 详见 PrefixIconType类
   final String prefixIconType;
@@ -50,51 +47,51 @@ class BrnMultiChoiceInputFormItem extends StatefulWidget {
   final bool isEdit;
 
   /// 点击"+"图标回调
-  final VoidCallback onAddTap;
+  final VoidCallback? onAddTap;
 
   /// 点击"-"图标回调
-  final VoidCallback onRemoveTap;
+  final VoidCallback? onRemoveTap;
 
   /// 点击"？"图标回调
-  final VoidCallback onTip;
+  final VoidCallback? onTip;
 
   /// 特殊字段
-  List<String> value;
+  final List<String> value;
 
   /// 内容
-  List<String> options;
+  final List<String> options;
 
   /// 局部禁用list
-  List<bool> enableList;
+  final List<bool> enableList;
 
   /// 选项选中状态变化回调
-  final OnBrnFormMultiChoiceValueChanged onChanged;
+  final OnBrnFormMultiChoiceValueChanged? onChanged;
 
   /// form配置
-  BrnFormItemConfig themeData;
+  BrnFormItemConfig? themeData;
 
   BrnMultiChoiceInputFormItem(
-      {Key key,
+      {Key? key,
       this.label,
-      this.title: "",
+      this.title = "",
       this.subTitle,
       this.tipLabel,
-      this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
-      this.error: "",
-      this.isEdit: true,
-      this.isRequire: true,
+      this.prefixIconType = BrnPrefixIconType.TYPE_NORMAL,
+      this.error = "",
+      this.isEdit = true,
+      this.isRequire = true,
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.value,
-      this.options,
-      this.enableList,
+      this.value = const <String>[],
+      this.options = const <String>[],
+      this.enableList = const <bool>[],
       this.onChanged,
       this.themeData})
-      : super() {
+      : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
   }
@@ -108,11 +105,10 @@ class BrnMultiChoiceInputFormItem extends StatefulWidget {
 class BrnMultiChoiceInputFormItemState
     extends State<BrnMultiChoiceInputFormItem> {
   // 标记选项的选中状态，内部变量无须初始化。初始化选中状态通过设置value字段设置
-  List<bool> _selectStatus;
+  List<bool> _selectStatus = <bool>[];
 
   @override
   void initState() {
-    _initSpecialParams();
     _initSelectedStatus();
     super.initState();
   }
@@ -121,7 +117,7 @@ class BrnMultiChoiceInputFormItemState
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -134,7 +130,7 @@ class BrnMultiChoiceInputFormItemState
                 ),
                 child: Container(
                   padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData),
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
                       BrnFormUtil.buildPrefixIcon(
@@ -145,9 +141,9 @@ class BrnMultiChoiceInputFormItemState
                           widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
                       BrnFormUtil.buildTitleWidget(
-                          widget.title, widget.themeData),
+                          widget.title, widget.themeData!),
                       BrnFormUtil.buildTipLabelWidget(
-                          widget.tipLabel, widget.onTip, widget.themeData),
+                          widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
                   ),
                 ),
@@ -162,16 +158,16 @@ class BrnMultiChoiceInputFormItemState
           ),
 
           // 副标题
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );
   }
 
-  List<Widget> getCheckboxList(List<String> options) {
-    List<Widget> result = List();
+  List<Widget> getCheckboxList(List<String>? options) {
+    List<Widget> result = [];
     if (options == null || options.isEmpty) {
       result.add(Container());
       return result;
@@ -181,7 +177,7 @@ class BrnMultiChoiceInputFormItemState
       final int pos = index;
       result.add(
         Container(
-          padding: BrnFormUtil.optionsMiddlePadding(widget.themeData),
+          padding: BrnFormUtil.optionsMiddlePadding(widget.themeData!),
           child: Row(
             children: <Widget>[
               BrnCheckbox(
@@ -196,12 +192,12 @@ class BrnMultiChoiceInputFormItemState
                 radioIndex: index,
                 disable: getRadioEnableState(index),
                 isSelected:
-                    (_selectStatus != null && pos < _selectStatus.length)
+                    (pos < _selectStatus.length)
                         ? _selectStatus[pos]
                         : false,
                 onValueChangedAtIndex: (position, value) {
                   _selectStatus[position] = value;
-                  List<String> oldValue = List<String>()..addAll(widget.value);
+                  List<String> oldValue = <String>[]..addAll(widget.value);
 
                   setState(() {
                     widget.value.clear();
@@ -227,24 +223,23 @@ class BrnMultiChoiceInputFormItemState
   }
 
   TextStyle getOptionTextStyle(int index) {
-    TextStyle result = BrnFormUtil.getOptionTextStyle(widget.themeData);
+    TextStyle result = BrnFormUtil.getOptionTextStyle(widget.themeData!);
     if (index < 0 || index >= _selectStatus.length) {
       return result;
     }
 
     if (_selectStatus[index]) {
-      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData);
+      result = BrnFormUtil.getOptionSelectedTextStyle(widget.themeData!);
     }
 
     if (!widget.isEdit) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit);
     }
 
-    if (widget.enableList != null &&
-        widget.enableList.isNotEmpty &&
+    if (widget.enableList.isNotEmpty &&
         widget.enableList.length > index &&
         !widget.enableList[index]) {
-      result = BrnFormUtil.getIsEditTextStyle(widget.themeData, false);
+      result = BrnFormUtil.getIsEditTextStyle(widget.themeData!, false);
     }
 
     return result;
@@ -255,41 +250,23 @@ class BrnMultiChoiceInputFormItemState
       return true;
     }
 
-    if (widget.enableList == null ||
-        widget.enableList.isEmpty ||
-        widget.enableList.length < index) {
+    if (widget.enableList.isEmpty || widget.enableList.length < index) {
       return false;
     }
 
     return !widget.enableList[index];
   }
 
-  void _initSpecialParams() {
-    if (widget.value == null) {
-      widget.value = List<String>();
-    }
-
-    if (widget.options == null) {
-      widget.options = List<String>();
-    }
-
-    if (widget.enableList == null) {
-      widget.enableList = List<bool>();
-    }
-  }
-
   void _initSelectedStatus() {
-    if (widget.options != null && widget.options.isNotEmpty) {
-      _selectStatus = List<bool>(widget.options.length);
-    } else {
-      _selectStatus = List<bool>();
+    if (widget.options.isNotEmpty) {
+      _selectStatus = List.filled(widget.options.length, false);
     }
 
     for (int index = 0; index < _selectStatus.length; ++index) {
       _selectStatus[index] = false;
     }
 
-    if (widget.value == null || widget.value.isEmpty) {
+    if (widget.value.isEmpty) {
       return;
     }
 

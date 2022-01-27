@@ -1,6 +1,6 @@
 /// Selected value of DatePicker.
 
-// @dart=2.9
+
 
 typedef DateValueCallback(DateTime dateTime, List<int> selectedIndex);
 
@@ -14,25 +14,25 @@ typedef DateRangeSideValueCallback(
 typedef DateVoidCallback();
 
 /// Default value of minimum datetime.
-const String DATE_PICKER_MIN_DATETIME = "1900-01-01 00:00:00";
+const String datePickerMinDatetime = "1900-01-01 00:00:00";
 
 /// Default value of maximum datetime.
-const String DATE_PICKER_MAX_DATETIME = "2100-12-31 23:59:59";
+const String datePickerMaxDatetime = "2100-12-31 23:59:59";
 
 /// Default value of date format
-const String DATETIME_PICKER_DATE_FORMAT = 'yyyy-MM-dd';
+const String datetimePickerDateFormat = 'yyyy-MM-dd';
 
 /// Default value of time format
-const String DATETIME_PICKER_TIME_FORMAT = 'HH:mm:ss';
+const String datetimePickerTimeFormat = 'HH:mm:ss';
 
 /// Default value of datetime format
-const String DATETIME_PICKER_DATETIME_FORMAT = 'yyyyMMdd HH:mm:ss';
+const String datetimePickerDatetimeFormat = 'yyyyMMdd HH:mm:ss';
 
 /// Default value of date format
-const String DATETIME_RANGE_PICKER_DATE_FORMAT = 'MM-dd';
+const String datetimeRangePickerDateFormat = 'MM-dd';
 
 /// Default value of time format
-const String DATETIME_RANGE_PICKER_TIME_FORMAT = 'HH:mm';
+const String datetimeRangePickerTimeFormat = 'HH:mm';
 
 /// Default value of datetime format
-const String DATETIME_RANGE_PICKER_DATETIME_FORMAT = 'MMdd HH:mm';
+const String datetimeRangePickerDatetimeFormat = 'MMdd HH:mm';

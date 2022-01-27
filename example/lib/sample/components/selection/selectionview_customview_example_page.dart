@@ -117,10 +117,10 @@ class _SelectionViewExamplePageState extends State<SelectionViewCustomViewExampl
               ValueListenableBuilder(
                 valueListenable: _currentCalendarSelectedDate,
                 builder: (context, value, widget) {
-                  return BrnCalendarView(
+                  return BrnCalendarView.single(
                       initStartSelectedDate: _currentCalendarSelectedDate.value,
                       initEndSelectedDate: _currentCalendarSelectedDate.value,
-                      startEndDateChange: (_, __) {
+                      dateChange: (_){
                         _currentCalendarSelectedDate.value = _;
                       });
                 },

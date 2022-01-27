@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,6 @@ class BrnGalleryController extends ChangeNotifier {
   /// [groupId] 第几组图片
   /// [indexId] 组内的第几张
   void refresh(int groupId, int indexId) {
-    assert(groupId != null && indexId != null);
     this.groupId = groupId;
     this.indexId = indexId;
     notifyListeners();

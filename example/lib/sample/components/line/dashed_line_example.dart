@@ -35,7 +35,7 @@ class _DashedLineExampleState extends State<DashedLineExample> {
               axis: Axis.vertical,
               color: Colors.red,
               dashedOffset: 20,
-              position: BrnDashedLinePosition.DashedLineLeading,
+              position: BrnDashedLinePosition.leading,
               contentWidget: Container(
                 margin: EdgeInsets.only(left: 60, right: 20, top: 10, bottom: 10),
                 child:
@@ -56,7 +56,7 @@ class _DashedLineExampleState extends State<DashedLineExample> {
               axis: Axis.horizontal,
               color: Colors.green,
               dashedOffset: 20,
-              position: BrnDashedLinePosition.DashedLineLeading,
+              position: BrnDashedLinePosition.leading,
               contentWidget: Container(
                 width: 200,
                 height: 100,

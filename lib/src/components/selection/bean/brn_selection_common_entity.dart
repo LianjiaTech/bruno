@@ -163,7 +163,7 @@ class BrnSelectionEntity {
       entity.maxSelectedCount = BrnSelectionConstant.maxSelectCount;
     }
     entity.extMap = map['ext'] ?? {};
-    entity.children = []..addAll((map['children'] as List ?? [])
+    entity.children = []..addAll((map['children'] as List)
           .map((o) => BrnSelectionEntity.fromMap(o)));
     entity.filterType = entity.parserFilterTypeWithType(map['type'] ?? "");
     return entity;
@@ -340,20 +340,19 @@ class BrnSelectionEntity {
   List<BrnSelectionEntity> selectedListWithoutUnlimit() {
     List<BrnSelectionEntity> selected = selectedList();
     return selected
-            ?.where((_) => !_.isUnLimit())
-            ?.where((_) =>
+            .where((_) => !_.isUnLimit())
+            .where((_) =>
                 (_.filterType != BrnSelectionFilterType.Range) ||
                 (_.filterType == BrnSelectionFilterType.Range && !BrunoTools.isEmpty(_.customMap)))
-            ?.where((_) =>
+            .where((_) =>
                 (_.filterType != BrnSelectionFilterType.DateRange) ||
                 (_.filterType == BrnSelectionFilterType.DateRange &&
                     !BrunoTools.isEmpty(_.customMap)))
-            ?.where((_) =>
+            .where((_) =>
                 (_.filterType != BrnSelectionFilterType.DateRangeCalendar) ||
                 (_.filterType == BrnSelectionFilterType.DateRangeCalendar &&
                     !BrunoTools.isEmpty(_.customMap)))
-            ?.toList() ??
-        [];
+            .toList();
   }
 
   List<BrnSelectionEntity> selectedList() {
@@ -460,7 +459,7 @@ class BrnSelectionEntity {
   /// 检查自己的兄弟结点是否存在 checkbox 类型。
   bool hasCheckBoxBrother() {
     int? count =
-        parent?.children.where((f) => f.filterType == BrnSelectionFilterType.Checkbox)?.length;
+        parent?.children.where((f) => f.filterType == BrnSelectionFilterType.Checkbox).length;
     return count == null ? false : count > 0;
   }
 
@@ -536,8 +535,8 @@ class BrnSelectionEntity {
     if (this.filterType == BrnSelectionFilterType.Range ||
         this.filterType == BrnSelectionFilterType.DateRange ||
         this.filterType == BrnSelectionFilterType.DateRangeCalendar) {
-      DateTime minTime = DateTime.parse(DATE_PICKER_MIN_DATETIME);
-      DateTime maxTime = DateTime.parse(DATE_PICKER_MAX_DATETIME);
+      DateTime minTime = DateTime.parse(datePickerMinDatetime);
+      DateTime maxTime = DateTime.parse(datePickerMaxDatetime);
       int limitMin = int.tryParse(extMap['min']?.toString() ?? "") ??
           (this.filterType == BrnSelectionFilterType.DateRange ||
                   this.filterType == BrnSelectionFilterType.DateRangeCalendar

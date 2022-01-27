@@ -84,7 +84,7 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
 
   @override
   void dispose() {
-    _tabController?.dispose();
+    _tabController.dispose();
     if (!_isConfirmClick) {
       _resetSelectionDatas(widget.entity);
       _clearNotTagItem(totalLevel == 1 ? _firstList : _firstList[_tabController.index].children);
@@ -235,7 +235,7 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
           widget.rowCount!;
     }
 
-    var tagContainer = (tagFilterList.length ?? 0) > 0
+    var tagContainer = (tagFilterList.length) > 0
         ? Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
@@ -288,14 +288,13 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
       } else if (item.filterType == BrnSelectionFilterType.Date) {
         DateTime? initialStartDate = DateTimeFormatter.convertIntValueToDateTime(item.value);
         DateTime? initialEndDate = DateTimeFormatter.convertIntValueToDateTime(item.value);
-        content = BrnCalendarView(
+        content = BrnCalendarView.single(
           key: GlobalKey(),
-          selectMode: SelectMode.SINGLE,
           initStartSelectedDate: initialStartDate,
           initEndSelectedDate: initialEndDate,
           initDisplayDate: initialEndDate,
-          startEndDateChange: (DateTime startDate, DateTime endDate) {
-            item.value = startDate.millisecondsSinceEpoch.toString();
+          dateChange: (DateTime date) {
+            item.value = date.millisecondsSinceEpoch.toString();
             item.isSelected = true;
             setState(() {
               _clearTagSelectStatus(subFilterList);
@@ -309,16 +308,15 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
         DateTime? initialEndDate = item.customMap == null
             ? null
             : DateTimeFormatter.convertIntValueToDateTime(item.customMap!['max']);
-        content = BrnCalendarView(
+        content = BrnCalendarView.range(
           key: GlobalKey(),
-          selectMode: SelectMode.RANGE,
           initStartSelectedDate: initialStartDate,
           initEndSelectedDate: initialEndDate,
-          startEndDateChange: (DateTime startDate, DateTime endDate) {
+          rangeDateChange: (DateTimeRange range) {
             item.customMap = {};
             item.customMap = {
-              'min': startDate.millisecondsSinceEpoch.toString(),
-              'max': endDate.millisecondsSinceEpoch.toString()
+              'min': range.start.millisecondsSinceEpoch.toString(),
+              'max': range.end.millisecondsSinceEpoch.toString()
             };
             item.isSelected = true;
             setState(() {
@@ -605,12 +603,12 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
     }
 
     var selectedItem = subFilterList
-        ?.where((f) =>
+        .where((f) =>
             f.filterType != BrnSelectionFilterType.Range &&
             f.filterType != BrnSelectionFilterType.DateRange &&
             f.filterType != BrnSelectionFilterType.DateRangeCalendar &&
             f.isSelected)
-        ?.toList();
+        .toList();
     if (!isCustomInputSelected && BrunoTools.isEmpty(selectedItem)) {
       for (BrnSelectionEntity item in subFilterList) {
         if (item.isUnLimit()) {
