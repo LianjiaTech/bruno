@@ -431,7 +431,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
             height: 16,
             width: 16,
             child: entity.isSelected
-              ? BrunoTools.getAssetImage(BrnAsset.selectCheckedStatus)
+              ? BrunoTools.getAssetImageWithBandColor(BrnAsset.selectCheckedStatus)
               : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
           )
         ],

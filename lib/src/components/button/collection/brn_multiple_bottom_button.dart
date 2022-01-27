@@ -30,10 +30,10 @@ class BrnMultipleBottomButton extends StatefulWidget {
   /// selectedButtonOnTap, 点击已选的回调，存在三种状态：-1:不可展开（当 value 为 0 的时候），0：收起，1：展开
   final void Function(BrnMultipleButtonArrowState)? onSelectedButtonTap;
 
-  /// 主按钮的文案，默认为主题色 可以传入自定义 Widget，不传则不展示
+  /// 主按钮的文案，默认为主题色 可以传入自定义 Widget 以及 String 类型的文案，不传则不展示
   final dynamic mainButton;
 
-  /// 次按钮的文案可以传入自定义 Widget，不传则不展示
+  /// 次按钮的文案可以传入自定义 Widget 以及 String 类型的文案，不传则不展示
   final dynamic subButton;
 
   /// 主按钮点击回调

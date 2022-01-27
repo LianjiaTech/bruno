@@ -19,12 +19,6 @@ import 'package:flutter/material.dart';
 ///  * [BrnBigMainButton], 大主色调按钮
 ///  * [BrnBigOutlineButton], 大边框按钮
 
-/// 默认水平间距
-const double _BHorizontalPadding = 16;
-
-/// 默认垂直间距
-const double _BVerticalPadding = 8;
-
 class BrnBigGhostButton extends StatelessWidget {
   ///按钮文案，默认'确认'
   final String title;
@@ -71,8 +65,6 @@ class BrnBigGhostButton extends StatelessWidget {
       text: title,
       textColor: titleColor ?? defaultThemeConfig.commonConfig.brandPrimary,
       fontSize: defaultThemeConfig.bigButtonFontSize,
-      insertPadding: EdgeInsets.symmetric(
-          vertical: _BVerticalPadding, horizontal: _BHorizontalPadding),
     );
   }
 }
