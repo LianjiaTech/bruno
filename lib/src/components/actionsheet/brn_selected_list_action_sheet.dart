@@ -206,7 +206,7 @@ class BrnSelectedListActionSheet<T> {
 class _BrnActionSheetSelectedItemListContentWidget<T> extends StatefulWidget {
   final BrnSelectedListActionSheet itemWidget;
   final void Function(bool isClear)? onDismiss;
-  final dynamic Function(int index, T entity)? itemTitleBuilder;
+  final dynamic Function(int index, T entity) itemTitleBuilder;
   final bool Function(int deleteIdx, T deleteEntity)? onItemDelete;
   final BrnSelectedListActionSheetController? controller;
 
@@ -223,7 +223,7 @@ class _BrnActionSheetSelectedItemListContentWidget<T> extends StatefulWidget {
   _BrnActionSheetSelectedItemListContentWidget(
       {required this.itemWidget,
       this.onDismiss,
-      this.itemTitleBuilder,
+      required this.itemTitleBuilder,
       this.onItemDelete,
       this.controller});
 
@@ -451,7 +451,7 @@ class _BrnActionSheetSelectedItemListState<T>
                             // 获取标题
                             Widget content = Container(color: Colors.white);
                             if (index < widget.itemWidget.items.length) {
-                              var item = widget.itemTitleBuilder!(
+                              var item = widget.itemTitleBuilder(
                                   index, widget.itemWidget.items[index]);
                               if (item is String) {
                                 content = Text(
