@@ -2,7 +2,7 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-typedef TextExpandedCallback = Function(bool?);
+typedef TextExpandedCallback = Function(bool);
 
 /// 具备展开收起功能的文字面板
 ///
@@ -59,13 +59,7 @@ class BrnExpandableText extends StatefulWidget {
 }
 
 class _BrnExpandableTextState extends State<BrnExpandableText> {
-  bool? _expanded;
-
-  @override
-  void initState() {
-    super.initState();
-    _expanded = false;
-  }
+  bool _expanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +133,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
         setState(() {
           _expanded = true;
           if (null != widget.onExpanded) {
-            widget.onExpanded!(_expanded);
+            widget.onExpanded!(_expanded!);
           }
         });
       },

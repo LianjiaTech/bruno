@@ -11,7 +11,7 @@ typedef OnBrnFormRadioValueChanged = void Function(
 typedef OnBrnFormSwitchChanged = void Function(bool oldValue, bool newValue);
 typedef OnBrnFormValueChanged = void Function(int oldValue, int newValue);
 typedef OnBrnFormMultiChoiceValueChanged = void Function(
-    List<String> oldValue, List<String>? newValue);
+    List<String> oldValue, List<String> newValue);
 typedef OnBrnFormBtnSelectChanged = void Function(
     List<bool> oldValue, List<bool> newValue);
 

@@ -46,9 +46,9 @@ class MultiChoicePortraitInputExamplePage extends StatelessWidget {
               onRemoveTap: () {
                 BrnToast.show("点击触发onRemoveTap回调", context);
               },
-              onChanged: (List<String> oldValue, List<String>? newValue) {
+              onChanged: (List<String> oldValue, List<String> newValue) {
                 BrnToast.show(
-                    "点击触发onChanged回调${oldValue.length}_${newValue!.length}_onChanged", context);
+                    "点击触发onChanged回调${oldValue.length}_${newValue.length}_onChanged", context);
               },
             ),
             Container(
@@ -87,9 +87,9 @@ class MultiChoicePortraitInputExamplePage extends StatelessWidget {
               onRemoveTap: () {
                 BrnToast.show("点击触发onRemoveTap回调", context);
               },
-              onChanged: (List<String> oldValue, List<String>? newValue) {
+              onChanged: (List<String> oldValue, List<String> newValue) {
                 BrnToast.show(
-                    "点击触发onChanged回调${oldValue.length}_${newValue!.length}_onChanged", context);
+                    "点击触发onChanged回调${oldValue.length}_${newValue.length}_onChanged", context);
               },
             ),
             Container(
@@ -127,9 +127,9 @@ class MultiChoicePortraitInputExamplePage extends StatelessWidget {
               onRemoveTap: () {
                 BrnToast.show("点击触发onRemoveTap回调", context);
               },
-              onChanged: (List<String> oldValue, List<String>? newValue) {
+              onChanged: (List<String> oldValue, List<String> newValue) {
                 BrnToast.show(
-                    "点击触发onChanged回调${oldValue.length}_${newValue!.length}_onChanged", context);
+                    "点击触发onChanged回调${oldValue.length}_${newValue.length}_onChanged", context);
               },
             ),
           ],

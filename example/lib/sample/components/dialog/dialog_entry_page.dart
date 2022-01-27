@@ -394,7 +394,7 @@ class DialogEntryPage extends StatelessWidget {
                     //光标圆角弧度
                     cursorRadius: Radius.circular(2.0),
                     style: TextStyle(fontSize: 14, color: Color(0xFF222222)),
-                    maxLengthEnforced: true,
+                    maxLengthEnforcement: MaxLengthEnforcement.enforced,
                     onChanged: (value) {},
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(8.0),
@@ -415,7 +415,7 @@ class DialogEntryPage extends StatelessWidget {
                           )),
                     ),
                   ),
-                  onItemClick: (BuildContext contex, int index) {
+                  onItemClick: (BuildContext context, int index) {
                     hintText = data[index].content;
                     state(() {});
                   },
