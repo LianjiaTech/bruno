@@ -45,7 +45,6 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
 
   @override
   Widget build(BuildContext context) {
-    double top = MediaQuery.of(context).padding.top;
     return Scaffold(
         appBar: BrnAppBar(
           title: widget._title,

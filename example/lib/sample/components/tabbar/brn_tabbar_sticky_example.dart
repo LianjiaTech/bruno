@@ -17,7 +17,7 @@ class _BrnTabbarStickyExampleState extends State<BrnTabbarStickyExample>
   ScrollController scrollController = ScrollController();
 
   BrnCloseWindowController? closeWindowController;
-  var tabs = <BadgeTab>[];
+  List<BadgeTab> tabs = <BadgeTab>[];
 
   @override
   void initState() {
