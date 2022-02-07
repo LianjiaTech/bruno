@@ -1,8 +1,10 @@
+import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
+const double _kItemSidePadding = 5;
 /// 描述: 横向步骤条,是一种常见的导航形式，它具有导航通用的属性：告知用户”我在哪/我能去哪“，
 /// 步骤数目就相当于告知用户--能去哪或者说流程将要经历什么。
 /// 通用组件步骤条分为三个状态：完成态/进行态/等待态，三种状态在样式上均加以区分
@@ -44,10 +46,8 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     return widget.controller?.currentIndex ?? 0;
   }
 
-  Color stepContentTextColor(int index) {
-    return index > _currentIndex
-        ? const Color(0xFFCCCCCC)
-        : const Color(0xFF222222);
+  Color _getStepContentTextColor(int index) {
+    return index > _currentIndex ? const Color(0xFFCCCCCC) : const Color(0xFF222222);
   }
 
   void _handleStepStateListenerTick() {
@@ -74,8 +74,8 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
   @override
   void didUpdateWidget(covariant BrnHorizontalSteps oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final bool isControllerDiff = oldWidget.controller != null &&
-        widget.controller != oldWidget.controller;
+    final bool isControllerDiff =
+        oldWidget.controller != null && widget.controller != oldWidget.controller;
     final bool isCountDiff = widget.steps.length != oldWidget.steps.length;
     if (isControllerDiff || isCountDiff) {
       oldWidget.controller?.removeListener(_handleStepStateListenerTick);
@@ -85,10 +85,6 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildHorizontalSteps();
-  }
-
-  Widget _buildHorizontalSteps() {
     /// 单独一个widget组件，用于返回需要生成的内容widget
     Widget content;
     final List<Widget> childrenList = <Widget>[];
@@ -97,19 +93,41 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     final int lastIndex = length - 1;
     for (int i = 0; i < length; i += 1) {
       childrenList.add(_applyStepItem(steps[i], i));
-      if (i < lastIndex) {
-        childrenList.add(_applyLineItem(i));
-      }
     }
     content = Container(
       height: 78,
-      padding: const EdgeInsets.fromLTRB(28, 0, 28, 0),
       child: Row(
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: childrenList,
       ),
     );
     return content;
+  }
+
+  Widget _applyStepItem(BrunoStep step, int index) {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _applyStepAndLine(step, index),
+          _applyStepContent(step, index),
+        ],
+      ),
+    );
+  }
+
+  Widget _applyStepAndLine(BrunoStep step, int index) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        index == 0 ? Expanded(child: SizedBox.shrink()) : _applyLineItem(index, true),
+        _applyStepIcon(step, index),
+        index == widget.steps.length - 1
+            ? Expanded(child: SizedBox.shrink())
+            : _applyLineItem(index, false),
+      ],
+    );
   }
 
   Widget _applyStepIcon(BrunoStep step, int index) {
@@ -145,24 +163,27 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     return icon;
   }
 
-  Widget _applyStepItem(BrunoStep step, int index) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        _applyStepIcon(step, index),
-        _applyStepContent(step, index),
-      ],
+  Widget _applyLineItem(int index, bool isLeft) {
+    return Expanded(
+      child: Container(
+        alignment: Alignment.center,
+        child: BrnLine(
+          height: 1,
+          leftInset: isLeft ? 0 : _kItemSidePadding,
+          rightInset: isLeft ? _kItemSidePadding : 0,
+          color: _getLineColor(index, isLeft),
+        ),
+      ),
     );
   }
 
-  Widget _applyLineItem(int index) {
-    return Expanded(
-      child: Container(
-        margin: const EdgeInsets.fromLTRB(0, 0, 0, 28),
-        color: index >= _currentIndex ? const Color(0xFFE7E7E7) : _primary,
-        height: 1,
-      ),
-    );
+  Color _getLineColor(int index, bool isLeft) {
+    if (index < _currentIndex) {
+      return _primary;
+    } else if (_currentIndex == index && isLeft) {
+      return _primary;
+    }
+    return const Color(0xFFE7E7E7);
   }
 
   Widget _getIndexIcon(int index) {
@@ -193,12 +214,14 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
       return stepContent;
     }
     return Container(
-      margin: const EdgeInsets.only(top: 6),
+      margin: const EdgeInsets.only(top: 6, left: _kItemSidePadding, right: _kItemSidePadding),
       child: Text(
         step.stepContentText ?? '',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontSize: 14,
-          color: stepContentTextColor(index),
+          color: _getStepContentTextColor(index),
         ),
       ),
     );
@@ -217,8 +240,7 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     }
 
     /// 使用组件默认的icon
-    return BrunoTools.getAssetSizeImage(BrnAsset.iconStepCompleted, 20, 20,
-        color: _primary);
+    return BrunoTools.getAssetSizeImage(BrnAsset.iconStepCompleted, 20, 20, color: _primary);
   }
 
   Widget _getDoingIcon(BrunoStep step) {
@@ -233,8 +255,7 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
       return doingIcon;
     }
     // 使用组件默认的icon
-    return BrunoTools.getAssetSizeImage(BrnAsset.iconStepDoing, 20, 20,
-        color: _primary);
+    return BrunoTools.getAssetSizeImage(BrnAsset.iconStepDoing, 20, 20, color: _primary);
   }
 }
 

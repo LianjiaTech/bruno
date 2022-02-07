@@ -60,7 +60,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   List<bool> menuItemActiveState = [];
   List<bool> menuItemHighlightState = [];
   BrnSelectionListViewController listViewController = BrnSelectionListViewController();
-  late ScrollController _scrollController;
+  ScrollController? _scrollController;
 
   late StreamSubscription _refreshTitleSubscription;
 
@@ -82,7 +82,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
 
     if (widget.extraScrollController != null) {
       _scrollController = widget.extraScrollController!;
-      _scrollController.addListener(_closeSelectionPopupWindow);
+      _scrollController!.addListener(_closeSelectionPopupWindow);
     }
 
     for (BrnSelectionEntity parentEntity in widget.data) {
@@ -111,7 +111,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   }
 
   dispose() {
-    _scrollController.removeListener(_closeSelectionPopupWindow);
+    _scrollController?.removeListener(_closeSelectionPopupWindow);
     _refreshTitleSubscription.cancel();
     _closeSelectionPopupWindowSubscription.cancel();
     listViewController.hide();

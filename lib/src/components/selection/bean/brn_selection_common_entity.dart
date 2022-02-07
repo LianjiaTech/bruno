@@ -163,8 +163,10 @@ class BrnSelectionEntity {
       entity.maxSelectedCount = BrnSelectionConstant.maxSelectCount;
     }
     entity.extMap = map['ext'] ?? {};
-    entity.children = []..addAll((map['children'] as List)
+    if(map['children'] != null && map['children'] is List) {
+      entity.children = []..addAll((map['children'] as List)
           .map((o) => BrnSelectionEntity.fromMap(o)));
+    }
     entity.filterType = entity.parserFilterTypeWithType(map['type'] ?? "");
     return entity;
   }

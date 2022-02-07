@@ -157,7 +157,7 @@ class BrnTabBar extends StatefulWidget {
   BrnTabBarState createState() => BrnTabBarState(closeController);
 }
 
-/// BrnTabBarBadge的ta分配模式
+/// BrnTabBarBadge的tab分配模式
 enum BrnTabBarBadgeMode {
   /// 原始的默认TabBar的分配模式
   origin,

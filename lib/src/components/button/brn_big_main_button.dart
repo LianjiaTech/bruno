@@ -27,12 +27,6 @@ import 'brn_normal_button.dart';
 ///  * [BrnBigGhostButton], 大主色调的幽灵按钮
 ///  * [BrnBigOutlineButton], 大边框按钮
 
-/// 默认水平间距
-const double _BHorizontalPadding = 16;
-
-/// 默认垂直间距
-const double _BVerticalPadding = 8;
-
 class BrnBigMainButton extends StatelessWidget {
   ///按钮显示文案,默认'确认'
   final String title;
@@ -82,8 +76,6 @@ class BrnBigMainButton extends StatelessWidget {
       textColor: Colors.white,
       disableTextColor:
           defaultThemeConfig.commonConfig.colorTextBaseInverse.withOpacity(0.7),
-      insertPadding: EdgeInsets.symmetric(
-          horizontal: _BHorizontalPadding, vertical: _BVerticalPadding),
     );
   }
 }

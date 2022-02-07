@@ -142,7 +142,7 @@ class _SliverBrnHorizontalStepsState extends State<SliverBrnHorizontalStep> {
     final List<BrunoStep> _list = [];
     final int value = widget.valueNotifier.value.toInt();
     for (int i = 0; i < value; i++) {
-      _list.add(BrunoStep(stepContentText: ('第${i + 1}步')));
+      _list.add(BrunoStep(stepContentText: ('第你好11${i + 1}步')));
     }
     return _list;
   }

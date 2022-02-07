@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -9,13 +7,8 @@ class BrnSelectionBottomButtonExample extends StatefulWidget {
 }
 
 class _BrnSelectionBottomButtonExampleState extends State<BrnSelectionBottomButtonExample> {
-  BrnMultipleBottomController? controller;
 
-  @override
-  void initState() {
-    super.initState();
-    controller = BrnMultipleBottomController();
-  }
+  BrnMultipleBottomController controller = BrnMultipleBottomController();
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +48,11 @@ class _BrnSelectionBottomButtonExampleState extends State<BrnSelectionBottomButt
                   mainButton: '主要按钮',
                   subButton: '次要按钮',
                   onMainButtonTap: () {
-                    controller!.setState(selectedCount: 11);
+                    controller.setState(selectedCount: 11);
                     BrnToast.show('已选数量置为 : 11', context);
                   },
                   onSubButtonTap: () {
-                    controller!.setState(selectedCount: 0);
+                    controller.setState(selectedCount: 0);
                     BrnToast.show('已选数量置为 : 0', context);
                   },
                 ),
