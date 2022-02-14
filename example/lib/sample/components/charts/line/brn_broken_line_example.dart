@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:math';
 
@@ -100,7 +100,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
         .map((_) => BrnPointData(
             pointText: _.value,
             x: brokenData.indexOf(_).toDouble(),
-            y: double.parse(_.value),
+            y: double.parse(_.value!),
             lineTouchData: BrnLineTouchData(
                 
                 tipWindowSize: Size(60, 40),
@@ -131,17 +131,17 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
   }
 
   double _getMinValueForExample1(List<DBDataNodeModel> brokenData) {
-    double minValue = double.tryParse(brokenData[0]?.value) ?? 0;
+    double minValue = double.tryParse(brokenData[0].value!) ?? 0;
     for (DBDataNodeModel point in brokenData) {
-      minValue = min(double.tryParse(point.value) ?? 0, minValue);
+      minValue = min(double.tryParse(point.value!) ?? 0, minValue);
     }
     return minValue;
   }
 
   double _getMaxValueForExample1(List<DBDataNodeModel> brokenData) {
-    double maxValue = double.tryParse(brokenData[0]?.value) ?? 0;
+    double maxValue = double.tryParse(brokenData[0].value!) ?? 0;
     for (DBDataNodeModel point in brokenData) {
-      maxValue = max(double.tryParse(point.value) ?? 0, maxValue);
+      maxValue = max(double.tryParse(point.value!) ?? 0, maxValue);
     }
     return maxValue;
   }
@@ -192,7 +192,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
   List<BrnPointsLine> _linesForExample2() {
     BrnPointsLine _pointsLine;
     BrnPointsLine _pointsLine1;
-    List<BrnPointsLine> pointsLineList = List();
+    List<BrnPointsLine> pointsLineList = [];
     _pointsLine = BrnPointsLine(
       isShowPointText: true,
       isShowXDial: true,
@@ -422,7 +422,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
 
   List<BrnPointsLine> _getPointsLinesForExample3() {
     BrnPointsLine pointsLine, _pointsLine2;
-    List<BrnPointsLine> pointsLineList = List();
+    List<BrnPointsLine> pointsLineList = [];
     pointsLine = BrnPointsLine(
       isShowXDial: true,
       lineWidth: 3,
@@ -488,13 +488,13 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                       ],
                     ),
                   );
-                })),
+                }, tipWindowSize:Size(60, 40) )),
         BrnPointData(
             pointText: '20',
             y: 20,
             x: 3,
             lineTouchData: BrnLineTouchData(
-
+                tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '20';
                 })),
@@ -503,7 +503,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 67,
             x: 4,
             lineTouchData: BrnLineTouchData(
-
+                tipWindowSize:Size(60, 40),
                 onTouch: () {
                   return '66';
                 })),
@@ -663,7 +663,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 66,
             x: 8,
             lineTouchData: BrnLineTouchData(
-
+                tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '66';
                 })),
@@ -792,7 +792,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
 
   List<BrnPointsLine> _getPointsLinesForExample4() {
     BrnPointsLine pointsLine, _pointsLine2;
-    List<BrnPointsLine> pointsLineList = List();
+    List<BrnPointsLine> pointsLineList = [];
     pointsLine = BrnPointsLine(
       isShowXDial: true,
       lineWidth: 3,
@@ -836,7 +836,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 80,
             x: 2,
             lineTouchData: BrnLineTouchData(
-                
+                tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return Container(
                     padding: EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
@@ -864,7 +864,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 20,
             x: 3,
             lineTouchData: BrnLineTouchData(
-                
+                tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '20';
                 })),
@@ -873,7 +873,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 67,
             x: 4,
             lineTouchData: BrnLineTouchData(
-                
+                tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '66';
                 })),
@@ -1033,7 +1033,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 66,
             x: 8,
             lineTouchData: BrnLineTouchData(
-                
+                tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '66';
                 })),
@@ -1195,7 +1195,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
 
   List<BrnPointsLine> _getPointsLineListWithShowPointText() {
     BrnPointsLine pointsLine, _pointsLine2;
-    List<BrnPointsLine> pointsLineList = List();
+    List<BrnPointsLine> pointsLineList = [];
     pointsLine = BrnPointsLine(
       isShowXDial: true,
       lineWidth: 3,
@@ -1249,7 +1249,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 80,
             x: 2,
             lineTouchData: BrnLineTouchData(
-                
+                tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return Container(
                     padding: EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
@@ -1287,7 +1287,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 67,
             x: 4,
             lineTouchData: BrnLineTouchData(
-                
+                tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '66';
                 })),
@@ -1492,7 +1492,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
   }
 
   Widget _buildIdentificationList() {
-    List<Widget> widgetList = List();
+    List<Widget> widgetList = [];
     for (BrnPointsLine bean in _getPointsLinesForExample3()) {
       Widget widget = Row(children: [
         Container(

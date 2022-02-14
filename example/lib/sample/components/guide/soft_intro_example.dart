@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:async';
 
@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 
 /// @desc    弱引导example
 class SoftGuideExample extends StatefulWidget {
-  SoftGuideExample({Key key}) : super(key: key);
+  SoftGuideExample({Key? key}) : super(key: key);
 
   @override
   _SoftGuideExampleState createState() => _SoftGuideExampleState();
 }
 
 class _SoftGuideExampleState extends State<SoftGuideExample> {
-  BrnGuide intro;
+  late BrnGuide intro;
 
   _SoftGuideExampleState() {
     /// init Guide

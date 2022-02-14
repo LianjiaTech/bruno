@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:xml/xml_events.dart' as xml;
 
 /// 超链接的点击回调
-typedef BrnHyperLinkCallback = void Function(String? text, String? url);
+typedef BrnHyperLinkCallback = void Function(String text, String? url);
 
 /// 用于将标签转为 style
 class BrnConvert {

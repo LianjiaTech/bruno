@@ -6,11 +6,11 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
 ///取消输入事件回调
-typedef BrnBottomWritePickerClickCallback = Future<void> Function(
+typedef BrnBottomWritePickerClickCallback = Future<void>? Function(
     String? content);
 
 ///确认输入事件回调
-typedef BrnBottomWritePickerConfirmClickCallback = Future<void> Function(
+typedef BrnBottomWritePickerConfirmClickCallback = Future<void>? Function(
     BuildContext dialogContext, String? content);
 
 class BrnBottomWritePicker extends StatefulWidget {

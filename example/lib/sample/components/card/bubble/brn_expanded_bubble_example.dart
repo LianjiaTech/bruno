@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,7 @@ class BrnBubbleExample2 extends StatelessWidget {
               maxLines: 2,
               text: '推荐理由：“满五唯一”“临近地铁”“首付低”，多出折行显示，文字展开的样式文式文文字展开的样式文式文。问我',
               onExpanded: (isExpanded){
-                String str = isExpanded?"展开了":"收起了";
+                String str = isExpanded ? "展开了" : "收起了";
                 BrnToast.show("我$str", context);
               },
             ),

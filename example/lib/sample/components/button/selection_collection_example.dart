@@ -7,12 +7,8 @@ class BrnSelectionBottomButtonExample extends StatefulWidget {
 }
 
 class _BrnSelectionBottomButtonExampleState extends State<BrnSelectionBottomButtonExample> {
-  BrnMultipleBottomController controller = BrnMultipleBottomController();
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  BrnMultipleBottomController controller = BrnMultipleBottomController();
 
   @override
   Widget build(BuildContext context) {

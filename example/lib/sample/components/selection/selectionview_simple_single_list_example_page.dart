@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/selection/filter_entity.dart';
@@ -15,7 +15,7 @@ class SelectionViewSimpleSingleListExamplePage extends StatefulWidget {
 }
 
 class _SelectionViewExamplePageState extends State<SelectionViewSimpleSingleListExamplePage> {
-  List<BrnSelectionEntity> items;
+  List<BrnSelectionEntity>? items;
 
   @override
   void initState() {

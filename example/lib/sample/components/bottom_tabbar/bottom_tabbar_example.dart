@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class BottomTabbarExampleState extends State<BottomTabbarExample> with SingleTic
   int _selectedIndexTest3 = 0;
 
   /// 未读消息数量
-  String badgeNo1;
+  String badgeNo1 = '100';
 
   /// title数组
   var titles = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
@@ -39,14 +39,6 @@ class BottomTabbarExampleState extends State<BottomTabbarExample> with SingleTic
     Icons.mic_none,
     Icons.star
   ];
-
-  @override
-  void initState() {
-    super.initState();
-
-    /// 初始化某个未读消息的数量
-    badgeNo1 = '100';
-  }
 
   /// 选中状态时state设置
   void _onItemSelected(int index) {

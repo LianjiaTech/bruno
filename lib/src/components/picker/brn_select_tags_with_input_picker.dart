@@ -9,7 +9,7 @@ import 'package:flutter/rendering.dart';
 typedef SelectTagWithInputValueGetter<V> = String Function(V data);
 
 ///提交按钮事件回调
-typedef BrnTagInputConfirmClickCallback = Future<void> Function(
+typedef BrnTagInputConfirmClickCallback = Future<void>? Function(
     BuildContext dialogContext,
     List<BrnTagInputItemBean>? selectedTags,
     String content);
