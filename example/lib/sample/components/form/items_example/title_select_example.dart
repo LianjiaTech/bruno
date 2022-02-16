@@ -83,7 +83,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
             ),
             BrnTitleSelectInputFormItem(
               controller: TextEditingController()..text = "124",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               error: "必填项不能为空",
@@ -121,7 +121,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
             ),
             BrnTitleSelectInputFormItem(
               controller: TextEditingController()..text = "124",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               subTitle: "这里是副标题",
@@ -158,7 +158,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
             ),
             BrnTitleSelectInputFormItem(
               controller: TextEditingController()..text = "不可编辑时+ -号可点击",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               isPrefixIconEnabled: false,
@@ -197,7 +197,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
             ),
             BrnTitleSelectInputFormItem(
               controller: TextEditingController()..text = "不可编辑时+ -号可点击",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               isPrefixIconEnabled: true,

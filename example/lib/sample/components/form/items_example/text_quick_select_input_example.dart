@@ -94,7 +94,7 @@ class _TextQuickSelectInputExamplePageState
               ),
             ),
             BrnTextQuickSelectFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               btnsTxt: options,
               selectBtnList: statusAllFunctionExample,

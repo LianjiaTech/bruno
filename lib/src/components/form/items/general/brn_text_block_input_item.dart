@@ -17,7 +17,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
   final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  final String type = BrnInputItemType.TEXT_BLOCK_INPUT_TYPE;
+  final String type = BrnInputItemType.textBlockInputType;
 
   /// 录入项标题
   final String title;
@@ -90,7 +90,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
       this.title = "",
       this.subTitle,
       this.tipLabel,
-      this.prefixIconType = BrnPrefixIconType.TYPE_NORMAL,
+      this.prefixIconType = BrnPrefixIconType.normal,
       this.error = "",
       this.isEdit = true,
       this.isRequire = false,

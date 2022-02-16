@@ -16,7 +16,7 @@ class BrnFormUtil {
   static Widget buildPrefixIcon(String prefixIconType, bool isEdit,
       BuildContext context, VoidCallback? onAddTap, VoidCallback? onRemoveTap) {
     return Offstage(
-      offstage: prefixIconType == BrnPrefixIconType.TYPE_NORMAL,
+      offstage: prefixIconType == BrnPrefixIconType.normal,
       child: Container(
         padding: EdgeInsets.only(right: 6),
         child: GestureDetector(
@@ -113,9 +113,9 @@ class BrnFormUtil {
   }
 
   static Widget getPrefixIcon(String type) {
-    if (type == BrnPrefixIconType.TYPE_ADD) {
+    if (type == BrnPrefixIconType.add) {
       return BrunoTools.getAssetImageWithBandColor(BrnAsset.iconAddFormItem);
-    } else if (type == BrnPrefixIconType.TYPE_REMOVE) {
+    } else if (type == BrnPrefixIconType.remove) {
       return BrunoTools.getAssetImage(BrnAsset.iconRemoveFormItem);
     } else {
       return Container();
@@ -165,7 +165,7 @@ class BrnFormUtil {
 
   /// 设置内容行padding, 包括顶部和底部padding
   static EdgeInsets computeEdgeInsets2(String type, bool isRequire) {
-    if (isRequire && type == BrnPrefixIconType.TYPE_NORMAL) {
+    if (isRequire && type == BrnPrefixIconType.normal) {
       return EdgeInsets.only(left: 10, top: 14);
     }
 
@@ -187,31 +187,31 @@ class BrnFormUtil {
     }
 
     switch (type) {
-      case BrnInputType.TEXT:
+      case BrnInputType.text:
         inputType = TextInputType.text;
         break;
-      case BrnInputType.MULTI_LINE:
+      case BrnInputType.multiLine:
         inputType = TextInputType.multiline;
         break;
-      case BrnInputType.NUMBER:
+      case BrnInputType.number:
         inputType = TextInputType.number;
         break;
-      case BrnInputType.DECIMAL:
+      case BrnInputType.decimal:
         inputType = TextInputType.numberWithOptions(decimal: true);
         break;
-      case BrnInputType.PHONE:
+      case BrnInputType.phone:
         inputType = TextInputType.phone;
         break;
-      case BrnInputType.DATE:
+      case BrnInputType.date:
         inputType = TextInputType.datetime;
         break;
-      case BrnInputType.EMAIL:
+      case BrnInputType.email:
         inputType = TextInputType.emailAddress;
         break;
-      case BrnInputType.URL:
+      case BrnInputType.url:
         inputType = TextInputType.url;
         break;
-      case BrnInputType.PWD:
+      case BrnInputType.pwd:
         inputType = TextInputType.visiblePassword;
         break;
       default:
@@ -228,11 +228,11 @@ class BrnFormUtil {
   /// 处理点击"添加/删除"按钮动作
   static void notifyAddRemoveTap(BuildContext context, String prefixIconType,
       VoidCallback? onAddTap, VoidCallback? onRemoveTap) {
-    if (BrnPrefixIconType.TYPE_ADD == prefixIconType) {
+    if (BrnPrefixIconType.add == prefixIconType) {
       if (onAddTap != null) {
         onAddTap();
       }
-    } else if (BrnPrefixIconType.TYPE_REMOVE == prefixIconType) {
+    } else if (BrnPrefixIconType.remove == prefixIconType) {
       if (onRemoveTap != null) {
         onRemoveTap();
       }
@@ -321,7 +321,7 @@ class BrnFormUtil {
   /// 标题行的左间距
   static EdgeInsets titleEdgeInsets(
       String type, bool isRequire, BrnFormItemConfig themeData) {
-    if (isRequire && type == BrnPrefixIconType.TYPE_NORMAL) {
+    if (isRequire && type == BrnPrefixIconType.normal) {
       return themeData.titlePaddingSm;
     }
     return themeData.titlePaddingLg;

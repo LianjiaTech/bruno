@@ -24,7 +24,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
   final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  final String type = BrnInputItemType.TEXT_INPUT_TITLE_SELECT_TYPE;
+  final String type = BrnInputItemType.textInputTitleSelectType;
 
   /// 录入项标题
   final String title;
@@ -98,7 +98,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
       this.title = "",
       this.subTitle,
       this.tipLabel,
-      this.prefixIconType = BrnPrefixIconType.TYPE_NORMAL,
+      this.prefixIconType = BrnPrefixIconType.normal,
       this.error = "",
       this.isEdit = true,
       this.isRequire = false,
@@ -108,7 +108,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
       this.onTip,
       this.hint = "请输入",
       this.maxCount,
-      this.inputType = BrnInputType.TEXT,
+      this.inputType = BrnInputType.text,
       this.selectedIndex = -1,
       this.inputFormatters,
       this.onChanged,
