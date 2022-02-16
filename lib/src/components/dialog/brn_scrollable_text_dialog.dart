@@ -134,7 +134,6 @@ class BrnScrollableText extends StatelessWidget {
         if (onSubmitClick != null) {
           onSubmitClick!();
         }
-        Navigator.pop(context);
       },
       isShowOperateWidget: isShowOperateWidget,
     );

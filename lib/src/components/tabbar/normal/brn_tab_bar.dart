@@ -15,7 +15,7 @@ import 'package:flutter/rendering.dart';
 /// [state]:当前组件的State对象，[BrnTabBarState]
 /// [index]:当前组件的角标
 typedef BrnTabBarOnTap = Function(BrnTabBarState state, int index);
-
+const double _tagDefaultSize = 75.0;
 /// 带小红点的Tabbar
 // ignore: must_be_immutable
 class BrnTabBar extends StatefulWidget {
@@ -628,6 +628,7 @@ class BrnTabBarState extends State<BrnTabBar> {
 // 更多弹框样式
 // ignore: must_be_immutable
 class _TabBarOverlayWidget extends StatefulWidget {
+
   List<BadgeTab>? tabs;
 
   String? moreWindowText;
@@ -637,22 +638,22 @@ class _TabBarOverlayWidget extends StatefulWidget {
   BrnTabBarConfig themeData;
 
   /// tag间距
-  double? spacing;
+  double spacing;
 
   /// 每行tag数
-  int? preLineTagCount;
+  int preLineTagCount;
 
   /// tag高度
   double? tagHeight;
 
   _TabBarOverlayWidget(
       {this.tabs,
-        this.moreWindowText,
-        this.brnTabbarController,
-        required this.themeData,
-        this.spacing,
-        this.preLineTagCount,
-        this.tagHeight});
+      this.moreWindowText,
+      this.brnTabbarController,
+      required this.themeData,
+      this.spacing: 12.0,
+      this.preLineTagCount: 4,
+      this.tagHeight});
 
   @override
   _TabBarOverlayWidgetState createState() => _TabBarOverlayWidgetState();
@@ -660,7 +661,7 @@ class _TabBarOverlayWidget extends StatefulWidget {
 
 class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
   /// tag宽度
-  double? _tagWidth;
+  double _tagWidth = _tagDefaultSize;
 
   double _padding = 20;
 
@@ -724,11 +725,8 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
 
   Widget _createMoreItems() {
     // 计算tag的宽度
-    _tagWidth = (_parentWidth -
-        widget.spacing! * (widget.preLineTagCount! - 1) -
-        _padding * 2) /
-        widget.preLineTagCount!;
-
+    _tagWidth = (_parentWidth - widget.spacing * (widget.preLineTagCount - 1) - _padding * 2) / widget.preLineTagCount;
+    _tagWidth = _tagWidth <= _tagDefaultSize ? _tagDefaultSize : _tagWidth;
     List<Widget> widgets = <Widget>[];
     List<BadgeTab>? tabList = widget.tabs;
     if (tabList != null && tabList.isNotEmpty) {
@@ -738,7 +736,7 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
       }
     }
     return Wrap(
-      spacing: widget.spacing!,
+      spacing: widget.spacing,
       runSpacing: 12,
       children: widgets,
     );

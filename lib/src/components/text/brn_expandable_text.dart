@@ -74,7 +74,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
             ellipsis: 'EllipseText');
         tp.layout(maxWidth: size.maxWidth);
         if (tp.didExceedMaxLines) {
-          if (this._expanded!) {
+          if (this._expanded) {
             return _expandedText(context, widget.text);
           } else {
             return _foldedText(context, widget.text);
@@ -133,7 +133,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
         setState(() {
           _expanded = true;
           if (null != widget.onExpanded) {
-            widget.onExpanded!(_expanded!);
+            widget.onExpanded!(_expanded);
           }
         });
       },
