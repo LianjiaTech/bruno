@@ -90,8 +90,8 @@ class BrnAppraiseConfig {
 /// 评价组件类型
 enum BrnAppraiseType {
   /// 表情包评价组件
-  Emoji,
+  emoji,
 
   /// 星星评价组件
-  Star,
+  star,
 }

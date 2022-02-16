@@ -48,8 +48,8 @@ class _BrnMoreSelectionWidgetState extends State<BrnMoreSelectionWidget> {
   @override
   Widget build(BuildContext context) {
     //弹出浮层
-    if (widget.selectionEntity.filterType == BrnSelectionFilterType.Layer ||
-        widget.selectionEntity.filterType == BrnSelectionFilterType.CustomLayer) {
+    if (widget.selectionEntity.filterType == BrnSelectionFilterType.layer ||
+        widget.selectionEntity.filterType == BrnSelectionFilterType.customLayer) {
       return FilterLayerTypeWidget(
         selectionEntity: widget.selectionEntity,
         onCustomFloatingLayerClick: widget.onCustomFloatingLayerClick,
@@ -217,12 +217,12 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
         return GestureDetector(
           onTap: () {
             setState(() {
-              if (data.filterType == BrnSelectionFilterType.Radio) {
+              if (data.filterType == BrnSelectionFilterType.radio) {
                 data.parent?.clearSelectedEntity();
                 data.isSelected = true;
                 //用于发送 标签点击事件
                 streamController.add(SelectEvent());
-              } else if (data.filterType == BrnSelectionFilterType.Checkbox) {
+              } else if (data.filterType == BrnSelectionFilterType.checkbox) {
                 if (!data.isSelected) {
                   if (!BrnSelectionUtil.checkMaxSelectionCount(data)) {
                     BrnToast.show('您选择的筛选条件数量已达上限', context);
@@ -231,12 +231,12 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
                 }
 
                 data.parent?.children
-                    .where((_) => _.filterType == BrnSelectionFilterType.Radio)
+                    .where((_) => _.filterType == BrnSelectionFilterType.radio)
                     .forEach((f) => f.isSelected = false);
                 data.isSelected = !data.isSelected;
                 //用于发送 标签点击事件
                 streamController.add(SelectEvent());
-              } else if (data.filterType == BrnSelectionFilterType.Date) {
+              } else if (data.filterType == BrnSelectionFilterType.date) {
                 _showDatePicker(data);
               }
             });
@@ -248,7 +248,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
   }
 
   Widget _buildSingleTag(BrnSelectionEntity entity) {
-    bool isDate = entity.filterType == BrnSelectionFilterType.Date;
+    bool isDate = entity.filterType == BrnSelectionFilterType.date;
 
     String? showName;
 
@@ -431,7 +431,7 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
     ///       1：将输入框的 文本写入 customMap中
     ///       2：如果最大值和最小值满足条件 则将range选中
     minController.addListener(() {
-      if (widget.rangeEntity.filterType != BrnSelectionFilterType.Range) {
+      if (widget.rangeEntity.filterType != BrnSelectionFilterType.range) {
         return;
       }
       String minInput = minController.text;
@@ -446,7 +446,7 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
     });
 
     maxController.addListener(() {
-      if (widget.rangeEntity.filterType != BrnSelectionFilterType.Range) {
+      if (widget.rangeEntity.filterType != BrnSelectionFilterType.range) {
         return;
       }
       String maxInput = maxController.text;
@@ -490,7 +490,7 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.rangeEntity.filterType == BrnSelectionFilterType.DateRange) {
+    if (widget.rangeEntity.filterType == BrnSelectionFilterType.dateRange) {
       return BrnSelectionDateRangeItemWidget(
           item: widget.rangeEntity,
           isNeedTitle: false,
@@ -594,7 +594,7 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
           padding: const EdgeInsets.only(left: 20, right: 20, top: 6),
           child: GestureDetector(
             onTap: () {
-              if (widget.selectionEntity.filterType == BrnSelectionFilterType.Layer) {
+              if (widget.selectionEntity.filterType == BrnSelectionFilterType.layer) {
                 Navigator.of(context)
                     .push(PageRouteBuilder<BrnSelectionEntity>(
                         opaque: false,
@@ -607,7 +607,7 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
                     .then((data) {
                   setState(() {});
                 });
-              } else if (widget.selectionEntity.filterType == BrnSelectionFilterType.CustomLayer) {
+              } else if (widget.selectionEntity.filterType == BrnSelectionFilterType.customLayer) {
                 if (widget.onCustomFloatingLayerClick != null) {
                   int entityIndex = -1;
                   if (widget.selectionEntity.parent != null) {

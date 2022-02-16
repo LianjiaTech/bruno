@@ -131,7 +131,7 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
       return;
     }
 
-    if (selectedEntity.filterType == PickerFilterType.Checkbox &&
+    if (selectedEntity.filterType == PickerFilterType.checkbox &&
         !selectedEntity.isSelected) {
       if (!BrnMultiColumnPickerUtil.isSelectedCountExceed(selectedEntity)) {
         BrnToast.show("您选择的数量已达上限", context);
@@ -182,11 +182,11 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
   }
 
   void _configFirstList(BrnPickerEntity selectedEntity) {
-    if (PickerFilterType.Radio == selectedEntity.filterType) {
+    if (PickerFilterType.radio == selectedEntity.filterType) {
       /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
       selectedEntity.parent!.clearChildSelection();
       selectedEntity.isSelected = true;
-    } else if (PickerFilterType.Checkbox == selectedEntity.filterType) {
+    } else if (PickerFilterType.checkbox == selectedEntity.filterType) {
       /// 选中【不限】清除同一级别其他的状态
       if (selectedEntity.isUnLimit()) {
         selectedEntity.parent!.clearChildSelection();
@@ -211,15 +211,15 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
 
   void _configSecondList(BrnPickerEntity selectedEntity, int? currentListIndex) {
     if (currentListIndex == 1) {
-      if (PickerFilterType.Checkbox != selectedEntity.filterType) {
+      if (PickerFilterType.checkbox != selectedEntity.filterType) {
         selectedEntity.parent!.clearChildSelection();
       }
     } else {
       /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
-      if (PickerFilterType.Radio == selectedEntity.filterType) {
+      if (PickerFilterType.radio == selectedEntity.filterType) {
         selectedEntity.parent!.clearChildSelection();
         selectedEntity.isSelected = true;
-      } else if (PickerFilterType.Checkbox == selectedEntity.filterType) {
+      } else if (PickerFilterType.checkbox == selectedEntity.filterType) {
         /// 选中【不限】清除同一级别其他的状态
         if (selectedEntity.isUnLimit()) {
           selectedEntity.parent!.clearChildSelection();
@@ -245,15 +245,15 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
 
   void _configThirdList(BrnPickerEntity selectedEntity, int? currentListIndex) {
     if (currentListIndex == 1) {
-      if (PickerFilterType.Checkbox != selectedEntity.filterType) {
+      if (PickerFilterType.checkbox != selectedEntity.filterType) {
         selectedEntity.parent!.clearChildSelection();
       }
     } else {
       /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
-      if (PickerFilterType.Radio == selectedEntity.filterType) {
+      if (PickerFilterType.radio == selectedEntity.filterType) {
         selectedEntity.parent!.clearChildSelection();
         selectedEntity.isSelected = true;
-      } else if (PickerFilterType.Checkbox == selectedEntity.filterType) {
+      } else if (PickerFilterType.checkbox == selectedEntity.filterType) {
         /// 选中【不限】清除同一级别其他的状态
         if (selectedEntity.isUnLimit()) {
           selectedEntity.parent!.clearChildSelection();

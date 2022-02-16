@@ -197,10 +197,10 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
     /// TODO 还要添加 Date  DateRange 类型的判断。
     List<BrnSelectionEntity> tagFilterList = subFilterList
         .where((f) =>
-            f.filterType != BrnSelectionFilterType.Range &&
-            f.filterType != BrnSelectionFilterType.Date &&
-            f.filterType != BrnSelectionFilterType.DateRange &&
-            f.filterType != BrnSelectionFilterType.DateRangeCalendar)
+            f.filterType != BrnSelectionFilterType.range &&
+            f.filterType != BrnSelectionFilterType.date &&
+            f.filterType != BrnSelectionFilterType.dateRange &&
+            f.filterType != BrnSelectionFilterType.dateRangeCalendar)
         .toList();
     Size maxWidthSize = Size.zero;
     for (BrnSelectionEntity entity in subFilterList) {
@@ -258,7 +258,7 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
 
     var content;
     for (BrnSelectionEntity item in subFilterList) {
-      if (item.filterType == BrnSelectionFilterType.Range) {
+      if (item.filterType == BrnSelectionFilterType.range) {
         content = BrnSelectionRangeItemWidget(
             item: item,
             minTextEditingController: _minTextEditingController,
@@ -273,7 +273,7 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
               }
             });
         break;
-      } else if (item.filterType == BrnSelectionFilterType.DateRange) {
+      } else if (item.filterType == BrnSelectionFilterType.dateRange) {
         content = BrnSelectionDateRangeItemWidget(
             item: item,
             minTextEditingController: _minTextEditingController,
@@ -285,7 +285,7 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
               });
             });
         break;
-      } else if (item.filterType == BrnSelectionFilterType.Date) {
+      } else if (item.filterType == BrnSelectionFilterType.date) {
         DateTime? initialStartDate = DateTimeFormatter.convertIntValueToDateTime(item.value);
         DateTime? initialEndDate = DateTimeFormatter.convertIntValueToDateTime(item.value);
         content = BrnCalendarView.single(
@@ -301,7 +301,7 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
             });
           },
         );
-      } else if (item.filterType == BrnSelectionFilterType.DateRangeCalendar) {
+      } else if (item.filterType == BrnSelectionFilterType.dateRangeCalendar) {
         DateTime? initialStartDate = item.customMap == null
             ? null
             : DateTimeFormatter.convertIntValueToDateTime(item.customMap!['min']);
@@ -398,10 +398,10 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
               !BrunoTools.isEmpty(rangeEntity.customMap!['max']))) {
         if (!rangeEntity.isValidRange()) {
           FocusScope.of(context).requestFocus(FocusNode());
-          if (rangeEntity.filterType == BrnSelectionFilterType.Range) {
+          if (rangeEntity.filterType == BrnSelectionFilterType.range) {
             BrnToast.show('您输入的区间有误', context);
-          } else if (rangeEntity.filterType == BrnSelectionFilterType.DateRange ||
-              rangeEntity.filterType == BrnSelectionFilterType.DateRangeCalendar) {
+          } else if (rangeEntity.filterType == BrnSelectionFilterType.dateRange ||
+              rangeEntity.filterType == BrnSelectionFilterType.dateRangeCalendar) {
             BrnToast.show('您选择的区间有误', context);
           }
           return;
@@ -525,10 +525,10 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
   void _clearNotTagItem(List<BrnSelectionEntity> subFilterList) {
     subFilterList
         .where((f) =>
-            f.filterType == BrnSelectionFilterType.Range ||
-            f.filterType == BrnSelectionFilterType.Date ||
-            f.filterType == BrnSelectionFilterType.DateRange ||
-            f.filterType == BrnSelectionFilterType.DateRangeCalendar)
+            f.filterType == BrnSelectionFilterType.range ||
+            f.filterType == BrnSelectionFilterType.date ||
+            f.filterType == BrnSelectionFilterType.dateRange ||
+            f.filterType == BrnSelectionFilterType.dateRangeCalendar)
         .forEach((f) {
       f.isSelected = false;
       f.customMap = Map();
@@ -544,10 +544,10 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
 
   void _clearTagSelectStatus(List<BrnSelectionEntity> subFilterList) {
     subFilterList
-        .where((f) => f.filterType != BrnSelectionFilterType.Range)
-        .where((f) => f.filterType != BrnSelectionFilterType.Date)
-        .where((f) => f.filterType != BrnSelectionFilterType.DateRange)
-        .where((f) => f.filterType != BrnSelectionFilterType.DateRangeCalendar)
+        .where((f) => f.filterType != BrnSelectionFilterType.range)
+        .where((f) => f.filterType != BrnSelectionFilterType.date)
+        .where((f) => f.filterType != BrnSelectionFilterType.dateRange)
+        .where((f) => f.filterType != BrnSelectionFilterType.dateRangeCalendar)
         .forEach((f) {
       f.isSelected = false;
       f.customMap = Map();
@@ -558,9 +558,9 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
   BrnSelectionEntity? _getSelectRangeItem(List<BrnSelectionEntity> filterList) {
     List<BrnSelectionEntity> ranges = filterList
         .where((f) =>
-            (f.filterType == BrnSelectionFilterType.Range ||
-                f.filterType == BrnSelectionFilterType.DateRange ||
-                f.filterType == BrnSelectionFilterType.DateRangeCalendar) &&
+            (f.filterType == BrnSelectionFilterType.range ||
+                f.filterType == BrnSelectionFilterType.dateRange ||
+                f.filterType == BrnSelectionFilterType.dateRangeCalendar) &&
             f.isSelected)
         .toList();
 
@@ -594,9 +594,9 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
   int _getInitFocusedIndex(List<BrnSelectionEntity> subFilterList) {
     bool isCustomInputSelected = false;
     for (BrnSelectionEntity entity in subFilterList) {
-      if (BrnSelectionFilterType.Range == entity.filterType ||
-          BrnSelectionFilterType.DateRange == entity.filterType ||
-          BrnSelectionFilterType.DateRangeCalendar == entity.filterType) {
+      if (BrnSelectionFilterType.range == entity.filterType ||
+          BrnSelectionFilterType.dateRange == entity.filterType ||
+          BrnSelectionFilterType.dateRangeCalendar == entity.filterType) {
         isCustomInputSelected = entity.isSelected;
         break;
       }
@@ -604,9 +604,9 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
 
     var selectedItem = subFilterList
         .where((f) =>
-            f.filterType != BrnSelectionFilterType.Range &&
-            f.filterType != BrnSelectionFilterType.DateRange &&
-            f.filterType != BrnSelectionFilterType.DateRangeCalendar &&
+            f.filterType != BrnSelectionFilterType.range &&
+            f.filterType != BrnSelectionFilterType.dateRange &&
+            f.filterType != BrnSelectionFilterType.dateRangeCalendar &&
             f.isSelected)
         .toList();
     if (!isCustomInputSelected && BrunoTools.isEmpty(selectedItem)) {
@@ -624,8 +624,8 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
     bool hasCalendarItem = false;
     hasCalendarItem = entity.children
             .where((_) =>
-                _.filterType == BrnSelectionFilterType.Date ||
-                _.filterType == BrnSelectionFilterType.DateRangeCalendar)
+                _.filterType == BrnSelectionFilterType.date ||
+                _.filterType == BrnSelectionFilterType.dateRangeCalendar)
             .toList()
             .length > 0;
 
@@ -634,8 +634,8 @@ class _BrnRangeSelectionGroupWidgetState extends State<BrnRangeSelectionGroupWid
       for (BrnSelectionEntity subItem in entity.children) {
         int count = subItem.children
             .where((_) =>
-                _.filterType == BrnSelectionFilterType.Date ||
-                _.filterType == BrnSelectionFilterType.DateRangeCalendar)
+                _.filterType == BrnSelectionFilterType.date ||
+                _.filterType == BrnSelectionFilterType.dateRangeCalendar)
             .toList()
             .length;
         if (count > 0) {

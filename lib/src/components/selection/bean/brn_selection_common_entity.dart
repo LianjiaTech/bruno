@@ -5,49 +5,49 @@ import 'package:bruno/src/utils/brn_tools.dart';
 
 enum BrnSelectionFilterType {
   /// 未设置
-  None,
+  none,
 
   /// 不限类型
-  UnLimit,
+  unLimit,
 
   /// 单选列表、单选项 type 为 radio
-  Radio,
+  radio,
 
   /// 多选列表、多选项 type 为 checkbox
-  Checkbox,
+  checkbox,
 
   /// 一般的值范围自定义区间 type 为 range
-  Range,
+  range,
 
   /// 日期选择,普通筛选时使用 CalendarView 展示选择时间，更多情况下使用 DatePicker 选择时间
-  Date,
+  date,
 
   /// 自定义选择日期区间， type 为 dateRange
-  DateRange,
+  dateRange,
 
   /// 自定义通过 Calendar 选择日期区间，type 为 dateRangeCalendar
-  DateRangeCalendar,
+  dateRangeCalendar,
 
   /// 标签筛选 type 为 customerTag
-  CustomHandle,
+  customHandle,
 
   /// 更多列表、多选项 无 type
-  More,
+  more,
 
   /// 去二级页面
-  Layer,
+  layer,
 
   /// 去自定义二级页面
-  CustomLayer,
+  customLayer,
 }
 
 /// 筛选弹窗展示风格
 enum BrnSelectionWindowType {
   /// 列表类型,使用列表 Item 展示
-  List,
+  list,
 
   /// 值范围类型,使用 Tag + Range 的 Item 展示
-  Range,
+  range,
 }
 
 class BrnSelectionEntity {
@@ -225,9 +225,9 @@ class BrnSelectionEntity {
       /// 当 default 不在普通 Item 类型中时，尝试填充 同级别 Range Item.
       if (children.where((_) => _.isSelected).toList().length == 0) {
         List<BrnSelectionEntity> rangeItems = this.children.where((_) {
-          return (_.filterType == BrnSelectionFilterType.Range ||
-              _.filterType == BrnSelectionFilterType.DateRange ||
-              _.filterType == BrnSelectionFilterType.DateRangeCalendar);
+          return (_.filterType == BrnSelectionFilterType.range ||
+              _.filterType == BrnSelectionFilterType.dateRange ||
+              _.filterType == BrnSelectionFilterType.dateRangeCalendar);
         }).toList();
         BrnSelectionEntity? rangeEntity;
         if (rangeItems.isNotEmpty) {
@@ -258,50 +258,50 @@ class BrnSelectionEntity {
 
   BrnSelectionWindowType parserShowType(String? showType) {
     if (showType == "list") {
-      return BrnSelectionWindowType.List;
+      return BrnSelectionWindowType.list;
     } else if (showType == "range") {
-      return BrnSelectionWindowType.Range;
+      return BrnSelectionWindowType.range;
     }
-    return BrnSelectionWindowType.List;
+    return BrnSelectionWindowType.list;
   }
 
   BrnSelectionFilterType parserFilterTypeWithType(String? type) {
     if (type == 'unlimit') {
-      return BrnSelectionFilterType.UnLimit;
+      return BrnSelectionFilterType.unLimit;
     } else if (type == "radio") {
-      return BrnSelectionFilterType.Radio;
+      return BrnSelectionFilterType.radio;
     } else if (type == "checkbox") {
-      return BrnSelectionFilterType.Checkbox;
+      return BrnSelectionFilterType.checkbox;
     } else if (type == "range") {
-      return BrnSelectionFilterType.Range;
+      return BrnSelectionFilterType.range;
     } else if (type == "customHandle") {
-      return BrnSelectionFilterType.CustomHandle;
+      return BrnSelectionFilterType.customHandle;
     } else if (type == "more") {
-      return BrnSelectionFilterType.More;
+      return BrnSelectionFilterType.more;
     } else if (type == 'floatinglayer') {
-      return BrnSelectionFilterType.Layer;
+      return BrnSelectionFilterType.layer;
     } else if (type == 'customfloatinglayer') {
-      return BrnSelectionFilterType.CustomLayer;
+      return BrnSelectionFilterType.customLayer;
     } else if (type == 'date') {
-      return BrnSelectionFilterType.Date;
+      return BrnSelectionFilterType.date;
     } else if (type == 'daterange') {
-      return BrnSelectionFilterType.DateRange;
+      return BrnSelectionFilterType.dateRange;
     } else if (type == 'daterangecalendar') {
-      return BrnSelectionFilterType.DateRangeCalendar;
+      return BrnSelectionFilterType.dateRangeCalendar;
     }
-    return BrnSelectionFilterType.None;
+    return BrnSelectionFilterType.none;
   }
 
   void clearChildSelection() {
     if (children.length > 0) {
       for (BrnSelectionEntity entity in children) {
         entity.isSelected = false;
-        if (entity.filterType == BrnSelectionFilterType.Date) {
+        if (entity.filterType == BrnSelectionFilterType.date) {
           entity.value = null;
         }
-        if (entity.filterType == BrnSelectionFilterType.Range ||
-            entity.filterType == BrnSelectionFilterType.DateRange ||
-            entity.filterType == BrnSelectionFilterType.DateRangeCalendar) {
+        if (entity.filterType == BrnSelectionFilterType.range ||
+            entity.filterType == BrnSelectionFilterType.dateRange ||
+            entity.filterType == BrnSelectionFilterType.dateRangeCalendar) {
           entity.customMap = Map();
         }
         entity.clearChildSelection();
@@ -344,21 +344,21 @@ class BrnSelectionEntity {
     return selected
             .where((_) => !_.isUnLimit())
             .where((_) =>
-                (_.filterType != BrnSelectionFilterType.Range) ||
-                (_.filterType == BrnSelectionFilterType.Range && !BrunoTools.isEmpty(_.customMap)))
+                (_.filterType != BrnSelectionFilterType.range) ||
+                (_.filterType == BrnSelectionFilterType.range && !BrunoTools.isEmpty(_.customMap)))
             .where((_) =>
-                (_.filterType != BrnSelectionFilterType.DateRange) ||
-                (_.filterType == BrnSelectionFilterType.DateRange &&
+                (_.filterType != BrnSelectionFilterType.dateRange) ||
+                (_.filterType == BrnSelectionFilterType.dateRange &&
                     !BrunoTools.isEmpty(_.customMap)))
             .where((_) =>
-                (_.filterType != BrnSelectionFilterType.DateRangeCalendar) ||
-                (_.filterType == BrnSelectionFilterType.DateRangeCalendar &&
+                (_.filterType != BrnSelectionFilterType.dateRangeCalendar) ||
+                (_.filterType == BrnSelectionFilterType.dateRangeCalendar &&
                     !BrunoTools.isEmpty(_.customMap)))
             .toList();
   }
 
   List<BrnSelectionEntity> selectedList() {
-    if (BrnSelectionFilterType.More == this.filterType) {
+    if (BrnSelectionFilterType.more == this.filterType) {
       return this.selectedLastColumnList();
     } else {
       List<BrnSelectionEntity> results = [];
@@ -461,13 +461,13 @@ class BrnSelectionEntity {
   /// 检查自己的兄弟结点是否存在 checkbox 类型。
   bool hasCheckBoxBrother() {
     int? count =
-        parent?.children.where((f) => f.filterType == BrnSelectionFilterType.Checkbox).length;
+        parent?.children.where((f) => f.filterType == BrnSelectionFilterType.checkbox).length;
     return count == null ? false : count > 0;
   }
 
   /// 在这里简单认为 value 为空【null 或 ''】时为 unlimit.
   bool isUnLimit() {
-    return filterType == BrnSelectionFilterType.UnLimit;
+    return filterType == BrnSelectionFilterType.unLimit;
   }
 
   void clearSelectedEntity() {
@@ -486,9 +486,9 @@ class BrnSelectionEntity {
   List<BrnSelectionEntity> currentTagListForEntity() {
     List<BrnSelectionEntity> list = [];
     children.forEach((data) {
-      if (data.filterType != BrnSelectionFilterType.Range &&
-          data.filterType != BrnSelectionFilterType.DateRange &&
-          data.filterType != BrnSelectionFilterType.DateRangeCalendar) {
+      if (data.filterType != BrnSelectionFilterType.range &&
+          data.filterType != BrnSelectionFilterType.dateRange &&
+          data.filterType != BrnSelectionFilterType.dateRangeCalendar) {
         list.add(data);
       }
     });
@@ -524,9 +524,9 @@ class BrnSelectionEntity {
   List<BrnSelectionEntity> currentRangeListForEntity() {
     List<BrnSelectionEntity> list = [];
     children.forEach((data) {
-      if (data.filterType == BrnSelectionFilterType.Range ||
-          data.filterType == BrnSelectionFilterType.DateRange ||
-          data.filterType == BrnSelectionFilterType.DateRangeCalendar) {
+      if (data.filterType == BrnSelectionFilterType.range ||
+          data.filterType == BrnSelectionFilterType.dateRange ||
+          data.filterType == BrnSelectionFilterType.dateRangeCalendar) {
         list.add(data);
       }
     });
@@ -534,20 +534,20 @@ class BrnSelectionEntity {
   }
 
   bool isValidRange() {
-    if (this.filterType == BrnSelectionFilterType.Range ||
-        this.filterType == BrnSelectionFilterType.DateRange ||
-        this.filterType == BrnSelectionFilterType.DateRangeCalendar) {
+    if (this.filterType == BrnSelectionFilterType.range ||
+        this.filterType == BrnSelectionFilterType.dateRange ||
+        this.filterType == BrnSelectionFilterType.dateRangeCalendar) {
       DateTime minTime = DateTime.parse(datePickerMinDatetime);
       DateTime maxTime = DateTime.parse(datePickerMaxDatetime);
       int limitMin = int.tryParse(extMap['min']?.toString() ?? "") ??
-          (this.filterType == BrnSelectionFilterType.DateRange ||
-                  this.filterType == BrnSelectionFilterType.DateRangeCalendar
+          (this.filterType == BrnSelectionFilterType.dateRange ||
+                  this.filterType == BrnSelectionFilterType.dateRangeCalendar
               ? minTime.millisecondsSinceEpoch
               : 0);
       // 日期最大值没设置 默认是2121年01月01日 08:00:00
       int limitMax = int.tryParse(extMap['max']?.toString() ?? "") ??
-          (this.filterType == BrnSelectionFilterType.DateRange ||
-                  this.filterType == BrnSelectionFilterType.DateRangeCalendar
+          (this.filterType == BrnSelectionFilterType.dateRange ||
+                  this.filterType == BrnSelectionFilterType.dateRangeCalendar
               ? maxTime.millisecondsSinceEpoch
               : 9999);
 

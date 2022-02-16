@@ -62,7 +62,7 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
                       number: '3',
                       preDesc: '前',
                       lastDesc: '后',
-                      numberInfoIcon: BrnNumberInfoIcon.ARROW,
+                      numberInfoIcon: BrnNumberInfoIcon.arrow,
                       iconTapCallBack: (data) {}),
                 ],
               ),
@@ -81,7 +81,7 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
                       number: '3',
                       preDesc: '前',
                       lastDesc: '后',
-                      numberInfoIcon: BrnNumberInfoIcon.ARROW,
+                      numberInfoIcon: BrnNumberInfoIcon.arrow,
                       iconTapCallBack: (data) {
                         BrnToast.show(data.title!, context);
                       }),

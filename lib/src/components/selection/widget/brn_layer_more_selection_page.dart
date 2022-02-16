@@ -201,7 +201,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
             if (index == _currentIndex) {
               return;
             }
-            if (_firstList[index].filterType == BrnSelectionFilterType.Radio) {
+            if (_firstList[index].filterType == BrnSelectionFilterType.radio) {
               setState(() {
                 _currentIndex = index;
                 _currentFirstEntity = _firstList[index];
@@ -217,7 +217,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
               });
             } else {
               _firstList[index].parent?.children.where((data) {
-                return data.filterType != BrnSelectionFilterType.Checkbox;
+                return data.filterType != BrnSelectionFilterType.checkbox;
               }).forEach((data) {
                 data.isSelected = false;
                 data.clearChildSelection();
@@ -336,8 +336,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildRightItem(int index) {
     bool isSingle =
-        (_currentFirstEntity?.children[index].filterType == BrnSelectionFilterType.Radio) ||
-            (_currentFirstEntity?.children[index].filterType == BrnSelectionFilterType.UnLimit);
+        (_currentFirstEntity?.children[index].filterType == BrnSelectionFilterType.radio) ||
+            (_currentFirstEntity?.children[index].filterType == BrnSelectionFilterType.unLimit);
 
     return GestureDetector(
       onTap: () {
@@ -349,7 +349,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
               _currentFirstEntity!.children[index].isSelected = true;
             } else {
               _currentFirstEntity!.children.where((data) {
-                return data.filterType != BrnSelectionFilterType.Checkbox;
+                return data.filterType != BrnSelectionFilterType.checkbox;
               }).forEach((data) {
                 data.isSelected = false;
               });
@@ -461,7 +461,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     if (secondIndex == -1 && currentFirstEntity.children.isNotEmpty) {
       for (int i = 0, n = currentFirstEntity.children.length; i < n; i++) {
         if (currentFirstEntity.children[i].isUnLimit() &&
-            currentFirstEntity.filterType == BrnSelectionFilterType.Checkbox) {
+            currentFirstEntity.filterType == BrnSelectionFilterType.checkbox) {
           currentFirstEntity.children[i].isSelected = true;
           break;
         }

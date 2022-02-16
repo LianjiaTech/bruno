@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 
 /// TimePicker widget.
 
-enum ColumnType { Hour, Minute, Second }
+enum ColumnType { hour, minute, second }
 
 // ignore: must_be_immutable
 class BrnTimeWidget extends StatefulWidget {
@@ -269,11 +269,11 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
   // ignore: missing_return
   ColumnType? getColumnType(String format) {
     if (format.contains('H')) {
-      return ColumnType.Hour;
+      return ColumnType.hour;
     } else if (format.contains('m')) {
-      return ColumnType.Minute;
+      return ColumnType.minute;
     } else if (format.contains('s')) {
-      return ColumnType.Second;
+      return ColumnType.second;
     }
     return null;
   }
@@ -290,10 +290,10 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
   Widget _renderDatePickerItemComponent(
       ColumnType? columnType, int index, int value, String format) {
     TextStyle textStyle = widget.themeData!.itemTextStyle.generateTextStyle();
-    if ((ColumnType.Hour == columnType && index == _calcSelectIndexList()[0]) ||
-        (ColumnType.Minute == columnType &&
+    if ((ColumnType.hour == columnType && index == _calcSelectIndexList()[0]) ||
+        (ColumnType.minute == columnType &&
             index == _calcSelectIndexList()[1]) ||
-        (ColumnType.Second == columnType &&
+        (ColumnType.second == columnType &&
             index == _calcSelectIndexList()[2])) {
       textStyle = widget.themeData!.itemTextSelectedStyle.generateTextStyle();
     }

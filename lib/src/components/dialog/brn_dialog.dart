@@ -80,16 +80,16 @@ const Divider cDividerLine = const Divider(
 
 enum ButtonType {
   /// 单按钮
-  Single,
+  single,
 
   /// 多按钮
-  Multi,
+  multi,
 
   /// 左按钮
-  Left,
+  left,
 
   /// 右按钮
-  Right,
+  right,
 }
 
 /// 对话框的样式
@@ -448,16 +448,16 @@ class BrnDialog extends AlertDialog {
           color: background,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(type == ButtonType.Single ||
-                          type == ButtonType.Left ||
-                          (type == ButtonType.Multi &&
+                  bottomLeft: Radius.circular(type == ButtonType.single ||
+                          type == ButtonType.left ||
+                          (type == ButtonType.multi &&
                               actionsText != null &&
                               index == actionsText!.length - 1)
                       ? BrnDialogUtils.getDialogRadius(dialogConfig)
                       : 0),
-                  bottomRight: Radius.circular(type == ButtonType.Single ||
-                          type == ButtonType.Right ||
-                          (type == ButtonType.Multi &&
+                  bottomRight: Radius.circular(type == ButtonType.single ||
+                          type == ButtonType.right ||
+                          (type == ButtonType.multi &&
                               actionsText != null &&
                               index == actionsText!.length - 1)
                       ? BrnDialogUtils.getDialogRadius(dialogConfig)
@@ -484,16 +484,16 @@ class BrnDialog extends AlertDialog {
           color: background,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(type == ButtonType.Single ||
-                          type == ButtonType.Left ||
-                          (type == ButtonType.Multi &&
+                  bottomLeft: Radius.circular(type == ButtonType.single ||
+                          type == ButtonType.left ||
+                          (type == ButtonType.multi &&
                               actionsText != null &&
                               index == actionsText!.length - 1)
                       ? BrnDialogUtils.getDialogRadius(dialogConfig)
                       : 0),
-                  bottomRight: Radius.circular(type == ButtonType.Single ||
-                          type == ButtonType.Right ||
-                          (type == ButtonType.Multi &&
+                  bottomRight: Radius.circular(type == ButtonType.single ||
+                          type == ButtonType.right ||
+                          (type == ButtonType.multi &&
                               actionsText != null &&
                               index == actionsText!.length - 1)
                       ? BrnDialogUtils.getDialogRadius(dialogConfig)
@@ -519,7 +519,7 @@ class BrnDialog extends AlertDialog {
               0,
               true,
               defaultConfig,
-              type: ButtonType.Single,
+              type: ButtonType.single,
             )
           : actionsWidget![0];
     } else if (length == 2) {
@@ -531,7 +531,7 @@ class BrnDialog extends AlertDialog {
             child: showTextActions
                 ? _mapTextToGesWidget(
                     context, actionsText![0], 0, false, defaultConfig,
-                    type: ButtonType.Left)
+                    type: ButtonType.left)
                 : actionsWidget![0],
           ),
           Container(
@@ -542,7 +542,7 @@ class BrnDialog extends AlertDialog {
             child: showTextActions
                 ? _mapTextToGesWidget(
                     context, actionsText![1], 1, true, defaultConfig,
-                    type: ButtonType.Right)
+                    type: ButtonType.right)
                 : actionsWidget![1],
           )
         ],
@@ -558,7 +558,7 @@ class BrnDialog extends AlertDialog {
               return showTextActions
                   ? _mapTextToGesWidget(
                       context, actionsText![i], i, true, defaultConfig,
-                      type: ButtonType.Multi)
+                      type: ButtonType.multi)
                   : actionsWidget![i];
             },
             separatorBuilder: (context, i) {
@@ -571,7 +571,7 @@ class BrnDialog extends AlertDialog {
 
   Widget _mapTextToGesWidget(BuildContext context, String label, int index,
       bool main, BrnDialogConfig dialogConfig,
-      {ButtonType type = ButtonType.Single}) {
+      {ButtonType type = ButtonType.single}) {
     Text text = Text(label);
     Widget ges = GestureDetector(
       child: main

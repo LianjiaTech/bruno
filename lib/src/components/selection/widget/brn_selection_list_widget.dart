@@ -92,7 +92,7 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
 
     widgetList.add(_listWidget());
     // TODO 判断是否添加 Bottom
-    if (totalLevel == 1 && widget.entity.filterType == BrnSelectionFilterType.Radio) {
+    if (totalLevel == 1 && widget.entity.filterType == BrnSelectionFilterType.radio) {
     } else {
       widgetList.add(_bottomWidget());
     }
@@ -117,7 +117,7 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
           focusedIndex: _firstIndex,
           singleListItemSelect: (int listIndex, int index, BrnSelectionEntity entity) {
             _setFirstIndex(index);
-            if (totalLevel == 1 && widget.entity.filterType == BrnSelectionFilterType.Radio) {
+            if (totalLevel == 1 && widget.entity.filterType == BrnSelectionFilterType.radio) {
               _confirmButtonClickEvent();
             }
           }));
@@ -372,7 +372,7 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
   void _resetSelectionData(BrnSelectionEntity entity) {
     entity.isSelected = false;
     entity.customMap = Map();
-    if (BrnSelectionFilterType.Range == entity.filterType) {
+    if (BrnSelectionFilterType.range == entity.filterType) {
       entity.title = '';
     }
     for (BrnSelectionEntity subEntity in entity.children) {

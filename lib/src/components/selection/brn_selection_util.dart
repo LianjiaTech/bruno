@@ -9,17 +9,17 @@ class BrnSelectionUtil {
   /// 处理兄弟结点为未选中状态，将自己置为选中状态
   static void processBrotherItemSelectStatus(
       BrnSelectionEntity selectionEntity) {
-    if (BrnSelectionFilterType.Checkbox == selectionEntity.filterType) {
+    if (BrnSelectionFilterType.checkbox == selectionEntity.filterType) {
       selectionEntity.isSelected = !selectionEntity.isSelected;
       List<BrnSelectionEntity>? allBrothers = selectionEntity.parent?.children;
       if (!BrunoTools.isEmpty(allBrothers)) {
         for (BrnSelectionEntity entity in allBrothers!) {
           if (entity != selectionEntity) {
-            if (entity.filterType == BrnSelectionFilterType.Radio) {
+            if (entity.filterType == BrnSelectionFilterType.radio) {
               entity.isSelected = false;
             }
 
-            if (entity.filterType == BrnSelectionFilterType.Date) {
+            if (entity.filterType == BrnSelectionFilterType.date) {
               entity.isSelected = false;
               entity.value = null;
             }
@@ -27,12 +27,12 @@ class BrnSelectionUtil {
         }
       }
     }
-    if (BrnSelectionFilterType.Radio == selectionEntity.filterType) {
+    if (BrnSelectionFilterType.radio == selectionEntity.filterType) {
       selectionEntity.parent?.clearChildSelection();
       selectionEntity.isSelected = true;
     }
 
-    if (BrnSelectionFilterType.Date == selectionEntity.filterType) {
+    if (BrnSelectionFilterType.date == selectionEntity.filterType) {
       selectionEntity.parent?.clearChildSelection();
 
       /// 日期类型时在外部 Picker 点击确定时设置 选中状态
@@ -81,10 +81,10 @@ class BrnSelectionUtil {
   /// 判断列表中是否有range类型
   static bool hasRangeItem(List<BrnSelectionEntity> list) {
     for (BrnSelectionEntity entity in list) {
-      if (BrnSelectionFilterType.Range == entity.filterType ||
-          BrnSelectionFilterType.DateRange == entity.filterType ||
-          BrnSelectionFilterType.DateRangeCalendar == entity.filterType ||
-          BrnSelectionWindowType.Range == entity.filterShowType) {
+      if (BrnSelectionFilterType.range == entity.filterType ||
+          BrnSelectionFilterType.dateRange == entity.filterType ||
+          BrnSelectionFilterType.dateRangeCalendar == entity.filterType ||
+          BrnSelectionWindowType.range == entity.filterShowType) {
         return true;
       }
     }
@@ -97,9 +97,9 @@ class BrnSelectionUtil {
     BrnSelectionEntity? filledCustomInputItem;
     for (BrnSelectionEntity entity in list) {
       if (entity.isSelected &&
-          (BrnSelectionFilterType.Range == entity.filterType ||
-              BrnSelectionFilterType.DateRange == entity.filterType ||
-              BrnSelectionFilterType.DateRangeCalendar == entity.filterType) &&
+          (BrnSelectionFilterType.range == entity.filterType ||
+              BrnSelectionFilterType.dateRange == entity.filterType ||
+              BrnSelectionFilterType.dateRangeCalendar == entity.filterType) &&
           entity.customMap != null) {
         filledCustomInputItem = entity;
         break;

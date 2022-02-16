@@ -221,7 +221,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
   void _clearUIData(BrnSelectionEntity entity) {
     entity.isSelected = false;
     entity.customMap = Map<String, String>();
-    if (BrnSelectionFilterType.Range == entity.filterType) {
+    if (BrnSelectionFilterType.range == entity.filterType) {
       entity.title = '';
     }
     for (BrnSelectionEntity subEntity in entity.children) {
@@ -240,18 +240,18 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
     while (tmp.isNotEmpty) {
       node = tmp.removeLast();
       if (node.isSelected &&
-          (node.filterType == BrnSelectionFilterType.Range ||
-              node.filterType == BrnSelectionFilterType.DateRange ||
-              node.filterType == BrnSelectionFilterType.DateRangeCalendar)) {
+          (node.filterType == BrnSelectionFilterType.range ||
+              node.filterType == BrnSelectionFilterType.dateRange ||
+              node.filterType == BrnSelectionFilterType.dateRangeCalendar)) {
         if (node.customMap != null &&
             (BrunoTools.isEmpty(node.customMap!['min']) ||
                 BrunoTools.isEmpty(node.customMap!['max']))) {
           if (!node.isValidRange()) {
             isValid = false;
-            if (node.filterType == BrnSelectionFilterType.Range) {
+            if (node.filterType == BrnSelectionFilterType.range) {
               BrnToast.show('您输入的区间有误', context);
-            } else if (node.filterType == BrnSelectionFilterType.DateRange ||
-                node.filterType == BrnSelectionFilterType.DateRangeCalendar) {
+            } else if (node.filterType == BrnSelectionFilterType.dateRange ||
+                node.filterType == BrnSelectionFilterType.dateRangeCalendar) {
               BrnToast.show('您选择的区间有误', context);
             }
             return;

@@ -37,7 +37,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewMultiRangeExampl
               },
               onSelectionPreShow: (int index, BrnSelectionEntity entity) {
                 if (entity.key == "one_range_key" || entity.key == "two_range_key") {
-                  return BrnSelectionWindowType.Range;
+                  return BrnSelectionWindowType.range;
                 }
                 return entity.filterShowType!;
               },

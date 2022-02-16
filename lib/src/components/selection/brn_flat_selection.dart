@@ -26,7 +26,7 @@ class BrnFlatSelection extends StatefulWidget {
   /// 每行展示tag数量  默认真是3个
   final int preLineTagSize;
 
-  /// 当[BrnSelectionEntity.filterType]为[BrnSelectionFilterType.Layer] or[BrnSelectionFilterType.CustomLayer]时
+  /// 当[BrnSelectionEntity.filterType]为[BrnSelectionFilterType.layer] or[BrnSelectionFilterType.customLayer]时
   /// 跳转到二级页面的自定义操作
   final BrnOnCustomFloatingLayerClick? onCustomFloatingLayerClick;
 
@@ -227,7 +227,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerPr
   void _clearUIData(BrnSelectionEntity entity) {
     entity.isSelected = false;
     entity.customMap = Map<String, String>();
-    if (BrnSelectionFilterType.Range == entity.filterType) {
+    if (BrnSelectionFilterType.range == entity.filterType) {
       entity.title = '';
     }
     for (BrnSelectionEntity subEntity in entity.children) {

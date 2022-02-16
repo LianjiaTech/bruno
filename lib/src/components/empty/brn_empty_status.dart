@@ -55,13 +55,13 @@ class BrnAbnormalStateUtils {
 /// 操作区域按钮类型
 enum OperateAreaType {
   /// 单按钮
-  SingleButton,
+  singleButton,
 
   /// 双按钮
-  DoubleButton,
+  doubleButton,
 
   /// 文本按钮
-  TextButton
+  textButton
 }
 
 /// 空页面操作区域按钮的点击回调
@@ -115,7 +115,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
     this.img,
     this.title,
     this.content,
-    this.operateAreaType: OperateAreaType.TextButton,
+    this.operateAreaType: OperateAreaType.textButton,
     this.operateTexts,
     this.action,
     this.enablePageTap: false,
@@ -210,7 +210,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
 
   ///操作区按钮
   _buildOperateContentWidget() {
-    if (OperateAreaType.SingleButton == operateAreaType) {
+    if (OperateAreaType.singleButton == operateAreaType) {
       return GestureDetector(
         onTap: () {
           if (action != null) action!(0);
@@ -227,7 +227,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
               style: themeData!.singleTextStyle.generateTextStyle()),
         ),
       );
-    } else if (OperateAreaType.DoubleButton == operateAreaType) {
+    } else if (OperateAreaType.doubleButton == operateAreaType) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -269,7 +269,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
           ),
         ],
       );
-    } else if (OperateAreaType.TextButton == operateAreaType) {
+    } else if (OperateAreaType.textButton == operateAreaType) {
       return GestureDetector(
           onTap: () {
             if (action != null) action!(0);

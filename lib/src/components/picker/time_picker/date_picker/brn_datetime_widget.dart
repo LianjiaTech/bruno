@@ -11,7 +11,7 @@ import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 
-enum ColumnType { Year, Month, Day, Hour, Minute, Second }
+enum ColumnType { year, month, day, hour, minute, second }
 
 /// DateTimePicker widget. Can display date and time picker
 // ignore: must_be_immutable
@@ -365,17 +365,17 @@ class _BrnDateTimeWidgetState extends State<BrnDateTimeWidget> {
   // ignore: missing_return
   ColumnType? getColumnType(String format) {
     if (format.contains('y')) {
-      return ColumnType.Year;
+      return ColumnType.year;
     } else if (format.contains('M')) {
-      return ColumnType.Month;
+      return ColumnType.month;
     } else if (format.contains('d')) {
-      return ColumnType.Day;
+      return ColumnType.day;
     } else if (format.contains('H')) {
-      return ColumnType.Hour;
+      return ColumnType.hour;
     } else if (format.contains('m')) {
-      return ColumnType.Minute;
+      return ColumnType.minute;
     } else if (format.contains('s')) {
-      return ColumnType.Second;
+      return ColumnType.second;
     }
     return null;
   }
@@ -467,14 +467,14 @@ class _BrnDateTimeWidgetState extends State<BrnDateTimeWidget> {
   Widget _renderDatePickerItemComponent(
       ColumnType? columnType, int index, int value, String format) {
     TextStyle textStyle = widget.themeData!.itemTextStyle.generateTextStyle();
-    if ((ColumnType.Year == columnType && index == _calcSelectIndexList()[0]) ||
-        (ColumnType.Month == columnType &&
+    if ((ColumnType.year == columnType && index == _calcSelectIndexList()[0]) ||
+        (ColumnType.month == columnType &&
             index == _calcSelectIndexList()[1]) ||
-        (ColumnType.Day == columnType && index == _calcSelectIndexList()[2]) ||
-        (ColumnType.Hour == columnType && index == _calcSelectIndexList()[3]) ||
-        (ColumnType.Minute == columnType &&
+        (ColumnType.day == columnType && index == _calcSelectIndexList()[2]) ||
+        (ColumnType.hour == columnType && index == _calcSelectIndexList()[3]) ||
+        (ColumnType.minute == columnType &&
             index == _calcSelectIndexList()[4]) ||
-        (ColumnType.Second == columnType &&
+        (ColumnType.second == columnType &&
             index == _calcSelectIndexList()[5])) {
       textStyle = widget.themeData!.itemTextSelectedStyle.generateTextStyle();
     }
