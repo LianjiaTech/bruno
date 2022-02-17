@@ -55,7 +55,7 @@ class _FunnelChartExampleState extends State<FunnelChartExample> {
       child: Column(
         children: [
           BrnFunnelChart(
-            shape: FunnelShape.LeftOrRight,
+            shape: FunnelShape.leftOrRight,
             alignment: MarkerAlignment.right,
             maxLayerWidth: maxLayerWidth,
             minLayerWidth: minLayerWidth,
@@ -84,7 +84,7 @@ class _FunnelChartExampleState extends State<FunnelChartExample> {
             height: 10,
           ),
           BrnFunnelChart(
-            shape: FunnelShape.LeftAndRight,
+            shape: FunnelShape.leftAndRight,
             alignment: alignment,
             maxLayerWidth: maxLayerWidth,
             minLayerWidth: minLayerWidth,

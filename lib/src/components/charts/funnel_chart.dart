@@ -11,8 +11,8 @@ import 'package:flutter/rendering.dart';
 ///  \____文案____/        |____文案_____/
 ///   ___________     +    ____________
 ///   \__文案___/          |____文案___/
-///   第一种，是两边都向中间缩短的漏斗[FunnelShape.LeftAndRight]。
-///   第二种，是只有一边向中间缩短的漏斗[FunnelShape.LeftOrRight]。
+///   第一种，是两边都向中间缩短的漏斗[FunnelShape.leftAndRight]。
+///   第二种，是只有一边向中间缩短的漏斗[FunnelShape.leftOrRight]。
 ///   通过[inputTextStyle]来控制样式。
 ///   在漏斗的两层layer之间或者左右可以插入标签markers，它们可以是一些常见的Widget，如[Text]，在参数[children]中提供。
 ///   通过[alignment]可以控制标签的插入位置。
@@ -65,7 +65,7 @@ class BrnFunnelChart extends MultiChildRenderObjectWidget {
     required this.markerCount,
     required this.layerPainter,
     required MarkerBuilder builder,
-    this.shape = FunnelShape.LeftAndRight,
+    this.shape = FunnelShape.leftAndRight,
     this.maxLayerWidth = 200,
     this.minLayerWidth = 0,
     this.layerHeight = 40,
@@ -75,7 +75,7 @@ class BrnFunnelChart extends MultiChildRenderObjectWidget {
   })  : assert(maxLayerWidth >= minLayerWidth),
         assert(layerCount - markerCount == 0 || layerCount - markerCount == 1),
         assert(() {
-          if (shape == FunnelShape.LeftOrRight &&
+          if (shape == FunnelShape.leftOrRight &&
               alignment == MarkerAlignment.center) {
             debugPrint(
                 '当shape为FunnelShape.LeftOrRight时，alignment为MarkerAlignment.center无效');
@@ -104,7 +104,7 @@ class BrnFunnelChart extends MultiChildRenderObjectWidget {
     this.layerMargin = 0,
     this.childOffset = Offset.zero,
   })  : this.layerPainter = BrnDefaultFunnelLayerPainter(),
-        this.shape = FunnelShape.LeftAndRight,
+        this.shape = FunnelShape.leftAndRight,
         this.alignment = MarkerAlignment.right,
         assert(layerCount <= defaultLayerColors.length && layerCount >= 0),
         assert(maxLayerWidth >= minLayerWidth),
@@ -577,7 +577,7 @@ class BrnFunnelRender extends RenderFunnelChart {
 
       //绘制layer文案
       late double safeLeft, safeTop, safeRight, safeBottom;
-      if (_shape == FunnelShape.LeftAndRight) {
+      if (_shape == FunnelShape.leftAndRight) {
         safeTop = i * layerHeight + i * layerMargin;
         if (alignment == MarkerAlignment.right) {
           safeLeft = ((i + 1) * layerHeight + i * layerMargin) *
@@ -647,7 +647,7 @@ class BrnFunnelRender extends RenderFunnelChart {
     }
 
     Path path;
-    if (_shape == FunnelShape.LeftAndRight ||
+    if (_shape == FunnelShape.leftAndRight ||
         alignment == MarkerAlignment.left) {
       path = Path();
       //这里为什么都加了HALF_PIXEL，是因为裁剪的时候边缘会留下一定像素的误差。
@@ -662,7 +662,7 @@ class BrnFunnelRender extends RenderFunnelChart {
       canvas.drawPath(path, _paint);
     }
 
-    if (_shape == FunnelShape.LeftAndRight ||
+    if (_shape == FunnelShape.leftAndRight ||
         alignment == MarkerAlignment.right) {
       path = Path();
       path.moveTo(maxLayerWidth + topLeftX + HALF_PIXEL, -HALF_PIXEL);
@@ -774,10 +774,10 @@ class BrnDefaultFunnelLayerPainter extends BrnFunnelLayerPainter {
 ///漏斗图表的形状
 enum FunnelShape {
   ///两边从上往下都缩小
-  LeftAndRight,
+  leftAndRight,
 
   ///一边从上往下缩小
-  LeftOrRight,
+  leftOrRight,
 }
 
 ///漏斗标签的摆放位置

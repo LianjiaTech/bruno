@@ -35,10 +35,10 @@ class BrnSelectionSingleListWidget extends StatefulWidget {
   }) : super(key: key) {
     items = items
         .where((_) =>
-            _.filterType != BrnSelectionFilterType.Range &&
-            _.filterType != BrnSelectionFilterType.Date &&
-            _.filterType != BrnSelectionFilterType.DateRange &&
-            _.filterType != BrnSelectionFilterType.DateRangeCalendar)
+            _.filterType != BrnSelectionFilterType.range &&
+            _.filterType != BrnSelectionFilterType.date &&
+            _.filterType != BrnSelectionFilterType.dateRange &&
+            _.filterType != BrnSelectionFilterType.dateRangeCalendar)
         .toList();
 
     /// 当前 Items 所在的层级
@@ -81,8 +81,8 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
               isMoreSelectionListType: false,
               isFirstLevel: (1 == widget.currentListIndex) ? true : false,
               itemSelectFunction: (BrnSelectionEntity entity) {
-                if ((entity.filterType == BrnSelectionFilterType.Checkbox && !entity.isSelected) ||
-                    entity.filterType != BrnSelectionFilterType.Checkbox) {
+                if ((entity.filterType == BrnSelectionFilterType.checkbox && !entity.isSelected) ||
+                    entity.filterType != BrnSelectionFilterType.checkbox) {
                   if (entity.hasCheckBoxBrother()) {
                     if (entity.isUnLimit() &&
                         (entity.parent?.children.where((f) => f.isSelected).length ?? 0) > 0) {
@@ -163,11 +163,11 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
   }
 
   void configOneLevelList(BrnSelectionEntity selectedEntity) {
-    if (BrnSelectionFilterType.Radio == selectedEntity.filterType) {
+    if (BrnSelectionFilterType.radio == selectedEntity.filterType) {
       /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
       selectedEntity.parent?.clearChildSelection();
       selectedEntity.isSelected = true;
-    } else if (BrnSelectionFilterType.Checkbox == selectedEntity.filterType) {
+    } else if (BrnSelectionFilterType.checkbox == selectedEntity.filterType) {
       /// 选中【不限】清除同一级别其他的状态
       if (selectedEntity.isUnLimit()) {
         selectedEntity.parent?.clearChildSelection();
@@ -192,13 +192,13 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
 
   void configMultiLevelList(BrnSelectionEntity selectedEntity, int currentListIndex) {
     /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
-    if (BrnSelectionFilterType.Radio == selectedEntity.filterType) {
+    if (BrnSelectionFilterType.radio == selectedEntity.filterType) {
       selectedEntity.parent?.children.where((f) => f != selectedEntity).forEach((f) {
         f.clearChildSelection();
         f.isSelected = false;
       });
       selectedEntity.isSelected = true;
-    } else if (BrnSelectionFilterType.Checkbox == selectedEntity.filterType) {
+    } else if (BrnSelectionFilterType.checkbox == selectedEntity.filterType) {
       /// 选中【不限】清除同一级别其他的状态
       if (selectedEntity.isUnLimit()) {
         selectedEntity.parent?.children.where((f) => f != selectedEntity).forEach((f) {

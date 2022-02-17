@@ -67,7 +67,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewLimitMaxSelected
             },
             onSelectionPreShow: (int index, BrnSelectionEntity entity) {
               if (entity.key == "role" || entity.key == "guidePrice") {
-                return BrnSelectionWindowType.Range;
+                return BrnSelectionWindowType.range;
               }
               return entity.filterShowType!;
             },

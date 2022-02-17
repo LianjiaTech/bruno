@@ -63,7 +63,7 @@ class _BrnSelectionRangeTagWidgetState extends State<BrnSelectionRangeTagWidget>
           child: tagWidget,
           onTap: () {
             var selectedEntity = widget.tagFilterList[nameIndex];
-            if (BrnSelectionFilterType.Checkbox == selectedEntity.filterType &&
+            if (BrnSelectionFilterType.checkbox == selectedEntity.filterType &&
                 !selectedEntity.isSelected) {
               if (!BrnSelectionUtil.checkMaxSelectionCount(selectedEntity)) {
                 BrnToast.show("您选择的筛选条件数量已达上限", context);
@@ -85,7 +85,7 @@ class _BrnSelectionRangeTagWidgetState extends State<BrnSelectionRangeTagWidget>
     bool selected =
         widget.tagFilterList[nameIndex].isSelected || nameIndex == widget.initFocusedIndex;
     String text = widget.tagFilterList[nameIndex].title;
-    if (widget.tagFilterList[nameIndex].filterType == BrnSelectionFilterType.Date &&
+    if (widget.tagFilterList[nameIndex].filterType == BrnSelectionFilterType.date &&
         !BrunoTools.isEmpty(widget.tagFilterList[nameIndex].value)) {
       if (int.tryParse(widget.tagFilterList[nameIndex].value ?? '') != null) {
         DateTime? dateTime =

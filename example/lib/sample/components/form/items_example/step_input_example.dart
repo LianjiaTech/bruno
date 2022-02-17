@@ -56,7 +56,7 @@ class StepInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnStepInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: true,
               error: "必填项不能为空",
@@ -89,7 +89,7 @@ class StepInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnStepInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+              prefixIconType: BrnPrefixIconType.remove,
               isRequire: true,
               isEdit: true,
               title: "自然到访保护期",

@@ -2,16 +2,16 @@ import 'package:bruno/src/constants/brn_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 
 enum PickerFilterType {
-  None, //未设置
-  UnLimit, // 不限类型，与其他所有类型互斥。
-  Radio, //单选列表、单选项 type为radio
-  Checkbox, //多选列表、多选项 type为checkbox
+  none, //未设置
+  unLimit, // 不限类型，与其他所有类型互斥。
+  radio, //单选列表、单选项 type为radio
+  checkbox, //多选列表、多选项 type为checkbox
 }
 
 /// 筛选弹窗展示风格
 enum PickerWindowType {
-  List, //列表类型,使用列表 Item 展示。
-  Range, //值范围类型,使用 Tag + Range 的 Item 展示
+  list, //列表类型,使用列表 Item 展示。
+  range, //值范围类型,使用 Tag + Range 的 Item 展示
 }
 
 class BrnPickerEntity {
@@ -100,22 +100,22 @@ class BrnPickerEntity {
 
   PickerWindowType parserShowType(String showType) {
     if (showType == "list") {
-      return PickerWindowType.List;
+      return PickerWindowType.list;
     } else if (showType == "range") {
-      return PickerWindowType.Range;
+      return PickerWindowType.range;
     }
-    return PickerWindowType.List;
+    return PickerWindowType.list;
   }
 
   PickerFilterType parserFilterTypeWithType(String? type) {
     if (type == "unlimit") {
-      return PickerFilterType.UnLimit;
+      return PickerFilterType.unLimit;
     } else if (type == "radio") {
-      return PickerFilterType.Radio;
+      return PickerFilterType.radio;
     } else if (type == "checkbox") {
-      return PickerFilterType.Checkbox;
+      return PickerFilterType.checkbox;
     }
-    return PickerFilterType.None;
+    return PickerFilterType.none;
   }
 
   void clearChildSelection() {
@@ -236,8 +236,8 @@ class BrnPickerEntity {
 
   /// 在这里简单认为 value 为空【null 或 ''】时为 unLimit.
   bool isUnLimit() {
-    return filterType == PickerFilterType.UnLimit ||
-        (BrunoTools.isEmpty(value) && filterType == PickerFilterType.Radio);
+    return filterType == PickerFilterType.unLimit ||
+        (BrunoTools.isEmpty(value) && filterType == PickerFilterType.radio);
   }
 
   void clearSelectedEntity() {

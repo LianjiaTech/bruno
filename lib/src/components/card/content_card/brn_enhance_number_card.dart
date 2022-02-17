@@ -250,7 +250,7 @@ class BrnEnhanceNumberCard extends StatelessWidget {
       Widget icon =
           BrunoTools.getAssetSizeImage(BrnAsset.iconQuestion, 14, 14);
 
-      if (model.numberInfoIcon == BrnNumberInfoIcon.ARROW) {
+      if (model.numberInfoIcon == BrnNumberInfoIcon.arrow) {
         icon = BrunoTools.getAssetSizeImage(BrnAsset.iconRightArrow, 14, 14);
       }
       debugPrint('${tp.height}');
@@ -352,7 +352,7 @@ class BrnNumberInfoItemModel {
   BrnNumberInfoItemModel({
     this.number,
     this.title,
-    this.numberInfoIcon = BrnNumberInfoIcon.QUESTION,
+    this.numberInfoIcon = BrnNumberInfoIcon.question,
     this.iconTapCallBack,
     this.preDesc,
     this.lastDesc,
@@ -363,6 +363,6 @@ class BrnNumberInfoItemModel {
 
 ///可扩展
 enum BrnNumberInfoIcon {
-  ARROW,
-  QUESTION,
+  arrow,
+  question,
 }

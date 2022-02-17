@@ -58,7 +58,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewDateRangeExample
             },
             onSelectionPreShow: (int index, BrnSelectionEntity entity) {
               if (entity.key == 'date_11' || entity.key == 'date_22') {
-                return BrnSelectionWindowType.Range;
+                return BrnSelectionWindowType.range;
               }
               return entity.filterShowType!;
             },

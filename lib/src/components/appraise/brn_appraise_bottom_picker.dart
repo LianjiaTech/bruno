@@ -47,7 +47,7 @@ class BrnAppraiseBottomPicker extends StatefulWidget {
     Key? key,
     this.title = '',
     this.headerType = BrnAppraiseHeaderType.spaceBetween,
-    this.type = BrnAppraiseType.Star,
+    this.type = BrnAppraiseType.star,
     this.iconDescriptions = _defaultIconDescriptions,
     this.tags,
     this.inputHintText = '',

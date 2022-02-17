@@ -58,7 +58,7 @@ class MultiChoiceInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnMultiChoiceInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               error: "必填项不能为空",
               title: "自然",
@@ -97,7 +97,7 @@ class MultiChoiceInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnMultiChoiceInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+              prefixIconType: BrnPrefixIconType.remove,
               isRequire: true,
               title: "自然到",
               subTitle: "这里是副标题",

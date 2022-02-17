@@ -46,7 +46,7 @@ Map<String, String> getSelectionParams(List<BrnSelectionEntity>? selectedResults
   Map<String, String> params = Map();
   if (selectedResults == null) return params;
   for (BrnSelectionEntity menuItemEntity in selectedResults) {
-    if (menuItemEntity.filterType == BrnSelectionFilterType.More) {
+    if (menuItemEntity.filterType == BrnSelectionFilterType.more) {
       params.addAll(getSelectionParams(menuItemEntity.children));
     } else {
       /// 1、首先找出 自定义范围的筛选项参数。

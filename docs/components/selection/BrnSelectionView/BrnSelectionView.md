@@ -107,40 +107,40 @@ BrnSelectionView(
 ```dart
 enum BrnSelectionFilterType {
   /// 未设置
-  None,
+  none,
 
   /// 不限类型
-  UnLimit,
+  unLimit,
 
   /// 单选列表、单选项 type 为 radio
-  Radio,
+  radio,
 
   /// 多选列表、多选项 type 为 checkbox
-  Checkbox,
+  checkbox,
 
   /// 一般的值范围自定义区间 type 为 range
-  Range,
+  range,
 
   /// 日期选择,普通筛选时使用 CalendarView 展示选择时间，更多情况下使用 DatePicker 选择时间
-  Date,
+  date,
 
   /// 自定义选择日期区间， type 为 dateRange
-  DateRange,
+  dateRange,
 
   /// 自定义通过 Calendar 选择日期区间，type 为 dateRangeCalendar
-  DateRangeCalendar,
+  dateRangeCalendar,
 
   /// 标签筛选 type 为 customerTag
-  CustomHandle,
+  customHandle,
 
   /// 更多列表、多选项 无 type
-  More,
+  more,
 
   /// 去二级页面
-  Layer,
+  layer,
 
   /// 去自定义二级页面
-  CustomLayer,
+  customLayer,
 }
 ```
 
@@ -165,8 +165,8 @@ enum BrnSelectionFilterType {
 
 ```dart
 enum SelectionWindowType {
-  List,  //列表类型筛选弹窗，使用列表展示。
-  Range, //标签类型筛选弹窗，使用 Tag + Range 的方式展示
+  list,  //列表类型筛选弹窗，使用列表展示。
+  range, //标签类型筛选弹窗，使用 Tag + Range 的方式展示
 }
 ```
 

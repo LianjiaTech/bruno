@@ -59,7 +59,7 @@ class TagViewExamplePageState extends State<CalendarViewExample> {
 
   Widget _calendarViewWeekNocontroll(context) {
     return BrnCalendarView.single(
-      displayMode: DisplayMode.Week,
+      displayMode: DisplayMode.week,
       showControllerBar: false,
       dateChange: (date) {
         BrnToast.show('选中的时间： $date', context);
@@ -69,7 +69,7 @@ class TagViewExamplePageState extends State<CalendarViewExample> {
 
   Widget _calendarViewWeekNocontrollCustomWeekName(context) {
     return BrnCalendarView.single(
-      displayMode: DisplayMode.Week,
+      displayMode: DisplayMode.week,
       showControllerBar: false,
       weekNames: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
       dateChange: (date) {
@@ -80,7 +80,7 @@ class TagViewExamplePageState extends State<CalendarViewExample> {
 
   Widget _calendarViewWeek(context) {
     return BrnCalendarView.single(
-      displayMode: DisplayMode.Week,
+      displayMode: DisplayMode.week,
       initDisplayDate: DateTime.parse('2020-06-01'),
       minDate: DateTime(2020),
       maxDate: DateTime(2021),
@@ -92,7 +92,7 @@ class TagViewExamplePageState extends State<CalendarViewExample> {
 
   Widget _calendarViewWeekRange(context) {
     return BrnCalendarView.range(
-      displayMode: DisplayMode.Week,
+      displayMode: DisplayMode.week,
       rangeDateChange: (rangeDate) {
         BrnToast.show(
             '开始时间： ${rangeDate.start} , 结束时间：${rangeDate.end}', context);

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 /// Solar months of 31 days.
 const List<int> _solarMonthsOf31Days = const <int>[1, 3, 5, 7, 8, 10, 12];
 
-enum ColumnType { Year, Month, Day }
+enum ColumnType { year, month, day }
 
 /// one side widget of DateRangePicker
 // ignore: must_be_immutable
@@ -237,8 +237,8 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
           childCount: valueRange.last - valueRange.first + 1,
           itemBuilder: (context, index) => _renderDatePickerItemComponent(
               format.contains("y")
-                  ? ColumnType.Year
-                  : (format.contains("M") ? ColumnType.Month : ColumnType.Day),
+                  ? ColumnType.year
+                  : (format.contains("M") ? ColumnType.month : ColumnType.day),
               index,
               valueRange.first + index,
               format),
@@ -250,10 +250,10 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
   Widget _renderDatePickerItemComponent(
       ColumnType columnType, int index, int value, String format) {
     TextStyle textStyle = widget.themeData!.itemTextStyle.generateTextStyle();
-    if ((ColumnType.Year == columnType && index == _calcSelectIndexList()[0]) ||
-        (ColumnType.Month == columnType &&
+    if ((ColumnType.year == columnType && index == _calcSelectIndexList()[0]) ||
+        (ColumnType.month == columnType &&
             index == _calcSelectIndexList()[1]) ||
-        (ColumnType.Day == columnType && index == _calcSelectIndexList()[2])) {
+        (ColumnType.day == columnType && index == _calcSelectIndexList()[2])) {
       textStyle = widget.themeData!.itemTextSelectedStyle.generateTextStyle();
     }
     return Container(

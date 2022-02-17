@@ -180,7 +180,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
               (int listIndex, int index, BrnPickerEntity entity) {
             _setFirstIndex(index);
             if (_columnCount == 1 &&
-                widget.entity.filterType == PickerFilterType.Radio) {
+                widget.entity.filterType == PickerFilterType.radio) {
               _confirmButtonClickEvent();
             }
             if (widget.onEntityTap != null) {
@@ -472,7 +472,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
         // 例如1级为多选，不应该默认选中2级的不限
         // 否则每选中任意一个1级选项，就默认有了一个2级的不限
         if (entity.isUnLimit() &&
-            entity.parent!.filterType != PickerFilterType.Checkbox) {
+            entity.parent!.filterType != PickerFilterType.checkbox) {
           index = levelList.indexOf(entity);
           break;
         }
