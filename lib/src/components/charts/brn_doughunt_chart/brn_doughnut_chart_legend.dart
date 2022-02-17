@@ -24,21 +24,22 @@ class DoughnutChartLegend extends StatelessWidget {
   final List<BrnDoughnutDataItem> data;
 
   DoughnutChartLegend(
-      {this.legendStyle = BrnDoughnutChartLegendStyle.wrap, this.data});
+      {this.legendStyle = BrnDoughnutChartLegendStyle.wrap,
+      required this.data});
 
   @override
   Widget build(BuildContext context) {
     if (BrnDoughnutChartLegendStyle.list == this.legendStyle) {
-      List<Widget> items = List();
-      this.data?.forEach((BrnDoughnutDataItem item) {
+      List<Widget> items = [];
+      this.data.forEach((BrnDoughnutDataItem item) {
         items.add(this.genItem(item));
       });
       return Column(
         children: items,
       );
     } else if (BrnDoughnutChartLegendStyle.wrap == this.legendStyle) {
-      List<Widget> items = List();
-      this.data?.forEach((BrnDoughnutDataItem item) {
+      List<Widget> items = [];
+      this.data.forEach((BrnDoughnutDataItem item) {
         items.add(this.genItem(item));
       });
 
@@ -48,7 +49,7 @@ class DoughnutChartLegend extends StatelessWidget {
         children: items,
       );
     } else {
-      return Container();
+      return const SizedBox.shrink();
     }
   }
 
@@ -68,7 +69,7 @@ class DoughnutChartLegend extends StatelessWidget {
           width: 6,
         ),
         Text(
-          item.title ?? '',
+          item.title,
           style: TextStyle(color: Colors.black),
         ),
       ],

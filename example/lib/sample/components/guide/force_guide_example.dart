@@ -1,17 +1,19 @@
+
+
 import 'dart:async';
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 /// @desc    强引导example
 class ForceGuideExample extends StatefulWidget {
-  ForceGuideExample({Key key}) : super(key: key);
+  ForceGuideExample({Key? key}) : super(key: key);
 
   @override
   _ForceGuideExampleState createState() => _ForceGuideExampleState();
 }
 
 class _ForceGuideExampleState extends State<ForceGuideExample> {
-  BrnGuide intro;
+  late BrnGuide intro;
 
   _ForceGuideExampleState() {
     /// init Guide

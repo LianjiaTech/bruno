@@ -12,29 +12,29 @@ const double _basePadding = 0;
 const double _contentTopPadding = 10;
 
 class BrnLineYPainter extends BrnBasePainter {
-  int lineSelectIndex = -1;
-  int pointSelectIndex = -1;
+  final int lineSelectIndex;
+  final int pointSelectIndex;
 
   /// xy轴线条的宽度
   double xyLineWidth = 0.5;
 
   /// x轴的颜色
-  Color xColor;
+  Color? xColor;
 
   /// y轴的颜色
-  Color yColor;
+  Color? yColor;
 
   /// y轴刻度的偏移量
-  double yHintLineOffset;
+  final double yHintLineOffset;
 
   /// 刻度的宽度或者高度
   double rulerWidth;
 
   /// y轴最大值，用来计算内部绘制点的y轴位置
-  double yMin, yMax;
+  final double yMin, yMax;
 
   /// y轴左侧刻度显示，不传则没有
-  List<BrnDialItem> yDialValues;
+  final List<BrnDialItem>? yDialValues;
 
   /// x、y轴的辅助线
   bool isShowXHintLine, isShowYHintLine;
@@ -43,34 +43,35 @@ class BrnLineYPainter extends BrnBasePainter {
   bool isHintLineSolid;
 
   /// 辅助线颜色
-  Color hintLineColor;
+  Color? hintLineColor;
 
   /// 绘制线条的参数内容
   List<BrnPointsLine> lines;
 
   bool isShowXDialText, isShowYDialText;
 
-  double selectX;
-  double selectY;
-  double _startX = 0.0, _endX = 0.0, _startY = 0.0, _endY = 0.0, _fixedHeight;
+  double? selectX;
+  double? selectY;
+  double _startX = 0.0, _endX = 0.0, _startY = 0.0, _endY = 0.0;
+  late double _fixedHeight;
 
   BrnLineYPainter(
     this.lines, {
-    this.lineSelectIndex = -1,
-    this.pointSelectIndex = -1,
-    this.yHintLineOffset = 20,
-    this.xColor,
-    this.yColor,
-    this.rulerWidth = 4,
-    this.yMin,
-    this.yMax,
-    this.yDialValues,
-    this.isShowXHintLine = true,
-    this.isShowYHintLine = false,
-    this.isHintLineSolid = true,
-    this.hintLineColor,
-    this.isShowXDialText = false,
-    this.isShowYDialText = false,
+    required this.lineSelectIndex,
+    required this.pointSelectIndex,
+    required this.yHintLineOffset,
+    required this.xColor,
+    required this.yColor,
+    required this.rulerWidth,
+    required this.yMin,
+    required this.yMax,
+    required this.yDialValues,
+    required this.isShowXHintLine,
+    required this.isShowYHintLine,
+    required this.isHintLineSolid,
+    required this.hintLineColor,
+    required this.isShowXDialText,
+    required this.isShowYDialText,
   });
 
   @override
@@ -105,11 +106,6 @@ class BrnLineYPainter extends BrnBasePainter {
         .colorTextSecondary;
     hintLineColor ??=
         BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-    isHintLineSolid ??= true;
-    xyLineWidth ??= 0.5;
-
-    yMin ??= 0;
-    yMax ??= 1;
   }
 
   /// 计算边界
@@ -119,7 +115,7 @@ class BrnLineYPainter extends BrnBasePainter {
 
     /// 如果展示y刻度文本，则左侧默认预留 20 像素高度展示x刻度
     if (isShowYDialText) {
-      _startX = yHintLineOffset ?? 20.0;
+      _startX = yHintLineOffset;
     }
 
     /// 如果展示x刻度文本，则底部预留 20 像素高度展示x刻度
@@ -133,11 +129,11 @@ class BrnLineYPainter extends BrnBasePainter {
   void _drawXy(Canvas canvas, Paint paint) {
     if (isShowXHintLine) {
       canvas.drawLine(Offset(_startX, _startY),
-          Offset(_endX + _basePadding, _startY), paint..color = xColor); //x轴
+          Offset(_endX + _basePadding, _startY), paint..color = xColor!); //x轴
     }
     if (isShowYHintLine) {
       canvas.drawLine(Offset(_startX, _startY),
-          Offset(_startX, _endY - _basePadding), paint..color = yColor); //y轴
+          Offset(_startX, _endY - _basePadding), paint..color = yColor!); //y轴
     }
     _drawYRuler(canvas, paint);
   }
@@ -147,8 +143,8 @@ class BrnLineYPainter extends BrnBasePainter {
     if (yDialValues == null) {
       return;
     }
-    for (var i = 0; i < yDialValues.length; i++) {
-      var ydialValue = yDialValues[i];
+    for (var i = 0; i < yDialValues!.length; i++) {
+      var ydialValue = yDialValues![i];
 
       // 绘制y轴文本
       var yLength = (ydialValue.value - yMin) / (yMax - yMin) * _fixedHeight;
@@ -177,7 +173,7 @@ class BrnLineYPainter extends BrnBasePainter {
           ..moveTo(_startX, _startY - yLength)
           ..lineTo(_startX + _endX - yHintLineOffset, _startY - yLength);
         if (isHintLineSolid) {
-          canvas.drawPath(hitXPath, paint..color = hintLineColor);
+          canvas.drawPath(hitXPath, paint..color = hintLineColor!);
         } else {
           canvas.drawPath(
             dashPath(
@@ -185,7 +181,7 @@ class BrnLineYPainter extends BrnBasePainter {
               dashArray:
                   CircularIntervalList<double>(<double>[4.0, 4.0]), //虚线和间隔
             ),
-            paint..color = hintLineColor,
+            paint..color = hintLineColor!,
           );
         }
       }
@@ -195,7 +191,7 @@ class BrnLineYPainter extends BrnBasePainter {
         canvas.drawLine(
             Offset(_startX, _startY - yLength),
             Offset(_startX + rulerWidth, _startY - yLength),
-            paint..color = yColor);
+            paint..color = yColor!);
       }
     }
   }

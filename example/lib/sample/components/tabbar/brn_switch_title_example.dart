@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +9,7 @@ class BrnSwitchTitleExample extends StatefulWidget {
 }
 
 class _BrnSwitchTitleExampleState extends State<BrnSwitchTitleExample> with TickerProviderStateMixin {
-  TabController _controller;
+  late TabController _controller;
 
   @override
   void initState() {

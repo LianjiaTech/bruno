@@ -50,34 +50,34 @@ class BrnCommonCardTitle extends StatelessWidget {
   final String title;
 
   /// 最右侧的文字
-  final String accessoryText;
+  final String? accessoryText;
 
   /// 最右侧的widget 如果两者同时存在 则以widget为主
-  final Widget accessoryWidget;
+  final Widget? accessoryWidget;
 
   /// 整个区域点击的回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// 标题右侧的显示widget
-  final Widget subTitleWidget;
+  final Widget? subTitleWidget;
 
   /// 标题下面的文字
-  final String detailTextString;
+  final String? detailTextString;
 
   /// title的流式文本的对齐方式
-  final PlaceholderAlignment alignment;
+  final PlaceholderAlignment? alignment;
 
   /// 标题下方文字 默认是深色的222222
-  final Color detailColor;
+  final Color? detailColor;
 
   /// 内容的padding 默认上下16 左右0
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? padding;
 
-  final BrnCardTitleConfig themeData;
+  final BrnCardTitleConfig? themeData;
 
   BrnCommonCardTitle(
-      {Key key,
-      @required this.title,
+      {Key? key,
+      required this.title,
       this.accessoryText,
       this.accessoryWidget,
       this.onTap,
@@ -95,7 +95,7 @@ class BrnCommonCardTitle extends StatelessWidget {
 
     defaultConfig = defaultConfig.merge(BrnCardTitleConfig(
         alignment: alignment,
-        cardTitlePadding: padding,
+        cardTitlePadding: padding as EdgeInsets?,
         detailTextStyle: BrnTextStyle(color: detailColor)));
 
     defaultConfig = BrnThemeConfigurator.instance
@@ -103,27 +103,22 @@ class BrnCommonCardTitle extends StatelessWidget {
         .cardTitleConfig
         .merge(defaultConfig);
 
+    Widget titleContainer = Container(
+      color: defaultConfig.cardBackgroundColor,
+      child: _rowWidget(context, defaultConfig),
+    );
+    if (onTap == null) return titleContainer;
     return GestureDetector(
-      onTap: () {
-        if (onTap != null) {
-          onTap();
-        }
-      },
-      child: Container(
-        color: defaultConfig?.cardBackgroundColor,
-        child: _rowWidget(context, defaultConfig),
-      ),
+      onTap: onTap,
+      child: titleContainer,
     );
   }
 
   Widget _rowWidget(BuildContext context, BrnCardTitleConfig defaultConfig) {
-    List<Widget> children = List<Widget>();
+    List<Widget> children = [];
     children.add(Expanded(child: _titleWidget(context, defaultConfig)));
 
-    Widget accessory = Container(
-      height: 0,
-      width: 0,
-    );
+    Widget accessory = SizedBox.shrink();
     // 左侧的文本的行高是25，那么右侧的widget最大为25
     if (this.accessoryWidget != null) {
       accessory = Container(
@@ -151,7 +146,7 @@ class BrnCommonCardTitle extends StatelessWidget {
   Widget _accessoryTextWidget(BrnCardTitleConfig defaultConfig) {
     Text tx = Text(
       accessoryText ?? "",
-      style: defaultConfig?.accessoryTextStyle?.generateTextStyle(),
+      style: defaultConfig.accessoryTextStyle.generateTextStyle(),
     );
 
     return Container(
@@ -172,28 +167,25 @@ class BrnCommonCardTitle extends StatelessWidget {
 
   ///标题widget
   Widget _titleWidget(BuildContext context, BrnCardTitleConfig defaultConfig) {
-    Widget subWidget = Container(
-      height: 0,
-      width: 0,
-    );
+    Widget subWidget = SizedBox.shrink();
 
     if (subTitleWidget != null) {
       subWidget = _subTitleWidgetFromWidget();
     }
     var titleWidget = RichText(
-      textScaleFactor: MediaQuery.of(context)?.textScaleFactor ?? 1.0,
+      textScaleFactor: MediaQuery.of(context).textScaleFactor,
       text: TextSpan(
-          text: title ?? "",
-          style: defaultConfig?.titleWithHeightTextStyle?.generateTextStyle(),
+          text: title,
+          style: defaultConfig.titleWithHeightTextStyle.generateTextStyle(),
           children: <InlineSpan>[
             WidgetSpan(child: subWidget, alignment: defaultConfig.alignment),
           ]),
     );
 
-    List<Widget> colChildren = List<Widget>();
+    List<Widget> colChildren = [];
     colChildren.add(titleWidget);
 
-    if (null != detailTextString && detailTextString.isNotEmpty) {
+    if (null != detailTextString && detailTextString!.isNotEmpty) {
       Widget detailWidget = _detailTextWidget(defaultConfig);
       colChildren.add(detailWidget);
     }
@@ -212,7 +204,7 @@ class BrnCommonCardTitle extends StatelessWidget {
       detailTextString ?? "",
       overflow: TextOverflow.ellipsis,
       maxLines: 2,
-      style: defaultConfig?.detailTextStyle?.generateTextStyle(),
+      style: defaultConfig.detailTextStyle.generateTextStyle(),
     );
     return Container(
       child: tx,

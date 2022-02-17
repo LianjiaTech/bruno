@@ -1,36 +1,34 @@
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
+import 'package:bruno/src/utils/css/brn_core_funtion.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-/// 福文本填充生成器
+/// 富文本填充生成器
 
-/// 超链接的点击回调
-typedef BrnRichTextLinkClick = void Function(String text, String link);
-
-///用于链式去生成福文本样式的文案 如果是直接的标签可以用css
+/// 用于链式去生成富文本样式的文案 如果是直接的标签可以用css
 class BrnRichTextGenerator {
-  BrnRichTextGenerator() {
-    _spanList = List();
-    _maxLine = 100;
-  }
+  BrnRichTextGenerator();
 
-  List<InlineSpan> _spanList;
-  int _maxLine;
-  TextOverflow _overflow;
+  List<InlineSpan> _spanList = [];
+  int _maxLine = 100;
+  TextOverflow? _overflow;
 
   /// 添加超链接部分的文案
-  /// text是显示的文案
-  /// url是超链接的url
-  /// fontsize是显示大小
+  /// text 是显示的文案
+  /// url 是超链接的 url
+  /// fontsize 是显示大小
   /// richTextLinkClick 是超链接点击的回调
-  BrnRichTextGenerator addTextWithLink(String text,
-      {String url,
-      TextStyle textStyle,
-      Color linkColor,
-      double fontSize,
-      FontWeight fontWeight,
-      BrnRichTextLinkClick richTextLinkClick}) {
-    _spanList.add(TextSpan(
+  BrnRichTextGenerator addTextWithLink(
+    String text, {
+    String? url,
+    TextStyle? textStyle,
+    Color? linkColor,
+    double? fontSize,
+    FontWeight? fontWeight,
+    BrnHyperLinkCallback? richTextLinkClick,
+  }) {
+    _spanList.add(
+      TextSpan(
         style: textStyle ??
             TextStyle(
               color: linkColor ??
@@ -41,56 +39,63 @@ class BrnRichTextGenerator {
               fontWeight: fontWeight ?? FontWeight.normal,
               fontSize: fontSize ?? 16,
             ),
-        text: text ?? "",
+        text: text,
         recognizer: TapGestureRecognizer()
           ..onTap = () {
             if (richTextLinkClick != null) {
               richTextLinkClick(text, url);
             }
-          }));
+          },
+      ),
+    );
     return this;
   }
 
   /// 添加自定义文案
   /// fontsize 是文案大小 默认是16
   /// color 是文案的颜色 默认是深黑色
-  BrnRichTextGenerator addText(String text,
-      {TextStyle textStyle,
-      double fontSize,
-      Color color,
-      FontWeight fontWeight}) {
-    _spanList.add(TextSpan(
-        text: text ?? "",
+  BrnRichTextGenerator addText(
+    String text, {
+    TextStyle? textStyle,
+    double? fontSize,
+    Color? color,
+    FontWeight? fontWeight,
+  }) {
+    _spanList.add(
+      TextSpan(
+        text: text,
         style: textStyle ??
             TextStyle(
-                color: color ??
-                    BrnThemeConfigurator.instance
-                        .getConfig()
-                        .commonConfig
-                        .colorTextBase,
-                fontSize: fontSize ?? 16,
-                fontWeight: fontWeight ?? FontWeight.normal)));
+              color: color ??
+                  BrnThemeConfigurator.instance
+                      .getConfig()
+                      .commonConfig
+                      .colorTextBase,
+              fontSize: fontSize ?? 16,
+              fontWeight: fontWeight ?? FontWeight.normal,
+            ),
+      ),
+    );
     return this;
   }
 
   /// 添加Icon
-  BrnRichTextGenerator addIcon(Widget icon, {PlaceholderAlignment alignment}) {
+  BrnRichTextGenerator addIcon(
+    Widget? icon, {
+    PlaceholderAlignment? alignment,
+  }) {
     _spanList.add(
       WidgetSpan(
-          child: icon != null
-              ? icon
-              : Container(
-                  height: 0,
-                  width: 0,
-                ),
-          alignment: alignment ?? PlaceholderAlignment.top),
+        alignment: alignment ?? PlaceholderAlignment.top,
+        child: icon ?? const SizedBox.shrink(),
+      ),
     );
     return this;
   }
 
   /// 设置最多文案显示几行 默认是100行
   BrnRichTextGenerator setMaxLines(int maxLine) {
-    if (maxLine != null && maxLine > 0) {
+    if (maxLine > 0) {
       _maxLine = maxLine;
     }
     return this;
@@ -98,17 +103,14 @@ class BrnRichTextGenerator {
 
   /// 设置最多文案显示几行 默认是100行
   BrnRichTextGenerator setTextOverflow(TextOverflow overflow) {
-    this._overflow = overflow;
+    _overflow = overflow;
     return this;
   }
 
   /// build出福文本
   Widget build() {
     if (_spanList.isEmpty) {
-      return Container(
-        height: 0,
-        width: 0,
-      );
+      return const SizedBox.shrink();
     }
     return ExcludeSemantics(
       excluding: true,

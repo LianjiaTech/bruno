@@ -1,3 +1,4 @@
+import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:flutter/material.dart';
 
 /// 页面或者弹窗中间的圆形加载框，左侧是可定制的加载文案[content]，比如：加载中、提交中等等
@@ -29,7 +30,7 @@ import 'package:flutter/material.dart';
 class BrnPageLoading extends StatelessWidget {
   final String content;
 
-  BrnPageLoading({this.content});
+  const BrnPageLoading({this.content = BrnStrings.loadingContent});
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,7 @@ class BrnPageLoading extends StatelessWidget {
         height: 50,
         width: 130,
         decoration: BoxDecoration(
-            color: Color(0xff222222),
-            border: null,
-            borderRadius: BorderRadius.circular(5)),
+            color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
         child: Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -56,7 +55,7 @@ class BrnPageLoading extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(left: 8),
                 child: Text(
-                  content ?? "加载中...",
+                  content,
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
@@ -78,7 +77,8 @@ class BrnLoadingDialog extends Dialog {
   /// 加载时的提示文案，默认为 `加载中...`
   final String content;
 
-  BrnLoadingDialog({Key key, this.content = "加载中..."}) : super(key: key);
+  const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -92,13 +92,13 @@ class BrnLoadingDialog extends Dialog {
   ///  * [barrierDismissible] 点击蒙层背景是否关闭弹窗，默认为 true，可关闭，详见 [showDialog] 中的 [barrierDismissible]
   ///  * [useRootNavigator] 把弹窗添加到 [context] 中的 rootNavigator 还是最近的 [Navigator]，默认为 true，添加到
   ///    rootNavigator，详见 [showDialog] 中的 [useRootNavigator]。
-  static void show(
+  static Future<T?> show<T>(
     BuildContext context, {
-    String content,
+    String content = BrnStrings.loadingContent,
     bool barrierDismissible = true,
     bool useRootNavigator = true,
   }) {
-    showDialog(
+    return showDialog<T>(
         context: context,
         barrierDismissible: barrierDismissible,
         useRootNavigator: useRootNavigator,
@@ -110,7 +110,7 @@ class BrnLoadingDialog extends Dialog {
   /// 关闭弹窗。
   ///
   ///  * [context] 上下文。
-  static void dismiss(BuildContext context) {
-    Navigator.pop(context);
+  static void dismiss<T extends Object?>(BuildContext context, [T? result]) {
+    Navigator.pop(context, result);
   }
 }

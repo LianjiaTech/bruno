@@ -18,34 +18,36 @@ class BrnAppraiseEmojiItem extends StatefulWidget {
   /// 默认图片,传入asserts/image 全路径
   final String defaultName;
 
-  /// 表情所在的index
+  /// 表情所在的 index
   final int index;
 
-  /// 选中的的index
+  /// 选中的的 index
   final int selectedIndex;
 
   /// 表情图片下面的说明
-  final String title;
+  final String? title;
 
-  /// 加载的gif图帧数
+  /// 加载的 gif 图帧数，默认 24
   final double frameCount;
 
   /// 点击的回调
-  final BrnAppraiseEmojiClickCallback onTap;
+  final BrnAppraiseEmojiClickCallback? onTap;
 
-  /// item的padding
+  /// item的padding，默认 EdgeInsets.only(horizontal: 7)
   final EdgeInsets padding;
 
   BrnAppraiseEmojiItem(
-      {this.selectedName,
-      this.unselectedName,
-      this.defaultName,
-      this.index,
-      this.selectedIndex,
+      {Key? key,
+      required this.selectedName,
+      required this.unselectedName,
+      required this.defaultName,
+      this.index = 0,
+      this.selectedIndex = -1,
       this.title,
       this.frameCount = 24,
       this.onTap,
-      this.padding});
+      this.padding = const EdgeInsets.symmetric(horizontal: 7)})
+      : super(key: key);
 
   @override
   _BrnAppraiseEmojiItemState createState() => _BrnAppraiseEmojiItemState();
@@ -53,11 +55,11 @@ class BrnAppraiseEmojiItem extends StatefulWidget {
 
 class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
-  int _selectedIndex;
+  int _selectedIndex = -1;
 
-  GifImage _gif;
+  late GifImage _gif;
 
   @override
   void initState() {
@@ -94,7 +96,7 @@ class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Padding(
-        padding: widget.padding ?? EdgeInsets.only(left: 7, right: 7),
+        padding: widget.padding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -118,7 +120,7 @@ class _BrnAppraiseEmojiItemState extends State<BrnAppraiseEmojiItem>
       onTap: () {
         if (_selectedIndex != widget.index) {
           if (widget.onTap != null) {
-            widget.onTap(widget.index);
+            widget.onTap!(widget.index);
           }
           _selectedIndex = widget.index;
           _reset();

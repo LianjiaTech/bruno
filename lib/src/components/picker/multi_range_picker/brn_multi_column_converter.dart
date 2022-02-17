@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/picker/multi_range_picker/bean/brn_multi_column_picker_entity.dart';
 import 'package:bruno/src/components/picker/multi_range_picker/brn_multi_column_picker_util.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -13,7 +15,7 @@ class BrnMultiRangeSelConverter {
   }
 
   Map<String, List<BrnPickerEntity>> getSelectionParams(
-      List<BrnPickerEntity> selectedResults,
+      List<BrnPickerEntity>? selectedResults,
       {bool includeUnlimitSelection = false}) {
     Map<String, List<BrnPickerEntity>> params = Map();
     if (selectedResults == null) return params;
@@ -26,19 +28,19 @@ class BrnMultiRangeSelConverter {
       } else if (levelCount == 2) {
         params.addAll(getCurrentSelectionEntityParams(menuItemEntity,
             includeUnlimitSelection: includeUnlimitSelection));
-        menuItemEntity.children?.forEach((firstLevelItem) => mergeParams(
+        menuItemEntity.children.forEach((firstLevelItem) => mergeParams(
             params,
             getCurrentSelectionEntityParams(firstLevelItem,
                 includeUnlimitSelection: includeUnlimitSelection)));
       } else if (levelCount == 3) {
         params.addAll(getCurrentSelectionEntityParams(menuItemEntity,
             includeUnlimitSelection: includeUnlimitSelection));
-        menuItemEntity.children?.forEach((firstLevelItem) {
+        menuItemEntity.children.forEach((firstLevelItem) {
           mergeParams(
               params,
               getCurrentSelectionEntityParams(firstLevelItem,
                   includeUnlimitSelection: includeUnlimitSelection));
-          firstLevelItem.children?.forEach((secondLevelItem) {
+          firstLevelItem.children.forEach((secondLevelItem) {
             mergeParams(
                 params,
                 getCurrentSelectionEntityParams(secondLevelItem,
@@ -50,14 +52,14 @@ class BrnMultiRangeSelConverter {
     return params;
   }
 
-  Map<String, List<BrnPickerEntity>> mergeParams(
-      Map<String, List<BrnPickerEntity>> params,
-      Map<String, List<BrnPickerEntity>> selectedParams) {
-    selectedParams?.forEach((String key, List<BrnPickerEntity> value) {
-      if (params != null && params.containsKey(key)) {
+  Map<String?, List<BrnPickerEntity>> mergeParams(
+      Map<String?, List<BrnPickerEntity>> params,
+      Map<String?, List<BrnPickerEntity>> selectedParams) {
+    selectedParams.forEach((String? key, List<BrnPickerEntity> value) {
+      if ( params.containsKey(key)) {
         params[key]?.addAll(value);
       } else {
-        params?.addAll(selectedParams);
+        params.addAll(selectedParams);
       }
     });
     return params;
@@ -67,20 +69,19 @@ class BrnMultiRangeSelConverter {
       BrnPickerEntity selectionEntity,
       {bool includeUnlimitSelection = false}) {
     Map<String, List<BrnPickerEntity>> params = Map();
-    String parentKey = selectionEntity.key;
+    String parentKey = selectionEntity.key ?? '';
     var selectedEntity = selectionEntity.children
-        ?.where((BrnPickerEntity f) => f.isSelected)
-        ?.where((BrnPickerEntity f) {
+        .where((BrnPickerEntity f) => f.isSelected)
+        .where((BrnPickerEntity f) {
           if (includeUnlimitSelection) {
             return true;
           } else {
             return !BrunoTools.isEmpty(f.value);
           }
         })
-        ?.map((BrnPickerEntity f) => f)
-        ?.toList();
-    List<BrnPickerEntity> selectedParams =
-        selectedEntity == null ? [] : selectedEntity;
+        .map((BrnPickerEntity f) => f)
+        .toList();
+    List<BrnPickerEntity> selectedParams = selectedEntity;
     if (!BrunoTools.isEmpty(selectedParams) && !BrunoTools.isEmpty(parentKey)) {
       params[parentKey] = selectedParams;
     }

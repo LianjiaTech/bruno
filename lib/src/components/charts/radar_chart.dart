@@ -44,7 +44,7 @@ class BrnRadarChart extends MultiChildRenderObjectWidget {
   final double rotateAngle;
 
   ///每个标注文案的偏移量，必须和 [sidesCount] 保持一致。
-  final List<Offset> offset;
+  final List<Offset>? offset;
 
   ///The default preset chart styles ordered in priority of usage.
   static const List<BrnRadarChartStyle> defaultRadarChartStyles = [
@@ -87,9 +87,9 @@ class BrnRadarChart extends MultiChildRenderObjectWidget {
   ];
 
   BrnRadarChart({
-    Key key,
-    @required this.provider,
-    @required MarkerBuilder builder,
+    Key? key,
+    required this.provider,
+    required MarkerBuilder builder,
     this.radius = 50,
     this.levelCount = 3,
     this.maxValue = 10,
@@ -101,14 +101,12 @@ class BrnRadarChart extends MultiChildRenderObjectWidget {
     this.crossedAxisLine = false,
     this.animateProgress = 1.0,
     this.rotateAngle = 0,
-  })  : assert(sidesCount != null),
-        assert(minValue < maxValue),
+  })  : assert(minValue < maxValue),
         assert(sidesCount >= 3),
-        assert(provider != null && builder != null),
         super(
             key: key,
             children: () {
-              List<Widget> children = List();
+              List<Widget> children = [];
               for (int i = 0; i < sidesCount; i++) {
                 children.add(builder(i));
               }
@@ -119,7 +117,7 @@ class BrnRadarChart extends MultiChildRenderObjectWidget {
   ///The [data] length should be less than the [defaultRadarChartStyles]'s length
   ///or you should use the default constructor.
   BrnRadarChart.defaultStyle({
-    Key key,
+    Key? key,
     this.radius = 50,
     this.levelCount = 3,
     this.maxValue = 10,
@@ -129,11 +127,9 @@ class BrnRadarChart extends MultiChildRenderObjectWidget {
     this.rotateAngle = 0,
     this.crossedAxisLine = false,
     this.offset,
-    @required List<String> tagNames,
-    @required List<List<double>> data,
-  })  : assert(sidesCount != null && sidesCount >= 3),
-        assert(tagNames != null),
-        assert(data != null),
+    required List<String> tagNames,
+    required List<List<double>> data,
+  })  : assert(sidesCount >= 3),
         assert(tagNames.length == sidesCount),
         assert(minValue < maxValue),
         assert(data.length <= defaultRadarChartStyles.length),
@@ -143,7 +139,7 @@ class BrnRadarChart extends MultiChildRenderObjectWidget {
         super(
             key: key,
             children: () {
-              List<Widget> children = List();
+              List<Widget> children = [];
               for (int i = 0; i < sidesCount; i++) {
                 children.add(Container(
                   constraints: BoxConstraints(
@@ -224,17 +220,17 @@ class RenderRadarChart extends RenderBox
   BrnRadarChartDataProvider _dataProvider;
 
   RenderRadarChart({
-    double radius,
-    double markerMargin,
-    int sideCount,
-    double maxValue,
-    double rotateAngle,
-    List<Offset> offset,
-    BrnRadarChartDataProvider provider,
-    int levelCount,
-    Color axisLineColor,
-    bool crossedAxisLine,
-    double animateProgress,
+    required double radius,
+    required double markerMargin,
+    required int sideCount,
+    required double maxValue,
+    required double rotateAngle,
+    required List<Offset> offset,
+    required BrnRadarChartDataProvider provider,
+    required int levelCount,
+    required Color axisLineColor,
+    required bool crossedAxisLine,
+    required double animateProgress,
   })  : _radius = radius,
         _markerMargin = markerMargin,
         _maxValue = maxValue,
@@ -351,11 +347,12 @@ class RenderRadarChart extends RenderBox
       double mainChildSizeGetter(RenderBox child)) {
     double x;
     double maxX = 0, minX = 0;
-    RenderBox child = firstChild;
+    RenderBox? child = firstChild;
     //多边形的中心为原点
     int i = 0;
     while (child != null) {
-      final BrnRadarChartParentData childParentData = child.parentData;
+      final BrnRadarChartParentData childParentData =
+          child.parentData as BrnRadarChartParentData;
       double angle = (2 * pi * i / _sideCount + _rotateAngle) % (2 * pi);
       x = _radius * sin(angle);
       if (x >= 0) {
@@ -385,11 +382,12 @@ class RenderRadarChart extends RenderBox
       double mainChildSizeGetter(RenderBox child)) {
     double y;
     double maxY = 0, minY = 0;
-    RenderBox child = firstChild;
+    RenderBox? child = firstChild;
     //多边形的中心为原点
     int i = 0;
     while (child != null) {
-      final BrnRadarChartParentData childParentData = child.parentData;
+      final BrnRadarChartParentData childParentData =
+          child.parentData as BrnRadarChartParentData;
       double angle = (2 * pi * i / _sideCount + _rotateAngle) % (2 * pi);
       y = _radius * cos(angle);
 
@@ -443,7 +441,7 @@ class RenderRadarChart extends RenderBox
   }
 
   @override
-  double computeDistanceToActualBaseline(TextBaseline baseline) {
+  double? computeDistanceToActualBaseline(TextBaseline baseline) {
     return defaultComputeDistanceToHighestActualBaseline(baseline);
   }
 
@@ -453,11 +451,12 @@ class RenderRadarChart extends RenderBox
     double x, y;
     double maxX = 0, minX = 0;
     double maxY = 0, minY = 0;
-    RenderBox child = firstChild;
+    RenderBox? child = firstChild;
     //多边形的中心为原点
     int i = 0;
     while (child != null) {
-      final BrnRadarChartParentData childParentData = child.parentData;
+      final BrnRadarChartParentData childParentData =
+          child.parentData as BrnRadarChartParentData;
       BoxConstraints childConstraints = constraints.loosen();
       child.layout(childConstraints, parentUsesSize: true);
       final Size childSize = child.size;
@@ -526,7 +525,8 @@ class RenderRadarChart extends RenderBox
       double angle = (2 * pi * i / _sideCount + _rotateAngle) % (2 * pi);
       double x = _radius * sin(angle); //在以多边形中心为原点的坐标
       double y = _radius * cos(angle); //在以多边形中心为原点的坐标
-      final BrnRadarChartParentData childParentData = child.parentData;
+      final BrnRadarChartParentData childParentData =
+          child.parentData as BrnRadarChartParentData;
 
       //转换到左上角为原点中的坐标
       if (y >= 0) {
@@ -575,7 +575,7 @@ class RenderRadarChart extends RenderBox
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {Offset position}) {
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
     return defaultHitTestChildren(result, position: position);
   }
 
@@ -592,8 +592,8 @@ class RenderRadarChart extends RenderBox
     double translateX = rect.width / 2;
     double translateY = rect.height / 2;
     //translate the canvas's top left to widget'center since flutter canvas rotate pivot can only be the top left.
-    canvas.translate(translateX + _centerOffset?.dx ?? 0,
-        translateY + _centerOffset?.dy ?? 0);
+    canvas.translate(
+        translateX + _centerOffset.dx, translateY + _centerOffset.dy);
     canvas.rotate(_rotateAngle);
     _drawBackground(canvas, rect.size, translateX, translateY);
     _drawRadar(canvas);
@@ -662,18 +662,13 @@ class RenderRadarChart extends RenderBox
 
   void _drawRadar(Canvas canvas) {
     int radarCount = _dataProvider.getRadarCount();
-    assert(radarCount != null);
     for (int radarIndex = 0; radarIndex < radarCount; radarIndex++) {
       BrnRadarChartStyle radarStyle = _dataProvider.getRadarStyle(radarIndex);
-      assert(radarStyle != null);
       _radarPainter
         ..isAntiAlias = true
-        ..color = radarStyle?.strokeColor
-        ..strokeWidth = radarStyle?.strokeWidth;
+        ..color = radarStyle.strokeColor
+        ..strokeWidth = radarStyle.strokeWidth;
       List<double> values = _dataProvider.getRadarValues(radarIndex);
-      if (values == null) {
-        continue;
-      }
       Path path = Path();
       double percent = values[0] / _maxValue;
       double angle = 0;
@@ -683,7 +678,7 @@ class RenderRadarChart extends RenderBox
         percent = 0;
       }
       double x, y;
-      List<Offset> dotPosition = List();
+      List<Offset> dotPosition = [];
       x = _radius * percent * sin(angle) * _animateProgress;
       y = -_radius * percent * cos(angle) * _animateProgress;
       dotPosition.add(Offset(x, y));
@@ -708,10 +703,10 @@ class RenderRadarChart extends RenderBox
         for (int i = 0; i < dotPosition.length; i++) {
           _radarPainter.color = Colors.white;
           canvas.drawCircle(
-              dotPosition[i], radarStyle.dotRadius + 2 ?? 2, _radarPainter);
+              dotPosition[i], radarStyle.dotRadius + 2, _radarPainter);
           _radarPainter.color = radarStyle.dotColor ?? radarStyle.strokeColor;
           canvas.drawCircle(
-              dotPosition[i], radarStyle.dotRadius ?? 2, _radarPainter);
+              dotPosition[i], radarStyle.dotRadius, _radarPainter);
         }
       }
     }
@@ -774,14 +769,14 @@ class BrnRadarChartStyle {
   final bool dotted;
 
   ///The color of the dotted vertexes.
-  final Color dotColor;
+  final Color? dotColor;
 
   ///The radius of the dotted circle.
   final double dotRadius;
 
   const BrnRadarChartStyle({
-    @required this.strokeColor,
-    @required this.areaColor,
+    required this.strokeColor,
+    required this.areaColor,
     this.strokeWidth = 3,
     this.dotted = false,
     this.dotColor,
@@ -796,9 +791,7 @@ class DefaultRadarProvider extends BrnRadarChartDataProvider {
   DefaultRadarProvider(this.dataList);
 
   @override
-  int getRadarCount() {
-    return dataList?.length ?? 0;
-  }
+  int getRadarCount() => dataList.length;
 
   @override
   BrnRadarChartStyle getRadarStyle(int radarIndex) {

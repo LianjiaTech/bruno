@@ -31,17 +31,17 @@ class BrnGalleryDetailPage extends StatefulWidget {
   final bool fromSummary;
 
   /// 右上角自定义设置按钮，若为空，则展示 "全部图片"
-  final Widget Function(int groupId, int indexId) detailRightAction;
+  final Widget Function(int? groupId, int? indexId)? detailRightAction;
 
   /// 控制图片查看刷新
-  final BrnGalleryController controller;
+  final BrnGalleryController? controller;
 
   /// 主题配置
-  BrnGalleryDetailConfig themeData;
+  BrnGalleryDetailConfig? themeData;
 
   BrnGalleryDetailPage(
-      {Key key,
-      @required this.allConfig,
+      {Key? key,
+      required this.allConfig,
       this.initGroupId = 0,
       this.initIndexId = 0,
       this.fromSummary = false,
@@ -51,7 +51,7 @@ class BrnGalleryDetailPage extends StatefulWidget {
       : super(key: key) {
     this.themeData ??= BrnGalleryDetailConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .galleryDetailConfig
         .merge(this.themeData);
   }
@@ -63,24 +63,24 @@ class BrnGalleryDetailPage extends StatefulWidget {
 class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     with TickerProviderStateMixin {
   /// title 关联的通知，因为 title 与图片所处的位置关联
-  ValueNotifier<String> _titleNotifier;
-  TabController _tabController;
-  List<BrnBasicGroupConfig> _allConfig = List();
-  int _curTab;
-  int _curIndex;
+  ValueNotifier<String>? _titleNotifier;
+  TabController? _tabController;
+  List<BrnBasicGroupConfig> _allConfig = <BrnBasicGroupConfig>[];
+  int? _curTab;
+  int? _curIndex;
   bool _assorted = false;
-  List<Widget> _columnViews = List();
-  List<BadgeTab> _tabs = List();
+  List<Widget> _columnViews = <Widget>[];
+  List<BadgeTab> _tabs = <BadgeTab>[];
   String _groupTitle = "";
   String _indexTitle = "";
-  PageController _pageController;
-  List<Widget> _pageViews = List();
+  PageController? _pageController;
+  List<Widget> _pageViews = <Widget>[];
   Map _groupStartPosition = Map();
   Map _groupCount = Map();
   int _allCount = 0;
-  BrnAppBarConfig _appBarConfig;
+  BrnAppBarConfig? _appBarConfig;
 
-  BrnTabBarConfig _tabBarConfig;
+  late BrnTabBarConfig _tabBarConfig;
 
   @override
   void initState() {
@@ -88,27 +88,27 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
 
     // 打平 appbar
     _appBarConfig = BrnThemeConfigurator.instance
-        .getConfig(configId: widget.themeData.configId)
+        .getConfig(configId: widget.themeData!.configId)
         .appBarConfig
         .merge(BrnAppBarConfig(
-            titleStyle: widget.themeData.appbarTitleStyle,
-            backgroundColor: widget.themeData.appbarBackgroundColor,
-            actionsStyle: widget.themeData.appbarActionStyle));
+            titleStyle: widget.themeData!.appbarTitleStyle,
+            backgroundColor: widget.themeData!.appbarBackgroundColor,
+            actionsStyle: widget.themeData!.appbarActionStyle));
 
     // 打平 tabBar
     _tabBarConfig = BrnThemeConfigurator.instance
-        .getConfig(configId: widget.themeData.configId)
+        .getConfig(configId: widget.themeData!.configId)
         .tabBarConfig
         .merge(BrnTabBarConfig(
-          unselectedLabelStyle: widget.themeData.tabBarUnSelectedLabelStyle,
-          labelStyle: widget.themeData.tabBarLabelStyle,
-          backgroundColor: widget.themeData.tabBarBackgroundColor,
+          unselectedLabelStyle: widget.themeData!.tabBarUnSelectedLabelStyle,
+          labelStyle: widget.themeData!.tabBarLabelStyle,
+          backgroundColor: widget.themeData!.tabBarBackgroundColor,
         ));
 
     _curIndex = widget.initIndexId;
     _curTab = widget.initGroupId;
     if (widget.controller != null) {
-      widget.controller.addListener(_refreshByController);
+      widget.controller!.addListener(_refreshByController);
     }
   }
 
@@ -118,31 +118,31 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     if (widget.controller != null &&
         oldWidget.controller != widget.controller) {
       oldWidget.controller?.removeListener(_refreshByController);
-      widget.controller.addListener(_refreshByController);
+      widget.controller!.addListener(_refreshByController);
     }
   }
 
   void _refreshByController() {
     if (mounted) {
-      _curIndex = widget.controller.indexId;
-      _curTab = widget.controller.groupId;
+      _curIndex = widget.controller!.indexId;
+      _curTab = widget.controller!.groupId;
       setState(() {});
     }
   }
 
   /// 根据groupIndex和index查page的位置
-  int _getPagePosition(int groupIndex, int index) {
+  int? _getPagePosition(int? groupIndex, int? index) {
     return _groupStartPosition[groupIndex] + index;
   }
 
   /// 根据page的位置反查groupIndex和index
   List<int> _getGroupIndexAndIndex(int pagePosition) {
-    List<int> result = List();
+    List<int> result = <int>[];
     MapEntry entry = _groupStartPosition.entries.toList().firstWhere((entry) {
       return (entry.value > pagePosition);
     });
     result.add(entry.key - 1);
-    result.add(pagePosition - (_groupStartPosition[entry.key - 1]));
+    result.add(pagePosition - (_groupStartPosition[entry.key - 1]) as int);
     return result;
   }
 
@@ -152,13 +152,12 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     _columnViews.clear();
     _allConfig.clear();
     // 过滤 config 中内容为空的选项
-    if (widget.allConfig != null) {
-      widget.allConfig.forEach((e) {
-        if (e.configList != null && e.configList.isNotEmpty) {
-          _allConfig.add(e);
-        }
-      });
-    }
+    widget.allConfig.forEach((e) {
+      if (e.configList != null && e.configList!.isNotEmpty) {
+        _allConfig.add(e);
+      }
+    });
+
     _allCount = 0;
     _groupCount.clear();
     _groupStartPosition.clear();
@@ -168,57 +167,55 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
 
   void _buildViews() {
     _reset();
-    _titleNotifier = ValueNotifier<String>(null);
+    _titleNotifier = ValueNotifier<String>('');
     _tabController = TabController(
-        length: _allConfig.length, vsync: this, initialIndex: _curTab)
+        length: _allConfig.length, vsync: this, initialIndex: _curTab!)
       ..addListener(() {
-        _curTab = _tabController.index;
+        _curTab = _tabController!.index;
       });
 
-    if (_allConfig != null) {
-      int i = 0;
-      for (; i < _allConfig.length; i++) {
-        _groupStartPosition[i] = _allCount;
-        _allCount += _allConfig[i].configList.length;
-        _groupCount[i] = _allConfig[i].configList.length;
-      }
+    int i = 0;
+    for (; i < _allConfig.length; i++) {
       _groupStartPosition[i] = _allCount;
+      _allCount += _allConfig[i].configList!.length;
+      _groupCount[i] = _allConfig[i].configList!.length;
     }
+    _groupStartPosition[i] = _allCount;
+
     _pageController =
-        PageController(initialPage: _getPagePosition(_curTab, _curIndex));
-    if (_allConfig != null) {
-      _assorted = _allConfig.length > 1;
+        PageController(initialPage: _getPagePosition(_curTab, _curIndex)!);
+    _assorted = _allConfig.length > 1;
 
-      _allConfig.forEach((item) => _tabs.add(
-          BadgeTab(text: '${item.title ?? ""}(${item.configList.length})')));
-      if (_allConfig.length > 1)
-        _columnViews.add(BrnTabBar(
-          backgroundcolor: _tabBarConfig.backgroundColor,
-          unselectedLabelStyle:
-              _tabBarConfig.unselectedLabelStyle?.generateTextStyle(),
-          unselectedLabelColor: _tabBarConfig.unselectedLabelStyle?.color,
-          labelColor: _tabBarConfig.labelStyle?.color,
-          indicatorColor: _tabBarConfig.labelStyle?.color,
-          labelStyle: _tabBarConfig.labelStyle?.generateTextStyle(),
-          tabs: _tabs,
-          controller: _tabController,
-          onTap: (state, index) {
-            _pageController.animateToPage(_getPagePosition(index, 0),
-                duration: Duration(microseconds: 100), curve: Curves.linear);
-          },
-        ));
+    _allConfig.forEach((item) => _tabs.add(
+        BadgeTab(text: '${item.title ?? ""}(${item.configList!.length})')));
+    if (_allConfig.length > 1)
+      _columnViews.add(BrnTabBar(
+        backgroundcolor: _tabBarConfig.backgroundColor,
+        unselectedLabelStyle:
+            _tabBarConfig.unselectedLabelStyle.generateTextStyle(),
+        unselectedLabelColor: _tabBarConfig.unselectedLabelStyle.color,
+        labelColor: _tabBarConfig.labelStyle.color,
+        indicatorColor: _tabBarConfig.labelStyle.color,
+        labelStyle: _tabBarConfig.labelStyle.generateTextStyle(),
+        tabs: _tabs,
+        controller: _tabController,
+        onTap: (state, index) {
+          _pageController!.animateToPage(_getPagePosition(index, 0)!,
+              duration: Duration(microseconds: 100), curve: Curves.linear);
+        },
+      ));
 
-      for (int i = 0; i < _allConfig.length; i++) {
-        for (int j = 0; j < _allConfig[i].configList.length; j++) {
-          _pageViews.add(_allConfig[i]
-              .configList[j]
-              .buildDetailWidget(context, _allConfig, i, j));
-        }
+    for (int i = 0; i < _allConfig.length; i++) {
+      for (int j = 0; j < _allConfig[i].configList!.length; j++) {
+        _pageViews.add(_allConfig[i]
+            .configList![j]
+            .buildDetailWidget(context, _allConfig, i, j));
       }
     }
-    _groupTitle = _allConfig[_curTab].title ?? "";
-    _indexTitle = "${_curIndex + 1}/${_allConfig[_curTab].configList.length}";
-    _titleNotifier.value =
+    _groupTitle = _allConfig[_curTab!].title ?? "";
+    _indexTitle =
+        "${_curIndex! + 1}/${_allConfig[_curTab!].configList!.length}";
+    _titleNotifier?.value =
         _assorted ? "$_groupTitle($_indexTitle)" : "$_indexTitle";
 
     _columnViews.add(Expanded(
@@ -233,7 +230,7 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     ));
   }
 
-  Future<void> _moveToIndex(index) {
+  Future<void>? _moveToIndex(index) {
     // 改变 title
     List<int> pos = _getGroupIndexAndIndex(index);
     _indexTitle = "${pos[1] + 1}/${_groupCount[pos[0]]}";
@@ -242,9 +239,9 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     // 处理是是否需要切换 tab
     if (_curTab != pos[0]) {
       _curTab = pos[0];
-      _tabController.animateTo(pos[0]);
+      _tabController!.animateTo(pos[0]);
     }
-    _titleNotifier.value =
+    _titleNotifier?.value =
         _assorted ? "$_groupTitle($_indexTitle)" : "$_indexTitle";
     return null;
   }
@@ -255,24 +252,24 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     return Scaffold(
       key: GlobalKey(),
       appBar: BrnAppBar(
-        brightness: widget.themeData.appbarBrightness,
-        backgroundColor: _appBarConfig.backgroundColor,
+        brightness: widget.themeData!.appbarBrightness,
+        backgroundColor: _appBarConfig!.backgroundColor,
         showDefaultBottom: false,
         themeData: _appBarConfig,
         title: ValueListenableBuilder(
-          valueListenable: _titleNotifier,
-          builder: (c, v, _) {
+          valueListenable: _titleNotifier!,
+          builder: (c, String v, _) {
             return Text(
-              v ?? "",
-              style: _appBarConfig.titleStyle?.generateTextStyle(),
+              v,
+              style: _appBarConfig!.titleStyle.generateTextStyle(),
             );
           },
         ),
         actions: widget.detailRightAction != null
             ? ValueListenableBuilder(
                 builder: (c, v, _) =>
-                    widget.detailRightAction(_curTab, _curIndex),
-                valueListenable: _titleNotifier,
+                    widget.detailRightAction!(_curTab, _curIndex),
+                valueListenable: _titleNotifier!,
               )
             : BrnTextAction(
                 '全部图片',
@@ -289,10 +286,10 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
                         fromDetail: true,
                       );
                     })).then((result) {
-                      if (result is List && result != null) {
-                        _tabController.animateTo(result[0]);
-                        _pageController
-                            .jumpToPage(_getPagePosition(result[0], result[1]));
+                      if (result is List) {
+                        _tabController!.animateTo(result[0]);
+                        _pageController!.jumpToPage(
+                            _getPagePosition(result[0], result[1])!);
                       }
                     });
                   }
@@ -304,10 +301,10 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
   }
 
   Widget _body() {
-    if (_allConfig == null || _allConfig.isEmpty) return Row();
+    if (_allConfig.isEmpty) return Row();
     return NotificationListener(
       child: Container(
-        color: widget.themeData.pageBackgroundColor,
+        color: widget.themeData!.pageBackgroundColor,
         child: Column(
           children: _columnViews,
         ),

@@ -25,10 +25,10 @@ abstract class BaseAZListViewPage extends StatefulWidget {
   Widget buildItemWidget(ISuspensionBean item);
 
   //悬浮的widget
-  Widget buildSuspensionWidget(String tag);
+  Widget buildSuspensionWidget(String? tag);
 
   List<ISuspensionBean> getTopData() {
-    return List<ISuspensionBean>();
+    return <ISuspensionBean>[];
   }
 
   //item的高度 默认50
@@ -39,16 +39,19 @@ abstract class BaseAZListViewPage extends StatefulWidget {
 
   //每个modal 对应的 tag，默认是拼音来设置
   String createTagByModal(ISuspensionBean bean) {
-    String pinyin = PinyinHelper.getPinyinE(bean.name);
-    return pinyin.substring(0, 1).toUpperCase();
+    if (bean.name.isNotEmpty) {
+      String pinyin = PinyinHelper.getPinyinE(bean.name);
+      return pinyin.substring(0, 1).toUpperCase();
+    }
+    return "";
   }
 }
 
 class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
-  String suspensionTag = "";
+  String? suspensionTag = "";
 
-  List<ISuspensionBean> _dataList = List();
-  StreamController<String> streamController;
+  List<ISuspensionBean> _dataList = [];
+  late StreamController<String> streamController;
 
   @override
   void initState() {
@@ -70,14 +73,15 @@ class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
             if (snapShot.connectionState == ConnectionState.done) {
               if (snapShot.hasError) {
                 return BrnAbnormalStateUtils.getEmptyWidgetByState(
-                    context, AbnormalState.networkConnectError, (index) {
+                    context, AbnormalState.networkConnectError,
+                    action: (index) {
                   setState(() {});
                 });
               } else {
                 return buildContentBody(snapShot.data);
               }
             }
-            return null;
+            return Container();
           },
         ));
   }
@@ -96,7 +100,7 @@ class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
 
     if (_dataList.isEmpty && top.isEmpty) {
       return BrnAbnormalStateUtils.getEmptyWidgetByState(
-          context, AbnormalState.noData, (index) {});
+          context, AbnormalState.noData);
     }
 
     suspensionTag = top.isEmpty ? _dataList[0].tag : top[0].tag;
@@ -107,7 +111,7 @@ class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
             child: StreamBuilder(
           initialData: suspensionTag,
           stream: streamController.stream,
-          builder: (context, snapShot) {
+          builder: (context, AsyncSnapshot snapShot) {
             return AzListView(
               data: _dataList,
               topData: top,
@@ -126,14 +130,14 @@ class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
     );
   }
 
-  Widget _buildSusWidget(String susTag) {
+  Widget _buildSusWidget(String? susTag) {
     return Container(
       height: widget.getSuspensionHeight(),
       child: widget.buildSuspensionWidget(susTag),
     );
   }
 
-  void _handleList(List<ISuspensionBean> list) {
+  void _handleList(List<ISuspensionBean>? list) {
     if (list == null || list.isEmpty) return;
     for (int i = 0, length = list.length; i < length; i++) {
       String tag = widget.createTagByModal(list[i]);
@@ -152,7 +156,7 @@ class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
   }
 
   Widget _buildListItem(ISuspensionBean model) {
-    String susTag = model.tag;
+    String? susTag = model.tag;
     return Column(
       children: <Widget>[
         //当offstage为true，当前控件不会被绘制在屏幕上

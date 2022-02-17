@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_picker_cliprrect.dart';
@@ -23,7 +25,7 @@ typedef void BrnOnEntityTap(
 /// [secondIndex] 第二列被选中数据的位置
 /// [thirdIndex] 第三列被选中数据的位置
 typedef void BrnOnPickerConfirm(Map<String, List<BrnPickerEntity>> results,
-    int firstIndex, int secondIndex, int thirdIndex);
+    int? firstIndex, int? secondIndex, int? thirdIndex);
 
 /// 从屏幕下方弹起的多级筛选选择器
 /// 可设置筛项的层级、多选、单选等筛选相关功能
@@ -33,7 +35,7 @@ class BrnMultiColumnPicker extends StatefulWidget {
   final BrnPickerEntity entity;
 
   /// 初始化时的选中选项
-  final List<int> defaultFocusedIndexes;
+  final List<int>? defaultFocusedIndexes;
 
   /// Picker展示最大高度，默认 280
   final double maxHeight;
@@ -46,23 +48,23 @@ class BrnMultiColumnPicker extends StatefulWidget {
   final bool isIncludeUnLimit;
 
   /// 选择数据后回调函数
-  final BrnOnPickerConfirm onConfirm;
+  final BrnOnPickerConfirm? onConfirm;
 
   /// 选择项目后回调函数
-  final BrnOnEntityTap onEntityTap;
+  final BrnOnEntityTap? onEntityTap;
 
   /// 当前选项是否可以被选中:返回 true 可以被选中 false 不可以被选中
-  final BrnOnSelectEntityInterceptor canSelectEntryInterceptor;
+  final BrnOnSelectEntityInterceptor? canSelectEntryInterceptor;
 
   /// 主题定制，只有 Picker Title 部分样式生效
-  BrnPickerConfig themeData;
+  BrnPickerConfig? themeData;
 
   /// Picker Title 数据配置
   final BrnPickerTitleConfig pickerTitleConfig;
 
   BrnMultiColumnPicker(
-      {Key key,
-      @required this.entity,
+      {Key? key,
+      required this.entity,
       this.maxHeight = 280.0,
       this.showSelectedCount = false,
       this.isIncludeUnLimit = false,
@@ -75,7 +77,7 @@ class BrnMultiColumnPicker extends StatefulWidget {
       : super(key: key) {
     this.themeData ??= BrnPickerConfig();
     this.themeData = this
-        .themeData
+        .themeData!
         .merge(BrnThemeConfigurator.instance.getConfig().pickerConfig);
   }
 
@@ -86,23 +88,23 @@ class BrnMultiColumnPicker extends StatefulWidget {
 class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
   static const BrnMultiRangeSelConverter defaultConverter =
       const BrnMultiRangeSelConverter();
-  List<BrnPickerEntity> _firstList = List();
-  List<BrnPickerEntity> _secondList = List();
-  List<BrnPickerEntity> _thirdList = List();
-  List<BrnPickerEntity> _originalSelectedItemsList = List();
-  int _firstIndex;
-  int _secondIndex;
-  int _thirdIndex;
+  List<BrnPickerEntity> _firstList = [];
+  List<BrnPickerEntity>? _secondList = [];
+  List<BrnPickerEntity>? _thirdList = [];
+  List<BrnPickerEntity> _originalSelectedItemsList = [];
+  int? _firstIndex;
+  int? _secondIndex;
+  int? _thirdIndex;
 
   int get _columnCount {
     return BrnMultiColumnPickerUtil.getTotalColumnCount(widget.entity);
   }
 
   /// 未选中状态颜色，默认 Color(0Xff4a4e59)
-  Color _normalColor;
+  late Color _normalColor;
 
   /// 选中状态颜色，默认 Color(0xff41bc6a)
-  Color _selectedColor;
+  late Color _selectedColor;
 
   @override
   void initState() {
@@ -121,8 +123,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
         height: widget.maxHeight + 48,
         child: BrnPickerClipRRect(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(widget.themeData.cornerRadius),
-            topRight: Radius.circular(widget.themeData.cornerRadius),
+            topLeft: Radius.circular(widget.themeData!.cornerRadius),
+            topRight: Radius.circular(widget.themeData!.cornerRadius),
           ),
           child: Column(
             children: _configWidgets(),
@@ -133,7 +135,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
   //pragma mark -- config widgets
 
   List<Widget> _configWidgets() {
-    List<Widget> widgetList = List();
+    List<Widget> widgetList = [];
     widgetList.add(
       Offstage(
         offstage: !widget.pickerTitleConfig.showTitle,
@@ -157,7 +159,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
   }
 
   Widget _listWidget() {
-    List<Widget> widgets = List();
+    List<Widget> widgets = [];
 
     if (!BrunoTools.isEmpty(_firstList) &&
         BrunoTools.isEmpty(_secondList) &&
@@ -178,11 +180,11 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
               (int listIndex, int index, BrnPickerEntity entity) {
             _setFirstIndex(index);
             if (_columnCount == 1 &&
-                widget.entity.filterType == PickerFilterType.Radio) {
+                widget.entity.filterType == PickerFilterType.radio) {
               _confirmButtonClickEvent();
             }
             if (widget.onEntityTap != null) {
-              widget.onEntityTap(0, index, entity);
+              widget.onEntityTap!(0, index, entity);
             }
           }));
     } else if (!BrunoTools.isEmpty(_firstList) &&
@@ -202,7 +204,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
               (int listIndex, int index, BrnPickerEntity entity) {
             _setFirstIndex(index);
             if (widget.onEntityTap != null) {
-              widget.onEntityTap(0, index, entity);
+              widget.onEntityTap!(0, index, entity);
             }
           }));
 
@@ -219,7 +221,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
               (int listIndex, int index, BrnPickerEntity entity) {
             _setSecondIndex(index);
             if (widget.onEntityTap != null) {
-              widget.onEntityTap(1, index, entity);
+              widget.onEntityTap!(1, index, entity);
             }
           }));
     } else if (!BrunoTools.isEmpty(_firstList) &&
@@ -239,7 +241,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
               (int listIndex, int index, BrnPickerEntity entity) {
             _setFirstIndex(index);
             if (widget.onEntityTap != null) {
-              widget.onEntityTap(0, index, entity);
+              widget.onEntityTap!(0, index, entity);
             }
           }));
 
@@ -256,7 +258,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
               (int listIndex, int index, BrnPickerEntity entity) {
             _setSecondIndex(index);
             if (widget.onEntityTap != null) {
-              widget.onEntityTap(1, index, entity);
+              widget.onEntityTap!(1, index, entity);
             }
           }));
       widgets.add(BrnMultiColumnListWidget(
@@ -277,7 +279,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
             }
             setState(() {});
             if (widget.onEntityTap != null) {
-              widget.onEntityTap(2, index, entity);
+              widget.onEntityTap!(2, index, entity);
             }
           }));
     }
@@ -302,7 +304,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
       Map<String, List<BrnPickerEntity>> result = defaultConverter
           .convertPickedData([widget.entity],
               includeUnlimitSelection: widget.isIncludeUnLimit);
-      widget.onConfirm(result, _firstIndex, _secondIndex, _thirdIndex);
+      widget.onConfirm!(result, _firstIndex, _secondIndex, _thirdIndex);
     }
   }
 
@@ -341,10 +343,10 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
   // 刷新3个ListView的数据源
   void _refreshDataSource() {
     _firstList = widget.entity.children;
-    if (_firstIndex >= 0 && _firstList.length > _firstIndex) {
-      _secondList = _firstList[_firstIndex].children;
-      if (_secondIndex >= 0 && _secondList.length > _secondIndex) {
-        _thirdList = _secondList[_secondIndex].children;
+    if (_firstIndex! >= 0 && _firstList.length > _firstIndex!) {
+      _secondList = _firstList[_firstIndex!].children;
+      if (_secondIndex! >= 0 && _secondList!.length > _secondIndex!) {
+        _thirdList = _secondList![_secondIndex!].children;
       } else {
         _thirdList = null;
       }
@@ -356,51 +358,41 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
 
   void _configDefaultSelectedData() {
     _firstList = widget.entity.children;
-    //是否已选择的item里面有第一列的
-    if (_firstList == null) {
-      _secondIndex = -1;
-      _secondList = null;
-
-      _thirdIndex = -1;
-      _thirdList = null;
-
-      return;
-    }
     _firstIndex = _getInitialSelectIndex(_firstList);
 
     if (_firstIndex == -1) {
       if (widget.defaultFocusedIndexes != null) {
         for (int index = 0;
-            index < widget.defaultFocusedIndexes.length;
+            index < widget.defaultFocusedIndexes!.length;
             index++) {
-          if (index == 0 && widget.defaultFocusedIndexes[index] >= 0) {
-            _firstIndex = widget.defaultFocusedIndexes[index];
+          if (index == 0 && widget.defaultFocusedIndexes![index] >= 0) {
+            _firstIndex = widget.defaultFocusedIndexes![index];
           }
 
-          if (index == 1 && _firstIndex >= 0) {
-            _secondIndex = widget.defaultFocusedIndexes[index];
+          if (index == 1 && _firstIndex! >= 0) {
+            _secondIndex = widget.defaultFocusedIndexes![index];
           }
 
-          if (index == 2 && _secondIndex >= 0) {
-            _thirdIndex = widget.defaultFocusedIndexes[index];
+          if (index == 2 && _secondIndex! >= 0) {
+            _thirdIndex = widget.defaultFocusedIndexes![index];
           }
         }
       }
 
-      if (_firstIndex >= 0 && _firstIndex < _firstList.length) {
-        _secondList = _firstList[_firstIndex].children;
+      if (_firstIndex! >= 0 && _firstIndex! < _firstList.length) {
+        _secondList = _firstList[_firstIndex!].children;
       }
       if (_secondList == null) {
         _thirdIndex = -1;
         _thirdList = null;
         return;
       }
-      if (_secondIndex >= 0 && _secondIndex < _secondList.length) {
-        _thirdList = _secondList[_secondIndex].children;
+      if (_secondIndex! >= 0 && _secondIndex! < _secondList!.length) {
+        _thirdList = _secondList![_secondIndex!].children;
       }
     } else {
-      if (_firstIndex >= 0 && _firstIndex < _firstList.length) {
-        _secondList = _firstList[_firstIndex].children;
+      if (_firstIndex! >= 0 && _firstIndex! < _firstList.length) {
+        _secondList = _firstList[_firstIndex!].children;
         if (_secondList != null) {
           _secondIndex = _getInitialSelectIndex(_secondList);
         }
@@ -411,8 +403,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
         _thirdList = null;
         return;
       }
-      if (_secondIndex >= 0 && _secondIndex < _secondList.length) {
-        _thirdList = _secondList[_secondIndex].children;
+      if (_secondIndex! >= 0 && _secondIndex! < _secondList!.length) {
+        _thirdList = _secondList![_secondIndex!].children;
         if (_thirdList != null) {
           _thirdIndex = _getInitialSelectIndex(_thirdList);
         }
@@ -423,10 +415,8 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
   //设置数据为未选中状态
   void _resetSelectionDatas(BrnPickerEntity entity) {
     entity.isSelected = false;
-    if (entity.children != null) {
-      for (BrnPickerEntity subEntity in entity.children) {
-        _resetSelectionDatas(subEntity);
-      }
+    for (BrnPickerEntity subEntity in entity.children) {
+      _resetSelectionDatas(subEntity);
     }
   }
 
@@ -435,15 +425,13 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
   void _setFirstIndex(int firstIndex) {
     _firstIndex = firstIndex;
     _secondIndex = -1;
-    if (widget.entity.children.length > _firstIndex) {
+    if (widget.entity.children.length > _firstIndex!) {
       List<BrnPickerEntity> seconds =
-          widget.entity.children[_firstIndex].children;
-      if (seconds != null) {
-        _secondIndex = _getInitialSelectIndex(seconds);
+          widget.entity.children[_firstIndex!].children;
+      _secondIndex = _getInitialSelectIndex(seconds);
 
-        if (_secondIndex >= 0) {
-          _setSecondIndex(_secondIndex);
-        }
+      if (_secondIndex! >= 0) {
+        _setSecondIndex(_secondIndex);
       }
     }
     setState(() {
@@ -451,23 +439,21 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
     });
   }
 
-  void _setSecondIndex(int secondIndex) {
+  void _setSecondIndex(int? secondIndex) {
     _secondIndex = secondIndex;
     _thirdIndex = -1;
     List<BrnPickerEntity> seconds =
-        widget.entity.children[_firstIndex].children;
-    if (seconds.length > _secondIndex) {
-      List<BrnPickerEntity> thirds = seconds[_secondIndex].children;
-      if (thirds != null) {
-        _thirdIndex = _getInitialSelectIndex(thirds);
-      }
+        widget.entity.children[_firstIndex!].children;
+    if (seconds.length > _secondIndex!) {
+      List<BrnPickerEntity> thirds = seconds[_secondIndex!].children;
+      _thirdIndex = _getInitialSelectIndex(thirds);
     }
     setState(() {
       _refreshDataSource();
     });
   }
 
-  int _getInitialSelectIndex(List<BrnPickerEntity> levelList) {
+  int _getInitialSelectIndex(List<BrnPickerEntity>? levelList) {
     int index = -1;
     if (levelList == null || levelList.length == 0) {
       return index;
@@ -486,7 +472,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
         // 例如1级为多选，不应该默认选中2级的不限
         // 否则每选中任意一个1级选项，就默认有了一个2级的不限
         if (entity.isUnLimit() &&
-            entity.parent.filterType != PickerFilterType.Checkbox) {
+            entity.parent!.filterType != PickerFilterType.checkbox) {
           index = levelList.indexOf(entity);
           break;
         }

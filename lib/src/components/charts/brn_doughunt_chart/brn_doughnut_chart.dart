@@ -27,25 +27,25 @@ class BrnDoughnutDataItem {
   double radius = 0;
 
   BrnDoughnutDataItem({
-    this.value,
-    this.title,
+    required this.value,
+    required this.title,
     this.color = Colors.blueAccent,
   });
 }
 
 /// 选中扇形区域后执行的回调
 typedef BrnDoughnutSelectCallback = void Function(
-    BrnDoughnutDataItem selectedItem);
+    BrnDoughnutDataItem? selectedItem);
 
 class BrnDoughnut extends CustomPainter {
   ///圆心位置
-  Offset circleCenter;
+  late Offset circleCenter;
 
   /// 选中的区域
-  final BrnDoughnutDataItem selectedItem;
+  final BrnDoughnutDataItem? selectedItem;
 
   /// 选中区域回调
-  final BrnDoughnutSelectCallback brnDoughnutSelectCallback;
+  final BrnDoughnutSelectCallback? brnDoughnutSelectCallback;
 
   /// 字体大小
   final double fontSize;
@@ -73,7 +73,7 @@ class BrnDoughnut extends CustomPainter {
 
   BrnDoughnut(
       {this.ringWidth = 50,
-      this.data,
+      required this.data,
       this.fontSize = 12,
       this.fontColor = Colors.white,
       this.selectedItem,
@@ -81,10 +81,10 @@ class BrnDoughnut extends CustomPainter {
       this.brnDoughnutSelectCallback}) {
     double lastEndRadius = 0;
     double totalValue = 0;
-    this.data?.forEach((BrnDoughnutDataItem item) {
+    this.data.forEach((BrnDoughnutDataItem item) {
       totalValue += item.value;
     });
-    this.data?.forEach((BrnDoughnutDataItem item) {
+    this.data.forEach((BrnDoughnutDataItem item) {
       item.percentage = item.value / totalValue;
       item.startRadius = lastEndRadius;
       item.radius = 2 * pi * item.percentage;
@@ -108,7 +108,7 @@ class BrnDoughnut extends CustomPainter {
     Offset center = drawArea.center;
     circleCenter = center;
 
-    this.data?.forEach((BrnDoughnutDataItem item) {
+    this.data.forEach((BrnDoughnutDataItem item) {
       // 画扇形
       Paint _paint = Paint()
         ..color = item.color
@@ -124,9 +124,8 @@ class BrnDoughnut extends CustomPainter {
       canvas.drawArc(rect, item.startRadius, item.radius, true, _paint);
 
       // 画文本
-      if (item.title != null &&
-          (this.showTitleWhenSelected == false ||
-              item.startRadius == selectedItem?.startRadius)) {
+      if (this.showTitleWhenSelected == false ||
+          item.startRadius == selectedItem?.startRadius) {
         // 画引线
         Offset indicarorLPoint =
             calcOffsetWith(item.middleRadius, indicatorLCircleRadius);
@@ -228,7 +227,7 @@ class BrnDoughnut extends CustomPainter {
   }
 
   @override
-  bool hitTest(Offset position) {
+  bool? hitTest(Offset position) {
     int length = data.length;
     for (int i = 0; i < length; i++) {
       BrnDoughnutDataItem item = data[i];
@@ -236,7 +235,7 @@ class BrnDoughnut extends CustomPainter {
       if (item.startRadius < radain &&
           radain < (item.startRadius + item.radius)) {
         if (null != brnDoughnutSelectCallback)
-          brnDoughnutSelectCallback(
+          brnDoughnutSelectCallback!(
               item.startRadius == selectedItem?.startRadius ? null : item);
         break;
       }
@@ -268,10 +267,10 @@ class BrnDoughnutChart extends StatelessWidget {
   final double height;
 
   /// 选中的项目
-  final BrnDoughnutDataItem selectedItem;
+  final BrnDoughnutDataItem? selectedItem;
 
   /// 选中项目时候的回掉
-  final BrnDoughnutSelectCallback selectCallback;
+  final BrnDoughnutSelectCallback? selectCallback;
 
   /// 选中时展示文字大小，默认12
   final double fontSize;
@@ -296,7 +295,7 @@ class BrnDoughnutChart extends StatelessWidget {
       this.height = 0,
       this.padding = EdgeInsets.zero,
       this.ringWidth = 50,
-      this.data,
+      required this.data,
       this.fontSize = 12,
       this.fontColor = Colors.white,
       this.selectedItem,

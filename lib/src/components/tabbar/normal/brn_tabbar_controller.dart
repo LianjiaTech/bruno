@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,7 +8,7 @@ class BrnTabbarController extends ChangeNotifier {
   ///
   /// 更多选项距离顶部距离
   ///
-  double top;
+  double? top;
 
   ///
   /// 是否显示更多选项弹框
@@ -16,12 +18,12 @@ class BrnTabbarController extends ChangeNotifier {
   ///
   /// 屏幕高度
   ///
-  double screenHeight;
+  double? screenHeight;
 
   ///
   /// 展开更多图层
   ///
-  OverlayEntry entry;
+  OverlayEntry? entry;
 
   ///
   /// 选中的角标
@@ -45,7 +47,7 @@ class BrnTabbarController extends ChangeNotifier {
 }
 
 class CloseWindowEvent {
-  bool isShow = false;
+  bool? isShow = false;
 
   CloseWindowEvent({this.isShow});
 }
@@ -74,6 +76,6 @@ class BrnCloseWindowController {
   }
 
   void closeMoreWindow() {
-    _closeController?.add(CloseWindowEvent());
+    _closeController.add(CloseWindowEvent());
   }
 }

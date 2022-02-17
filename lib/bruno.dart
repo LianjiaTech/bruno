@@ -74,8 +74,6 @@ export 'src/components/tabbar/normal/brn_tabbar_controller.dart';
 export 'src/components/tabbar/indicator/brn_fixed_underline_decoration.dart';
 export 'src/components/tabbar/indicator/brn_triangle_decoration.dart';
 
-//分割线
-
 //空页面
 export 'src/components/empty/brn_empty_status.dart';
 
@@ -84,7 +82,6 @@ export 'src/components/loading/brn_loading.dart';
 
 //导航栏
 export 'src/components/navbar/brn_appbar.dart';
-export 'src/components/navbar/brn_empty_appbar.dart';
 
 //搜索bar
 export 'src/components/navbar/brn_search_bar.dart';
@@ -125,9 +122,9 @@ export 'src/components/form/items/general/brn_title_select_input_item.dart';
 export 'src/components/form/items/misc/brn_title_item.dart';
 export 'src/components/form/items/misc/brn_add_label_item.dart';
 export 'src/components/form/items/group/brn_normal_group.dart';
-export 'src/components/form/undetermined/brn_expandable_group.dart';
-export 'src/components/form/undetermined/brn_portrait_radio_group.dart';
-export 'src/components/form/items/group/brn_expand_group.dart';
+export 'src/components/form/items/group/brn_expandable_group.dart';
+export 'src/components/form/items/group/brn_portrait_radio_group.dart';
+export 'src/components/form/items/group/brn_expandable_group_with_opreate.dart';
 
 // 新增表单项
 export 'src/components/form/items/title/brn_base_title_item.dart';
@@ -151,6 +148,8 @@ export 'src/components/appraise/brn_appraise_bottom_picker.dart';
 export 'src/components/appraise/brn_appraise_emoji_list_view.dart';
 export 'src/components/appraise/brn_appraise_header.dart';
 export 'src/components/appraise/brn_appraise.dart';
+export 'src/components/appraise/brn_appraise_config.dart';
+export 'src/components/appraise/brn_appraise_interface.dart';
 export 'src/components/appraise/brn_appraise_star_list_view.dart';
 
 //大图预览

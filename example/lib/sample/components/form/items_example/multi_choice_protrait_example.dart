@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +62,7 @@ class MultiChoicePortraitInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnMultiChoicePortraitInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+              prefixIconType: BrnPrefixIconType.remove,
               isRequire: true,
               error: "必填项不能为空",
               title: "自然到访保护期",
@@ -101,7 +103,7 @@ class MultiChoicePortraitInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnMultiChoicePortraitInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+              prefixIconType: BrnPrefixIconType.remove,
               isRequire: true,
               title: "自然到访保护期",
               subTitle: "这里是副标题",

@@ -1,10 +1,13 @@
 /// 用于model兼容回调
 /// 主要用于各种点击事件
+
+
+
 typedef OnBrnFormSelectAll = void Function(int index, bool isSelect);
 
 /// 主要用于各种输入值变化
 typedef OnBrnFormRadioValueChanged = void Function(
-    String oldStr, String newStr);
+    String? oldStr, String? newStr);
 typedef OnBrnFormSwitchChanged = void Function(bool oldValue, bool newValue);
 typedef OnBrnFormValueChanged = void Function(int oldValue, int newValue);
 typedef OnBrnFormMultiChoiceValueChanged = void Function(

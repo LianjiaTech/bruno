@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class BrnNoticeBar extends StatelessWidget {
   /// 自定义左边的图标
-  final Widget leftWidget;
+  final Widget? leftWidget;
 
   /// 是否显示左边的图标
   final bool showLeftIcon;
@@ -19,30 +19,30 @@ class BrnNoticeBar extends StatelessWidget {
   final String content;
 
   /// 通知的文字颜色
-  final Color textColor;
+  final Color? textColor;
 
   /// 背景颜色
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// 右边的图标
-  final Widget rightWidget;
+  final Widget? rightWidget;
 
   /// 是否显示右边的图标
   /// 默认值true
   final bool showRightIcon;
 
   /// 默认样式，取[NoticeStyles]里面的值
-  final NoticeStyle noticeStyle;
+  final NoticeStyle? noticeStyle;
 
   /// 是否跑马灯
   /// 默认值false
   final bool marquee;
 
   /// 通知钮点击的回调
-  final VoidCallback onNoticeTap;
+  final VoidCallback? onNoticeTap;
 
   /// 右侧图标点击的回调
-  final VoidCallback onRightIconTap;
+  final VoidCallback? onRightIconTap;
 
   /// 最小高度。leftWidget、rightWidget 都为空时，限制的最小高度。
   /// 可以通过该属性控制组件高度，内容会自动垂直居中。
@@ -50,13 +50,13 @@ class BrnNoticeBar extends StatelessWidget {
   final double minHeight;
 
   /// 内容的内边距
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
   const BrnNoticeBar(
-      {Key key,
+      {Key? key,
       this.leftWidget,
       this.showLeftIcon = true,
-      @required this.content,
+      required this.content,
       this.textColor,
       this.backgroundColor,
       this.rightWidget,
@@ -67,8 +67,7 @@ class BrnNoticeBar extends StatelessWidget {
       this.marquee = false,
       this.padding,
       this.minHeight = 36})
-      : assert(content != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +79,7 @@ class BrnNoticeBar extends StatelessWidget {
       tempRightWidget = GestureDetector(
         child: tempRightWidget,
         onTap: () {
-          onRightIconTap();
+          onRightIconTap!();
         },
       );
     }
@@ -89,7 +88,7 @@ class BrnNoticeBar extends StatelessWidget {
     if (marquee) {
       contentWidget = BrnMarqueeText(
         height: 36,
-        text: content ?? '',
+        text: content,
         textStyle: TextStyle(
           color:
               textColor ?? (noticeStyle?.textColor ?? defaultStyle.textColor),
@@ -98,7 +97,7 @@ class BrnNoticeBar extends StatelessWidget {
       );
     } else {
       contentWidget = Text(
-        content ?? '',
+        content,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color:
@@ -111,14 +110,14 @@ class BrnNoticeBar extends StatelessWidget {
     return Container(
       color: backgroundColor ??
           (noticeStyle != null
-              ? noticeStyle.backgroundColor
+              ? noticeStyle!.backgroundColor
               : defaultStyle.backgroundColor),
       padding: this.padding ?? EdgeInsets.symmetric(horizontal: 20),
       constraints: BoxConstraints(minHeight: this.minHeight),
       child: GestureDetector(
         onTap: () {
           if (onNoticeTap != null) {
-            onNoticeTap();
+            onNoticeTap!();
           }
         },
         child: Row(
@@ -152,73 +151,73 @@ class BrnNoticeBar extends StatelessWidget {
 class NoticeStyles {
   ///红色+失败+箭头
   static NoticeStyle failWithArrow = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_FAIL),
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeFail),
       Color(0xFFFA3F3F),
       Color(0xFFFEEDED),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_ARROW_RED));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeArrowRed));
 
   ///红色+失败+关闭
   static NoticeStyle failWithClose = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_FAIL),
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeFail),
       Color(0xFFFA3F3F),
       Color(0xFFFEEDED),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_CLOSE_RED));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeCloseRed));
 
   ///蓝色+进行中+箭头
   static NoticeStyle runningWithArrow = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_RUNNING),
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeRunning),
       Color(0xFF0984F9),
       Color(0xFFE0EDFF),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_ARROW_BLUE));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeArrowBlue));
 
   ///蓝色+进行中+关闭
   static NoticeStyle runningWithClose = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_RUNNING),
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeRunning),
       Color(0xFF0984F9),
       Color(0xFFE0EDFF),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_CLOSE_BLUE));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeCloseBlue));
 
   ///绿色+完成+箭头
   static NoticeStyle succeedWithArrow = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_SUCCEED),
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeSucceed),
       Color(0xFF00AE66),
       Color(0xFFEBFFF7),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_ARROW_GREEN));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeArrowGreen));
 
   ///绿色+完成+关闭
   static NoticeStyle succeedWithClose = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_SUCCEED),
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeSucceed),
       Color(0xFF00AE66),
       Color(0xFFEBFFF7),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_CLOSE_GREEN));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeCloseGreen));
 
   ///橘色+警告+箭头
   static NoticeStyle warningWithArrow = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_WARNING),
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeWarning),
       Color(0xFFFAAD14),
       Color(0xFFFDFCEC),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_ARROW_ORANGE));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeArrowOrange));
 
   ///橘色+警告+关闭
   static NoticeStyle warningWithClose = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_WARNING),
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeWarning),
       Color(0xFFFAAD14),
       Color(0xFFFDFCEC),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_CLOSE_ORANGE));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeCloseOrange));
 
   ///橘色+通知+箭头
   static NoticeStyle normalNoticeWithArrow = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE),
+      BrunoTools.getAssetImage(BrnAsset.iconNotice),
       Color(0xFFFAAD14),
       Color(0xFFFDFCEC),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_ARROW_ORANGE));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeArrowOrange));
 
   ///橘色+通知+关闭
   static NoticeStyle normalNoticeWithClose = NoticeStyle(
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE),
+      BrunoTools.getAssetImage(BrnAsset.iconNotice),
       Color(0xFFFAAD14),
       Color(0xFFFDFCEC),
-      BrunoTools.getAssetImage(BrnAsset.ICON_NOTICE_CLOSE_ORANGE));
+      BrunoTools.getAssetImage(BrnAsset.iconNoticeCloseOrange));
 }
 
 /// 通知样式

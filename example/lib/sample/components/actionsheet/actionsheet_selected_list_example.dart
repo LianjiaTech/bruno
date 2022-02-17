@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -8,21 +10,18 @@ class SelectedListActionSheetExamplePage extends StatefulWidget {
 
 class SelectedListActionSheetExamplePageState
     extends State<SelectedListActionSheetExamplePage> {
-  BrnSelectedListActionSheetController controller;
-  List<String> _data;
+  late BrnSelectedListActionSheetController controller;
+  List<String> _data = [
+    '1. 可以只指定要显示的文案，后边的 delete icon 是组件自带',
+    '2. delete icon 可以控制全部显示或者隐藏，但不支持某一行独立控制',
+    '3. 每一行的视图支持完全自定义',
+    '4. 如果要刷新列表，请调用 controller 调用 reloadData() 方法 ',
+    '5. 该例子中，点击最后一行的删除图表，可以更新当前行的文案'
+  ];
 
   @override
   void initState() {
-    _data = [
-      '1. 可以只指定要显示的文案，后边的 delete icon 是组件自带',
-      '2. delete icon 可以控制全部显示或者隐藏，但不支持某一行独立控制',
-      '3. 每一行的视图支持完全自定义',
-      '4. 如果要刷新列表，请调用 controller 调用 reloadData() 方法 ',
-      '5. 该例子中，点击最后一行的删除图表，可以更新当前行的文案'
-    ];
-
     controller = BrnSelectedListActionSheetController();
-
     super.initState();
   }
 
@@ -65,7 +64,7 @@ class SelectedListActionSheetExamplePageState
                             if (!controller.isHidden) {
                               controller.dismiss();
                             } else {
-                              if (_data == null || _data.length <= 0) {
+                              if ( _data.length <= 0) {
                                 BrnToast.show('数据为空，弹窗不展示', context);
                                 return;
                               }

@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,13 +16,13 @@ class TitleSelectInputExamplePage extends StatefulWidget {
 }
 
 class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
-  List<String> _list;
+  late List<String> _list;
   TextEditingController controller = TextEditingController()..text = '123456';
 
   @override
   void initState() {
     super.initState();
-    _list = List();
+    _list = [];
     _list.add('手机号');
     _list.add('座机');
   }
@@ -47,7 +49,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
               title: _list[0],
               hint: "请输入",
               controller: controller,
-              inputFormatters: [FilteringTextInputFormatter(RegExp('[0-9"]'))],
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               selectedIndex: -1,
               selectList: _list,
               onTip: () {
@@ -81,7 +83,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
             ),
             BrnTitleSelectInputFormItem(
               controller: TextEditingController()..text = "124",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               error: "必填项不能为空",
@@ -119,7 +121,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
             ),
             BrnTitleSelectInputFormItem(
               controller: TextEditingController()..text = "124",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               subTitle: "这里是副标题",
@@ -156,7 +158,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
             ),
             BrnTitleSelectInputFormItem(
               controller: TextEditingController()..text = "不可编辑时+ -号可点击",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               isPrefixIconEnabled: false,
@@ -195,7 +197,7 @@ class TitleSelectInputState extends State<TitleSelectInputExamplePage> {
             ),
             BrnTitleSelectInputFormItem(
               controller: TextEditingController()..text = "不可编辑时+ -号可点击",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               isPrefixIconEnabled: true,

@@ -9,17 +9,17 @@ class BrnSelectionUtil {
   /// 处理兄弟结点为未选中状态，将自己置为选中状态
   static void processBrotherItemSelectStatus(
       BrnSelectionEntity selectionEntity) {
-    if (BrnSelectionFilterType.Checkbox == selectionEntity.filterType) {
+    if (BrnSelectionFilterType.checkbox == selectionEntity.filterType) {
       selectionEntity.isSelected = !selectionEntity.isSelected;
-      List<BrnSelectionEntity> allBrothers = selectionEntity.parent?.children;
+      List<BrnSelectionEntity>? allBrothers = selectionEntity.parent?.children;
       if (!BrunoTools.isEmpty(allBrothers)) {
-        for (BrnSelectionEntity entity in allBrothers) {
+        for (BrnSelectionEntity entity in allBrothers!) {
           if (entity != selectionEntity) {
-            if (entity.filterType == BrnSelectionFilterType.Radio) {
+            if (entity.filterType == BrnSelectionFilterType.radio) {
               entity.isSelected = false;
             }
 
-            if (entity.filterType == BrnSelectionFilterType.Date) {
+            if (entity.filterType == BrnSelectionFilterType.date) {
               entity.isSelected = false;
               entity.value = null;
             }
@@ -27,13 +27,13 @@ class BrnSelectionUtil {
         }
       }
     }
-    if (BrnSelectionFilterType.Radio == selectionEntity.filterType) {
-      selectionEntity?.parent?.clearChildSelection();
+    if (BrnSelectionFilterType.radio == selectionEntity.filterType) {
+      selectionEntity.parent?.clearChildSelection();
       selectionEntity.isSelected = true;
     }
 
-    if (BrnSelectionFilterType.Date == selectionEntity.filterType) {
-      selectionEntity?.parent?.clearChildSelection();
+    if (BrnSelectionFilterType.date == selectionEntity.filterType) {
+      selectionEntity.parent?.clearChildSelection();
 
       /// 日期类型时在外部 Picker 点击确定时设置 选中状态
       selectionEntity.isSelected = true;
@@ -45,21 +45,17 @@ class BrnSelectionUtil {
     int level = 0;
     BrnSelectionEntity rootEntity = entity;
     while (rootEntity.parent != null) {
-      rootEntity = rootEntity.parent;
+      rootEntity = rootEntity.parent!;
     }
 
-    if (rootEntity != null &&
-        rootEntity.children != null &&
-        rootEntity.children.length > 0) {
+    if (rootEntity.children.length > 0) {
       level = level > 1 ? level : 1;
       for (BrnSelectionEntity firstLevelEntity in rootEntity.children) {
-        if (firstLevelEntity.children != null &&
-            firstLevelEntity.children.length > 0) {
+        if (firstLevelEntity.children.length > 0) {
           level = level > 2 ? level : 2;
           for (BrnSelectionEntity secondLevelEntity
               in firstLevelEntity.children) {
-            if (secondLevelEntity.children != null &&
-                secondLevelEntity.children.length > 0) {
+            if (secondLevelEntity.children.length > 0) {
               level = 3;
               break;
             }
@@ -73,12 +69,10 @@ class BrnSelectionUtil {
   /// 返回状态为选中的子节点
   static List<BrnSelectionEntity> currentSelectListForEntity(
       BrnSelectionEntity entity) {
-    List<BrnSelectionEntity> list = List();
-    if (entity.children != null && entity.children.length > 0) {
-      for (BrnSelectionEntity entity in entity.children) {
-        if (entity.isSelected) {
-          list.add(entity);
-        }
+    List<BrnSelectionEntity> list = [];
+    for (BrnSelectionEntity entity in entity.children) {
+      if (entity.isSelected) {
+        list.add(entity);
       }
     }
     return list;
@@ -87,10 +81,10 @@ class BrnSelectionUtil {
   /// 判断列表中是否有range类型
   static bool hasRangeItem(List<BrnSelectionEntity> list) {
     for (BrnSelectionEntity entity in list) {
-      if (BrnSelectionFilterType.Range == entity.filterType ||
-          BrnSelectionFilterType.DateRange == entity.filterType ||
-          BrnSelectionFilterType.DateRangeCalendar == entity.filterType ||
-          BrnSelectionWindowType.Range == entity.filterShowType) {
+      if (BrnSelectionFilterType.range == entity.filterType ||
+          BrnSelectionFilterType.dateRange == entity.filterType ||
+          BrnSelectionFilterType.dateRangeCalendar == entity.filterType ||
+          BrnSelectionWindowType.range == entity.filterShowType) {
         return true;
       }
     }
@@ -98,20 +92,19 @@ class BrnSelectionUtil {
   }
 
   /// 判断列表中是否有range类型
-  static BrnSelectionEntity getFilledCustomInputItem(
+  static BrnSelectionEntity? getFilledCustomInputItem(
       List<BrnSelectionEntity> list) {
-    BrnSelectionEntity filledCustomInputItem;
-    if (list == null) return filledCustomInputItem;
+    BrnSelectionEntity? filledCustomInputItem;
     for (BrnSelectionEntity entity in list) {
       if (entity.isSelected &&
-          (BrnSelectionFilterType.Range == entity.filterType ||
-              BrnSelectionFilterType.DateRange == entity.filterType ||
-              BrnSelectionFilterType.DateRangeCalendar == entity.filterType) &&
+          (BrnSelectionFilterType.range == entity.filterType ||
+              BrnSelectionFilterType.dateRange == entity.filterType ||
+              BrnSelectionFilterType.dateRangeCalendar == entity.filterType) &&
           entity.customMap != null) {
         filledCustomInputItem = entity;
         break;
       }
-      if (entity.children != null && entity.children.length > 0) {
+      if (entity.children.length > 0) {
         filledCustomInputItem = getFilledCustomInputItem(entity.children);
       }
       if (filledCustomInputItem != null) {
@@ -122,7 +115,7 @@ class BrnSelectionUtil {
   }
 
   /// 确定当前 Item 在第几层级
-  static int getCurrentListIndex(BrnSelectionEntity currentItem) {
+  static int getCurrentListIndex(BrnSelectionEntity? currentItem) {
     int listIndex = -1;
     if (currentItem != null) {
       listIndex = 0;
@@ -140,22 +133,16 @@ class BrnSelectionUtil {
   /// !!! 在设置 isSelected = true之前进行 check。
   /// 返回 true 符合条件，false 不符合条件
   static bool checkMaxSelectionCount(BrnSelectionEntity entity) {
-    if (entity == null) return false;
     return entity.getLimitedRootSelectedChildCount() <
         entity.getLimitedRootMaxSelectedCount();
   }
 
 //设置数据为未选中状态
   static void resetSelectionDatas(BrnSelectionEntity entity) {
-    if (entity == null) {
-      return;
-    }
-    entity?.isSelected = false;
-    entity?.customMap = Map();
-    if (entity.children != null) {
-      for (BrnSelectionEntity subEntity in entity.children) {
-        resetSelectionDatas(subEntity);
-      }
+    entity.isSelected = false;
+    entity.customMap = Map();
+    for (BrnSelectionEntity subEntity in entity.children) {
+      resetSelectionDatas(subEntity);
     }
   }
 }

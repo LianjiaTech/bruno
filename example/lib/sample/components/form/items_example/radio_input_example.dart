@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +57,7 @@ class RadioInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnRadioInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               error: "必填项不能为空",
               title: "自然到访保护期",
@@ -90,7 +92,7 @@ class RadioInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnRadioInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+              prefixIconType: BrnPrefixIconType.remove,
               isRequire: true,
               title: "自然到访保护期",
               subTitle: "这里是副标题",
@@ -124,7 +126,7 @@ class RadioInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnRadioInputFormItem.autoLayout(
-              prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+              prefixIconType: BrnPrefixIconType.remove,
               isRequire: true,
               error: "必填项不能为空",
               title: "autoLayout",

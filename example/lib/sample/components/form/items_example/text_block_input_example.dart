@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +57,7 @@ class TextBlockInputExamplePage extends StatelessWidget {
             ),
             BrnTextBlockInputFormItem(
               controller: TextEditingController()..text = "hello",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: true,
               error: "必填项不能为空",
@@ -88,7 +90,7 @@ class TextBlockInputExamplePage extends StatelessWidget {
             ),
             BrnTextBlockInputFormItem(
               controller: TextEditingController()..text = "hello",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: true,
               title: "备注",
@@ -120,7 +122,7 @@ class TextBlockInputExamplePage extends StatelessWidget {
             ),
             BrnTextBlockInputFormItem(
               controller: TextEditingController()..text = "hello",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               isPrefixIconEnabled: true,

@@ -10,49 +10,49 @@ import 'package:intl/intl.dart';
 const String DATE_FORMAT_SEPARATOR = r'[|,-\._: ]+';
 
 class DateTimeFormatter {
-  static DateTime convertStringToDate(String format, String date) {
+  static DateTime? convertStringToDate(String format, String date) {
     if (BrunoTools.isEmpty(format) || BrunoTools.isEmpty(date)) return null;
 
     return DateFormat(format).parse(date);
   }
 
-  static DateTime convertIntValueToDateTime(String value) {
+  static DateTime? convertIntValueToDateTime(String? value) {
     if (value == null) {
       return null;
     } else {
       return int.tryParse(value) != null
-          ? DateTime.fromMillisecondsSinceEpoch(int.tryParse(value))
+          ? DateTime.fromMillisecondsSinceEpoch(int.tryParse(value)!)
           : null;
     }
   }
 
   /// Get default value of date format.
   static String generateDateFormat(
-      String dateFormat, BrnDateTimePickerMode pickerMode) {
+      String? dateFormat, BrnDateTimePickerMode pickerMode) {
     if (dateFormat != null && dateFormat.length > 0) {
       return dateFormat;
     }
     switch (pickerMode) {
       case BrnDateTimePickerMode.date:
-        return DATETIME_PICKER_DATE_FORMAT;
+        return datetimePickerDateFormat;
       case BrnDateTimePickerMode.time:
-        return DATETIME_PICKER_TIME_FORMAT;
+        return datetimePickerTimeFormat;
       case BrnDateTimePickerMode.datetime:
-        return DATETIME_PICKER_DATETIME_FORMAT;
+        return datetimePickerDatetimeFormat;
     }
     return '';
   }
 
   static String generateDateRangePickerFormat(
-      String dateFormat, BrnDateTimeRangePickerMode pickerMode) {
+      String? dateFormat, BrnDateTimeRangePickerMode pickerMode) {
     if (dateFormat != null && dateFormat.length > 0) {
       return dateFormat;
     }
     switch (pickerMode) {
       case BrnDateTimeRangePickerMode.date:
-        return DATETIME_RANGE_PICKER_DATE_FORMAT;
+        return datetimeRangePickerDateFormat;
       case BrnDateTimeRangePickerMode.time:
-        return DATETIME_RANGE_PICKER_TIME_FORMAT;
+        return datetimeRangePickerTimeFormat;
     }
     return '';
   }
@@ -68,15 +68,15 @@ class DateTimeFormatter {
   }
 
   /// Split date format to array.
-  static List<String> splitDateFormat(String dateFormat,
-      {BrnDateTimePickerMode mode}) {
+  static List<String> splitDateFormat(String? dateFormat,
+      {BrnDateTimePickerMode? mode}) {
     if (dateFormat == null || dateFormat.length == 0) {
       return [];
     }
     List<String> result = dateFormat.split(RegExp(DATE_FORMAT_SEPARATOR));
     if (mode == BrnDateTimePickerMode.datetime) {
       // datetime mode need join day format
-      List<String> temp = List<String>();
+      List<String> temp = [];
       StringBuffer dayFormat = StringBuffer();
       for (int i = 0; i < result.length; i++) {
         String format = result[i];
@@ -99,7 +99,7 @@ class DateTimeFormatter {
         temp.insert(0, dayFormat.toString());
       } else {
         // add default date format
-        temp.insert(0, DATETIME_PICKER_DATE_FORMAT);
+        temp.insert(0, datetimePickerDateFormat);
       }
       result = temp;
     }

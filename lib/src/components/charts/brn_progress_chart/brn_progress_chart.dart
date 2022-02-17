@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/charts/brn_progress_chart/brn_progress_chart_painter.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,7 @@ class BrnProgressChart extends StatefulWidget {
   final TextStyle textStyle;
 
   /// 自定义进度条上面的Widget，默认显示为文本
-  final BrnProgressIndicatorBuilder brnProgressIndicatorBuilder;
+  final BrnProgressIndicatorBuilder? brnProgressIndicatorBuilder;
 
   /// 背景色，默认 Colors.lightBlueAccent
   final Color backgroundColor;
@@ -35,7 +37,7 @@ class BrnProgressChart extends StatefulWidget {
   final bool showAnimation;
 
   const BrnProgressChart(
-      {Key key,
+      {Key? key,
       this.width = 0,
       this.height = 0,
       this.value = 0.2,
@@ -56,8 +58,8 @@ class BrnProgressChart extends StatefulWidget {
 
 class BrnProgressChartState extends State<BrnProgressChart>
     with SingleTickerProviderStateMixin {
-  Animation<double> _animation;
-  AnimationController _animationController;
+  late Animation<double> _animation;
+  AnimationController? _animationController;
   double _value = 0;
 
   @override
@@ -67,13 +69,13 @@ class BrnProgressChartState extends State<BrnProgressChart>
       _animationController = AnimationController(
           vsync: this, duration: Duration(milliseconds: 250));
       Tween tween = Tween<double>(begin: 0, end: widget.value);
-      _animation = tween.animate(_animationController);
+      _animation = tween.animate(_animationController!) as Animation<double>;
       _animation.addListener(() {
         setState(() {
           _value = _animation.value;
         });
       });
-      _animationController.forward();
+      _animationController!.forward();
     } else {
       _value = widget.value;
     }
@@ -106,7 +108,7 @@ class BrnProgressChartState extends State<BrnProgressChart>
           padding: EdgeInsets.only(left: widget.indicatorLeftPadding),
           alignment: Alignment.centerLeft,
           child: null != widget.brnProgressIndicatorBuilder
-              ? widget.brnProgressIndicatorBuilder(context, _value)
+              ? widget.brnProgressIndicatorBuilder!(context, _value)
               : _indicatorWidgetBuilder(context, _value),
         )
       ],

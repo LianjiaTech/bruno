@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +10,7 @@ class SubSwitchTitleExample extends StatefulWidget {
 
 class _SubSwitchTitleExampleState extends State<SubSwitchTitleExample>
     with TickerProviderStateMixin {
-  TabController _controller;
+  late TabController _controller;
 
   @override
   void initState() {

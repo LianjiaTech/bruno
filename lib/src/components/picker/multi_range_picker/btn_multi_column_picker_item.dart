@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/picker/multi_range_picker/bean/brn_multi_column_picker_entity.dart';
 import 'package:bruno/src/components/picker/multi_range_picker/brn_multi_column_picker_util.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
@@ -10,17 +12,17 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   final BrnPickerEntity item;
   final Color normalColor;
   final Color selectColor;
-  final Color backgroundColor;
-  final Color selectedBackgroundColor;
-  final bool isCurrentFocused;
+  final Color? backgroundColor;
+  final Color? selectedBackgroundColor;
+  final bool? isCurrentFocused;
   final bool isFirstLevel;
 
   final bool isMoreSelectionListType;
 
-  final ItemSelectFunction itemSelectFunction;
+  final ItemSelectFunction? itemSelectFunction;
 
   BrnMultiRangePickerCommonItem({
-    @required this.item,
+    required this.item,
     this.normalColor = const Color(0Xff4a4e59),
     this.selectColor = const Color(0xff41bc6a),
     this.backgroundColor,
@@ -35,7 +37,7 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var checkbox;
     if (!item.isUnLimit() &&
-        (item.children == null || item.children.length == 0)) {
+        (item.children.length == 0)) {
       if (item.isInLastLevel() && _hasCheckBoxBrother(item)) {
         checkbox = Container(
           padding: EdgeInsets.only(left: 6),
@@ -55,7 +57,7 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (itemSelectFunction != null) {
-          itemSelectFunction(item);
+          itemSelectFunction!(item);
         }
       },
       child: Container(
@@ -88,8 +90,8 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
     );
   }
 
-  Color _getItemBGColor() {
-    if (isCurrentFocused) {
+  Color? _getItemBGColor() {
+    if (isCurrentFocused!) {
       return this.selectedBackgroundColor;
     } else {
       return this.backgroundColor;
@@ -97,23 +99,23 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   }
 
   Color _getItemTextColor() {
-    Color itemColor = (item.isUnLimit() ? isCurrentFocused : item.isSelected)
+    Color itemColor = (item.isUnLimit() ? isCurrentFocused : item.isSelected)!
         ? selectColor
         : normalColor;
     if (!item.isInLastLevel()) {
-      itemColor = isCurrentFocused ? selectColor : normalColor;
+      itemColor = isCurrentFocused! ? selectColor : normalColor;
     }
     return itemColor;
   }
 
   FontWeight _getItemFontWeight() {
     FontWeight fontWeight =
-        (item.isUnLimit() ? isCurrentFocused : item.isSelected)
+        (item.isUnLimit() ? isCurrentFocused : item.isSelected)!
             ? FontWeight.w600
             : FontWeight.normal;
 
     if (!item.isInLastLevel()) {
-      fontWeight = isCurrentFocused ? FontWeight.w600 : FontWeight.normal;
+      fontWeight = isCurrentFocused! ? FontWeight.w600 : FontWeight.normal;
     }
     return fontWeight;
   }
@@ -121,8 +123,7 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   String _getSelectedItemCount(BrnPickerEntity item) {
     String itemCount = "";
     if ((BrnMultiColumnPickerUtil.getTotalColumnCount(item) < 3 ||
-            !isFirstLevel) &&
-        item.children != null) {
+            !isFirstLevel)) {
       int count =
           item.children.where((f) => f.isSelected && !f.isUnLimit()).length;
       if (count > 1) {
@@ -133,9 +134,12 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   }
 
   bool _hasCheckBoxBrother(BrnPickerEntity item) {
-    int count = item.parent.children
-        ?.where((f) => f.filterType == PickerFilterType.Checkbox)
-        ?.length;
+    int? count;
+    if (item.parent != null) {
+      count = item.parent!.children
+          .where((f) => f.filterType == PickerFilterType.checkbox)
+          .length;
+    }
     return count == null ? false : count > 0;
   }
 }
