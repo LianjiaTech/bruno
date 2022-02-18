@@ -90,7 +90,7 @@ class GalleryExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BrnAppBar(
-        title: "步骤条示例",
+        title: "Gallery 图片",
       ),body: ListView(children: [
       ListItem(
         title: "图片选择控件",

@@ -89,7 +89,7 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
             tabIndexedBuilder: (c, i) {
               return BadgeTab(
                   text:
-                      '${allConfig[i].title}(${allConfig[i].configList!.length})');
+                      '${allConfig[i].title}(${allConfig[i].configList?.length})');
             },
             itemCount: allConfig.length),
       );
@@ -105,7 +105,7 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
         child: Padding(
           padding: EdgeInsets.only(top: 16, bottom: 12, left: 20, right: 20),
           child: Text(
-            '${groupConfig.title}(${groupConfig.configList!.length})',
+            '${groupConfig.title}(${groupConfig.configList?.length})',
             style: TextStyle(
                 color: Color(0xFF222222),
                 fontSize: 18,

@@ -89,7 +89,7 @@ class SelectedListActionSheetExamplePageState
                                       ),
                                     ),
                                   ),
-                                  itemTitleBuilder: (int index, String entity) {
+                                  itemTitleBuilder: (int index, String? entity) {
                                     return entity;
                                   },
                                   onClear: () {

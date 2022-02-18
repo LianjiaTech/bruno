@@ -10,11 +10,14 @@ import 'package:photo_view/photo_view.dart';
 class BrnPhotoGroupConfig extends BrnBasicGroupConfig {
   final List<String>? urls;
   final String? title;
-  List<BrnBasicItemConfig>? configList;
   final BrnGalleryDetailConfig? themeData;
 
   /// 通过 [urls] 列表生成配置
-  BrnPhotoGroupConfig.url({this.title, required this.urls, this.themeData})
+  BrnPhotoGroupConfig.url(
+      {this.title,
+      required this.urls,
+      this.themeData,
+      List<BrnBasicItemConfig>? configList})
       : super(
             title: title,
             configList: urls
@@ -23,7 +26,11 @@ class BrnPhotoGroupConfig extends BrnBasicGroupConfig {
                 .toList());
 
   /// 自定义配置列表
-  BrnPhotoGroupConfig({this.urls, this.title, this.configList, this.themeData})
+  BrnPhotoGroupConfig(
+      {this.urls,
+      this.title,
+      List<BrnBasicItemConfig>? configList,
+      this.themeData})
       : super(title: title, configList: configList);
 }
 

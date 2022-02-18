@@ -15,6 +15,7 @@
 - <code>BrnSelectionEntityListBean</code>: <code>fromMap</code> is renamed to <code>fromJson</code>.
 - <code>BrnRadioButton</code>: optimize click area [#31](https://github.com/LianjiaTech/bruno/pull/31) , thanks to **a1017480401** .
 - <code>BrnScrollableTextDialog</code>: remove Navigator.pop(context) in <code>onSubmit()</code> and hand it over to external processing (user).
+- <code>BrnBubbleText</code>: add attribute <code>bgColor</code> and <code>textStyle</code>
 
 
 
@@ -38,7 +39,6 @@ Thanks again to **leftcoding**,  **jojinshallar**,  **laiiihz**,  **donywan**,  
 ## [1.0.0] - 2021-12-7
 
 - First publish adapt flutter sdk 1.22.4
-
 
 
 

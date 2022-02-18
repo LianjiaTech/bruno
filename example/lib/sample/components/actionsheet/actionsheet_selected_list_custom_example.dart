@@ -77,7 +77,7 @@ class SelectedListActionSheetCustomExamplePageState
                                     maxHeight: 400,
                                     controller: controller,
                                     title: '自定义行视图例子',
-                                    itemTitleBuilder: (int index, String entity) {
+                                    itemTitleBuilder: (int index, String? entity) {
                                       return Material(
                                         child: BrnStepInputFormItem(
                                           title: 'BrnStepInputFormItemWidget',

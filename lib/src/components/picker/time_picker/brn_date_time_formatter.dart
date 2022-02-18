@@ -10,10 +10,10 @@ import 'package:intl/intl.dart';
 const String DATE_FORMAT_SEPARATOR = r'[|,-\._: ]+';
 
 class DateTimeFormatter {
-  static DateTime? convertStringToDate(String format, String date) {
+  static DateTime? convertStringToDate(String? format, String? date) {
     if (BrunoTools.isEmpty(format) || BrunoTools.isEmpty(date)) return null;
 
-    return DateFormat(format).parse(date);
+    return DateFormat(format).parse(date!);
   }
 
   static DateTime? convertIntValueToDateTime(String? value) {
