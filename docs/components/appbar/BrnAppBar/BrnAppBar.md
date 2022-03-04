@@ -30,14 +30,14 @@ group:
 
 ``` dart
 BrnAppBar(
-  {Key key,
+  {Key? key,
   this.leading,
   this.showLeadingDivider = false,
   this.title,
   this.actions,
   this.backgroundColor,
   this.bottom,
-  this.elevation,
+  this.elevation = 0,
   this.automaticallyImplyLeading = true,
   this.brightness,
   this.toolbarOpacity = 1.0,
@@ -52,39 +52,39 @@ BrnAppBar(
   this.shape,
   this.iconTheme,
   this.actionsIconTheme,
-  this.excludeHeaderSemantics,
-  this.primary,
+  this.excludeHeaderSemantics = false,
+  this.primary = true,
   this.textTheme,
   this.titleSpacing})
   : assert(
         actions == null || actions is Widget || (actions is List<Widget>)),
     assert(title == null || title is String || title is Widget),
-    super(key: key, child: null, preferredSize: null);
+    super(key: key, child: Container(), preferredSize: Size(0, 0));
 ```
 
 
 | **参数名** | **参数类型** | **作用** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| leading | Widget | 导航栏左侧显示的Widget | 否 | automaticallyImplyLeading为true时，默认赋值为点击事件为maybePop的返回Icon |
-| title | String或者Widget | AppBar中间显示的内容 | 否 | 为String时,会使用[BrnAppBarTitle]来加载title |
-| actions | Widget或者List | 标题右侧的内容 | 否 | 如果为null则不现实，会自动添加右边距和action之间的间距 |
+| leading | Widget? | 导航栏左侧显示的Widget | 否 | automaticallyImplyLeading为true时，默认赋值为点击事件为maybePop的返回Icon |
+| title | dynamic | AppBar中间显示的内容 | 否 | 必须是String或者Widget。为String时,会使用[BrnAppBarTitle]来加载title |
+| actions | dynamic | 标题右侧的内容 | 否 | 为了方便业务使用，可以设置为Widget或者`List<Widget>`，传入的Widget会自动添加边距并转化为`List<Widget>`，传入的`List<Widget>`会自动添加右边距和action之间的间距 |
 | automaticallyImplyLeading | bool | 是否自动添加Leading实现 | 否 | true |
-| backgroundColor | Color | AppBar的背景色 | 否 | 深色主题为白色，白色主题为深色 |
-| bottom | PreferredSizeWidget | AppBar底部紧挨着的Widget | 否 | 无 |
+| backgroundColor | Color? | AppBar的背景色 | 否 | 深色主题为白色，白色主题为深色 |
+| bottom | PreferredSizeWidget? | AppBar底部紧挨着的Widget | 否 | 无 |
 | bottomOpacity | double | AppBar 底部Widget透明度，即 bottom 字段的透明度 | 否 | 1.0 |
 | elevation | double | AppBar 阴影高度 | 否 | 0 |
-| brightness | Brightness | AppBar 主题，包括 dark、light 两种类型 | 否 | Brightness.dark |
+| brightness | Brightness? | AppBar 主题，包括 dark、light 两种类型 | 否 | Brightness.dark |
 | toolbarOpacity | double | Appbar 透明度 |  否 | 1.0 |
 | titleAlignment | Alignment | title 对齐方式 | 否 | Alignment.center |
-| backLeadCallback | VoidCallback | 自定义的返回事件 | 否 | 无 |
+| backLeadCallback | VoidCallback? | 自定义的返回事件 | 否 | 无 |
 | showDefaultBottom | bool | 是否展示 AppBar 底部分割线（浅色主题时生效） | 否 | true |
 | showLeadingDivider | bool  | 搜索场景下是否展示leading的分割线 | 否 | true |
-| flexibleSpace | Widget | 一个可以显示在appbar下方的控件，高度和APpbar高度一样 | 否 |  |
-| shadowColor | Color | 阴影颜色 | 否 |  |
-| shape | ShapeBorder | 边框形状，只有当elevation大于0的时候展示 | 否 |  |
-| iconTheme | IconThemeData | icon样式定制 | 否 |  |
-| actionsIconTheme | IconThemeData | icon主题定制 | 否 |  |
-| textTheme | TextTheme | text主题定制 | 否 |  |
+| flexibleSpace | Widget? | 一个可以显示在appbar下方的控件，高度和APpbar高度一样 | 否 |  |
+| shadowColor | Color? | 阴影颜色 | 否 |  |
+| shape | ShapeBorder? | 边框形状，只有当elevation大于0的时候展示 | 否 |  |
+| iconTheme | IconThemeData? | icon样式定制 | 否 |  |
+| actionsIconTheme | IconThemeData? | icon主题定制 | 否 |  |
+| textTheme | TextTheme? | text主题定制 | 否 |  |
 | primary | bool | 此应用栏是否显示在屏幕顶部 | 否 |  |
 | excludeHeaderSemantics | bool | 是否用Semantics包裹 | 否 |  |
 
@@ -99,30 +99,28 @@ BrnAppBar(
 
 
 ``` dart
-BrnAppBar(  
-  //不显示左侧icon
-  automaticallyImplyLeading: false,  
-  //自定义title
-  title: Row(  
-    mainAxisSize: MainAxisSize.min,  
-    crossAxisAlignment: CrossAxisAlignment.center,  
-    children: <Widget>[  
-      Text(  
-        "标题名称",  
-        style: commonHeiStyle,  
-      ),  
-      Padding(  
-        padding: const EdgeInsets.only(left: 4),  
-        child: Image.asset(  
-          'assets/image/icon\_navbar\_xiala\_bai.png',  
-          scale: 3.0,  
-          width: 20,  
-          height: 20,  
-        ),  
-      )  
-    ],  
-  ),  
-);  
+BrnAppBar(
+  brightness: Brightness.dark,
+  title: Row(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: <Widget>[
+      Text(
+        "标题名称",
+        style: commonHeiStyle,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 4),
+        child: Image.asset(
+          'assets/image/icon_navbar_xiala_bai.png',
+          scale: 3.0,
+          width: 20,
+          height: 20,
+        ),
+      )
+    ],
+  ),
+  );
 ```
 ### 效果2：深色+无左侧Icon+右侧Icon+文本title
 
@@ -138,11 +136,12 @@ BrnAppBar(
 BrnAppBar(  
   //自定义左侧icon
   leading: Image.asset(  
-    'assets/image/icon\_navbar\_sousuo\_bai.png',  
+    'assets/image/icon_navbar_sousuo_bai.png',  
     scale: 3.0,  
     width: 20,  
     height: 20,  
-  ),  
+  ),
+  brightness: Brightness.dark,
   //文本title
   title: '标题名称',  
 );
@@ -179,31 +178,27 @@ BrnAppBar(
 ``` dart
 var actionKey = GlobalKey();  
   
-BrnAppBar(  
-  title: '名称名称',  
-  //左侧多icon
-  leading: BrnDoubleLeading(  
-    first: BrnBackLeading(),  
-    second: BrnBackLeading(  
-      child: Image.asset(  
-        'assets/image/icon\_navbar\_close\_bai.png',  
-        scale: 3.0,  
-        height: 20,  
-        width: 20,  
-      ),  
-    ),  
-  ),  
-  //文本action
-  actions: BrnTextAction(  
-    '文本',  
-    key: actionKey,  
-    brightness: Brightness.dark,  
-    //自定义action的点击
-    iconPressed: (){  
-      //show pop
-      BrnPopupListWindow.showPopListWindow(context, actionKey, offset: 10, data: ["aaaa", "bbbbb"]);  
-    },  
-  ),  
+BrnAppBar(
+  title: '标题名称',
+  leading: BrnDoubleLeading(
+    first: BrnBackLeading(),
+    second: BrnBackLeading(
+      child: Image.asset(
+        'assets/image/icon_navbar_close_bai.png',
+        scale: 3.0,
+        height: 20,
+        width: 20,
+      ),
+    ),
+  ),
+  actions: BrnTextAction(
+    '弹出菜单',
+    key: actionKey,
+    iconPressed: () {
+      BrnPopupListWindow.showPopListWindow(context, actionKey,
+          offset: 10, data: ["买卖买卖", "租赁租"]);
+    },
+  ),
 );
 ```
 ### 效果5：（无左侧Icon+三个Tab+右侧Icon）
@@ -237,7 +232,7 @@ BrnAppBar(
   //自定义右侧action
   actions: BrnIconAction(  
     child: Image.asset(  
-      'assets/image/icon\_navbar\_add\_bai.png',  
+      'assets/image/icon_navbar_add_bai.png',  
       scale: 3.0,  
       height: 20,  
       width: 20,  
@@ -253,7 +248,7 @@ return GestureDetector(
     setState(() {});  
   },  
   child: Text(  
-    currentIndex == index ? '标题选中' : '标题文案',  
+    currentIndex == index ? '标题命中' : '标题文案',  
     style: currentIndex == 0 ? selectedHeiStyle : unSelectedHeiStyle,  
   ),  
 )  
@@ -273,7 +268,7 @@ BrnAppBar(
   //自定义leading
   leading: BrnBackLeading(  
     child: Image.asset(  
-      'assets/image/icon\_navbar\_sousuo\_bai.png',  
+      'assets/image/icon_navbar_sousuo_bai.png',  
       scale: 3.0,  
       height: 20,  
       width: 20,  
@@ -313,7 +308,7 @@ BrnAppBar(
   ),  
   actions: BrnIconAction(  
     child: Image.asset(  
-      'assets/image/icon\_navbar\_add\_bai.png',  
+      'assets/image/icon_navbar_add_bai.png',  
       scale: 3.0,  
       height: 20,  
       width: 20,  
@@ -331,14 +326,15 @@ BrnAppBar(
 
 
 ``` dart
-BrnAppBar(  
+BrnAppBar( 
+  brightness: Brightness.dark,
   automaticallyImplyLeading: true,  
   //多icon
   actions: <Widget>[  
     BrnIconAction(  
       iconPressed: () {},  
       child: Image.asset(  
-        'assets/image/icon\_navbar\_pin\_bai.png',  
+        'assets/image/icon_navbar_pin_bai.png',  
         scale: 3.0,  
         height: 20,  
         width: 20,  
@@ -347,7 +343,7 @@ BrnAppBar(
     BrnIconAction(  
       iconPressed: () {},  
       child: Image.asset(  
-        'assets/image/icon\_navbar\_focus\_bai.png',  
+        'assets/image/icon_navbar_focus_bai.png',  
         scale: 3.0,  
         height: 20,  
         width: 20,  
@@ -356,7 +352,7 @@ BrnAppBar(
     BrnIconAction(  
       iconPressed: () {},  
       child: Image.asset(  
-        'assets/image/icon\_navbar\_im\_hei.png',  
+        'assets/image/icon_navbar_im_hei.png',  
         scale: 3.0,  
         height: 20,  
         width: 20,  
@@ -366,7 +362,7 @@ BrnAppBar(
     BrnIconAction(  
       iconPressed: () {},  
       child: Image.asset(  
-        'assets/image/icon\_navbar\_share\_bai.png',  
+        'assets/image/icon_navbar_share_bai.png',  
         scale: 3.0,  
         height: 20,  
         width: 20,  
@@ -378,11 +374,11 @@ BrnAppBar(
 ### 效果8：白色+默认返回+右侧Icon+文本title
 
 ``` dart
-BrnAppBar(  
+BrnAppBar(
   //默认显示返回按钮
-  automaticallyImplyLeading: true,  
-  brightness: Brightness.light,  
-  title: '名称名称',  
+  automaticallyImplyLeading: true,
+  brightness: Brightness.light,
+  title: '名称名称',
   //自定义的右侧文本
   actions: BrnTextAction(  
     '文本按钮',  
