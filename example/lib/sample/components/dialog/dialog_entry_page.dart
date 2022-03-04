@@ -833,7 +833,7 @@ class DialogEntryPage extends StatelessWidget {
   void _showBrnTwoVerticalButtonDialogDialog(BuildContext context) {
     BrnEnhanceOperationDialog brnShareDialog = new BrnEnhanceOperationDialog(
       context: context,
-      iconType: BrnDialogConstants.ICON_ALERT,
+      iconType: BrnDialogConstants.iconAlert,
       titleText: "强提示文案",
       descText: "这里是文案这里是文案这里是文案这里是文案这里是文案这里是文案这里是文案这里是文案",
       mainButtonText: "主要按钮",
@@ -850,7 +850,7 @@ class DialogEntryPage extends StatelessWidget {
 
   void _showBrnOneVerticalButtonDialogDialog(BuildContext context) {
     BrnEnhanceOperationDialog brnShareDialog = new BrnEnhanceOperationDialog(
-      iconType: BrnDialogConstants.ICON_WARNING,
+      iconType: BrnDialogConstants.iconWarning,
       context: context,
       titleText: "强提示文案",
       descText: "这里是文案这里是文案这里是文案这里是文案这里是文案这里是文案这里是文案这里是文案",
