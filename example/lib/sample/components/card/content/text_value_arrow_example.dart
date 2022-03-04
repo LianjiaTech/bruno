@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +68,7 @@ class _TextValueArrowContentExampleState extends State<TextValueArrowContentExam
                     }),
                 BrnInfoModal.valueLastClickInfo("名称名称名称", "内容内容内容内容内容", "超链接",
                     clickCallback: (value) {
-                      BrnToast.show(value, context);
+                      BrnToast.show(value!, context);
                     },
                     isArrow: true,
                     valueClickCallback: () {
@@ -115,7 +115,7 @@ class _TextValueArrowContentExampleState extends State<TextValueArrowContentExam
                     }),
                 BrnInfoModal.valueLastClickInfo("名称名称名称", "内容内容内容内容内容", "超链接",
                     clickCallback: (value) {
-                      BrnToast.show(value, context);
+                      BrnToast.show(value!, context);
                     },
                     isArrow: true,
                     valueClickCallback: () {

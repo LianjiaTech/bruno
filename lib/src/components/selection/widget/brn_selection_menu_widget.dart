@@ -60,7 +60,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   List<bool> menuItemActiveState = [];
   List<bool> menuItemHighlightState = [];
   BrnSelectionListViewController listViewController = BrnSelectionListViewController();
-  late ScrollController _scrollController;
+  ScrollController? _scrollController;
 
   late StreamSubscription _refreshTitleSubscription;
 
@@ -82,7 +82,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
 
     if (widget.extraScrollController != null) {
       _scrollController = widget.extraScrollController!;
-      _scrollController.addListener(_closeSelectionPopupWindow);
+      _scrollController!.addListener(_closeSelectionPopupWindow);
     }
 
     for (BrnSelectionEntity parentEntity in widget.data) {
@@ -111,7 +111,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   }
 
   dispose() {
-    _scrollController.removeListener(_closeSelectionPopupWindow);
+    _scrollController?.removeListener(_closeSelectionPopupWindow);
     _refreshTitleSubscription.cancel();
     _closeSelectionPopupWindowSubscription.cancel();
     listViewController.hide();
@@ -211,15 +211,15 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
             listViewController.hide();
           } else {
             /// 点击不是 More、自定义类型，则直接展开。
-            if (widget.data[index].filterType != BrnSelectionFilterType.More &&
-                widget.data[index].filterType != BrnSelectionFilterType.CustomHandle) {
+            if (widget.data[index].filterType != BrnSelectionFilterType.more &&
+                widget.data[index].filterType != BrnSelectionFilterType.customHandle) {
               /// 创建 筛选组件的的入口
               OverlayEntry entry = _createEntry(widget.data[index]);
               Overlay.of(widget.context)?.insert(entry);
 
               listViewController.entry = entry;
               listViewController.show(index);
-            } else if (widget.data[index].filterType == BrnSelectionFilterType.CustomHandle) {
+            } else if (widget.data[index].filterType == BrnSelectionFilterType.customHandle) {
               /// 记录自定义筛选 menu 的点击状态，当点击自定义的 menu 时，menu 文案默认高亮。
               listViewController.show(index);
               _refreshSelectionMenuTitle(index, widget.data[index]);
@@ -257,11 +257,11 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   /// 3、只有一列筛选数据，且为多选时，使用 Tag 模式展示
   bool _isRange(BrnSelectionEntity entity) {
     if (BrnSelectionUtil.hasRangeItem(entity.children) ||
-        entity.filterShowType == BrnSelectionWindowType.Range) {
+        entity.filterShowType == BrnSelectionWindowType.range) {
       return true;
     }
     var totalLevel = BrnSelectionUtil.getTotalLevel(entity);
-    if (totalLevel == 1 && entity.filterType == BrnSelectionFilterType.Checkbox) {
+    if (totalLevel == 1 && entity.filterType == BrnSelectionFilterType.checkbox) {
       return true;
     }
     return false;
@@ -339,7 +339,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   /// 筛选 Title 展示规则
   String? _getSelectedResultTitle(BrnSelectionEntity entity) {
     /// 更多筛选不改变 title.故返回 null
-    if (entity.filterType == BrnSelectionFilterType.More) {
+    if (entity.filterType == BrnSelectionFilterType.more) {
       return null;
     }
     if (BrunoTools.isEmpty(entity.customTitle)) {
@@ -371,10 +371,10 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
       /// 第一列选中了一个，为【不限】类型，使用上一级别的名字展示。
       if (firstColumn[0].isUnLimit()) {
         title = entity.title;
-      } else if (firstColumn[0].filterType == BrnSelectionFilterType.Range ||
-          firstColumn[0].filterType == BrnSelectionFilterType.Date ||
-          firstColumn[0].filterType == BrnSelectionFilterType.DateRange ||
-          firstColumn[0].filterType == BrnSelectionFilterType.DateRangeCalendar) {
+      } else if (firstColumn[0].filterType == BrnSelectionFilterType.range ||
+          firstColumn[0].filterType == BrnSelectionFilterType.date ||
+          firstColumn[0].filterType == BrnSelectionFilterType.dateRange ||
+          firstColumn[0].filterType == BrnSelectionFilterType.dateRangeCalendar) {
         title = _getDateAndRangeTitle(firstColumn, entity);
       } else {
         if (secondColumn.length == 0 || secondColumn.length > 1) {
@@ -383,10 +383,10 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
           /// 第二列选中了一个，为【不限】类型，使用上一级别的名字展示。
           if (secondColumn[0].isUnLimit()) {
             title = firstColumn[0].title;
-          } else if (secondColumn[0].filterType == BrnSelectionFilterType.Range ||
-              secondColumn[0].filterType == BrnSelectionFilterType.Date ||
-              secondColumn[0].filterType == BrnSelectionFilterType.DateRange ||
-              secondColumn[0].filterType == BrnSelectionFilterType.DateRangeCalendar) {
+          } else if (secondColumn[0].filterType == BrnSelectionFilterType.range ||
+              secondColumn[0].filterType == BrnSelectionFilterType.date ||
+              secondColumn[0].filterType == BrnSelectionFilterType.dateRange ||
+              secondColumn[0].filterType == BrnSelectionFilterType.dateRangeCalendar) {
             title = _getDateAndRangeTitle(secondColumn, firstColumn[0]);
           } else {
             if (thirdColumn.length == 0 || thirdColumn.length > 1) {
@@ -395,10 +395,10 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
               /// 第三列选中了一个，为【不限】类型，使用上一级别的名字展示。
               if (thirdColumn[0].isUnLimit()) {
                 title = secondColumn[0].title;
-              } else if (thirdColumn[0].filterType == BrnSelectionFilterType.Range ||
-                  thirdColumn[0].filterType == BrnSelectionFilterType.Date ||
-                  thirdColumn[0].filterType == BrnSelectionFilterType.DateRange ||
-                  thirdColumn[0].filterType == BrnSelectionFilterType.DateRangeCalendar) {
+              } else if (thirdColumn[0].filterType == BrnSelectionFilterType.range ||
+                  thirdColumn[0].filterType == BrnSelectionFilterType.date ||
+                  thirdColumn[0].filterType == BrnSelectionFilterType.dateRange ||
+                  thirdColumn[0].filterType == BrnSelectionFilterType.dateRangeCalendar) {
                 title = _getDateAndRangeTitle(thirdColumn, secondColumn[0]);
               } else {
                 title = thirdColumn[0].title;
@@ -416,15 +416,15 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   String? _getDateAndRangeTitle(List<BrnSelectionEntity> list, BrnSelectionEntity entity) {
     String? title = '';
     if (!BrunoTools.isEmpty(list[0].customMap)) {
-      if (list[0].filterType == BrnSelectionFilterType.Range) {
+      if (list[0].filterType == BrnSelectionFilterType.range) {
         title =
             '${list[0].customMap!['min']}-${list[0].customMap!['max']}(${list[0].extMap['unit']?.toString()})';
-      } else if (list[0].filterType == BrnSelectionFilterType.DateRange ||
-          list[0].filterType == BrnSelectionFilterType.DateRangeCalendar) {
+      } else if (list[0].filterType == BrnSelectionFilterType.dateRange ||
+          list[0].filterType == BrnSelectionFilterType.dateRangeCalendar) {
         title = _getDateRangeTitle(list);
       }
     } else {
-      if (list[0].filterType == BrnSelectionFilterType.Date) {
+      if (list[0].filterType == BrnSelectionFilterType.date) {
         title = _getDateTimeTitle(list);
       } else {
         title = entity.title;
@@ -486,7 +486,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   }
 
   void _refreshSelectionMenuTitle(int index, BrnSelectionEntity entity) {
-    if (entity.filterType == BrnSelectionFilterType.More) {
+    if (entity.filterType == BrnSelectionFilterType.more) {
       if (entity.allSelectedList().length > 0) {
         menuItemHighlightState[index] = true;
       } else {

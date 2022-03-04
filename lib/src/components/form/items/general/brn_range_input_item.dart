@@ -20,7 +20,7 @@ class BrnRangeInputFormItem extends StatefulWidget {
   final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  String type = BrnInputItemType.TEXT_RANGE_INPUT_TYPE;
+  String type = BrnInputItemType.textRangeInputType;
 
   /// 录入项标题
   final String title;
@@ -102,7 +102,7 @@ class BrnRangeInputFormItem extends StatefulWidget {
       this.title: "",
       this.subTitle,
       this.tipLabel,
-      this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
+      this.prefixIconType: BrnPrefixIconType.normal,
       this.error: "",
       this.isEdit: true,
       this.isRequire: false,

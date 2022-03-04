@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +14,11 @@ class NewSelectionViewExamplePage23 extends StatefulWidget {
 }
 
 class _SelectionViewExamplePageState extends State<NewSelectionViewExamplePage23> {
-  BrnSelectionEntity entity;
+  BrnSelectionEntity? entity;
 
-  BrnFlatSelectionController controller;
+  BrnFlatSelectionController? controller;
 
-  var selectionKey = GlobalKey();
+  GlobalKey selectionKey = GlobalKey();
 
   bool _isShow = true;
 
@@ -31,7 +31,7 @@ class _SelectionViewExamplePageState extends State<NewSelectionViewExamplePage23
 
   @override
   void dispose() {
-    controller.dispose();
+    controller!.dispose();
     controller = null;
     super.dispose();
   }
@@ -111,7 +111,7 @@ class _SelectionViewExamplePageState extends State<NewSelectionViewExamplePage23
                 ),
                 onTap: () {
                   if (controller != null) {
-                    controller.resetSelectedOptions();
+                    controller!.resetSelectedOptions();
                   }
                 },
               ),
@@ -124,7 +124,7 @@ class _SelectionViewExamplePageState extends State<NewSelectionViewExamplePage23
                       title: "取消",
                       onTap: () {
                         if (controller != null) {
-                          controller.cancelSelectedOptions();
+                          controller!.cancelSelectedOptions();
                           setState(() {
                             _isShow = false;
                           });
@@ -138,7 +138,7 @@ class _SelectionViewExamplePageState extends State<NewSelectionViewExamplePage23
                       title: "确定",
                       onTap: () {
                         if (controller != null) {
-                          controller.confirmSelectedOptions();
+                          controller!.confirmSelectedOptions();
                           setState(() {
                             _isShow = false;
                           });

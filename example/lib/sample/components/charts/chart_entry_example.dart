@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:math';
 import 'package:bruno/bruno.dart';
@@ -20,21 +20,21 @@ class FunnelChartExamplePage extends StatelessWidget {
 }
 
 class FunnelChartExample extends StatefulWidget {
-  FunnelChartExample({Key key}) : super(key: key);
+  FunnelChartExample({Key? key}) : super(key: key);
 
   @override
   _FunnelChartExampleState createState() => _FunnelChartExampleState();
 }
 
 class _FunnelChartExampleState extends State<FunnelChartExample> {
-  double maxLayerWidth;
-  double minLayerWidth;
-  double layerMargin;
-  double layerHeight;
-  double offsetX;
-  double offsetY;
-  MarkerAlignment alignment;
-  FunnelShape shape;
+  late double maxLayerWidth;
+  late double minLayerWidth;
+  late double layerMargin;
+  late double layerHeight;
+  late double offsetX;
+  late double offsetY;
+  late MarkerAlignment alignment;
+  FunnelShape? shape;
   bool defaultStyle = false;
 
   @override
@@ -55,7 +55,7 @@ class _FunnelChartExampleState extends State<FunnelChartExample> {
       child: Column(
         children: [
           BrnFunnelChart(
-            shape: FunnelShape.LeftOrRight,
+            shape: FunnelShape.leftOrRight,
             alignment: MarkerAlignment.right,
             maxLayerWidth: maxLayerWidth,
             minLayerWidth: minLayerWidth,
@@ -84,7 +84,7 @@ class _FunnelChartExampleState extends State<FunnelChartExample> {
             height: 10,
           ),
           BrnFunnelChart(
-            shape: FunnelShape.LeftAndRight,
+            shape: FunnelShape.leftAndRight,
             alignment: alignment,
             maxLayerWidth: maxLayerWidth,
             minLayerWidth: minLayerWidth,
@@ -361,7 +361,7 @@ class _FunnelChartExampleState extends State<FunnelChartExample> {
                 padding: EdgeInsets.only(left: 20),
                 child: Text('标签位置'),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   setState(() {
                     alignment = MarkerAlignment.left;
@@ -369,7 +369,7 @@ class _FunnelChartExampleState extends State<FunnelChartExample> {
                 },
                 child: Text('居左'),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   setState(() {
                     alignment = MarkerAlignment.center;
@@ -377,7 +377,7 @@ class _FunnelChartExampleState extends State<FunnelChartExample> {
                 },
                 child: Text('居中'),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   setState(() {
                     alignment = MarkerAlignment.right;
@@ -415,16 +415,16 @@ class RadarChartExample extends StatefulWidget {
 }
 
 class _RadarChartExampleState extends State<RadarChartExample> with SingleTickerProviderStateMixin {
-  double radius;
-  int sideCount;
-  double angle;
-  double padding;
+  late double radius;
+  int? sideCount;
+  double? angle;
+  late double padding;
   Map<String, List<double>> dataList1 = Map();
 
   Map<String, List<double>> dataList2 = Map();
 
-  AnimationController controller;
-  Animation<double> animation;
+  late AnimationController controller;
+  late Animation<double> animation;
   bool defaultStyle = false;
 
   @override
@@ -435,8 +435,8 @@ class _RadarChartExampleState extends State<RadarChartExample> with SingleTicker
     padding = 4;
     angle = 0;
     for (int i = 3; i <= 8; i++) {
-      List<double> data1 = List();
-      List<double> data2 = List();
+      List<double> data1 = [];
+      List<double> data2 = [];
 
       for (int j = 0; j < i; j++) {
         data1.add(Random().nextDouble() * 10);
@@ -463,18 +463,18 @@ class _RadarChartExampleState extends State<RadarChartExample> with SingleTicker
                   radius: radius,
                   sidesCount: 5,
                   markerMargin: padding,
-                  rotateAngle: angle * 2 * pi / 360,
-                  data: [dataList1[sideCount.toString()], dataList2[sideCount.toString()]],
+                  rotateAngle: angle! * 2 * pi / 360,
+                  data: [dataList1[sideCount.toString()]!, dataList2[sideCount.toString()]!],
                   tagNames: ['合作共赢诚实守信', '合作共赢诚实守信', '合作共赢诚实守信', '合作共赢诚实守信', '合作共赢诚实守信'],
                 );
               } else {
                 return BrnRadarChart(
                   radius: radius,
                   provider: RadarProvider(sideCount, dataList1, dataList2),
-                  sidesCount: sideCount,
+                  sidesCount: sideCount!,
                   markerMargin: padding,
                   crossedAxisLine: true,
-                  rotateAngle: angle * 2 * pi / 360,
+                  rotateAngle: angle! * 2 * pi / 360,
                   animateProgress: animation.value,
                   builder: (index) {
                     return Text(
@@ -562,7 +562,7 @@ class _RadarChartExampleState extends State<RadarChartExample> with SingleTicker
             ),
             Expanded(
               child: Slider(
-                  value: sideCount.toDouble(),
+                  value: sideCount!.toDouble(),
                   divisions: 6,
                   onChanged: (data) {
                     if (data.toInt() != sideCount) {
@@ -579,9 +579,9 @@ class _RadarChartExampleState extends State<RadarChartExample> with SingleTicker
                   onChangeEnd: (data) {
                     debugPrint('end:$data');
                   },
-                  min: defaultStyle ? sideCount.toDouble() : 3,
-                  max: defaultStyle ? sideCount.toDouble() : 8,
-                  label: '${sideCount.toStringAsFixed(0)}',
+                  min: defaultStyle ? sideCount!.toDouble() : 3,
+                  max: defaultStyle ? sideCount!.toDouble() : 8,
+                  label: '${sideCount!.toStringAsFixed(0)}',
                   activeColor: Colors.green,
                   inactiveColor: Colors.grey,
                   semanticFormatterCallback: (double newValue) {
@@ -599,7 +599,7 @@ class _RadarChartExampleState extends State<RadarChartExample> with SingleTicker
             ),
             Expanded(
               child: Slider(
-                  value: angle.toDouble(),
+                  value: angle!.toDouble(),
                   divisions: 360,
                   onChanged: (data) {
                     if (data.toDouble() != angle) {
@@ -618,7 +618,7 @@ class _RadarChartExampleState extends State<RadarChartExample> with SingleTicker
                   },
                   min: 0,
                   max: 360,
-                  label: '${angle.toStringAsFixed(0)}',
+                  label: '${angle!.toStringAsFixed(0)}',
                   activeColor: Colors.green,
                   inactiveColor: Colors.grey,
                   semanticFormatterCallback: (double newValue) {
@@ -647,7 +647,7 @@ class RadarProvider extends BrnRadarChartDataProvider {
 
   final Map<String, List<double>> dataList2;
 
-  final int sideCount;
+  final int? sideCount;
 
   RadarProvider(this.sideCount, this.dataList1, this.dataList2);
 
@@ -688,10 +688,10 @@ class RadarProvider extends BrnRadarChartDataProvider {
   List<double> getRadarValues(int radarIndex) {
     switch (radarIndex) {
       case 0:
-        return dataList1[sideCount.toString()];
+        return dataList1[sideCount.toString()]!;
       case 1:
-        return dataList2[sideCount.toString()];
+        return dataList2[sideCount.toString()]!;
     }
-    return dataList1[sideCount.toString()];
+    return dataList1[sideCount.toString()]!;
   }
 }

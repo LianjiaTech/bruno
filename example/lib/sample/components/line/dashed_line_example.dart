@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +77,10 @@ class _DashedLineExampleState extends State<DashedLineExample> {
               color: Colors.red,
               child: BrnDashedLine(
                 axis: Axis.horizontal,
-                dashedOffset: 10,
+                dashedOffset: 10, contentWidget: Container(
+                width: 200,
+                height: 100,
+              ),
               ),
             ),
           ],

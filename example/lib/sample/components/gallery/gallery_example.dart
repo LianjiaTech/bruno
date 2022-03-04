@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/gallery/gallery_detail_page_theme_example.dart';

@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,7 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
                       number: '3',
                       preDesc: '前',
                       lastDesc: '后',
-                      numberInfoIcon: BrnNumberInfoIcon.ARROW,
+                      numberInfoIcon: BrnNumberInfoIcon.arrow,
                       iconTapCallBack: (data) {}),
                 ],
               ),
@@ -81,9 +81,9 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
                       number: '3',
                       preDesc: '前',
                       lastDesc: '后',
-                      numberInfoIcon: BrnNumberInfoIcon.ARROW,
+                      numberInfoIcon: BrnNumberInfoIcon.arrow,
                       iconTapCallBack: (data) {
-                        BrnToast.show(data.title, context);
+                        BrnToast.show(data.title!, context);
                       }),
                   BrnNumberInfoItemModel(
                     title: '数字信息数字信息数字信息数字信息数字信息数字信息',

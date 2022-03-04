@@ -208,9 +208,9 @@ class BrnRichGridInfo {
     String valueTitle, {
     Function(String key)? keyQuestionCallback,
     Function(String value)? valueQuestionCallback,
-    String? clickTitle,
+    String clickTitle = '',
     Color? clickColor,
-    Function(String? clickValue)? clickCallback,
+    Function(String clickValue)? clickCallback,
     BrnPairRichInfoGridConfig? themeData,
   }) {
     themeData ??= BrnPairRichInfoGridConfig();
@@ -248,7 +248,7 @@ class BrnRichGridInfo {
           padding: EdgeInsets.only(left: 4),
           child: Container(
             constraints: BoxConstraints(maxWidth: 56),
-            child: Text(clickTitle!,
+            child: Text(clickTitle,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: _getClickStyle(clickTitle, clickColor,
@@ -260,7 +260,7 @@ class BrnRichGridInfo {
 
     bool isShowKeyQuestion = keyQuestionCallback != null;
     bool isShowValueQuestion = valueQuestionCallback != null;
-    bool isShowValueClick = clickTitle != null && clickTitle.isNotEmpty;
+    bool isShowValueClick = clickTitle.isNotEmpty;
 
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     double screen = mediaQuery.size.width;

@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/card/content/keyvalue_align_content_example.dart';

@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class RangeInputExamplePage extends StatelessWidget {
               maxUnit: "天",
               leftMaxCount: 1,
               rightMaxCount: 3,
-              inputType: BrnInputType.NUMBER,
+              inputType: BrnInputType.number,
               onTip: () {
                 BrnToast.show("点击触发onTip回调", context);
               },
@@ -66,7 +66,7 @@ class RangeInputExamplePage extends StatelessWidget {
             BrnRangeInputFormItem(
               minController: TextEditingController()..text = "10",
               maxController: TextEditingController()..text = "100",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               error: "必填项不能为空",
               title: "保护期",
@@ -79,7 +79,7 @@ class RangeInputExamplePage extends StatelessWidget {
               maxUnit: "天",
               leftMaxCount: 1,
               rightMaxCount: 3,
-              inputType: BrnInputType.NUMBER,
+              inputType: BrnInputType.number,
               onTip: () {
                 BrnToast.show("点击触发onTip回调", context);
               },
@@ -109,7 +109,7 @@ class RangeInputExamplePage extends StatelessWidget {
             BrnRangeInputFormItem(
               minController: TextEditingController()..text = "10",
               maxController: TextEditingController()..text = "100",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               title: "保护期",
               subTitle: "这里是副标题",
@@ -121,7 +121,7 @@ class RangeInputExamplePage extends StatelessWidget {
               maxUnit: "天",
               leftMaxCount: 2,
               rightMaxCount: 3,
-              inputType: BrnInputType.NUMBER,
+              inputType: BrnInputType.number,
               onTip: () {
                 BrnToast.show("点击触发onTip回调", context);
               },
@@ -151,7 +151,7 @@ class RangeInputExamplePage extends StatelessWidget {
             BrnRangeInputFormItem(
               minController: TextEditingController()..text = "10",
               maxController: TextEditingController()..text = "100",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               title: "保护期",
               subTitle: "这里是副标题",
@@ -164,7 +164,7 @@ class RangeInputExamplePage extends StatelessWidget {
               maxUnit: "天",
               leftMaxCount: 2,
               rightMaxCount: 3,
-              inputType: BrnInputType.NUMBER,
+              inputType: BrnInputType.number,
               onTip: () {
                 BrnToast.show("点击触发onTip回调", context);
               },

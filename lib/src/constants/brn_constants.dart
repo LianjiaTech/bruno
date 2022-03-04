@@ -78,3 +78,11 @@ class BrnShareItemConstants {
 class BrnSelectionConstant {
   static const int maxSelectCount = 65535;
 }
+
+class BrnButtonConstant {
+  /// 默认水平间距
+  static const double horizontalPadding = 6;
+
+  /// 默认垂直间距
+  static const double verticalPadding = 8;
+}

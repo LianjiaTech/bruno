@@ -31,13 +31,13 @@ enum BarChartStyle {
 //坐标轴样式
 enum AxisStyle {
   ///无线条
-  AxisStyleNone,
+  axisStyleNone,
 
   ///虚线
-  AxisStyleDot,
+  axisStyleDot,
 
   ///实线
-  AxisStyleSolid,
+  axisStyleSolid,
 }
 
 /// 坐标轴项目
@@ -73,7 +73,7 @@ class ChartAxis {
   ChartAxis({
     required this.axisItemList,
     this.hasMark = true,
-    this.axisStyle = AxisStyle.AxisStyleSolid,
+    this.axisStyle = AxisStyle.axisStyleSolid,
   });
 }
 
@@ -375,12 +375,12 @@ class BrnProgressBarChartPainter extends CustomPainter {
 
   void _drawXAxisIn(Canvas canvas, Rect xAxisRect) {
     if (0 == this.xAxis.axisItemList.length) return;
-    if (AxisStyle.AxisStyleSolid == this.xAxis.axisStyle) {
+    if (AxisStyle.axisStyleSolid == this.xAxis.axisStyle) {
       Offset xLineStart = xAxisRect.topLeft;
       Offset xLineEnd = xAxisRect.topRight;
       Paint xAxisPaint = Paint()..color = Color(0xff222222);
       canvas.drawLine(xLineStart, xLineEnd, xAxisPaint);
-    } else if (AxisStyle.AxisStyleDot == this.xAxis.axisStyle) {
+    } else if (AxisStyle.axisStyleDot == this.xAxis.axisStyle) {
       Offset xLineStart = xAxisRect.topLeft;
       Offset xLineEnd = xAxisRect.topRight;
       _drawDashLineOn(canvas, xLineStart, xLineEnd, Color(0xff222222));
@@ -455,12 +455,12 @@ class BrnProgressBarChartPainter extends CustomPainter {
 
   void _drawYAxisIn(Canvas canvas, Rect yAxisRect) {
     if (0 == this.yAxis.axisItemList.length) return;
-    if (AxisStyle.AxisStyleSolid == this.yAxis.axisStyle) {
+    if (AxisStyle.axisStyleSolid == this.yAxis.axisStyle) {
       Offset yLineStart = yAxisRect.bottomRight;
       Offset yLineEnd = yAxisRect.topRight;
       Paint yAxisPaint = Paint()..color = Color(0xff222222);
       canvas.drawLine(yLineStart, yLineEnd, yAxisPaint);
-    } else if (AxisStyle.AxisStyleDot == this.xAxis.axisStyle) {
+    } else if (AxisStyle.axisStyleDot == this.xAxis.axisStyle) {
       Offset yLineStart = yAxisRect.bottomRight;
       Offset yLineEnd = yAxisRect.topRight;
       _drawDashLineOn(canvas, yLineStart, yLineEnd, Color(0xff222222));

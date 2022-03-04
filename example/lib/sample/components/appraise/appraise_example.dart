@@ -67,7 +67,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
               BrnAppraise(
                 title: "这里是标题文字",
                 headerType: BrnAppraiseHeaderType.center,
-                type: BrnAppraiseType.Star,
+                type: BrnAppraiseType.star,
                 tags: tags,
                 inputHintText: '这里是文本输入的组件',
                 iconDescriptions: [
@@ -172,7 +172,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
                           },
 
                           ///必须传入5个字符串，没有的位置传''
-                          type: BrnAppraiseType.Emoji,
+                          type: BrnAppraiseType.emoji,
                           iconDescriptions: ['很差', '', '可以', '', '非常好'],
                           config: BrnAppraiseConfig(
                               indexes: [0, 2, 4], titleMaxLines: 3),
@@ -206,7 +206,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
                             showToast(index, list, input, context);
                             Navigator.pop(context);
                           },
-                          type: BrnAppraiseType.Star,
+                          type: BrnAppraiseType.star,
                           iconDescriptions: ['很差', '不行', '可以', '好'],
                           config: BrnAppraiseConfig(
                               showTextInput: false,

@@ -65,7 +65,7 @@ class BrnAppraise extends StatefulWidget {
       {Key? key,
       this.title = '',
       this.headerType = BrnAppraiseHeaderType.spaceBetween,
-      this.type = BrnAppraiseType.Star,
+      this.type = BrnAppraiseType.star,
       this.iconDescriptions = _defaultIconDescriptions,
       this.tags,
       this.inputHintText = '',
@@ -145,7 +145,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
 
   /// 获取评分组件
   Widget _getIconWidget() {
-    if (widget.type == BrnAppraiseType.Emoji) {
+    if (widget.type == BrnAppraiseType.emoji) {
       return BrnAppraiseEmojiListView(
         indexes: widget.config.indexes,
         titles: widget.iconDescriptions,

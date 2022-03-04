@@ -11,10 +11,10 @@ typedef CalendarDateChange = Function(DateTime date);
 typedef CalendarRangeDateChange = Function(DateTimeRange range);
 
 /// 展示模式，周视图模式，月视图模式
-enum DisplayMode { Week, Month }
+enum DisplayMode { week, month }
 
 /// 时间选择模式，单个时间，时间范围
-enum SelectMode { SINGLE, RANGE }
+enum SelectMode { single, range }
 
 const List<String> _defaultWeekNames = ['日', '一', '二', '三', '四', '五', '六'];
 
@@ -24,8 +24,8 @@ const List<String> _defaultWeekNames = ['日', '一', '二', '三', '四', '五'
 class BrnCalendarView extends StatefulWidget {
   const BrnCalendarView(
       {Key? key,
-      this.selectMode = SelectMode.SINGLE,
-      this.displayMode = DisplayMode.Month,
+      this.selectMode = SelectMode.single,
+      this.displayMode = DisplayMode.month,
       this.weekNames = _defaultWeekNames,
       this.showControllerBar = true,
       this.initStartSelectedDate,
@@ -37,38 +37,38 @@ class BrnCalendarView extends StatefulWidget {
       this.maxDate})
       : assert(weekNames.length == 7),
         assert(
-            selectMode == SelectMode.SINGLE && dateChange != null ||
-                selectMode == SelectMode.RANGE && rangeDateChange != null),
+            selectMode == SelectMode.single && dateChange != null ||
+                selectMode == SelectMode.range && rangeDateChange != null),
         super(key: key);
 
   const BrnCalendarView.single(
       {Key? key,
-      this.displayMode = DisplayMode.Month,
+      this.displayMode = DisplayMode.month,
       this.weekNames = _defaultWeekNames,
       this.showControllerBar = true,
       this.initStartSelectedDate,
       this.initEndSelectedDate,
       this.initDisplayDate,
-      required CalendarDateChange this.dateChange,
+      required this.dateChange,
       this.minDate,
       this.maxDate})
-      : this.selectMode = SelectMode.SINGLE,
+      : this.selectMode = SelectMode.single,
         this.rangeDateChange = null,
         assert(weekNames.length == 7),
         super(key: key);
 
   const BrnCalendarView.range(
       {Key? key,
-      this.displayMode = DisplayMode.Month,
+      this.displayMode = DisplayMode.month,
       this.weekNames = _defaultWeekNames,
       this.showControllerBar = true,
       this.initStartSelectedDate,
       this.initEndSelectedDate,
       this.initDisplayDate,
-      required CalendarRangeDateChange this.rangeDateChange,
+      required this.rangeDateChange,
       this.minDate,
       this.maxDate})
-      : this.selectMode = SelectMode.RANGE,
+      : this.selectMode = SelectMode.range,
         this.dateChange = null,
         assert(weekNames.length == 7),
         super(key: key);
@@ -132,9 +132,9 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
     _currentStartSelectedDate = widget.initStartSelectedDate;
     _currentEndSelectedDate = widget.initEndSelectedDate;
 
-    if (_displayMode == DisplayMode.Month) {
+    if (_displayMode == DisplayMode.month) {
       _setListOfMonthDate(_currentDate);
-    } else if (_displayMode == DisplayMode.Week) {
+    } else if (_displayMode == DisplayMode.week) {
       _setListOfWeekDate(_currentDate);
     }
     super.initState();
@@ -202,11 +202,11 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
               onTap: () {
                 if (!isPreIconEnable) return;
                 setState(() {
-                  if (_displayMode == DisplayMode.Month) {
+                  if (_displayMode == DisplayMode.month) {
                     _currentDate =
                         DateTime(_currentDate.year, _currentDate.month, 0);
                     _setListOfMonthDate(_currentDate);
-                  } else if (_displayMode == DisplayMode.Week) {
+                  } else if (_displayMode == DisplayMode.week) {
                     _currentDate = _currentDate.subtract(Duration(days: 7));
                     _setListOfWeekDate(_currentDate);
                   }
@@ -242,11 +242,11 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
               onTap: () {
                 if (!isNextIconEnable) return;
                 setState(() {
-                  if (_displayMode == DisplayMode.Month) {
+                  if (_displayMode == DisplayMode.month) {
                     _currentDate =
                         DateTime(_currentDate.year, _currentDate.month + 2, 0);
                     _setListOfMonthDate(_currentDate);
-                  } else if (_displayMode == DisplayMode.Week) {
+                  } else if (_displayMode == DisplayMode.week) {
                     _currentDate = _currentDate.add(Duration(days: 7));
                     _setListOfWeekDate(_currentDate);
                   }
@@ -277,7 +277,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
         return false;
       }
       if (dateList[0].year == _minDate.year) {
-        if (_displayMode == DisplayMode.Week) {
+        if (_displayMode == DisplayMode.week) {
           if (dateList[0].month < _minDate.month) {
             return false;
           }
@@ -299,7 +299,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
         return false;
       }
       if (dateList.last.year == _maxDate.year) {
-        if (_displayMode == DisplayMode.Week) {
+        if (_displayMode == DisplayMode.week) {
           if (dateList.last.month > _maxDate.month) {
             return false;
           }
@@ -427,12 +427,12 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                           if (date.isAfter(newMinimumDate) &&
                               date.isBefore(newMaximumDate)) {
                             _currentDate = date;
-                            if (_displayMode == DisplayMode.Week) {
+                            if (_displayMode == DisplayMode.week) {
                               _setListOfWeekDate(_currentDate);
-                            } else if (_displayMode == DisplayMode.Month) {
+                            } else if (_displayMode == DisplayMode.month) {
                               _setListOfMonthDate(_currentDate);
                             }
-                            if (widget.selectMode == SelectMode.SINGLE) {
+                            if (widget.selectMode == SelectMode.single) {
                               _onSingleDateClick(date);
                             } else {
                               _onRangeDateClick(date);
@@ -446,7 +446,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                               child: Text(
                                 date.day > 9 ? '${date.day}' : '0${date.day}',
                                 style: TextStyle(
-                                    color: _displayMode == DisplayMode.Month
+                                    color: _displayMode == DisplayMode.month
                                         ? (_getIsItStartAndEndDate(date)
                                             ? Colors.white
                                             : _currentDate.month ==

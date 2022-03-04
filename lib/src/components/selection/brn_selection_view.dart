@@ -168,7 +168,7 @@ class BrnSelectionViewState extends State<BrnSelectionView> {
           /// 2、触发更新 UI。
           /// 3、触发 _onSelectionChanged 统一回调给外部
           if (widget.originalSelectionData[menuIndex].filterType ==
-                  BrnSelectionFilterType.CustomHandle &&
+                  BrnSelectionFilterType.customHandle &&
               widget.onCustomSelectionMenuClick != null) {
             widget.onCustomSelectionMenuClick!(menuIndex, widget.originalSelectionData[menuIndex],
                 (Map<String, String> customParams) {
@@ -182,7 +182,7 @@ class BrnSelectionViewState extends State<BrnSelectionView> {
           }
 
           /// 自定义 Menu 的时候，让外部设置选中的 value 进来统一更新 UI。 然后触发 _onSelectionChanged 统一回调给外部
-          if (widget.originalSelectionData[menuIndex].filterType == BrnSelectionFilterType.More &&
+          if (widget.originalSelectionData[menuIndex].filterType == BrnSelectionFilterType.more &&
               widget.onMoreSelectionMenuClick != null) {
             widget.onMoreSelectionMenuClick!(menuIndex, (
                 {bool updateData = false, List<BrnSelectionEntity>? moreSelections}) {

@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:convert';
 
@@ -49,7 +49,7 @@ import 'package:flutter/services.dart';
 /// 卡片信息
 class GroupInfo {
   /// 唯一ID
-  int groupId;
+  int? groupId;
 
   /// 组名称
   String groupName;
@@ -64,10 +64,10 @@ class GroupInfo {
   bool isSupportTheme;
 
   /// 子Widget
-  List<GroupInfo> children;
+  List<GroupInfo>? children;
 
   /// 跳转到下一个页面
-  Function(BuildContext context) navigatorPage;
+  Function(BuildContext context)? navigatorPage;
 
   GroupInfo(
       {this.groupId,
@@ -83,7 +83,7 @@ class GroupInfo {
 class CardDataConfig {
   /// 全部
   static List<GroupInfo> getAllGroup() {
-    List<GroupInfo> list = List();
+    List<GroupInfo> list = [];
     list.add(_getChartGroup());
     list.add(_getDataInputGroup());
     list.add(_getOperateGroup());
@@ -95,14 +95,14 @@ class CardDataConfig {
 
   /// 数据图表
   static GroupInfo _getChartGroup() {
-    List<GroupInfo> children = List();
+    List<GroupInfo> children = [];
     children.add(GroupInfo(
         groupName: "BrokenLine 折线图 ",
         desc: "数据折线图",
         navigatorPage: (BuildContext context) {
           rootBundle.loadString('assets/brokenline_data.json').then((data) {
-            var brokenData = List<DBDataNodeModel>()
-              ..addAll(((JsonDecoder().convert(data) as List) ?? [])
+            var brokenData = <DBDataNodeModel>[]
+              ..addAll(((JsonDecoder().convert(data) as List?) ?? [])
                   .map((o) => DBDataNodeModel.fromJson(o)));
             Navigator.push(context, MaterialPageRoute(
               builder: (BuildContext context) {
@@ -167,7 +167,7 @@ class CardDataConfig {
 
   /// 数据录入
   static GroupInfo _getDataInputGroup() {
-    List<GroupInfo> children = List();
+    List<GroupInfo> children = [];
     children.add(GroupInfo(
         groupName: "Form 表单项",
         desc: "各种表单项",
@@ -215,7 +215,7 @@ class CardDataConfig {
 
   /// 操作反馈类
   static GroupInfo _getOperateGroup() {
-    List<GroupInfo> children = List();
+    List<GroupInfo> children = [];
     children.add(GroupInfo(
         groupName: "Dialog 弹窗",
         desc: "Dialog多种类型展示",
@@ -273,7 +273,7 @@ class CardDataConfig {
 
   /// 导航类
   static GroupInfo _getNavigatorGroup() {
-    List<GroupInfo> children = List();
+    List<GroupInfo> children = [];
     children.add(GroupInfo(
         groupName: "Appbar 导航栏",
         desc: "Appbar 导航栏",
@@ -361,7 +361,7 @@ class CardDataConfig {
 
   /// 按钮
   static GroupInfo _getButtonGroup() {
-    List<GroupInfo> children = List();
+    List<GroupInfo> children = [];
     children.add(GroupInfo(
         groupName: "NormalButton 普通按钮",
         desc: "主按钮、次按钮、按钮集合",
@@ -428,7 +428,7 @@ class CardDataConfig {
 
   /// 内容
   static GroupInfo _getContentGroup() {
-    List<GroupInfo> children = List();
+    List<GroupInfo> children =[];
     children.add(GroupInfo(
         groupName: "Tag 标签",
         desc: "标签多种样式",
@@ -558,7 +558,7 @@ class CardDataConfig {
 
   /// 城市选择
   static Widget _buildSingleSelectCityPage() {
-    List<BrnSelectCityModel> hotCityList = List();
+    List<BrnSelectCityModel> hotCityList = [];
     hotCityList.addAll([
       BrnSelectCityModel(name: "北京市"),
       BrnSelectCityModel(name: "广州市"),

@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,7 @@ class TextInputExamplePage extends StatelessWidget {
             ),
             BrnTextInputFormItem(
               controller: TextEditingController()..text = "300",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: true,
               error: "必填项不能为空",
@@ -90,7 +90,7 @@ class TextInputExamplePage extends StatelessWidget {
             ),
             BrnTextInputFormItem(
               controller: TextEditingController()..text = "300",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: true,
               title: "房屋总价",
@@ -123,7 +123,7 @@ class TextInputExamplePage extends StatelessWidget {
             ),
             BrnTextInputFormItem(
               controller: TextEditingController()..text = "300",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: false,
               isPrefixIconEnabled: true,

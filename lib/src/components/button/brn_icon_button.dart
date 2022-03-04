@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +71,7 @@ class BrnIconButton extends StatefulWidget {
     this.padding = 4,
     this.style,
     this.mainAxisAlignment = MainAxisAlignment.center,
-  });
+  }): super(key: key);
 
   @override
   _BrnIconButtonState createState() => _BrnIconButtonState();
@@ -82,7 +80,7 @@ class BrnIconButton extends StatefulWidget {
 class _BrnIconButtonState extends State<BrnIconButton> {
   @override
   Widget build(BuildContext context) {
-    Container? ctn;
+    Container ctn;
     // 图文的方向 bottom、文字在下 icon在上 top、文字在上 icon在下
     // Left、文字在左 icon在右 right、文字在右 icon在左
     if (widget.direction == Direction.bottom) {
@@ -95,9 +93,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
             children: <Widget>[
               // 图片
               Container(
-                  height: widget.iconHeight,
-                  width: widget.iconWidth,
-                  child: widget.iconWidget),
+                  height: widget.iconHeight, width: widget.iconWidth, child: widget.iconWidget),
               Padding(
                 padding: EdgeInsets.only(top: widget.padding),
                 child: Text(
@@ -107,42 +103,12 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig.colorTextSecondary,
+                            .commonConfig
+                            .colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
                 ),
               )
-            ],
-          ));
-    } else if (widget.direction == Direction.top) {
-      ctn = Container(
-          height: widget.widgetHeight,
-          width: widget.widgetWidth,
-          child: Column(
-            mainAxisAlignment: widget.mainAxisAlignment,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(bottom: widget.padding),
-                child: Text(
-                  widget.name,
-                  style: widget.style ??
-                      TextStyle(
-                        fontSize: 11,
-                        color: BrnThemeConfigurator.instance
-                            .getConfig()
-                            .commonConfig.colorTextSecondary,
-                      ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-
-              // 图片
-              Container(
-                child: widget.iconWidget,
-                height: widget.iconHeight,
-                width: widget.iconWidth,
-              ),
             ],
           ));
     } else if (widget.direction == Direction.left) {
@@ -155,9 +121,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
             children: <Widget>[
               // 图片
               Container(
-                  height: widget.iconHeight,
-                  width: widget.iconWidth,
-                  child: widget.iconWidget),
+                  height: widget.iconHeight, width: widget.iconWidth, child: widget.iconWidget),
               Padding(
                 padding: EdgeInsets.only(left: widget.padding),
                 child: Text(
@@ -167,7 +131,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig.colorTextSecondary,
+                            .commonConfig
+                            .colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -191,16 +156,47 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                         fontSize: 11,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig.colorTextSecondary,
+                            .commonConfig
+                            .colorTextSecondary,
                       ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
               // 图片
               Container(
-                  height: widget.iconHeight,
-                  width: widget.iconWidth,
-                  child: widget.iconWidget),
+                  height: widget.iconHeight, width: widget.iconWidth, child: widget.iconWidget),
+            ],
+          ));
+    } else {
+      ctn = Container(
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
+          child: Column(
+            mainAxisAlignment: widget.mainAxisAlignment,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(bottom: widget.padding),
+                child: Text(
+                  widget.name,
+                  style: widget.style ??
+                      TextStyle(
+                        fontSize: 11,
+                        color: BrnThemeConfigurator.instance
+                            .getConfig()
+                            .commonConfig
+                            .colorTextSecondary,
+                      ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+
+              // 图片
+              Container(
+                child: widget.iconWidget,
+                height: widget.iconHeight,
+                width: widget.iconWidth,
+              ),
             ],
           ));
     }
@@ -213,6 +209,6 @@ class _BrnIconButtonState extends State<BrnIconButton> {
         },
       );
     }
-    return ctn!;
+    return ctn;
   }
 }

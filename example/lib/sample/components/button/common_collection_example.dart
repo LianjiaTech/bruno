@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -252,7 +252,7 @@ class BrnCommonBottomExample extends StatelessWidget {
               ],
             ),
             Text(
-              '异常案例：按钮文本长为0',
+              '异常案例：按钮文本长为空串',
               style: TextStyle(
                 color: Color(0xFF222222),
                 fontSize: 28,

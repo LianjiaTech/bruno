@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -13,19 +13,19 @@ class PopWindowExamplePage extends StatefulWidget {
 }
 
 class PopWindowExamplePageState extends State<PopWindowExamplePage> {
-  GlobalKey _leftKeylist0;
-  GlobalKey _leftKeylist1;
-  GlobalKey _leftKeylist2;
-  GlobalKey _leftKey;
-  GlobalKey _leftKey1;
-  GlobalKey _leftKey2;
-  GlobalKey _leftKey3;
-  GlobalKey _leftKey4;
-  GlobalKey _leftKey5;
-  GlobalKey _leftKey6;
-  GlobalKey _leftKey7;
+  GlobalKey? _leftKeylist0;
+  GlobalKey? _leftKeylist1;
+  GlobalKey? _leftKeylist2;
+  GlobalKey? _leftKey;
+  GlobalKey? _leftKey1;
+  GlobalKey? _leftKey2;
+  GlobalKey? _leftKey3;
+  GlobalKey? _leftKey4;
+  GlobalKey? _leftKey5;
+  GlobalKey? _leftKey6;
+  GlobalKey? _leftKey7;
 
-  BrnOverlayController overlayController;
+  BrnOverlayController? overlayController;
 
   @override
   void initState() {
@@ -45,7 +45,6 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
 
   @override
   Widget build(BuildContext context) {
-    double top = MediaQuery.of(context).padding.top ?? 0;
     return Scaffold(
         appBar: BrnAppBar(
           title: widget._title,
@@ -59,7 +58,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
                 child: RaisedButton(
                   key: _leftKey,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容", _leftKey,
+                    BrnPopupWindow.showPopWindow(context, "提示内容", _leftKey!,
                         hasCloseIcon: true);
                   },
                   child: Text("左侧带关闭Tips"),
@@ -70,7 +69,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
                 child: RaisedButton(
                   key: _leftKey1,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey1,
+                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey1!,
                         hasCloseIcon: false);
                   },
                   child: Text("左侧带无关闭Tips"),
@@ -81,7 +80,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
                 child: RaisedButton(
                   key: _leftKey2,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey2,
+                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey2!,
                         popDirection: BrnPopupDirection.top, hasCloseIcon: true);
                   },
                   child: Text("左侧带关闭，箭头朝下Tips"),
@@ -92,7 +91,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
                 child: RaisedButton(
                   key: _leftKey3,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey3,
+                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey3!,
                         dismissCallback: () {}, popDirection: BrnPopupDirection.top);
                   },
                   child: Text("左侧无关闭，箭头朝下Tips"),
@@ -103,7 +102,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
                 child: RaisedButton(
                   key: _leftKey4,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey4,
+                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey4!,
                         hasCloseIcon: true,
                         dismissCallback: () {},
                         popDirection: BrnPopupDirection.bottom);
@@ -116,7 +115,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
                 child: RaisedButton(
                   key: _leftKey5,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容", _leftKey5,
+                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容", _leftKey5!,
                         hasCloseIcon: false,
                         dismissCallback: () {},
                         popDirection: BrnPopupDirection.bottom);
@@ -129,7 +128,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
                 child: RaisedButton(
                   key: _leftKey6,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey6,
+                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey6!,
                         hasCloseIcon: true,
                         canWrap: false,
                         dismissCallback: () {},
@@ -143,7 +142,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
                 child: RaisedButton(
                   key: _leftKey7,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey7,
+                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey7!,
                         hasCloseIcon: false,
                         dismissCallback: () {},
                         popDirection: BrnPopupDirection.top);

@@ -110,10 +110,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
       List<BrnVerticalIconButton>? iconButtonList}) {
     if ((buttonTitleList.isEmpty) &&
         iconButtonList == null) {
-      return Container(
-        height: 0,
-        width: 0,
-      );
+      return SizedBox.shrink();
     }
     if (buttonTitleList.length >= 2) {
       return BrnBottomButtonPanel(
@@ -146,10 +143,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
         iconButtonList: iconButtonList,
       );
     }
-    return Container(
-      height: 0,
-      width: 0,
-    );
+    return SizedBox.shrink();
   }
 
   @override

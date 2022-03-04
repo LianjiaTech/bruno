@@ -1,11 +1,11 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class SelectionViewDateRangeExamplePage extends StatefulWidget {
   final String _title;
-  final List<BrnSelectionEntity> _filterData;
+  final List<BrnSelectionEntity>? _filterData;
 
   SelectionViewDateRangeExamplePage(this._title, this._filterData);
 
@@ -14,9 +14,9 @@ class SelectionViewDateRangeExamplePage extends StatefulWidget {
 }
 
 class _SelectionViewExamplePageState extends State<SelectionViewDateRangeExamplePage> {
-  List<BrnSelectionEntity> items;
+  List<BrnSelectionEntity>? items;
 
-  BrnSelectionViewController controller;
+  BrnSelectionViewController? controller;
 
   @override
   void initState() {
@@ -43,13 +43,13 @@ class _SelectionViewExamplePageState extends State<SelectionViewDateRangeExample
             child: GestureDetector(
               child: Text("点击关闭弹窗"),
               onTap: () {
-                controller.closeSelectionView();
+                controller!.closeSelectionView();
               },
             ),
           ),
           BrnSelectionView(
             selectionViewController: controller,
-            originalSelectionData: widget._filterData,
+            originalSelectionData: widget._filterData!,
             onSelectionChanged: (int menuIndex,
                 Map<String, String> filterParams,
                 Map<String, String> customParams,
@@ -58,9 +58,9 @@ class _SelectionViewExamplePageState extends State<SelectionViewDateRangeExample
             },
             onSelectionPreShow: (int index, BrnSelectionEntity entity) {
               if (entity.key == 'date_11' || entity.key == 'date_22') {
-                return BrnSelectionWindowType.Range;
+                return BrnSelectionWindowType.range;
               }
-              return entity.filterShowType;
+              return entity.filterShowType!;
             },
           ),
           Container(

@@ -28,7 +28,7 @@ class BrnFlatMoreSelection extends StatefulWidget {
   /// 清空已选项 一般跟重置功能搭配使用
   final StreamController<FlatClearEvent>? clearController;
 
-  /// 当[BrnSelectionEntity.filterType]为[BrnSelectionFilterType.Layer] or[BrnSelectionFilterType.CustomLayer]时
+  /// 当[BrnSelectionEntity.filterType]为[BrnSelectionFilterType.layer] or[BrnSelectionFilterType.customLayer]时
   /// 跳转到二级页面的自定义操作
   final BrnOnCustomFloatingLayerClick? onCustomFloatingLayerClick;
 
@@ -60,8 +60,8 @@ class _BrnFlatMoreSelectionState extends State<BrnFlatMoreSelection> {
   @override
   Widget build(BuildContext context) {
     //弹出浮层
-    if (widget.selectionEntity.filterType == BrnSelectionFilterType.Layer ||
-        widget.selectionEntity.filterType == BrnSelectionFilterType.CustomLayer) {
+    if (widget.selectionEntity.filterType == BrnSelectionFilterType.layer ||
+        widget.selectionEntity.filterType == BrnSelectionFilterType.customLayer) {
       return FilterLayerTypeWidget(
         selectionEntity: widget.selectionEntity,
         onCustomFloatingLayerClick: widget.onCustomFloatingLayerClick,
@@ -239,12 +239,12 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
       return GestureDetector(
         onTap: () {
           setState(() {
-            if (data.filterType == BrnSelectionFilterType.Radio) {
+            if (data.filterType == BrnSelectionFilterType.radio) {
               data.parent?.clearSelectedEntity();
               data.isSelected = true;
               //用于发送 标签点击事件
               _streamController.add(SelectEvent());
-            } else if (data.filterType == BrnSelectionFilterType.Checkbox) {
+            } else if (data.filterType == BrnSelectionFilterType.checkbox) {
               if (!data.isSelected) {
                 if (!BrnSelectionUtil.checkMaxSelectionCount(data)) {
                   BrnToast.show('您选择的筛选条件数量已达上限', context);
@@ -253,12 +253,12 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
               }
 
               data.parent?.children
-                  .where((_) => _.filterType == BrnSelectionFilterType.Radio)
+                  .where((_) => _.filterType == BrnSelectionFilterType.radio)
                   .forEach((f) => f.isSelected = false);
               data.isSelected = !data.isSelected;
               //用于发送 标签点击事件
               _streamController.add(SelectEvent());
-            } else if (data.filterType == BrnSelectionFilterType.Date) {
+            } else if (data.filterType == BrnSelectionFilterType.date) {
               _showDatePicker(data);
             }
           });
@@ -289,7 +289,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
   }
 
   Widget _buildSingleTag(BrnSelectionEntity data) {
-    bool isDate = data.filterType == BrnSelectionFilterType.Date;
+    bool isDate = data.filterType == BrnSelectionFilterType.date;
 
     String showName;
 
@@ -627,7 +627,7 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
           padding: const EdgeInsets.only(left: 20, right: 20, top: 6),
           child: GestureDetector(
             onTap: () {
-              if (widget.selectionEntity.filterType == BrnSelectionFilterType.Layer) {
+              if (widget.selectionEntity.filterType == BrnSelectionFilterType.layer) {
                 Navigator.of(context)
                     .push(PageRouteBuilder<BrnSelectionEntity>(
                         opaque: false,
@@ -640,7 +640,7 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
                     .then((data) {
                   updateContent();
                 });
-              } else if (widget.selectionEntity.filterType == BrnSelectionFilterType.CustomLayer) {
+              } else if (widget.selectionEntity.filterType == BrnSelectionFilterType.customLayer) {
                 if (widget.onCustomFloatingLayerClick != null) {
                   int entityIndex = -1;
                   if (widget.selectionEntity.parent != null &&

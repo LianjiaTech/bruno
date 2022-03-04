@@ -138,8 +138,7 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
     }
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-          widget.horizontalPadding, 0, widget.horizontalPadding, 0),
+      padding: EdgeInsets.fromLTRB(widget.horizontalPadding, 0, widget.horizontalPadding, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: list,
@@ -157,9 +156,8 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
   }
 
   Widget _secondaryButton(int btnIndex) {
-    String? name = _secondaryButtonList[btnIndex].name;
     BrnSmallOutlineButton button = BrnSmallOutlineButton(
-      title: name ?? '确认',
+      title:_secondaryButtonList[btnIndex].name,
       isEnable: _secondaryButtonList[btnIndex].isEnable,
       onTap: () {
         if (widget.secondaryButtonOnTap != null) {
@@ -178,7 +176,7 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
     if (_secondaryButtonList.length > 2) {
       List<String> list = [];
       for (int i = 2; i < _secondaryButtonList.length; i++) {
-        list.add(_secondaryButtonList[i].name ?? '');
+        list.add(_secondaryButtonList[i].name);
       }
 
       return GestureDetector(
@@ -197,12 +195,8 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
                     maxLines: 1,
                     style: TextStyle(
                         color: _secondaryButtonList[index + 2].isEnable
-                            ? BrnThemeConfigurator.instance
-                                .getConfig()
-                                .commonConfig.colorTextBase
-                            : BrnThemeConfigurator.instance
-                                .getConfig()
-                                .commonConfig.colorTextHint,
+                            ? BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase
+                            : BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint,
                         fontSize: 16));
               },
               popDirection: widget.popDirection,
@@ -229,13 +223,13 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
 /// 次按钮的配置类
 class BrnButtonPanelConfig {
   /// 次按钮的名称
-  final String? name;
+  final String name;
 
   /// 次按钮的enable状态，默认为true
   final bool isEnable;
 
   BrnButtonPanelConfig({
-    this.name,
+    required this.name,
     this.isEnable = true,
   });
 }

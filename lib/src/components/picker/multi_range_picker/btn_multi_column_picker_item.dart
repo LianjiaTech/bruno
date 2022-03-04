@@ -137,7 +137,7 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
     int? count;
     if (item.parent != null) {
       count = item.parent!.children
-          .where((f) => f.filterType == PickerFilterType.Checkbox)
+          .where((f) => f.filterType == PickerFilterType.checkbox)
           .length;
     }
     return count == null ? false : count > 0;

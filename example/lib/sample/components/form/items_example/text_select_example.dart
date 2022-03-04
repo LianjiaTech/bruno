@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +53,7 @@ class TextSelectInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnTextSelectFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               error: "必填项不能为空",
               title: "证件类型",
@@ -83,7 +83,7 @@ class TextSelectInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnTextSelectFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               title: "证件类型",
               subTitle: "这里是副标题",
@@ -112,7 +112,7 @@ class TextSelectInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnTextSelectFormItem.autoLayout(
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               error: "必填项不能为空",
               title: "证件类型",
