@@ -19,10 +19,10 @@ class BrnShareItem extends Object {
   int shareType;
 
   /// 自定义标题
-  String customTitle;
+  String? customTitle;
 
   /// 自定义图标
-  Widget customImage;
+  Widget? customImage;
 
   /// 是否可点击（如果为预设类型，设置为不可点击后会变为相应的置灰图标）默认为true
   bool canClick;
@@ -38,16 +38,16 @@ class BrnShareItem extends Object {
 // ignore: must_be_immutable
 class BrnShareActionSheet extends StatelessWidget {
   /// 第一行渠道列表
-  final List<BrnShareItem> firstShareChannels;
+  final List<BrnShareItem>? firstShareChannels;
 
   /// 第二行渠道列表
-  final List<BrnShareItem> secondShareChannels;
+  final List<BrnShareItem>? secondShareChannels;
 
   /// 列表标题
-  final String mainTitle;
+  final String? mainTitle;
 
   /// 取消按钮名称
-  final String cancelTitle;
+  final String? cancelTitle;
 
   /// 取消按钮的文本颜色，默认值为 Color(0xff222222)
   final Color textColor;
@@ -56,10 +56,10 @@ class BrnShareActionSheet extends StatelessWidget {
   final Color shareTextColor;
 
   /// 点击事件回调
-  final BrnShareActionSheetItemClickCallBack clickCallBack;
+  final BrnShareActionSheetItemClickCallBack? clickCallBack;
 
   /// 点击事件拦截回调（如果配置了此项，返回值为是否拦截，如果为true，则进行拦截，不进行默认回调）
-  final BrnShareActionSheetOnItemClickInterceptor clickInterceptor;
+  final BrnShareActionSheetOnItemClickInterceptor? clickInterceptor;
 
   BrnShareActionSheet({
     this.firstShareChannels,
@@ -97,13 +97,13 @@ class BrnShareActionSheet extends StatelessWidget {
   }
 
   /// 构建单个分享渠道
-  Widget _configChannelWidget(BuildContext context, int section, int index) {
+  Widget? _configChannelWidget(BuildContext context, int section, int index) {
     // 分享类型
     BrnShareItem channel;
     // 渠道名称
-    String title;
+    String? title;
     // 图片
-    Widget image;
+    Widget? image;
     // 元素宽度(图片边长也是48)
     double itemsWidth = 48;
     // 元素间隔为20写死
@@ -112,16 +112,16 @@ class BrnShareActionSheet extends StatelessWidget {
     image = null;
     // 判断区域
     if (section == 0) {
-      channel = firstShareChannels[index];
+      channel = firstShareChannels![index];
     } else {
-      channel = secondShareChannels[index];
+      channel = secondShareChannels![index];
     }
     // 判断是否为自定义标题
-    title = (channel.shareType == BrnShareItemConstants.SHARE_CUSTOM)
+    title = (channel.shareType == BrnShareItemConstants.shareCustom)
         ? (channel.customTitle ?? "")
         : BrnShareItemConstants.shareItemTitleList[channel.shareType];
     // 判断是否为自定义，如果不是自定义图标，则判断是否可点击（决定是否使用置灰图标）
-    image = (channel.shareType == BrnShareItemConstants.SHARE_CUSTOM)
+    image = (channel.shareType == BrnShareItemConstants.shareCustom)
         ? channel.customImage
         : (channel.canClick
             ? BrunoTools.getAssetImage(
@@ -129,7 +129,7 @@ class BrnShareActionSheet extends StatelessWidget {
             : BrunoTools.getAssetImage(BrnShareItemConstants
                 .disableShareItemImagePathList[channel.shareType]));
     //如果没图或没文字则不显示
-    if (title == null || image == null) {
+    if (image == null) {
       return null;
     }
 
@@ -160,10 +160,10 @@ class BrnShareActionSheet extends StatelessWidget {
       ),
       onTap: () {
         if (clickInterceptor == null ||
-            !clickInterceptor(section, index, channel)) {
+            !clickInterceptor!(section, index, channel)) {
           // 推荐使用回调方法处理点击事件!!!!!!!!!!
           if (clickCallBack != null && channel.canClick) {
-            clickCallBack(section, index, channel);
+            clickCallBack!(section, index, channel);
             // 如果未拦截并且可点击，则pop掉当前页面
             Navigator.of(context).pop();
           }
@@ -174,11 +174,11 @@ class BrnShareActionSheet extends StatelessWidget {
 
   /// 构建actionSheet的按钮
   Widget _configActionWidgets(BuildContext context) {
-    List<Widget> tiles = List();
+    List<Widget> tiles = [];
     // 预设分享渠道
-    List<Widget> firstSectionItems = List();
+    List<Widget> firstSectionItems = [];
     // 自定义分享渠道
-    List<Widget> secondSectionItems = List();
+    List<Widget> secondSectionItems = [];
     // 容器左侧留白
     double leftGap = 10;
     // 容器上方留白
@@ -187,8 +187,8 @@ class BrnShareActionSheet extends StatelessWidget {
     double bottomGap = 20;
     // 构建第一行
     if (firstShareChannels != null) {
-      for (int index = 0; index < firstShareChannels.length; index++) {
-        Widget item = _configChannelWidget(context, 0, index);
+      for (int index = 0; index < firstShareChannels!.length; index++) {
+        Widget? item = _configChannelWidget(context, 0, index);
         if (item != null) {
           firstSectionItems.add(item);
         }
@@ -196,8 +196,8 @@ class BrnShareActionSheet extends StatelessWidget {
     }
     // 构建第二行
     if (secondShareChannels != null) {
-      for (int index = 0; index < secondShareChannels.length; index++) {
-        Widget item = _configChannelWidget(context, 1, index);
+      for (int index = 0; index < secondShareChannels!.length; index++) {
+        Widget? item = _configChannelWidget(context, 1, index);
         if (item != null) {
           secondSectionItems.add(item);
         }
@@ -268,7 +268,7 @@ class BrnShareActionSheet extends StatelessWidget {
           padding: EdgeInsets.only(left: 61, right: 61, top: 12, bottom: 12),
           child: Center(
             child: Text(
-              (cancelTitle != null) ? cancelTitle : "取消",
+              cancelTitle ?? "取消",
               style: TextStyle(
                   fontSize: 16, fontWeight: FontWeight.w600, color: textColor),
             ),

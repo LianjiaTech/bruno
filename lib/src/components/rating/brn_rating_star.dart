@@ -40,13 +40,13 @@ class BrnRatingStar extends StatefulWidget {
   final bool canRatingZero;
 
   /// 单颗星星视图的自定义构造器
-  final BrnRatingStarBuilder starBuilder;
+  final BrnRatingStarBuilder? starBuilder;
 
   /// 如果设置了，就支持编辑
-  final ValueChanged<int> onSelected;
+  final ValueChanged<int>? onSelected;
 
   const BrnRatingStar({
-    Key key,
+    Key? key,
     this.count = DEFAULT_COUNT,
     this.selectedCount = 0,
     this.space = DEFAULT_SPACE,
@@ -60,7 +60,7 @@ class BrnRatingStar extends StatefulWidget {
 }
 
 class _BrnRatingStarState extends State<BrnRatingStar> {
-  double currSelected;
+  late double currSelected;
 
   @override
   void initState() {
@@ -84,7 +84,7 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
   }
 
   List<Widget> _getContent() {
-    List<Widget> list = List();
+    List<Widget> list = [];
     for (var i = 0; i < widget.count; i++) {
       RatingState state;
       if (i < currSelected.floor()) {
@@ -95,7 +95,7 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
         state = RatingState.unselect;
       }
       var rating = widget.starBuilder != null
-          ? widget.starBuilder(state)
+          ? widget.starBuilder!(state)
           : _buildRating(state);
 
       if (widget.onSelected != null) {
@@ -108,7 +108,7 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
             } else {
               currSelected = (i + 1).toDouble();
             }
-            widget.onSelected(currSelected.toInt());
+            widget.onSelected!(currSelected.toInt());
             setState(() {});
           },
           behavior: HitTestBehavior.opaque,
@@ -130,12 +130,12 @@ class _BrnRatingStarState extends State<BrnRatingStar> {
   Widget _buildRating(RatingState state) {
     switch (state) {
       case RatingState.select:
-        return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STAR, 16, 16);
+        return BrunoTools.getAssetSizeImage(BrnAsset.iconStar, 16, 16);
       case RatingState.half:
-        return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STAR_HALF, 16, 16);
+        return BrunoTools.getAssetSizeImage(BrnAsset.iconStarHalf, 16, 16);
       case RatingState.unselect:
       default:
-        return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STAR, 16, 16,
+        return BrunoTools.getAssetSizeImage(BrnAsset.iconStar, 16, 16,
             color: Color(0xFFF0F0F0));
     }
   }

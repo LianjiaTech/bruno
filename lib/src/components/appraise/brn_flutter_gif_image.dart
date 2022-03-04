@@ -1,7 +1,6 @@
 import 'dart:ui' as ui show Codec;
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 /// 描述: 用于加载gif图，
@@ -9,26 +8,26 @@ import 'package:flutter/widgets.dart';
 /// 感谢 Jpeng
 
 class GifImage extends StatefulWidget {
-  final VoidCallback onFetchCompleted;
+  final VoidCallback? onFetchCompleted;
   final AnimationController controller;
   final ImageProvider image;
-  final double width;
-  final double height;
-  final Color color;
-  final BlendMode colorBlendMode;
-  final BoxFit fit;
+  final double? width;
+  final double? height;
+  final Color? color;
+  final BlendMode? colorBlendMode;
+  final BoxFit? fit;
   final AlignmentGeometry alignment;
   final ImageRepeat repeat;
-  final Rect centerSlice;
+  final Rect? centerSlice;
   final bool matchTextDirection;
   final bool gaplessPlayback;
-  final String semanticLabel;
+  final String? semanticLabel;
   final bool excludeFromSemantics;
-  final Widget defaultImage;
+  final Widget? defaultImage;
 
   GifImage({
-    @required this.image,
-    @required this.controller,
+    required this.image,
+    required this.controller,
     this.semanticLabel,
     this.excludeFromSemantics = false,
     this.width,
@@ -50,8 +49,7 @@ class GifImage extends StatefulWidget {
 }
 
 class GifImageState extends State<GifImage> {
-  ValueNotifier<List<ImageInfo>> _images =
-      ValueNotifier<List<ImageInfo>>(List());
+  ValueNotifier<List<ImageInfo>> _images = ValueNotifier<List<ImageInfo>>([]);
   double _curValue = 0.0;
 
   @override
@@ -80,7 +78,7 @@ class GifImageState extends State<GifImage> {
     return ValueListenableBuilder(
       ///数据发生变化时回调
       builder: (context, value, child) {
-        return _buildImage(value);
+        return _buildImage(value as List<ImageInfo>);
       },
 
       ///监听的数据
@@ -88,19 +86,19 @@ class GifImageState extends State<GifImage> {
     );
   }
 
-  Widget _buildImage(List<ImageInfo> imageInfo) {
+  Widget _buildImage(List<ImageInfo>? imageInfo) {
     int length = (imageInfo?.length ?? 0);
     int _curIndex = (_curValue * length).toInt();
     int index = -1;
     if (length > 0) {
       index = length == _curIndex ? length - 1 : _curIndex;
     }
-    if (index != -1 && imageInfo[index]?.image != null) {
+    if (index != -1 && imageInfo?[index].image != null) {
       RawImage _image = RawImage(
-        image: imageInfo[index].image,
+        image: imageInfo?[index].image,
         width: widget.width,
         height: widget.height,
-        scale: imageInfo[index]?.scale ?? 1.0,
+        scale: imageInfo?[index].scale ?? 1.0,
         color: widget.color,
         colorBlendMode: widget.colorBlendMode,
         fit: widget.fit,
@@ -124,17 +122,17 @@ class GifImageState extends State<GifImage> {
   }
 
   Future<void> fetchGif(ImageProvider provider) async {
-    List<ImageInfo> infos = List();
-    dynamic data;
-
-    AssetBundleImageKey key = await provider.obtainKey(ImageConfiguration());
-    data = await key.bundle.load(key.name);
-
-    ui.Codec codec = await PaintingBinding.instance
-        .instantiateImageCodec(data.buffer.asUint8List());
-    for (int i = 0; i < codec.frameCount; i++) {
-      FrameInfo frameInfo = await codec.getNextFrame();
-      infos.add(ImageInfo(image: frameInfo.image));
+    List<ImageInfo> infos = [];
+    if (provider is AssetImage) {
+      dynamic data;
+      AssetBundleImageKey key = await provider.obtainKey(ImageConfiguration());
+      data = await key.bundle.load(key.name);
+      ui.Codec codec = await PaintingBinding.instance!
+          .instantiateImageCodec(data.buffer.asUint8List());
+      for (int i = 0; i < codec.frameCount; i++) {
+        FrameInfo frameInfo = await codec.getNextFrame();
+        infos.add(ImageInfo(image: frameInfo.image));
+      }
     }
     _images.value = infos;
   }

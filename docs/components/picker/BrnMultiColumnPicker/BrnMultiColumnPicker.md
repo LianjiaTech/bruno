@@ -58,9 +58,9 @@ BrnMultiColumnPicker(
 
 ```dart
 enum PickerFilterType {
-  None, //未设置
-  Radio, //单选项，对应 type 为 radio
-  Checkbox, //多选项，对应 type 为 checkbox
+  none, //未设置
+  radio, //单选项，对应 type 为 radio
+  checkbox, //多选项，对应 type 为 checkbox
 }
 ```
 

@@ -1,8 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class BrnAppBarTheme {
+  const BrnAppBarTheme._();
+
   /// [BrnAppBar] 高度固定值
   static const double appBarHeight = 44;
 

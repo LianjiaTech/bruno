@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/picker/time_picker/brn_date_picker_constants.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
@@ -9,21 +11,21 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class BrnPickerTitle extends StatelessWidget {
   final BrnPickerTitleConfig pickerTitleConfig;
-  final DateTimePickerLocale locale;
+  final DateTimePickerLocale? locale;
   final DateVoidCallback onCancel, onConfirm;
-  BrnPickerConfig themeData;
+  BrnPickerConfig? themeData;
 
   BrnPickerTitle({
-    Key key,
+    Key? key,
     this.locale,
-    @required this.onCancel,
-    @required this.onConfirm,
-    this.pickerTitleConfig,
+    required this.onCancel,
+    required this.onConfirm,
+    this.pickerTitleConfig = BrnPickerTitleConfig.Default,
     this.themeData,
   }) : super(key: key) {
     this.themeData ??= BrnPickerConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .pickerConfig
         .merge(this.themeData);
   }
@@ -31,16 +33,16 @@ class BrnPickerTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (pickerTitleConfig.title != null) {
-      return pickerTitleConfig.title;
+      return pickerTitleConfig.title!;
     }
     return Container(
-      height: themeData.titleHeight,
+      height: themeData!.titleHeight,
       decoration: ShapeDecoration(
-        color: themeData.backgroundColor,
+        color: themeData!.backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(themeData.cornerRadius),
-            topRight: Radius.circular(themeData.cornerRadius),
+            topLeft: Radius.circular(themeData!.cornerRadius),
+            topRight: Radius.circular(themeData!.cornerRadius),
           ),
         ),
       ),
@@ -49,7 +51,7 @@ class BrnPickerTitle extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            height: themeData.titleHeight - 0.5,
+            height: themeData!.titleHeight - 0.5,
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,7 +64,7 @@ class BrnPickerTitle extends StatelessWidget {
                 ),
                 Text(
                   pickerTitleConfig.titleContent,
-                  style: themeData.titleTextStyle.generateTextStyle(),
+                  style: themeData!.titleTextStyle.generateTextStyle(),
                 ),
                 GestureDetector(
                   child: _renderConfirmWidget(context),
@@ -74,7 +76,7 @@ class BrnPickerTitle extends StatelessWidget {
             ),
           ),
           Divider(
-            color: themeData.dividerColor,
+            color: themeData!.dividerColor,
             indent: 0.0,
             height: 0.5,
           ),
@@ -85,9 +87,9 @@ class BrnPickerTitle extends StatelessWidget {
 
   /// render cancel button widget
   Widget _renderCancelWidget(BuildContext context) {
-    Widget cancelWidget = pickerTitleConfig.cancel;
+    Widget? cancelWidget = pickerTitleConfig.cancel;
     if (cancelWidget == null) {
-      TextStyle textStyle = themeData.cancelTextStyle.generateTextStyle();
+      TextStyle textStyle = themeData!.cancelTextStyle.generateTextStyle();
       cancelWidget = Text(
         '取消',
         style: textStyle,
@@ -99,9 +101,9 @@ class BrnPickerTitle extends StatelessWidget {
 
   /// render confirm button widget
   Widget _renderConfirmWidget(BuildContext context) {
-    Widget confirmWidget = pickerTitleConfig.confirm;
+    Widget? confirmWidget = pickerTitleConfig.confirm;
     if (confirmWidget == null) {
-      TextStyle textStyle = themeData.confirmTextStyle.generateTextStyle();
+      TextStyle textStyle = themeData!.confirmTextStyle.generateTextStyle();
       confirmWidget = Text(
         '完成',
         style: textStyle,

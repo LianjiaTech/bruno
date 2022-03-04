@@ -1,5 +1,4 @@
 import 'package:bruno/src/constants/brn_asset_constants.dart';
-import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/foundation.dart';
@@ -17,16 +16,16 @@ typedef BrnOnTextClear = bool Function();
 /// 基本IOS风格搜索框, 提供输入回调
 class BrnSearchText extends StatefulWidget {
   /// 提示语
-  final String hintText;
+  final String? hintText;
 
   /// 提示语样式
-  final TextStyle hintStyle;
+  final TextStyle? hintStyle;
 
   /// 输入框样式
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// 用于设置搜索框前端的 Icon
-  final Widget prefixIcon;
+  final Widget? prefixIcon;
 
   /// 包裹搜索框的容器背景色
   final Color outSideColor;
@@ -38,7 +37,7 @@ class BrnSearchText extends StatefulWidget {
   final int maxLines;
 
   /// 最大输入长度
-  final int maxLength;
+  final int? maxLength;
 
   /// 输入框最大高度，默认 60
   final double maxHeight;
@@ -47,44 +46,44 @@ class BrnSearchText extends StatefulWidget {
   final EdgeInsets innerPadding;
 
   ///普通状态的 border
-  final BoxBorder normalBorder;
+  final BoxBorder? normalBorder;
 
   /// 激活状态的 Border， 默认和 border 一致
-  final BoxBorder activeBorder;
+  final BoxBorder? activeBorder;
 
   /// 输入框圆角
   final BorderRadius borderRadius;
 
   /// 右侧操作 widget
-  final Widget action;
+  final Widget? action;
 
   /// 是否自动获取焦点
   final bool autoFocus;
 
   /// 用于控制键盘动作
-  final TextInputAction textInputAction;
-  final TextEditingController controller;
-  final FocusNode focusNode;
+  final TextInputAction? textInputAction;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
 
   /// 文本变化的回调
-  final BrnOnSearchTextChange onTextChange;
+  final BrnOnSearchTextChange? onTextChange;
 
   /// 提交文本时的回调
-  final BrnOnCommit onTextCommit;
+  final BrnOnCommit? onTextCommit;
 
   /// 右侧 action 区域点击的回调
-  final VoidCallback onActionTap;
+  final VoidCallback? onActionTap;
 
   /// 清除按钮的回调 如果用户设置了该属性
   /// 如果返回值为true，表明用户想要拦截，则不会走默认的清除行为
   /// 如果返回值为false，表明用户不想要拦截，在执行了用户的行为之后，还会走默认的行为
-  final BrnOnTextClear onTextClear;
+  final BrnOnTextClear? onTextClear;
 
   /// 用于控制清除 Icon 和右侧 Action 的显示与隐藏。等其他复杂的操作。
-  final BrnSearchTextController searchController;
+  final BrnSearchTextController? searchController;
 
   const BrnSearchText({
-    Key key,
+    Key? key,
     this.searchController,
     this.controller,
     this.maxLines = 1,
@@ -118,12 +117,12 @@ class BrnSearchText extends StatefulWidget {
 }
 
 class _SearchTextState extends State<BrnSearchText> {
-  FocusNode focusNode;
-  TextEditingController textEditingController;
-  BoxBorder border;
-  BrnSearchTextController searchTextController;
+  FocusNode? focusNode;
+  TextEditingController? textEditingController;
+  BoxBorder? border;
+  BrnSearchTextController? searchTextController;
 
-  BrnSearchTextController tmpController;
+  BrnSearchTextController? tmpController;
 
   @override
   void initState() {
@@ -133,7 +132,7 @@ class _SearchTextState extends State<BrnSearchText> {
       tmpController = BrnSearchTextController();
     }
     searchTextController = widget.searchController ?? tmpController;
-    searchTextController.addListener(() {
+    searchTextController!.addListener(() {
       if (mounted) {
         setState(() {});
       }
@@ -146,7 +145,7 @@ class _SearchTextState extends State<BrnSearchText> {
           color: widget.innerColor,
         );
 
-    focusNode.addListener(_handleFocusNodeChangeListenerTick);
+    focusNode!.addListener(_handleFocusNodeChangeListenerTick);
   }
 
   @override
@@ -154,12 +153,12 @@ class _SearchTextState extends State<BrnSearchText> {
     // TODO: implement dispose
     super.dispose();
     tmpController?.dispose();
-    focusNode.removeListener(_handleFocusNodeChangeListenerTick);
+    focusNode!.removeListener(_handleFocusNodeChangeListenerTick);
   }
 
   /// 焦点状态回到，用于刷新当前 UI
   void _handleFocusNodeChangeListenerTick() {
-    if (focusNode.hasFocus) {
+    if (focusNode!.hasFocus) {
       border = widget.activeBorder ?? border;
     } else {
       border = widget.normalBorder ?? border;
@@ -194,13 +193,8 @@ class _SearchTextState extends State<BrnSearchText> {
                         Padding(
                           padding: const EdgeInsets.only(left: 14),
                           child: Center(
-                            child: Container(
-                                child: Image.asset(
-                              'assets/${BrnAsset.ICON_SEARCH}',
-                              package: BrnStrings.flutterPackageName,
-                              height: 16,
-                              width: 16,
-                            )),
+                            child: BrunoTools.getAssetSizeImage(
+                                BrnAsset.iconSearch, 16, 16),
                           ),
                         ),
                     Expanded(
@@ -254,39 +248,38 @@ class _SearchTextState extends State<BrnSearchText> {
                           // 在改变属性，当正在编辑的文本发生更改时调用。
                           onChanged: (content) {
                             if (widget.onTextChange != null) {
-                              widget.onTextChange(content);
+                              widget.onTextChange!(content);
                             }
                             setState(() {});
                           },
                           onSubmitted: (content) {
                             if (widget.onTextCommit != null) {
-                              widget.onTextCommit(content);
+                              widget.onTextCommit!(content);
                             }
                           }),
                     ),
                     Visibility(
-                      visible: searchTextController.isClearShow,
+                      visible: searchTextController!.isClearShow,
                       child: GestureDetector(
                         onTap: () {
                           if (widget.onTextClear != null) {
-                            bool isIntercept = widget.onTextClear() ?? false;
+                            bool isIntercept = widget.onTextClear!();
                             if (isIntercept) return;
                           }
-                          textEditingController.clear();
+                          textEditingController!.clear();
                           if (this.widget.onTextChange != null) {
-                            this
-                                .widget
-                                .onTextChange(textEditingController.value.text);
+                            this.widget.onTextChange!(
+                                textEditingController!.value.text);
                           }
                           setState(() {});
                         },
                         child: Visibility(
-                          visible: textEditingController.text.isNotEmpty,
+                          visible: textEditingController!.text.isNotEmpty,
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 12.0),
                             child: BrunoTools.getAssetImage(
-                              BrnAsset.ICON_DELETE_TEXT,
+                              BrnAsset.iconDeleteText,
                             ),
                           ),
                         ),
@@ -297,12 +290,12 @@ class _SearchTextState extends State<BrnSearchText> {
               ),
             ),
             Visibility(
-              visible: searchTextController.isActionShow,
+              visible: searchTextController!.isActionShow,
               child: widget.action ??
                   GestureDetector(
                     onTap: () {
                       if (widget.onActionTap != null) {
-                        widget.onActionTap();
+                        widget.onActionTap!();
                       }
                     },
                     child: Container(

@@ -18,7 +18,7 @@ typedef Widget IndexHintBuilder(BuildContext context, String hint);
 
 /// _Header.
 class _Header extends ISuspensionBean {
-  String tag;
+  String tag = "";
 
   String getSuspensionTag() => tag;
 
@@ -29,15 +29,15 @@ class _Header extends ISuspensionBean {
 /// AzListView.
 class AzListView extends StatefulWidget {
   AzListView(
-      {Key key,
+      {Key? key,
       this.data,
       this.topData,
-      this.itemBuilder,
+      required this.itemBuilder,
       this.controller,
       this.physics,
       this.shrinkWrap = true,
       this.padding = EdgeInsets.zero,
-      this.suspensionWidget,
+      required this.suspensionWidget,
       this.isUseRealIndex = true,
       this.itemHeight = 50,
       this.suspensionHeight = 40,
@@ -46,20 +46,19 @@ class AzListView extends StatefulWidget {
       this.indexBarBuilder,
       this.indexHintBuilder,
       this.showIndexHint = true})
-      : assert(itemBuilder != null),
-        super(key: key);
+      : super(key: key);
 
   ///with ISuspensionBean Data
-  final List<ISuspensionBean> data;
+  final List<ISuspensionBean>? data;
 
   ///with ISuspensionBean topData, Do not participate in [A-Z] sorting (such as hotList).
-  final List<ISuspensionBean> topData;
+  final List<ISuspensionBean>? topData;
 
   final ItemWidgetBuilder itemBuilder;
 
-  final ScrollController controller;
+  final ScrollController? controller;
 
-  final ScrollPhysics physics;
+  final ScrollPhysics? physics;
 
   final bool shrinkWrap;
 
@@ -78,13 +77,13 @@ class AzListView extends StatefulWidget {
   final int suspensionHeight;
 
   ///on sus tag change callback.
-  final ValueChanged<String> onSusTagChanged;
+  final ValueChanged<String>? onSusTagChanged;
 
-  final AzListViewHeader header;
+  final AzListViewHeader? header;
 
-  final IndexBarBuilder indexBarBuilder;
+  final IndexBarBuilder? indexBarBuilder;
 
-  final IndexHintBuilder indexHintBuilder;
+  final IndexHintBuilder? indexHintBuilder;
 
   final bool showIndexHint;
 
@@ -98,12 +97,12 @@ class _AzListViewState extends State<AzListView> {
   //右侧索引tag  与 距离offset的value，比如 a---0， b---item*个数，c---a+b
   Map<String, int> _suspensionSectionMap = Map();
 
-  List<ISuspensionBean> _cityList = List();
-  List<String> _indexTagList = List();
+  List<ISuspensionBean> _cityList = [];
+  List<String> _indexTagList = [];
   bool _isShowIndexBarHint = false;
   String _indexBarHint = "";
 
-  ScrollController _scrollController;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
@@ -113,7 +112,7 @@ class _AzListViewState extends State<AzListView> {
 
   @override
   void dispose() {
-    _scrollController?.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -121,7 +120,7 @@ class _AzListViewState extends State<AzListView> {
     setState(() {
       _indexBarHint = model.tag;
       _isShowIndexBarHint = model.isTouchDown;
-      int offset = _suspensionSectionMap[model.tag];
+      int? offset = _suspensionSectionMap[model.tag];
       if (offset != null) {
         _scrollController.jumpTo(offset
             .toDouble()
@@ -132,10 +131,10 @@ class _AzListViewState extends State<AzListView> {
 
   void _init() {
     _cityList.clear();
-    if (widget.topData != null && widget.topData.isNotEmpty) {
-      _cityList.addAll(widget.topData);
+    if (widget.topData != null && widget.topData!.isNotEmpty) {
+      _cityList.addAll(widget.topData!);
     }
-    List<ISuspensionBean> list = widget.data;
+    List<ISuspensionBean>? list = widget.data;
     if (list != null && list.isNotEmpty) {
 //      SuspensionUtil.sortListBySuspensionTag(list);
       _cityList.addAll(list);
@@ -144,7 +143,7 @@ class _AzListViewState extends State<AzListView> {
     SuspensionUtil.setShowSuspensionStatus(_cityList);
 
     if (widget.header != null) {
-      _cityList.insert(0, _Header()..tag = widget.header.tag);
+      _cityList.insert(0, _Header()..tag = widget.header!.tag);
     }
     _indexTagList.clear();
     if (widget.isUseRealIndex) {
@@ -169,8 +168,8 @@ class _AzListViewState extends State<AzListView> {
             itemBuilder: (BuildContext context, int index) {
               if (index == 0 && _cityList[index] is _Header) {
                 return SizedBox(
-                    height: widget.header.height.toDouble(),
-                    child: widget.header.builder(context));
+                    height: widget.header!.height.toDouble(),
+                    child: widget.header!.builder(context));
               }
               return widget.itemBuilder(context, _cityList[index]);
             }),
@@ -193,7 +192,7 @@ class _AzListViewState extends State<AzListView> {
         onTouch: _onIndexBarTouch,
       );
     } else {
-      indexBar = widget.indexBarBuilder(
+      indexBar = widget.indexBarBuilder!(
         context,
         _indexTagList,
         _onIndexBarTouch,
@@ -205,7 +204,7 @@ class _AzListViewState extends State<AzListView> {
     ));
     Widget indexHint;
     if (widget.indexHintBuilder != null) {
-      indexHint = widget.indexHintBuilder(context, '$_indexBarHint');
+      indexHint = widget.indexHintBuilder!(context, '$_indexBarHint');
     } else {
       indexHint = Card(
         color: Colors.black54,

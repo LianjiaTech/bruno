@@ -13,11 +13,10 @@ import 'package:flutter/material.dart';
 /// ignore: must_be_immutable
 class BrnSelectTag extends StatefulWidget {
   /// 展示的标签列表
-  @required
   final List<String> tags;
 
   /// 选择tag的回调,返回选中 tag 的位置
-  final void Function(List<int>) onSelect;
+  final void Function(List<int>)? onSelect;
 
   /// 水平间距，默认 12
   final double spacing;
@@ -26,22 +25,22 @@ class BrnSelectTag extends StatefulWidget {
   final double verticalSpacing;
 
   /// 普通标签的样式
-  final TextStyle tagTextStyle;
+  final TextStyle? tagTextStyle;
 
   /// 选中的标签样式
-  final TextStyle selectedTagTextStyle;
+  final TextStyle? selectedTagTextStyle;
 
   /// 普通标签背景色，默认 F0Color
-  final Color tagBackgroundColor;
+  final Color? tagBackgroundColor;
 
   /// 选中的标签背景色，默认 B0Color
-  final Color selectedTagBackgroundColor;
+  final Color? selectedTagBackgroundColor;
 
-  /// 标签宽度。默认 75
-  final double tagWidth;
+  /// 标签宽度。默认全局配置宽度 75
+  final double? tagWidth;
 
-  /// 标签高度。默认 34
-  final double tagHeight;
+  /// 标签高度。默认全局配置高度 34
+  final double? tagHeight;
 
   /// true 流式展示，false 横向滑动展示，默认 true
   final bool softWrap;
@@ -56,13 +55,13 @@ class BrnSelectTag extends StatefulWidget {
   final bool isSingleSelect;
 
   /// 多选时的初始状态数组
-  final List<bool> initTagState;
+  final List<bool>? initTagState;
 
-  BrnTagConfig themeData;
+  BrnTagConfig? themeData;
 
   BrnSelectTag({
-    Key key,
-    @required this.tags,
+    Key? key,
+    required this.tags,
     this.onSelect,
     this.spacing = 12,
     this.verticalSpacing = 10,
@@ -78,13 +77,12 @@ class BrnSelectTag extends StatefulWidget {
     this.alignment = Alignment.centerLeft,
     this.fixWidthMode = true,
     this.themeData,
-  })  : assert(tags != null),
-        super(key: key) {
+  }) : super(key: key) {
     if (isSingleSelect == true) {
-      assert(initTagState == null || (initTagState.length <= 1));
+      assert(initTagState == null || (initTagState!.length <= 1));
     }
     this.themeData ??= BrnTagConfig();
-    this.themeData = this.themeData.merge(BrnTagConfig(
+    this.themeData = this.themeData!.merge(BrnTagConfig(
         tagBackgroundColor: this.tagBackgroundColor,
         tagTextStyle: BrnTextStyle.withStyle(this.tagTextStyle),
         selectTagTextStyle: BrnTextStyle.withStyle(this.selectedTagTextStyle),
@@ -92,7 +90,7 @@ class BrnSelectTag extends StatefulWidget {
         tagHeight: this.tagHeight,
         selectedTagBackgroundColor: this.selectedTagBackgroundColor));
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .tagConfig
         .merge(this.themeData);
   }
@@ -102,17 +100,15 @@ class BrnSelectTag extends StatefulWidget {
 }
 
 class _BrnSelectTagState extends State<BrnSelectTag> {
-  List<bool> _tagState;
+  List<bool> _tagState = [];
 
   @override
   void initState() {
     super.initState();
     _tagState = widget.tags.map((name) => false).toList();
     if (widget.initTagState != null) {
-      for (int index = 0;
-          index < min(widget.initTagState.length, widget.tags.length);
-          index++) {
-        _tagState[index] = widget.initTagState[index];
+      for (int index = 0; index < min(widget.initTagState!.length, widget.tags.length); index++) {
+        _tagState[index] = widget.initTagState![index];
       }
     }
   }
@@ -120,7 +116,7 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
   @override
   Widget build(BuildContext context) {
     Widget content;
-    if (widget.softWrap ?? true) {
+    if (widget.softWrap) {
       content = Wrap(
         runSpacing: widget.verticalSpacing,
         spacing: widget.spacing,
@@ -157,13 +153,13 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
   }
 
   List<Widget> _tagWidgetList(context) {
-    List<Widget> list = List<Widget>();
+    List<Widget> list = [];
     for (int nameIndex = 0; nameIndex < widget.tags.length; nameIndex++) {
       Widget tagWidget = _tagWidgetAtIndex(nameIndex);
       GestureDetector gdt = GestureDetector(
           child: tagWidget,
           onTap: () {
-            if (widget.isSingleSelect ?? true) {
+            if (widget.isSingleSelect) {
               bool selected = _tagState[nameIndex];
               if (selected) {
                 return;
@@ -183,7 +179,7 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
               for (int index = 0; index < _tagState.length; index++) {
                 if (_tagState[index]) _selectedIndexes.add(index);
               }
-              widget.onSelect(_selectedIndexes);
+              widget.onSelect!(_selectedIndexes);
             }
           });
       list.add(gdt);
@@ -199,15 +195,14 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
       overflow: TextOverflow.ellipsis,
     );
     Container container = Container(
-      constraints: BoxConstraints(minWidth: widget.themeData.tagMinWidth),
+      constraints: BoxConstraints(minWidth: widget.themeData!.tagMinWidth),
       decoration: BoxDecoration(
           color: selected
-              ? (widget.themeData?.selectedTagBackgroundColor
-                  ?.withOpacity(0.12))
-              : (widget.themeData?.tagBackgroundColor),
-          borderRadius: BorderRadius.circular(widget.themeData?.tagRadius)),
-      width: widget.fixWidthMode ? widget.themeData?.tagWidth : null,
-      height: widget.themeData?.tagHeight,
+              ? (widget.themeData!.selectedTagBackgroundColor.withOpacity(0.12))
+              : (widget.themeData!.tagBackgroundColor),
+          borderRadius: BorderRadius.circular(widget.themeData!.tagRadius)),
+      width: widget.fixWidthMode ? widget.themeData!.tagWidth : null,
+      height: widget.themeData!.tagHeight,
       padding: EdgeInsets.only(left: 8, right: 8),
       child: Center(widthFactor: 1, child: tx),
     );
@@ -215,28 +210,24 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
   }
 
   TextStyle _tagTextStyle() {
-    return widget.themeData?.tagTextStyle?.generateTextStyle();
+    return widget.themeData!.tagTextStyle.generateTextStyle();
   }
 
   TextStyle _selectedTextStyle() {
-    return widget.themeData?.selectTagTextStyle?.generateTextStyle();
+    return widget.themeData!.selectTagTextStyle.generateTextStyle();
   }
 
   @override
   void didUpdateWidget(BrnSelectTag oldWidget) {
     super.didUpdateWidget(oldWidget);
     // 如果两个数组不相等,重置选中状态
-    if (!sameList(oldWidget.tags, widget.tags))
-      _tagState = List.filled(widget.tags.length, false);
+    if (!sameList(oldWidget.tags, widget.tags)) _tagState = List.filled(widget.tags.length, false);
   }
 
   /// 比较两个数组内容是否一致，如果一致，返回 true，否则 false
   bool sameList(List<String> first, List<String> second) {
-    if (first == null || second == null || first.length != second.length)
-      return false;
+    if (first.length != second.length) return false;
     int index = 0;
-    return first.firstWhere((item) => item != second[index++],
-            orElse: () => null) ==
-        null;
+    return first.firstWhere((item) => item != second[index++], orElse: () => '') == '';
   }
 }

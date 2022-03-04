@@ -6,7 +6,8 @@ class PulseWidget extends StatefulWidget {
   final double width;
   final double height;
 
-  const PulseWidget({Key key, this.width, this.height}) : super(key: key);
+  const PulseWidget({Key? key, required this.width, required this.height})
+      : super(key: key);
 
   @override
   _PulseWidgetState createState() => _PulseWidgetState();
@@ -14,9 +15,9 @@ class PulseWidget extends StatefulWidget {
 
 class _PulseWidgetState extends State<PulseWidget>
     with TickerProviderStateMixin {
-  AnimationController _scaleController;
-  AnimationController _fadeController;
-  Animation _alphaAnimation;
+  late AnimationController _scaleController;
+  late AnimationController _fadeController;
+  late Animation<double> _alphaAnimation;
 
   @override
   void initState() {

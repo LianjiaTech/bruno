@@ -1,7 +1,7 @@
-import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_emoji_item.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 
 /// 描述: 表情评价列表
 ///       最多支持5个表情，默认也是5个，支持选择任意个数，
@@ -15,16 +15,18 @@ class BrnAppraiseEmojiListView extends StatefulWidget {
   final List<String> titles;
 
   /// 点击回调
-  final BrnAppraiseIconClick onTap;
+  final BrnAppraiseIconClick? onTap;
 
   static const List<String> _defaultTitles = ['不好', '还行', '满意', '很棒', '超惊喜'];
 
   BrnAppraiseEmojiListView(
-      {this.indexes = const [0, 1, 2, 3, 4],
+      {Key? key,
+      this.indexes = const [0, 1, 2, 3, 4],
       this.titles = _defaultTitles,
       this.onTap})
-      : assert((indexes?.length ?? 0) > 0),
-        assert(titles?.length == 5);
+      : assert(indexes.length > 0),
+        assert(titles.length == 5),
+        super(key: key);
 
   @override
   _BrnAppraiseEmojiListViewState createState() =>
@@ -34,40 +36,40 @@ class BrnAppraiseEmojiListView extends StatefulWidget {
 class _BrnAppraiseEmojiListViewState extends State<BrnAppraiseEmojiListView> {
   /// 未选中表情，灰色
   List _unselectedIcons = [
-    BrnAsset.ICON_APPRAISE_BAD_UNSELECTED,
-    BrnAsset.ICON_APPRAISE_NOT_GOOD_UNSELECTED,
-    BrnAsset.ICON_APPRAISE_OK_UNSELECTED,
-    BrnAsset.ICON_APPRAISE_GOOD_UNSELECTED,
-    BrnAsset.ICON_APPRAISE_SURPRISE_UNSELECTED,
+    BrnAsset.iconAppraiseBadUnselected,
+    BrnAsset.iconAppraiseNotGoodUnselected,
+    BrnAsset.iconAppraiseOkUnselected,
+    BrnAsset.iconAppraiseGoodUnselected,
+    BrnAsset.iconAppraiseSurpriseUnselected,
   ];
 
   /// 默认表情，黄色
   List _defaultIcons = [
-    BrnAsset.ICON_APPRAISE_BAD_DEFAULT,
-    BrnAsset.ICON_APPRAISE_NOT_GOOD_DEFAULT,
-    BrnAsset.ICON_APPRAISE_OK_DEFAULT,
-    BrnAsset.ICON_APPRAISE_GOOD_DEFAULT,
-    BrnAsset.ICON_APPRAISE_SURPRISE_DEFAULT,
+    BrnAsset.iconAppraiseBadDefault,
+    BrnAsset.iconAppraiseNotGoodDefault,
+    BrnAsset.iconAppraiseOkDefault,
+    BrnAsset.iconAppraiseGoodDefault,
+    BrnAsset.iconAppraiseSurpriseDefault,
   ];
 
   /// 选中表情，gif
   List _selectedIcons = [
-    BrnAsset.ICON_APPRAISE_BAD_SELECTED,
-    BrnAsset.ICON_APPRAISE_NOT_GOOD_SELECTED,
-    BrnAsset.ICON_APPRAISE_OK_SELECTED,
-    BrnAsset.ICON_APPRAISE_GOOD_SELECTED,
-    BrnAsset.ICON_APPRAISE_SURPRISE_SELECTED,
+    BrnAsset.iconAppraiseBadSelected,
+    BrnAsset.iconAppraiseNotGoodSelected,
+    BrnAsset.iconAppraiseOkSelected,
+    BrnAsset.iconAppraiseGoodSelected,
+    BrnAsset.iconAppraiseSurpriseSelected,
   ];
 
   int _selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
-    if (widget.indexes?.isEmpty ?? true) {
+    if (widget.indexes.isEmpty) {
       return Container();
     }
 
-    List<BrnAppraiseEmojiItem> list = List();
+    List<BrnAppraiseEmojiItem> list = [];
     for (int i = 0; i < widget.indexes.length; i++) {
       list.add(BrnAppraiseEmojiItem(
         selectedName: _selectedIcons[widget.indexes[i]],
@@ -81,7 +83,7 @@ class _BrnAppraiseEmojiListViewState extends State<BrnAppraiseEmojiListView> {
         onTap: (index) {
           _selectedIndex = index;
           if (widget.onTap != null) {
-            widget.onTap(index);
+            widget.onTap!(_selectedIndex);
           }
         },
       ));

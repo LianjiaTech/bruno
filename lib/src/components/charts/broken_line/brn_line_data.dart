@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 class BrnDialItem {
   /// 刻度标志内容
-  String dialText;
+  String? dialText;
 
   /// 刻度标志样式
-  TextStyle dialTextStyle;
+  TextStyle? dialTextStyle;
 
   /// x,y 轴刻度值。用于刻度在坐标的真实定位
   double value;
 
-  BrnDialItem({this.dialText, this.dialTextStyle, @required this.value});
+  BrnDialItem({this.dialText, this.dialTextStyle, required this.value});
 }
 
 class BrnPointData {
@@ -25,10 +25,10 @@ class BrnPointData {
   Offset offset;
 
   /// 点要展示的内容
-  String pointText;
+  String? pointText;
 
   /// 点展示内容样式
-  TextStyle pointTextStyle;
+  TextStyle? pointTextStyle;
 
   /// 折线节点的点击击事件是否可用
   bool isClickable;
@@ -42,7 +42,7 @@ class BrnPointData {
       this.pointText,
       this.pointTextStyle,
       this.isClickable: true,
-      this.lineTouchData}) {
+      required this.lineTouchData}) {
     pointText ??= '$y';
     pointTextStyle ??= TextStyle(
         fontWeight: FontWeight.w500,
@@ -56,7 +56,7 @@ class BrnPointData {
 
 class BrnLineTouchData {
   /// 用于临时存储要展示 tip 内容在坐标的位置
-  double x, y;
+  double? x, y;
 
   /// 要展示 tip 的相对偏移量
   Offset tipOffset;
@@ -65,10 +65,10 @@ class BrnLineTouchData {
   Size tipWindowSize;
 
   /// 点击回调，由于返回 展示内容（String 或 Widget）
-  Function() onTouch;
+  Function()? onTouch;
 
   BrnLineTouchData({
-    @required this.tipWindowSize,
+    required this.tipWindowSize,
     this.tipOffset: const Offset(0, 0),
     this.onTouch,
   });
@@ -83,22 +83,22 @@ class BrnPointsLine {
   double lineWidth;
 
   /// Line渐变色，从曲线到x轴从上到下的闭合颜色集
-  List<Color> shaderColors;
+  List<Color>? shaderColors;
 
   /// 曲线或折线的颜色
   Color lineColor;
 
   /// 点外圈的颜色
-  Color pointColor;
+  Color? pointColor;
 
   /// 点的外半径参数
   double pointRadius;
 
   /// 点内圈的颜色
-  Color pointInnerColor;
+  Color? pointInnerColor;
 
   /// 点内圈的半径
-  double pointInnerRadius;
+  double? pointInnerRadius;
 
   /// 是否显示x轴的文字，用来处理多个线条绘制的时候，同一x轴坐标不需要绘制多次，则只需要将多条线中一个标记绘制即可
   bool isShowXDial;
@@ -120,12 +120,11 @@ class BrnPointsLine {
       this.pointInnerRadius,
       this.pointInnerColor,
       this.isCurve = false,
-      this.points,
+      required this.points,
       this.isShowPoint: true,
       this.isShowPointText = false,
       this.shaderColors,
       this.lineColor = Colors.purple}) {
-    lineColor ??= Colors.purple;
     pointColor ??= lineColor;
     pointInnerColor ??= lineColor;
     pointInnerRadius ??= pointRadius - 1.5;

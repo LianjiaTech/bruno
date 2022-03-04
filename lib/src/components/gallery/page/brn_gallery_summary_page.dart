@@ -22,13 +22,13 @@ class BrnGallerySummaryPage extends StatefulWidget {
   final bool fromDetail;
 
   /// 图片详情页右上角自定义设置按钮，若为空，则展示 "全部图片"
-  final Widget Function(int groupId, int indexId) detailRightAction;
+  final Widget Function(int? groupId, int? indexId)? detailRightAction;
 
   /// 控制图片查看刷新
-  final BrnGalleryController controller;
+  final BrnGalleryController? controller;
 
   BrnGallerySummaryPage(
-      {@required this.allConfig,
+      {required this.allConfig,
       this.rowCount = 4,
       this.fromDetail = false,
       this.detailRightAction,
@@ -43,7 +43,7 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
   void initState() {
     super.initState();
     if (widget.controller != null) {
-      widget.controller.addListener(() {
+      widget.controller!.addListener(() {
         if (mounted) {
           setState(() {});
         }
@@ -56,7 +56,7 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
     super.didUpdateWidget(oldWidget);
     if (widget.controller != null &&
         oldWidget.controller != widget.controller) {
-      widget.controller.addListener(() {
+      widget.controller!.addListener(() {
         if (mounted) {
           setState(() {});
         }
@@ -76,40 +76,36 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
   }
 
   Widget _body() {
-    if (widget?.allConfig != null) {
-      List<BrnBasicGroupConfig> allConfig = widget.allConfig;
-      if (allConfig.length == 1) {
-        return SingleChildScrollView(child: _buildItem(allConfig[0], 0));
-      } else {
-        return Padding(
-          padding: EdgeInsets.only(bottom: 20),
-          child: BrnAnchorTab(
-              widgetIndexedBuilder: (c, i) {
-                return _buildItem(allConfig[i], i);
-              },
-              tabIndexedBuilder: (c, i) {
-                return BadgeTab(
-                    text:
-                        '${allConfig[i].title}(${allConfig[i].configList.length})');
-              },
-              itemCount: allConfig.length),
-        );
-      }
+    List<BrnBasicGroupConfig> allConfig = widget.allConfig;
+    if (allConfig.length == 1) {
+      return SingleChildScrollView(child: _buildItem(allConfig[0], 0));
     } else {
-      return Row();
+      return Padding(
+        padding: EdgeInsets.only(bottom: 20),
+        child: BrnAnchorTab(
+            widgetIndexedBuilder: (c, i) {
+              return _buildItem(allConfig[i], i);
+            },
+            tabIndexedBuilder: (c, i) {
+              return BadgeTab(
+                  text:
+                      '${allConfig[i].title ?? ""}(${allConfig[i].configList?.length ?? 0})');
+            },
+            itemCount: allConfig.length),
+      );
     }
   }
 
-  Widget _buildItem(BrnBasicGroupConfig groupConfig, int groupId) {
+  Widget _buildItem(BrnBasicGroupConfig? groupConfig, int groupId) {
     if (groupConfig == null) return Row();
-    List<Widget> columnViews = List();
+    List<Widget> columnViews = <Widget>[];
     if (groupConfig.title != null)
       columnViews.add(Container(
         height: 53,
         child: Padding(
           padding: EdgeInsets.only(top: 16, bottom: 12, left: 20, right: 20),
           child: Text(
-            '${groupConfig.title}(${groupConfig.configList.length})',
+            '${groupConfig.title}(${groupConfig.configList?.length ?? 0})',
             style: TextStyle(
                 color: Color(0xFF222222),
                 fontSize: 18,
@@ -118,8 +114,8 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
         ),
       ));
     if (groupConfig.configList != null) {
-      List<Widget> gridViews = List();
-      for (int i = 0; i < groupConfig.configList.length; i++)
+      List<Widget> gridViews = <Widget>[];
+      for (int i = 0; i < groupConfig.configList!.length; i++)
         gridViews.add(GestureDetector(
           onTap: () {
             //页面的跳转不应该交个子Widget处理
@@ -137,7 +133,7 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
                 );
               }));
           },
-          child: groupConfig.configList[i]
+          child: groupConfig.configList![i]
               .buildSummaryWidget(context, widget.allConfig, groupId, i),
         ));
       columnViews.add(GridView.count(

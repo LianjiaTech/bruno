@@ -1,10 +1,12 @@
 class BrnMultiClickUtils {
-  static DateTime _lastClickTime;
+  const BrnMultiClickUtils._();
 
-  static bool isMultiClick({int intervalMilliseconds}) {
+  static DateTime? _lastClickTime;
+
+  static bool isMultiClick({int intervalMilliseconds = 500}) {
     if (_lastClickTime == null ||
-        DateTime.now().difference(_lastClickTime) >
-            Duration(milliseconds: intervalMilliseconds ?? 500)) {
+        DateTime.now().difference(_lastClickTime!) >
+            Duration(milliseconds: intervalMilliseconds)) {
       _lastClickTime = DateTime.now();
       return false;
     }

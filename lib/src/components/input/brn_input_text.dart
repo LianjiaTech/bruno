@@ -19,10 +19,10 @@ typedef BrnInputTextEditingCompleteCallback = Function(String input);
 
 class BrnInputText extends StatelessWidget {
   /// 搜索框输入内容改变时候的回调函数
-  final BrnInputTextChangeCallback onTextChange;
+  final BrnInputTextChangeCallback? onTextChange;
 
   /// 点击确定后的回调
-  final BrnInputTextSubmitCallback onSubmit;
+  final BrnInputTextSubmitCallback? onSubmit;
 
   /// 容器的最大高度，默认 200
   final double maxHeight;
@@ -37,10 +37,11 @@ class BrnInputText extends StatelessWidget {
   final String hint;
 
   /// 输入框的初始值，默认为""
+  /// 不能定义为String，兼容example调用的传值
   final String textString;
 
   /// 用于对 TextField  更精细的控制，若传入该字段，[textString] 参数将失效，可使用 TextEditingController.text 进行赋值。
-  final TextEditingController textEditingController;
+  final TextEditingController? textEditingController;
 
   /// 最大字数，默认200
   final int maxLength;
@@ -52,22 +53,22 @@ class BrnInputText extends StatelessWidget {
   final EdgeInsetsGeometry padding;
 
   /// 最大hint行数
-  final int maxHintLines;
+  final int? maxHintLines;
 
   /// 搜索框的焦点控制器
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// 键盘输入行为， 默认为 TextInputAction.done
   final TextInputAction textInputAction;
 
   /// 光标展示
-  final bool autoFocus;
+  final bool? autoFocus;
 
   /// 背景圆角
-  final double borderRadius;
+  final double? borderRadius;
 
   /// 边框颜色
-  final Color borderColor;
+  final Color? borderColor;
 
   BrnInputText({
     this.onTextChange,
@@ -96,13 +97,13 @@ class BrnInputText extends StatelessWidget {
 
   Widget _inputText(BuildContext context) {
     String textData = textString;
-    if (textData != null && textString.runes.length > maxLength) {
+    if (textString.runes.length > maxLength) {
       var sRunes = textData.runes;
       textData = String.fromCharCodes(sRunes, 0, maxLength);
     }
     var _controller = textEditingController;
     if (_controller == null) {
-      if (textData != null && textData.length > 0) {
+      if (textData.isNotEmpty) {
         _controller = TextEditingController.fromValue(TextEditingValue(
             text: textData,
             selection: TextSelection.fromPosition(TextPosition(
@@ -128,7 +129,7 @@ class BrnInputText extends StatelessWidget {
         controller: _controller,
         keyboardType: TextInputType.multiline,
         maxLength: maxLength,
-        maxLengthEnforced: true,
+        maxLengthEnforcement: MaxLengthEnforcement.enforced,
         maxLines: null,
         autofocus: autoFocus ?? true,
         focusNode: focusNode,
@@ -141,8 +142,12 @@ class BrnInputText extends StatelessWidget {
                 .getConfig()
                 .commonConfig
                 .colorTextBase),
-        buildCounter: (BuildContext context,
-            {int currentLength, int maxLength, bool isFocused}) {
+        buildCounter: (
+          BuildContext context, {
+          required int currentLength,
+          required int? maxLength,
+          required bool isFocused,
+        }) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
@@ -182,12 +187,13 @@ class BrnInputText extends StatelessWidget {
         ),
         onSubmitted: (text) {
           if (onSubmit != null) {
-            onSubmit(text);
+            onSubmit!(text);
           }
         },
+
         onChanged: (text) {
           if (onTextChange != null) {
-            onTextChange(text);
+            onTextChange!(text);
           }
         },
       ),

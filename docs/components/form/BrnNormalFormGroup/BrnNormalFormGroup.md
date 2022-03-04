@@ -60,7 +60,7 @@ BrnNormalFormGroup({
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
 | --- | --- | --- | --- | --- | --- |
 | label | String | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
-| type | String | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.NORMAL_GROUP_TYPE | 外部可用此字段判断表单类型 |
+| type | String | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.normalGroupType | 外部可用此字段判断表单类型 |
 | title | String | 录入项标题 | 否 | 无 |  |
 | subTitle | String | 录入项子标题 | 否 | 无 |  |
 | tipLabel | String | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | null | 1. 若赋值为 空字符串（""）时仅展示"问号"图标，2. 若赋值为非空字符串时 展示"问号图标&文案"，3. 若不赋值或赋值为null时 不显示提示项 |

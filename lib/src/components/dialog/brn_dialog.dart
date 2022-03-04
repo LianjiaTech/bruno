@@ -3,7 +3,6 @@ import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_dialog_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// 底部按钮的点击监听回调
@@ -79,78 +78,78 @@ const Divider cDividerLine = const Divider(
   color: Color(0xF0F0F0F0),
 );
 
-enum ButtonType {
+enum _ButtonType {
   /// 单按钮
-  Single,
+  single,
 
   /// 多按钮
-  Multi,
+  multi,
 
   /// 左按钮
-  Left,
+  left,
 
   /// 右按钮
-  Right,
+  right,
 }
 
 /// 对话框的样式
 class BrnDialogStyle {
   /// title的间距
-  EdgeInsetsGeometry titlePadding;
+  EdgeInsets? titlePadding;
 
   /// 主色调按钮样式
-  TextStyle mainTextStyle;
+  TextStyle? mainTextStyle;
 
   /// 主色调按钮的背景
-  Color mainBackgroundColor;
+  Color? mainBackgroundColor;
 
   /// 其他按钮的样式
-  TextStyle greyActionsTextStyle;
+  TextStyle? greyActionsTextStyle;
 
   /// 其他按钮的背景
-  Color greyActionsBackgroundColor;
+  Color? greyActionsBackgroundColor;
 
   /// 标题的文字样式
-  TextStyle titleTextStyle;
+  TextStyle? titleTextStyle;
 
   /// 标题的文字对齐
-  TextAlign titleTextAlign;
+  TextAlign? titleTextAlign;
 
   /// 内容文字的对齐
-  TextAlign contentTextAlign;
+  TextAlign? contentTextAlign;
 
   /// 内容widget的间距
-  EdgeInsetsGeometry contentPadding;
+  EdgeInsets? contentPadding;
 
   /// 内容文字的样式
-  TextStyle contentTextStyle;
+  TextStyle? contentTextStyle;
 
   /// 对话框的背景
-  Color backgroundColor;
+  Color? backgroundColor;
 
   /// 对话框的底部按钮的高度
-  double bottomHeight;
+  double? bottomHeight;
 
   /// 对话框圆角的大小
-  double radius;
+  double? radius;
 
   /// 边框阴影
-  double elevation;
+  double? elevation;
 
   /// 警示文案的样式
-  TextStyle warningTextStyle;
+  TextStyle? warningTextStyle;
 
   /// 警示文案文字的对齐
-  TextAlign warningTextAlign;
+  TextAlign? warningTextAlign;
 
   /// 警示文案的间距
-  EdgeInsetsGeometry warningPadding;
+  EdgeInsets? warningPadding;
 
   /// icon的间距
-  EdgeInsetsGeometry iconPadding;
+  EdgeInsets? iconPadding;
 
   /// 标题最大行数
-  int titleMaxLines;
+  int? titleMaxLines;
 
   BrnDialogStyle({
     this.titlePadding,
@@ -207,30 +206,30 @@ class BrnDialogStyle {
 
 class BrnDialog extends AlertDialog {
   /// 标题控件
-  final Widget titleWidget;
+  final Widget? titleWidget;
 
   /// 内容控件
-  final Widget contentWidget;
+  final Widget? contentWidget;
 
   /// 警示文案部分的控件
-  final Widget warningWidget;
+  final Widget? warningWidget;
 
   /// 按钮部分控件
-  final List<Widget> actionsWidget;
+  final List<Widget>? actionsWidget;
 
   ///-----如果以上属性设置了，那么对话框中的相对应的部分 以他们为基准
 
   /// 标题文本
-  final String titleText;
+  final String? titleText;
 
   /// 内容文本
-  final String messageText;
+  final String? messageText;
 
   /// 警示文本
-  final String warningText;
+  final String? warningText;
 
   /// 底部按钮文案
-  final List<String> actionsText;
+  final List<String>? actionsText;
 
   /// 根据以上属性 生成对应的text控件
 
@@ -240,20 +239,17 @@ class BrnDialog extends AlertDialog {
   /// 水平分割线
   final Divider divider;
 
-  /// 对话框样式
-  final BrnDialogStyle brnDialogStyle;
-
   /// 底部按钮的点击监听回调
-  final DialogIndexedActionClickCallback indexedActionCallback;
+  final DialogIndexedActionClickCallback? indexedActionCallback;
 
   /// 是否展示头部icon
   final bool showIcon;
 
   /// 头部的icon
-  final Image iconImage;
+  final Image? iconImage;
 
   /// dialog配置
-  final BrnDialogConfig themeData;
+  final BrnDialogConfig? themeData;
 
   /// 标题最大行数
   final int titleMaxLines;
@@ -268,7 +264,6 @@ class BrnDialog extends AlertDialog {
     this.warningText,
     this.warningWidget,
     this.actionsWidget,
-    this.brnDialogStyle,
     this.divider = cDividerLine,
     this.verticalDivider = cVerticalDivider,
     this.actionsText,
@@ -279,8 +274,7 @@ class BrnDialog extends AlertDialog {
 
   @override
   Widget build(BuildContext context) {
-    BrnDialogConfig defaultConfig = _convertStyleToConfig();
-    defaultConfig = themeData ?? BrnDialogConfig();
+    BrnDialogConfig? defaultConfig = BrnDialogConfig();
 
     defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultConfig.configId)
@@ -312,7 +306,7 @@ class BrnDialog extends AlertDialog {
     }
 
     children.add(Padding(
-      padding: defaultConfig?.dividerPadding,
+      padding: defaultConfig.dividerPadding,
       child: SizedBox(
         height: 0,
         width: 0,
@@ -332,13 +326,13 @@ class BrnDialog extends AlertDialog {
 
     return UnconstrainedBox(
         child: SizedBox(
-            width: defaultConfig?.dialogWidth,
+            width: defaultConfig.dialogWidth,
             child: Material(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(
                       BrnDialogUtils.getDialogRadius(defaultConfig)))),
               child: dialogChild,
-              color: defaultConfig?.backgroundColor,
+              color: defaultConfig.backgroundColor,
             )));
   }
 
@@ -347,7 +341,7 @@ class BrnDialog extends AlertDialog {
     Widget _createWidget(Widget widget) {
       return Center(
         child: Padding(
-          padding: dialogConfig?.iconPadding,
+          padding: dialogConfig.iconPadding,
           child: SizedBox(
             width: 36,
             height: 36,
@@ -358,7 +352,7 @@ class BrnDialog extends AlertDialog {
     }
 
     if (iconImage != null) {
-      return _createWidget(iconImage);
+      return _createWidget(iconImage!);
     }
     if (showIcon) {
       return _createWidget(
@@ -376,20 +370,20 @@ class BrnDialog extends AlertDialog {
       BuildContext context, BrnDialogConfig dialogConfig) {
     if (titleWidget != null) {
       return DefaultTextStyle(
-        textAlign: dialogConfig?.titleTextAlign,
+        textAlign: dialogConfig.titleTextAlign,
         style: BrnDialogUtils.getDialogTitleStyle(dialogConfig),
-        child: titleWidget,
+        child: titleWidget!,
       );
     }
 
     return Padding(
       padding: _configTitlePadding(dialogConfig),
       child: Text(
-        titleText,
+        titleText!,
         maxLines: titleMaxLines,
         overflow: TextOverflow.ellipsis,
         style: BrnDialogUtils.getDialogTitleStyle(dialogConfig),
-        textAlign: dialogConfig?.titleTextAlign,
+        textAlign: dialogConfig.titleTextAlign,
       ),
     );
   }
@@ -400,8 +394,8 @@ class BrnDialog extends AlertDialog {
     if (contentWidget != null)
       return Flexible(
         child: DefaultTextStyle(
-          style: (dialogConfig?.contentTextStyle)?.generateTextStyle(),
-          child: contentWidget,
+          style: dialogConfig.contentTextStyle.generateTextStyle(),
+          child: contentWidget!,
         ),
       );
 
@@ -409,9 +403,9 @@ class BrnDialog extends AlertDialog {
       padding: _configContentPadding(dialogConfig),
       child: Center(
         child: Text(
-          messageText,
-          style: (dialogConfig?.contentTextStyle)?.generateTextStyle(),
-          textAlign: dialogConfig?.contentTextAlign,
+          messageText ?? "",
+          style: dialogConfig.contentTextStyle.generateTextStyle(),
+          textAlign: dialogConfig.contentTextAlign,
         ),
       ),
     );
@@ -423,17 +417,17 @@ class BrnDialog extends AlertDialog {
     if (warningWidget != null)
       return Flexible(
         child: DefaultTextStyle(
-          style: (dialogConfig?.warningTextStyle)?.generateTextStyle(),
-          child: warningWidget,
+          style: dialogConfig.warningTextStyle.generateTextStyle(),
+          child: warningWidget!,
         ),
       );
 
     return Padding(
       padding: _configWarningPadding(dialogConfig),
       child: Text(
-        warningText,
-        style: (dialogConfig?.warningTextStyle)?.generateTextStyle(),
-        textAlign: dialogConfig?.warningTextAlign,
+        warningText!,
+        style: dialogConfig.warningTextStyle.generateTextStyle(),
+        textAlign: dialogConfig.warningTextAlign,
       ),
     );
   }
@@ -442,30 +436,30 @@ class BrnDialog extends AlertDialog {
   /// 单个button 左右有圆角
   /// 两个button 左button有左圆角&右直角 右button有右圆角&左直角
   /// 多个button 最后一个左右圆角  其他均直角
-  Widget _generateMainWidget(Widget widget, Color background, ButtonType type,
+  Widget _generateMainWidget(Widget widget, Color background, _ButtonType type,
       int index, BrnDialogConfig dialogConfig) {
     return Container(
       decoration: ShapeDecoration(
           color: background,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(type == ButtonType.Single ||
-                          type == ButtonType.Left ||
-                          (type == ButtonType.Multi &&
+                  bottomLeft: Radius.circular(type == _ButtonType.single ||
+                          type == _ButtonType.left ||
+                          (type == _ButtonType.multi &&
                               actionsText != null &&
-                              index == actionsText.length - 1)
+                              index == actionsText!.length - 1)
                       ? BrnDialogUtils.getDialogRadius(dialogConfig)
                       : 0),
-                  bottomRight: Radius.circular(type == ButtonType.Single ||
-                          type == ButtonType.Right ||
-                          (type == ButtonType.Multi &&
+                  bottomRight: Radius.circular(type == _ButtonType.single ||
+                          type == _ButtonType.right ||
+                          (type == _ButtonType.multi &&
                               actionsText != null &&
-                              index == actionsText.length - 1)
+                              index == actionsText!.length - 1)
                       ? BrnDialogUtils.getDialogRadius(dialogConfig)
                       : 0)))),
       constraints: BoxConstraints.tightFor(height: cBottomHeight),
       child: DefaultTextStyle(
-        style: (dialogConfig?.mainActionTextStyle)?.generateTextStyle(),
+        style: dialogConfig.mainActionTextStyle.generateTextStyle(),
         child: Center(
           child: widget,
         ),
@@ -477,7 +471,7 @@ class BrnDialog extends AlertDialog {
   /// 单个button 左右有圆角
   /// 两个button 左button有左圆角&右直角 右button有右圆角&左直角
   /// 多个button 最后一个左右圆角  其他均直角
-  Widget _generateGreyWidget(Widget widget, Color background, ButtonType type,
+  Widget _generateGreyWidget(Widget widget, Color background, _ButtonType type,
       int index, BrnDialogConfig dialogConfig) {
     return Container(
       constraints: BoxConstraints.tightFor(height: cBottomHeight),
@@ -485,22 +479,22 @@ class BrnDialog extends AlertDialog {
           color: background,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(type == ButtonType.Single ||
-                          type == ButtonType.Left ||
-                          (type == ButtonType.Multi &&
+                  bottomLeft: Radius.circular(type == _ButtonType.single ||
+                          type == _ButtonType.left ||
+                          (type == _ButtonType.multi &&
                               actionsText != null &&
-                              index == actionsText.length - 1)
+                              index == actionsText!.length - 1)
                       ? BrnDialogUtils.getDialogRadius(dialogConfig)
                       : 0),
-                  bottomRight: Radius.circular(type == ButtonType.Single ||
-                          type == ButtonType.Right ||
-                          (type == ButtonType.Multi &&
+                  bottomRight: Radius.circular(type == _ButtonType.single ||
+                          type == _ButtonType.right ||
+                          (type == _ButtonType.multi &&
                               actionsText != null &&
-                              index == actionsText.length - 1)
+                              index == actionsText!.length - 1)
                       ? BrnDialogUtils.getDialogRadius(dialogConfig)
                       : 0)))),
       child: DefaultTextStyle(
-        style: dialogConfig?.assistActionsTextStyle?.generateTextStyle(),
+        style: dialogConfig.assistActionsTextStyle.generateTextStyle(),
         child: Center(
           child: widget,
         ),
@@ -511,18 +505,18 @@ class BrnDialog extends AlertDialog {
   Widget _generateActionsWidget(
       BuildContext context, BrnDialogConfig defaultConfig) {
     bool showTextActions = _isEmptyActionsWidget();
-    int length = showTextActions ? actionsText.length : actionsWidget.length;
+    int length = showTextActions ? actionsText!.length : actionsWidget!.length;
     if (length == 1) {
       return showTextActions
           ? _mapTextToGesWidget(
               context,
-              actionsText[0],
+              actionsText![0],
               0,
               true,
               defaultConfig,
-              type: ButtonType.Single,
+              type: _ButtonType.single,
             )
-          : actionsWidget[0];
+          : actionsWidget![0];
     } else if (length == 2) {
       return Row(
         mainAxisSize: MainAxisSize.max,
@@ -531,26 +525,26 @@ class BrnDialog extends AlertDialog {
           Expanded(
             child: showTextActions
                 ? _mapTextToGesWidget(
-                    context, actionsText[0], 0, false, defaultConfig,
-                    type: ButtonType.Left)
-                : actionsWidget[0],
+                    context, actionsText![0], 0, false, defaultConfig,
+                    type: _ButtonType.left)
+                : actionsWidget![0],
           ),
           Container(
-            height: defaultConfig?.bottomHeight,
+            height: defaultConfig.bottomHeight,
             child: verticalDivider,
           ),
           Expanded(
             child: showTextActions
                 ? _mapTextToGesWidget(
-                    context, actionsText[1], 1, true, defaultConfig,
-                    type: ButtonType.Right)
-                : actionsWidget[1],
+                    context, actionsText![1], 1, true, defaultConfig,
+                    type: _ButtonType.right)
+                : actionsWidget![1],
           )
         ],
       );
     } else {
       return Container(
-        height: 3 * (defaultConfig?.bottomHeight ?? 0 + 1),
+        height: 3 * (defaultConfig.bottomHeight + 1),
         width: double.maxFinite,
         child: ListView.separated(
             shrinkWrap: true,
@@ -558,9 +552,9 @@ class BrnDialog extends AlertDialog {
             itemBuilder: (context, i) {
               return showTextActions
                   ? _mapTextToGesWidget(
-                      context, actionsText[i], i, true, defaultConfig,
-                      type: ButtonType.Multi)
-                  : actionsWidget[i];
+                      context, actionsText![i], i, true, defaultConfig,
+                      type: _ButtonType.multi)
+                  : actionsWidget![i];
             },
             separatorBuilder: (context, i) {
               return divider;
@@ -572,22 +566,18 @@ class BrnDialog extends AlertDialog {
 
   Widget _mapTextToGesWidget(BuildContext context, String label, int index,
       bool main, BrnDialogConfig dialogConfig,
-      {ButtonType type = ButtonType.Single}) {
+      {_ButtonType type = _ButtonType.single}) {
     Text text = Text(label);
     Widget ges = GestureDetector(
       child: main
-          ? _generateMainWidget(text, dialogConfig?.mainActionBackgroundColor,
+          ? _generateMainWidget(text, dialogConfig.mainActionBackgroundColor,
               type, index, dialogConfig)
-          : _generateGreyWidget(
-              text,
-              dialogConfig?.assistActionsBackgroundColor,
-              type,
-              index,
-              dialogConfig),
+          : _generateGreyWidget(text, dialogConfig.assistActionsBackgroundColor,
+              type, index, dialogConfig),
       onTap: () {
         if (indexedActionCallback != null) {
           //点击的监听
-          indexedActionCallback(index);
+          indexedActionCallback!(index);
         } else {
           Navigator.pop(context);
         }
@@ -617,66 +607,32 @@ class BrnDialog extends AlertDialog {
   }
 
   bool _isEmptyActionsText() {
-    return actionsText == null || actionsText.isEmpty;
+    return actionsText == null || actionsText!.isEmpty;
   }
 
   bool _isEmptyActionsWidget() {
-    return actionsWidget == null || actionsWidget.isEmpty;
-  }
-
-  /// 将已有的BrnDialogStyle转换成BrnDialogConfig
-  /// 当用户配置了最新的themeData则ljDialogStyle失效
-  /// 当用户配置仅配置ljDialogStyle，则将ljDialogStyle转换成themeData
-  BrnDialogConfig _convertStyleToConfig() {
-    if (brnDialogStyle == null) {
-      return themeData;
-    }
-    BrnDialogConfig defaultConfig = themeData ?? BrnDialogConfig();
-    defaultConfig = defaultConfig.merge(BrnDialogConfig(
-      mainActionTextStyle: BrnTextStyle.withStyle(brnDialogStyle.mainTextStyle),
-      mainActionBackgroundColor: brnDialogStyle.mainBackgroundColor,
-      assistActionsTextStyle:
-          BrnTextStyle.withStyle(brnDialogStyle.greyActionsTextStyle),
-      assistActionsBackgroundColor: brnDialogStyle.greyActionsBackgroundColor,
-      radius: brnDialogStyle.radius,
-      iconPadding: brnDialogStyle.iconPadding,
-      titlePaddingSm: brnDialogStyle.titlePadding,
-      titlePaddingLg: brnDialogStyle.titlePadding,
-      titleTextAlign: brnDialogStyle.titleTextAlign,
-      titleTextStyle: BrnTextStyle.withStyle(brnDialogStyle.titleTextStyle),
-      contentPaddingSm: brnDialogStyle.contentPadding,
-      contentPaddingLg: brnDialogStyle.contentPadding,
-      contentTextAlign: brnDialogStyle.contentTextAlign,
-      contentTextStyle: BrnTextStyle.withStyle(brnDialogStyle.contentTextStyle),
-      warningPaddingSm: brnDialogStyle.warningPadding,
-      warningPaddingLg: brnDialogStyle.warningPadding,
-      warningTextAlign: brnDialogStyle.warningTextAlign,
-      warningTextStyle: BrnTextStyle.withStyle(brnDialogStyle.warningTextStyle),
-      bottomHeight: brnDialogStyle.bottomHeight,
-      backgroundColor: brnDialogStyle.backgroundColor,
-    ));
-    return defaultConfig;
+    return actionsWidget == null || actionsWidget!.isEmpty;
   }
 
   /// 主题配置的标题间距
   EdgeInsetsGeometry _configTitlePadding(BrnDialogConfig dialogConfig) {
     return _isShowIcon()
-        ? dialogConfig?.titlePaddingSm
-        : dialogConfig?.titlePaddingLg;
+        ? dialogConfig.titlePaddingSm
+        : dialogConfig.titlePaddingLg;
   }
 
   /// 主题配置的内容间距
   EdgeInsetsGeometry _configContentPadding(BrnDialogConfig dialogConfig) {
     return (_isShowIcon() || _isShowTitle())
-        ? dialogConfig?.contentPaddingSm
-        : dialogConfig?.contentPaddingLg;
+        ? dialogConfig.contentPaddingSm
+        : dialogConfig.contentPaddingLg;
   }
 
   /// 主题配置的警告间距
   EdgeInsetsGeometry _configWarningPadding(BrnDialogConfig dialogConfig) {
     return (_isShowIcon() || _isShowTitle() || _isShowContent())
-        ? dialogConfig?.warningPaddingSm
-        : dialogConfig?.warningPaddingLg;
+        ? dialogConfig.warningPaddingSm
+        : dialogConfig.warningPaddingLg;
   }
 }
 
@@ -710,23 +666,23 @@ class BrnDialogManager {
   ///labelWidget  自定义底部按钮的显示
   static void showSingleButtonDialog(
     BuildContext context, {
-    @required String label,
+    required String label,
     bool showIcon = false,
-    Image iconWidget,
-    String title,
-    Widget titleWidget,
-    String message,
-    Widget messageWidget,
-    String warning,
-    Widget warningWidget,
-    Widget labelWidget,
-    BrnDialogStyle dialogStyle,
-    GestureTapCallback onTap,
+    Image? iconWidget,
+    String? title,
+    Widget? titleWidget,
+    String? message,
+    Widget? messageWidget,
+    String? warning,
+    Widget? warningWidget,
+    Widget? labelWidget,
+    BrnDialogStyle? dialogStyle,
+    GestureTapCallback? onTap,
     bool barrierDismissible = true,
     int titleMaxLines = cTitleMaxLines,
-    BrnDialogConfig themeData,
+    BrnDialogConfig? themeData,
   }) {
-    List<Widget> actionsWidget = List();
+    List<Widget> actionsWidget = [];
 
     if (labelWidget != null) {
       actionsWidget.add(labelWidget);
@@ -745,7 +701,6 @@ class BrnDialogManager {
           warningText: warning,
           warningWidget: warningWidget,
           actionsText: [label],
-          brnDialogStyle: dialogStyle,
           actionsWidget: actionsWidget,
           titleMaxLines: titleMaxLines,
           themeData: themeData,
@@ -768,26 +723,26 @@ class BrnDialogManager {
   /// conformWidget 自定义显示的右侧
   static void showConfirmDialog(
     BuildContext context, {
-    @required String cancel,
-    @required String confirm,
+    required String cancel,
+    required String confirm,
     bool showIcon = false,
-    Image iconWidget,
-    String title,
-    Widget titleWidget,
-    String message,
-    Widget messageWidget,
-    String warning,
-    Widget warningWidget,
-    Widget cancelWidget,
-    Widget conformWidget,
-    BrnDialogStyle dialogStyle,
-    GestureTapCallback onCancel,
-    GestureTapCallback onConfirm,
+    Image? iconWidget,
+    String? title,
+    Widget? titleWidget,
+    String? message,
+    Widget? messageWidget,
+    String? warning,
+    Widget? warningWidget,
+    Widget? cancelWidget,
+    Widget? conformWidget,
+    BrnDialogStyle? dialogStyle,
+    GestureTapCallback? onCancel,
+    GestureTapCallback? onConfirm,
     bool barrierDismissible = true,
     int titleMaxLines = cTitleMaxLines,
-    BrnDialogConfig themeData,
+    BrnDialogConfig? themeData,
   }) {
-    List<Widget> actionsWidget = List();
+    List<Widget> actionsWidget = [];
 
     if (cancelWidget != null) {
       actionsWidget.add(cancelWidget);
@@ -810,7 +765,6 @@ class BrnDialogManager {
           warningText: warning,
           themeData: themeData,
           titleMaxLines: titleMaxLines,
-          brnDialogStyle: dialogStyle,
           actionsText: [cancel, confirm],
           actionsWidget: actionsWidget,
           indexedActionCallback: (index) {
@@ -835,21 +789,21 @@ class BrnDialogManager {
   ///如果数量超过了三个 会滑动展示
   static void showMoreButtonDialog(
     BuildContext context, {
-    @required List<String> actions,
+    required List<String> actions,
     bool showIcon = false,
-    Image iconWidget,
-    String title,
-    Widget titleWidget,
-    String message,
-    Widget messageWidget,
-    String warning,
-    Widget warningWidget,
-    List<Widget> actionsWidget,
+    Image? iconWidget,
+    String? title,
+    Widget? titleWidget,
+    String? message,
+    Widget? messageWidget,
+    String? warning,
+    Widget? warningWidget,
+    List<Widget>? actionsWidget,
     bool barrierDismissible = true,
-    BrnDialogStyle dialogStyle,
+    BrnDialogStyle? dialogStyle,
     int titleMaxLines = cTitleMaxLines,
-    BrnDialogConfig themeData,
-    DialogIndexedActionClickCallback indexedActionClickCallback,
+    BrnDialogConfig? themeData,
+    DialogIndexedActionClickCallback? indexedActionClickCallback,
   }) {
     showDialog<void>(
       context: context,
@@ -864,7 +818,6 @@ class BrnDialogManager {
             contentWidget: messageWidget,
             warningWidget: warningWidget,
             warningText: warning,
-            brnDialogStyle: dialogStyle,
             actionsText: actions,
             actionsWidget: actionsWidget,
             themeData: themeData,

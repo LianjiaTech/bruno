@@ -1,5 +1,4 @@
-import 'package:bruno/bruno.dart';
-import 'package:bruno/src/constants/brn_strings_constants.dart';
+import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_card_title_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -38,29 +37,28 @@ class BrnActionCardTitle extends StatelessWidget {
   final String title;
 
   ///箭头左边的文字
-  final String accessoryText;
+  final String? accessoryText;
 
   ///标题点击
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   ///标题右侧的小文字
-  final String subTitle;
+  final String? subTitle;
 
   ///标题右侧的显示widget
-  final Widget subTitleWidget;
+  final Widget? subTitleWidget;
 
-  final BrnCardTitleConfig themeData;
+  final BrnCardTitleConfig? themeData;
 
   BrnActionCardTitle({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
     this.accessoryText,
     this.onTap,
     this.subTitle,
     this.subTitleWidget,
     this.themeData,
-  })  : assert(null != title),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -112,10 +110,10 @@ class BrnActionCardTitle extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(right: 8),
       child: Text(
-        this.title ?? "",
+        this.title,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: defaultConfig.titleTextStyle?.generateTextStyle(),
+        style: defaultConfig.titleTextStyle.generateTextStyle(),
       ),
     );
   }
@@ -123,24 +121,24 @@ class BrnActionCardTitle extends StatelessWidget {
   // 如果传入了subTitleWidget 则以subTitleWidget为主
   Widget _sub(BrnCardTitleConfig defaultConfig) {
     if (subTitleWidget != null) {
-      return subTitleWidget;
+      return subTitleWidget!;
     }
 
     if (subTitle != null) {
       return Container(
         constraints: BoxConstraints(maxWidth: 84),
-        child: Text(this.subTitle,
+        child: Text(this.subTitle!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: subTextStyle(defaultConfig)),
       );
     }
 
-    return Container();
+    return SizedBox.shrink();
   }
 
   Widget _arrowWidget() {
-    return BrunoTools.getAssetSizeImage(BrnAsset.ICON_RIGHT_ARROW, 16, 16);
+    return BrunoTools.getAssetSizeImage(BrnAsset.iconRightArrow, 16, 16);
   }
 
   Widget _accessoryTextWidget(BrnCardTitleConfig defaultConfig) {
@@ -156,7 +154,7 @@ class BrnActionCardTitle extends StatelessWidget {
             child: Text(
               accessoryText ?? "",
               overflow: TextOverflow.ellipsis,
-              style: defaultConfig.accessoryTextStyle?.generateTextStyle(),
+              style: defaultConfig.accessoryTextStyle.generateTextStyle(),
             ),
           ),
           _arrowWidget()
@@ -167,5 +165,5 @@ class BrnActionCardTitle extends StatelessWidget {
 
   //标题右侧的小文字 样式
   TextStyle subTextStyle(BrnCardTitleConfig defaultConfig) =>
-      defaultConfig?.subtitleTextStyle?.generateTextStyle();
+      defaultConfig.subtitleTextStyle.generateTextStyle();
 }

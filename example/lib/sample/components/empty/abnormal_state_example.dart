@@ -1,8 +1,10 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class AbnomalStateExample extends StatelessWidget {
-  final int caseIndex;
+  final int? caseIndex;
 
   AbnomalStateExample({this.caseIndex});
 
@@ -15,8 +17,8 @@ class AbnomalStateExample extends StatelessWidget {
         body: _buildEmpty(caseIndex, context));
   }
 
-  Widget _buildEmpty(int index, BuildContext context) {
-    Widget widget;
+  Widget? _buildEmpty(int? index, BuildContext context) {
+    Widget? widget;
     switch (index) {
       case 0:
         widget = BrnAbnormalStateWidget(
@@ -27,7 +29,7 @@ class AbnomalStateExample extends StatelessWidget {
           isCenterVertical: true,
           title: BrnStrings.getDateFailed,
           operateTexts: <String>[BrnStrings.clickPageRetry],
-          operateAreaType: OperateAreaType.TextButton,
+          operateAreaType: OperateAreaType.textButton,
           action: (index) {
             BrnToast.show(BrnStrings.getDateFailed, context);
           },
@@ -69,7 +71,7 @@ class AbnomalStateExample extends StatelessWidget {
           ),
           title: "这是副标题内容这是副标题内容这是副标",
           content: '您的门店暂无用户',
-          operateAreaType: OperateAreaType.SingleButton,
+          operateAreaType: OperateAreaType.singleButton,
           operateTexts: ["切换账号"],
           action: (_) {
             BrnToast.show("第$_个按钮被点击了", context);
@@ -84,7 +86,7 @@ class AbnomalStateExample extends StatelessWidget {
           ),
           title: "暂无",
           content: '您还没有在维护的信息哦',
-          operateAreaType: OperateAreaType.DoubleButton,
+          operateAreaType: OperateAreaType.doubleButton,
           operateTexts: ['去添加', '去修改'],
           action: (_) {
             BrnToast.show("第$_个按钮被点击了", context);

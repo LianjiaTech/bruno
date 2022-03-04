@@ -8,7 +8,7 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
-import 'package:bruno/src/utils/font/brn_font.dart';
+import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,23 +21,23 @@ import 'package:flutter/services.dart';
 // ignore: must_be_immutable
 class BrnTitleSelectInputFormItem extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
-  final String label;
+  final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  String type = BrnInputItemType.TEXT_INPUT_TITLE_SELECT_TYPE;
+  final String type = BrnInputItemType.textInputTitleSelectType;
 
   /// 录入项标题
-  String title;
+  final String title;
 
   /// 录入项子标题
-  final String subTitle;
+  final String? subTitle;
 
   /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
   /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
   /// 2. 若赋值为非空字符串时 展示"问号图标&文案"，
   /// 3. 若不赋值或赋值为null时 不显示提示项
   /// 默认值为 3
-  final String tipLabel;
+  final String? tipLabel;
 
   /// 录入项前缀图标样式 "添加项" "删除项" 详见 PrefixIconType类
   final String prefixIconType;
@@ -57,19 +57,19 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
   final bool isPrefixIconEnabled;
 
   /// 点击"+"图标回调
-  final VoidCallback onAddTap;
+  final VoidCallback? onAddTap;
 
   /// 点击"-"图标回调
-  final VoidCallback onRemoveTap;
+  final VoidCallback? onRemoveTap;
 
   /// 点击"？"图标回调
-  final VoidCallback onTip;
+  final VoidCallback? onTip;
 
   /// 提示文案
   final String hint;
 
   /// 最大可输入字符数
-  final int maxCount;
+  final int? maxCount;
 
   /// 输入类型
   final String inputType;
@@ -78,38 +78,38 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
   final int selectedIndex;
 
   /// title选择列表
-  List<String> selectList;
-  List<TextInputFormatter> inputFormatters;
+  final List<String> selectList;
+  final List<TextInputFormatter>? inputFormatters;
 
   /// 输入文本变化回调
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
 
   /// title文案选中回调
-  final OnBrnFormTitleSelected onTitleSelected;
-  final TextEditingController controller;
+  final OnBrnFormTitleSelected? onTitleSelected;
+  final TextEditingController? controller;
 
   /// form配置
-  BrnFormItemConfig themeData;
+  BrnFormItemConfig? themeData;
 
   BrnTitleSelectInputFormItem(
-      {Key key,
+      {Key? key,
+      required this.selectList,
       this.label,
-      this.title: "",
+      this.title = "",
       this.subTitle,
       this.tipLabel,
-      this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
-      this.error: "",
-      this.isEdit: true,
-      this.isRequire: false,
-      this.isPrefixIconEnabled: false,
+      this.prefixIconType = BrnPrefixIconType.normal,
+      this.error = "",
+      this.isEdit = true,
+      this.isRequire = false,
+      this.isPrefixIconEnabled = false,
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint: "请输入",
+      this.hint = "请输入",
       this.maxCount,
-      this.inputType: BrnInputType.TEXT,
-      this.selectedIndex: -1,
-      this.selectList,
+      this.inputType = BrnInputType.text,
+      this.selectedIndex = -1,
       this.inputFormatters,
       this.onChanged,
       this.onTitleSelected,
@@ -118,7 +118,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
       : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
   }
@@ -130,10 +130,11 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
 
 class BrnTitleSelectInputFormItemState
     extends State<BrnTitleSelectInputFormItem> {
-  TextEditingController _controller;
-  StreamController<bool> _showController;
-  StreamController<String> _textController;
-  GlobalKey _globalKey;
+  late TextEditingController _controller;
+  late StreamController<bool> _showController;
+  late StreamController<String> _textController;
+  late GlobalKey _globalKey;
+  String _title = "";
 
   @override
   void initState() {
@@ -145,7 +146,7 @@ class BrnTitleSelectInputFormItemState
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.itemEdgeInsets(widget.themeData),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -165,8 +166,8 @@ class BrnTitleSelectInputFormItemState
               ],
             ),
           ),
-          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData),
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData),
+          BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!),
         ],
       ),
     );
@@ -175,7 +176,7 @@ class BrnTitleSelectInputFormItemState
   Widget _buildLeftMenu() {
     return Container(
       padding: BrnFormUtil.titleEdgeInsets(
-          widget.prefixIconType, widget.isRequire, widget.themeData),
+          widget.prefixIconType, widget.isRequire, widget.themeData!),
       child: Row(
         children: <Widget>[
           BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit,
@@ -187,7 +188,7 @@ class BrnTitleSelectInputFormItemState
           _buildTriangle(),
 
           BrnFormUtil.buildTipLabelWidget(
-              widget.tipLabel, widget.onTip, widget.themeData),
+              widget.tipLabel, widget.onTip, widget.themeData!),
         ],
       ),
     );
@@ -199,15 +200,16 @@ class BrnTitleSelectInputFormItemState
         padding: EdgeInsets.only(right: 4),
         child: GestureDetector(
           onTap: () {
-            if (widget.isEdit != null && !widget.isEdit) {
+            if (!widget.isEdit) {
               return;
             }
 
-            RenderBox trigle = _globalKey.currentContext?.findRenderObject();
-            Offset offset = trigle?.localToGlobal(Offset.zero);
-            final RenderBox button = context.findRenderObject();
+            RenderBox? trigle =
+                _globalKey.currentContext?.findRenderObject() as RenderBox?;
+            Offset? offset = trigle?.localToGlobal(Offset.zero);
+            final RenderBox button = context.findRenderObject() as RenderBox;
             final RenderBox overlay =
-                Overlay.of(context).context.findRenderObject();
+                Overlay.of(context)!.context.findRenderObject() as RenderBox;
             final RelativeRect position = RelativeRect.fromRect(
               Rect.fromPoints(
                 button.localToGlobal(Offset.zero, ancestor: overlay),
@@ -217,9 +219,9 @@ class BrnTitleSelectInputFormItemState
             );
 
             var relativeRect = RelativeRect.fromLTRB(
-                position.left + offset?.dx ?? 16,
+                position.left + (offset?.dx ?? 0.0),
                 position.top + 44,
-                position.right + offset?.dx ?? 16,
+                position.right + (offset?.dx ?? 0.0),
                 position.bottom + 44);
             _showController.add(true);
             Navigator.push(
@@ -234,10 +236,10 @@ class BrnTitleSelectInputFormItemState
                         selectList: widget.selectList,
                         selectedIndex: widget.selectedIndex,
                         selectCallback: (item, index) {
-                          widget.title = item;
+                          _title = item;
                           _textController.add(item);
                           if (widget.onTitleSelected != null) {
-                            widget.onTitleSelected(item, index);
+                            widget.onTitleSelected!(item, index);
                           }
                         },
                         themeData: widget.themeData,
@@ -252,11 +254,11 @@ class BrnTitleSelectInputFormItemState
           },
           child: StreamBuilder<String>(
             stream: _textController.stream,
-            initialData: widget.title ?? "",
+            initialData: _title,
             builder: (context, AsyncSnapshot<String> snapshot) {
               return Text(
-                snapshot.data,
-                style: BrnFormUtil.getTitleTextStyle(widget.themeData),
+                snapshot.data!,
+                style: BrnFormUtil.getTitleTextStyle(widget.themeData!),
               );
             },
           ),
@@ -271,10 +273,10 @@ class BrnTitleSelectInputFormItemState
         stream: _showController.stream,
         initialData: false,
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          return snapshot.data
+          return snapshot.data!
               ? BrunoTools.getAssetImageWithBandColor(
-                  BrnAsset.ICON_SELECTED_UP_TRIANGLE)
-              : BrunoTools.getAssetImage(BrnAsset.ICON_UNSELECT_DOWN_TRIANGLE);
+                  BrnAsset.iconSelectedUpTriangle)
+              : BrunoTools.getAssetImage(BrnAsset.iconUnSelectDownTriangle);
         },
       ),
     );
@@ -287,7 +289,7 @@ class BrnTitleSelectInputFormItemState
       controller: _controller,
       enabled: widget.isEdit,
       maxLength: widget.maxCount,
-      style: BrnFormUtil.getIsEditTextStyle(widget.themeData, widget.isEdit),
+      style: BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit),
       onChanged: (text) {
         BrnFormUtil.notifyInputChanged(widget.onChanged, text);
       },
@@ -296,9 +298,9 @@ class BrnTitleSelectInputFormItemState
         border: InputBorder.none,
         hintStyle: TextStyle(
             color: Color(0xFFCCCCCC),
-            fontSize: BrnFont.FONT_16,
+            fontSize: BrnFonts.f16,
             textBaseline: TextBaseline.alphabetic),
-        hintText: widget.hint ?? '请输入',
+        hintText: widget.hint,
         counterText: "",
         contentPadding: EdgeInsets.all(0),
         isDense: true,
@@ -315,7 +317,7 @@ class BrnTitleSelectInputFormItemState
     super.dispose();
     // 如果controller由外部创建不需要销毁, 若由内部创建则需要销毁
     if (widget.controller == null) {
-      _controller?.dispose();
+      _controller.dispose();
     }
   }
 
@@ -325,19 +327,21 @@ class BrnTitleSelectInputFormItemState
     _controller = widget.controller ?? TextEditingController();
 
     _globalKey = GlobalKey();
+    _title = widget.title;
   }
 }
 
+// ignore: must_be_immutable
 class TitleSelectPopWidget extends StatefulWidget {
   List<String> selectList;
-  int selectedIndex;
+  int? selectedIndex;
   final Function(String item, int index) selectCallback;
-  BrnFormItemConfig themeData;
+  BrnFormItemConfig? themeData;
 
   TitleSelectPopWidget(
-      {this.selectList,
+      {required this.selectList,
       this.selectedIndex,
-      this.selectCallback,
+      required this.selectCallback,
       this.themeData});
 
   @override
@@ -347,7 +351,7 @@ class TitleSelectPopWidget extends StatefulWidget {
 class _TitleSelectPopWidgetState extends State<TitleSelectPopWidget> {
   @override
   Widget build(BuildContext context) {
-    List<Widget> showList = List();
+    List<Widget> showList = [];
     for (int i = 0, n = widget.selectList.length; i < n; ++i) {
       showList.add(selectItem(widget.selectList[i], i, i == n - 1));
     }
@@ -363,7 +367,7 @@ class _TitleSelectPopWidgetState extends State<TitleSelectPopWidget> {
         ],
         color: Colors.white,
         border: Border.all(
-            color: widget.themeData.commonConfig.dividerColorBase, width: 0.5),
+            color: widget.themeData!.commonConfig.dividerColorBase, width: 0.5),
         borderRadius: BorderRadius.all(Radius.circular(4)),
       ),
       child: Column(
@@ -398,7 +402,7 @@ class _TitleSelectPopWidgetState extends State<TitleSelectPopWidget> {
                 bottom: BorderSide(
                     color: isLast
                         ? Colors.transparent
-                        : widget.themeData.commonConfig.dividerColorBase,
+                        : widget.themeData!.commonConfig.dividerColorBase,
                     width: 0.5)), // 也可控件一边圆角大小
           ),
           child: Text(
@@ -406,8 +410,8 @@ class _TitleSelectPopWidgetState extends State<TitleSelectPopWidget> {
             style: TextStyle(
               decoration: TextDecoration.none,
               color: isSelected
-                  ? widget.themeData.commonConfig.brandPrimary
-                  : widget.themeData.commonConfig.colorTextBase,
+                  ? widget.themeData!.commonConfig.brandPrimary
+                  : widget.themeData!.commonConfig.colorTextBase,
               fontWeight: FontWeight.w500,
               fontSize: 16,
             ),

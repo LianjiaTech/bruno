@@ -1,4 +1,5 @@
 /// theme export
+
 library bruno_theme;
 
 export 'base/brn_base_config.dart';
@@ -22,5 +23,5 @@ export 'configs/brn_picker_config.dart';
 export 'configs/brn_selection_config.dart';
 export 'configs/brn_tabbar_config.dart';
 export 'configs/brn_tag_config.dart';
-export 'img/brn_theme_default_utils.dart';
 export 'brn_initializer.dart';
+export 'brn_theme_configurator.dart';

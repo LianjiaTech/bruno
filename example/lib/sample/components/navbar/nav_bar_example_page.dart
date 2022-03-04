@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -12,25 +14,25 @@ class NavBarPage extends StatefulWidget {
 }
 
 class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
-  TextEditingController textEditingController;
+  TextEditingController? textEditingController;
 
-  TextStyle selectedHeiStyle;
-  TextStyle unSelectedHeiStyle;
-  TextStyle commonHeiStyle;
+  TextStyle? selectedHeiStyle;
+  TextStyle? unSelectedHeiStyle;
+  TextStyle? commonHeiStyle;
 
-  TextStyle selectedBaiStyle;
-  TextStyle unSelectedBaiStyle;
-  TextStyle commonBaiStyle;
+  TextStyle? selectedBaiStyle;
+  TextStyle? unSelectedBaiStyle;
+  TextStyle? commonBaiStyle;
   int currentIndex = 0;
 
-  ValueNotifier<bool> valueNotifier;
-  FocusNode focusNode;
+  late ValueNotifier<bool> valueNotifier;
+  FocusNode? focusNode;
 
-  TabController tabController;
+  TabController? tabController;
 
-  var keyleading = GlobalKey();
+  GlobalKey keyLeading = GlobalKey();
 
-  var actionKey = GlobalKey();
+  GlobalKey actionKey = GlobalKey();
 
   @override
   void initState() {
@@ -52,8 +54,8 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
     commonBaiStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF222222));
 
     focusNode = FocusNode();
-    focusNode.addListener(() {
-      if (focusNode.hasFocus) {
+    focusNode!.addListener(() {
+      if (focusNode!.hasFocus) {
         valueNotifier.value = true;
       }
     });
@@ -69,8 +71,8 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
     );
   }
 
-  PreferredSizeWidget buildBarByIndex(BuildContext context) {
-    PreferredSizeWidget appBar;
+  PreferredSizeWidget? buildBarByIndex(BuildContext context) {
+    PreferredSizeWidget? appBar;
     switch (widget.index) {
       case 0:
         //2个文字模块切换 左右两个icon hei
@@ -142,8 +144,8 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
     return appBar;
   }
 
-  Widget buildContentByIndex(BuildContext context) {
-    Widget widget;
+  Widget? buildContentByIndex(BuildContext context) {
+    Widget? widget;
     switch (this.widget.index) {
       case 0:
         widget =
@@ -475,7 +477,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
       leading: Padding(
         padding: const EdgeInsets.only(right: 16),
         child: Row(
-          key: keyleading,
+          key: keyLeading,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
@@ -501,7 +503,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
         //update 是setState方法的方法命，update() 就可以刷新输入框
         BrnPopupListWindow.showPopListWindow(
           context,
-          keyleading,
+          keyLeading,
           data: ["aaaa", "bbbbb"],
         );
       },
@@ -538,7 +540,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
       leading: Padding(
         padding: const EdgeInsets.only(right: 16),
         child: Row(
-          key: keyleading,
+          key: keyLeading,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
@@ -561,7 +563,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
       leadClickCallback: (controller, update) {
         //controller 是文本控制器，通过controller 可以拿到输入的内容 以及 对输入的内容更改
         //update 是setState方法的方法命，update() 就可以刷新输入框
-        BrnPopupListWindow.showPopListWindow(context, keyleading, data: ["aaaa", "bbbbb"]);
+        BrnPopupListWindow.showPopListWindow(context, keyLeading, data: ["aaaa", "bbbbb"]);
       },
       //输入框 文本内容变化的监听
       searchBarInputChangeCallback: (input) {

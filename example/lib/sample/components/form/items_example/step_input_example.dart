@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -54,14 +56,13 @@ class StepInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnStepInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: true,
               error: "必填项不能为空",
               title: "自然到访保护期",
               subTitle: "这里是副标题",
               tipLabel: "标签",
-              value: 0,
               maxLimit: 5,
               minLimit: 1,
               onTip: () {
@@ -88,13 +89,12 @@ class StepInputExamplePage extends StatelessWidget {
               ),
             ),
             BrnStepInputFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+              prefixIconType: BrnPrefixIconType.remove,
               isRequire: true,
               isEdit: true,
               title: "自然到访保护期",
               subTitle: "这里是副标题",
               tipLabel: "标签",
-              value: 0,
               maxLimit: 5,
               minLimit: 1,
               onTip: () {

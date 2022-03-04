@@ -27,7 +27,7 @@ class BrnProgressBarChart extends StatefulWidget {
   /// 单个柱形宽度，默认 30
   final double singleBarWidth;
 
-  /// 柱状图的最大值，柱状图的宽/高会依此值计算，默认 0
+  /// 柱状图的最大值，柱状图的宽/高会依此值计算，默认 0，为0时自动计算柱状图最大值
   final double barMaxValue;
 
   /// 柱状图方向，默认 BarChartStyle.vertical
@@ -40,25 +40,25 @@ class BrnProgressBarChart extends StatefulWidget {
   final Color selectedHintTextBackgroundColor;
 
   /// 是否可点击回调
-  final OnBarItemClickInterceptor onBarItemClickInterceptor;
+  final OnBarItemClickInterceptor? onBarItemClickInterceptor;
 
-  /// 选中柱状图时候的回调
-  final BrnProgressBarChartSelectCallback barChartSelectCallback;
+  /// 选中柱状图时候的回调(暂仅支持垂直柱状图)
+  final BrnProgressBarChartSelectCallback? barChartSelectCallback;
 
   /// 图表高度，竖直柱状图有效，默认300
   final double height;
 
   BrnProgressBarChart(
-      {Key key,
+      {Key? key,
       this.minWidth = 0,
       this.padding = const EdgeInsets.all(20),
       this.barChartStyle = BarChartStyle.vertical,
-      this.xAxis,
-      this.yAxis,
-      this.barBundleList,
+      required this.xAxis,
+      required this.yAxis,
+      required this.barBundleList,
       this.barGroupSpace = 30,
       this.singleBarWidth = 30,
-      this.barMaxValue,
+      this.barMaxValue = 0,
       this.selectedHintTextColor = Colors.white,
       this.selectedHintTextBackgroundColor = Colors.black,
       this.onBarItemClickInterceptor,
@@ -66,21 +66,12 @@ class BrnProgressBarChart extends StatefulWidget {
       this.height = 300})
       : super(key: key) {
     if (BarChartStyle.horizontal == barChartStyle) {
-      assert(yAxis.axisItemList != null, '水平柱形图必须要有 Y 轴');
-      assert(barBundleList != null && barBundleList.length != 0, '缺少柱形图数据');
-      assert(
-          barBundleList[0].barList != null &&
-              barBundleList[0].barList.length == yAxis.axisItemList.length,
+      assert(barBundleList[0].barList.length == yAxis.axisItemList.length,
           '水平柱状图个数与Y轴坐标数目要相等');
     } else if (BarChartStyle.vertical == barChartStyle) {
-      assert(xAxis.axisItemList != null, '竖直柱形图必须要有 X 轴');
-      assert(barBundleList != null && barBundleList.length != 0, '缺少柱形图数据');
-      assert(
-          barBundleList[0].barList != null &&
-              barBundleList[0].barList.length == xAxis.axisItemList.length,
+      assert(barBundleList[0].barList.length == xAxis.axisItemList.length,
           '竖直柱状图个数与X轴坐标数目要相等');
     }
-    assert(0 != this.barMaxValue, '柱状图最大值不能为0');
   }
 
   @override
@@ -90,12 +81,9 @@ class BrnProgressBarChart extends StatefulWidget {
 }
 
 class BrnProgressBarChartState extends State<BrnProgressBarChart> {
-  BrnProgressBarItem _selectedBarItem;
+  BrnProgressBarItem? _selectedBarItem;
 
   Size chartSize() {
-    if (null == widget.barBundleList) {
-      return Size.zero;
-    }
     int barBundleCount = widget.barBundleList.length;
     int numberOfBars = widget.barBundleList[0].barList.length;
     if (BarChartStyle.horizontal == widget.barChartStyle) {
@@ -104,8 +92,7 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
               numberOfBars;
 
       ///有 x 轴 需要加上 x 轴占用的高度
-      if (null != widget.xAxis?.axisItemList &&
-          0 < widget.xAxis.axisItemList.length) {
+      if (widget.xAxis.axisItemList.isNotEmpty) {
         height += 22;
       }
       double width = MediaQuery.of(context).size.width;
@@ -116,12 +103,11 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
               numberOfBars;
 
       /// 有 y 轴需要加上 y 轴占用的宽度
-      if (null != widget.yAxis?.axisItemList &&
-          0 < widget.yAxis.axisItemList.length) {
+      if (widget.yAxis.axisItemList.isNotEmpty) {
         width += BrnProgressBarChartPainter.maxYAxisWidth(widget.yAxis);
       }
-      return Size(widget.minWidth > width ? widget.minWidth : width,
-          widget.height ?? 300);
+      return Size(
+          widget.minWidth > width ? widget.minWidth : width, widget.height);
     } else {
       return Size.zero;
     }
@@ -134,10 +120,6 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
   }
 
   void clearSelectedBarItem(BrnProgressBarChart oldWidget) {
-    if (null == widget.barBundleList || null == widget.barBundleList) {
-      _selectedBarItem = null;
-      return;
-    }
     if (widget.barBundleList.length == oldWidget.barBundleList.length) {
       int bundleCount = widget.barBundleList.length;
       for (int bundleIndex = 0; bundleIndex < bundleCount; bundleIndex++) {
@@ -170,8 +152,8 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
   @override
   Widget build(BuildContext context) {
     Size chartSize = this.chartSize();
-    if (null == widget.barBundleList || chartSize == Size.zero) {
-      return Container();
+    if (chartSize == Size.zero) {
+      return const SizedBox.shrink();
     }
     if (BarChartStyle.vertical == widget.barChartStyle) {
       double yAxisWidth =
@@ -216,9 +198,9 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
                       selectedHintTextBackgroundColor:
                           widget.selectedHintTextBackgroundColor,
                       brnProgressBarChartSelectCallback:
-                          (BrnProgressBarItem item) {
+                          (BrnProgressBarItem? item) {
                         if (null != widget.barChartSelectCallback)
-                          widget.barChartSelectCallback(item);
+                          widget.barChartSelectCallback!(item);
                         setState(() {
                           _selectedBarItem = item;
                         });
@@ -246,7 +228,7 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
         ),
       );
     } else {
-      return Container();
+      return const SizedBox.shrink();
     }
   }
 }

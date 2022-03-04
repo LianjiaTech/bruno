@@ -9,7 +9,7 @@ import 'package:bruno/src/components/sugsearch/brn_search_text.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
-import 'package:bruno/src/utils/font/brn_font.dart';
+import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -18,10 +18,10 @@ import 'package:lpinyin/lpinyin.dart';
 /// 功能：多可以自定制导航栏文案，搜索文案信息，定位信息，右侧可快速滑动查看城市
 class BrnSingleSelectCityPage extends StatefulWidget {
   /// 页面标题，默认空
-  final String appBarTitle;
+  final String? appBarTitle;
 
   /// 热门推荐标题，默认空
-  final String hotCityTitle;
+  final String? hotCityTitle;
 
   /// 是否展示searchBar，默认 true
   final bool showSearchBar;
@@ -30,18 +30,18 @@ class BrnSingleSelectCityPage extends StatefulWidget {
   final String locationText;
 
   /// 城市列表
-  final List<BrnSelectCityModel> cityList;
+  final List<BrnSelectCityModel>? cityList;
 
   /// 热门推荐城市列表
   final List<BrnSelectCityModel> hotCityList;
 
   /// 单选项 点击的回调
-  final ValueChanged<BrnSelectCityModel> onValueChanged;
+  final ValueChanged<BrnSelectCityModel>? onValueChanged;
 
   BrnSingleSelectCityPage({
     this.appBarTitle = '',
     this.hotCityTitle = '',
-    this.hotCityList,
+    required this.hotCityList,
     this.cityList,
     this.showSearchBar = true,
     this.locationText = '',
@@ -55,7 +55,7 @@ class BrnSingleSelectCityPage extends StatefulWidget {
 }
 
 class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
-  List<BrnSelectCityModel> _cityList = List();
+  List<BrnSelectCityModel> _cityList = [];
 
   ///搜索框的高度
   int _suspensionHeight = 40;
@@ -73,7 +73,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   String _searchText = "";
 
   /// search的TextController
-  BrnSearchTextController _brnSearchTextController;
+  late BrnSearchTextController _brnSearchTextController;
 
   @override
   void initState() {
@@ -83,7 +83,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   }
 
   void _loadData() async {
-    if (widget.cityList == null || widget.cityList.isEmpty) {
+    if (widget.cityList == null || widget.cityList!.isEmpty) {
       //加载城市列表
       rootBundle
           .loadString(
@@ -98,13 +98,13 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
         setState(() {});
       });
     } else {
-      _cityList = widget.cityList;
+      _cityList = widget.cityList!;
       _handleList(_cityList);
       setState(() {});
     }
   }
 
-  void _handleList(List<BrnSelectCityModel> list) {
+  void _handleList(List<BrnSelectCityModel>? list) {
     if (list == null || list.isEmpty) return;
     for (int i = 0, length = list.length; i < length; i++) {
       String pinyin = PinyinHelper.getPinyinE(list[i].name);
@@ -151,10 +151,12 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
             runAlignment: WrapAlignment.start,
             spacing: 10.0,
             children: hotCityList.map((e) {
-              return OutlineButton(
-                padding: EdgeInsets.all(0),
-                borderSide: BorderSide(color: Color(0xFFF8F8F8), width: .5),
-                color: Color(0xFFF8F8F8),
+              return OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.all(0),
+                  side: BorderSide(color: Color(0xFFF8F8F8), width: .5),
+                  backgroundColor: Color(0xFFF8F8F8),
+                ),
                 child: Container(
                   alignment: Alignment.center,
                   height: 36.0,
@@ -166,7 +168,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF222222),
-                      fontSize: BrnFont.FONT_12,
+                      fontSize: BrnFonts.f12,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -174,7 +176,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
                 onPressed: () {
                   debugPrint("OnItemClick: $e");
                   if (widget.onValueChanged != null) {
-                    widget.onValueChanged(e);
+                    widget.onValueChanged!(e);
                   }
                   Navigator.pop(context, e);
                 },
@@ -186,7 +188,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
     );
   }
 
-  Widget _buildSusWidget(String susTag) {
+  Widget _buildSusWidget(String? susTag) {
     return Container(
       height: _suspensionHeight.toDouble(),
       padding: const EdgeInsets.only(left: 15.0),
@@ -218,7 +220,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
             onTap: () {
               debugPrint("OnItemClick: $model");
               if (widget.onValueChanged != null) {
-                widget.onValueChanged(model);
+                widget.onValueChanged!(model);
               }
               Navigator.pop(context, model);
             },
@@ -234,7 +236,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
       hintText: '请输入搜索信息',
       onTextChange: (text) {
         _searchText = text;
-        _showCityStack = (text.length == 0 || text == null) ? true : false;
+        _showCityStack = text.isEmpty;
         setState(() {});
       },
       onTextCommit: (text) {
@@ -270,12 +272,13 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: BrnAppBar(title: widget.appBarTitle ?? '城市选择'),
         body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Column(
             children: <Widget>[
-              widget.locationText.isEmpty || widget.locationText == null
+              widget.locationText.isEmpty
                   ? Container()
                   : _buildLocationBar(widget.locationText),
               widget.showSearchBar ? _buildSearchBar() : Container(),
@@ -300,13 +303,16 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
       headerHeight = 0;
     }
     if (_suspensionTag.isEmpty || _suspensionTag == '') {
-      _suspensionTag = _cityList.first.tag;
+      if (_cityList.isNotEmpty) {
+        _suspensionTag = _cityList.first.tag;
+      }
     }
     return Expanded(
         flex: 1,
         child: AzListView(
           data: _cityList,
-          itemBuilder: (context, model) => _buildListItem(model),
+          itemBuilder: (context, model) =>
+              _buildListItem(model as BrnSelectCityModel),
           suspensionWidget: _buildSusWidget(_suspensionTag),
           isUseRealIndex: true,
           itemHeight: _itemHeight,
@@ -361,7 +367,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
 
   ///获取城市搜索结果
   List<BrnSelectCityModel> _searchCityList(String searchText) {
-    List<BrnSelectCityModel> cList = List();
+    List<BrnSelectCityModel> cList = [];
     for (int index = 0; index < _cityList.length; index++) {
       BrnSelectCityModel cInfo = _cityList[index];
       if (cInfo.name.contains(searchText) ||

@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/text/brn_expandable_text.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
@@ -28,26 +30,41 @@ import 'package:bruno/src/utils/brn_tools.dart';
 ///  * [BrnInsertInfo], 气泡背景的文本组件
 ///
 class BrnBubbleText extends StatelessWidget {
-  ///显示的文本
+  /// 显示的文本
   final String text;
 
-  ///最多显示的行数
-  final int maxLines;
+  /// 最多显示的行数
+  final int? maxLines;
 
-  ///展开收起回调
-  final TextExpandedCallback onExpanded;
+  /// 展开收起回调
+  final TextExpandedCallback? onExpanded;
 
-  ///气泡的圆角 默认是4
+  /// 气泡的圆角 默认是4
   final double radius;
 
+  /// 气泡背景色  默认是 Color(0xFFF8F8F8)
+  final Color bgColor;
+
+  /// 内容文本样式
+  final TextStyle? textStyle;
+
+
+
   const BrnBubbleText(
-      {Key key, this.text, this.maxLines, this.onExpanded, this.radius = 4})
+      {Key? key,
+      this.text = '',
+      this.maxLines,
+      this.onExpanded,
+      this.radius = 4,
+      this.bgColor = const Color(0xFFF8F8F8),
+      this.textStyle})
       : super(key: key);
 
   @override
   @override
   Widget build(BuildContext context) {
-    Image image = BrunoTools.getAssetImage('icons/icon_right_top_pointer.png');
+    Image image = BrunoTools.getAssetImageWithColor(
+        'icons/icon_right_top_pointer.png', bgColor);
     Widget bubbleText = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,27 +83,28 @@ class BrnBubbleText extends StatelessWidget {
         Expanded(
           child: Container(
             decoration: BoxDecoration(
-                color: Color(0xFFF8F8F8),
+                color: bgColor,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(0),
-                    topRight: Radius.circular(radius ?? 4),
-                    bottomLeft: Radius.circular(radius ?? 4),
-                    bottomRight: Radius.circular(radius ?? 4))),
+                    topRight: Radius.circular(radius),
+                    bottomLeft: Radius.circular(radius),
+                    bottomRight: Radius.circular(radius))),
             padding: EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
             child: BrnExpandableText(
-              text: text ?? "",
+              text: text,
               maxLines: maxLines,
-              color: Color(0xFFF8F8F8),
+              color: bgColor,
               onExpanded: onExpanded,
-              textStyle: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
-                color: BrnThemeConfigurator.instance
-                    .getConfig()
-                    .commonConfig
-                    .colorTextBase,
-              ),
+              textStyle: textStyle ??
+                  TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    color: BrnThemeConfigurator.instance
+                        .getConfig()
+                        .commonConfig
+                        .colorTextBase,
+                  ),
             ),
           ),
         )

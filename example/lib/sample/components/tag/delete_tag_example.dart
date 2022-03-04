@@ -37,28 +37,37 @@ class TagViewExamplePageState extends State<DeleteTagExamplePage> {
   }
 
   Widget _buildDeleteWidget() {
-    BrnDeleteTagController controller = BrnDeleteTagController(
-        initTags: ['这是一条很长很长很长很长很长很长很长很长很长很长的标签', '标签信息', '标签信息标签信息', '标签信息', '标签信息标签信息标签信息标签信息']);
+    BrnDeleteTagController controller = BrnDeleteTagController(initTags: [
+      '这是一条很长很长很长很长很长很长很长很长很长很长的标签',
+      '标签信息',
+      '标签信息标签信息',
+      '标签信息',
+      '标签信息标签信息标签信息标签信息'
+    ]);
 
     return Container(
       margin: EdgeInsets.only(top: 20),
       color: Colors.white,
       child: Column(
         children: <Widget>[
-BrnDeleteTag(
-  controller: controller,
-  onTagDelete: (tags, tag, index) {
-    BrnToast.show('剩余的标签为：${tags.toString()},删除了的标签为：$tag  ,删除的标签index为$index', context);
-  },
-),
-BrnDeleteTag(
-  controller: controller,
-  tagTextStyle: TextStyle(color: Colors.blue, fontSize: 20),
-  deleteIconSize: Size(16, 16),
-  onTagDelete: (tags, tag, index) {
-    BrnToast.show('剩余的标签为：${tags.toString()},删除了的标签为：$tag  ,删除的标签index为$index', context);
-  },
-),
+          BrnDeleteTag(
+            controller: controller,
+            onTagDelete: (tags, tag, index) {
+              BrnToast.show(
+                  '剩余的标签为：${tags.toString()},删除了的标签为：$tag  ,删除的标签index为$index',
+                  context);
+            },
+          ),
+          BrnDeleteTag(
+            controller: controller,
+            tagTextStyle: TextStyle(color: Colors.blue, fontSize: 20),
+            deleteIconSize: Size(16, 16),
+            onTagDelete: (tags, tag, index) {
+              BrnToast.show(
+                  '剩余的标签为：${tags.toString()},删除了的标签为：$tag  ,删除的标签index为$index',
+                  context);
+            },
+          ),
           BrnDeleteTag(
             controller: controller,
             tagTextStyle: TextStyle(color: Colors.yellow),
@@ -66,7 +75,9 @@ BrnDeleteTag(
             deleteIconColor: Colors.red,
             softWrap: false,
             onTagDelete: (tags, tag, index) {
-              BrnToast.show('剩余的标签为：${tags.toString()},删除了的标签为：$tag  ,删除的标签index为$index', context);
+              BrnToast.show(
+                  '剩余的标签为：${tags.toString()},删除了的标签为：$tag  ,删除的标签index为$index',
+                  context);
             },
           ),
           Row(
