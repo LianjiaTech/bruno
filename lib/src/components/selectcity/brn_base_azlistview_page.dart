@@ -48,7 +48,7 @@ abstract class BaseAZListViewPage extends StatefulWidget {
 }
 
 class _BaseAZListViewPageState extends State<BaseAZListViewPage> {
-  String? suspensionTag = "";
+  String suspensionTag = "";
 
   List<ISuspensionBean> _dataList = [];
   late StreamController<String> streamController;

@@ -8,16 +8,16 @@ import 'package:flutter/material.dart';
 
 class BrnDialogConstants {
   /// 提示图标
-  static const int ICON_ALERT = 0;
+  static const int iconAlert = 0;
 
   /// 警示图标
-  static const int ICON_WARNING = 1;
+  static const int iconWarning = 1;
 
   /// 成功图标
-  static const int ICON_SUCCESS = 2;
+  static const int iconSuccess = 2;
 
   /// 自定义图标
-  static const int ICON_CUSTOM = 100;
+  static const int iconCustom = 100;
 
   /// icon地址列表
   static const List shareItemImagePathList = [
@@ -34,7 +34,7 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
   /// 构建环境上下文
   final BuildContext context;
 
-  /// 图片类型，默认 0，[BrnDialogConstants.ICON_ALERT]
+  /// 图片类型，默认 0，[BrnDialogConstants.iconAlert]
   final int iconType;
 
   /// 自定义图标
@@ -62,7 +62,7 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
   BrnDialogConfig? themeData;
 
   BrnEnhanceOperationDialog({
-    this.iconType = BrnDialogConstants.ICON_ALERT,
+    this.iconType = BrnDialogConstants.iconAlert,
     this.customIconWidget,
     required this.context,
     this.titleText,
@@ -86,7 +86,7 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
       type: MaterialType.transparency,
       child: BrnDialog(
         themeData: themeData,
-        iconImage: (iconType == BrnDialogConstants.ICON_CUSTOM)
+        iconImage: (iconType == BrnDialogConstants.iconCustom)
             ? customIconWidget as Image
             : BrunoTools.getAssetImage(
                 BrnDialogConstants.shareItemImagePathList[iconType]),

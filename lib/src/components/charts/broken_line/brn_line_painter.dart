@@ -377,8 +377,8 @@ class BrnLinePainter extends BrnBasePainter {
   void _drawLine(Canvas canvas) {
     _lineCanvasModels.forEach((element) {
       //阴影区域
-      if (element.shadowPaths != null && element.shaderColors != null) {
-        element.shadowPaths!.forEach((shadowPathElement) {
+      if (element.shaderColors != null) {
+        element.shadowPaths.forEach((shadowPathElement) {
           var shader = LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -577,7 +577,7 @@ class LineCanvasModel {
   final Color pathColor;
   final double pathWidth;
 
-  final List<Path>? shadowPaths;
+  final List<Path> shadowPaths;
   final List<Color>? shaderColors;
 
   final List<Point>? points;

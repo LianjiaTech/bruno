@@ -286,7 +286,7 @@ class _BrnActionSheetSelectedItemListState<T>
     AnimationController alphaAnimationController = AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
     widget._alphaAnimationController = alphaAnimationController;
-    Animation yAnimation = Tween(begin: 65.0, end: this.getContentHeight())
+    Animation<double> yAnimation = Tween<double>(begin: 65.0, end: this.getContentHeight())
         .animate(yAnimationController)
       ..addListener(() {
         setState(() => {});
