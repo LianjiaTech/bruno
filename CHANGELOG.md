@@ -11,6 +11,7 @@
 - Add build test thank to **AlexV525**.
 
 #### components
+- **Breaking change**: remove <code>BrnHorizontalStepsManager</code> and put function <code>forwardStep()</code>  <code>backStep()</code> into <code>BrnStepsController</code>.
 - <code>BrnCalendarView</code>: add <code>BrnCalendarView.single()</code> and <code>BrnCalendarView.range()</code> constructor and had its argument <code>startEndDateChange</code> removed.
 - <code>BrnSelectionEntityListBean</code>: <code>fromMap</code> is renamed to <code>fromJson</code>.
 - <code>BrnRadioButton</code>: optimize click area [#31](https://github.com/LianjiaTech/bruno/pull/31) , thanks to **a1017480401** .
