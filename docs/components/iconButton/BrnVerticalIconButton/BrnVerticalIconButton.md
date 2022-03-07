@@ -21,9 +21,12 @@ group:
 
 
 ```dart
-BrnVerticalIconButton(
-  {Key key, @required this.name, @required this.iconWidget, this.onTap})
-  : super(key: key)
+const BrnVerticalIconButton({
+    Key? key,
+    required this.name,
+    required this.iconWidget,
+    this.onTap,
+  }) : super(key: key);
 ```
 ### 参数说明
 
@@ -32,7 +35,7 @@ BrnVerticalIconButton(
 | key | Key | 视图绑定的 key | 否 | 无 |
 | name | String | 需要显示的文案 | 是 | 无 |
 | iconWidget | Widget | 需要显示的图标 widget | 是 | 无 |
-| onTap | VoidCallback | 按钮点击的回调处理 | 否 | 无 |
+| onTap | VoidCallback? | 按钮点击的回调处理 | 否 | 无 |
 
 ## 四、代码演示
 

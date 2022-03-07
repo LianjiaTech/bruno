@@ -92,85 +92,6 @@ enum _ButtonType {
   right,
 }
 
-/// 对话框的样式
-class BrnDialogStyle {
-  /// title的间距
-  EdgeInsets? titlePadding;
-
-  /// 主色调按钮样式
-  TextStyle? mainTextStyle;
-
-  /// 主色调按钮的背景
-  Color? mainBackgroundColor;
-
-  /// 其他按钮的样式
-  TextStyle? greyActionsTextStyle;
-
-  /// 其他按钮的背景
-  Color? greyActionsBackgroundColor;
-
-  /// 标题的文字样式
-  TextStyle? titleTextStyle;
-
-  /// 标题的文字对齐
-  TextAlign? titleTextAlign;
-
-  /// 内容文字的对齐
-  TextAlign? contentTextAlign;
-
-  /// 内容widget的间距
-  EdgeInsets? contentPadding;
-
-  /// 内容文字的样式
-  TextStyle? contentTextStyle;
-
-  /// 对话框的背景
-  Color? backgroundColor;
-
-  /// 对话框的底部按钮的高度
-  double? bottomHeight;
-
-  /// 对话框圆角的大小
-  double? radius;
-
-  /// 边框阴影
-  double? elevation;
-
-  /// 警示文案的样式
-  TextStyle? warningTextStyle;
-
-  /// 警示文案文字的对齐
-  TextAlign? warningTextAlign;
-
-  /// 警示文案的间距
-  EdgeInsets? warningPadding;
-
-  /// icon的间距
-  EdgeInsets? iconPadding;
-
-  /// 标题最大行数
-  int? titleMaxLines;
-
-  BrnDialogStyle({
-    this.titlePadding,
-    this.titleTextAlign,
-    this.titleTextStyle,
-    this.contentPadding,
-    this.contentTextStyle,
-    this.warningTextStyle,
-    this.backgroundColor,
-    this.contentTextAlign,
-    this.mainBackgroundColor,
-    this.mainTextStyle,
-    this.greyActionsBackgroundColor,
-    this.greyActionsTextStyle,
-    this.bottomHeight,
-    this.warningPadding,
-    this.warningTextAlign,
-    this.iconPadding,
-    this.radius,
-  });
-}
 
 ///高度灵活的通用的弹窗组件
 ///
@@ -255,6 +176,7 @@ class BrnDialog extends AlertDialog {
   final int titleMaxLines;
 
   BrnDialog({
+    Key? key,
     this.showIcon = false,
     this.iconImage,
     this.titleText,
@@ -270,7 +192,7 @@ class BrnDialog extends AlertDialog {
     this.indexedActionCallback,
     this.themeData,
     this.titleMaxLines = cTitleMaxLines,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -676,7 +598,6 @@ class BrnDialogManager {
     String? warning,
     Widget? warningWidget,
     Widget? labelWidget,
-    BrnDialogStyle? dialogStyle,
     GestureTapCallback? onTap,
     bool barrierDismissible = true,
     int titleMaxLines = cTitleMaxLines,
@@ -735,7 +656,6 @@ class BrnDialogManager {
     Widget? warningWidget,
     Widget? cancelWidget,
     Widget? conformWidget,
-    BrnDialogStyle? dialogStyle,
     GestureTapCallback? onCancel,
     GestureTapCallback? onConfirm,
     bool barrierDismissible = true,
@@ -800,7 +720,6 @@ class BrnDialogManager {
     Widget? warningWidget,
     List<Widget>? actionsWidget,
     bool barrierDismissible = true,
-    BrnDialogStyle? dialogStyle,
     int titleMaxLines = cTitleMaxLines,
     BrnDialogConfig? themeData,
     DialogIndexedActionClickCallback? indexedActionClickCallback,

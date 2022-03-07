@@ -33,16 +33,16 @@ group:
 
 ```dart
 const BrnButtonPanel(
-  {Key key,
-  @required this.mainButtonName,
-  @required this.mainButtonOnTap,
-  this.isMainBtnEnable = true,
-  this.secondaryButtonNameList,
-  this.secondaryButtonOnTap,
-  this.secondaryButtonList,
-  this.horizontalPadding = 20,
-  this.popDirection = BrnPopupDirection.bottom})
-  : super(key: key);
+      {Key? key,
+      required this.mainButtonName,
+      required this.mainButtonOnTap,
+      this.isMainBtnEnable = true,
+      this.secondaryButtonNameList,
+      this.secondaryButtonOnTap,
+      this.secondaryButtonList,
+      this.horizontalPadding = 20,
+      this.popDirection = BrnPopupDirection.bottom})
+      : super(key: key);
 ```
 ### 参数说明
 

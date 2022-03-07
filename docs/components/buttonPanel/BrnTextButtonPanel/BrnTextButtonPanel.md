@@ -30,12 +30,12 @@ group:
 ### 构造函数
 
 ```dart
-BrnTextButtonPanel(
-  {Key key,
-  @required this.nameList,
-  this.onTap,
-  this.popDirection = BrnPopupDirection.bottom})
-  : super(key: key);
+const BrnTextButtonPanel({
+    Key? key,
+    required this.nameList,
+    this.onTap,
+    this.popDirection = BrnPopupDirection.bottom,
+  }) : super(key: key);
 ```
 ### 参数说明
 

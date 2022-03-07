@@ -27,22 +27,21 @@ group:
 ### 构造函数
 
 ``` dart
-BrnIconButton({
-  Key key,
-  @required this.name,
-  this.iconWidget,
-  this.onTap,
-  this.iconWidth = 24,
-  this.iconHeight = 24,
-  this.fontSize = 11,
-  this.widgetWidth = 80,
-  this.widgetHeight = 80,
-  this.direction = Direction.top,
-  this.padding = 4,
-  this.style,
-  this.isGrey = true,
-  this.mainAxisAlignment = MainAxisAlignment.center,
-}) : assert(isGrey != null);
+const BrnIconButton({
+    Key? key,
+    required this.name,
+    this.iconWidget,
+    this.onTap,
+    this.iconWidth = 24,
+    this.iconHeight = 24,
+    this.fontSize = 11,
+    this.widgetWidth = 80,
+    this.widgetHeight = 80,
+    this.direction = Direction.top,
+    this.padding = 4,
+    this.style,
+    this.mainAxisAlignment = MainAxisAlignment.center,
+  }): super(key: key);
 ```
 
 ### 参数说明
@@ -50,16 +49,15 @@ BrnIconButton({
 | 参数名            | 参数类型                                     | 描述                                                         | 是否必填 | 默认值                                                       |
 | ----------------- | -------------------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | name              | String                                       | 图文组合文字的名称                                           | 否       | 空                                                           |
-| isGrey            | bool                                         | 是否是置灰状态                                               | 否       | true                                                         |
-| iconWidget        | Widget                                       | 图文组合需要展示的图片/可以是置灰的图片                      | 否       | 空                                                           |
-| onTap             | VoidCallback                                 | 点击的回调                                                   | 否       | 空                                                           |
+| iconWidget        | Widget?                                       | 图文组合需要展示的图片/可以是置灰的图片                      | 否       | 空                                                           |
+| onTap             | VoidCallback?                                 | 点击的回调                                                   | 否       | 空                                                           |
 | direction         | enum Direction { left, right, top, bottom, } | 文字相对于图片的位置。 bottom：文字在下 icon 在上， top：文字在上 icon 在下 ，left：文字在左 icon 在右，right：文字在右 icon 在左 | 否       | top                                                          |
 | iconWidth         | double                                       | 图片的宽度                                                   | 否       | 24                                                           |
 | iconHeight        | Color                                        | 图片的高度                                                   | 否       | 24                                                           |
 | widgetWidth       | double                                       | 图文组合的宽度                                               | 否       | 80                                                           |
 | widgetHeight      | double                                       | 图文组合的高度                                               | 否       | 80                                                           |
 | padding           | double                                       | 文字和图片的间距                                             | 否       | 4                                                            |
-| style             | TextStyle                                    | 文字样式                                                     | 否       | TextStyle( fontSize: 11, color: BrunoColor.instance.F2Color, ), |
+| style             | TextStyle?                                    | 文字样式                                                     | 否       | TextStyle( fontSize: 11, color: BrunoColor.instance.F2Color, ), |
 | fontSize          | double                                       | 文字字体大小                                                 | 否       | 11                                                           |
 | mainAxisAlignment | MainAxisAlignment                            | 图文对齐方式                                                 | 否       | MainAxisAlignment.center                                     |
 

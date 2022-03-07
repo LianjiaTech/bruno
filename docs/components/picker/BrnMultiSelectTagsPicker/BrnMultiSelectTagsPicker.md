@@ -26,37 +26,36 @@ group:
 
 ```dart
 BrnMultiSelectTagsPicker({
-  Key key,
-  @required this.context,
-  @required this.onConfirm,
-  this.onCancel,
-  @required this.tagPickerConfig,
-  @required this.onTagValueGetter,
-  this.onMaxSelectClick,
-  this.onItemClick,
-  this.maxSelectItemCount = 0,
-  this.brnCrossAxisCount,
-  this.itemHeight = 34.0,
-  this.layoutStyle = BrnMultiSelectTagsLayoutStyle.average,
-  BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
-  BrnPickerConfig themeData,
-}) 
+    Key? key,
+    required this.context,
+    required this.onConfirm,
+    this.onCancel,
+    required this.tagPickerConfig,
+    required this.onTagValueGetter,
+    this.onMaxSelectClick,
+    this.onItemClick,
+    this.maxSelectItemCount = 0,
+    this.crossAxisCount,
+    this.itemHeight = 34.0,
+    this.layoutStyle = BrnMultiSelectTagsLayoutStyle.average,
+    BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
+    BrnPickerConfig? themeData,
+  })
 ```
 ### 参数说明
 
 | 参数名 | 参数类型 | 描述 | 是否必填 | 默认值 |
 | --- | --- | --- | --- | --- |
 | context | Buildcontext |  | 是 |  |
-| headerBean | LJPickerHeaderBean | 设置弹框头部相关数据 | 否 |  |
 | onConfirm | ValueChanged | 点击【完成】时回调给外部选中的数据 | 是 |  |
-| onCancel | VoidCallback | 点击【取消】时回调给外部的事件 | 否 |  |
+| onCancel | VoidCallback? | 点击【取消】时回调给外部的事件 | 否 |  |
 | tagPickerConfig | BrnTagsPickerConfig | 设置弹框的tags数据，配置详情见BrnTagsPickerConfig | 否 | |
 | onTagValueGetter | TagValueGetter | 传入的泛型数据转换为字符串 以填充Widget | 是 |  |
-| crossAxisCount | int | 一行展示多少个item | 否 |  |
+| crossAxisCount | int? | 一行展示多少个item | 否 |  |
 | maxSelectItemCount | int | 最大选中多少个item | 否 | 0 |
 | layoutStyle | BrnMultiSelectTagsLayoutStyle | 枚举.等分布局流式布局 | 否 | BrnMultiSelectTagsLayoutStyle.average |
-| onMaxSelectClick | VoidCallback | 当点击到最大数目时的点击事件 | 否 |  |
-| onItemClick | BrnMultiSelectTagOnItemClick | 点击某个按钮的回调 | 否 | |
+| onMaxSelectClick | VoidCallback? | 当点击到最大数目时的点击事件 | 否 |  |
+| onItemClick | BrnMultiSelectTagOnItemClick? | 点击某个按钮的回调 | 否 | |
 | itemHeight | double | item高度 | 否 | 34.0 |
 
 ### 其它数据
@@ -92,26 +91,27 @@ class BrnTagsPickerConfig {
       this.selectedTagBackgroudColor,
       this.chipPadding,
       this.tagItemSource = const []}) {
-    this.tagTitleColor = BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
+    this.tagTitleColor =
+        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
   }
 
   ///tag 文字大小
   double tagTitleFontSize;
 
   ///tag 文字颜色
-  Color tagTitleColor;
+  Color? tagTitleColor;
 
   ///选中的tag颜色
-  Color selectedTagTitleColor;
+  Color? selectedTagTitleColor;
 
   ///tag 背景颜色
-  Color tagBackgroudColor;
+  Color? tagBackgroudColor;
 
   ///选中的颜色
-  Color selectedTagBackgroudColor;
+  Color? selectedTagBackgroudColor;
 
   ///内部item的边距
-  EdgeInsets chipPadding;
+  EdgeInsets? chipPadding;
 
   ///数据源
   List<BrnTagItemBean> tagItemSource;
@@ -143,7 +143,7 @@ void _showMulSelectTagPicker(BuildContext context) {
    '可爱多',  
  ];  
 
- List <BrnTagItemBean>items = List();  
+ List <BrnTagItemBean>items = [];  
  for (int i = 0; i < tags.length ;i++){  
    String it = tags[i];  
    BrnTagItemBean item = BrnTagItemBean(name: it,code: it,index: i, isSelect: true);  

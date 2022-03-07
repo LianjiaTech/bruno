@@ -32,25 +32,25 @@ group:
 
 ```dart
 BrnMultiSelectListPicker({
-  Key key,
-  this.title,
-  this.items,
-  this.pickerTitleConfig = BrnPickerTitleConfig.Default,
-  this.onSubmit,
-  this.onCancel,
-  this.onItemClick,
-})
+    Key? key,
+    this.title,
+    required this.items,
+    this.pickerTitleConfig = BrnPickerTitleConfig.Default,
+    this.onSubmit,
+    this.onCancel,
+    this.onItemClick,
+  }) : super(key: key);
 ```
 
 ### 参数说明
 
-| 参数名            | 参数类型                                                                                            | 作用                                          | 是否必填 | 默认值                       |
-| ----------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------- | -------- | ---------------------------- |
-| items             | `List<BrnMultiSelectBottomPickerItem>`                                                              | 数据源                                        | 是       |                              |
-| pickerTitleConfig | BrnPickerTitleConfig                                                                                | 设置 Picker 主题                              | 否       | BrnPickerTitleConfig.Default |
-| onSubmit          | `BrnMultiSelectListPickerSubmit = bool Function(List<BrnMultiSelectBottomPickerItem> checkedItems)` | 点击【完成】时回调给外部选中的数据            | 否       |                              |
-| onItemClick       | BrnMultiSelectListPickerItemClick = void Function(BuildContext context, int index)                  | Item 被点击的回调                             | 否       |                              |
-| isDismissible     | bool                                                                                                | 是否可电机外部关闭弹窗，true 点击外部关闭弹窗 | 否       | true                         |
+| 参数名            | 参数类型                                                     | 作用                                          | 是否必填 | 默认值                       |
+| ----------------- | ------------------------------------------------------------ | --------------------------------------------- | -------- | ---------------------------- |
+| items             | `List<BrnMultiSelectBottomPickerItem>`                       | 数据源                                        | 是       |                              |
+| pickerTitleConfig | BrnPickerTitleConfig                                         | 设置 Picker 主题                              | 否       | BrnPickerTitleConfig.Default |
+| onSubmit          | `BrnMultiSelectListPickerSubmit = bool Function(List<BrnMultiSelectBottomPickerItem> checkedItems)`? | 点击【完成】时回调给外部选中的数据            | 否       |                              |
+| onItemClick       | BrnMultiSelectListPickerItemClick = void Function(BuildContext context, int index)? | Item 被点击的回调                             | 否       |                              |
+| isDismissible     | bool                                                         | 是否可电机外部关闭弹窗，true 点击外部关闭弹窗 | 否       | true                         |
 
 ### 其它数据结构
 
@@ -84,7 +84,7 @@ BrnPickerTitleConfig({
 <img src="./img/BrnMultiSelectListPicker.png" style="zoom: 33%;" />
 
 ```dart
-List<BrnMultiSelectBottomPickerItem> items = new List();
+List<BrnMultiSelectBottomPickerItem> items = [];
 items.add(new BrnMultiSelectBottomPickerItem("100", "这里是标题1"));
 items.add(new BrnMultiSelectBottomPickerItem("101", "这里是标题2"));
 items.add(new BrnMultiSelectBottomPickerItem("102", "这里是标题3", isChecked: true));
@@ -112,7 +112,7 @@ BrnMultiSelectListPicker.show(
 <img src="./img/BrnMultiSelectListPicker.png" style="zoom: 33%;" />
 
 ```dart
-List<BrnMultiSelectBottomPickerItem> items = new List();
+List<BrnMultiSelectBottomPickerItem> items = [];
 items.add(new BrnMultiSelectBottomPickerItem("100", "这里是标题1"));
 items.add(new BrnMultiSelectBottomPickerItem("101", "这里是标题2"));
 items.add(new BrnMultiSelectBottomPickerItem("102", "这里是标题3", isChecked: true));
