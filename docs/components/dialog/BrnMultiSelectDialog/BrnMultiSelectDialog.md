@@ -25,37 +25,37 @@ group:
 
 ```dart
 BrnMultiSelectDialog({
-  this.isClose = true,
-  this.title = "",
-  this.conditions,
-  this.messageText,
-  this.messageWidget,
-  this.customWidget,
-  this.isCustomFollowScroll = true,
-  this.submitText = "提交",
-  this.submitBgColor,
-  this.onSubmitClick,
-  this.onItemClick,
-  this.isShowOperateWidget = true,
-});
+    this.isClose = true,
+    this.title = "",
+    required this.conditions,
+    this.messageText,
+    this.messageWidget,
+    this.customWidget,
+    this.isCustomFollowScroll = true,
+    this.submitText = "提交",
+    this.submitBgColor,
+    this.onSubmitClick,
+    this.onItemClick,
+    this.isShowOperateWidget = true,
+  });
 ```
 
 ### 参数说明
 
-| **参数名**           | **参数类型**                                                                                    | **描述**                           | **是否必填** | **默认值** |
-| -------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------- | ------------ | ---------- |
-| isClose              | bool                                                                                            | 是否展示右上角【X】按钮            | 是           |            |
-| conditions           | List                                                                                            | 数据源                             | 否           |            |
-| title                | String                                                                                          | Dialog title                       | 否           |            |
-| messageText          | String                                                                                          | 描述文案                           | 否           |            |
-| messageWidget        | Widget                                                                                          | 自定义描述 widget                  | 否           |            |
-| customWidget         | Widget                                                                                          | 底部自定义 widget                  | 否           |            |
-| isCustomFollowScroll | bool                                                                                            | 是否支持滚动                       | 否           | true       |
-| onSubmitClick        | `bool Function(List<MultiSelectItem> data)`                                                     | 点击【完成】时回调给外部选中的数据 | 否           |            |
-| onItemClick          | BrnMultiSelectDialogOnItemClickCallback = void Function( BuildContext dialogContext, int index) | Item 被点击的回调                  | 否           |            |
-| submitText           | bool                                                                                            | 底部提交按钮的文案                 | 否           | 提交       |
-| submitBgColor        | Color                                                                                           | 底部按钮的主题色                   | 否           | 主题色     |
-| isShowOperateWidget  | bool                                                                                            | 是否展示底部操作区域               | 否           | true       |
+| **参数名**           | **参数类型**                             | **描述**                           | **是否必填** | **默认值** |
+| -------------------- | ---------------------------------------- | ---------------------------------- | ------------ | ---------- |
+| isClose              | bool                                     | 是否展示右上角【X】按钮            | 否           | true       |
+| conditions           | List                                     | 数据源                             | 否           |            |
+| title                | String                                   | Dialog title                       | 否           | ""         |
+| messageText          | String?                                  | 描述文案                           | 否           |            |
+| messageWidget        | Widget?                                  | 自定义描述 widget                  | 否           |            |
+| customWidget         | Widget?                                  | 底部自定义 widget                  | 否           |            |
+| isCustomFollowScroll | bool                                     | 是否支持滚动                       | 否           | true       |
+| onSubmitClick        | BrnMultiSelectDialogClickSubmitCallback? | 点击【完成】时回调给外部选中的数据 | 否           |            |
+| onItemClick          | BrnMultiSelectDialogOnItemClickCallback? | Item 被点击的回调                  | 否           |            |
+| submitText           | String                                   | 底部提交按钮的文案                 | 否           | 提交       |
+| submitBgColor        | Color?                                   | 底部按钮的主题色                   | 否           | 主题色     |
+| isShowOperateWidget  | bool                                     | 是否展示底部操作区域               | 否           | true       |
 
 ## 四、代码演示
 
@@ -64,29 +64,29 @@ BrnMultiSelectDialog({
 <img src="./img/BrnMultiSelectDialogDemo1.png" style="zoom:67%;" />
 
 ```dart
-List<MultiSelectItem> data = new List();
-data.add(new MultiSelectItem("100", "感兴趣待跟进"));
-data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
-data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));
-data.add(new MultiSelectItem("103", "未接通"));
-data.add(new MultiSelectItem("104", "投诉威胁"));
-data.add(new MultiSelectItem("104", "号码错误"));
-data.add(new MultiSelectItem("104", "号码错误"));
-data.add(new MultiSelectItem("104", "号码错误"));
-showDialog(
-    context: context,
-    builder: (_) => BrnMultiSelectDialog(
-        title: "请您评价该条线索",
-        isClose: true,
-        conditions: data,
-        onSubmitClick: (List<MultiSelectItem> data) {
-          var str = "";
-          data.forEach((item) {
-            str = str + item.content + "  ";
-          });
-          BrnToast.show(str, context);
-          return true;
-        }));
+List<MultiSelectItem> data =  [];
+    data.add(new MultiSelectItem("100", "感兴趣待跟进"));
+    data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
+    data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));
+    data.add(new MultiSelectItem("103", "未接通"));
+    data.add(new MultiSelectItem("104", "投诉威胁"));
+    data.add(new MultiSelectItem("104", "号码错误"));
+    data.add(new MultiSelectItem("104", "号码错误"));
+    data.add(new MultiSelectItem("104", "号码错误"));
+    showDialog(
+        context: context,
+        builder: (_) => BrnMultiSelectDialog(
+            title: "请您评价该条线索",
+            isClose: true,
+            conditions: data,
+            onSubmitClick: (List<MultiSelectItem> data) {
+              var str = "";
+              data.forEach((item) {
+                str = str + item.content + "  ";
+              });
+              BrnToast.show(str, context);
+              return true;
+            }));
 ```
 
 ### 效果 2
@@ -94,7 +94,7 @@ showDialog(
 <img src="./img/BrnMultiSelectDialogDemo2.png" style="zoom:67%;" />
 
 ```dart
- List<MultiSelectItem> data = new List();
+ List<MultiSelectItem> data = [];
 data.add(new MultiSelectItem("100", "感兴趣待跟进"));
 data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
 data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));
@@ -126,7 +126,7 @@ showDialog(
 
 ```dart
  String hintText = "感兴趣待跟进";
-List<MultiSelectItem> data = new List();
+List<MultiSelectItem> data = [];
 data.add(new MultiSelectItem("100", "感兴趣待跟进"));
 data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
 data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));

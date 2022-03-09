@@ -1,133 +1,103 @@
+import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
+const double _kItemSidePadding = 5;
 /// 描述: 横向步骤条,是一种常见的导航形式，它具有导航通用的属性：告知用户”我在哪/我能去哪“，
 /// 步骤数目就相当于告知用户--能去哪或者说流程将要经历什么。
 /// 通用组件步骤条分为三个状态：完成态/进行态/等待态，三种状态在样式上均加以区分
 /// 注意事项：横向步骤条内的步骤总数最多只支持5个
-class BrnHorizontalStepsManager {
-  int maxCount = 0;
-  BrnStepsController controller = BrnStepsController();
-
-  ///
-  /// 构建步骤条widget
-  /// steps: 步骤条中元素的列表
-  /// currentIndex: 指示当前进行态的步骤
-  /// isCompleted: 整个流程是否完成
-  /// doingIcon: 自定义正在进行状态的icon
-  /// completedIcon: 自定义已完成状态的icon
-  ///
-  Widget buildSteps(
-      {List<BrunoStep> steps,
-      int currentIndex,
-      bool isCompleted,
-      Widget doingIcon,
-      Widget completedIcon}) {
-    if (steps != null) {
-      maxCount = steps.length;
-    }
-    if (currentIndex != null) {
-      controller.currentIndex = currentIndex;
-    }
-    if (isCompleted != null) {
-      controller.isCompleted = isCompleted;
-    }
-    return Container(
-      child: BrnHorizontalSteps(
-          steps: steps, controller: controller, doingIcon: doingIcon, completedIcon: completedIcon),
-    );
-  }
-
-  ///
-  /// 设置步骤条当前活跃的index
-  ///
-  void setCurrentIndex(int index) {
-    controller.setCurrentIndex(index);
-  }
-
-  ///
-  /// 设置整个流程是否完成
-  ///
-  void setIsCompleted(bool isCompleted) {
-    controller.setIsCompleted(isCompleted);
-  }
-
-  ///
-  /// 向前一步
-  ///
-  void forwardStep() {
-    if (controller.currentIndex < maxCount) {
-      controller.setCurrentIndex(controller.currentIndex + 1);
-    }
-  }
-
-  ///
-  /// 向后一步
-  ///
-  void backStep() {
-    int backIndex = controller.currentIndex <= 0 ? 0 : controller.currentIndex - 1;
-    controller.setCurrentIndex(backIndex);
-  }
-}
-
-// ignore: must_be_immutable
 class BrnHorizontalSteps extends StatefulWidget {
   /// The steps of the stepper whose titles, subtitles, icons always get shown.
   ///
-  /// The length of [steps] must not change.
+  /// 步骤条中元素的列表
   final List<BrunoStep> steps;
 
-  BrnStepsController controller;
+  /// 控制类
+  final BrnStepsController? controller;
 
-  final Widget doingIcon;
-  final Widget completedIcon;
+  /// 自定义正在进行状态的icon
+  final Widget? doingIcon;
 
-  BrnHorizontalSteps({this.steps, this.controller, this.doingIcon, this.completedIcon})
-      : assert(steps.length < 6);
+  /// 自定义已完成状态的icon
+  final Widget? completedIcon;
+
+  const BrnHorizontalSteps({
+    Key? key,
+    required this.steps,
+    this.controller,
+    this.doingIcon,
+    this.completedIcon,
+  })  : assert(steps.length < 6),
+        super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return BrnHorizontalStepsState();
-  }
+  State<StatefulWidget> createState() => BrnHorizontalStepsState();
 }
 
 class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
-  @override
-  void initState() {
-    super.initState();
-    widget.controller?.addListener(_handleStepStateListenerTick);
+  Color get _primary {
+    return BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
+  }
+
+  int get _currentIndex {
+    return widget.controller?.currentIndex ?? 0;
+  }
+
+  Color _getStepContentTextColor(int index) {
+    return index > _currentIndex ? const Color(0xFFCCCCCC) : const Color(0xFF222222);
   }
 
   void _handleStepStateListenerTick() {
     setState(() {});
   }
 
+  void _initController() {
+    widget.controller?._setMaxCount(widget.steps.length);
+    widget.controller?.addListener(_handleStepStateListenerTick);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initController();
+  }
+
   @override
   void dispose() {
-    super.dispose();
     widget.controller?.removeListener(_handleStepStateListenerTick);
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant BrnHorizontalSteps oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final bool isControllerDiff =
+        oldWidget.controller != null && widget.controller != oldWidget.controller;
+    final bool isCountDiff = widget.steps.length != oldWidget.steps.length;
+    if (isControllerDiff || isCountDiff) {
+      oldWidget.controller?.removeListener(_handleStepStateListenerTick);
+      _initController();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return _buildHorizontalSteps();
-  }
-
-  Widget _buildHorizontalSteps() {
-    Widget content; //单独一个widget组件，用于返回需要生成的内容widget
+    /// 单独一个widget组件，用于返回需要生成的内容widget
+    Widget content;
     final List<Widget> childrenList = <Widget>[];
-    for (int i = 0; i < widget.steps.length; i += 1) {
-      childrenList.add(_applyStepItem(widget.steps[i], i));
-      if (i < widget.steps.length - 1) {
-        childrenList.add(_applyLineItem(i));
-      }
+    final List<BrunoStep> steps = widget.steps;
+    final int length = steps.length;
+    final int lastIndex = length - 1;
+    for (int i = 0; i < length; i += 1) {
+      childrenList.add(_applyStepItem(steps[i], i));
     }
     content = Container(
       height: 78,
-      padding: EdgeInsets.fromLTRB(28, 0, 28, 0),
       child: Row(
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: childrenList,
       ),
@@ -135,15 +105,40 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     return content;
   }
 
+  Widget _applyStepItem(BrunoStep step, int index) {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _applyStepAndLine(step, index),
+          _applyStepContent(step, index),
+        ],
+      ),
+    );
+  }
+
+  Widget _applyStepAndLine(BrunoStep step, int index) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        index == 0 ? Expanded(child: SizedBox.shrink()) : _applyLineItem(index, true),
+        _applyStepIcon(step, index),
+        index == widget.steps.length - 1
+            ? Expanded(child: SizedBox.shrink())
+            : _applyLineItem(index, false),
+      ],
+    );
+  }
+
   Widget _applyStepIcon(BrunoStep step, int index) {
     Widget icon;
-    if (widget.controller.isCompleted) {
+    if (widget.controller?.isCompleted == true) {
       return _getCompletedIcon(step);
     }
     if (step.state != null) {
       switch (step.state) {
         case BrunoStepState.indexed:
-          icon = getIndexIcon(index);
+          icon = _getIndexIcon(index);
           break;
         case BrunoStepState.complete:
           icon = _getCompletedIcon(step);
@@ -156,106 +151,111 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
           break;
       }
     } else {
-      int currentIndex = widget.controller.currentIndex;
-      if (index < currentIndex) {
+      if (index < _currentIndex) {
         // 当前index小于指定的活跃index
         icon = _getCompletedIcon(step);
-      } else if (index == currentIndex) {
+      } else if (index == _currentIndex) {
         icon = _getDoingIcon(step);
-      } else if (index > currentIndex) {
-        icon = getIndexIcon(index);
+      } else {
+        icon = _getIndexIcon(index);
       }
     }
     return icon;
   }
 
-  Widget _applyStepItem(BrunoStep step, int index) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _applyStepIcon(step, index),
-          _applyStepContent(step, index),
-        ],
-      ),
-    );
-  }
-
-  Widget _applyLineItem(int index) {
+  Widget _applyLineItem(int index, bool isLeft) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.fromLTRB(0, 0, 0, 28),
-        color: index >= widget.controller.currentIndex
-            ? Color(0xFFE7E7E7)
-            : BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
-        height: 1,
+        alignment: Alignment.center,
+        child: BrnLine(
+          height: 1,
+          leftInset: isLeft ? 0 : _kItemSidePadding,
+          rightInset: isLeft ? _kItemSidePadding : 0,
+          color: _getLineColor(index, isLeft),
+        ),
       ),
     );
   }
 
-  Widget getIndexIcon(int index) {
+  Color _getLineColor(int index, bool isLeft) {
+    if (index < _currentIndex) {
+      return _primary;
+    } else if (_currentIndex == index && isLeft) {
+      return _primary;
+    }
+    return const Color(0xFFE7E7E7);
+  }
+
+  Widget _getIndexIcon(int index) {
     Widget icon;
     switch (index) {
       case 1:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_2, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStep2, 20, 20);
         break;
       case 2:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_3, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStep3, 20, 20);
         break;
       case 3:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_4, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStep4, 20, 20);
         break;
       case 4:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_5, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStep5, 20, 20);
         break;
       default:
-        icon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_DOING, 20, 20);
+        icon = BrunoTools.getAssetSizeImage(BrnAsset.iconStepDoing, 20, 20);
         break;
     }
     return icon;
   }
 
-  _applyStepContent(BrunoStep step, int index) {
-    if (step.stepContent != null) {
-      return step.stepContent;
+  Widget _applyStepContent(BrunoStep step, int index) {
+    Widget? stepContent = step.stepContent;
+    if (stepContent != null) {
+      return stepContent;
     }
     return Container(
-        margin: EdgeInsets.only(top: 6),
-        child: Text(
-          step.stepContentText,
-          style: TextStyle(
-            fontSize: 14,
-            color: index > widget.controller.currentIndex ? Color(0xFFCCCCCC) : Color(0xFF222222),
-          ),
-        ));
+      margin: const EdgeInsets.only(top: 6, left: _kItemSidePadding, right: _kItemSidePadding),
+      child: Text(
+        step.stepContentText ?? '',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          fontSize: 14,
+          color: _getStepContentTextColor(index),
+        ),
+      ),
+    );
   }
 
   Widget _getCompletedIcon(BrunoStep step) {
-    if (step.completedIcon != null) {
-      // 如果Step中自定义completedIcon不为空，则使用自定义的icon
-      return step.completedIcon;
+    Widget? completedIcon = step.completedIcon;
+    if (completedIcon != null) {
+      /// 如果Step中自定义completedIcon不为空，则使用自定义的icon
+      return completedIcon;
     }
-    if (widget.completedIcon != null) {
-      // 如果自定义completedIcon不为空，则使用自定义的icon
-      return widget.completedIcon;
+    completedIcon = widget.completedIcon;
+    if (completedIcon != null) {
+      /// 如果自定义completedIcon不为空，则使用自定义的icon
+      return completedIcon;
     }
-    // 使用组件默认的icon
-    return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_COMPLETED, 20, 20,
-        color: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
+
+    /// 使用组件默认的icon
+    return BrunoTools.getAssetSizeImage(BrnAsset.iconStepCompleted, 20, 20, color: _primary);
   }
 
   Widget _getDoingIcon(BrunoStep step) {
-    if (step.doingIcon != null) {
-      // 如果Step中自定义doingIcon不为空，则使用自定义的icon
-      return step.doingIcon;
+    Widget? doingIcon = step.doingIcon;
+    if (doingIcon != null) {
+      /// 如果Step中自定义doingIcon不为空，则使用自定义的icon
+      return doingIcon;
     }
-    if (widget.doingIcon != null) {
-      // 如果自定义doingIcon不为空，则使用自定义的icon
-      return widget.doingIcon;
+    doingIcon = widget.doingIcon;
+    if (doingIcon != null) {
+      /// 如果自定义doingIcon不为空，则使用自定义的icon
+      return doingIcon;
     }
     // 使用组件默认的icon
-    return BrunoTools.getAssetSizeImage(BrnAsset.ICON_STEP_DOING, 20, 20,
-        color: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary);
+    return BrunoTools.getAssetSizeImage(BrnAsset.iconStepDoing, 20, 20, color: _primary);
   }
 }
 
@@ -270,49 +270,75 @@ enum BrunoStepState {
   complete
 }
 
-@immutable
 class BrunoStep {
   /// Creates a step for a [Stepper].
   ///
-  /// The [stepContent], [doingIcon] arguments must not be null.
+  /// The [stepContent], [doingIcon] arguments can be null.
   const BrunoStep({
     this.stepContent,
-    this.stepContentText,
     this.doingIcon,
+    this.stepContentText,
     this.completedIcon,
     this.state,
   });
 
   /// The String title of the step that typically describes it.
-  final String stepContentText;
+  final String? stepContentText;
 
   /// The title of the step that typically describes it.
-  final Widget stepContent;
+  final Widget? stepContent;
 
   /// The doingIcon of the step
-  final Widget doingIcon;
+  final Widget? doingIcon;
 
   /// The completedIcon of the step
-  final Widget completedIcon;
+  final Widget? completedIcon;
 
   /// The state of the step which determines the styling of its components
   /// and whether steps are interactive.
-  final BrunoStepState state;
+  final BrunoStepState? state;
 }
 
 class BrnStepsController with ChangeNotifier {
-  int currentIndex = 0;
-  bool isCompleted = false;
+  /// 指示当前进行态的步骤
+  int currentIndex;
 
-  BrnStepsController({this.currentIndex, this.isCompleted});
+  /// 整个流程是否完成
+  bool isCompleted;
 
-  void setCurrentIndex(int index) {
-    currentIndex = index;
+  /// 最大个数（最多只支持5个）
+  int _maxCount = 0;
+
+  BrnStepsController({this.currentIndex = 0, this.isCompleted = false});
+
+  /// 只有在当前包内调用，不开放给外部调用
+  void _setMaxCount(int _maxCount) {
+    this._maxCount = _maxCount;
+  }
+
+  /// 设置当前步骤条的 index,从 0 开始。
+  void setCurrentIndex(int currentIndex) {
+    if (this.currentIndex == currentIndex || currentIndex > _maxCount) return;
+    isCompleted = currentIndex == _maxCount;
+    this.currentIndex = currentIndex;
     notifyListeners();
   }
 
-  void setIsCompleted(bool isCompleted) {
-    this.isCompleted = isCompleted;
-    notifyListeners();
+  /// 整个链路完成
+  void setCompleted() {
+    setCurrentIndex(_maxCount);
+  }
+
+  /// 向前一步
+  void forwardStep() {
+    if (currentIndex < _maxCount) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  }
+
+  /// 向后一步
+  void backStep() {
+    final int backIndex = currentIndex <= 0 ? 0 : currentIndex - 1;
+    setCurrentIndex(backIndex);
   }
 }

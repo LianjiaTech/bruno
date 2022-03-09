@@ -21,10 +21,10 @@ class BrnRadioButton extends StatelessWidget {
 
   /// 选择按钮的padding
   /// 默认EdgeInsets.all(5)
-  final EdgeInsets iconPadding;
+  final EdgeInsets? iconPadding;
 
   /// 配合使用的控件，比如卡片或者text
-  final Widget child;
+  final Widget? child;
 
   /// 控件是否在选择按钮的右边，
   /// true时 控件在选择按钮右边
@@ -40,10 +40,13 @@ class BrnRadioButton extends StatelessWidget {
   /// 默认值MainAxisSize.min
   final MainAxisSize mainAxisSize;
 
+  /// 默认值HitTestBehavior.translucent控制widget.onRadioItemClick触发的点击范围
+  final HitTestBehavior behavior;
+
   const BrnRadioButton({
-    Key key,
-    @required this.radioIndex,
-    @required this.onValueChangedAtIndex,
+    Key? key,
+    required this.radioIndex,
+    required this.onValueChangedAtIndex,
     this.disable = false,
     this.isSelected = false,
     this.iconPadding,
@@ -51,6 +54,7 @@ class BrnRadioButton extends StatelessWidget {
     this.childOnRight = true,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.min,
+    this.behavior = HitTestBehavior.translucent
   });
 
   @override
@@ -63,14 +67,18 @@ class BrnRadioButton extends StatelessWidget {
       childOnRight: childOnRight,
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
-      selectedImage: BrunoTools.getAssetImageWithBandColor(BrnAsset.ICON_RADIO_SINGLE_SELECTED),
-      unselectedImage: BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_UNSELECTED),
-      disSelectedImage: BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_MULTI_SELECTED),
-      disUnselectedImage: BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_UNSELECTED),
+      selectedImage: BrunoTools.getAssetImageWithBandColor(
+          BrnAsset.iconRadioSingleSelected),
+      unselectedImage: BrunoTools.getAssetImage(BrnAsset.iconRadioUnSelected),
+      disSelectedImage:
+          BrunoTools.getAssetImage(BrnAsset.iconRadioDisableMultiSelected),
+      disUnselectedImage:
+          BrunoTools.getAssetImage(BrnAsset.iconRadioDisableUnselected),
       child: child,
       onRadioItemClick: () {
         onValueChangedAtIndex(radioIndex, true);
       },
+      behavior: behavior,
     );
   }
 }

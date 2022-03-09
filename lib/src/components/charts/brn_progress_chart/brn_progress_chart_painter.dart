@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 class BrnProgressChartPainter extends CustomPainter {
@@ -42,15 +44,18 @@ class BrnProgressChartPainter extends CustomPainter {
     Rect progressBarRect = Rect.fromLTWH(0, 0, size.width * value, size.height);
 
     RRect progressBarRRect = RRect.fromRectAndCorners(progressBarRect,
-        bottomRight:
-            Radius.circular(1 == value && false == this.alwaysShowRadius ? 0 : this.radius),
-        topRight: Radius.circular(1 == value && false == this.alwaysShowRadius ? 0 : this.radius));
+        bottomRight: Radius.circular(
+            1 == value && false == this.alwaysShowRadius ? 0 : this.radius),
+        topRight: Radius.circular(
+            1 == value && false == this.alwaysShowRadius ? 0 : this.radius));
 
     Shader progressBarShader = LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             tileMode: TileMode.clamp,
-            colors: (this.colors.length > 1) ? this.colors : [this.colors[0], this.colors[0]])
+            colors: (this.colors.length > 1)
+                ? this.colors
+                : [this.colors[0], this.colors[0]])
         .createShader(progressBarRect);
     Paint progressBarPaint = Paint()..shader = progressBarShader;
 

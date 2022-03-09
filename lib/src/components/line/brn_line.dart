@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 ///
 class BrnLine extends StatelessWidget {
   /// 分割线的或者分割条的颜色 可以通过[BrnThemeConfigurator]配置默认颜色
-  final Color color;
+  final Color? color;
 
   /// 分割线的或者分割条的高度 默认0.5
   final double height;
@@ -31,7 +31,7 @@ class BrnLine extends StatelessWidget {
   final double rightInset;
 
   BrnLine({
-    Key key,
+    Key? key,
     this.color,
     this.height = 0.5,
     this.leftInset = 0,

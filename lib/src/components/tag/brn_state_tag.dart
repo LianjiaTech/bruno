@@ -15,17 +15,17 @@ import 'package:flutter/material.dart';
 ///
 class BrnStateTag extends StatelessWidget {
   final String tagText;
-  final Color backgroundColor;
-  final Color textColor;
   final TagState tagState;
+  final Color? backgroundColor;
+  final Color? textColor;
 
   //默认为等待状态,黄色
   const BrnStateTag(
-      {Key key,
-      this.tagText,
+      {Key? key,
+      required this.tagText,
+      this.tagState = TagState.waiting,
       this.backgroundColor,
-      this.textColor,
-      this.tagState = TagState.waiting})
+      this.textColor,})
       : super(key: key);
 
   @override
@@ -34,7 +34,8 @@ class BrnStateTag extends StatelessWidget {
       tagText: tagText,
       textPadding: EdgeInsets.only(bottom: 0, left: 4, right: 4, top: 0),
       textColor: textColor ?? getTagColor(tagState),
-      backgroundColor: backgroundColor ?? getTagColor(tagState).withOpacity(0.1),
+      backgroundColor:
+          backgroundColor ?? getTagColor(tagState).withOpacity(0.1),
     );
   }
 

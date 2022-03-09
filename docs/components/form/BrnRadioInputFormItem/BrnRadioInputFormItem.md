@@ -51,7 +51,7 @@ BrnRadioInputFormItem(
     this.title: "",
     this.subTitle,
     this.tipLabel,
-    this.prefixIconType: BrnPrefixIconType.TYPE_NORMAL,
+    this.prefixIconType: BrnPrefixIconType.normal,
     this.error: "",
     this.isEdit: true,
     this.isRequire: false,
@@ -78,11 +78,10 @@ BrnRadioInputFormItem(
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
 | --- | --- | --- | --- | --- | --- |
 | label | String | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
-| type | Stirng | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.TYPE_NORMAL | 外部可根据此字段判断表单项类型 |
 | title | String | 录入项标题 | 否 | '' |  |
 | subTitle | String | 录入项子标题 | 否 | 无 |  |
 | tipLabel | String | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
-| prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.TYPE_NORMAL | 1. 不展示图标：BrnPrefixIconType.TYPE_NORMAL 2. 展示加号图标：BrnPrefixIconType.TYPE_ADD3. 展示减号图标：BrnPrefixIconType.TYPE_REMOVE |
+| prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.normal | 1. 不展示图标：BrnPrefixIconType.normal 2. 展示加号图标：BrnPrefixIconType.add3. 展示减号图标：BrnPrefixIconType.remove |
 | error | String | 录入项错误提示 | 否 | '' |  |
 | isRequire | bool | 录入项是否为必填项（展示*图标） 默认为 false 不必填 | 否 | false |  |
 | isEdit | bool | 录入项 是否可编辑 | 否 | true | true：可编辑false：禁用 |
@@ -103,10 +102,10 @@ BrnRadioInputFormItem(
 
 
 ```dart
-class BrnPrefixIconType {  
-  static const String TYPE_NORMAL = "type_normal";  
-  static const String TYPE_ADD = "type_add";  
-  static const String TYPE_REMOVE = "type_remove";  
+class BrnPrefixIconType {
+  static const String normal = "type_normal";
+  static const String add = "type_add";
+  static const String remove = "type_remove";
 }
 ```
 ## 四、代码演示
@@ -142,7 +141,7 @@ BrnRadioInputFormItem(
 ![](./img/BrnRadioInputFormItemDemo2.png)
 ```dart
 BrnRadioInputFormItem(
-  prefixIconType: BrnPrefixIconType.TYPE_ADD,
+  prefixIconType: BrnPrefixIconType.add,
   isRequire: true,
   error: "必填项不能为空",
   title: "自然到访保护期",
@@ -173,7 +172,7 @@ BrnRadioInputFormItem(
 ![](./img/BrnRadioInputFormItemDemo3.png)
 ```dart
 BrnRadioInputFormItem(
-  prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+  prefixIconType: BrnPrefixIconType.remove,
   isRequire: true,
   title: "自然到访保护期",
   subTitle: "这里是副标题",
@@ -203,7 +202,7 @@ BrnRadioInputFormItem(
 ![](./img/BrnRadioInputFormItemDemo4.png)
 ```dart
 BrnRadioInputFormItem.autoLayout(
-  prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+  prefixIconType: BrnPrefixIconType.remove,
   isRequire: true,
   error: "必填项不能为空",
   title: "autoLayout",

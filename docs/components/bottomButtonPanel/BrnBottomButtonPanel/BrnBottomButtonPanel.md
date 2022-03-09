@@ -45,25 +45,25 @@ group:
 
 ```dart
 const BrnBottomButtonPanel(
-  {Key key,
-  @required this.mainButtonName,
-  @required this.mainButtonOnTap,
-  this.secondaryButtonName,
-  this.secondaryButtonOnTap,
-  this.enableMainButton = true,
-  this.enableSecondaryButton = true,
-  this.iconButtonList})
-  : super(key: key);
+      {Key? key,
+      required this.mainButtonName,
+      required this.mainButtonOnTap,
+      this.secondaryButtonName,
+      this.secondaryButtonOnTap,
+      this.enableMainButton = true,
+      this.enableSecondaryButton = true,
+      this.iconButtonList})
+      : super(key: key);
 ```
 ### 参数说明
 
 | 参数名 | 参数类型 | 描述 | 是否必填 | 默认值 |
 | --- | --- | --- | --- | --- |
-| mainButtonName | String | 主按钮的显示文案 | 否 | '' |
+| mainButtonName | String | 主按钮的显示文案 | 否 | 无 |
 | mainButtonOnTap | VoidCallback | 主按钮的点击回调 | 否 | 无 |
-| secondaryButtnoName | String | 次按钮显示文案 | 否 | '' |
-| secondaryButtonOnTap | VoidCallback | 次按钮的点击回调 | 否 | 无 |
-| iconButtonList | List | icon按钮的集合 | 否 | 无 |
+| secondaryButtonName | String? | 次按钮显示文案 | 否 | 无 |
+| secondaryButtonOnTap | VoidCallback? | 次按钮的点击回调 | 否 | 无 |
+| iconButtonList | List<BrnVerticalIconButton>? | icon按钮的集合 | 否 | 无 |
 | enableMainButton | bool | 主按钮是否可用 | 否 | true |
 | enableSecondaryButton | bool | 次按钮是否可用 | 否 | true |
 

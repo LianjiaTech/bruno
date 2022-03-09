@@ -28,20 +28,18 @@ group:
 ### 构造函数
 
 ```dart
-BrnBottomWritePicker(
-  {this.maxLength = 200,
-   this.hintText = "请输入",
-   this.leftTag = "取消",
-   this.title = "",
-   this.rightTag = "确认",
-   this.cancel,
-   this.confirm,
-   this.confirmDismiss = false,
-   this.cancelDismiss = true,
-   this.rightTextColor,
-   this.cursorColor,
-   this.defaultText,
-   this.textEditingController});
+const BrnBottomWritePicker(
+      {this.maxLength = 200,
+      this.hintText = "请输入",
+      this.leftTag = "取消",
+      this.title = "",
+      this.rightTag = "确认",
+      this.onCancel,
+      this.onConfirm,
+      this.rightTextColor,
+      this.cursorColor,
+      this.defaultText,
+      this.textEditingController});
 ```
 
 ### 参数说明
@@ -53,14 +51,12 @@ BrnBottomWritePicker(
 | leftTag               | String                                                       | 左侧按钮文案                                                 | 否       | 取消   |
 | title                 | String                                                       | 标题文案                                                     | 否       |        |
 | rightTag              | String                                                       | 右侧按钮文案                                                 | 否       | 确认   |
-| cancel                | BrnBottomWritePickerClickCallback = Future<void> Function(String content) | 取消输入事件回调                                             | 否       |        |
-| confirm               | BrnBottomWritePickerConfirmClickCallback = Future<void> Function(     BuildContext dialogContext, String content) | 确认输入事件回调                                             | 否       |        |
-| rightTextColor        | Color                                                        | 右侧文案 Color                                               | 否       | 主题色 |
-| cursorColor           | Color                                                        | 光标颜色                                                     | 否       | 主题色 |
-| defaultText           | String                                                       | 输入框默认文字                                               | 否       |        |
-| cancelDismiss         | bool                                                         | 点击 取消 之后是否自动关闭弹窗                               | 否       | true   |
-| confirmDismiss        | bool                                                         | 点击 确认 之后是否自动关闭弹窗                               | 否       | false  |
-| textEditingController | TextEditingController                                        | 用于对 TextField 更精细的控制，若传入该字段，[defaultText] 参数将失效，可使用 TextEditingController.text 进行赋值 | 否       |        |
+| cancel                | BrnBottomWritePickerClickCallback = Future<void> Function(String content)？ | 取消输入事件回调                                             | 否       |        |
+| confirm               | BrnBottomWritePickerConfirmClickCallback = Future<void> Function(     BuildContext dialogContext, String content)？ | 确认输入事件回调                                             | 否       |        |
+| rightTextColor        | Color？                                                      | 右侧文案 Color                                               | 否       | 主题色 |
+| cursorColor           | Color？                                                      | 光标颜色                                                     | 否       | 主题色 |
+| defaultText           | String？                                                     | 输入框默认文字                                               | 否       |        |
+| textEditingController | TextEditingController？                                      | 用于对 TextField 更精细的控制，若传入该字段，[defaultText] 参数将失效，可使用 TextEditingController.text 进行赋值 | 否       |        |
 
 ## 四、效果及代码展示
 

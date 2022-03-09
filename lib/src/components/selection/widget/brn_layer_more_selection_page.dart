@@ -6,7 +6,6 @@ import 'package:bruno/src/components/toast/brn_toast.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
-import 'package:bruno/src/theme/img/brn_theme_default_utils.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,13 +13,15 @@ import 'package:flutter/services.dart';
 /// 用于展示浮层的筛选项 如商圈
 /// 左侧是：二级筛选项 右侧是三级筛选项
 /// 默认将第一个元素选中
-// ignore: must_be_immutable
 class BrnLayerMoreSelectionPage extends StatefulWidget {
-  //entity是商圈
   final BrnSelectionEntity entityData;
-  BrnSelectionConfig themeData;
+  final BrnSelectionConfig themeData;
 
-  BrnLayerMoreSelectionPage({this.entityData, this.themeData});
+  BrnLayerMoreSelectionPage({
+    Key? key,
+    required this.entityData,
+    required this.themeData,
+  }): super(key: key);
 
   @override
   _BrnLayerMoreSelectionPageState createState() => _BrnLayerMoreSelectionPageState();
@@ -28,32 +29,31 @@ class BrnLayerMoreSelectionPage extends StatefulWidget {
 
 class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     with SingleTickerProviderStateMixin {
-  List<BrnSelectionEntity> firstList;
+  List<BrnSelectionEntity> _firstList = [];
 
-  List<BrnSelectionEntity> _originalSelectedItemsList;
+  late List<BrnSelectionEntity> _originalSelectedItemsList;
 
   ///当前选中的 一级筛选条件
-  BrnSelectionEntity currentFirstEntity;
+  BrnSelectionEntity? _currentFirstEntity;
 
   ///当前选中的 一级筛选条件的索引
-  int currentIndex;
+  int _currentIndex = 0;
 
-  AnimationController _controller;
-  Animation<Offset> animation;
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
 
   @override
   void initState() {
     super.initState();
-
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    });
     _controller = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    animation = Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
+    _animation = Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
     _controller.forward();
-
-    currentIndex = 0;
-    firstList = List();
     _originalSelectedItemsList = widget.entityData.selectedList();
 
     _initData();
@@ -61,9 +61,6 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
-    });
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Row(
@@ -73,7 +70,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
             animation: _controller,
             builder: (context, child) {
               return SlideTransition(
-                position: animation,
+                position: _animation,
                 child: child,
               );
             },
@@ -87,7 +84,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
   @override
   void dispose() {
     super.dispose();
-    _controller?.dispose();
+    _controller.dispose();
   }
 
   ///左侧是黑色浮层
@@ -181,7 +178,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                 itemBuilder: (context, index) {
                   return _buildRightItem(index);
                 },
-                itemCount: currentFirstEntity.children.length,
+                itemCount: _currentFirstEntity?.children.length ?? 0,
               ),
             ),
           )
@@ -201,44 +198,46 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
             //      如果是选中的情况，则将已选中的兄弟节点清除
             //      如果是未选的情况，则直接选中
 
-            if (index == currentIndex) {
+            if (index == _currentIndex) {
               return;
             }
-            if (firstList[index].filterType == BrnSelectionFilterType.Radio) {
+            if (_firstList[index].filterType == BrnSelectionFilterType.radio) {
               setState(() {
-                currentIndex = index;
-                currentFirstEntity = firstList[index];
-                if (currentFirstEntity.isSelected) {
-                  currentFirstEntity.clearSelectedEntity();
-                } else {
-                  currentFirstEntity.parent.clearSelectedEntity();
-                  //设置不限
-                  setInitialSecondShowingItem();
+                _currentIndex = index;
+                _currentFirstEntity = _firstList[index];
+                if (_currentFirstEntity != null) {
+                  if (_currentFirstEntity!.isSelected) {
+                    _currentFirstEntity!.clearSelectedEntity();
+                  } else {
+                    _currentFirstEntity!.parent?.clearSelectedEntity();
+                    //设置不限
+                    setInitialSecondShowingItem(_currentFirstEntity!);
+                  }
                 }
               });
             } else {
-              firstList[index].parent?.children?.where((data) {
-                return data.filterType != BrnSelectionFilterType.Checkbox;
-              })?.forEach((data) {
+              _firstList[index].parent?.children.where((data) {
+                return data.filterType != BrnSelectionFilterType.checkbox;
+              }).forEach((data) {
                 data.isSelected = false;
                 data.clearChildSelection();
               });
 
-              if (!this.firstList[index].isSelected) {
-                if (!BrnSelectionUtil.checkMaxSelectionCount(firstList[index])) {
+              if (!this._firstList[index].isSelected) {
+                if (!BrnSelectionUtil.checkMaxSelectionCount(_firstList[index])) {
                   BrnToast.show('您选择的筛选条件数量已达上限', context);
                   setState(() {});
                   return;
                 } else {
-                  currentIndex = index;
-                  currentFirstEntity = firstList[index];
+                  _currentIndex = index;
+                  _currentFirstEntity = _firstList[index];
                   //一级选中的情况，初始化二级
-                  setInitialSecondShowingItem();
+                  setInitialSecondShowingItem(_currentFirstEntity!);
                   setState(() {});
                 }
               } else {
-                currentIndex = index;
-                currentFirstEntity = firstList[index];
+                _currentIndex = index;
+                _currentFirstEntity = _firstList[index];
                 setState(() {});
               }
             }
@@ -246,7 +245,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
           child: _buildLeftItem(index),
         );
       },
-      itemCount: firstList.length,
+      itemCount: _firstList.length,
     );
   }
 
@@ -291,18 +290,18 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildLeftItem(int index) {
     //如果房山 被选中了或者房山处于正在选择的状态 则加粗
-    TextStyle textStyle = widget.themeData.flayNormalTextStyle.generateTextStyle();
-    if (index == currentIndex) {
-      textStyle = widget.themeData.flatSelectedTextStyle.generateTextStyle();
-    } else if ((firstList[index].isSelected) && firstList[index].selectedList().isNotEmpty) {
-      textStyle = widget.themeData.flatBoldTextStyle.generateTextStyle();
+    TextStyle textStyle = widget.themeData.flayerNormalTextStyle.generateTextStyle();
+    if (index == _currentIndex) {
+      textStyle = widget.themeData.flayerSelectedTextStyle.generateTextStyle();
+    } else if ((_firstList[index].isSelected) && _firstList[index].selectedList().isNotEmpty) {
+      textStyle = widget.themeData.flayerBoldTextStyle.generateTextStyle();
     }
 
-    List<BrnSelectionEntity> list = firstList[index].selectedList();
+    List<BrnSelectionEntity> list = _firstList[index].selectedList();
     //如果选中了不限 则展示 房山全部
     //如果选中了某几个
     //        如果可以跨区域 则显示数量 否则只加粗
-    String name = firstList[index].title;
+    String name = _firstList[index].title;
 
     if (list.isNotEmpty) {
       if (list.every((data) {
@@ -310,11 +309,11 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
       })) {
         name += '(全部)';
       } else {
-        bool containsCheck = firstList[index].hasCheckBoxBrother();
+        bool containsCheck = _firstList[index].hasCheckBoxBrother();
         bool containsCheckChildren = false;
 
-        if (firstList[index].children.isNotEmpty) {
-          containsCheckChildren = firstList[index].children[0].hasCheckBoxBrother();
+        if (_firstList[index].children.isNotEmpty) {
+          containsCheckChildren = _firstList[index].children[0].hasCheckBoxBrother();
         }
         if (containsCheck && containsCheckChildren) {
           name += '(${list.length})';
@@ -324,7 +323,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     return Container(
       alignment: Alignment.centerLeft,
       height: 48,
-      color: index == currentIndex ? Colors.white : Color(0xff8F8F8),
+      color: index == _currentIndex ? Colors.white : Color(0xff8F8F8),
       child: Padding(
         padding: const EdgeInsets.only(left: 20),
         child: Text(
@@ -337,39 +336,40 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildRightItem(int index) {
     bool isSingle =
-        (currentFirstEntity.children[index].filterType == BrnSelectionFilterType.Radio) ||
-            (currentFirstEntity.children[index].filterType == BrnSelectionFilterType.UnLimit);
+        (_currentFirstEntity?.children[index].filterType == BrnSelectionFilterType.radio) ||
+            (_currentFirstEntity?.children[index].filterType == BrnSelectionFilterType.unLimit);
 
     return GestureDetector(
       onTap: () {
         setState(() {
-          if (isSingle) {
-            currentFirstEntity.clearSelectedEntity();
-            currentFirstEntity.isSelected = true;
-            currentFirstEntity.children[index].isSelected = true;
-            //Navigator.pop(context, widget.entityData);
-          } else {
-            currentFirstEntity.children?.where((data) {
-              return data.filterType != BrnSelectionFilterType.Checkbox;
-            })?.forEach((data) {
-              data.isSelected = false;
-            });
-            if (!currentFirstEntity.children[index].isSelected) {
-              if (!BrnSelectionUtil.checkMaxSelectionCount(
-                  this.currentFirstEntity.children[index])) {
-                BrnToast.show('您选择的筛选条件数量已达上限', context);
-                return;
+          if (_currentFirstEntity != null) {
+            if (isSingle) {
+              _currentFirstEntity!.clearSelectedEntity();
+              _currentFirstEntity!.isSelected = true;
+              _currentFirstEntity!.children[index].isSelected = true;
+            } else {
+              _currentFirstEntity!.children.where((data) {
+                return data.filterType != BrnSelectionFilterType.checkbox;
+              }).forEach((data) {
+                data.isSelected = false;
+              });
+              if (!_currentFirstEntity!.children[index].isSelected) {
+                if (!BrnSelectionUtil.checkMaxSelectionCount(
+                    this._currentFirstEntity!.children[index])) {
+                  BrnToast.show('您选择的筛选条件数量已达上限', context);
+                  return;
+                }
               }
+              this._currentFirstEntity!.children[index].isSelected =
+                  !this._currentFirstEntity!.children[index].isSelected;
             }
-            this.currentFirstEntity.children[index].isSelected =
-                !this.currentFirstEntity.children[index].isSelected;
-          }
 
-          //如果二级没有任何选中的，那么一级为不选中
-          if (currentFirstEntity.selectedList().isEmpty) {
-            currentFirstEntity.isSelected = false;
-          } else {
-            currentFirstEntity.isSelected = true;
+            //如果二级没有任何选中的，那么一级为不选中
+            if (_currentFirstEntity!.selectedList().isEmpty) {
+              _currentFirstEntity!.isSelected = false;
+            } else {
+              _currentFirstEntity!.isSelected = true;
+            }
           }
         });
       },
@@ -380,8 +380,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: isSingle
-              ? _buildRightSingleItem(currentFirstEntity.children[index])
-              : _buildRightMultiItem(currentFirstEntity.children[index]),
+              ? _buildRightSingleItem(_currentFirstEntity?.children[index])
+              : _buildRightMultiItem(_currentFirstEntity?.children[index]),
         ),
       ),
     );
@@ -389,61 +389,71 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   void _initData() {
     //填充一级筛选数据
-    firstList = widget.entityData.children ?? List();
+    _firstList = widget.entityData.children;
     //找到一级需要显示 的索引
-    for (int i = 0; i < firstList.length; i++) {
-      if (firstList[i].selectedList().isNotEmpty) {
-        firstList[i].isSelected = true;
+    for (int i = 0; i < _firstList.length; i++) {
+      if (_firstList[i].selectedList().isNotEmpty) {
+        _firstList[i].isSelected = true;
       }
     }
-    currentIndex = firstList.indexWhere((data) {
+    _currentIndex = _firstList.indexWhere((data) {
       return data.isSelected;
     });
 
-    if (currentIndex >= firstList.length || currentIndex == -1) {
-      currentIndex = 0;
+    if (_currentIndex >= _firstList.length || _currentIndex == -1) {
+      _currentIndex = 0;
     }
     //当前选中的一级筛选条件
-    currentFirstEntity = firstList[currentIndex];
-    currentFirstEntity.isSelected = true;
+    _currentFirstEntity = _firstList[_currentIndex];
+    _currentFirstEntity?.isSelected = true;
 
     //找到第二级需要默认选中的索引
-    setInitialSecondShowingItem();
+    if (_currentFirstEntity != null) {
+      setInitialSecondShowingItem(_currentFirstEntity!);
+    }
   }
 
-  Widget _buildRightMultiItem(BrnSelectionEntity tmp) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: Text(
-            tmp.title.toString(),
-            style: tmp.isSelected
-                ? widget.themeData.flatSelectedTextStyle.generateTextStyle()
-                : widget.themeData.flayNormalTextStyle.generateTextStyle(),
+  Widget _buildRightMultiItem(BrnSelectionEntity? entity) {
+    if (entity == null) {
+      return SizedBox.shrink();
+    } else {
+      return Row(
+        children: <Widget>[
+          Expanded(
+            child: Text(
+              entity.title,
+              style: entity.isSelected
+                  ? widget.themeData.flayerSelectedTextStyle.generateTextStyle()
+                  : widget.themeData.flayerNormalTextStyle.generateTextStyle(),
+            ),
           ),
-        ),
-        Container(
-          height: 16,
-          width: 16,
-          child: tmp.isSelected
-              ? BrnThemeImg.instance.CHECKED_STATUS
+          Container(
+            height: 16,
+            width: 16,
+            child: entity.isSelected
+              ? BrunoTools.getAssetImageWithBandColor(BrnAsset.selectCheckedStatus)
               : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
-        )
-      ],
-    );
+          )
+        ],
+      );
+    }
   }
 
-  Widget _buildRightSingleItem(BrnSelectionEntity tmp) {
-    return Text(tmp.title.toString(),
-        textAlign: TextAlign.left,
-        style: tmp.isSelected
-            ? widget.themeData.flatSelectedTextStyle.generateTextStyle()
-            : widget.themeData.flayNormalTextStyle.generateTextStyle());
+  Widget _buildRightSingleItem(BrnSelectionEntity? entity) {
+    if (entity == null) {
+      return SizedBox.shrink();
+    } else {
+      return Text(entity.title,
+          textAlign: TextAlign.left,
+          style: entity.isSelected
+              ? widget.themeData.flayerSelectedTextStyle.generateTextStyle()
+              : widget.themeData.flayerNormalTextStyle.generateTextStyle());
+    }
   }
 
   //初始化二级的选中（小白楼）
   //规则：如果二级没有选中的，那么 选中二级的不限
-  void setInitialSecondShowingItem() {
+  void setInitialSecondShowingItem(BrnSelectionEntity currentFirstEntity) {
     //设置初始化的二级筛选条件 -1没有
     int secondIndex = currentFirstEntity.getFirstSelectedChildIndex();
 
@@ -451,7 +461,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     if (secondIndex == -1 && currentFirstEntity.children.isNotEmpty) {
       for (int i = 0, n = currentFirstEntity.children.length; i < n; i++) {
         if (currentFirstEntity.children[i].isUnLimit() &&
-            currentFirstEntity.filterType == BrnSelectionFilterType.Checkbox) {
+            currentFirstEntity.filterType == BrnSelectionFilterType.checkbox) {
           currentFirstEntity.children[i].isSelected = true;
           break;
         }

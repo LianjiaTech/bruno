@@ -1,9 +1,11 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class SelectionViewCustomHandleFilterExamplePage extends StatefulWidget {
   final String _title;
-  final List<BrnSelectionEntity> _filters;
+  final List<BrnSelectionEntity>? _filters;
 
   SelectionViewCustomHandleFilterExamplePage(this._title, this._filters);
 
@@ -26,7 +28,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewCustomHandleFilt
         body: Column(
           children: <Widget>[
             BrnSelectionView(
-              originalSelectionData: widget._filters,
+              originalSelectionData: widget._filters!,
               onCustomSelectionMenuClick: (int index, BrnSelectionEntity customMenuItem,
                   BrnSetCustomSelectionParams customHandleCallBack) {
                 /// 用户操作一段时间之后，将自定义参数回传，触发 onSelectionChanged回调。
@@ -40,7 +42,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewCustomHandleFilt
                   Map<String, String> filterParams,
                   Map<String, String> customParams,
                   BrnSetCustomSelectionMenuTitle setCustomTitleFunction) {
-                if (menuIndex == 1 && setCustomTitleFunction != null) {
+                if (menuIndex == 1) {
                   setCustomTitleFunction(
                       menuTitle: BrunoTools.isEmpty(customParams) ? "" : customParams['CKey'] ?? "",
                       isMenuTitleHighLight: !BrunoTools.isEmpty(customParams['CKey']));

@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+
+
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -9,7 +11,6 @@ import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 
 /// A single-line [ListTile] with a trailing button that expands or collapses
 /// the tile to reveal or hide the [children].
@@ -32,19 +33,18 @@ class BrnExpandableGroup extends StatefulWidget {
   /// the tile to reveal or hide the [children]. The [initiallyExpanded] property must
   /// be non-null.
   BrnExpandableGroup({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
     this.subtitle,
     this.backgroundColor,
     this.onExpansionChanged,
     this.children = const <Widget>[],
     this.initiallyExpanded = false,
     this.themeData,
-  })  : assert(initiallyExpanded != null),
-        super(key: key) {
+  })  : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
   }
@@ -58,15 +58,14 @@ class BrnExpandableGroup extends StatefulWidget {
   ///
   /// Typically a [Text] widget.
 
-  @Deprecated('message')
-  final String subtitle;
+  final String? subtitle;
 
   /// Called when the tile expands or collapses.
   ///
   /// When the tile starts expanding, this function is called with the value
   /// true. When the tile starts collapsing, this function is called with
   /// the value false.
-  final ValueChanged<bool> onExpansionChanged;
+  final ValueChanged<bool>? onExpansionChanged;
 
   /// The widgets that are displayed when the tile expands.
   ///
@@ -74,13 +73,12 @@ class BrnExpandableGroup extends StatefulWidget {
   final List<Widget> children;
 
   /// The color to display behind the sublist when expanded.
-  final Color backgroundColor;
-
+  final Color? backgroundColor;
 
   /// Specifies if the list tile is initially expanded (true) or collapsed (false, the default).
   final bool initiallyExpanded;
 
-  BrnFormItemConfig themeData;
+  BrnFormItemConfig? themeData;
 
   @override
   _BrnExpansionElementState createState() => _BrnExpansionElementState();
@@ -88,8 +86,10 @@ class BrnExpandableGroup extends StatefulWidget {
 
 class _BrnExpansionElementState extends State<BrnExpandableGroup>
     with SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.easeIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0.0, end: 0.5);
 
   /// 头部颜色
   final ColorTween _borderColorTween = ColorTween();
@@ -97,26 +97,28 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
   final ColorTween _iconColorTween = ColorTween();
   final ColorTween _backgroundColorTween = ColorTween();
 
-  AnimationController _controller;
-  Animation<double> _iconTurns;
-  Animation<double> _heightFactor;
+  late AnimationController _controller;
+  late Animation<double> _iconTurns;
+  late Animation<double> _heightFactor;
 
   bool _isExpanded = false;
 
-  Widget arrowIcon;
+  Widget? arrowIcon;
 
   @override
   void initState() {
     super.initState();
-    _isExpanded = PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
+    _isExpanded =
+        PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
 
-    _controller =
-        AnimationController(duration: Duration(milliseconds: 200) /*_kExpand*/, vsync: this);
+    _controller = AnimationController(
+        duration: Duration(milliseconds: 200) /*_kExpand*/, vsync: this);
     _heightFactor = _controller.drive(_easeInTween);
     if (_isExpanded) {
       _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
     } else {
-      _iconTurns = _controller.drive(Tween<double>(begin: 0.5, end: 0.0).chain(_easeInTween));
+      _iconTurns = _controller
+          .drive(Tween<double>(begin: 0.5, end: 0.0).chain(_easeInTween));
     }
 
     if (_isExpanded) {
@@ -124,9 +126,10 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
     }
 
     if (_isExpanded) {
-      arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_DOWN_ARROW, 12, 12);
+      arrowIcon =
+          BrunoTools.getAssetSizeImage(BrnAsset.iconDownArrow, 12, 12);
     } else {
-      arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.ICON_UP_ARROW, 12, 12);
+      arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconUpArrow, 12, 12);
     }
   }
 
@@ -148,11 +151,12 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
       }
       PageStorage.of(context)?.writeState(context, _isExpanded);
     });
-    if (widget.onExpansionChanged != null) widget.onExpansionChanged(_isExpanded);
+    if (widget.onExpansionChanged != null)
+      widget.onExpansionChanged!(_isExpanded);
   }
 
-  Widget _buildHeader(BuildContext context, Widget child) {
-    final Color backgroundColor =  Colors.transparent;
+  Widget _buildHeader(BuildContext context, Widget? child) {
+    final Color backgroundColor = Colors.transparent;
 
     return Container(
       color: backgroundColor,
@@ -165,7 +169,8 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
             },
             child: Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, top: 14, bottom: 14, right: 20),
+              padding:
+                  EdgeInsets.only(left: 20, top: 14, bottom: 14, right: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -176,9 +181,10 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
                       Container(
                           padding: EdgeInsets.only(right: 6),
                           child: Text(
-                            widget.title ?? "",
-                            style:
-                                BrnFormUtil.getHeadTitleTextStyle(widget.themeData, isBold: true),
+                            widget.title,
+                            style: BrnFormUtil.getHeadTitleTextStyle(
+                                widget.themeData!,
+                                isBold: true),
                           )),
                       // 副标题
                       Container(
@@ -187,11 +193,13 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
                         padding: EdgeInsets.only(top: 4),
                         child: Offstage(
                           // ignore: deprecated_member_use_from_same_package
-                          offstage: (widget.subtitle == null || widget.subtitle.isEmpty),
+                          offstage: (widget.subtitle == null ||
+                              widget.subtitle!.isEmpty),
                           child: Text(
                             // ignore: deprecated_member_use_from_same_package
                             widget.subtitle ?? "",
-                            style: BrnFormUtil.getSubTitleTextStyle(widget.themeData),
+                            style: BrnFormUtil.getSubTitleTextStyle(
+                                widget.themeData!),
                           ),
                         ),
                       ),
@@ -228,8 +236,8 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
 
     /// title 文字颜色
     _headerColorTween
-      ..begin = theme.textTheme.subhead.color
-      ..end = theme.textTheme.subhead.color;
+      ..begin = theme.textTheme.subtitle1!.color
+      ..end = theme.textTheme.subtitle1!.color;
 
     /// 展开收起图标颜色
     _iconColorTween

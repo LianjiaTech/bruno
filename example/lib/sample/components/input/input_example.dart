@@ -1,9 +1,11 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TextModel {
-  String text;
+   String? text;
 }
 
 class BrnInputTextExample extends StatefulWidget {
@@ -46,8 +48,8 @@ class _BrnInputTextExampleState extends State<BrnInputTextExample> {
       minHeight: 30,
       minLines: 1,
       maxLength: 10,
-      bgColor: Colors.grey[200],
-      textString: model.text,
+      bgColor: Colors.grey[200]!,
+      textString: model.text ?? '',
       textInputAction: TextInputAction.newline,
       maxHintLines: 20,
       hint: 'input动态算高input动态算高input动态算高input动态算高input动态算高',

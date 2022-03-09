@@ -39,19 +39,19 @@ group:
 
 
 ```dart
-BrnSelectTagsWithInputPicker(  
-  {this.maxLength = 200,  
-   this.hintText = "请输入",  
-   this.title = "",  
-   this.confirm,  
-   this.cancelCallBack,  
-   this.cursorColor,  
-   this.forceShowTextInput = false,  
-   this.multiSelect = false,  
-   this.defaultText,  
-   this.textEditingController,  
-   @required this.tagPickerConfig,  
-   @required this.onTagValueGetter});  
+const BrnSelectTagsWithInputPicker(
+      {this.maxLength = 200,
+      this.hintText = "请输入",
+      this.title = "",
+      this.confirm,
+      this.cancelCallBack,
+      this.cursorColor,
+      this.forceShowTextInput = false,
+      this.multiSelect = false,
+      this.defaultText,
+      this.textEditingController,
+      required this.tagPickerConfig,
+      required this.onTagValueGetter}); 
 ```
 ### 参数配置
 
@@ -60,15 +60,15 @@ BrnSelectTagsWithInputPicker(
 | title | String | Picker显示标题 | 否 | 空字符串 |
 | hintText | String | 默认输入框提示文本 | 否 | 请输入 |
 | maxLength | int | 输入框最长文本字符数 | 否 | 200 |
-| confirm | BrnTagInputConfirmClickCallback | 点击“确定”按钮事件回调 | 否 | - |
-| cancelCallBack | BrnTagInputCancelClickCallBack | 关闭Picker事件回调 | 否 | - |
-| cursorColor | Color | 输入框光标颜色 | 否 | 主题色 |
-| defaultText | String | 输入框默认文本 | 否 | 空字符串 |
+| confirm | BrnTagInputConfirmClickCallback? | 点击“确定”按钮事件回调 | 否 | - |
+| cancelCallBack | BrnTagInputCancelClickCallBack? | 关闭Picker事件回调 | 否 | - |
+| cursorColor | Color? | 输入框光标颜色 | 否 | 主题色 |
+| defaultText | String? | 输入框默认文本 | 否 | 空字符串 |
 | forceShowTextInput | bool | 强制显示输入框 | 否 | FALSE |
 | multiSelect | bool | 标签是否多选 | 否 | FALSE |
 | tagPickerConfig | BrnTagsInputPickerConfig | 标签数据源 | 是 | null |
 | onTagValueGetter | SelectTagWithInputValueGetter | 标签文案显示回调 | 是 | null |
-| textEditingController | TextEditingController | 用于对 TextField 更精细的控制，若传入该字段，[defaultText] 参数将失效，可使用 TextEditingController.text 进行赋值 | 否 |  |
+| textEditingController | TextEditingController? | 用于对 TextField 更精细的控制，若传入该字段，[defaultText] 参数将失效，可使用 TextEditingController.text 进行赋值 | 否 |  |
 
 ### 其他数据
 
@@ -77,10 +77,10 @@ BrnSelectTagsWithInputPicker(
 
 ```dart
 ///提交按钮事件回调  
-typedef BrnTagInputConfirmClickCallback = Future Function(  
-    BuildContext dialogContext,  
-    List selectedTags,  
-    String content);  
+typedef BrnTagInputConfirmClickCallback = Future<void>? Function(
+    BuildContext dialogContext,
+    List<BrnTagInputItemBean>? selectedTags,
+    String content); 
 
 ```
 #### BrnTagInputCancelClickCallBack
@@ -88,7 +88,7 @@ typedef BrnTagInputConfirmClickCallback = Future Function(
 
 ```dart
 ///关闭 picker回调  
-typedef BrnTagInputCancelClickCallBack = void Function(BuildContext context);  
+typedef BrnTagInputCancelClickCallBack = void Function(BuildContext context);
 
 ```
 #### SelectTagWithInputValueGetter

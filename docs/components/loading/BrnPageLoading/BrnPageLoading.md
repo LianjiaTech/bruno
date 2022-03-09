@@ -22,7 +22,8 @@ group:
 ### 构造函数
 
 ```dart
-BrnPageLoading({this.content});
+ const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent})
+      : super(key: key);
 ```
 ### 参数配置
 

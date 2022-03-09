@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +54,7 @@ class RatioInputExamplePage extends StatelessWidget {
             ),
             BrnRatioInputFormItem(
               controller: TextEditingController()..text = "1.6",
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               isEdit: true,
               error: "必填项不能为空",
@@ -84,7 +86,7 @@ class RatioInputExamplePage extends StatelessWidget {
             ),
             BrnRatioInputFormItem(
               controller: TextEditingController()..text = "1.6",
-              prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+              prefixIconType: BrnPrefixIconType.remove,
               isRequire: true,
               isEdit: true,
               title: "车位比",
@@ -115,7 +117,7 @@ class RatioInputExamplePage extends StatelessWidget {
             ),
             BrnRatioInputFormItem(
               controller: TextEditingController()..text = "1.6",
-              prefixIconType: BrnPrefixIconType.TYPE_REMOVE,
+              prefixIconType: BrnPrefixIconType.remove,
               isRequire: true,
               isEdit: false,
               isPrefixIconEnabled: true,

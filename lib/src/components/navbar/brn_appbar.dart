@@ -5,7 +5,6 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_appbar_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 /// AppBar组件,基于[AppBar]封装。为了解决原生的AppBar对Leading宽度的限制
 /// 在1.21版本之后，Flutter放开了宽度的限制[https://github.com/flutter/flutter/blob/flutter-1.21-candidate.0/packages/flutter/lib/src/material/app_bar.dart]
@@ -97,7 +96,7 @@ import 'package:flutter/widgets.dart';
 class BrnAppBar extends PreferredSize {
   /// 导航栏左侧活动区域,在为null且
   /// [automaticallyImplyLeading]为true时默认赋值为[BrnBackLeading]
-  final Widget leading;
+  final Widget? leading;
 
   /// AppBar标题,必须是String或者Widget类型
   /// 为String时,会使用[BrnAppBarTitle]来加载title
@@ -113,43 +112,43 @@ class BrnAppBar extends PreferredSize {
 
   /// 以下属性都对应于[AppBar]中的属性
   /// 详细介绍可以查阅[AppBar]的文档
-  final Color backgroundColor;
-  final PreferredSizeWidget bottom;
+  final Color? backgroundColor;
+  final PreferredSizeWidget? bottom;
   final double elevation;
-  final Brightness brightness;
+  final Brightness? brightness;
   final double toolbarOpacity;
   final double bottomOpacity;
   final Alignment titleAlignment;
-  final Widget flexibleSpace;
-  final double leadingWidth;
-  final Color shadowColor;
-  final ShapeBorder shape;
-  final IconThemeData iconTheme;
-  final IconThemeData actionsIconTheme;
-  final TextTheme textTheme;
+  final Widget? flexibleSpace;
+  final double? leadingWidth;
+  final Color? shadowColor;
+  final ShapeBorder? shape;
+  final IconThemeData? iconTheme;
+  final IconThemeData? actionsIconTheme;
+  final TextTheme? textTheme;
   final bool primary;
   final bool excludeHeaderSemantics;
-  final double titleSpacing;
+  final double? titleSpacing;
 
   /// 默认处理了返回按钮，flutter的pop，如果是native打开的话，可能需要单独处理,否则会出现白屏
   /// backLeadCallback是默认的处理回调
   /// DefaultLeadingCallBack 也可以通过改方法参数 设置统一的返回处理，该参数是静态的
-  final VoidCallback backLeadCallback;
+  final VoidCallback? backLeadCallback;
 
   /// 是否显示默认的eeeeee分割线，默认显示，可以设置为不显示
   final bool showDefaultBottom;
   final bool showLeadingDivider;
-  final BrnAppBarConfig themeData;
+  final BrnAppBarConfig? themeData;
 
   BrnAppBar(
-      {Key key,
+      {Key? key,
       this.leading,
       this.showLeadingDivider = false,
       this.title,
       this.actions,
       this.backgroundColor,
       this.bottom,
-      this.elevation,
+      this.elevation = 0,
       this.automaticallyImplyLeading = true,
       this.brightness,
       this.toolbarOpacity = 1.0,
@@ -164,18 +163,18 @@ class BrnAppBar extends PreferredSize {
       this.shape,
       this.iconTheme,
       this.actionsIconTheme,
-      this.excludeHeaderSemantics,
-      this.primary,
+      this.excludeHeaderSemantics = false,
+      this.primary = true,
       this.textTheme,
       this.titleSpacing})
       : assert(
             actions == null || actions is Widget || (actions is List<Widget>)),
         assert(title == null || title is String || title is Widget),
-        super(key: key, child: null, preferredSize: null);
+        super(key: key, child: Container(), preferredSize: Size(0, 0));
 
   BrnAppBar.buildSearchResultStyle(
-      {Key key,
-      String title,
+      {Key? key,
+      String? title,
       this.backgroundColor,
       this.bottom,
       this.brightness,
@@ -189,8 +188,8 @@ class BrnAppBar extends PreferredSize {
       this.shape,
       this.iconTheme,
       this.actionsIconTheme,
-      this.excludeHeaderSemantics,
-      this.primary,
+      this.excludeHeaderSemantics = false,
+      this.primary = true,
       this.textTheme,
       this.titleSpacing})
       : this.actions = null,
@@ -211,7 +210,7 @@ class BrnAppBar extends PreferredSize {
           backLeadCallback: backLeadCallback,
           showDefaultBottom: showDefaultBottom,
         ),
-        super(key: key, child: null, preferredSize: null);
+        super(key: key, child: Container(), preferredSize: const Size(0, 0));
 
   @override
   Size get preferredSize {
@@ -221,7 +220,7 @@ class BrnAppBar extends PreferredSize {
         .appBarConfig
         .merge(_defaultConfig);
     return Size.fromHeight(
-        _defaultConfig.appBarHeight + (bottom?.preferredSize?.height ?? 0.0));
+        _defaultConfig.appBarHeight + (bottom?.preferredSize.height ?? 0.0));
   }
 
   @override
@@ -241,13 +240,13 @@ class BrnAppBar extends PreferredSize {
         .appBarConfig
         .merge(_defaultConfig);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(_defaultConfig.systemUiOverlayStyle);
     });
     return super.build(context);
   }
 
-  Widget _buildBarBottom() {
+  PreferredSizeWidget? _buildBarBottom() {
     if (brightness == null || brightness == Brightness.light) {
       if (bottom == null && showDefaultBottom) {
         return BrnBarBottomDivider();
@@ -273,13 +272,12 @@ class BrnAppBar extends PreferredSize {
         .appBarConfig
         .merge(_defaultConfig);
 
-    Widget flexibleSpace;
-    if (_defaultConfig.flexibleSpace != null) {
+    Widget? flexibleSpace;
+    if (this.flexibleSpace != null) {
       flexibleSpace = Container(
         height: _defaultConfig.appBarHeight +
-                MediaQueryData.fromWindow(window)?.padding?.top ??
-            0,
-        child: _defaultConfig.flexibleSpace,
+            MediaQueryData.fromWindow(window).padding.top,
+        child: this.flexibleSpace,
       );
     }
 
@@ -291,28 +289,28 @@ class BrnAppBar extends PreferredSize {
       automaticallyImplyLeading: false,
       title: _buildAppBarTitle(_defaultConfig),
       centerTitle: true,
-      elevation: elevation ?? 0,
+      elevation: elevation,
       backgroundColor: _defaultConfig.backgroundColor,
       actions: _wrapActions(_defaultConfig),
       bottom: _buildBarBottom(),
       brightness: brightness ?? Brightness.light,
-      toolbarOpacity: toolbarOpacity ?? 1.0,
-      bottomOpacity: bottomOpacity ?? 1.0,
+      toolbarOpacity: toolbarOpacity,
+      bottomOpacity: bottomOpacity,
       flexibleSpace: flexibleSpace,
       shadowColor: shadowColor,
       shape: shape,
       iconTheme: iconTheme,
       actionsIconTheme: actionsIconTheme,
       textTheme: textTheme,
-      primary: primary ?? true,
-      excludeHeaderSemantics: excludeHeaderSemantics ?? false,
+      primary: primary,
+      excludeHeaderSemantics: excludeHeaderSemantics,
     );
   }
 
   // 根据输入的leading 设置默认的leadingWidth
   double _culLeadingSize(BrnAppBarConfig themeData) {
     if (leadingWidth != null) {
-      return leadingWidth;
+      return leadingWidth!;
     }
     if (leading is BrnDoubleLeading) {
       return themeData.leftAndRightPadding +
@@ -328,7 +326,7 @@ class BrnAppBar extends PreferredSize {
 
   // 对[actions]进行包装: 单一的Widget会添加右边距
   //                     List<Widget>在添加右边距的 并 添加action中的间距
-  List<Widget> _wrapActions(BrnAppBarConfig themeData) {
+  List<Widget>? _wrapActions(BrnAppBarConfig themeData) {
     if (actions == null || !(actions is List<Widget> || actions is Widget)) {
       return null;
     }
@@ -338,9 +336,9 @@ class BrnAppBar extends PreferredSize {
       if (actions.isEmpty) {
         return actionList;
       }
-      List<Widget> tmp = (actions as List<Widget>)?.map((_) {
+      List<Widget> tmp = (actions as List<Widget>).map((_) {
         return (_ is BrnTextAction) ? _warpRealAction(_) : _;
-      })?.toList();
+      }).toList();
 
       for (int i = 0, n = tmp.length; i < n; i++) {
         actionList.add(tmp[i]);
@@ -364,10 +362,10 @@ class BrnAppBar extends PreferredSize {
   }
 
   // 详情请参考_ToolbarLayout的布局方法
-  Widget _buildAppBarTitle(
+  Widget? _buildAppBarTitle(
     BrnAppBarConfig themeData,
   ) {
-    Widget realTitle;
+    Widget? realTitle;
     if (title is Widget) {
       return title;
     }
@@ -382,8 +380,8 @@ class BrnAppBar extends PreferredSize {
   }
 
   // 如果leading是BrnBackLeading 需要添加左边距
-  Widget _wrapLeading(BrnAppBarConfig barConfig) {
-    Widget realLeading = leading;
+  Widget? _wrapLeading(BrnAppBarConfig barConfig) {
+    Widget? realLeading = leading;
     if (leading == null && automaticallyImplyLeading) {
       realLeading = BrnBackLeading(
         iconPressed: backLeadCallback,
@@ -403,12 +401,12 @@ class BrnAppBar extends PreferredSize {
 /// [BrnAppBar]中leading的默认实现
 /// 宽度范围是40
 class BrnBackLeading extends StatelessWidget {
-  final Widget child;
-  final VoidCallback iconPressed;
-  final BrnAppBarConfig themeData;
+  final Widget? child;
+  final VoidCallback? iconPressed;
+  final BrnAppBarConfig? themeData;
 
   BrnBackLeading({
-    Key key,
+    Key? key,
     this.iconPressed,
     this.child,
     this.themeData,
@@ -453,9 +451,10 @@ class BrnBackLeading extends StatelessWidget {
 class BrnDoubleLeading extends StatelessWidget {
   final Widget first;
   final Widget second;
-  final BrnAppBarConfig themeData;
+  final BrnAppBarConfig? themeData;
 
-  BrnDoubleLeading({Key key, this.first, this.second, this.themeData})
+  BrnDoubleLeading(
+      {Key? key, required this.first, required this.second, this.themeData})
       : super(key: key);
 
   @override
@@ -485,15 +484,15 @@ class BrnDoubleLeading extends StatelessWidget {
 /// 标题文字个数限制在8个以内，并且单行展示
 class BrnAppBarTitle extends StatelessWidget {
   final String title;
-  final BrnAppBarConfig themeData;
+  final BrnAppBarConfig? themeData;
 
-  BrnAppBarTitle(this.title, {Key key, this.themeData}) : super(key: key);
+  BrnAppBarTitle(this.title, {Key? key, this.themeData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     BrnAppBarConfig _defaultThemeData = themeData ?? BrnAppBarConfig();
     _defaultThemeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
+        .getConfig(configId: _defaultThemeData.configId)
         .appBarConfig
         .merge(this.themeData);
 
@@ -504,7 +503,7 @@ class BrnAppBarTitle extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       constraints: BoxConstraints.loose(Size.fromWidth(
-          _defaultThemeData.titleStyle.generateTextStyle().fontSize *
+          (_defaultThemeData.titleStyle.generateTextStyle().fontSize ?? 18) *
               (_defaultThemeData.titleMaxLength + 1))),
     );
   }
@@ -515,17 +514,16 @@ class BrnAppBarTitle extends StatelessWidget {
 class BrnIconAction extends StatelessWidget {
   final Widget child;
   final VoidCallback iconPressed;
-  final double size;
-  final BrnAppBarConfig themeData;
+  final double? size;
+  final BrnAppBarConfig? themeData;
 
   BrnIconAction({
-    Key key,
-    this.iconPressed,
-    this.child,
+    Key? key,
+    required this.iconPressed,
+    required this.child,
     this.size,
     this.themeData,
-  })  : assert(child != null && iconPressed != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -552,10 +550,10 @@ class BrnIconAction extends StatelessWidget {
 /// 此Widget中实现了大小约束，和点击实现，添加文本action时必须使用此类包裹
 class BrnTextAction extends StatelessWidget {
   final String text;
-  final VoidCallback iconPressed;
-  final BrnAppBarConfig themeData;
+  final VoidCallback? iconPressed;
+  final BrnAppBarConfig? themeData;
 
-  BrnTextAction(this.text, {Key key, this.iconPressed, this.themeData})
+  BrnTextAction(this.text, {Key? key, this.iconPressed, this.themeData})
       : super(key: key);
 
   @override
@@ -581,6 +579,9 @@ class BrnTextAction extends StatelessWidget {
 
 /// AppBar底部分割线,将实例传入[BrnAppBar.bottom]属性即可
 class BrnBarBottomDivider extends PreferredSize {
+  BrnBarBottomDivider()
+      : super(child: Container(), preferredSize: const Size(0, 0));
+
   @override
   Size get preferredSize => Size.fromHeight(0.5);
 
@@ -589,8 +590,8 @@ class BrnBarBottomDivider extends PreferredSize {
 }
 
 class _BrnSearchResultAppBar extends StatelessWidget {
-  final BrnAppBarConfig appBarConfig;
-  final String title;
+  final BrnAppBarConfig? appBarConfig;
+  final String? title;
   final backgroundColor;
   final bottom;
   final brightness;

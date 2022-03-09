@@ -10,28 +10,29 @@ typedef void OnFocusChangedFunction(bool focus);
 /// 清空自定义范围输入框焦点的事件类
 class ClearSelectionFocusEvent {}
 
-// ignore: must_be_immutable
 class BrnSelectionRangeItemWidget extends StatefulWidget {
   final BrnSelectionEntity item;
 
-  final OnRangeChangedFunction onRangeChanged;
-  final OnFocusChangedFunction onFocusChanged;
+  final OnRangeChangedFunction? onRangeChanged;
+  final OnFocusChangedFunction? onFocusChanged;
 
   final bool isShouldClearText;
 
   final TextEditingController minTextEditingController;
   final TextEditingController maxTextEditingController;
 
-  BrnSelectionConfig themeData;
+  final BrnSelectionConfig themeData;
 
-  BrnSelectionRangeItemWidget(
-      {this.item,
-      @required this.minTextEditingController,
-      @required this.maxTextEditingController,
-      this.isShouldClearText = false,
-      this.themeData,
-      this.onRangeChanged,
-      this.onFocusChanged});
+  BrnSelectionRangeItemWidget({
+    Key? key,
+    required this.item,
+    required this.minTextEditingController,
+    required this.maxTextEditingController,
+    this.isShouldClearText = false,
+    this.onRangeChanged,
+    this.onFocusChanged,
+    required this.themeData,
+  }): super(key: key);
 
   _BrnSelectionRangeItemWidgetState createState() => _BrnSelectionRangeItemWidgetState();
 }
@@ -43,49 +44,49 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
   @override
   void initState() {
     widget.minTextEditingController.text =
-        (widget.item.customMap != null && widget.item.customMap['min'] != null)
-            ? widget.item.customMap['min']?.toString()
-            : null;
+        (widget.item.customMap != null && widget.item.customMap!['min'] != null)
+            ? widget.item.customMap!['min']?.toString() ?? ''
+            : '';
     widget.maxTextEditingController.text =
-        (widget.item.customMap != null && widget.item.customMap['max'] != null)
-            ? widget.item.customMap['max']?.toString()
-            : null;
+        (widget.item.customMap != null && widget.item.customMap!['max'] != null)
+            ? widget.item.customMap!['max']?.toString() ?? ''
+            : '';
 
     //输入框焦点
     _minFocusNode.addListener(() {
       if (widget.onFocusChanged != null) {
-        widget.onFocusChanged(_minFocusNode.hasFocus || _maxFocusNode.hasFocus);
+        widget.onFocusChanged!(_minFocusNode.hasFocus || _maxFocusNode.hasFocus);
       }
     });
 
     _maxFocusNode.addListener(() {
       if (widget.onFocusChanged != null) {
-        widget.onFocusChanged(_minFocusNode.hasFocus || _maxFocusNode.hasFocus);
+        widget.onFocusChanged!(_minFocusNode.hasFocus || _maxFocusNode.hasFocus);
       }
     });
 
     widget.minTextEditingController.addListener(() {
-      String minInput = widget.minTextEditingController.text ?? "";
+      String minInput = widget.minTextEditingController.text;
 
       if (widget.item.customMap == null) {
         widget.item.customMap = {};
       }
-      widget.item.customMap['min'] = minInput;
+      widget.item.customMap!['min'] = minInput;
       widget.item.isSelected = true;
     });
 
     widget.maxTextEditingController.addListener(() {
-      String maxInput = widget.maxTextEditingController.text ?? "";
+      String maxInput = widget.maxTextEditingController.text;
       if (widget.item.customMap == null) {
         widget.item.customMap = {};
       }
-      widget.item.customMap['max'] = maxInput;
+      widget.item.customMap!['max'] = maxInput;
       widget.item.isSelected = true;
     });
 
     EventBus.instance.on<ClearSelectionFocusEvent>().listen((ClearSelectionFocusEvent event) {
-      _minFocusNode?.unfocus();
-      _maxFocusNode?.unfocus();
+      _minFocusNode.unfocus();
+      _maxFocusNode.unfocus();
     });
 
     super.initState();
@@ -102,12 +103,12 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
               margin: EdgeInsets.only(bottom: 5),
               alignment: Alignment.centerLeft,
               child: Text(
-                (widget.item.title != null ? widget.item.title : '自定义区间') +
+                (widget.item.title.isNotEmpty ? widget.item.title : '自定义区间') +
                     "(" +
-                    widget.item.extMap['unit']?.toString() +
+                    (widget.item.extMap['unit']?.toString() ?? '') +
                     ")",
                 textAlign: TextAlign.left,
-                style: widget.themeData.rangeTitleTextStyle?.generateTextStyle(),
+                style: widget.themeData.rangeTitleTextStyle.generateTextStyle(),
               ),
             ),
             Row(
@@ -116,7 +117,7 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
                 Container(
                   child: Text(
                     "至",
-                    style: widget.themeData.inputTextStyle?.generateTextStyle(),
+                    style: widget.themeData.inputTextStyle.generateTextStyle(),
                   ),
                 ),
                 getRangeTextField(true),
@@ -131,8 +132,8 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
   Widget getRangeTextField(bool isMax) {
     return Expanded(
       child: TextFormField(
-        style: widget.themeData.inputTextStyle?.generateTextStyle(),
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        style: widget.themeData.inputTextStyle.generateTextStyle(),
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         keyboardType: TextInputType.numberWithOptions(),
         onChanged: (input) {
           widget.item.isSelected = true;
@@ -142,7 +143,7 @@ class _BrnSelectionRangeItemWidgetState extends State<BrnSelectionRangeItemWidge
         cursorColor: widget.themeData.commonConfig.brandPrimary,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
-          hintStyle: widget.themeData.hintTextStyle?.generateTextStyle(),
+          hintStyle: widget.themeData.hintTextStyle.generateTextStyle(),
           hintText: (isMax ? '最大值' : '最小值'),
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(

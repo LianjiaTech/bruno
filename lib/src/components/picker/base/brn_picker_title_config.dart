@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/picker/base/brn_picker_constants.dart';
 import 'package:flutter/material.dart';
 
@@ -15,20 +17,20 @@ class BrnPickerTitleConfig {
     this.cancel,
     this.confirm,
     this.title,
-    this.showTitle: PICKER_SHOW_TITLE_DEFAULT,
+    this.showTitle: pickerShowTitleDefault,
     this.titleContent: "请选择",
   });
 
   static const BrnPickerTitleConfig Default = const BrnPickerTitleConfig();
 
   /// Custom cancel [Widget].
-  final Widget cancel;
+  final Widget? cancel;
 
   /// Custom confirm [Widget].
-  final Widget confirm;
+  final Widget? confirm;
 
   /// Custom title [Widget]. If specify a title widget, the cancel and confirm widgets will not display.
-  final Widget title;
+  final Widget? title;
 
   /// Whether display title widget or not. If set false, the default cancel and confirm widgets will not display, but the custom title widget will display if had specified one custom title widget.
   final bool showTitle;

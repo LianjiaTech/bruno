@@ -6,8 +6,9 @@ import 'package:bruno/src/theme/configs/brn_dialog_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef BrnSingleSelectOnSubmitCallback = Function(String data);
-typedef BrnSingleSelectOnItemClickCallback = void Function(BuildContext dialogContext, int index);
+typedef BrnSingleSelectOnSubmitCallback = Function(String? data);
+typedef BrnSingleSelectOnItemClickCallback = void Function(
+    BuildContext dialogContext, int index);
 
 /// 单选列表弹框
 class BrnSingleSelectDialog extends Dialog {
@@ -24,19 +25,19 @@ class BrnSingleSelectDialog extends Dialog {
   final String submitText;
 
   /// 提交按钮点击回调
-  final BrnSingleSelectOnSubmitCallback onSubmitClick;
+  final BrnSingleSelectOnSubmitCallback? onSubmitClick;
 
   /// item 点击回调
-  final BrnSingleSelectOnItemClickCallback onItemClick;
+  final BrnSingleSelectOnItemClickCallback? onItemClick;
 
   /// 提交按钮背景颜色
-  final Color submitBgColor;
+  final Color? submitBgColor;
 
   /// 选中的选项名称
-  final String checkedItem;
+  final String? checkedItem;
 
   /// 单选列表底部自定义 Widget
-  final Widget customWidget;
+  final Widget? customWidget;
 
   /// 内容是否可滑动。默认为 true
   final bool isCustomFollowScroll;
@@ -47,7 +48,7 @@ class BrnSingleSelectDialog extends Dialog {
   const BrnSingleSelectDialog(
       {this.isClose: true,
       this.title: "",
-      this.conditions,
+      required this.conditions,
       this.submitText: "提交",
       this.submitBgColor,
       this.onSubmitClick,
@@ -78,26 +79,26 @@ class BrnSingleSelectDialog extends Dialog {
 class BrnSingleSelectDialogWidget extends StatefulWidget {
   final bool isClose;
   final String title;
-  final List<String> conditions;
+  final List<String>? conditions;
   final String submitText;
-  final BrnSingleSelectOnSubmitCallback onSubmitClick;
-  final BrnSingleSelectOnItemClickCallback onItemClick; //可供埋点需求用
-  final Color submitBgColor;
-  String checkedItem; // 选择项目
+  final BrnSingleSelectOnSubmitCallback? onSubmitClick;
+  final BrnSingleSelectOnItemClickCallback? onItemClick; //可供埋点需求用
+  final Color? submitBgColor;
+  String? checkedItem; // 选择项目
 
-  final Widget customWidget;
+  final Widget? customWidget;
 
   final bool isCustomFollowScroll;
 
   final bool canDismissOnConfirmClick;
 
-  BrnDialogConfig themeData;
+  BrnDialogConfig? themeData;
 
   BrnSingleSelectDialogWidget(
-      {this.isClose,
-      this.title,
+      {this.isClose = true,
+      this.title = "",
       this.conditions,
-      this.submitText,
+      this.submitText = "",
       this.submitBgColor,
       this.onSubmitClick,
       this.onItemClick,
@@ -108,7 +109,7 @@ class BrnSingleSelectDialogWidget extends StatefulWidget {
       this.themeData}) {
     this.themeData ??= BrnDialogConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
+        .getConfig(configId: themeData!.configId)
         .dialogConfig
         .merge(themeData);
   }
@@ -119,8 +120,8 @@ class BrnSingleSelectDialogWidget extends StatefulWidget {
   }
 }
 
-class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget> {
-
+class BrnSingleSelectDialogWidgetState
+    extends State<BrnSingleSelectDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,8 +133,9 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
               decoration: BoxDecoration(
                 //背景
                 color: widget.themeData?.backgroundColor,
-                borderRadius: BorderRadius.all(
-                    Radius.circular(BrnDialogUtils.getDialogRadius(widget.themeData))), //设置四周圆角 角度
+                borderRadius: BorderRadius.all(Radius.circular(
+                    BrnDialogUtils.getDialogRadius(
+                        widget.themeData!))), //设置四周圆角 角度
               ),
               child: Stack(
                 children: <Widget>[
@@ -145,7 +147,8 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                         padding: EdgeInsets.fromLTRB(20, 28, 20, 12),
                         child: Text(
                           widget.title,
-                          style: BrnDialogUtils.getDialogTitleStyle(widget.themeData),
+                          style: BrnDialogUtils.getDialogTitleStyle(
+                              widget.themeData!),
                         ),
                       ),
                       Container(
@@ -157,12 +160,15 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                                     ListView.builder(
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
-                                        itemBuilder: (context, index) => _buildItem(context, index),
-                                        itemCount: widget.conditions?.length ?? 0),
+                                        itemBuilder: (context, index) =>
+                                            _buildItem(context, index),
+                                        itemCount:
+                                            widget.conditions?.length ?? 0),
                                     widget.customWidget != null
                                         ? Container(
                                             child: widget.customWidget,
-                                            padding: EdgeInsets.only(left: 20, right: 20, top: 12),
+                                            padding: EdgeInsets.only(
+                                                left: 20, right: 20, top: 12),
                                           )
                                         : Container(
                                             width: 0,
@@ -175,13 +181,16 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                                 children: <Widget>[
                                   Expanded(
                                     child: ListView.builder(
-                                        itemBuilder: (context, index) => _buildItem(context, index),
-                                        itemCount: widget.conditions?.length ?? 0),
+                                        itemBuilder: (context, index) =>
+                                            _buildItem(context, index),
+                                        itemCount:
+                                            widget.conditions?.length ?? 0),
                                   ),
                                   widget.customWidget != null
                                       ? Container(
                                           child: widget.customWidget,
-                                          padding: EdgeInsets.only(left: 20, right: 20, top: 12),
+                                          padding: EdgeInsets.only(
+                                              left: 20, right: 20, top: 12),
                                         )
                                       : Container(
                                           width: 0,
@@ -200,7 +209,8 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                                       .getConfig()
                                       .commonConfig
                                       .brandPrimary,
-                                  borderRadius: BorderRadius.all(Radius.circular(6.0)), //设置四周圆角 角度
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(6.0)), //设置四周圆角 角度
                                 ),
                                 alignment: Alignment.center,
                                 height: 48,
@@ -216,7 +226,7 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                                 Navigator.of(context).pop();
                               }
                               if (widget.onSubmitClick != null) {
-                                widget.onSubmitClick(widget.checkedItem);
+                                widget.onSubmitClick!(widget.checkedItem);
                               }
                             },
                           ))
@@ -231,7 +241,8 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                               },
                               child: Padding(
                                 padding: EdgeInsets.all(15),
-                                child: BrunoTools.getAssetImage(BrnAsset.ICON_PICKER_CLOSE),
+                                child: BrunoTools.getAssetImage(
+                                    BrnAsset.iconPickerClose),
                               )))
                       : Container()
                 ],
@@ -240,7 +251,7 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
   }
 
   Widget _buildItem(BuildContext context, int index) {
-    if (widget.conditions == null || widget.conditions[index] == null) {
+    if (widget.conditions == null) {
       return Container();
     } else {
       return Container(
@@ -254,10 +265,11 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                     child: InkWell(
                   onTap: () {
                     setState(() {
-                      for (dynamic item in widget.conditions) {
-                        if (widget.conditions[index] == item) {
-                          if (widget.onItemClick != null && widget.checkedItem != item) {
-                            widget.onItemClick(context, index);
+                      for (dynamic item in widget.conditions!) {
+                        if (widget.conditions![index] == item) {
+                          if (widget.onItemClick != null &&
+                              widget.checkedItem != item) {
+                            widget.onItemClick!(context, index);
                           }
                           widget.checkedItem = item;
                           break;
@@ -265,14 +277,18 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                       }
                     });
                   },
-                  child: Text(widget.conditions[index],
+                  child: Text(widget.conditions![index],
                       style: TextStyle(
-                          fontWeight: widget.conditions[index] == widget.checkedItem
-                              ? FontWeight.w600
-                              : FontWeight.normal,
+                          fontWeight:
+                              widget.conditions![index] == widget.checkedItem
+                                  ? FontWeight.w600
+                                  : FontWeight.normal,
                           fontSize: 16,
-                          color: widget.conditions[index] == widget.checkedItem
-                              ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary
+                          color: widget.conditions![index] == widget.checkedItem
+                              ? BrnThemeConfigurator.instance
+                                  .getConfig()
+                                  .commonConfig
+                                  .brandPrimary
                               : BrnThemeConfigurator.instance
                                   .getConfig()
                                   .commonConfig
@@ -282,24 +298,26 @@ class BrnSingleSelectDialogWidgetState extends State<BrnSingleSelectDialogWidget
                   child: Container(
                     alignment: Alignment.center,
                     height: 44,
-                    child: widget.checkedItem == widget.conditions[index]
-                        ? BrunoTools.getAssetImageWithBandColor(BrnAsset.iconSingleSelected)
+                    child: widget.checkedItem == widget.conditions![index]
+                        ? BrunoTools.getAssetImageWithBandColor(
+                            BrnAsset.iconSingleSelected)
                         : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
                   ),
                   onTap: () {
                     if (widget.onItemClick != null) {
-                      widget.onItemClick(context, index);
+                      widget.onItemClick!(context, index);
                     }
                     setState(() {
-                      widget.checkedItem = widget.conditions[index];
+                      widget.checkedItem = widget.conditions![index];
                     });
                   },
                 )
               ],
             ),
           ),
-          index != widget.conditions.length - 1
-              ? Padding(padding: EdgeInsets.fromLTRB(20, 0, 20, 0), child: BrnLine())
+          index != widget.conditions!.length - 1
+              ? Padding(
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0), child: BrnLine())
               : Container()
         ],
       ));

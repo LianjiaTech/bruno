@@ -31,23 +31,23 @@ group:
 
 ```dart
 BrnEnhanceOperationDialog({
-  this.iconType,
-  this.customIconWidget,
-  this.context,
-  this.titleText,
-  this.descText,
-  this.mainButtonText,
-  this.secondaryButtonText,
-  this.mainButtonCallback,
-  this.secondaryButtonCallback,
-  this.themeData,
-}) {
-  this.themeData ??= BrnDialogConfig();
-  this.themeData = BrnThemeConfigurator.instance
-      .getConfig(configId: this.themeData.configId)
-      .dialogConfig
-      .merge(this.themeData);
-}
+    this.iconType = BrnDialogConstants.iconAlert,
+    this.customIconWidget,
+    required this.context,
+    this.titleText,
+    this.descText,
+    this.mainButtonText = '确认',
+    this.secondaryButtonText,
+    this.onMainButtonClick,
+    this.onSecondaryButtonClick,
+    this.themeData,
+  }) {
+    this.themeData ??= BrnDialogConfig();
+    this.themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: this.themeData!.configId)
+        .dialogConfig
+        .merge(this.themeData);
+  }
 ```
 
 
@@ -57,14 +57,14 @@ BrnEnhanceOperationDialog({
 | --- | --- | --- | --- | --- |
 | context | BuildContext | BuidContext | 是 | 空 |
 | iconType | int | 在预设的提示图标中选择一个座位图标（提示：BrnDialogConstants**.**ICON\_ALERT警示：BrnDialogConstants**.**ICON\_WARNNING成功：BrnDialogConstants**.**ICON\_SUCCESS自定义图标：BrnDialogConstants.ICON\_CUSTOM） | 否 | 0，ICON\_ALERT |
-| customIconWidget | Widget | 自定义图标 | 否 |  |
-| titleText | String | 弹框标题文案（为空则**不显示**标题） | 否 | 无 |
-| descText | String | 弹框辅助信息文案（为空则**不显示**辅助信息） | 否 | 无 |
+| customIconWidget | Widget? | 自定义图标 | 否 |  |
+| titleText | String? | 弹框标题文案（为空则**不显示**标题） | 否 | 无 |
+| descText | String? | 弹框辅助信息文案（为空则**不显示**辅助信息） | 否 | 无 |
 | mainButtonText | String | 主要按钮文案 | 否 | 无 |
-| secondaryButtonText | String | 次要按钮文案（为空则**不显示**次要按钮） | 否 | 无 |
-| mainButtonCallBack | VoidCallback | 点击**主要按钮**后回调方法，使用者**根据参数自行配置响应动作**。 | 否 | 空 |
-| secondaryButtonCallBack | VoidCallback | 点击**次要按钮**后回调方法，使用者**根据参数自行配置响应动作**。 | 否 | 空 |
-| themeData | BrnDialogConfig | 弹窗主题配置 | 否 | 默认取全局配置 |
+| secondaryButtonText | String? | 次要按钮文案（为空则**不显示**次要按钮） | 否 | 无 |
+| mainButtonCallBack | VoidCallback? | 点击**主要按钮**后回调方法，使用者**根据参数自行配置响应动作**。 | 否 | 空 |
+| secondaryButtonCallBack | VoidCallback? | 点击**次要按钮**后回调方法，使用者**根据参数自行配置响应动作**。 | 否 | 空 |
+| themeData | BrnDialogConfig? | 弹窗主题配置 | 否 | 默认取全局配置 |
 
 ## 四、代码演示
 

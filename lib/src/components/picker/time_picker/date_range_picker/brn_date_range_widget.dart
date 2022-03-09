@@ -1,3 +1,5 @@
+
+
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
@@ -16,87 +18,91 @@ const List<int> _solarMonthsOf31Days = const <int>[1, 3, 5, 7, 8, 10, 12];
 // ignore: must_be_immutable
 class BrnDateRangeWidget extends StatefulWidget {
   /// 可选最小时间
-  final DateTime minDateTime;
+  final DateTime? minDateTime;
 
   /// 可选最大时间
-  final DateTime maxDateTime;
+  final DateTime? maxDateTime;
 
   /// 初始选中的开始时间
-  final DateTime initialStartDateTime;
+  final DateTime? initialStartDateTime;
 
   /// 初始选中的结束时间
-  final DateTime initialEndDateTime;
+  final DateTime? initialEndDateTime;
 
   /// 时间展示格式
-  final String dateFormat;
+  final String? dateFormat;
   final DateTimePickerLocale locale;
 
   /// cancel 回调
-  final DateVoidCallback onCancel;
+  final DateVoidCallback? onCancel;
 
   /// 选中时间变化时的回调，返回选中的开始、结束时间
-  final DateRangeValueCallback onChange;
+  final DateRangeValueCallback? onChange;
 
   /// 确定回调，返回选中的开始、结束时间
-  final DateRangeValueCallback onConfirm;
+  final DateRangeValueCallback? onConfirm;
 
   /// Picker title  相关内容配置
   final BrnPickerTitleConfig pickerTitleConfig;
 
   /// Picker 主题配置
-  BrnPickerConfig themeData;
+  BrnPickerConfig? themeData;
 
   BrnDateRangeWidget({
-    Key key,
+    Key? key,
     this.minDateTime,
     this.maxDateTime,
     this.initialStartDateTime,
     this.initialEndDateTime,
-    this.dateFormat: DATETIME_RANGE_PICKER_DATE_FORMAT,
-    this.locale: DATETIME_PICKER_LOCALE_DEFAULT,
+    this.dateFormat: datetimeRangePickerDateFormat,
+    this.locale: datetimePickerLocaleDefault,
     this.pickerTitleConfig: BrnPickerTitleConfig.Default,
     this.onCancel,
     this.onChange,
     this.onConfirm,
     this.themeData,
   }) : super(key: key) {
-    DateTime minTime = minDateTime ?? DateTime.parse(DATE_PICKER_MIN_DATETIME);
-    DateTime maxTime = maxDateTime ?? DateTime.parse(DATE_PICKER_MAX_DATETIME);
+    DateTime minTime = minDateTime ?? DateTime.parse(datePickerMinDatetime);
+    DateTime maxTime = maxDateTime ?? DateTime.parse(datePickerMaxDatetime);
     assert(minTime.compareTo(maxTime) < 0);
     this.themeData ??= BrnPickerConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .pickerConfig
         .merge(this.themeData);
   }
 
   @override
   State<StatefulWidget> createState() => _DatePickerWidgetState(
-      this.minDateTime, this.maxDateTime, this.initialStartDateTime, this.initialEndDateTime);
+      this.minDateTime,
+      this.maxDateTime,
+      this.initialStartDateTime,
+      this.initialEndDateTime);
 }
 
 class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
-  DateTime _minDateTime, _maxDateTime;
-  int _currStartYear, _currStartMonth, _currStartDay;
-  int _currEndYear, _currEndMonth, _currEndDay;
+  late DateTime _minDateTime, _maxDateTime;
+  late int _currStartYear, _currStartMonth, _currStartDay;
+  late int _currEndYear, _currEndMonth, _currEndDay;
 
-  List<int> _monthRange, _startDayRange, _endDayRange;
-  List<int> _startSelectedIndex;
-  List<int> _endSelectedIndex;
-  DateTime _startSelectedDateTime;
-  DateTime _endSelectedDateTime;
+  late List<int> _monthRange, _startDayRange, _endDayRange;
+  late List<int> _startSelectedIndex;
+  late List<int> _endSelectedIndex;
+  late DateTime _startSelectedDateTime;
+  late DateTime _endSelectedDateTime;
 
   bool _isFirstScroll = false;
   bool _isSecondScroll = false;
 
-  _DatePickerWidgetState(DateTime minDateTime, DateTime maxDateTime, DateTime initialStartDateTime,
-      DateTime initialEndDateTime) {
+  _DatePickerWidgetState(DateTime? minDateTime, DateTime? maxDateTime,
+      DateTime? initialStartDateTime, DateTime? initialEndDateTime) {
     // handle current selected year、month、day
-    _initData(initialStartDateTime, initialEndDateTime, minDateTime, maxDateTime);
+    _initData(
+        initialStartDateTime, initialEndDateTime, minDateTime, maxDateTime);
   }
 
-  void _initData(DateTime initialStartDateTime, DateTime initialEndDateTime, DateTime minDateTime,
-      DateTime maxDateTime) {
+  void _initData(DateTime? initialStartDateTime, DateTime? initialEndDateTime,
+      DateTime? minDateTime, DateTime? maxDateTime) {
     DateTime initStartDateTime = initialStartDateTime ?? DateTime.now();
     DateTime initEndDateTime = initialEndDateTime ?? DateTime.now();
 
@@ -109,25 +115,29 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
     this._currEndDay = initEndDateTime.day;
 
     // handle DateTime range
-    this._minDateTime = minDateTime ?? DateTime.parse(DATE_PICKER_MIN_DATETIME);
-    this._maxDateTime = maxDateTime ?? DateTime.parse(DATE_PICKER_MAX_DATETIME);
+    this._minDateTime = minDateTime ?? DateTime.parse(datePickerMinDatetime);
+    this._maxDateTime = maxDateTime ?? DateTime.parse(datePickerMaxDatetime);
 
     // limit the range of year
-    this._currStartYear = min(max(_minDateTime.year, _currStartYear), _maxDateTime.year);
+    this._currStartYear =
+        min(max(_minDateTime.year, _currStartYear), _maxDateTime.year);
     this._currEndYear = min(_maxDateTime.year, _currEndYear);
 
     // limit the range of month
     this._monthRange = _calcMonthRange();
-    this._currStartMonth = min(max(_monthRange.first, _currStartMonth), _monthRange.last);
+    this._currStartMonth =
+        min(max(_monthRange.first, _currStartMonth), _monthRange.last);
     this._currEndMonth = min(_monthRange.last, _currEndMonth);
 
     // limit the range of day
     this._startDayRange = _calcDayRange(currMonth: _currStartMonth);
-    this._currStartDay = min(max(_startDayRange.first, _currStartDay), _startDayRange.last);
+    this._currStartDay =
+        min(max(_startDayRange.first, _currStartDay), _startDayRange.last);
     this._endDayRange = _calcDayRange(currMonth: _currEndMonth);
     this._currEndDay = min(_endDayRange.last, _currEndDay);
 
-    _startSelectedDateTime = DateTime(_currStartYear, _currStartMonth, _currStartDay);
+    _startSelectedDateTime =
+        DateTime(_currStartYear, _currStartMonth, _currStartDay);
     _endSelectedDateTime = DateTime(_currEndYear, _currEndMonth, _currEndDay);
     _startSelectedIndex = _calcSelectIndexList(true);
     _endSelectedIndex = _calcSelectIndexList(false);
@@ -135,9 +145,11 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    _initData(_startSelectedDateTime, _endSelectedDateTime, _minDateTime, _maxDateTime);
+    _initData(_startSelectedDateTime, _endSelectedDateTime, _minDateTime,
+        _maxDateTime);
     return GestureDetector(
-      child: Material(color: Colors.transparent, child: _renderPickerView(context)),
+      child: Material(
+          color: Colors.transparent, child: _renderPickerView(context)),
     );
   }
 
@@ -146,7 +158,8 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
     Widget datePickerWidget = _renderDatePickerWidget();
 
     // display the title widget
-    if (widget.pickerTitleConfig.title != null || widget.pickerTitleConfig.showTitle) {
+    if (widget.pickerTitleConfig.title != null ||
+        widget.pickerTitleConfig.showTitle) {
       Widget titleWidget = BrnPickerTitle(
         pickerTitleConfig: widget.pickerTitleConfig,
         locale: widget.locale,
@@ -161,7 +174,7 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
   /// pressed cancel widget
   void _onPressedCancel() {
     if (widget.onCancel != null) {
-      widget.onCancel();
+      widget.onCancel!();
     }
     Navigator.pop(context);
   }
@@ -169,8 +182,8 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
   /// pressed confirm widget
   void _onPressedConfirm() {
     if (widget.onConfirm != null) {
-      widget.onConfirm(
-          _startSelectedDateTime, _endSelectedDateTime, _startSelectedIndex, _endSelectedIndex);
+      widget.onConfirm!(_startSelectedDateTime, _endSelectedDateTime,
+          _startSelectedIndex, _endSelectedIndex);
     }
     Navigator.pop(context);
   }
@@ -190,19 +203,20 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
       _isSecondScroll = false;
     }
 
-    List<Widget> pickers = List<Widget>();
+    List<Widget> pickers = [];
     pickers.add(Expanded(
         flex: 6,
         child: Container(
-            height: widget.themeData.pickerHeight,
-            color: widget.themeData.backgroundColor,
+            height: widget.themeData!.pickerHeight,
+            color: widget.themeData!.backgroundColor,
             child: BrnDateRangeSideWidget(
               key: firstGlobalKey,
               dateFormat: widget.dateFormat,
               minDateTime: widget.minDateTime,
               maxDateTime: widget.maxDateTime,
               initialStartDateTime: _startSelectedDateTime,
-              onInitSelectChange: (DateTime selectedDateTime, List<int> selected) {
+              onInitSelectChange:
+                  (DateTime selectedDateTime, List<int> selected) {
                 _startSelectedDateTime = selectedDateTime;
                 _startSelectedIndex = selected;
               },
@@ -218,17 +232,19 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
     pickers.add(Expanded(
         flex: 6,
         child: Container(
-            height: widget.themeData.pickerHeight,
-            color: widget.themeData.backgroundColor,
+            height: widget.themeData!.pickerHeight,
+            color: widget.themeData!.backgroundColor,
             child: BrnDateRangeSideWidget(
               key: secondGlobalKey,
               dateFormat: widget.dateFormat,
               minDateTime: _startSelectedDateTime,
               maxDateTime: widget.maxDateTime,
-              initialStartDateTime: _endSelectedDateTime.compareTo(_startSelectedDateTime) > 0
-                  ? _endSelectedDateTime
-                  : _startSelectedDateTime,
-              onInitSelectChange: (DateTime selectedDateTime, List<int> selectedIndex) {
+              initialStartDateTime:
+                  _endSelectedDateTime.compareTo(_startSelectedDateTime) > 0
+                      ? _endSelectedDateTime
+                      : _startSelectedDateTime,
+              onInitSelectChange:
+                  (DateTime selectedDateTime, List<int> selectedIndex) {
                 _endSelectedDateTime = selectedDateTime;
                 _endSelectedIndex = selectedIndex;
               },
@@ -240,29 +256,30 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
                 });
               },
             ))));
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
   }
 
   Widget _renderDatePickerMiddleColumnComponent() {
     return Expanded(
       flex: 1,
       child: Container(
-        height: widget.themeData.pickerHeight,
+        height: widget.themeData!.pickerHeight,
         decoration: BoxDecoration(
             border: Border(left: BorderSide.none, right: BorderSide.none),
-            color: widget.themeData.backgroundColor),
+            color: widget.themeData!.backgroundColor),
         child: BrnPicker.builder(
-          backgroundColor: widget.themeData.backgroundColor,
-          lineColor: widget.themeData.dividerColor,
-          itemExtent: widget.themeData.itemHeight,
+          backgroundColor: widget.themeData!.backgroundColor,
+          lineColor: widget.themeData!.dividerColor,
+          itemExtent: widget.themeData!.itemHeight,
           childCount: 1,
           itemBuilder: (context, index) {
             return Container(
-              height: widget.themeData.itemHeight,
+              height: widget.themeData!.itemHeight,
               alignment: Alignment.center,
               child: Text(
                 "至",
-                style: widget.themeData.itemTextStyle.generateTextStyle(),
+                style: widget.themeData!.itemTextStyle.generateTextStyle(),
               ),
             );
           },

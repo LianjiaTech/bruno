@@ -1,35 +1,37 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 /// 列表项
 class ListItem extends StatefulWidget {
   /// 点击事件
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// 标题
   final String title;
-  final double titleFontSize;
-  final Color titleColor;
-  final String imgPath;
+  final double? titleFontSize;
+  final Color? titleColor;
+  final String? imgPath;
 
   /// 描述
   final String describe;
   final Color describeColor;
 
   /// 右侧控件
-  final Widget rightWidget;
+  final Widget? rightWidget;
   final bool isSupportTheme;
   final bool isShowLine;
 
   /// 构造函数
   ListItem({
-    Key key,
+    Key? key,
     this.onPressed,
     this.title = "",
     this.titleFontSize,
     this.titleColor,
     this.describe = "",
-    this.describeColor: Colors.grey,
+    this.describeColor = const Color(0xFF999999),
     this.rightWidget,
     this.imgPath,
     this.isSupportTheme = false,
@@ -91,7 +93,7 @@ class _ListItemState extends State<ListItem> {
               Padding(padding: EdgeInsets.all(2)),
               Text(
                 widget.describe,
-                style: TextStyle(color: widget.describeColor ?? Color(0xFF999999), fontSize: 12),
+                style: TextStyle(color: widget.describeColor, fontSize: 12),
               ),
               BrnLine(
                 height: 14,

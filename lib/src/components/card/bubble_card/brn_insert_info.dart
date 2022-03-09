@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,8 @@ class BrnInsertInfo extends StatelessWidget {
   final String infoText;
   final int maxLines;
 
-  const BrnInsertInfo({Key key, @required this.infoText, this.maxLines = 2}) : super(key: key);
+  const BrnInsertInfo({Key? key, required this.infoText, this.maxLines = 2})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,10 @@ class BrnInsertInfo extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 14,
-        color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+        color: BrnThemeConfigurator.instance
+            .getConfig()
+            .commonConfig
+            .colorTextBase,
       ),
     );
 

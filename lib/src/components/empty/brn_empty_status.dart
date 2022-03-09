@@ -24,9 +24,9 @@ enum AbnormalState {
 class BrnAbnormalStateUtils {
   /// 通过状态获取对应空页面widget
   /// status: 页面状态类型为[EmptyState]
-  static Widget getEmptyWidgetByState(
-      BuildContext context, AbnormalState status, BrnEmptyStatusIndexedActionClickCallback action,
-      {Image img}) {
+  static Widget getEmptyWidgetByState(BuildContext context,
+      AbnormalState status,
+      {Image? img,BrnEmptyStatusIndexedActionClickCallback? action}) {
     if (AbnormalState.getDataFailed == status) {
       return BrnAbnormalStateWidget(
         img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
@@ -55,13 +55,13 @@ class BrnAbnormalStateUtils {
 /// 操作区域按钮类型
 enum OperateAreaType {
   /// 单按钮
-  SingleButton,
+  singleButton,
 
   /// 双按钮
-  DoubleButton,
+  doubleButton,
 
   /// 文本按钮
-  TextButton
+  textButton
 }
 
 /// 空页面操作区域按钮的点击回调
@@ -72,22 +72,22 @@ typedef BrnEmptyStatusIndexedActionClickCallback = void Function(int index);
 // ignore: must_be_immutable
 class BrnAbnormalStateWidget extends StatelessWidget {
   /// 图片
-  final Image img;
+  final Image? img;
 
   /// 标题
-  final String title;
+  final String? title;
 
   /// 内容
-  final String content;
+  final String? content;
 
   /// 操作区类型
   final OperateAreaType operateAreaType;
 
   /// 操作区文案
-  final List<String> operateTexts;
+  final List<String>? operateTexts;
 
   /// 点击事件回调
-  final BrnEmptyStatusIndexedActionClickCallback action;
+  final BrnEmptyStatusIndexedActionClickCallback? action;
 
   /// 是否可点击页面回调配合[action]使用
   /// 当为true时调用[action]回调，当为false时不做处理
@@ -96,7 +96,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
 
   /// 顶部距离走自动计算逻辑：父视图高度的8%，可自己指定高度
   /// 默认为null
-  final double topOffset;
+  final double? topOffset;
 
   /// 背景色设置
   /// 默认Colors.white
@@ -109,13 +109,13 @@ class BrnAbnormalStateWidget extends StatelessWidget {
   /// 默认 false
   final bool isCenterVertical;
 
-  BrnAbnormalStateConfig themeData;
+  BrnAbnormalStateConfig? themeData;
 
   BrnAbnormalStateWidget({
     this.img,
     this.title,
     this.content,
-    this.operateAreaType: OperateAreaType.TextButton,
+    this.operateAreaType: OperateAreaType.textButton,
     this.operateTexts,
     this.action,
     this.enablePageTap: false,
@@ -127,7 +127,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
   }) {
     this.themeData ??= BrnAbnormalStateConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
+        .getConfig(configId: this.themeData!.configId)
         .abnormalStateConfig
         .merge(this.themeData);
   }
@@ -136,16 +136,17 @@ class BrnAbnormalStateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          if (this.enablePageTap) {
-            action(0);
+          if (this.enablePageTap && action!=null) {
+            action!(0);
           }
         },
         child: Container(
-          color: bgColor ?? Colors.white,
+          color: bgColor,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment:
-                isCenterVertical ? MainAxisAlignment.center : MainAxisAlignment.start,
+            mainAxisAlignment: isCenterVertical
+                ? MainAxisAlignment.center
+                : MainAxisAlignment.start,
             children: <Widget>[
               _buildImageWidget(context),
               _buildTextWidget(),
@@ -163,11 +164,12 @@ class BrnAbnormalStateWidget extends StatelessWidget {
     final height = size.height;
     return img != null
         ? Container(
-            padding:
-                isCenterVertical ? null : EdgeInsets.only(top: topOffset ?? height * topPercent),
+            padding: isCenterVertical
+                ? null
+                : EdgeInsets.only(top: topOffset ?? height * topPercent),
             child: img,
           )
-        : Container();
+        : SizedBox.shrink();
   }
 
   ///文案区域：标题
@@ -176,10 +178,11 @@ class BrnAbnormalStateWidget extends StatelessWidget {
         ? Container(
             alignment: Alignment.center,
             padding: EdgeInsets.fromLTRB(60, 24, 60, 0),
-            child: Text(title,
-                textAlign: TextAlign.center, style: themeData?.titleTextStyle?.generateTextStyle()),
+            child: Text(title!,
+                textAlign: TextAlign.center,
+                style: themeData!.titleTextStyle.generateTextStyle()),
           )
-        : Container();
+        : SizedBox.shrink();
   }
 
   ///文案区域：内容
@@ -188,11 +191,11 @@ class BrnAbnormalStateWidget extends StatelessWidget {
         ? Container(
             alignment: Alignment.center,
             padding: EdgeInsets.fromLTRB(60, 12, 60, 0),
-            child: Text(content,
+            child: Text(content!,
                 textAlign: TextAlign.center,
-                style: themeData?.contentTextStyle?.generateTextStyle()),
+                style: themeData!.contentTextStyle.generateTextStyle()),
           )
-        : Container();
+        : SizedBox.shrink();
   }
 
   ///操作区域
@@ -202,40 +205,46 @@ class BrnAbnormalStateWidget extends StatelessWidget {
             padding: EdgeInsets.only(top: 36),
             child: _buildOperateContentWidget(),
           )
-        : Container();
+        : SizedBox.shrink();
   }
 
   ///操作区按钮
   _buildOperateContentWidget() {
-    if (OperateAreaType.SingleButton == operateAreaType) {
+    if (OperateAreaType.singleButton == operateAreaType) {
       return GestureDetector(
-        onTap: () => action(0),
+        onTap: () {
+          if (action != null) action!(0);
+        },
         child: Container(
-          constraints: BoxConstraints(minWidth: themeData.singleMinWidth),
+          constraints: BoxConstraints(minWidth: themeData!.singleMinWidth),
           padding: EdgeInsets.fromLTRB(48, 16, 48, 16),
           decoration: BoxDecoration(
-              color: themeData.commonConfig.brandPrimary,
-              borderRadius: BorderRadius.all(Radius.circular(themeData?.btnRadius))),
-          child: Text(operateTexts[0] ?? "",
+              color: themeData!.commonConfig.brandPrimary,
+              borderRadius:
+                  BorderRadius.all(Radius.circular(themeData!.btnRadius))),
+          child: Text(operateTexts![0],
               textAlign: TextAlign.center,
-              style: themeData?.singleBrnTextStyle?.generateTextStyle()),
+              style: themeData!.singleTextStyle.generateTextStyle()),
         ),
       );
-    } else if (OperateAreaType.DoubleButton == operateAreaType) {
+    } else if (OperateAreaType.doubleButton == operateAreaType) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           GestureDetector(
-            onTap: () => action(0),
+            onTap: () {
+              if (action != null) action!(0);
+            },
             child: Container(
-              constraints: BoxConstraints(minWidth: themeData.doubleMinWidth),
+              constraints: BoxConstraints(minWidth: themeData!.doubleMinWidth),
               padding: EdgeInsets.fromLTRB(36, 16, 36, 16),
               decoration: BoxDecoration(
-                  color: themeData.commonConfig.brandPrimary.withAlpha(0x14),
-                  borderRadius: BorderRadius.all(Radius.circular(themeData?.btnRadius))),
-              child: Text(operateTexts[0] ?? "",
+                  color: themeData!.commonConfig.brandPrimary.withAlpha(0x14),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(themeData!.btnRadius))),
+              child: Text(operateTexts![0],
                   textAlign: TextAlign.center,
-                  style: themeData?.doubleBrnTextStyle?.generateTextStyle()),
+                  style: themeData!.doubleTextStyle.generateTextStyle()),
             ),
           ),
           Container(
@@ -243,25 +252,30 @@ class BrnAbnormalStateWidget extends StatelessWidget {
             color: Colors.transparent,
           ),
           GestureDetector(
-            onTap: () => action(1),
+            onTap: () {
+              if (action != null) action!(1);
+            },
             child: Container(
-              constraints: BoxConstraints(minWidth: themeData.doubleMinWidth),
+              constraints: BoxConstraints(minWidth: themeData!.doubleMinWidth),
               padding: EdgeInsets.fromLTRB(36, 16, 36, 16),
               decoration: BoxDecoration(
-                  color: themeData.commonConfig.brandPrimary.withAlpha(0x14),
-                  borderRadius: BorderRadius.all(Radius.circular(themeData?.btnRadius))),
-              child: Text(operateTexts[1] ?? "",
+                  color: themeData!.commonConfig.brandPrimary.withAlpha(0x14),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(themeData!.btnRadius))),
+              child: Text(operateTexts![1],
                   textAlign: TextAlign.center,
-                  style: themeData?.doubleBrnTextStyle?.generateTextStyle()),
+                  style: themeData!.doubleTextStyle.generateTextStyle()),
             ),
           ),
         ],
       );
-    } else if (OperateAreaType.TextButton == operateAreaType) {
+    } else if (OperateAreaType.textButton == operateAreaType) {
       return GestureDetector(
-          onTap: () => action(0),
-          child:
-              Text(operateTexts[0] ?? "", style: themeData?.operateTextStyle?.generateTextStyle()));
+          onTap: () {
+            if (action != null) action!(0);
+          },
+          child: Text(operateTexts![0],
+              style: themeData!.operateTextStyle.generateTextStyle()));
     }
     return Container();
   }

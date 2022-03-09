@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/button/brn_vertical_icon_button.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
@@ -64,13 +66,13 @@ class BrnBottomButtonPanel extends StatelessWidget {
   final VoidCallback mainButtonOnTap;
 
   /// 次按钮的文案
-  final String secondaryButtonName;
+  final String? secondaryButtonName;
 
   /// 次按钮的点击回调
-  final VoidCallback secondaryButtonOnTap;
+  final VoidCallback? secondaryButtonOnTap;
 
   /// icon按钮的集合
-  final List<BrnVerticalIconButton> iconButtonList;
+  final List<BrnVerticalIconButton>? iconButtonList;
 
   /// 主按钮是否可用 默认可用
   /// 如果设置为false，按钮置灰且不响应[mainButtonOnTap]
@@ -81,9 +83,9 @@ class BrnBottomButtonPanel extends StatelessWidget {
   final bool enableSecondaryButton;
 
   const BrnBottomButtonPanel(
-      {Key key,
-      @required this.mainButtonName,
-      @required this.mainButtonOnTap,
+      {Key? key,
+      required this.mainButtonName,
+      required this.mainButtonOnTap,
       this.secondaryButtonName,
       this.secondaryButtonOnTap,
       this.enableMainButton = true,
@@ -102,15 +104,13 @@ class BrnBottomButtonPanel extends StatelessWidget {
   /// secondaryButtonOnTap 次按钮的点击事件
   /// iconButtonList icon按钮
   static Widget createByList(List<String> buttonTitleList,
-      {VoidCallback mainButtonOnTap,
-      VoidCallback secondaryButtonOnTap,
+      {VoidCallback? mainButtonOnTap,
+      VoidCallback? secondaryButtonOnTap,
       bool enableMainButton = true,
-      List<BrnVerticalIconButton> iconButtonList}) {
-    if ((buttonTitleList == null || buttonTitleList.isEmpty) && iconButtonList == null) {
-      return Container(
-        height: 0,
-        width: 0,
-      );
+      List<BrnVerticalIconButton>? iconButtonList}) {
+    if ((buttonTitleList.isEmpty) &&
+        iconButtonList == null) {
+      return SizedBox.shrink();
     }
     if (buttonTitleList.length >= 2) {
       return BrnBottomButtonPanel(
@@ -143,15 +143,12 @@ class BrnBottomButtonPanel extends StatelessWidget {
         iconButtonList: iconButtonList,
       );
     }
-    return Container(
-      height: 0,
-      width: 0,
-    );
+    return SizedBox.shrink();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> rowChildren = List<Widget>();
+    List<Widget> rowChildren = <Widget>[];
     if (null != iconButtonList) {
       Widget iconListWidget = _iconWidgetListWidget();
       rowChildren.add(iconListWidget);
@@ -170,7 +167,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
   }
 
   Widget _buttonListWidget() {
-    List<Widget> btnList = List<Widget>();
+    List<Widget> btnList = <Widget>[];
     Widget mBtn = _mainButtonWidget();
     btnList.add(mBtn);
     if (secondaryButtonName != null) {
@@ -186,7 +183,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
   }
 
   Widget _iconWidgetListWidget() {
-    List<Widget> finalIconList = iconButtonList.map((wdt) {
+    List<Widget> finalIconList = iconButtonList!.map((wdt) {
       return Padding(padding: EdgeInsets.only(left: 0), child: wdt);
     }).toList();
     return Row(
@@ -202,7 +199,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             if (secondaryButtonOnTap != null && enableSecondaryButton) {
-              secondaryButtonOnTap();
+              secondaryButtonOnTap!();
             }
           },
           child: Container(
@@ -210,7 +207,9 @@ class BrnBottomButtonPanel extends StatelessWidget {
               padding: EdgeInsets.only(left: 8, right: 8, top: 6, bottom: 6),
               decoration: BoxDecoration(
                 color: enableSecondaryButton
-                    ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandAuxiliary
+                    ? BrnThemeConfigurator.instance
+                        .getConfig()
+                        .commonConfig.brandAuxiliary
                     : Color(0xFFCCCCCC),
                 borderRadius: BorderRadius.all(Radius.circular(6.0)),
               ),
@@ -227,9 +226,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
                         ? Colors.white
                         : BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig
-                            .colorTextBaseInverse
-                            .withOpacity(0.7),
+                            .commonConfig.colorTextBaseInverse.withOpacity(0.7),
                   ),
                 ),
               )),
@@ -241,7 +238,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
   Widget _mainButtonWidget() {
     Widget mainWidget = GestureDetector(
       onTap: () {
-        if (mainButtonOnTap != null && enableMainButton) {
+        if (enableMainButton) {
           mainButtonOnTap();
         }
       },
@@ -250,13 +247,15 @@ class BrnBottomButtonPanel extends StatelessWidget {
           padding: EdgeInsets.only(left: 8, right: 8, top: 6, bottom: 6),
           decoration: BoxDecoration(
             color: enableMainButton
-                ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary
+                ? BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig.brandPrimary
                 : Color(0xFFCCCCCC),
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
           ),
           child: Center(
             child: Text(
-              mainButtonName ?? "",
+              mainButtonName,
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -267,9 +266,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
                     ? Colors.white
                     : BrnThemeConfigurator.instance
                         .getConfig()
-                        .commonConfig
-                        .colorTextBaseInverse
-                        .withOpacity(0.7),
+                        .commonConfig.colorTextBaseInverse.withOpacity(0.7),
               ),
             ),
           )),
@@ -277,14 +274,15 @@ class BrnBottomButtonPanel extends StatelessWidget {
 
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.only(left: (_isEmptyIcon() && _isEmptySecondary()) ? 12 : 8),
+        padding: EdgeInsets.only(
+            left: (_isEmptyIcon() && _isEmptySecondary()) ? 12 : 8),
         child: mainWidget,
       ),
     );
   }
 
   bool _isEmptyIcon() {
-    return iconButtonList == null || iconButtonList.isEmpty;
+    return iconButtonList == null || iconButtonList!.isEmpty;
   }
 
   bool _isEmptySecondary() {

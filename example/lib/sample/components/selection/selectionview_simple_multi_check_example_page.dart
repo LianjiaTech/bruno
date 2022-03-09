@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/selection/filter_entity.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ class SelectionViewSimpleMultiCheckExamplePage extends StatefulWidget {
 }
 
 class _SelectionViewExamplePageState extends State<SelectionViewSimpleMultiCheckExamplePage> {
-  List<BrnSelectionEntity> items;
+  List<BrnSelectionEntity>? items;
 
   @override
   void initState() {
@@ -28,7 +30,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewSimpleMultiCheck
           children: <Widget>[
             BrnSimpleSelection.checkbox(
               menuName: widget._filterData.name,
-              menuKey: widget._filterData.key ?? defaultMenuKey,
+              menuKey: widget._filterData.key ?? 'defaultMenuKey',
               items: widget._filterData.children,
               maxSelectedCount: 4,
               defaultValue: widget._filterData.defaultValue,

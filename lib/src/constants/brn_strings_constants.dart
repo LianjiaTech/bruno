@@ -1,5 +1,7 @@
 class BrnStrings {
-  //加载获取assets资源需要
+  const BrnStrings._();
+
+  /// 加载获取 assets 资源需要
   static const String flutterPackageName = "bruno";
 
   static const String getDateFailed = "获取数据失败，请重试";
@@ -7,4 +9,5 @@ class BrnStrings {
   static const String noData = "暂无数据";
   static const String noSearchData = "暂无搜索结果";
   static const String clickPageRetry = "请点击页面重试";
+  static const String loadingContent = '加载中...';
 }

@@ -38,21 +38,31 @@ group:
 
 ```dart
 BrnRadarChart({
-  Key key,
-  @required this.provider,
-  @required MarkerBuilder builder,
-  this.radius = 50,
-  this.levelCount = 3,
-  this.maxValue = 10,
-  this.minValue = 0,
-  this.markerMargin = 4,
-  this.sidesCount = 5,
-  this.offset,
-  this.axisLineColor = const Color(0xFFCCCCCC),
-  this.crossedAxisLine = false,
-  this.animateProgress = 1.0,
-  this.rotateAngle = 0,
-})
+    Key? key,
+    required this.provider,
+    required MarkerBuilder builder,
+    this.radius = 50,
+    this.levelCount = 3,
+    this.maxValue = 10,
+    this.minValue = 0,
+    this.markerMargin = 4,
+    this.sidesCount = 5,
+    this.offset,
+    this.axisLineColor = const Color(0xFFCCCCCC),
+    this.crossedAxisLine = false,
+    this.animateProgress = 1.0,
+    this.rotateAngle = 0,
+  })  : assert(minValue < maxValue),
+        assert(sidesCount >= 3),
+        super(
+            key: key,
+            children: () {
+              List<Widget> children = [];
+              for (int i = 0; i < sidesCount; i++) {
+                children.add(builder(i));
+              }
+              return children;
+            }());
 ```
 
 #### 默认风格
@@ -61,71 +71,69 @@ BrnRadarChart({
 
 ```dart
 BrnRadarChart.defaultStyle({
- Key key,
- this.radius = 50,
- this.levelCount = 3,
- this.maxValue = 10,
- this.minValue = 0,
- this.markerMargin = 4,
- this.sidesCount = 5,
- this.rotateAngle = 0,
- this.crossedAxisLine = false,
- this.offset,
- @required List<String> tagNames,
- @required List<List<double>> data,
-  })  : assert(sidesCount != null),
- assert(tagNames != null),
- assert(data != null),
- assert(tagNames.length == sidesCount),
- assert(minValue < maxValue),
- assert(data.length <= defaultRadarChartStyles.length),
- this.animateProgress = 1.0,
- this.axisLineColor = const Color(0xFFCCCCCC),
- this.provider = DefaultRadarProvider(data),
- super(
-    key: key,
-    children: () {
- List<Widget> children = List();
- for (int i = 0; i < sidesCount; i++) {
-    children.add(Container(
-      constraints: BoxConstraints(
-        maxWidth: 60,
-        maxHeight: 32,
-      ),
-      child: Text(
-        tagNames[i],
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-            color: Color(0xFF222222),
-            fontSize: 12,
-            fontWeight: FontWeight.w600),
-      ),
-    ));
-  }
-  return children;
-}());
+    Key? key,
+    this.radius = 50,
+    this.levelCount = 3,
+    this.maxValue = 10,
+    this.minValue = 0,
+    this.markerMargin = 4,
+    this.sidesCount = 5,
+    this.rotateAngle = 0,
+    this.crossedAxisLine = false,
+    this.offset,
+    required List<String> tagNames,
+    required List<List<double>> data,
+  })  : assert(sidesCount >= 3),
+        assert(tagNames.length == sidesCount),
+        assert(minValue < maxValue),
+        assert(data.length <= defaultRadarChartStyles.length),
+        this.animateProgress = 1.0,
+        this.axisLineColor = const Color(0xFFCCCCCC),
+        this.provider = DefaultRadarProvider(data),
+        super(
+            key: key,
+            children: () {
+              List<Widget> children = [];
+              for (int i = 0; i < sidesCount; i++) {
+                children.add(Container(
+                  constraints: BoxConstraints(
+                    maxWidth: 60,
+                    maxHeight: 32,
+                  ),
+                  child: Text(
+                    tagNames[i],
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Color(0xFF222222),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ));
+              }
+              return children;
+            }());
 ```
 
 ### 参数说明
 
-| 参数名          | 参数类型                  | 作用                                           | 是否必填                                             | 默认值            | 备注                                                                                   |
-| --------------- | ------------------------- | ---------------------------------------------- | ---------------------------------------------------- | ----------------- | -------------------------------------------------------------------------------------- |
-| radius          | double                    | 雷达图半径（多边形外接圆的半径）               | 否                                                   | 50                |                                                                                        |
-| levelCount      | int                       | 数据可划分的区间个数                           | 否                                                   | 3                 | 每个区间取值范围等分                                                                   |
-| maxValue        | double                    | 数据的最大值                                   | 否                                                   | 10                | 提供的数据要不大于最大值，否则当最大值处理                                             |
-| minValue        | double                    | 数据的最小值                                   | 否                                                   | 0                 | 提供的数据要不小于最小值，否则当最小值处理                                             |
-| markerMargin    | double                    | 标签和雷达图顶点的间距                         | 否                                                   | 4                 |                                                                                        |
-| sidesCount      | int                       | 雷达数据的维度（多边形的边数）                 | 否                                                   | 5                 | 边数应该和单个雷达数据的个数一致，否则可能出错                                         |
+| 参数名          | 参数类型                  | 作用                                           | 是否必填                                             | 默认值            | 备注                                                         |
+| --------------- | ------------------------- | ---------------------------------------------- | ---------------------------------------------------- | ----------------- | ------------------------------------------------------------ |
+| radius          | double                    | 雷达图半径（多边形外接圆的半径）               | 否                                                   | 50                |                                                              |
+| levelCount      | int                       | 数据可划分的区间个数                           | 否                                                   | 3                 | 每个区间取值范围等分                                         |
+| maxValue        | double                    | 数据的最大值                                   | 否                                                   | 10                | 提供的数据要不大于最大值，否则当最大值处理                   |
+| minValue        | double                    | 数据的最小值                                   | 否                                                   | 0                 | 提供的数据要不小于最小值，否则当最小值处理                   |
+| markerMargin    | double                    | 标签和雷达图顶点的间距                         | 否                                                   | 4                 |                                                              |
+| sidesCount      | int                       | 雷达数据的维度（多边形的边数）                 | 否                                                   | 5                 | 边数应该和单个雷达数据的个数一致，否则可能出错               |
 | data            | `List<List<Double>>`      | 提供所需绘制的雷达图个数以及各雷达图顶点的数值 | 是                                                   |                   | 是个二维数组，第一维决定了需要绘制多少个雷达在图表中，第二维表示每雷达每一个顶点的数值 |
-| tagNames        | `List<String>`            | 各个顶点的标签文案                             | 是                                                   |                   | 文案的个数与顶点个数应保持一致                                                         |
-| rotateAngle     | double                    | 整个雷达图旋转角度                             | 否                                                   | 0                 |                                                                                        |
-| crossedAxisLine | bool                      | 是否展示中间十字交叉线                         |                                                      |                   |                                                                                        |
-| offset          | `List<Offset>`            | 每个标注文案的偏移量                           | 否                                                   | [Offset.zero]     | 个数应与 sidesCount 保持一致                                                           |
-| provider        | BrnRadarChartDataProvider | 提供绘制雷达图所需要的数据                     | 使用默认构造方法必传。默认样式无此参数配置。         |                   |                                                                                        |
-| builder         | MarkerBuilder             | 自定义雷达图的标签（标签由使用者提供 widget）  | 使用默认构造方法必传。默认样式无此参数配置。         |                   |                                                                                        |
-| axisLineColor   | Color                     | 背景多边形轴颜色                               | 默认构造方法有此配置，非必传。默认样式无此参数配置。 | Color(0xFFCCCCCC) |                                                                                        |
-| animateProgress | double                    | 控制带动画效果绘制时的绘制快慢                 | 默认构造方法有此配置，非必传。默认样式无此参数配置。 | 1.0               |                                                                                        |
+| tagNames        | `List<String>`            | 各个顶点的标签文案                             | 是                                                   |                   | 文案的个数与顶点个数应保持一致                               |
+| rotateAngle     | double                    | 整个雷达图旋转角度                             | 否                                                   | 0                 |                                                              |
+| crossedAxisLine | bool                      | 是否展示中间十字交叉线                         |                                                      |                   |                                                              |
+| offset          | `List<Offset>?`           | 每个标注文案的偏移量                           | 否                                                   | [Offset.zero]     | 个数应与 sidesCount 保持一致                                 |
+| provider        | BrnRadarChartDataProvider | 提供绘制雷达图所需要的数据                     | 使用默认构造方法必传。默认样式无此参数配置。         |                   |                                                              |
+| builder         | MarkerBuilder             | 自定义雷达图的标签（标签由使用者提供 widget）  | 使用默认构造方法必传。默认样式无此参数配置。         |                   |                                                              |
+| axisLineColor   | Color                     | 背景多边形轴颜色                               | 默认构造方法有此配置，非必传。默认样式无此参数配置。 | Color(0xFFCCCCCC) |                                                              |
+| animateProgress | double                    | 控制带动画效果绘制时的绘制快慢                 | 默认构造方法有此配置，非必传。默认样式无此参数配置。 | 1.0               |                                                              |
 
 首先介绍两个构造函数中涉及到的相关的类
 

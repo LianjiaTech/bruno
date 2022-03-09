@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -180,7 +182,7 @@ class Brn1RowDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 
@@ -247,7 +249,7 @@ class Brn2RowDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 
@@ -324,7 +326,7 @@ class Brn3RowDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 
@@ -384,7 +386,7 @@ class Brn2RowCustomDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 
