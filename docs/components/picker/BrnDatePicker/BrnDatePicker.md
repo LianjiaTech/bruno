@@ -37,20 +37,20 @@ group:
 static void showDatePicker(
   BuildContext context, {
   bool rootNavigator = false,
-  bool canBarrierDismissible,
-  DateTime minDateTime,
-  DateTime maxDateTime,
-  DateTime initialDateTime,
-  String dateFormat,
+  bool? canBarrierDismissible,
+  DateTime? minDateTime,
+  DateTime? maxDateTime,
+  DateTime? initialDateTime,
+  String? dateFormat,
   int minuteDivider: 1,
   DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
   BrnDateTimePickerMode pickerMode: BrnDateTimePickerMode.date,
   BrnPickerTitleConfig pickerTitleConfig,
-  DateVoidCallback onCancel,
-  DateVoidCallback onClose,
-  DateValueCallback onChange,
-  DateValueCallback onConfirm,
-  BrnPickerConfig themeData,
+  DateVoidCallback? onCancel,
+  DateVoidCallback? onClose,
+  DateValueCallback? onChange,
+  DateValueCallback? onConfirm,
+  BrnPickerConfig? themeData,
 }) 
 ```
 
@@ -60,20 +60,20 @@ static void showDatePicker(
 | --- | --- | --- | --- | --- |
 | context | Buildcontext |  | 是 |  |
 | rootNavigator | bool | 是否使用根路由 | 否 | false |
-| canBarrierDismissible | bool | 点击弹框外部区域能否消失 | 否 |  |
-| initialDateTime | DateTime | 初始选择的时间 | 否 | 当前时间 |
-| minDateTime | DateTime | 能滚动到的最小日期 | 是 | minDateTime ≤ maxDateTime |
-| maxDateTime | DateTime | 能滚动到的最大日期 | 是 | minDateTime ≤ maxDateTime |
+| canBarrierDismissible | bool? | 点击弹框外部区域能否消失 | 否 |  |
+| initialDateTime | DateTime? | 初始选择的时间 | 否 | 当前时间 |
+| minDateTime | DateTime? | 能滚动到的最小日期 | 否 | minDateTime ≤ maxDateTime |
+| maxDateTime | DateTime? | 能滚动到的最大日期 | 否 | minDateTime ≤ maxDateTime |
 | locale | DateTimePickerLocale | 设置本地语言 | 否 | DateTimePickerLocale.zh\_cn |
 | pickerMode | BrnDateTimePickerMode | 时间选择组件显示的时间类型 | 否 | BrnDateTimePickerMode.date |
-| pickerTitleConfig | BrnPickerTitleConfig | 时间选择组件的主题样式 | 否 |  |
-| dateFormat | String | 时间格式化的格式 | 是 |  |
-| onConfirm | DateValueCallback | 点击【完成】回调给调用方的数据 | 否 |  |
-| onCancel | DateVoidCallback | 点击【取消】回调给调用方的回调事件 | 否 |  |
-| onClose | DateVoidCallback | 弹框点击外围消失的回调事件 | 否 |  |
-| onChange | DateValueCallback | 时间滚动选择时候的回调事件 | 否 |  |
+| pickerTitleConfig | BrnPickerTitleConfig | 时间选择组件的主题样式 | 否 | BrnPickerTitleConfig.Default |
+| dateFormat | String? | 时间格式化的格式 | 是 |  |
+| onConfirm | DateValueCallback? | 点击【完成】回调给调用方的数据 | 否 |  |
+| onCancel | DateVoidCallback? | 点击【取消】回调给调用方的回调事件 | 否 |  |
+| onClose | DateVoidCallback? | 弹框点击外围消失的回调事件 | 否 |  |
+| onChange | DateValueCallback? | 时间滚动选择时候的回调事件 | 否 |  |
 | minuteDivider | int | 分钟间切换的差值 | 否 | 1 |
-| themeData | BrnPickerConfig | picker配置 配置详见BrnPickerConfig | 否 |  |
+| themeData | BrnPickerConfig? | picker配置 配置详见BrnPickerConfig | 否 |  |
 
  
 

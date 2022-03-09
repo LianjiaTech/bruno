@@ -25,7 +25,7 @@
 
 ```dart
 BrnMultiColumnPicker(
-  {Key key,
+  {Key? key,
   @required this.entity,
   this.maxHeight = 280.0,
   this.showSelectedCount = false,
@@ -68,16 +68,19 @@ enum PickerFilterType {
 
 ```dart
 class BrnPickerEntity {
-  String uniqueId; //唯一的id，可选
-  String name; //筛选显示的文案
-  String key; //回传给服务器的 key
-  String value; //回传给服务器的 value
-  String type; //类型 是单选、复选还是有自定义输入
-  List<BrnSelectionEntity> children; //下级筛选项
-  String defaultValue; //默认选中下一级的值，若 defaultValue 与 children 字段中筛选项的 value 值相同，则在数据初始化时将 isSelected 置为 true。
-  Map extMap; //扩展字段，目前只有min和max，最大值，最小值范围；unit单位，例如居室、万，适配自定义区间填写的内容
-  /// 支持最大选中个数,用于限制子节点可选中的最大个数。默认为 65535
+  String? uniqueId; //唯一的id
+  String? type; //类型 目前支持的类型有不限（unlimit）、单选（radio）、复选（checkbox）, 最终被解析成 PickerFilterType 类型
+  String? key; //回传给服务器
+  String? value; //回传给服务器
+  String name; //显示的文案
+  String? defaultValue;
+  List<BrnPickerEntity> children; //下级筛选项
+  Map? extMap; //扩展字段，目前只有min和max
+
+  bool isSelected; //是否选中
   int maxSelectedCount;
+  BrnPickerEntity? parent; //上级筛选项
+  PickerFilterType? filterType; //筛选类型
 }
 ```
 
@@ -95,8 +98,8 @@ rootBundle.loadString('assets/list_picker.json').then((data) {
   List<BrnPickerEntity> _selectionData = List()
     ..addAll((JsonDecoder().convert(data)["data"]['list'] as List ?? [])
         .map((o) => BrnPickerEntity.fromMap(o)));
-  if (_selectionData != null && _selectionData.length > 0) {
-    _selectionData?.forEach((f) => f.configRelationshipAndDefaultValue());
+  if (_selectionData.length > 0) {
+    _selectionData.forEach((f) => f.configRelationshipAndDefaultValue());
     if (dataList.length == 0) {
       dataList.addAll(_selectionData);
     }

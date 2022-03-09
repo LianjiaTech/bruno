@@ -24,7 +24,8 @@ group:
 ### 构造函数
 
 ```dart
- BrnLoadingDialog({Key key, this.content = "加载中..."}) : super(key: key);
+const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent})
+      : super(key: key);
 ```
 
 ### 参数说明

@@ -25,42 +25,41 @@ group:
 
 ```dart
 const BrnMiddleInputDialog(
-  {this.title,
-  this.message,
-  this.hintText,
-  this.maxLength = 20,
-  this.maxLines,
-  this.minLines: 1,
-  this.inputFocusNode,
-  this.inputEditingController,
-  this.inputFormatters,
-  this.cancelText = '取消',
-  this.confirmText = '确定',
-  this.dialogStyle,
-  this.onConfirm,
-  this.onCancel,
-  this.dismissOnActionsTap = true,
-  this.barrierDismissible = true,
-  this.autoFoucs = false});
+      {this.title,
+      this.message,
+      this.hintText,
+      this.maxLength = 20,
+      this.maxLines,
+      this.minLines: 1,
+      this.inputFocusNode,
+      this.inputEditingController,
+      this.inputFormatters,
+      this.textInputAction = TextInputAction.newline,
+      this.cancelText = '取消',
+      this.confirmText = '确定',
+      this.onConfirm,
+      this.onCancel,
+      this.dismissOnActionsTap = true,
+      this.barrierDismissible = true,
+      this.autoFocus = false});
 ```
 ### 参数说明
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| title | String | 标题 | 否 |  |
-| message | String | 辅助内容 | 否 |  |
-| hintText | String | 提示语 | 否 |  |
-| maxLength | int | 最大输入长度 | 否 |  |
-| maxLines | int | 可输入的最maxLines多行数。超过 [maxLines] 指定的行数后，输入内容会变成可滑动 | 否 | |
+| title | String? | 标题 | 否 |  |
+| message | String? | 辅助内容 | 否 |  |
+| hintText | String? | 提示语 | 否 |  |
+| maxLength | int | 最大输入长度 | 否 | 20 |
+| maxLines | int? | 可输入的最maxLines多行数。超过 [maxLines] 指定的行数后，输入内容会变成可滑动 | 否 | |
 | minLines | int | 可输入的最少行数 | 否 | 1 |
-| inputFocusNode | FocusNode | 焦点控制 | 否 |  |
-| inputEditingController | TextEditingController | 输入控制器。如果有初始状态的填充文字，可以通过 [inputEditingController] 设置 | 否 |  |
+| inputFocusNode | FocusNode? | 焦点控制 | 否 |  |
+| inputEditingController | TextEditingController? | 输入控制器。如果有初始状态的填充文字，可以通过 [inputEditingController] 设置 | 否 |  |
 | cancelText | String | 取消文案 | 否 | 取消 |
 | confirmText | String | 确定文案 | 否 | 确定 |
-| inputFormatters | TextInputAction  | 键盘操作按钮类型，可参见系统的 TextField.textInputAction | 否 | TextInputAction.newline |
-| textInputAction | `List<TextInputFormatter>`  | 用于控制输入的内容范围比如只能输入数字可以填写:`FilteringTextInputFormatter.digitsOnly` | 否 | 无 |
-| dialogStyle | BrnDialogStyle | Dialog 风格设置 | 否 | BrnDialogStyle |
-| onConfirm | Function(String value) | 确定回调，返回输入的值 | 否 |  |
+| inputFormatters | List<TextInputFormatter>? | 键盘操作按钮类型，可参见系统的 TextField.textInputAction | 否 | TextInputAction.newline |
+| textInputAction | `TextInputAction` | 用于控制输入的内容范围比如只能输入数字可以填写:`FilteringTextInputFormatter.digitsOnly` | 否 | 无 |
+| onConfirm | void Function(String value)? | 确定回调，返回输入的值 | 否 |  |
 | onCancel | VoidCallback | 取消回调 | 否 |  |
 | dismissOnActionsTap | bool | 点击取消/确认按钮之后，是否自动关闭弹窗 | 否 | true |
 | barrierDismissible | bool | 点击蒙层背景，弹窗是否可关闭。 | 否 | true |

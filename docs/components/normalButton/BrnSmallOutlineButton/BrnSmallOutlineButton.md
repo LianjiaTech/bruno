@@ -24,17 +24,18 @@ group:
 
 ```dart
 const BrnSmallOutlineButton({
-  this.title = '确认',
-  this.onTap,
-  this.isEnable = true,
-  this.lineColor,
-  this.textColor,
-  this.radius,
-  this.width,
-  this.fontSize = 14,
-  this.fontWeight,
-  this.themeData,
-});
+    Key? key,
+    this.title = '确认',
+    this.onTap,
+    this.isEnable = true,
+    this.lineColor,
+    this.textColor,
+    this.radius,
+    this.width,
+    this.fontSize = 14,
+    this.fontWeight = FontWeight.w600,
+    this.themeData,
+  }): super(key: key);
 ```
 
 ### 参数说明
@@ -45,11 +46,11 @@ const BrnSmallOutlineButton({
 | onTap      | VoidCallback | 点击的回调   | 否       | 无              |
 | isEnable   | bool         | 按钮是否可用 | 否       | true            |
 | lineColor  | Color        | 边框的背景色 | 否       | 主题色          |
-| width      | double       | 按钮的宽度   | 否       | double.infinity |
+| width      | double       | 按钮的宽度   | 否       | 无              |
 | textColor  | Color        | 文本的颜色   | 否       | 白色            |
-| fontWeight | FontWeight   | 文本的粗细   | 否       | bold            |
+| fontWeight | FontWeight   | 文本的粗细   | 否       | FontWeight.w600 |
 | fontSize   | double       | 文字的大小   | 否       | 14              |
-| radius     | double       | 按钮的圆角   | 否       | 4               |
+| radius     | double       | 按钮的圆角   | 否       | 无              |
 
 ## 四、代码演示
 

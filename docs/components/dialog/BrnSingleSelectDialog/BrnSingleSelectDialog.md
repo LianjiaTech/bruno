@@ -24,35 +24,35 @@ group:
 ### 构造函数
 
 ```dart
-BrnSingleSelectDialog(
-  {this.isClose: true,
-   this.title: "",
-   this.conditions,
-   this.submitText: "提交",
-   this.submitBgColor,
-   this.onSubmitClick,
-   this.onItemClick,
-   this.checkedItem,
-   this.customWidget,
-   this.canDismissOnConfirmClick = true,
-   this.isCustomFollowScroll = true});
+const BrnSingleSelectDialog(
+      {this.isClose: true,
+      this.title: "",
+      required this.conditions,
+      this.submitText: "提交",
+      this.submitBgColor,
+      this.onSubmitClick,
+      this.onItemClick,
+      this.checkedItem,
+      this.customWidget,
+      this.canDismissOnConfirmClick = true,
+      this.isCustomFollowScroll = true});
 ```
 
 ### 参数说明
 
-| **参数名**               | **参数类型**                                    | **描述**                                                  | **是否必填** | **默认值** |
-| ------------------------ | ----------------------------------------------- | --------------------------------------------------------- | ------------ | ---------- |
-| isClose                  | bool                                            | 用于控制弹窗是否相应电机外部关闭，true 关闭，false 不关闭 | 否           | true       |
-| title                    | String                                          | 弹窗标题名称                                              | 否           | 无         |
-| conditions               | List<String>                                    | 备选项数组                                                | 否           |            |
-| checkedItem              | String                                          | 选中的选项名称                                            | 否           |            |
-| submitText               | String                                          | 确定/提交 按钮文案                                        | 否           |            |
-| submitBgColor            | Color                                           | 提交按钮背景颜色                                          | 否           |            |
-| customWidget             | Widget                                          | 在单选列表底部自定义 Widget                               | 否           | null       |
-| isCustomFollowScroll     | bool                                            | 内容是否可滑动                                            | 否           | true       |
-| canDismissOnConfirmClick | bool                                            | 是否在点击时让 Diallog 消失                               | 否           | true       |
-| onSubmitClick            | Function(String data)                           | 提交按钮点击的回调                                        | 否           |            |
-| onItemClick              | void Function( BuildContext context, int index) | item 的点击回调                                           | 否           |            |
+| **参数名**               | **参数类型**                        | **描述**                                                  | **是否必填** | **默认值** |
+| ------------------------ | ----------------------------------- | --------------------------------------------------------- | ------------ | ---------- |
+| isClose                  | bool                                | 用于控制弹窗是否相应电机外部关闭，true 关闭，false 不关闭 | 否           | true       |
+| title                    | String                              | 弹窗标题名称                                              | 否           | ""         |
+| conditions               | List<String>                        | 备选项数组                                                | 否           |            |
+| checkedItem              | String                              | 选中的选项名称                                            | 否           |            |
+| submitText               | String                              | 确定/提交 按钮文案                                        | 否           |            |
+| submitBgColor            | Color                               | 提交按钮背景颜色                                          | 否           |            |
+| customWidget             | Widget                              | 在单选列表底部自定义 Widget                               | 否           | null       |
+| isCustomFollowScroll     | bool                                | 内容是否可滑动                                            | 否           | true       |
+| canDismissOnConfirmClick | bool                                | 是否在点击时让 Diallog 消失                               | 否           | true       |
+| onSubmitClick            | BrnSingleSelectOnSubmitCallback?    | 提交按钮点击的回调                                        | 否           |            |
+| onItemClick              | BrnSingleSelectOnItemClickCallback? | item 的点击回调                                           | 否           |            |
 
 ## 三、代码演示
 
@@ -92,7 +92,7 @@ String hintText = "感兴趣待跟进";
               //光标圆角弧度
               cursorRadius: Radius.circular(2.0),
               style: TextStyle(fontSize: 14, color: Color(0xFF222222)),
-              maxLengthEnforced: true,
+              maxLengthEnforcement: MaxLengthEnforcement.enforced,
               onChanged: (value) {},
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(8.0),

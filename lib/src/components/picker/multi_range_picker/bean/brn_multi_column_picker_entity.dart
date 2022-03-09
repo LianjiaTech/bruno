@@ -16,8 +16,7 @@ enum PickerWindowType {
 
 class BrnPickerEntity {
   String? uniqueId; //唯一的id
-  String?
-      type; //类型 目前支持的类型有不限（unlimit）、单选（radio）、复选（checkbox）, 最终被解析成 PickerFilterType 类型
+  String? type; //类型 目前支持的类型有不限（unlimit）、单选（radio）、复选（checkbox）, 最终被解析成 PickerFilterType 类型
   String? key; //回传给服务器
   String? value; //回传给服务器
   String name; //显示的文案

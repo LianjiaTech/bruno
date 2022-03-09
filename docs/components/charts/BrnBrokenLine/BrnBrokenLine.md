@@ -30,9 +30,9 @@ group:
 
 ```dart
 BrnBrokenLine({
-    Key key,
-    @required this.size,
-    @required this.lines,
+    Key? key,
+    required this.size,
+    required this.lines,
     this.contentPadding = const EdgeInsets.only(left: 10, right: 10),
     this.backgroundColor,
     this.xyDialLineWidth = 2,
@@ -44,8 +44,8 @@ BrnBrokenLine({
     this.xDialMin,
     this.xDialMax,
     this.xDialValues,
-    this.yDialMin,
-    this.yDialMax,
+    required this.yDialMin,
+    required this.yDialMax,
     this.yDialValues,
     this.isShowXHintLine = true,
     this.isShowYHintLine = false,
@@ -54,36 +54,42 @@ BrnBrokenLine({
     this.isTipWindowAutoDismiss = true,
     this.isShowXDialText = false,
     this.isShowYDialText = false,
-  })
+  }) : super(key: key) {
+    // 设置自定义 X 轴时，检查 x轴的最大、最小刻度范围
+    if (xDialValues != null) {
+      assert(xDialMin != null);
+      assert(xDialMax != null);
+    }
+  }
 ```
 
 ### 参数说明：
 
-| 参数名                 | 参数类型              | 作用                                                                | 是否必填 | 默认值 | 备注 |
-| ---------------------- | --------------------- | ------------------------------------------------------------------- | -------- | ------ | ---- |
-| size                   | Size                  | 表格宽高                                                            | 是       |        |      |
-| lines                  | `List<BrnPointsLine>` | 要绘制的折线集合                                                    | 是       |        |      |
-| contentPadding         | EdgeInsets            | 图标内容区域 padding(不包含坐标轴)                                  | 否       |        |      |
-| backgroundColor        | Color                 | 绘制表格的背景色                                                    | 否       |        |      |
-| xyDialLineWidth        | double                | xy 轴线条的宽度                                                     | 否       | 2      |      |
-| xDialColor             | Color                 | x 轴的颜色                                                          | 否       |        |      |
-| yDialColor             | Color                 | y 轴的颜色                                                          | 否       |        |      |
-| yHintLineOffset        | double                | Y 轴辅助线向右偏移量，默认 20（X 轴刻度线也会跟随该偏移量向右偏移） | 否       | 20     |      |
-| showPointDashLine      | bool                  | 是否展示数据点选中时的辅助线                                        | 否       | true   |      |
-| dialWidth              | double                | Y 轴刻度的宽度，和 X 轴刻度的高度                                   | 否       | 4      |      |
-| xDialMin               | double                | X 轴展示范围最小值                                                  | 否       | 0      |      |
-| xDialMax               | double                | X 轴展示范围最大值                                                  | 否       | 1      |      |
-| yDialMin               | double                | Y 轴展示范围最小值                                                  | 是       | 0      |      |
-| yDialMax               | double                | Y 轴展示范围最大值                                                  | 是       | 1      |      |
-| xDialValues            | `List<BrnDialItem>`   | X 轴刻度数据                                                        | 否       |        |      |
-| yDialValues            | `List<BrnDialItem>`   | Y 轴刻度数据                                                        | 否       |        |      |
-| isShowXHintLine        | bool                  | 是否展示 X 轴辅助线                                                 |          | true   |      |
-| isShowYHintLine        | bool                  | 是否展示 Y 轴辅助线                                                 |          | false  |      |
-| isHintLineSolid        | bool                  | 辅助线是否为虚线                                                    |          | true   |      |
-| hintLineColor          | Color                 | 辅助线颜色                                                          |          |        |      |
-| isTipWindowAutoDismiss | bool                  | 点击弹出的 tip 提示框，是否自动消失                                 |          | true   |      |
-| isShowXDialText        | bool                  | 是否展示 X 坐标刻度文案                                             |          | false  |      |
-| isShowYDialText        | bool                  | 是否展示 Y 坐标刻度文案                                             |          | false  |      |
+| 参数名                 | 参数类型              | 作用                                                         | 是否必填 | 默认值                               | 备注 |
+| ---------------------- | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------ | ---- |
+| size                   | Size                  | 表格宽高                                                     | 是       |                                      |      |
+| lines                  | `List<BrnPointsLine>` | 要绘制的折线集合                                             | 是       |                                      |      |
+| contentPadding         | EdgeInsets            | 图标内容区域 padding(不包含坐标轴)                           | 否       | EdgeInsets.only(left: 10, right: 10) |      |
+| backgroundColor        | Color？               | 绘制表格的背景色                                             | 否       |                                      |      |
+| xyDialLineWidth        | double                | xy 轴线条的宽度                                              | 否       | 2                                    |      |
+| xDialColor             | Color？               | x 轴的颜色                                                   | 否       |                                      |      |
+| yDialColor             | Color？               | y 轴的颜色                                                   | 否       |                                      |      |
+| yHintLineOffset        | double                | Y 轴辅助线向右偏移量，默认 20（X 轴刻度线也会跟随该偏移量向右偏移） | 否       | 20.0                                 |      |
+| showPointDashLine      | bool                  | 是否展示数据点选中时的辅助线                                 | 否       | true                                 |      |
+| dialWidth              | double                | Y 轴刻度的宽度，和 X 轴刻度的高度                            | 否       | 4                                    |      |
+| xDialMin               | double                | X 轴展示范围最小值                                           | 否       |                                      |      |
+| xDialMax               | double                | X 轴展示范围最大值                                           | 否       |                                      |      |
+| yDialMin               | double                | Y 轴展示范围最小值                                           | 是       |                                      |      |
+| yDialMax               | double                | Y 轴展示范围最大值                                           | 是       |                                      |      |
+| xDialValues            | `List<BrnDialItem>`   | X 轴刻度数据                                                 | 否       |                                      |      |
+| yDialValues            | `List<BrnDialItem>`？ | Y 轴刻度数据                                                 | 否       |                                      |      |
+| isShowXHintLine        | bool                  | 是否展示 X 轴辅助线                                          |          | true                                 |      |
+| isShowYHintLine        | bool                  | 是否展示 Y 轴辅助线                                          |          | false                                |      |
+| isHintLineSolid        | bool                  | 辅助线是否为虚线                                             |          | true                                 |      |
+| hintLineColor          | Color？               | 辅助线颜色                                                   |          |                                      |      |
+| isTipWindowAutoDismiss | bool                  | 点击弹出的 tip 提示框，是否自动消失                          |          | true                                 |      |
+| isShowXDialText        | bool                  | 是否展示 X 坐标刻度文案                                      |          | false                                |      |
+| isShowYDialText        | bool                  | 是否展示 Y 坐标刻度文案                                      |          | false                                |      |
 
 ### 其他数据结构
 
@@ -101,15 +107,14 @@ class BrnPointData {
   Offset offset;
 
   /// 点要展示的内容
-  String pointText;
+  String? pointText;
 
   /// 点展示内容样式
-  TextStyle pointTextStyle;
+  TextStyle? pointTextStyle;
 
   /// 折线节点的点击击事件是否可用
   bool isClickable;
 
-  /// 每个点的点击行为配置数据
   BrnLineTouchData lineTouchData;
 }
 ```
@@ -119,7 +124,7 @@ class BrnPointData {
 ```
 class BrnLineTouchData {
   /// 用于临时存储要展示 tip 内容在坐标的位置
-  double x, y;
+  double? x, y;
 
   /// 要展示 tip 的相对偏移量
   Offset tipOffset;
@@ -127,11 +132,8 @@ class BrnLineTouchData {
   /// 要展示的 tip 的宽高
   Size tipWindowSize;
 
-  /// 折线节点点击事件是否可用
-  bool enabled;
-
   /// 点击回调，由于返回 展示内容（String 或 Widget）
-  Function() onTouch;
+  Function()? onTouch;
 }
 ```
 
@@ -147,22 +149,22 @@ class BrnPointsLine {
   double lineWidth;
 
   /// Line渐变色，从曲线到x轴从上到下的闭合颜色集
-  List<Color> shaderColors;
+  List<Color>? shaderColors;
 
   /// 曲线或折线的颜色
   Color lineColor;
 
   /// 点外圈的颜色
-  Color pointColor;
+  Color? pointColor;
 
   /// 点的外半径参数
   double pointRadius;
 
   /// 点内圈的颜色
-  Color pointInnerColor;
+  Color? pointInnerColor;
 
   /// 点内圈的半径
-  double pointInnerRadius;
+  double? pointInnerRadius;
 
   /// 是否显示x轴的文字，用来处理多个线条绘制的时候，同一x轴坐标不需要绘制多次，则只需要将多条线中一个标记绘制即可
   bool isShowXDial;
@@ -183,10 +185,10 @@ class BrnPointsLine {
 ```dart
 class BrnDialItem {
   /// 刻度标志内容
-  String dialText;
+  String? dialText;
 
   /// 刻度标志样式
-  TextStyle dialTextStyle;
+  TextStyle? dialTextStyle;
 
   /// x,y 轴刻度值。用于刻度在坐标的真实定位
   double value;

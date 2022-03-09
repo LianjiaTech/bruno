@@ -41,22 +41,23 @@ group:
 
 ```dart
 static void showDatePicker(  
-  BuildContext context, {  
-    bool isDismissible,  
-    DateTime minDateTime,  
-    DateTime maxDateTime,  
-    bool isLimitTimeRange,  
-    DateTime initialStartDateTime,  
-    DateTime initialEndDateTime,  
-    String dateFormat,  
-    int minuteDivider,  
-    DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,  
-    DateTimeRangePickerMode pickerMode: DateTimeRangePickerMode.date,  
-    DateTimePickerTheme pickerTheme: DateTimePickerTheme.Default,  
-    DateVoidCallback onCancel,  
-    DateVoidCallback onClose,  
-    DateRangeValueCallback onChange,  
-    DateRangeValueCallback onConfirm,  
+  BuildContext context, {
+    bool isDismissible = true,
+    DateTime? minDateTime,
+    DateTime? maxDateTime,
+    bool isLimitTimeRange = true,
+    DateTime? initialStartDateTime,
+    DateTime? initialEndDateTime,
+    String? dateFormat,
+    int minuteDivider = 1,
+    DateTimePickerLocale locale = datetimePickerLocaleDefault,
+    BrnDateTimeRangePickerMode pickerMode = BrnDateTimeRangePickerMode.date,
+    BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
+    DateVoidCallback? onCancel,
+    DateVoidCallback? onClose,
+    DateRangeValueCallback? onChange,
+    DateRangeValueCallback? onConfirm,
+    BrnPickerConfig? themeData,
   })
 ```
 ### 参数配置
@@ -64,21 +65,21 @@ static void showDatePicker(
 | **参数名** | **参数类型** | **作用** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
 | isDismissible | bool | 用于控制弹窗是否相应电机外部关闭，true 关闭，false 不关闭 | 否 | true |
-| minDateTime | DateTime | 时间区间最小值 | 否 | "1900-01-01 00:00:00" |
-| maxDateTime | DateTime | 时间区间最大值 | 否 | "2100-12-31 23:59:59" |
+| minDateTime? | DateTime | 时间区间最小值 | 否 | "1900-01-01 00:00:00" |
+| maxDateTime? | DateTime | 时间区间最大值 | 否 | "2100-12-31 23:59:59" |
 | isLimitTimeRange | bool | 是否限制时间选择范围<br />true: 开始时间必须≤结束时间<br />false: 不限制开始时间，结束时间的值大小 | 否 |  true |
-| initialStartDateTime | DateTime | 初始设置选中的开始时间 | 否 | DateTime.now() |
-| initialEndDateTime | DateTime | 初始设置选中的结束时间 | 否 | DateTime.now() |
-| dateFormat | String | 展示格式，仅在pickerMode 为 DateTimeRangePickerMode.date时生效。可设置为”MM月-dd日“、”yyyy-年MM月-dd日“等年月日格式，将数据带上单位显示 | 否 | 'MM-dd' |
+| initialStartDateTime | DateTime? | 初始设置选中的开始时间 | 否 | DateTime.now() |
+| initialEndDateTime | DateTime? | 初始设置选中的结束时间 | 否 | DateTime.now() |
+| dateFormat | String? | 展示格式，仅在pickerMode 为 DateTimeRangePickerMode.date时生效。可设置为”MM月-dd日“、”yyyy-年MM月-dd日“等年月日格式，将数据带上单位显示 | 否 | 'MM-dd' |
 | minuteDivider | int | 刻度值，仅在pickerMode 为DateTimeRangePickerMode.time时生效 | 否 | 1 |
 | locale | DateTimePickerLocale | 时区 | 否 | DateTimePickerLocale.zh\_cn |
 | pickerMode | DateTimeRangePickerMode | 要展示的时间范围选择类型，date 还是 time | 否 | DateTimeRangePickerMode.date |
 | pickerTitleConfig | `BrnPickerTitleConfig` | picker title 内容配置 | 否 | BrnPickerTitleConfig.Default |
-| onCancel | DateVoidCallback | 取消回调 | 否 |  |
-| onClose | DateVoidCallback | 关闭回调 | 否 |  |
-| onChange | DateRangeValueCallback | 滚动变化回调 | 否 |  |
-| onConfirm | DateRangeValueCallback | 点击确定选中日期范围回调 | 否 |  |
-| themeData | BrnPickerConfig | 设置 Picker 相关主题 | 否 | BrnDefaultConfigUtils.defaultAllConfig.pickerConfig |
+| onCancel | DateVoidCallback? | 取消回调 | 否 |  |
+| onClose | DateVoidCallback? | 关闭回调 | 否 |  |
+| onChange | DateRangeValueCallback? | 滚动变化回调 | 否 |  |
+| onConfirm | DateRangeValueCallback? | 点击确定选中日期范围回调 | 否 |  |
+| themeData | BrnPickerConfig? | 设置 Picker 相关主题 | 否 | BrnDefaultConfigUtils.defaultAllConfig.pickerConfig |
 
 ### 其它数据结构
 

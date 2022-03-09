@@ -36,33 +36,33 @@ group:
 ### 构造函数
 
 ```dart
-BrnScrollableTextDialog(
-  {this.title,
-  this.isClose = true,
-  this.contentText,
-  this.textColor = const Color(0xFF666666),
-  this.textFontSize = 16,
-  this.submitText,
-  this.onSubmitClick,
-  this.submitBgColor,
-  this.linksCallback,
-  this.isShowOperateWidget = true});
+const BrnScrollableTextDialog(
+      {this.title,
+      this.isClose = true,
+      required this.contentText,
+      this.textColor = const Color(0xFF666666),
+      this.textFontSize = 16,
+      this.submitText,
+      this.onSubmitClick,
+      this.submitBgColor,
+      this.linksCallback,
+      this.isShowOperateWidget = true});
 ```
 
 ### 参数说明
 
-| **参数名**          | **参数类型**         | **描述**             | **是否必填** | **默认值**        |
-| ------------------- | -------------------- | -------------------- | ------------ | ----------------- |
-| title               | String               | 弹框标题             | 否           | 无                |
-| isClose             | bool                 | 是否可关闭           | 否           | true              |
-| contentText         | String               | 内容                 | 否           | 无                |
-| textColor           | Color                | 文字颜色             | 否           | Color(0xFF666666) |
-| textFontSize        | double               | 文字大小             | 否           | 16                |
-| submitText          | String               | 操作按钮文字         | 否           | 无                |
-| submitBgColor       | Color                | 操作按钮背景色       | 否           | 默认主题色        |
-| onSubmitClick       | VoidCallback         | 提交操作             | 否           | 无                |
-| linksCallback       | BrnHyperLinkCallback | 富文本链接点击回调   | 否           | 无                |
-| isShowOperateWidget | bool                 | 是否展示底部操作区域 | 否           | true              |
+| **参数名**          | **参数类型**          | **描述**             | **是否必填** | **默认值**        |
+| ------------------- | --------------------- | -------------------- | ------------ | ----------------- |
+| title               | String?               | 弹框标题             | 否           | ""                |
+| isClose             | bool                  | 是否可关闭           | 否           | true              |
+| contentText         | String                | 内容                 | 否           | 无                |
+| textColor           | Color                 | 文字颜色             | 否           | Color(0xFF666666) |
+| textFontSize        | double                | 文字大小             | 否           | 16                |
+| submitText          | String?               | 操作按钮文字         | 否           | 无                |
+| submitBgColor       | Color?                | 操作按钮背景色       | 否           | 默认主题色        |
+| onSubmitClick       | VoidCallback?         | 提交操作             | 否           | 无                |
+| linksCallback       | BrnHyperLinkCallback? | 富文本链接点击回调   | 否           | 无                |
+| isShowOperateWidget | bool                  | 是否展示底部操作区域 | 否           | true              |
 
 ### 其他数据
 
@@ -70,12 +70,19 @@ BrnScrollableTextDialog(
 
 ```dart
 BrnContentExportWidget(this.contentWidget,
-  {this.title,
-  this.isClose,
-  this.submitText,
-  this.onSubmitClick,
-  this.submitBgColor,
-  this.isShowOperateWidget});
+      {this.title,
+      required this.isClose,
+      this.submitText,
+      this.onSubmit,
+      this.submitBgColor,
+      required this.isShowOperateWidget,
+      this.themeData}) {
+    this.themeData ??= BrnDialogConfig();
+    this.themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData!.configId)
+        .dialogConfig
+        .merge(themeData);
+  }
 ```
 
 ## 四、代码演示
@@ -125,8 +132,8 @@ showDialog(
           "文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文"
           "呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表",
       submitText: "提交",
-      linksCallback: (String text, String url) {
-        BrnToast.show(text, context);
+      linksCallback: (String? text, String? url) {
+              BrnToast.show(text!, context);
       },
       onSubmitClick: () {
         BrnToast.show("点击了纯文本弹框", context);
