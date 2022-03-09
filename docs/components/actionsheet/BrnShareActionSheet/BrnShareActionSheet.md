@@ -79,8 +79,6 @@ BrnShareActionSheet({
 | textColor | Color | 选项标题颜色 | 否 | Color(0xff222222)黑色 |
 | clickInterceptor | BrnShareActionSheetOnItemClickInterceptor? = void (int section, int index, BrnShareItem shareItem)? | 是否可点击（如果为预设类型，设置为不可点击后会变为相应的置灰图标）默认为true | 否 |  |
 
-
-
 ### 其他数据
 
 | 常量名                               | 渠道名                                                       |
@@ -148,7 +146,6 @@ BrnShareActionSheet actionSheet = new BrnShareActionSheet(
   cancelTitle: "自定义取消名字", // 取消按钮title可自定义
 );
 actionSheet.show(context);
-
 ```
 ### 效果2：四个分享渠道+四个自定义
 

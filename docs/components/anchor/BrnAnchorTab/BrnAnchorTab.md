@@ -55,20 +55,28 @@ BrnAnchorTab(
  <img src="./img/anchorTab.gif" style="zoom: 50%;" />
 
 ```dart
-BrnAnchorTab(  
-  itemCount: 10,  
-  widgetIndexedBuilder: (context, index) {  
-    return Container(  
-      child: Center(child: Text('$index')),  
-      height: Random().nextInt(400).toDouble(),  
-      color: Color.fromARGB(Random().nextInt(255), Random().nextInt(255),  
-          Random().nextInt(255), Random().nextInt(255)),  
-    );  
-  },  
-  tabIndexedBuilder: (context, index) {  
-    return Tab(  
-      child: Text(index.toString()),  
-    );  
-  },  
-)
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: BrnAppBar(
+      title: '锚点',
+    ),
+    body: BrnAnchorTab(
+      itemCount: 10,
+      widgetIndexedBuilder: (context, index) {
+        return Container(
+          child: Center(child: Text('$index')),
+          height: Random().nextInt(400).toDouble(),
+          color: Color.fromARGB(Random().nextInt(255), Random().nextInt(255),
+              Random().nextInt(255), Random().nextInt(255)),
+        );
+      },
+      tabIndexedBuilder: (context, index) {
+        return BadgeTab(
+          text: 'index $index'
+        );
+      },
+    ),
+  );
+}
 ```

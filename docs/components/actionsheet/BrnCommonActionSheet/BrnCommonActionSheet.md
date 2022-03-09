@@ -129,21 +129,20 @@ List<BrnCommonActionSheetItem> actions = [];
 
   // 展示actionSheet
   showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (BuildContext context) {
-        return BrnCommonActionSheet(
-          actions: actions,
-          clickCallBack: (
-            int index,
-            BrnCommonActionSheetItem actionEle,
-          ) {
-            String title = actionEle.title;
-            BrnToast.show("title: $title, index: $index", context);
-          },
-        );
-      });
-
+    context: context,
+    backgroundColor: Colors.transparent,
+    builder: (BuildContext context) {
+      return BrnCommonActionSheet(
+        actions: actions,
+        clickCallBack: (
+          int index,
+          BrnCommonActionSheetItem actionEle,
+        ) {
+          String title = actionEle.title;
+          BrnToast.show("title: $title, index: $index", context);
+        },
+      );
+    });
 ```
 
 ### 效果 3：无独立辅助信息+蓝色样式
@@ -191,38 +190,38 @@ List<BrnCommonActionSheetItem> actions = [];
 ```dart
 List<BrnCommonActionSheetItem> actions = [];
 actions.add(
-BrnCommonActionSheetItem(
-  '选项一: 自定义主标题样式',
-  desc: '辅助信息默认样式',
-  titleStyle: TextStyle(
-    fontSize: 18,
-    color: Color(0xFF123984),
+  BrnCommonActionSheetItem(
+    '选项一: 自定义主标题样式',
+    desc: '辅助信息默认样式',
+    titleStyle: TextStyle(
+      fontSize: 18,
+      color: Color(0xFF123984),
+    ),
   ),
-),
 );
 actions.add(
-BrnCommonActionSheetItem(
-  '选项二: 自定义辅助信息样式',
-  desc: '自定义辅助信息样式',
-  descStyle: TextStyle(
-    fontSize: 14,
-    color: Color(0xFF129834),
+  BrnCommonActionSheetItem(
+    '选项二: 自定义辅助信息样式',
+    desc: '自定义辅助信息样式',
+    descStyle: TextStyle(
+      fontSize: 14,
+      color: Color(0xFF129834),
+    ),
   ),
-),
 );
 actions.add(
-BrnCommonActionSheetItem(
-  '选项三: 自定义拦截点击事件，点击无效',
-  desc: '辅助信息',
-  titleStyle: TextStyle(
-    fontSize: 16,
-    color: Color(0xFF999999),
+  BrnCommonActionSheetItem(
+    '选项三: 自定义拦截点击事件，点击无效',
+    desc: '辅助信息',
+    titleStyle: TextStyle(
+      fontSize: 16,
+      color: Color(0xFF999999),
+    ),
+    descStyle: TextStyle(
+      fontSize: 14,
+      color: Color(0xFF999999),
+    ),
   ),
-  descStyle: TextStyle(
-    fontSize: 14,
-    color: Color(0xFF999999),
-  ),
-),
 );
 
 // 展示actionSheet

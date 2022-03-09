@@ -77,10 +77,10 @@ BrnSelectedListActionSheet(
 | --- | --- | --- | --- | --- |
 | `context` | `BuildContext` | 构建context | 是 | 无 |
 | `items` | `List<T>` | 数据列表模型 | 是 | 无 |
-| `itemTitleBuilder` | `dynamic Function(int index, T entity)` | 每行视图构建的回调。可返回 `String`或者`Widget`。返回 `String` 的话，内部会通过默认方式创建 `Text`，自动折行并展示文字。返回 `widget` ，默认是业务方自定义每一行的视图，此时左侧的`itemIconImage`自动隐藏，自定义视图显示的范围为从最左到右边的删除按钮的左侧（可通过`isDeleteButtonHidden`隐藏删除按钮） | 是 | 无 |
-| `controller` | `BrnSelectedItemListActionSheetWidgetController?` | 控制视图隐藏/刷新列表等方法 | 否 | 无 |
+| `itemTitleBuilder` | `void dynamic Function(int index, T entity)` | 每行视图构建的回调。可返回 `String`或者`Widget`。返回 `String` 的话，内部会通过默认方式创建 `Text`，自动折行并展示文字。返回 `widget` ，默认是业务方自定义每一行的视图，此时左侧的`itemIconImage`自动隐藏，自定义视图显示的范围为从最左到右边的删除按钮的左侧（可通过`isDeleteButtonHidden`隐藏删除按钮） | 是 | 无 |
+| controller | `BrnSelectedItemListActionSheetWidgetController?` | 控制视图隐藏/刷新列表等方法 | 否 | 无 |
 | `maxHeight` | `double` | 列表的最大高度，小于这个高度视图自适应，超过该值，组件高度固定，列表内容滑动。列表内容的高度=maxHeight-65 | 否 | 290 |
-| `bottomOffset` | `double` | 列表关闭动画结束时底部的 y。0 会和屏幕的底部重合。不能为负值！ | 否 | 默认值 82。 |
+| `bottomOffset` | `double` | 列表关闭动画结束时底部的 y。0 会和屏幕的底部重合。不能为负值！ | 否 | 默认值 82 |
 | `title` | `String?` | 弹窗标题 | 否 | 无，标题默认样式 `TextStyle(fontSize: 18,color: Color(0xff222222),fontWeight: FontWeight.w600,decoration: TextDecoration.none)` |
 | `titleWidget` | `Widget?` | 自定义标题视图。默认外层有 `const EdgeInsets.fromLTRB(20, 20, 20, 15)` 的 padding，且优先级比 title 高 | 否 | 无 |
 | `isClearButtonHidden` | `bool` | 是否隐藏顶部工具条中的清空按钮 | 否 | `false` |
@@ -258,18 +258,18 @@ Widget build(BuildContext context) {
                 key: _bottomActionKey,
                 mainButtonName: 'BrnBottomButtonPanel',
                 mainButtonOnTap: () {
-                  BrnToast.show('确定！sheet 的数据源长度 ${_data!.length}', context);
+                  BrnToast.show('确定！sheet 的数据源长度 ${_data.length}', context);
                 },
                 iconButtonList: [
                   BrnVerticalIconButton(
-                      name: '已选(${_data!.length})',
+                      name: '已选(${_data.length})',
                       iconWidget: BrunoTools.getAssetImage(
                           'icons/grey_place_holder.png'),
                       onTap: () {
                         if (!controller.isHidden) {
                           controller.dismiss();
                         } else {
-                          if (_data == null || _data!.length <= 0) {
+                          if (_data.length <= 0) {
                             BrnToast.show('数据为空，弹窗不展示', context);
                             return;
                           }
@@ -277,7 +277,7 @@ Widget build(BuildContext context) {
                                   context: context,
                                   isClearButtonHidden: false,
                                   isDeleteButtonHidden: true,
-                                  items: _data!,
+                                  items: _data,
                                   bottomOffset: 82,
                                   maxHeight: 400,
                                   controller: controller,
@@ -307,7 +307,7 @@ Widget build(BuildContext context) {
                                         cancel: '取消',
                                         confirm: '确定', onConfirm: () {
                                       setState(() {});
-                                      _data!.clear();
+                                      _data.clear();
                                     }, onCancel: () {});
                                   })
                               .showWithTargetKey(
