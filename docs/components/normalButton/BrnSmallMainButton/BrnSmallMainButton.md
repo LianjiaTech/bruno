@@ -53,7 +53,7 @@ const BrnSmallMainButton({
 | fontSize   | double          | 文字的大小     | 否       | 14              |
 | radius     | double          | 按钮的圆角     | 否       | 4               |
 | maxWidth   | double          | 按钮的最大宽度 | 否       | null            |
-| themeData  | BrnButtonConfig | 按钮主题配置   | 否       | 无              |
+| themeData  | BrnButtonConfig? | 按钮主题配置   | 否       | 无              |
 
 ## 四、代码演示
 
