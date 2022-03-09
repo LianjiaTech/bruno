@@ -72,15 +72,12 @@ BrnShareActionSheet({
 | firstShareChannels | `List<BrnShareItem>?` | 第一行渠道列表 | 否 | 空 |
 | secondShareChannels | `List<BrnShareItem>?` | 第二行渠道列表 | 否 |  |
 | mainTitle | String? | 列表标题 | 否 |  |
-| clickCallBack | void ShareActionSheetItemClickCallBack( int section, int index, BrnShareItem shareItem)? | 点击分享渠道图标后回调方法 | 否 | 空 |
-| getCustomChannelTitle | void ShareActionSheetGetCustomShareItemTitle( int index)? | 获取自定义分享渠道对应的显示**文案**（方法传参为该自定义分享渠道在*shareChannels*中的索引值index）。回调返回值为 String，如果返回值为空，则**不显示**该自定义分享渠道。 | 否 | 空 |
-| cancelTitle | String? | 取消按钮的文案 | 否 | **“取消”** |
+| clickCallBack | BrnShareActionSheetItemClickCallBack=void ( int section, int index, BrnShareItem shareItem)? | 点击分享渠道图标后回调方法 | 否 | 空 |
+| cancelTitle | String? | 取消按钮的文案 | 否 | ''取消'' |
 | context | BuildContext | BuidContext | 是 | 空 |
-| shareTextColor | Color | 分享渠道文案颜色 | 否 | **Color(0xff999999)**灰色 |
-| textColor | Color | 选项标题颜色 | 否 | **Color(0xff222222)** 黑色 |
-| clickInterceptor | BrnShareActionSheetOnItemClickInterceptor(     int section, int index, BrnShareItem shareItem)? | 是否可点击（如果为预设类型，设置为不可点击后会变为相应的置灰图标）默认为true | 否 |  |
-
-
+| shareTextColor | Color | 分享渠道文案颜色 | 否 | Color(0xff999999)灰色 |
+| textColor | Color | 选项标题颜色 | 否 | Color(0xff222222)黑色 |
+| clickInterceptor | BrnShareActionSheetOnItemClickInterceptor? = void (int section, int index, BrnShareItem shareItem)? | 是否可点击（如果为预设类型，设置为不可点击后会变为相应的置灰图标）默认为true | 否 |  |
 
 ### 其他数据
 
@@ -96,7 +93,7 @@ BrnShareActionSheet({
 | BrnShareItemConstants.shareCopyLink  | 剪贴板                                                       |
 | BrnShareItemConstants.shareBrowser   | 浏览器                                                       |
 | BrnShareItemConstants.shareSaveImage | 相册                                                         |
-| BrnShareItemConstants.SHARE\_CUSTOM  | 自定义自定义图标需在**getCustomChannelTitle**方法中设置文案，在**getCustomChannelWidget**方法中设定图标。如其中一个为空，则不显示自定义图标。 |
+| BrnShareItemConstants.shareCustom    | 自定义自定义图标需在`getCustomChannelTitle`方法中设置文案，在`getCustomChannelWidget`方法中设定图标。如其中一个为空，则不显示自定义图标。 |
 
 
 
@@ -109,107 +106,103 @@ BrnShareActionSheet({
 
 
 ```dart
-void _showShareSevenStyle(BuildContext context) {
-  List<BrnShareItem> firstRowList = [];
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareWeiXin,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareBrowser,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareCopyLink,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareFriend,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareLink,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareQQ,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareCustom,
-    customImage: BrunoTools.getAssetImage("images/icon_custom_share.png"),
-    customTitle: "自定义",
-    canClick: true,
-  ));
-  BrnShareActionSheet actionSheet = new BrnShareActionSheet(
-    firstShareChannels: firstRowList,
-    clickCallBack: (int section, int index, BrnShareItem shareItem) {
-      int channel = shareItem.shareType;
-      BrnToast.show("channel: $channel, section: $section, index: $index", context);
-    },
-    cancelTitle: "自定义取消名字", // 取消按钮title可自定义
-  );
-  actionSheet.show(context);
-}
+List<BrnShareItem> firstRowList = [];
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareWeiXin,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareBrowser,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareCopyLink,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareFriend,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareLink,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareQQ,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareCustom,
+  customImage: BrunoTools.getAssetImage("images/icon_custom_share.png"),
+  customTitle: "自定义",
+  canClick: true,
+));
+BrnShareActionSheet actionSheet = new BrnShareActionSheet(
+  firstShareChannels: firstRowList,
+  clickCallBack: (int section, int index, BrnShareItem shareItem) {
+    int channel = shareItem.shareType;
+    BrnToast.show("channel: $channel, section: $section, index: $index", context);
+  },
+  cancelTitle: "自定义取消名字", // 取消按钮title可自定义
+);
+actionSheet.show(context);
 ```
 ### 效果2：四个分享渠道+四个自定义
 
 <img src="./img/actionSheet_share_2.png" style="zoom:67%;" />
 
 ```dart
-void _showShareFourStyle(BuildContext context) {
-  List<BrnShareItem> firstRowList = [];
-  List<BrnShareItem> secondRowList = [];
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareQZone,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareSaveImage,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareSms,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareWeiBo,
-    canClick: true,
-  ));
-  secondRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareQZone,
-    canClick: false,
-  ));
-  secondRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareSaveImage,
-    canClick: false,
-  ));
-  secondRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareSms,
-    canClick: false,
-  ));
-  secondRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareWeiBo,
-    canClick: false,
-  ));
-  BrnShareActionSheet actionSheet = new BrnShareActionSheet(
-    firstShareChannels: firstRowList,
-    secondShareChannels: secondRowList,
-    clickCallBack: (int section, int index, BrnShareItem shareItem) {
-      int channel = shareItem.shareType;
-      BrnToast.show("channel: $channel, section: $section, index: $index", context);
-    },
-    clickInterceptor: (int section, int index, BrnShareItem shareItem) {
-      if (shareItem.canClick) {
-        return false;
-      } else {
-        BrnToast.show("不可点击，拦截了", context);
-        return true;
-      }
-    },
-  );
-  actionSheet.show(context);
-}
+List<BrnShareItem> firstRowList = List();
+List<BrnShareItem> secondRowList = List();
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareQZone,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareSaveImage,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareSms,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareWeiBo,
+  canClick: true,
+));
+secondRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareQZone,
+  canClick: false,
+));
+secondRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareSaveImage,
+  canClick: false,
+));
+secondRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareSms,
+  canClick: false,
+));
+secondRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareWeiBo,
+  canClick: false,
+));
+BrnShareActionSheet actionSheet = new BrnShareActionSheet(
+  firstShareChannels: firstRowList,
+  secondShareChannels: secondRowList,
+  clickCallBack: (int section, int index, BrnShareItem shareItem) {
+    int channel = shareItem.shareType;
+    BrnToast.show("channel: $channel, section: $section, index: $index", context);
+  },
+  clickInterceptor: (int section, int index, BrnShareItem shareItem) {
+    if (shareItem.canClick) {
+      return false;
+    } else {
+      BrnToast.show("不可点击，拦截了", context);
+      return true;
+    }
+  },
+);
+actionSheet.show(context);
 ```
 
 ### 效果3：上两个渠道+下一个自定义
@@ -217,33 +210,31 @@ void _showShareFourStyle(BuildContext context) {
 <img src="./img/actionSheet_share_3.png" style="zoom:67%;" />
 
 ```dart
-void _showShareThreeStyle(BuildContext context) {
-  List<BrnShareItem> firstRowList = [];
-  List<BrnShareItem> secondRowList = [];
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareWeiXin,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareFriend,
-    canClick: true,
-  ));
-  secondRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareCustom,
-    customImage: BrunoTools.getAssetImage("images/icon_custom_share.png"),
-    customTitle: "自定义",
-    canClick: true,
-  ));
-  BrnShareActionSheet actionSheet = new BrnShareActionSheet(
-    firstShareChannels: firstRowList,
-    secondShareChannels: secondRowList,
-    clickCallBack: (int section, int index, BrnShareItem shareItem) {
-      int channel = shareItem.shareType;
-      BrnToast.show("channel: $channel, section: $section, index: $index", context);
-    },
-  );
-  actionSheet.show(context);
-}
+List<BrnShareItem> firstRowList = [];
+List<BrnShareItem> secondRowList = [];
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareWeiXin,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareFriend,
+  canClick: true,
+));
+secondRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareCustom,
+  customImage: BrunoTools.getAssetImage("images/icon_custom_share.png"),
+  customTitle: "自定义",
+  canClick: true,
+));
+BrnShareActionSheet actionSheet = new BrnShareActionSheet(
+  firstShareChannels: firstRowList,
+  secondShareChannels: secondRowList,
+  clickCallBack: (int section, int index, BrnShareItem shareItem) {
+    int channel = shareItem.shareType;
+    BrnToast.show("channel: $channel, section: $section, index: $index", context);
+  },
+);
+actionSheet.show(context);
 ```
 
 
@@ -253,24 +244,22 @@ void _showShareThreeStyle(BuildContext context) {
 <img src="./img/actionSheet_share_4.png" style="zoom:67%;" />
 
 ```dart
-void _showShareTwoStyle(BuildContext context) {
-  List<BrnShareItem> firstRowList = [];
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareWeiXin,
-    canClick: true,
-  ));
-  firstRowList.add(BrnShareItem(
-    BrnShareItemConstants.shareFriend,
-    canClick: true,
-  ));
-  BrnShareActionSheet actionSheet = new BrnShareActionSheet(
-    firstShareChannels: firstRowList,
-    clickCallBack: (int section, int index, BrnShareItem shareItem) {
-      int channel = shareItem.shareType;
-      BrnToast.show("channel: $channel, section: $section, index: $index", context);
-    },
-  );
-  actionSheet.show(context);
-}
+List<BrnShareItem> firstRowList = [];
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareWeiXin,
+  canClick: true,
+));
+firstRowList.add(BrnShareItem(
+  BrnShareItemConstants.shareFriend,
+  canClick: true,
+));
+BrnShareActionSheet actionSheet = new BrnShareActionSheet(
+  firstShareChannels: firstRowList,
+  clickCallBack: (int section, int index, BrnShareItem shareItem) {
+    int channel = shareItem.shareType;
+    BrnToast.show("channel: $channel, section: $section, index: $index", context);
+  },
+);
+actionSheet.show(context);
 ```
 

@@ -87,6 +87,7 @@ BrnAppBar(
 | textTheme | TextTheme? | text主题定制 | 否 |  |
 | primary | bool | 此应用栏是否显示在屏幕顶部 | 否 |  |
 | excludeHeaderSemantics | bool | 是否用Semantics包裹 | 否 |  |
+| themeData | BrnAppBarConfig? | BrnAppBar对应的主题定制类 | 否 | |
 
 ## 四、效果及代码展示
 
@@ -177,7 +178,7 @@ BrnAppBar(
 
 ``` dart
 var actionKey = GlobalKey();  
-  
+
 BrnAppBar(
   title: '标题名称',
   leading: BrnDoubleLeading(

@@ -156,7 +156,7 @@ Widget build(BuildContext context) {
                           if (!controller.isHidden) {
                             controller.dismiss();
                           } else {
-                            if (_data == null || _data.length <= 0) {
+                            if ( _data.length <= 0) {
                               BrnToast.show('数据为空，弹窗不展示', context);
                               return;
                             }
@@ -232,7 +232,7 @@ Widget build(BuildContext context) {
 
 
 ```dart
-List back = ['数据源1', '数据源2', '数据源3', '数据源4'];  
+List _data = ['数据源1', '数据源2', '数据源3', '数据源4']; 
 var _bottomActionKey = GlobalKey();  
 controller = BrnSelectedItemListActionSheetWidgetController();  
   
@@ -269,7 +269,7 @@ Widget build(BuildContext context) {
                         if (!controller.isHidden) {
                           controller.dismiss();
                         } else {
-                          if (_data == null || _data.length <= 0) {
+                          if (_data.length <= 0) {
                             BrnToast.show('数据为空，弹窗不展示', context);
                             return;
                           }
