@@ -122,8 +122,10 @@ class BrnScrollableText extends StatelessWidget {
                         children: <Widget>[
                   BrnCSS2Text.toTextView(contentText,
                       linksCallback: linksCallback,
-                      defaultStyle:
-                          TextStyle(fontSize: textFontSize, color: textColor))
+                      defaultStyle: TextStyle(
+                          fontSize: textFontSize,
+                          color: textColor,
+                          fontWeight: FontWeight.normal))
                 ])))),
       ),
       title: title,
