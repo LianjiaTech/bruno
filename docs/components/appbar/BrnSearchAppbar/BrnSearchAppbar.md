@@ -40,28 +40,28 @@ const BrnSearchAppbar(
   this.autoFocus = true,
   this.brightness = Brightness.dark,
   this.onClearTap,
-  this.inputTextStyle});
+  this.inputTextStyle})
+  : super(child: const Center(), preferredSize: const Size(0, 0));
 ```
 
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| controller | TextEditingController | 输入框的文本控制器 | 否 | 无 |
-| focusNode | FocusNode | 搜索框的焦点控制器 | 否 | 无 |
-| leading | String 或者 Widget | 输入框左侧的Leading，可以是字符串也可以是widget | 否 | 无 |
-| leadClickCallback | BrnSearchBarLeadClickCallback | 搜索框左侧的点击回调，参数为文本控制器和setState方法 | 否 | 无 |
-| dismissClickCallback | BrnSearchBarDismissClickCallback | 搜索框右侧Action的点击回调, 参数为文本控制器和setState方法 | 否 | 无 |
-| searchBarInputChangeCallback | BrnSearchBarInputChangeCallback | 搜索框的文本变化监听 | 否 | 无 |
-| searchBarInputSubmitCallback | BrnSearchBarInputSubmitCallback | 搜索框提交的回调 | 否 | 无 |
-| hint | String | 搜索框的hint内容 | 否 | 无 |
-| hintStyle | TextStyle | 输入框的hint的Style | 否 | 无 |
-| style | TextStyle | 输入框的文本Style | 否 | 无 |
-| dismissStyle | TextStyle | 右侧Action的文本Style | 否 | 无 |
-| showDivider | bool | 是否展示底部分割线 | 否 | bool |
-| autoFocus | bool | 是否自动聚焦 | 否 | bool |
+| controller | TextEditingController? | 输入框的文本控制器 | 否 | 无 |
+| focusNode | FocusNode? | 搜索框的焦点控制器 | 否 | 无 |
+| leading | dynamic | String 或者 Widget，输入框左侧的Leading，可以是字符串也可以是widget | 否 | 无 |
+| leadClickCallback | BrnSearchBarLeadClickCallback? | 搜索框左侧的点击回调，参数为文本控制器和setState方法 | 否 | 无 |
+| dismissClickCallback | BrnSearchBarDismissClickCallback? | 搜索框右侧Action的点击回调, 参数为文本控制器和setState方法 | 否 | 无 |
+| searchBarInputChangeCallback | BrnSearchBarInputChangeCallback? | 搜索框的文本变化监听 | 否 | 无 |
+| searchBarInputSubmitCallback | BrnSearchBarInputSubmitCallback? | 搜索框提交的回调 | 否 | 无 |
+| hint | String? | 搜索框的hint内容 | 否 | 无 |
+| hintStyle | TextStyle? | 输入框的hint的Style | 否 | 无 |
+| dismissStyle | TextStyle? | 右侧Action的文本Style | 否 | 无 |
+| showDivider | bool | 是否展示底部分割线 | 否 | true |
+| autoFocus | bool | 是否自动聚焦 | 否 | false |
 | brightness | Brightness | 主题配置 | 否 | Brightness.dark |
-| onClearTap | VoidCallback | 点击清除按钮回调 | 否 |  |
-| inputTextStyle | TextStyle | 输入框的文本Style | 否 |  |
+| onClearTap | VoidCallback? | 点击清除按钮回调 | 否 |  |
+| inputTextStyle | TextStyle? | 输入框的文本Style | 否 |  |
 
 ## 四、效果及代码展示
 
