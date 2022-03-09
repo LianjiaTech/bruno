@@ -24,35 +24,30 @@ group:
 
 ```dart
 BrnAppraiseBottomPicker({
-  this.title,
-  this.headerType = BrnAppraiseHeaderType.spaceBetween,
-  this.type = BrnAppraiseType.Star,
-  this.iconDescriptions,
-  this.tags,
-  this.inputHintText,
-  this.onConfirm,
-  this.config,
-});
+    Key? key,
+    this.title = '',
+    this.headerType = BrnAppraiseHeaderType.spaceBetween,
+    this.type = BrnAppraiseType.Star,
+    this.iconDescriptions = _defaultIconDescriptions,
+    this.tags,
+    this.inputHintText = '',
+    this.onConfirm,
+    this.config = const BrnAppraiseConfig(),
+  }) : super(key: key);
 ```
 
 ### 参数说明
 
 | **参数名** | **参数类型** | **作用** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| title | String | 标题 | 否 | 无 |
+| title | String | 标题 | 否 | '' |
 | headerType | BrnAppraiseHeaderType | 标题类型，居中还是两侧 | 否 | BrnAppraiseHeaderType.spaceBetween |
 | type | BrnAppraiseType | 评价组件类型，表情包还是五角星 | 否 | BrnAppraiseType.Star |
 | iconDescriptions | `List<String>` | 点击表情时对应等级的提示文案。若 `type=BrnAppraiseType.Emoji`，则list长度为5，不足5个时请在对应位置补空字符串。若 `type=BrnAppraiseType.Star`，list长度不能比传入的 BrnAppraiseConfig中的 count 小。 | 否 | ['不好', '还行', '满意', '很棒', '超惊喜'] |
-| tags | `List<String>` | 供选择的标签数据 | 否 | 无 |
-| inputHintText | String | 输入框的提示文字 | 否 | 无 |
-| onConfirm | `void Function(int index, List<String> selectedTags, String input)` | 点击提交时的回调，其中index是选中的表情或者五角星的index，selectedTags是选中的标签，input是输入框的内容 | 否 | 无 |
-| config | BrnAppraiseConfig | 配置类，具体见下边其他参数说明 | 否 | BrnAppraiseConfig() |
-
-### 其他参数说明
-
-#### BrnAppraiseConfig
-
-参见 [BrnAppraise](../brn-appraise/brn-appraise)。
+| tags | `List<String>?` | 供选择的标签数据 | 否 | 无 |
+| inputHintText | String | 输入框的提示文字 | 否 | '' |
+| onConfirm | `void Function(int index, List<String> selectedTags, String input)?` | 点击提交时的回调，其中index是选中的表情或者五角星的index，selectedTags是选中的标签，input是输入框的内容 | 否 | 无 |
+| config | BrnAppraiseConfig | 配置类，具体参见 [BrnAppraise](../brn-appraise/brn-appraise) | 否 | BrnAppraiseConfig() |
 
 ### 四、代码演示
 
@@ -80,7 +75,7 @@ showDialog(
             BrnToast.show('输入的内容为' + input, context);
           },
           iconClickCallback: (index) {
-            BrnToast.show('选中的评价为${index}', context);
+            BrnToast.show('选中的评价为$index', context);
           },
           tagSelectCallback: (list) {
             BrnToast.show(
