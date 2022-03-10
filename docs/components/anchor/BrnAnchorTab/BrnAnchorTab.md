@@ -29,9 +29,9 @@ group:
 
 ```dart
 BrnAnchorTab(
-  {@required this.widgetIndexedBuilder,
-  @required this.tabIndexedBuilder,
-  @required this.itemCount,
+  {required this.widgetIndexedBuilder,
+  required this.tabIndexedBuilder,
+  required this.itemCount,
   this.tabDivider,
   this.tabBarStyle = const BrnAnchorTabBarStyle()});
 ```
@@ -46,7 +46,7 @@ BrnAnchorTab(
 | widgetIndexedBuilder | ScrollWidgetIndexedBuilder | 指定index的卡片widget | 是 | 无 |
 | tabIndexedBuilder | TabIndexedBuilder | 指定index的Tab | 是 | 无 |
 | itemCount | int | Tab和卡片Widget的数量 | 是 | 无 |
-| tabDivider | Widget | tab间填充的Widget | 否 | 无 |
+| tabDivider | Widget? | tab间填充的Widget | 否 | 无 |
 
 ## 四、效果及代码展示
 
@@ -55,20 +55,28 @@ BrnAnchorTab(
  <img src="./img/anchorTab.gif" style="zoom: 50%;" />
 
 ```dart
-BrnAnchorTab(  
-  itemCount: 10,  
-  widgetIndexedBuilder: (context, index) {  
-    return Container(  
-      child: Center(child: Text('$index')),  
-      height: Random().nextInt(400).toDouble(),  
-      color: Color.fromARGB(Random().nextInt(255), Random().nextInt(255),  
-          Random().nextInt(255), Random().nextInt(255)),  
-    );  
-  },  
-  tabIndexedBuilder: (context, index) {  
-    return Tab(  
-      child: Text(index.toString()),  
-    );  
-  },  
-)
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: BrnAppBar(
+      title: '锚点',
+    ),
+    body: BrnAnchorTab(
+      itemCount: 10,
+      widgetIndexedBuilder: (context, index) {
+        return Container(
+          child: Center(child: Text('$index')),
+          height: Random().nextInt(400).toDouble(),
+          color: Color.fromARGB(Random().nextInt(255), Random().nextInt(255),
+              Random().nextInt(255), Random().nextInt(255)),
+        );
+      },
+      tabIndexedBuilder: (context, index) {
+        return BadgeTab(
+          text: 'index $index'
+        );
+      },
+    ),
+  );
+}
 ```

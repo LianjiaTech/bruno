@@ -27,19 +27,18 @@ group:
 
 ```dart
 BrnExpandableGroup({
-  Key key,
-  @required this.title,
+  Key? key,
+  required this.title,
   this.subtitle,
   this.backgroundColor,
   this.onExpansionChanged,
   this.children = const <Widget>[],
   this.initiallyExpanded = false,
   this.themeData,
-})  : assert(initiallyExpanded != null),
-      super(key: key) {
+})  : super(key: key) {
   this.themeData ??= BrnFormItemConfig();
   this.themeData = BrnThemeConfigurator.instance
-      .getConfig(configId: this.themeData.configId)
+      .getConfig(configId: this.themeData!.configId)
       .formItemConfig
       .merge(this.themeData);
 }
@@ -47,15 +46,15 @@ BrnExpandableGroup({
 
 ### 参数说明
 
-| **参数名**         | **参数类型**         | **描述**                                           | **是否必填** | **默认值**  |
-| ------------------ | -------------------- | -------------------------------------------------- | ------------ | ----------- |
-| title              | String               | 标题                                               | 否           | 无          |
-| subTitle           | String               | 子标题                                             | 否           | 无          |
-| backgroundColor    | Color                | 背景色                                             | 否           | transparent |
-| onExpansionChanged | `ValueChanged<bool>` | 状态变化回调                                       | 否           | 无          |
-| children           | `List<Widget>`       | 内容 Widget List 表                                | 否           | 无          |
-| initiallyExpanded  | bool                 | 初始状态（true 展开，false 不展开）                | 否           | false       |
-| themeData          | BrnFormItemConfig    | 表单项主题配置，具体配置信息详见 BrnFormItemConfig | 否           |             |
+| **参数名**         | **参数类型**          | **描述**                                           | **是否必填** | **默认值**  |
+| ------------------ | --------------------- | -------------------------------------------------- | ------------ | ----------- |
+| title              | String                | 标题                                               | 是           | 无          |
+| subTitle           | String?               | 子标题                                             | 否           | 无          |
+| backgroundColor    | Color?                | 背景色                                             | 否           | transparent |
+| onExpansionChanged | `ValueChanged<bool>?` | 状态变化回调                                       | 否           | 无          |
+| children           | `List<Widget>`        | 内容 Widget List 表                                | 否           | 无          |
+| initiallyExpanded  | bool                  | 初始状态（true 展开，false 不展开）                | 否           | false       |
+| themeData          | BrnFormItemConfig?    | 表单项主题配置，具体配置信息详见 BrnFormItemConfig | 否           |             |
 
 ## 四、代码演示
 

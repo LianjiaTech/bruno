@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:badges/badges.dart';
 import 'package:bruno/src/components/popup/brn_measure_size.dart';
 import 'package:bruno/src/components/tabbar/indicator/brn_custom_width_indicator.dart';
@@ -9,7 +7,6 @@ import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 /// 单个tab选中的回调
 /// [state]:当前组件的State对象，[BrnTabBarState]

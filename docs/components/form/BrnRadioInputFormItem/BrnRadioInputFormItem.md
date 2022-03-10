@@ -45,29 +45,29 @@ group:
 
 
 ```dart
-BrnRadioInputFormItem(
-    {Key key,
-    this.label,
-    this.title: "",
-    this.subTitle,
-    this.tipLabel,
-    this.prefixIconType: BrnPrefixIconType.normal,
-    this.error: "",
-    this.isEdit: true,
-    this.isRequire: false,
-    this.onAddTap,
-    this.onRemoveTap,
-    this.onTip,
-    this.value,
-    this.options,
-    this.enableList,
-    this.onChanged,
-    this.themeData,
-    this.titleMaxLines,})
-    : super(key: key) {
+BrnRadioInputFormItem({
+  Key? key,
+  this.label,
+  this.title: "",
+  this.subTitle,
+  this.tipLabel,
+  this.prefixIconType: BrnPrefixIconType.normal,
+  this.error: "",
+  this.isEdit: true,
+  this.isRequire: false,
+  this.onAddTap,
+  this.onRemoveTap,
+  this.onTip,
+  this.value,
+  this.options,
+  this.enableList,
+  this.onChanged,
+  this.themeData,
+  this.titleMaxLines,
+}) : super(key: key) {
   this.themeData ??= BrnFormItemConfig();
   this.themeData = BrnThemeConfigurator.instance
-      .getConfig(configId: this.themeData.configId)
+      .getConfig(configId: this.themeData!.configId)
       .formItemConfig
       .merge(this.themeData);
   this._isAutoLayout = false;
@@ -77,24 +77,25 @@ BrnRadioInputFormItem(
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
 | --- | --- | --- | --- | --- | --- |
-| label | String | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
+| label | String? | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
+| type | Stirng | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.radioInputType | 外部可根据此字段判断表单项类型 |
 | title | String | 录入项标题 | 否 | '' |  |
-| subTitle | String | 录入项子标题 | 否 | 无 |  |
-| tipLabel | String | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
-| prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.normal | 1. 不展示图标：BrnPrefixIconType.normal 2. 展示加号图标：BrnPrefixIconType.add3. 展示减号图标：BrnPrefixIconType.remove |
+| subTitle | String? | 录入项子标题 | 否 | 无 |  |
+| tipLabel | String? | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
+| prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.normal | 1. 不展示图标：BrnPrefixIconType.normal 2. 展示加号图标：BrnPrefixIconType.add 3. 展示减号图标：BrnPrefixIconType.remove |
 | error | String | 录入项错误提示 | 否 | '' |  |
 | isRequire | bool | 录入项是否为必填项（展示*图标） 默认为 false 不必填 | 否 | false |  |
 | isEdit | bool | 录入项 是否可编辑 | 否 | true | true：可编辑false：禁用 |
-| onAddTap | VoidCallback | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onRemoveTap | VoidCallback | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onTip | VoidCallback | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
-| value | String | 选中的选项文案 | 否 | 无 |  |
-| options | List<String> | 所有选项文案 | 否 | 无 |  |
-| enableList | List<bool> | 标识每个选项是否禁用false：禁用 | 否 | 无 |  |
-| onChanged | OnBrnFormRadioValueChanged | 用户在选项间切换时调用 | 否 | 无 | void Function(String oldStr, String newStr) |
-| titleMaxLines | int | 标题显示的最大行数 | 否 | 1 |  |
-| layoutRatio | double | 左边标题部分/右边选项部分的宽度比例。例如 1/2 显示就传 0.5 | 否 | 当左右内容超出默认比例且「有」提示语，则按比例  6:4 布局，当左右内容超出默认比例且「无」提示语，则按比例  4:6 布局 | 右边选项部分的显示宽度 = min(选项部分的实际宽度, 选项部分的比例计算宽度) |
-| themeData | BrnFormItemConfig | 表单主题配置 | 否 | 无 | |
+| onAddTap | VoidCallback? | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
+| onRemoveTap | VoidCallback? | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
+| onTip | VoidCallback? | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
+| value | String? | 选中的选项文案 | 否 | 无 |  |
+| options | `List<String>?` | 所有选项文案 | 否 | 无 |  |
+| enableList | `List<bool>?` | 标识每个选项是否禁用false：禁用 | 否 | 无 |  |
+| onChanged | OnBrnFormRadioValueChanged? | 用户在选项间切换时调用 | 否 | 无 | void Function(String oldStr, String newStr) |
+| titleMaxLines | int? | 标题显示的最大行数 | 否 | 1 |  |
+| layoutRatio | double? | 左边标题部分/右边选项部分的宽度比例。例如 1/2 显示就传 0.5 | 否 | 当左右内容超出默认比例且「有」提示语，则按比例  6:4 布局，当左右内容超出默认比例且「无」提示语，则按比例  4:6 布局 | 右边选项部分的显示宽度 = min(选项部分的实际宽度, 选项部分的比例计算宽度) |
+| themeData | BrnFormItemConfig? | 表单主题配置 | 否 | 无 | |
 
 ### 其他数据说明
 

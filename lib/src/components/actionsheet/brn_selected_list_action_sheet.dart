@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
@@ -140,8 +139,12 @@ class BrnSelectedListActionSheet<T> {
 
   /// bottomWidgetKey: 已选列表下边操作区域绑定的 GlobalKey,已选列表会自动与操作区域左右对齐，且从操作区域的顶部滑出
   void showWithTargetKey({required GlobalKey bottomWidgetKey}) {
-    RenderBox? renderBox =
-        bottomWidgetKey.currentContext?.findRenderObject() as RenderBox?;
+    RenderBox? renderBox;
+    RenderObject? renderObject =
+        bottomWidgetKey.currentContext?.findRenderObject();
+    if (renderObject != null && renderObject is RenderBox) {
+      renderBox = renderObject;
+    }
     var offset = renderBox?.localToGlobal(Offset.zero);
     _leftOffset = offset?.dx ?? 0;
     _maxWidth = renderBox?.size.width ?? MediaQuery.of(context).size.width;
@@ -286,21 +289,22 @@ class _BrnActionSheetSelectedItemListState<T>
     AnimationController alphaAnimationController = AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
     widget._alphaAnimationController = alphaAnimationController;
-    Animation<double> yAnimation = Tween<double>(begin: 65.0, end: this.getContentHeight())
-        .animate(yAnimationController)
-      ..addListener(() {
-        setState(() => {});
-      })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.dismissed) {
-          widget.onDismiss!(_isClosedByClear);
-        }
-      });
-    widget._yAnimation = yAnimation as Animation<double>;
-    Animation alphaAnimation = Tween(begin: 0.0, end: 0.7)
+    Animation<double> yAnimation =
+        Tween(begin: 65.0, end: this.getContentHeight())
+            .animate(yAnimationController)
+          ..addListener(() {
+            setState(() => {});
+          })
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.dismissed) {
+              widget.onDismiss!(_isClosedByClear);
+            }
+          });
+    widget._yAnimation = yAnimation;
+    Animation<double> alphaAnimation = Tween(begin: 0.0, end: 0.7)
         .animate(alphaAnimationController)
       ..addListener(() {});
-    widget._alphaAnimation = alphaAnimation as Animation<double>;
+    widget._alphaAnimation = alphaAnimation;
     yAnimationController.forward();
     alphaAnimationController.forward();
   }

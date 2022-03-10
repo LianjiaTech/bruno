@@ -924,6 +924,7 @@ class DialogEntryPage extends StatelessWidget {
             submitText: "提交",
             onSubmitClick: () {
               BrnToast.show("点击了纯文本弹框", context);
+              Navigator.of(context).pop();
             }));
   }
 

@@ -133,6 +133,10 @@ class BrnPopupWindow extends StatefulWidget {
       double? arrowOffset,
       VoidCallback? dismissCallback,
       double turnOverFromBottom = 50.0}) {
+    assert(popKey.currentContext != null &&
+        popKey.currentContext!.findRenderObject() != null);
+    if (popKey.currentContext == null ||
+        popKey.currentContext!.findRenderObject() == null) return;
     Navigator.push(
         context,
         BrnPopupRoute(
@@ -164,7 +168,7 @@ class BrnPopupWindow extends StatefulWidget {
 
 class _BrnPopupWindowState extends State<BrnPopupWindow> {
   /// targetView的位置
-  Rect? _showRect;
+  Rect _showRect = Rect.zero;
 
   /// 屏幕的尺寸
   late Size _screenSize;
@@ -199,57 +203,50 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
     _backgroundColor =
         (widget.backgroundColor ?? Colors.transparent).withAlpha(255);
     _popDirection = widget.popDirection;
-    if (this._showRect != null) {
-      _calculateOffset(this._showRect!);
-    }
+    _calculateOffset();
   }
 
   // 获取targetView的位置
-  Rect? _getWidgetGlobalRect(GlobalKey key) {
-    BuildContext? ctx = key.currentContext;
-    RenderObject? obj;
-    if (ctx != null) {
-      obj = ctx.findRenderObject();
-    }
-    if (obj != null && obj is RenderBox) {
-      RenderBox renderBox = obj;
+  Rect _getWidgetGlobalRect(GlobalKey key) {
+    try {
+      BuildContext? ctx = key.currentContext;
+      RenderObject? renderObject = ctx?.findRenderObject();
+      RenderBox renderBox = renderObject as RenderBox;
       var offset = renderBox.localToGlobal(Offset.zero);
       return Rect.fromLTWH(
           offset.dx, offset.dy, renderBox.size.width, renderBox.size.height);
+    } catch (e) {
+      debugPrint('获取尺寸信息异常');
+      return Rect.zero;
     }
-    return null;
   }
 
   // 计算popUpWindow显示的位置
-  void _calculateOffset(Rect showRect) {
-    if (showRect.center.dx < _screenSize.width / 2) {
+  void _calculateOffset() {
+    if (_showRect.center.dx < _screenSize.width / 2) {
       // popUpWindow向右侧延伸
       _expandedRight = true;
-      _left = showRect.left;
+      _left = _showRect.left;
     } else {
       // popUpWindow向左侧延伸
       _expandedRight = false;
-      _right = _screenSize.width - showRect.right + widget.spaceMargin;
+      _right = _screenSize.width - _showRect.right + widget.spaceMargin;
     }
     if (_popDirection == BrnPopupDirection.bottom) {
       // 在targetView下方
-      _top = showRect.height + showRect.top + widget.offset;
+      _top = _showRect.height + _showRect.top + widget.offset;
       if ((_screenSize.height - _top) < widget.turnOverFromBottom) {
         _popDirection = BrnPopupDirection.top;
-        _bottom = _screenSize.height - showRect.top + widget.offset;
+        _bottom = _screenSize.height - _showRect.top + widget.offset;
       }
     } else if (_popDirection == BrnPopupDirection.top) {
       // 在targetView上方
-      _bottom = _screenSize.height - showRect.top + widget.offset;
+      _bottom = _screenSize.height - _showRect.top + widget.offset;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (this._showRect == null) {
-      Navigator.pop(context);
-      return Container();
-    }
     return ExcludeSemantics(
       excluding: true,
       child: WillPopScope(
@@ -287,7 +284,7 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
         ? Positioned(
             left: widget.arrowOffset ??
                 _left +
-                    (_showRect!.width - _arrowSpacing) / 2 -
+                    (_showRect.width - _arrowSpacing) / 2 -
                     widget.spaceMargin,
             top: _popDirection == BrnPopupDirection.bottom
                 ? _top - widget.arrowHeight
@@ -306,7 +303,7 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
         : Positioned(
             right: widget.arrowOffset ??
                 _right +
-                    (_showRect!.width - _arrowSpacing) / 2 -
+                    (_showRect.width - _arrowSpacing) / 2 -
                     widget.spaceMargin,
             top: _popDirection == BrnPopupDirection.bottom
                 ? _top - widget.arrowHeight
@@ -508,6 +505,10 @@ class BrnPopupListWindow {
     double maxHeight = 200;
     double borderRadius = 4;
     bool hasCloseIcon = true;
+    assert(popKey.currentContext != null &&
+        popKey.currentContext!.findRenderObject() != null);
+    if (popKey.currentContext == null ||
+        popKey.currentContext!.findRenderObject() == null) return;
     Navigator.push(
         context,
         BrnPopupRoute(
@@ -557,6 +558,11 @@ class BrnPopupListWindow {
       double offset = 0,
       BrnPopupListItemClick? onItemClick,
       VoidCallback? onDismiss}) {
+    assert(popKey.currentContext != null &&
+        popKey.currentContext!.findRenderObject() != null);
+    if (popKey.currentContext == null ||
+        popKey.currentContext!.findRenderObject() == null) return;
+
     double arrowHeight = 6.0;
     double borderRadius = 4;
     double spaceMargin = 0;
