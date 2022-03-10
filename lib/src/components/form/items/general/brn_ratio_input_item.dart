@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -213,6 +211,6 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
   void dispose() {
     super.dispose();
     // 如果controller由外部创建不需要销毁, 若由内部创建则需要销毁
-      _controller.dispose();
+    _controller.dispose();
   }
 }

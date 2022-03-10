@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -74,12 +72,14 @@ class _RatingExampleState extends State<RatingExample> {
   Widget _buildRating(RatingState state) {
     switch (state) {
       case RatingState.select:
-        return BrunoTools.getAssetSizeImage(BrnAsset.iconStar, 16, 16, color: Color(0xFF3571DC));
+        return BrunoTools.getAssetSizeImage(BrnAsset.iconStar, 16, 16,
+            color: Color(0xFF3571DC));
       case RatingState.half:
         return BrunoTools.getAssetSizeImage(BrnAsset.iconStarHalf, 16, 16);
       case RatingState.unselect:
       default:
-        return BrunoTools.getAssetSizeImage(BrnAsset.iconStar, 16, 16, color: Color(0xFFF0F0F0));
+        return BrunoTools.getAssetSizeImage(BrnAsset.iconStar, 16, 16,
+            color: Color(0xFFF0F0F0));
     }
   }
 }

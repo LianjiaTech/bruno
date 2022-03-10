@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
@@ -80,8 +78,8 @@ class _BrnDateTimeWidgetState extends State<BrnDateTimeWidget> {
 
   int? _minuteDivider;
 
-  _BrnDateTimeWidgetState(DateTime? minTime, DateTime? maxTime, DateTime? initTime,
-      int? minuteDivider) {
+  _BrnDateTimeWidgetState(DateTime? minTime, DateTime? maxTime,
+      DateTime? initTime, int? minuteDivider) {
     // check minTime value
     if (minTime == null) {
       minTime = DateTime.parse(datePickerMinDatetime);
@@ -216,29 +214,19 @@ class _BrnDateTimeWidgetState extends State<BrnDateTimeWidget> {
       /// 如果传入的时间格式不包含 月、天、小时、分钟、秒。则相对应的时间置为 1,1,0,0,0；
       DateTime dateTime = DateTime(
         _currYear,
-        (formatArr.where((format) => format.contains('M')).toList())
-                    .length >
-                0
+        (formatArr.where((format) => format.contains('M')).toList()).length > 0
             ? _currMonth
             : 1,
-        (formatArr.where((format) => format.contains('d')).toList())
-                    .length >
-                0
+        (formatArr.where((format) => format.contains('d')).toList()).length > 0
             ? _currDay
             : 1,
-        (formatArr.where((format) => format.contains('H')).toList())
-                    .length >
-                0
+        (formatArr.where((format) => format.contains('H')).toList()).length > 0
             ? _currHour
             : 0,
-        (formatArr.where((format) => format.contains('m')).toList())
-                    .length >
-                0
+        (formatArr.where((format) => format.contains('m')).toList()).length > 0
             ? _currMinute
             : 0,
-        (formatArr.where((format) => format.contains('s')).toList())
-                    .length >
-                0
+        (formatArr.where((format) => format.contains('s')).toList()).length > 0
             ? _currSecond
             : 0,
       );
@@ -575,8 +563,8 @@ class _BrnDateTimeWidgetState extends State<BrnDateTimeWidget> {
 
     if (minuteRangeChanged) {
       // CupertinoPicker refresh data not working (https://github.com/flutter/flutter/issues/22999)
-      _minuteScrollCtrl
-          .jumpToItem((minuteRange.last - minuteRange.first) ~/ _minuteDivider!);
+      _minuteScrollCtrl.jumpToItem(
+          (minuteRange.last - minuteRange.first) ~/ _minuteDivider!);
       if (_currMinute < minuteRange.last) {
         _minuteScrollCtrl
             .jumpToItem((_currMinute - minuteRange.first) ~/ _minuteDivider!);

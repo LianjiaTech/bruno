@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/base/input_item_interface.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
@@ -137,7 +135,6 @@ class BrnFormUtil {
   }
 
   static Widget getRequireIcon(bool isRequire) {
-
     return Container(
       padding:
           isRequire ? EdgeInsets.only(right: 2) : EdgeInsets.only(right: 0),
@@ -285,8 +282,11 @@ class BrnFormUtil {
   }
 
   /// 处理 单选选中状态变化
-  static void notifyRadioStatusChanged(OnBrnFormRadioValueChanged? onTextChanged,
-      BuildContext context, Object? oldVal, Object? newVal) {
+  static void notifyRadioStatusChanged(
+      OnBrnFormRadioValueChanged? onTextChanged,
+      BuildContext context,
+      Object? oldVal,
+      Object? newVal) {
     if (onTextChanged != null) {
       onTextChanged(oldVal as String?, newVal as String?);
     }

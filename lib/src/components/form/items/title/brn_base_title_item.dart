@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
@@ -53,11 +51,11 @@ class BrnBaseTitle extends StatefulWidget {
 
   BrnBaseTitle({
     Key? key,
-    this.title= "",
+    this.title = "",
     this.subTitle,
-    this.isRequire= false,
-    this.isEdit= true,
-    this.error= "",
+    this.isRequire = false,
+    this.isEdit = true,
+    this.error = "",
     this.tipLabel,
     this.titleWidget,
     this.subTitleWidget,

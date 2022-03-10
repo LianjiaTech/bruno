@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
@@ -128,7 +126,6 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
     this._currStartMinute =
         min(max(_minuteRange.first, _currStartMinute), _minuteRange.last);
     _currStartMinute -= _currStartMinute % _minuteDivider;
-
 
     _onInitSelectedChange();
     // create scroll controller

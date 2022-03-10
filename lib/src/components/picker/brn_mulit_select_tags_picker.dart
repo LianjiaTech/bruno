@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_tags_common_picker.dart';
 import 'package:bruno/src/components/picker/brn_tags_picker_config.dart';
@@ -130,7 +128,7 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
   Widget _buildGridViewWidget(
       BuildContext context, VoidCallback? onUpdate, double maxWidth) {
     int brnCrossAxisCount =
-    (this.crossAxisCount == null || this.crossAxisCount == 0)
+        (this.crossAxisCount == null || this.crossAxisCount == 0)
             ? 4
             : this.crossAxisCount!;
     double width =

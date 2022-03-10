@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class BrnTextExpandedContentExample extends StatefulWidget {
   @override
-  _BrnTextExpandedContentExampleState createState() => _BrnTextExpandedContentExampleState();
+  _BrnTextExpandedContentExampleState createState() =>
+      _BrnTextExpandedContentExampleState();
 }
 
-class _BrnTextExpandedContentExampleState extends State<BrnTextExpandedContentExample> {
+class _BrnTextExpandedContentExampleState
+    extends State<BrnTextExpandedContentExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,10 @@ class _BrnTextExpandedContentExampleState extends State<BrnTextExpandedContentEx
           children: <Widget>[
             Text(
               '规则',
-              style: TextStyle(color: Color(0xFF222222), fontSize: 28, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Color(0xFF222222),
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold),
             ),
             BrnBubbleText(
               maxLines: 4,

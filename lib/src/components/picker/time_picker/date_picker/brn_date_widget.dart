@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
@@ -27,7 +25,7 @@ class BrnDateWidget extends StatefulWidget {
     this.initialDateTime,
     this.dateFormat = datetimePickerDateFormat,
     this.locale = datetimePickerLocaleDefault,
-    this.pickerTitleConfig= BrnPickerTitleConfig.Default,
+    this.pickerTitleConfig = BrnPickerTitleConfig.Default,
     this.onCancel,
     this.onChange,
     this.onConfirm,
@@ -63,7 +61,9 @@ class _BrnDateWidgetState extends State<BrnDateWidget> {
   late DateTime _minDateTime, _maxDateTime;
   late int _currYear, _currMonth, _currDay;
   late List<int> _yearRange, _monthRange, _dayRange;
-  late FixedExtentScrollController? _yearScrollCtrl, _monthScrollCtrl, _dayScrollCtrl;
+  late FixedExtentScrollController? _yearScrollCtrl,
+      _monthScrollCtrl,
+      _dayScrollCtrl;
 
   late Map<String, FixedExtentScrollController?> _scrollCtrlMap;
   late Map<String, List<int>?> _valueRangeMap;

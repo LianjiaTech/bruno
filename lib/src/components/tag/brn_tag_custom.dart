@@ -50,7 +50,8 @@ class BrnTagCustom extends StatelessWidget {
     this.textColor,
     this.backgroundColor,
     this.tagBorderRadius = const BorderRadius.all(Radius.circular(2)),
-    this.textPadding = const EdgeInsets.only(bottom: 0.5, left: 3, right: 3, top: 0),
+    this.textPadding =
+        const EdgeInsets.only(bottom: 0.5, left: 3, right: 3, top: 0),
     this.border,
     this.fontSize = 11,
     this.fontWeight = FontWeight.normal,
@@ -62,7 +63,8 @@ class BrnTagCustom extends StatelessWidget {
     Key? key,
     required this.tagText,
     this.backgroundColor = Colors.transparent,
-    this.textPadding = const EdgeInsets.only(bottom: 3, left: 3, right: 3, top: 0),
+    this.textPadding =
+        const EdgeInsets.only(bottom: 3, left: 3, right: 3, top: 0),
     this.fontSize = 11,
     this.fontWeight = FontWeight.normal,
     this.tagBorderRadius = const BorderRadius.all(Radius.circular(2)),
@@ -71,11 +73,15 @@ class BrnTagCustom extends StatelessWidget {
     double borderWidth = 1,
   })  : this.maxWidth = double.infinity,
         this.border = Border.all(
-          color: borderColor ?? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+          color: borderColor ??
+              BrnThemeConfigurator.instance
+                  .getConfig()
+                  .commonConfig
+                  .brandPrimary,
           width: borderWidth,
         ),
-        this.textColor =
-            textColor ?? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+        this.textColor = textColor ??
+            BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
         super(key: key);
 
   @override
@@ -86,7 +92,10 @@ class BrnTagCustom extends StatelessWidget {
         ),
         decoration: BoxDecoration(
             color: backgroundColor ??
-                BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+                BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .brandPrimary,
             shape: BoxShape.rectangle,
             borderRadius: tagBorderRadius,
             border: border),
@@ -98,7 +107,10 @@ class BrnTagCustom extends StatelessWidget {
           style: TextStyle(
             fontSize: fontSize,
             color: textColor ??
-                BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBaseInverse,
+                BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .colorTextBaseInverse,
             fontWeight: fontWeight,
           ),
         ));

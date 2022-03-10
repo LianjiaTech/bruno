@@ -372,8 +372,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
     _middleNormalBgColor ??= selectionConfig._middleNormalBgColor;
     _deepSelectBgColor ??= selectionConfig._deepSelectBgColor;
     _deepNormalBgColor ??= selectionConfig._deepNormalBgColor;
-    _tagSelectedBackgroundColor ??=
-        commonConfig.brandPrimary.withOpacity(0.12);
+    _tagSelectedBackgroundColor ??= commonConfig.brandPrimary.withOpacity(0.12);
     _tagNormalBackgroundColor ??= commonConfig.fillBody;
     _tagRadius ??= commonConfig.radiusSm;
     _flayerBoldTextStyle = selectionConfig.flayerBoldTextStyle.merge(
@@ -540,7 +539,8 @@ class BrnSelectionConfig extends BrnBaseConfig {
 
   BrnSelectionConfig merge(BrnSelectionConfig other) {
     return copyWith(
-      menuNormalTextStyle: menuNormalTextStyle.merge(other._menuNormalTextStyle),
+      menuNormalTextStyle:
+          menuNormalTextStyle.merge(other._menuNormalTextStyle),
       menuSelectedTextStyle:
           menuSelectedTextStyle.merge(other._menuSelectedTextStyle),
       tagTextStyle: tagNormalTextStyle.merge(other._tagNormalTextStyle),
@@ -550,9 +550,11 @@ class BrnSelectionConfig extends BrnBaseConfig {
       tagBackgroundColor: other._tagNormalBackgroundColor,
       tagSelectedBackgroundColor: other._tagSelectedBackgroundColor,
       hintTextStyle: hintTextStyle.merge(other._hintTextStyle),
-      rangeTitleTextStyle: rangeTitleTextStyle.merge(other._rangeTitleTextStyle),
+      rangeTitleTextStyle:
+          rangeTitleTextStyle.merge(other._rangeTitleTextStyle),
       inputTextStyle: inputTextStyle.merge(other._inputTextStyle),
-      itemNormalTextStyle: itemNormalTextStyle.merge(other._itemNormalTextStyle),
+      itemNormalTextStyle:
+          itemNormalTextStyle.merge(other._itemNormalTextStyle),
       itemSelectedTextStyle:
           itemSelectedTextStyle.merge(other._itemSelectedTextStyle),
       itemBoldTextStyle: itemBoldTextStyle.merge(other._itemBoldTextStyle),
@@ -571,7 +573,8 @@ class BrnSelectionConfig extends BrnBaseConfig {
           flayerNormalTextStyle.merge(other._flayerNormalTextStyle),
       flayerSelectedTextStyle:
           flayerSelectedTextStyle.merge(other._flayerSelectedTextStyle),
-      flayerBoldTextStyle: flayerBoldTextStyle.merge(other._flayerBoldTextStyle),
+      flayerBoldTextStyle:
+          flayerBoldTextStyle.merge(other._flayerBoldTextStyle),
     );
   }
 }

@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 import 'dart:ui';
 
@@ -175,8 +173,9 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
   }
 
   void fillOffset() {
-    Offset globalToLocal = (_key.currentContext!.findRenderObject() as RenderBox)
-        .localToGlobal(Offset.zero);
+    Offset globalToLocal =
+        (_key.currentContext!.findRenderObject() as RenderBox)
+            .localToGlobal(Offset.zero);
     listDy = globalToLocal.dy;
 
     for (int i = 0, n = widget.itemCount; i < n; i++) {
@@ -193,9 +192,9 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
   }
 
   void fillTab() {
-      for (int i = 0, n = widget.itemCount; i < n; i++) {
-        _tabList.add(widget.tabIndexedBuilder(context, i));
-      }
+    for (int i = 0, n = widget.itemCount; i < n; i++) {
+      _tabList.add(widget.tabIndexedBuilder(context, i));
+    }
   }
 
   void updateOffset() {

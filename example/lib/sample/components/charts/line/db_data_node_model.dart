@@ -1,7 +1,5 @@
 /// @desc   看板卡片中用于描述数据指标的模型，也能用于数据块的定义，内部嵌套了一个itemList
 
-
-
 class DBDataNodeModel {
   String? key;
   String? name;
@@ -26,6 +24,7 @@ class DBDataNodeModel {
   /// section data field
   String? url;
   DBDataNodeModel? total;
+
   DBDataNodeModel();
 
   factory DBDataNodeModel.fromJson(Map<String, dynamic>? json) {

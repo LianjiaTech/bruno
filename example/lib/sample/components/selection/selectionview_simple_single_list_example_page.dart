@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/selection/filter_entity.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +9,12 @@ class SelectionViewSimpleSingleListExamplePage extends StatefulWidget {
   SelectionViewSimpleSingleListExamplePage(this._title, this._filterData);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<SelectionViewSimpleSingleListExamplePage> {
+class _SelectionViewExamplePageState
+    extends State<SelectionViewSimpleSingleListExamplePage> {
   List<BrnSelectionEntity>? items;
 
   @override
@@ -33,9 +33,10 @@ class _SelectionViewExamplePageState extends State<SelectionViewSimpleSingleList
               menuKey: widget._filterData.key ?? 'defaultMenuKey',
               items: widget._filterData.children,
               defaultValue: widget._filterData.defaultValue,
-              onSimpleSelectionChanged: (
-                  List<ItemEntity> filterParams) {
-                BrnToast.show(filterParams.map((e) => e.value).toList().join(','), context);
+              onSimpleSelectionChanged: (List<ItemEntity> filterParams) {
+                BrnToast.show(
+                    filterParams.map((e) => e.value).toList().join(','),
+                    context);
               },
             ),
             Container(

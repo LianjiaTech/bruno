@@ -42,11 +42,13 @@ class _BrnTabbarStickyExampleState extends State<BrnTabbarStickyExample>
           ),
           body: NestedScrollView(
             controller: scrollController,
-            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 buildHeaderWidget(),
                 SliverOverlapAbsorber(
-                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                  handle:
+                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                   sliver: SliverPersistentHeader(
                     pinned: true,
                     delegate: StickyTabBarDelegate(
@@ -57,8 +59,10 @@ class _BrnTabbarStickyExampleState extends State<BrnTabbarStickyExample>
                       moreWindowText: "Tabs描述",
                       onTap: (state, index) {
                         state.refreshBadgeState(index);
-                        scrollController.animateTo(globalKey.currentContext!.size!.height,
-                            duration: Duration(milliseconds: 200), curve: Curves.linear);
+                        scrollController.animateTo(
+                            globalKey.currentContext!.size!.height,
+                            duration: Duration(milliseconds: 200),
+                            curve: Curves.linear);
                       },
                       onMorePop: () {},
                       closeController: closeWindowController,
@@ -108,7 +112,8 @@ class StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   StickyTabBarDelegate({required this.child});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return this.child;
   }
 

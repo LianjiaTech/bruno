@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -29,7 +27,7 @@ class BrnFixedUnderlineIndicator extends Decoration {
     this.width = 1.0,
     this.thickness = 1.0,
     this.color = Colors.white,
-  })  : assert(width >= 1.0);
+  }) : assert(width >= 1.0);
 
   /// The color and weight of the horizontal line drawn below the selected tab.
   final BorderSide borderSide;

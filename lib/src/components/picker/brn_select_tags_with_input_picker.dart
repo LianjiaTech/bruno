@@ -222,12 +222,11 @@ class _BrnSelectTagsWithInputPickerWidgetState
       for (BrnTagInputItemBean item in widget.tagPickerBean!.tagItemSource) {
         tagItems.add(item);
         //选中的按钮
-        if (item.isSelect == true ) {
+        if (item.isSelect == true) {
           tagSelectedItems.add(item);
         }
       }
     }
-
 
     this._sourceTags = tagItems;
     // 重新排序，name 越长，越靠后

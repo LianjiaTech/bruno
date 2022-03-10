@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-
-
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -41,7 +39,7 @@ class BrnExpandableGroup extends StatefulWidget {
     this.children = const <Widget>[],
     this.initiallyExpanded = false,
     this.themeData,
-  })  : super(key: key) {
+  }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
@@ -126,8 +124,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
     }
 
     if (_isExpanded) {
-      arrowIcon =
-          BrunoTools.getAssetSizeImage(BrnAsset.iconDownArrow, 12, 12);
+      arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconDownArrow, 12, 12);
     } else {
       arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconUpArrow, 12, 12);
     }

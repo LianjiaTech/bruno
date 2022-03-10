@@ -1,5 +1,3 @@
-
-
 class BrnMultiSelectBottomPickerItem {
   String code; //选项编号
 

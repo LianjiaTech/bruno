@@ -20,13 +20,13 @@ class BrnStateTag extends StatelessWidget {
   final Color? textColor;
 
   //默认为等待状态,黄色
-  const BrnStateTag(
-      {Key? key,
-      required this.tagText,
-      this.tagState = TagState.waiting,
-      this.backgroundColor,
-      this.textColor,})
-      : super(key: key);
+  const BrnStateTag({
+    Key? key,
+    required this.tagText,
+    this.tagState = TagState.waiting,
+    this.backgroundColor,
+    this.textColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

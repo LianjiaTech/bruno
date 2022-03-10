@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
@@ -378,7 +376,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       return Text(
         widget.value!,
         overflow: TextOverflow.ellipsis,
-        maxLines: widget.valueMaxLines ,
+        maxLines: widget.valueMaxLines,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
         style: BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit,

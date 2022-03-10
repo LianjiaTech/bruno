@@ -8,7 +8,8 @@ class BrnIconBtnExample extends StatefulWidget {
   _BrnIconBtnExampleState createState() => _BrnIconBtnExampleState();
 }
 
-class _BrnIconBtnExampleState extends State<BrnIconBtnExample> with TickerProviderStateMixin {
+class _BrnIconBtnExampleState extends State<BrnIconBtnExample>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

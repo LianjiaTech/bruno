@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +8,12 @@ class SelectionViewCloseOrInterceptorExamplePage extends StatefulWidget {
   SelectionViewCloseOrInterceptorExamplePage(this._title, this._filterData);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<SelectionViewCloseOrInterceptorExamplePage> {
+class _SelectionViewExamplePageState
+    extends State<SelectionViewCloseOrInterceptorExamplePage> {
   List<BrnSelectionEntity>? items;
 
   BrnSelectionViewController? controller;

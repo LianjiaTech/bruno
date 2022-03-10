@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +7,8 @@ class GalleryDetailExamplePage extends StatefulWidget {
   final String? title;
   final PhotoGalleryTheme photoGalleryTheme;
 
-  GalleryDetailExamplePage({this.title, this.photoGalleryTheme = PhotoGalleryTheme.dark});
+  GalleryDetailExamplePage(
+      {this.title, this.photoGalleryTheme = PhotoGalleryTheme.dark});
 
   @override
   State<StatefulWidget> createState() {
@@ -44,7 +43,8 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
             themeData: PhotoGalleryTheme.dark == widget.photoGalleryTheme
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
-            url: "https://img1.baidu.com/it/u=2496571732,442429806&fm=26&fmt=auto&gp=0.jpg",
+            url:
+                "https://img1.baidu.com/it/u=2496571732,442429806&fm=26&fmt=auto&gp=0.jpg",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.cantFold,
             name: "一只猫",

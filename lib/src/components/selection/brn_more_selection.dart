@@ -58,7 +58,8 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    _animation = Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
+    _animation =
+        Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
     _controller.forward();
 
     _originalSelectedItemsList.addAll(widget.entityData.allSelectedList());

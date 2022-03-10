@@ -10,7 +10,8 @@ import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef void SingleListItemSelect(int listIndex, int index, BrnSelectionEntity entity);
+typedef void SingleListItemSelect(
+    int listIndex, int index, BrnSelectionEntity entity);
 
 typedef void ListBgClickFunction();
 
@@ -92,7 +93,8 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
 
     widgetList.add(_listWidget());
     // TODO 判断是否添加 Bottom
-    if (totalLevel == 1 && widget.entity.filterType == BrnSelectionFilterType.radio) {
+    if (totalLevel == 1 &&
+        widget.entity.filterType == BrnSelectionFilterType.radio) {
     } else {
       widgetList.add(_bottomWidget());
     }
@@ -115,9 +117,11 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
           maxHeight: widget.maxContentHeight,
           flex: _getFlexByListIndex(1),
           focusedIndex: _firstIndex,
-          singleListItemSelect: (int listIndex, int index, BrnSelectionEntity entity) {
+          singleListItemSelect:
+              (int listIndex, int index, BrnSelectionEntity entity) {
             _setFirstIndex(index);
-            if (totalLevel == 1 && widget.entity.filterType == BrnSelectionFilterType.radio) {
+            if (totalLevel == 1 &&
+                widget.entity.filterType == BrnSelectionFilterType.radio) {
               _confirmButtonClickEvent();
             }
           }));
@@ -132,7 +136,8 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
           selectedBackgroundColor: _getSelectBgByListIndex(1),
           flex: _getFlexByListIndex(1),
           focusedIndex: _firstIndex,
-          singleListItemSelect: (int listIndex, int index, BrnSelectionEntity entity) {
+          singleListItemSelect:
+              (int listIndex, int index, BrnSelectionEntity entity) {
             _setFirstIndex(index);
           }));
 
@@ -143,7 +148,8 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
           selectedBackgroundColor: _getSelectBgByListIndex(2),
           flex: _getFlexByListIndex(2),
           focusedIndex: _secondIndex,
-          singleListItemSelect: (int listIndex, int index, BrnSelectionEntity entity) {
+          singleListItemSelect:
+              (int listIndex, int index, BrnSelectionEntity entity) {
             _setSecondIndex(index);
           }));
     } else if (!BrunoTools.isEmpty(_firstList) &&
@@ -157,7 +163,8 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
           selectedBackgroundColor: _getSelectBgByListIndex(1),
           flex: _getFlexByListIndex(1),
           focusedIndex: _firstIndex,
-          singleListItemSelect: (int listIndex, int index, BrnSelectionEntity entity) {
+          singleListItemSelect:
+              (int listIndex, int index, BrnSelectionEntity entity) {
             _setFirstIndex(index);
           }));
 
@@ -168,7 +175,8 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
           selectedBackgroundColor: _getSelectBgByListIndex(2),
           flex: _getFlexByListIndex(2),
           focusedIndex: _secondIndex,
-          singleListItemSelect: (int listIndex, int index, BrnSelectionEntity entity) {
+          singleListItemSelect:
+              (int listIndex, int index, BrnSelectionEntity entity) {
             _setSecondIndex(index);
           }));
       widgets.add(BrnSelectionSingleListWidget(
@@ -178,7 +186,8 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
           selectedBackgroundColor: _getSelectBgByListIndex(3),
           flex: _getFlexByListIndex(3),
           focusedIndex: _thirdIndex,
-          singleListItemSelect: (int listIndex, int index, BrnSelectionEntity entity) {
+          singleListItemSelect:
+              (int listIndex, int index, BrnSelectionEntity entity) {
             if (entity.isSelected) {
               _thirdIndex = index;
             } else {
@@ -247,11 +256,13 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
                       Container(
                         height: 24,
                         width: 24,
-                        child: BrunoTools.getAssetImage(BrnAsset.iconSelectionReset),
+                        child: BrunoTools.getAssetImage(
+                            BrnAsset.iconSelectionReset),
                       ),
                       Text(
                         "重置",
-                        style: widget.themeData.resetTextStyle.generateTextStyle(),
+                        style:
+                            widget.themeData.resetTextStyle.generateTextStyle(),
                       )
                     ],
                   ),
@@ -282,7 +293,8 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
     _processFilterDataOnConfirm();
     if (widget.onSelectionConfirm != null) {
       //更多和无tips等外部调用的多选需要传递此值selectedLastColumnArray
-      widget.onSelectionConfirm!(widget.entity, _firstIndex, _secondIndex, _thirdIndex);
+      widget.onSelectionConfirm!(
+          widget.entity, _firstIndex, _secondIndex, _thirdIndex);
     }
   }
 
@@ -387,12 +399,13 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
       commonEntity.customMap = Map.from(commonEntity.originalCustomMap);
     }
   }
-  
+
   void _setFirstIndex(int firstIndex) {
     _firstIndex = firstIndex;
     _secondIndex = -1;
     if (widget.entity.children.length > _firstIndex) {
-      List<BrnSelectionEntity> seconds = widget.entity.children[_firstIndex].children;
+      List<BrnSelectionEntity> seconds =
+          widget.entity.children[_firstIndex].children;
       _secondIndex = _getInitialSelectIndex(seconds);
       if (_secondIndex >= 0) {
         _setSecondIndex(_secondIndex);
@@ -406,7 +419,8 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
   void _setSecondIndex(int secondIndex) {
     _secondIndex = secondIndex;
     _thirdIndex = -1;
-    List<BrnSelectionEntity> seconds = widget.entity.children[_firstIndex].children;
+    List<BrnSelectionEntity> seconds =
+        widget.entity.children[_firstIndex].children;
     if (seconds.length > _secondIndex) {
       List<BrnSelectionEntity> thirds = seconds[_secondIndex].children;
       if (thirds.isNotEmpty) {
@@ -544,7 +558,8 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
     if (entity.children.length > 0) {
       entity.children.forEach((f) => _processSelectedStatus(f));
       if (entity.hasCheckBoxBrother()) {
-        entity.isSelected = entity.children.where((_) => _.isSelected).length > 0;
+        entity.isSelected =
+            entity.children.where((_) => _.isSelected).length > 0;
       }
     }
   }

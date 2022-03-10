@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +8,12 @@ class SelectionViewMoreFilterExamplePage extends StatefulWidget {
   SelectionViewMoreFilterExamplePage(this._title, this._filters);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<SelectionViewMoreFilterExamplePage> {
+class _SelectionViewExamplePageState
+    extends State<SelectionViewMoreFilterExamplePage> {
   int count = 0;
 
   @override

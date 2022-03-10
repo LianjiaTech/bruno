@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
@@ -74,7 +72,7 @@ class BrnPicker extends StatefulWidget {
     required this.onSelectedItemChanged,
     required List<Widget> children,
     bool looping = false,
-  })  :assert(diameterRatio > 0.0,
+  })  : assert(diameterRatio > 0.0,
             RenderListWheelViewport.diameterRatioZeroMessage),
         assert(magnification > 0),
         assert(itemExtent > 0),
@@ -235,8 +233,7 @@ class _CupertinoPickerState extends State<BrnPicker> {
     // have to just do a color blend. And a due to the way we are layering
     // the magnifier and the gradient on the background, using a transparent
     // background color makes the picker look odd.
-    if (widget.backgroundColor.alpha < 255)
-      return Container();
+    if (widget.backgroundColor.alpha < 255) return Container();
 
     final Color widgetBackgroundColor = widget.backgroundColor;
     return Positioned.fill(

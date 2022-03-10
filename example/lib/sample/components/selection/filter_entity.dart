@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 
 class BrnFilterEntity {
@@ -12,6 +10,7 @@ class BrnFilterEntity {
     key = map['key'] ?? '';
     name = map['title'] ?? '';
     defaultValue = map['defaultValue'] ?? '';
-    children = []..addAll((map['children'] as List? ?? []).map((o) => ItemEntity.fromJson(o)));
+    children = []..addAll(
+        (map['children'] as List? ?? []).map((o) => ItemEntity.fromJson(o)));
   }
 }

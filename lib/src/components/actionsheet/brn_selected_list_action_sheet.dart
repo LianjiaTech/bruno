@@ -286,20 +286,21 @@ class _BrnActionSheetSelectedItemListState<T>
     AnimationController alphaAnimationController = AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
     widget._alphaAnimationController = alphaAnimationController;
-    Animation<double> yAnimation = Tween<double>(begin: 65.0, end: this.getContentHeight())
-        .animate(yAnimationController)
-      ..addListener(() {
-        setState(() => {});
-      })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.dismissed) {
-          widget.onDismiss!(_isClosedByClear);
-        }
-      });
+    Animation<double> yAnimation =
+        Tween<double>(begin: 65.0, end: this.getContentHeight())
+            .animate(yAnimationController)
+              ..addListener(() {
+                setState(() => {});
+              })
+              ..addStatusListener((status) {
+                if (status == AnimationStatus.dismissed) {
+                  widget.onDismiss!(_isClosedByClear);
+                }
+              });
     widget._yAnimation = yAnimation;
     Animation alphaAnimation = Tween(begin: 0.0, end: 0.7)
         .animate(alphaAnimationController)
-      ..addListener(() {});
+          ..addListener(() {});
     widget._alphaAnimation = alphaAnimation as Animation<double>;
     yAnimationController.forward();
     alphaAnimationController.forward();

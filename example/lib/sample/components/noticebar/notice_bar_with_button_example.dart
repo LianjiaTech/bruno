@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +24,8 @@ class BrnNoticeBarWithButtonExample extends StatelessWidget {
             ),
             BrnBubbleText(
               maxLines: 3,
-              text: '高度56，左边为标签，中间是通知内容，右边是按钮， 其中通知内容必传，标签和按钮文案如果是空，就不显示。所有颜色均支持自定义',
+              text:
+                  '高度56，左边为标签，中间是通知内容，右边是按钮， 其中通知内容必传，标签和按钮文案如果是空，就不显示。所有颜色均支持自定义',
             ),
             Text(
               '默认样式',

@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/gallery/gallery_detail_example.dart';
 import 'package:example/sample/home/list_item.dart';
@@ -18,7 +16,7 @@ class GalleryDetailPageThemeExample extends StatelessWidget {
             ListItem(
               title: "图片详情-白色主题",
               describe: "图片详情带白色主题",
-              isShowLine:false,
+              isShowLine: false,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (BuildContext context) {

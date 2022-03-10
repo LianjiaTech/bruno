@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:bruno/bruno.dart';
@@ -134,7 +132,8 @@ class _CitySelectRouteState extends State<CitySelectRoute> {
               flex: 1,
               child: AzListView(
                 data: _cityList,
-                itemBuilder: (context, model) => _buildListItem(model as BrnSelectCityModel),
+                itemBuilder: (context, model) =>
+                    _buildListItem(model as BrnSelectCityModel),
                 suspensionWidget: _buildSusWidget(_suspensionTag),
                 isUseRealIndex: true,
                 itemHeight: _itemHeight,
