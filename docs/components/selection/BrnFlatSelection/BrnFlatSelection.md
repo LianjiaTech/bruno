@@ -28,7 +28,8 @@ group:
 
 ```dart
 BrnFlatSelection(
-  {this.entityDataList,
+  {Key? key,
+  this.entityDataList,
   this.confirmCallback,
   this.onCustomFloatingLayerClick,
   this.preLineTagSize = 3,
@@ -49,12 +50,12 @@ BrnFlatSelection(
 | 参数名 | 参数类型 | 描述 | 是否必填 | 默认值 |
 | --- | --- | --- | --- | --- |
 | entityDataList | `List<BrnSelectionEntity>` | 筛选原始数据 | 是 | 无 |
-| confirmCallback | `Function(Map<String, String>)` | 确定回调 | 否 | 无 |
-| preLineTagSize | int | 每行展示tag数 | 否 | 3 |
-| onCustomFloatingLayerClick | BrnOnCustomFloatingLayerClick | 自定义事件处理 | 否 | 无 |
-| isNeedConfigChild | bool | 是否需要配置子选项 | 否 | true |
-| controller | BrnFlatSelectionController | 自定义controller | 否 |  |
-| themeData | BrnSelectionConfig | 筛选项主题配置，配置详见BrnSelectionConfig | 否 | |
+| confirmCallback | `Function(Map<String, String>)?` | 确定回调 | 否 | 无 |
+| preLineTagSize | int | 每行展示tag数 | 是 | 3 |
+| onCustomFloatingLayerClick | BrnOnCustomFloatingLayerClick? | 自定义事件处理 | 否 | 无 |
+| isNeedConfigChild | bool | 是否需要配置子选项 | 是 | true |
+| controller | BrnFlatSelectionController? | 自定义controller | 否 | 无 |
+| themeData | BrnSelectionConfig? | 筛选项主题配置，配置详见BrnSelectionConfig | 否 | |
 
 ## 四、代码演示
 
@@ -66,7 +67,7 @@ BrnFlatSelection(
 BrnFlatSelection(  
   entityDataList: widget._filterData,  
   confirmCallback: (data) {  
-    var str = "";  
+    String str = '';  
     data.forEach((k, v) => str=str +" "+'${k}: ${v}');  
     BrnToast.show(str, context);  
   },  
@@ -81,7 +82,7 @@ BrnFlatSelection(
   preLineTagSize: 4,  
   entityDataList: widget._filterData,  
   confirmCallback: (data) {  
-    var str = "";  
+    String str = '';  
     data.forEach((k, v) => str=str +" "+'${k}: ${v}');  
     BrnToast.show(str, context);  
   },  

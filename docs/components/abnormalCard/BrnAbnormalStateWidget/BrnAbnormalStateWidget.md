@@ -42,29 +42,30 @@ BrnAbnormalStateWidget({
     this.topPercent: 0.08,
     this.themeData,
   }) {
-    this.themeData ??= BrnEmptyConfig();
+    this.themeData ??= BrnAbnormalStateConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData.configId)
-        .emptyConfig
+        .getConfig(configId: this.themeData!.configId)
+        .abnormalStateConfig
         .merge(this.themeData);
   }
 ```
 
 ### 参数说明
 
-| **参数名**       | **参数类型**                                                                        | **描述**                                                                                               | **是否必填** | **默认值**                 |
-| ---------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------ | -------------------------- |
-| img              | Image                                                                               | 图片                                                                                                   | 否           |                            |
-| title            | String                                                                              | 标题                                                                                                   | 否           |                            |
-| content          | String                                                                              | 内容                                                                                                   | 否           |                            |
-| operateAreaType  | enum OperateAreaType { singleButton, doubleButton, textButton }                     | 操作区类型。SingleButton 为【单按钮】效果 DoubleButton 为【双按钮】效果 TextButton 为【文字链】效果    | 否           | OperateAreaType.TextButton |
-| operateTexts     | List                                                                                |                                                                                                        |              |                            |
-| action           | BrnEmptyStatusIndexedActionClickCallback = void Function(int index)index 点击的位置 | 点击回调，在 SingleButton 类型或者 enablePageTap = true 点击空白区域时返回 0；其他根据点击的位置返回。 | 否           |                            |
-| enablePageTap    | bool                                                                                | 空白区域是否可点击                                                                                     | 否           | false                      |
-| topOffset        | double                                                                              | 顶部距离，默认为 null，走自动计算逻辑：父视图高度的 8%，可自己指定高度                                 | 否           | null                       |
-| bgColor          | Color                                                                               | 背景色                                                                                                 | 否           | Colors.white               |
-| isCenterVertical | bool                                                                                | 内容是否垂直居中                                                                                       | 否           | false                      |
-| topPercent       | double                                                                              | 距顶部高度百分比                                                                                       | 否           | 0.08                       |
+| **参数名**       | **参数类型**                                                 | **描述**                                                     | **是否必填** | **默认值**                 |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------ | -------------------------- |
+| img              | Image?                                                       | 图片                                                         | 否           | null                       |
+| title            | String?                                                      | 标题                                                         | 否           | null                       |
+| content          | String?                                                      | 内容                                                         | 否           | null                       |
+| operateAreaType  | enum OperateAreaType { SingleButton, DoubleButton, TextButton } | 操作区类型。SingleButton 为【单按钮】效果 DoubleButton 为【双按钮】效果 TextButton 为【文字链】效果 | 否           | OperateAreaType.TextButton |
+| operateTexts     | `List<String>?`                                              | 操作区文案                                                   | 否           | null                       |
+| action           | `BrnEmptyStatusIndexedActionClickCallback? = void Function(int index)index?` | 点击回调，在 SingleButton 类型或者 enablePageTap = true 点击空白区域时返回 0；其他根据点击的位置返回。 | 否           |                            |
+| enablePageTap    | bool                                                         | 空白区域是否可点击                                           | 否           | false                      |
+| topOffset        | double?                                                      | 顶部距离，默认为 null，走自动计算逻辑：父视图高度的 8%，可自己指定高度 | 否           | null                       |
+| bgColor          | Color                                                        | 背景色                                                       | 否           | Colors.white               |
+| isCenterVertical | bool                                                         | 内容是否垂直居中                                             | 否           | false                      |
+| topPercent       | double                                                       | 距顶部高度百分比                                             | 否           | 0.08                       |
+| themeData        | BrnAbnormalStateConfig?                                      | 主题配置                                                     | 否           | 无                         |
 
 ## 四、代码演示
 

@@ -24,43 +24,66 @@ group:
 
 
 ```dart
-BrnBottomTabBar({  
-  Key key,  
-  @required this.items,  
-  this.onTap,  
-  this.currentIndex = 0,  
-  BottomTabBarType type = BottomTabBarType.fixed,  
-  this.fixedColor,  
-  this.iconSize = 24.0,  
-  this.isAnimation = false,  
-  this.badgeColor,  
-  this.isInkResponse = false,  
-})
+BrnBottomTabBar({
+  Key? key,
+  required this.items,
+  this.onTap,
+  this.currentIndex = 0,
+  BrnBottomTabBarDisplayType type = BrnBottomTabBarDisplayType.fixed,
+  this.fixedColor,
+  this.iconSize = 24.0,
+  this.isAnimation = false,
+  this.badgeColor,
+  this.isInkResponse = false,
+})  : assert(items.length >= 1),
+      assert(
+        items.every((BrnBottomTabBarItem item) => item.title != null) == true,
+        'Every item must have a non-null title',
+      ),
+      assert(0 <= currentIndex && currentIndex < items.length),
+      type = items.length <= 3
+              ? BrnBottomTabBarDisplayType.fixed
+              : BrnBottomTabBarDisplayType.shifting,
+      super(key: key);
 ```
 
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
 | items | `List<BrnBottomTabBarItem>` | Tab 数据 |  是 | 无 |
-| fixedColor | Colors | 选中item后的颜色 | 否 | 无 |
+| fixedColor | Color? | 选中item后的颜色 | 否 | 无 |
 | currentIndex | int | 当前选中的item索引值 | 否 | 无alert |
-| onTap | DialogIndexedActionClickCallback | 导航项点击回调的点击回调 | 否 | 无 |
+| onTap | `ValueChanged<int>?` | 导航项点击回调的点击回调 | 否 | 无 |
 | type | BottomTabBarType | Tab样式(固定、动画) | 否 | BottomTabBarType.fixed |
 | iconSize | double | tab icon 大小 | 否 | 24 |
 | isAnimation | bool | 是否开启字体放大动画 | 否 | false |
 | isInkResponse | bool | 是否开启聚焦动画 | 否 | false |
-| badgeColor | Colors | 未读信息Badge背景颜色 | 否 | Colors.Red |
+| badgeColor | Color? | 未读信息Badge背景颜色 | 否 | Colors.Red |
 
-#### BottomTabBarItem
+#### BrnBottomTabBarItem
+
+```dart
+const BrnBottomTabBarItem({
+  required this.icon,
+  this.title,
+  Widget? activeIcon,
+  this.backgroundColor,
+  this.badge,
+  this.badgeNo,
+  this.maxBadgeNo = 99,
+})  : activeIcon = activeIcon ?? icon;
+```
+
+
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
 | icon | Widget | 未选中时的icon | 是 | 无 |
-| activeIcon | Widget | 选中时的icon | 是 | 无 |
-| title | Widget | Tab标题名调 | 是 | 无 |
-| backgroundColor | Color | 背景色 | 否 | 无 |
-| badge | Widget | 未读信息 | 否 | 无 |
-| badgeNo | String | 未读信息个数 | 否 | 无 |
+| activeIcon | Widget | 选中时的icon | 否 | 无 |
+| title | Widget? | Tab标题名调 | 否 | 无 |
+| backgroundColor | Color? | 背景色 | 否 | 无 |
+| badge | Widget? | 未读信息 | 否 | 无 |
+| badgeNo | String? | 未读信息个数 | 否 | 无 |
 | maxBadgeNo | int | 未读消息最大个数 | 否 | 99 |
 
 ## 四、代码演示

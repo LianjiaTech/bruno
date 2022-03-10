@@ -36,71 +36,87 @@ group:
 
 ```dart
 BrnTabBar({
-    @required this.tabs,
-    this.mode = BrnTabBarBadgeMode.average,
-    this.isScroll = false,
-    this.tabHeight,
-    this.padding = EdgeInsets.zero,
-    this.controller,
-    this.backgroundcolor = const Color(0xffffffff),
-    this.indicatorColor,
-    this.indicatorWeight,
-    this.indicatorWidth,
-    this.indicatorPadding = EdgeInsets.zero,
-    this.labelColor,
-    this.labelStyle,
-    this.labelPadding = EdgeInsets.zero,
-    this.unselectedLabelColor,
-    this.unselectedLabelStyle,
-    this.dragStartBehavior = DragStartBehavior.start,
-    this.onTap,
-    this.tabWidth,
-    this.hasDivider = false,
-    this.hasIndex = false,
-    this.showMore = false,
-    this.moreWindowText,
-    this.onMorePop,
-    this.closeController,
-    this.themeData,
-    this.tagSpacing,
-    this.preLineTagCount,
-    this.tagHeight,
-  }) ;
+  required this.tabs,
+  this.mode = BrnTabBarBadgeMode.average,
+  this.isScroll = false,
+  this.tabHeight,
+  this.padding = EdgeInsets.zero,
+  this.controller,
+  this.backgroundcolor = const Color(0xffffffff),
+  this.indicatorColor,
+  this.indicatorWeight,
+  this.indicatorWidth,
+  this.indicatorPadding = EdgeInsets.zero,
+  this.labelColor,
+  this.labelStyle,
+  this.labelPadding = EdgeInsets.zero,
+  this.unselectedLabelColor,
+  this.unselectedLabelStyle,
+  this.dragStartBehavior = DragStartBehavior.start,
+  this.onTap,
+  this.tabWidth,
+  this.hasDivider = false,
+  this.hasIndex = false,
+  this.showMore = false,
+  this.moreWindowText,
+  this.onMorePop,
+  this.closeController,
+  this.themeData,
+  this.tagSpacing,
+  this.preLineTagCount,
+  this.tagHeight,
+}) : assert(tabs == null || tabs is List<BadgeTab>) {
+  this.themeData ??= BrnTabBarConfig();
+  this.themeData = this.themeData!.merge(BrnTabBarConfig(
+    tabHeight: tabHeight,
+    indicatorHeight: indicatorWeight,
+    indicatorWidth: indicatorWidth,
+    labelStyle: BrnTextStyle.withStyle(labelStyle),
+    unselectedLabelStyle: BrnTextStyle.withStyle(unselectedLabelStyle),
+    tagSpacing: tagSpacing,
+    preLineTagCount: preLineTagCount,
+    tagHeight: tagHeight,
+  ));
+  this.themeData = BrnThemeConfigurator.instance
+      .getConfig(configId: this.themeData!.configId)
+      .tabBarConfig
+      .merge(this.themeData);
+}
 ```
 
 ### 参数说明
 
-| **参数名**           | **参数类型**             | **描述**                                                     | **是否必填** | **默认值**                                             |
-| -------------------- | ------------------------ | ------------------------------------------------------------ | ------------ | ------------------------------------------------------ |
-| tabs                 | List                     | 组件每个 Tab 的数据集                                        | 是           | 无                                                     |
-| mode                 | Mode                     | Tabbar 的模式，默认为等分模式 BrnTabBarBadgeMode.average，切换为 origin 基本为原生的 Tabbar 分配模式 | 否           | BrnTabBarBadgeMode.average                             |
-| isScroll             | bool                     | 是否能滑动(当 tab 数量大于 4 个，默认都是滚动的，再设置此属性无效) | 否           | false                                                  |
-| tabHeight            | double                   | BrnTabBar 的最小高度                                         | 否           | 50                                                     |
-| padding              | EdgeInsetsGeometry       | BrnTabBar 的 padding                                         | 否           | EdgeInsets.zero                                        |
-| controller           | TabController            | 组件和 TabBarView 联动控制器                                 | 否           | 无                                                     |
-| backgroundcolor      | Color                    | 组件整体背景色                                               | 否           | Color(0xffffffff)                                      |
-| indicatorColor       | Color                    | 指示器的颜色                                                 | 否           | 无                                                     |
-| indicatorWeight      | double                   | 指示器的高度                                                 | 否           | 2                                                      |
-| indicatorWidth       | double                   | 指示器的宽度                                                 | 否           | 24                                                     |
-| indicatorPadding     | EdgeInsetsGeometry       | 指示器的 padding                                             | 否           | EdgeInsets.zero                                        |
-| labelColor           | Color                    | 选中 Tab 文本的颜色                                          | 否           | APP 主题色/品牌色                                      |
-| labelStyle           | TextStyle                | 选中 Tab 文本的样式                                          | 否           | TextStyle(fontSize: 16, fontWeight: FontWeight.w600)   |
-| labelPadding         | EdgeInsetsGeometry       | 选中 Tab 文本的 padding                                      | 否           | EdgeInsets.zero                                        |
-| unselectedLabelColor | Color                    | 未选中 Tab 文本的颜色                                        | 否           | 纯黑文字 #222222                                       |
-| unselectedLabelStyle | TextStyle                | 未选中 Tab 文本的样式                                        | 否           | TextStyle(fontSize: 16, fontWeight: FontWeight.normal) |
-| dragStartBehavior    | DragStartBehavior        | 处理拖动开始的行为                                           | 否           | DragStartBehavior.start                                |
-| onTap                | TabChanged               | 底部按钮之间的分割线                                         | 否           | 无                                                     |
-| tabWidth             | double                   | 组件每个 Tab 的宽度                                          | 否           | 无                                                     |
-| hasDivider           | bool                     | 是否显示 Tab 间分隔线                                        | 否           | false：不显示                                          |
-| hasIndex             | bool                     | 是否显示 Tab 文本上面角标                                    | 否           | false：不显示                                          |
-| showMore             | bool                     | 是否展开更多 Tabs                                            | 否           | false：不显示                                          |
-| moreWindowText       | String                   | 展开更多弹框标题                                             | 否           | 无                                                     |
-| onMorePop            | VoidCallback             | 更多弹框弹出的时候回调                                       | 否           | 无                                                     |
-| closeController      | BrnCloseWindowController | 更多弹框关闭控制器                                           | 否           | 无                                                     |
-| tagSpacing           | double                   | tag 间距                                                     | 否           | 12                                                     |
-| preLineTagCount      | int                      | 每行 tag 数                                                  | 否           | 4                                                      |
-| tagHeight            | double                   | tag 高度                                                     | 否           | 32                                                     |
-| themeData            | BrnTabBarConfig          | tabBar 配置信息，配置详情见 BrnTabBarConfig                  | 否           | 无                                                     |
+| **参数名**           | **参数类型**              | **描述**                                                     | **是否必填** | **默认值**                                             |
+| -------------------- | ------------------------- | ------------------------------------------------------------ | ------------ | ------------------------------------------------------ |
+| tabs                 | List                      | 组件每个 Tab 的数据集                                        | 是           | 无                                                     |
+| mode                 | BrnTabBarBadgeMode        | Tabbar 的模式，默认为等分模式 BrnTabBarBadgeMode.average，切换为 origin 基本为原生的 Tabbar 分配模式 | 否           | BrnTabBarBadgeMode.average                             |
+| isScroll             | bool                      | 是否能滑动(当 tab 数量大于 4 个，默认都是滚动的，再设置此属性无效) | 否           | false                                                  |
+| tabHeight            | double?                   | BrnTabBar 的最小高度                                         | 否           | 50                                                     |
+| padding              | EdgeInsetsGeometry        | BrnTabBar 的 padding                                         | 否           | EdgeInsets.zero                                        |
+| controller           | TabController?            | 组件和 TabBarView 联动控制器                                 | 否           | 无                                                     |
+| backgroundcolor      | Color                     | 组件整体背景色                                               | 否           | Color(0xffffffff)                                      |
+| indicatorColor       | Color?                    | 指示器的颜色                                                 | 否           | 无                                                     |
+| indicatorWeight      | double?                   | 指示器的高度                                                 | 否           | 2                                                      |
+| indicatorWidth       | double?                   | 指示器的宽度                                                 | 否           | 24                                                     |
+| indicatorPadding     | EdgeInsetsGeometry        | 指示器的 padding                                             | 否           | EdgeInsets.zero                                        |
+| labelColor           | Color?                    | 选中 Tab 文本的颜色                                          | 否           | APP 主题色/品牌色                                      |
+| labelStyle           | TextStyle?                | 选中 Tab 文本的样式                                          | 否           | TextStyle(fontSize: 16, fontWeight: FontWeight.w600)   |
+| labelPadding         | EdgeInsetsGeometry        | 选中 Tab 文本的 padding                                      | 否           | EdgeInsets.zero                                        |
+| unselectedLabelColor | Color?                    | 未选中 Tab 文本的颜色                                        | 否           | 纯黑文字 #222222                                       |
+| unselectedLabelStyle | TextStyle?                | 未选中 Tab 文本的样式                                        | 否           | TextStyle(fontSize: 16, fontWeight: FontWeight.normal) |
+| dragStartBehavior    | DragStartBehavior         | 处理拖动开始的行为                                           | 否           | DragStartBehavior.start                                |
+| onTap                | BrnTabBarOnTap?           | 底部按钮之间的分割线                                         | 否           | 无                                                     |
+| tabWidth             | double?                   | 组件每个 Tab 的宽度                                          | 否           | 无                                                     |
+| hasDivider           | bool                      | 是否显示 Tab 间分隔线                                        | 否           | false：不显示                                          |
+| hasIndex             | bool                      | 是否显示 Tab 文本上面角标                                    | 否           | false：不显示                                          |
+| showMore             | bool                      | 是否展开更多 Tabs                                            | 否           | false：不显示                                          |
+| moreWindowText       | String?                   | 展开更多弹框标题                                             | 否           | 无                                                     |
+| onMorePop            | VoidCallback?             | 更多弹框弹出的时候回调                                       | 否           | 无                                                     |
+| closeController      | BrnCloseWindowController? | 更多弹框关闭控制器                                           | 否           | 无                                                     |
+| tagSpacing           | double?                   | tag 间距                                                     | 否           | 12                                                     |
+| preLineTagCount      | int?                      | 每行 tag 数                                                  | 否           | 4                                                      |
+| tagHeight            | double?                   | tag 高度                                                     | 否           | 32                                                     |
+| themeData            | BrnTabBarConfig?          | tabBar 配置信息，配置详情见 BrnTabBarConfig                  | 否           | 无                                                     |
 
 ## 四、代码演示
 

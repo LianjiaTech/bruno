@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:bruno/src/components/tabbar/normal/brn_tab_bar.dart';
 import 'package:flutter/gestures.dart';

@@ -39,7 +39,7 @@ group:
 
 ```dart
 BrnRatioInputFormItem(
-    {Key key,
+    {Key? key,
     this.label,
     this.title: "",
     this.subTitle,
@@ -61,7 +61,7 @@ BrnRatioInputFormItem(
     : super(key: key) {
   this.themeData ??= BrnFormItemConfig();
   this.themeData = BrnThemeConfigurator.instance
-      .getConfig(configId: this.themeData.configId)
+      .getConfig(configId: this.themeData!.configId)
       .formItemConfig
       .merge(this.themeData);
 }
@@ -71,26 +71,25 @@ BrnRatioInputFormItem(
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
 | --- | --- | --- | --- | --- | --- |
-| label | String | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
+| label | String? | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
 | type | Stirng | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.textInputRatioType | 外部可根据此字段判断表单项类型 |
 | title | String | 录入项标题 | 否 | '' |  |
-| subTitle | String | 录入项子标题 | 否 | 无 |  |
-| tipLabel | String | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
+| subTitle | String? | 录入项子标题 | 否 | 无 |  |
+| tipLabel | String? | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
 | prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.normal | 1. 不展示图标：BrnPrefixIconType.normal 2. 展示加号图标：BrnPrefixIconType.add 3. 展示减号图标：BrnPrefixIconType.remove |
 | error | String | 录入项错误提示 | 否 | '' |  |
 | isRequire | bool | 录入项是否为必填项（展示`*`图标） 默认为 false 不必填 | 否 | false |  |
 | isEdit | bool | 录入项 是否可编辑 | 否 | true | true：可编辑，false：禁用 |
 | isPrefixIconEnabled | bool | 录入项不可编辑时(isEdit: false) "+"、"-"号是否可点击，true: 可点击回调 false: 不可点击回调 | 否 | false |  |
-| onAddTap | VoidCallback | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onRemoveTap | VoidCallback | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onTip | VoidCallback | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
+| onAddTap | VoidCallback? | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
+| onRemoveTap | VoidCallback? | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
+| onTip | VoidCallback? | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
 | hint | String | 录入项 hint 提示 | 否 | "请输入" |  |
-| value | String | 录入项 值 | 否 | 无 |  |
-| inputType | String | 输入内容类型，指定键盘类型，参见 `BrnInputType` | 否 | 无 | 详见**BrnInputType**类，注意：无法通过指定键盘类型确保输入。比如不能通过指定数字键盘确保用户只输入数字。如果有要求用户只输入特定字符的需求请使用**inputFormatters**参数 |
-| inputFormatters | `List<TextInputFormatter>` | 指定对输入数据的格式化要求 | 否 | 无 |  |
-| onChanged | `ValueChanged<String>` | 输入文案回调 | 否 | 无 |  |
-| controller | TextEditingController | 文本输入controller | 否 | 无 |  |
-| themeData | BrnFormItemConfig | form配置 | 否 | 无 | |
+| inputType | String? | 输入内容类型，指定键盘类型，参见 `BrnInputType` | 否 | 无 | 详见**BrnInputType**类，注意：无法通过指定键盘类型确保输入。比如不能通过指定数字键盘确保用户只输入数字。如果有要求用户只输入特定字符的需求请使用**inputFormatters**参数 |
+| inputFormatters | `List<TextInputFormatter>?` | 指定对输入数据的格式化要求 | 否 | 无 |  |
+| onChanged | `ValueChanged<String>?` | 输入文案回调 | 否 | 无 |  |
+| controller | TextEditingController? | 文本输入controller | 否 | 无 |  |
+| themeData | BrnFormItemConfig? | form配置 | 否 | 无 | |
 
 ### 其他数据说明:
 

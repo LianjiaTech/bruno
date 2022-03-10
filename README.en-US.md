@@ -48,6 +48,7 @@ If you cannot access the demo, you can directly watch [Overview](https://github.
 | ---------- | ---------------- |
 | 1.0.0      | 1.22.4           |
 | 2.0.0      | 2.2.2            |
+| 2.1.0      | 2.2.2-null safety            |
 
 > Attention although we have adapted version 2.2.2, support for null-safe is in the works. We'll keep you updated on github as soon as possible, so stay tuned to 🙂.
 

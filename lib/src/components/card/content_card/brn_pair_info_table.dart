@@ -71,8 +71,14 @@ import 'package:flutter/material.dart';
 ///  * [BrnFollowPairInfo], key-value紧紧相随的的文本组件
 ///
 class BrnPairInfoTable extends StatefulWidget {
+
   /// 文本信息是否对齐 默认不对齐
   final bool isValueAlign;
+
+  /// TableCell 默认垂直对齐方式， 默认值为 [TableCellVerticalAlignment.baseline]
+  /// 当 [BrnInfoModal.valuePart] 为自定义 Widget 时，可设置该参数调整对齐方式，仅在 
+  /// [isValueAlign] 为 true 时设置才生效
+  final TableCellVerticalAlignment defaultVerticalAlignment;
 
   /// 待展示的文本信息集合
   final List<BrnInfoModal> children;
@@ -100,6 +106,7 @@ class BrnPairInfoTable extends StatefulWidget {
   BrnPairInfoTable({
     Key? key,
     required this.children,
+    this.defaultVerticalAlignment = TableCellVerticalAlignment.baseline,
     this.isValueAlign = true,
     this.expandAtIndex = -1,
     this.rowDistance,
@@ -191,6 +198,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
 
     if (widget.isValueAlign) {
       showWidget = BrnAlignPairInfo(
+        defaultVerticalAlignment: widget.defaultVerticalAlignment,
         children: showList,
         itemSpacing: widget.itemSpacing,
         rowDistance: widget.rowDistance,
@@ -579,7 +587,8 @@ class BrnFollowPairInfo extends StatelessWidget with PairInfoPart {
     }
     return Row(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
           constraints: BoxConstraints(maxWidth: keyMax),
@@ -599,6 +608,10 @@ class BrnFollowPairInfo extends StatelessWidget with PairInfoPart {
 }
 
 class BrnAlignPairInfo extends StatelessWidget with PairInfoPart {
+  /// TableCell 默认垂直对齐方式， 默认值为 [TableCellVerticalAlignment.baseline]
+  /// 当 [BrnInfoModal.valuePart] 为自定义 Widget 时，可设置该参数调整对齐方式
+  final TableCellVerticalAlignment defaultVerticalAlignment;
+
   /// 待展示的文本信息集合
   final List<BrnInfoModal?>? children;
 
@@ -617,6 +630,7 @@ class BrnAlignPairInfo extends StatelessWidget with PairInfoPart {
 
   BrnAlignPairInfo(
       {this.children,
+      this.defaultVerticalAlignment = TableCellVerticalAlignment.baseline,
       this.rowDistance,
       this.backgroundColor,
       this.itemSpacing,
@@ -642,7 +656,7 @@ class BrnAlignPairInfo extends StatelessWidget with PairInfoPart {
       BrnPairInfoTableConfig defaultThemeConfig, double maxWith) {
     int index = -1;
     Widget table = Table(
-      defaultVerticalAlignment: TableCellVerticalAlignment.baseline,
+      defaultVerticalAlignment: this.defaultVerticalAlignment,
       textBaseline: TextBaseline.ideographic,
       columnWidths: <int, TableColumnWidth>{
         0: customKeyWidth ?? _MaxWrapTableWidth(maxWith),

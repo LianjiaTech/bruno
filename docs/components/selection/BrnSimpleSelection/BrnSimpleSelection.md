@@ -31,7 +31,7 @@ group:
 
 ```dart
 BrnSimpleSelection.radio({
-  Key key,
+  Key? key,
   this.menuName,
   this.menuKey = defaultMenuKey,
   this.defaultValue,
@@ -39,26 +39,22 @@ BrnSimpleSelection.radio({
   this.maxSelectedCount = 1,
   @required this.onSimpleSelectionChanged,
   this.onMenuItemClick,
-}) : super(key: key) {
-  this.isRadio = true;
-}
+})
 ```
 
 #### 多选
 
 ```dart
 BrnSimpleSelection.checkbox({
+  Key? key,
   this.menuName,
   this.menuKey,
   this.defaultValue,
   this.maxSelectedCount,
   this.items,
-  Key key,
   @required this.onSimpleSelectionChanged,
   this.onMenuItemClick,
-  }) : super(key: key) {
-  this.isRadio = false;
-}
+  })
 ```
 
 
@@ -67,13 +63,13 @@ BrnSimpleSelection.checkbox({
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| menuName | String | 标题文案 | 否 | 无 |
-| menuKey | String | 回传给服务端Key | 否 | 无 |
-| defaultValue | String | 默认选中项值 | 否 | 无 |
+| menuName | String | 标题文案 | 是 | 无 |
+| menuKey | String | 回传给服务端Key | 是 | `'defaultMenuKey'` |
+| defaultValue | String? | 默认选中项值 | 否 | 无 |
 | maxSelectedCount | int | 最大选中个数 | 否 | radio模式 默认65535  checkbox模式不设置 |
-| items | `List<ItemEntity>` | 选项列表 | 否 |  |
-| onSimpleSelectionChanged | BrnSimpleSelectionOnSelectionChanged | 选择回调 | 否 |  |
-| onMenuItemClick | VoidCallback | 菜单点击事件 | 否 | |
+| items | `List<ItemEntity>` | 选项列表 | 是 |  |
+| onSimpleSelectionChanged | BrnSimpleSelectionOnSelectionChanged | 选择回调 | 是 |  |
+| onMenuItemClick | VoidCallback? | 菜单点击事件 | 否 | |
 | isRadio | bool | 是否单选  默认 radio模式 is true ， checkbox模式 is false | 否 | radio模式默认true checkbox模式默认false |
 
 ## 四、代码演示
