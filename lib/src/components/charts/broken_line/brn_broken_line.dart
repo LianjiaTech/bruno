@@ -95,7 +95,7 @@ class BrnBrokenLine extends StatefulWidget {
     this.isShowXDialText = false,
     this.isShowYDialText = false,
   }) : super(key: key) {
-    // 设置自定义 X 轴时，检查 x轴的最大、最小刻度范围
+    // 设置自定义 X 轴时，检查 x 轴的最大、最小刻度范围
     if (xDialValues != null) {
       assert(xDialMin != null);
       assert(xDialMax != null);

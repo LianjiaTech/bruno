@@ -1,7 +1,3 @@
-
-
-import 'dart:ui' show Color;
-
 import 'package:flutter/material.dart';
 
 /// 简述：[BrnBottomTabBar]中的单个选择按钮组件
