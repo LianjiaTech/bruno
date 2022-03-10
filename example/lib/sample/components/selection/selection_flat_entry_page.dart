@@ -36,7 +36,7 @@ class FlatSelectionEntryPage extends StatelessWidget {
                       BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!.list!;
                   void _configMaxSelectedCount(BrnSelectionEntity entity, int maxCount) {
                     entity.maxSelectedCount = maxCount;
-                    if (entity.children != null && entity.children.length > 0) {
+                    if (entity.children.length > 0) {
                       for (BrnSelectionEntity child in entity.children) {
                         _configMaxSelectedCount(child, maxCount);
                       }
@@ -61,7 +61,7 @@ class FlatSelectionEntryPage extends StatelessWidget {
                       BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!.list!;
                   void _configMaxSelectedCount(BrnSelectionEntity entity, int maxCount) {
                     entity.maxSelectedCount = maxCount;
-                    if (entity.children != null && entity.children.length > 0) {
+                    if (entity.children.length > 0) {
                       for (BrnSelectionEntity child in entity.children) {
                         _configMaxSelectedCount(child, maxCount);
                       }
@@ -86,7 +86,7 @@ class FlatSelectionEntryPage extends StatelessWidget {
                       BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!.list!;
                   void _configMaxSelectedCount(BrnSelectionEntity entity, int maxCount) {
                     entity.maxSelectedCount = maxCount;
-                    if (entity.children != null && entity.children.length > 0) {
+                    if (entity.children.length > 0) {
                       for (BrnSelectionEntity child in entity.children) {
                         _configMaxSelectedCount(child, maxCount);
                       }

@@ -83,7 +83,8 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
       _secondaryButtonList = widget.secondaryButtonList!;
     } else if (widget.secondaryButtonNameList?.isNotEmpty ?? false) {
       widget.secondaryButtonNameList!.forEach((name) {
-        _secondaryButtonList.add(BrnButtonPanelConfig(name: name, isEnable: true));
+        _secondaryButtonList
+            .add(BrnButtonPanelConfig(name: name, isEnable: true));
       });
     }
   }
@@ -138,7 +139,8 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
     }
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(widget.horizontalPadding, 0, widget.horizontalPadding, 0),
+      padding: EdgeInsets.fromLTRB(
+          widget.horizontalPadding, 0, widget.horizontalPadding, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: list,
@@ -157,7 +159,7 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
 
   Widget _secondaryButton(int btnIndex) {
     BrnSmallOutlineButton button = BrnSmallOutlineButton(
-      title:_secondaryButtonList[btnIndex].name,
+      title: _secondaryButtonList[btnIndex].name,
       isEnable: _secondaryButtonList[btnIndex].isEnable,
       onTap: () {
         if (widget.secondaryButtonOnTap != null) {
@@ -195,8 +197,14 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
                     maxLines: 1,
                     style: TextStyle(
                         color: _secondaryButtonList[index + 2].isEnable
-                            ? BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase
-                            : BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint,
+                            ? BrnThemeConfigurator.instance
+                                .getConfig()
+                                .commonConfig
+                                .colorTextBase
+                            : BrnThemeConfigurator.instance
+                                .getConfig()
+                                .commonConfig
+                                .colorTextHint,
                         fontSize: 16));
               },
               popDirection: widget.popDirection,

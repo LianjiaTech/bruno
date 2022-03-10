@@ -180,7 +180,6 @@ class SelectionEntryPage extends StatelessWidget {
                           "新SelectionView示例(手动关闭的情况)",
                           BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!
                               .list);
-                      ;
                     },
                   ));
                 });
@@ -198,7 +197,7 @@ class SelectionEntryPage extends StatelessWidget {
                   datas.removeAt(1);
                   void _configMaxSelectedCount(BrnSelectionEntity entity, int maxCount) {
                     entity.maxSelectedCount = maxCount;
-                    if (entity.children != null && entity.children.length > 0) {
+                    if (entity.children.length > 0) {
                       for (BrnSelectionEntity child in entity.children) {
                         _configMaxSelectedCount(child, maxCount);
                       }
@@ -220,7 +219,7 @@ class SelectionEntryPage extends StatelessWidget {
               isSupportTheme: true,
               onPressed: () {
                 rootBundle.loadString('assets/more_custom_floating_layer_filter.json').then((data) {
-                  var datas =
+                  List<BrnSelectionEntity>? datas =
                       BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!.list;
                   var page = SelectionViewMoreCustomFloatLayerExamplePage("更多筛选-跳转自定义二级页面", datas);
                   Navigator.push(context, MaterialPageRoute(

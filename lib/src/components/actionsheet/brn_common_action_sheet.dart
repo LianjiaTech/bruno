@@ -23,7 +23,7 @@ enum BrnCommonActionSheetItemStyle {
 
 class BrnCommonActionSheetItem {
   /// 标题文字
-  String title;
+  String? title;
 
   /// 辅助信息
   String? desc;
@@ -237,7 +237,7 @@ class BrnCommonActionSheet extends StatelessWidget {
     if (action.title != null) {
       tileElements.add(Center(
         child: Text(
-          action.title,
+          action.title!,
           maxLines: 1,
           style: action.titleStyle ??
               (action.actionStyle == BrnCommonActionSheetItemStyle.alert

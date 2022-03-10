@@ -7,7 +7,7 @@ import 'package:example/sample/components/charts/line/db_data_node_model.dart';
 import 'package:flutter/material.dart';
 
 class BrokenLineExample extends StatefulWidget {
-  List<DBDataNodeModel> brokenData;
+  final List<DBDataNodeModel> brokenData;
 
   BrokenLineExample(this.brokenData);
 
@@ -53,7 +53,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
 
   /////////////////////////////
   Widget _brokenLineExample1(context, List<DBDataNodeModel> brokenData) {
-    if (brokenData == null) return Container();
     return Container(
       child: Column(
         children: <Widget>[

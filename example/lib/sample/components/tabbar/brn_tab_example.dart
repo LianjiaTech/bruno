@@ -272,8 +272,4 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
       onTap: (state, index) {},
     );
   }
-
-  Widget _createText(String string) {
-    return Text(string);
-  }
 }

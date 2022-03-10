@@ -123,10 +123,6 @@ class _BrnSelectionSingleListWidgetState extends State<BrnSelectionSingleListWid
 
   /// Item 点击之后的数据处理
   void _processFilterData(BrnSelectionEntity selectedEntity) {
-    if (null == selectedEntity) {
-      return;
-    }
-
     int totalLevel = BrnSelectionUtil.getTotalLevel(selectedEntity);
     if (selectedEntity.isUnLimit()) {
       selectedEntity.parent?.clearChildSelection();

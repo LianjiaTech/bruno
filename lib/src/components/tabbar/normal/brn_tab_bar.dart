@@ -339,7 +339,7 @@ class BrnTabBarState extends State<BrnTabBar> {
   void refreshBadgeState(int index) {
     setState(() {
       BadgeTab badgeTab = widget.tabs![index];
-      if (badgeTab != null && badgeTab.isAutoDismiss) {
+      if (badgeTab.isAutoDismiss) {
         badgeTab.badgeNum = null;
         badgeTab.badgeText = null;
         badgeTab.showRedBadge = false;

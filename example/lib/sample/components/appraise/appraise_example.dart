@@ -85,7 +85,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
                       BrnToast.show('输入的内容为' + input, context);
                     },
                     iconClickCallback: (index) {
-                      BrnToast.show('选中的评价为${index}', context);
+                      BrnToast.show('选中的评价为$index', context);
                     },
                     tagSelectCallback: (list) {
                       BrnToast.show('选中的标签为:' + list.toString(), context);
@@ -133,7 +133,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
                                 BrnToast.show('输入的内容为' + input, context);
                               },
                               iconClickCallback: (index) {
-                                BrnToast.show('选中的评价为${index}', context);
+                                BrnToast.show('选中的评价为$index', context);
                               },
                               tagSelectCallback: (list) {
                                 BrnToast.show(

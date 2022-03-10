@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -169,7 +167,7 @@ class BrnTextQuickSelectFormItemState
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      if (widget.isEdit != null && !widget.isEdit) {
+                      if (!widget.isEdit) {
                         return;
                       }
 
@@ -264,6 +262,7 @@ class QuickButtonsWidget extends StatefulWidget {
 class QuickButtonsState extends State<QuickButtonsWidget> {
   // 按钮状态是否使用内部维护
   bool _useInnerStatus = false;
+
   @override
   void initState() {
     initButtonParams();
@@ -333,14 +332,16 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
       String? str = widget.btnsTxt![index];
       result.add(Container(
         padding: EdgeInsets.fromLTRB(6, 0, 6, 0),
-        child: FlatButton(
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          color: getButtonColor(index),
-          textColor: getBtnTextColor(index),
+        child: TextButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(getButtonColor(index)),
+            overlayColor: MaterialStateProperty.all(Colors.transparent),
+            padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+          ),
           child: Text(
             str,
             style: TextStyle(
+              color: getBtnTextColor(index),
               fontSize: BrnFonts.f12,
             ),
           ),

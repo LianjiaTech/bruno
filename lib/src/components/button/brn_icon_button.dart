@@ -71,7 +71,7 @@ class BrnIconButton extends StatefulWidget {
     this.padding = 4,
     this.style,
     this.mainAxisAlignment = MainAxisAlignment.center,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   _BrnIconButtonState createState() => _BrnIconButtonState();
@@ -93,7 +93,9 @@ class _BrnIconButtonState extends State<BrnIconButton> {
             children: <Widget>[
               // 图片
               Container(
-                  height: widget.iconHeight, width: widget.iconWidth, child: widget.iconWidget),
+                  height: widget.iconHeight,
+                  width: widget.iconWidth,
+                  child: widget.iconWidget),
               Padding(
                 padding: EdgeInsets.only(top: widget.padding),
                 child: Text(
@@ -121,7 +123,9 @@ class _BrnIconButtonState extends State<BrnIconButton> {
             children: <Widget>[
               // 图片
               Container(
-                  height: widget.iconHeight, width: widget.iconWidth, child: widget.iconWidget),
+                  height: widget.iconHeight,
+                  width: widget.iconWidth,
+                  child: widget.iconWidget),
               Padding(
                 padding: EdgeInsets.only(left: widget.padding),
                 child: Text(
@@ -164,7 +168,9 @@ class _BrnIconButtonState extends State<BrnIconButton> {
               ),
               // 图片
               Container(
-                  height: widget.iconHeight, width: widget.iconWidth, child: widget.iconWidget),
+                  height: widget.iconHeight,
+                  width: widget.iconWidth,
+                  child: widget.iconWidget),
             ],
           ));
     } else {

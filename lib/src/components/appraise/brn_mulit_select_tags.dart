@@ -163,7 +163,7 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
     for (BrnTagItemBean item in widget.tagPickerBean.tagItemSource) {
       tagItems.add(item);
       //选中的按钮
-      if (item.isSelect == true && item.name != null) {
+      if (item.isSelect == true) {
         tagSelectItems.add(item);
       }
     }

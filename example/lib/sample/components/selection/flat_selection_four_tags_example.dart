@@ -67,7 +67,7 @@ class _SelectionViewExamplePageState extends State<FlatSelectionFourTagsExample>
                             entityDataList: widget._filterData,
                             confirmCallback: (data) {
                               var str = "";
-                              data.forEach((k, v) => str = str + " " + '${k}: ${v}');
+                              data.forEach((k, v) => str = str + " " + '$k: $v');
                               BrnToast.show(str, context);
                             },
                             controller: controller)),
@@ -153,7 +153,4 @@ class _SelectionViewExamplePageState extends State<FlatSelectionFourTagsExample>
     );
   }
 
-  void _backButtonClickEvent() {
-    Navigator.of(context).pop();
-  }
 }

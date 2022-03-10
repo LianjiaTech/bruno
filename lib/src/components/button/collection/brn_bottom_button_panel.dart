@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/button/brn_vertical_icon_button.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
@@ -108,8 +106,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
       VoidCallback? secondaryButtonOnTap,
       bool enableMainButton = true,
       List<BrnVerticalIconButton>? iconButtonList}) {
-    if ((buttonTitleList.isEmpty) &&
-        iconButtonList == null) {
+    if ((buttonTitleList.isEmpty) && iconButtonList == null) {
       return SizedBox.shrink();
     }
     if (buttonTitleList.length >= 2) {
@@ -209,7 +206,8 @@ class BrnBottomButtonPanel extends StatelessWidget {
                 color: enableSecondaryButton
                     ? BrnThemeConfigurator.instance
                         .getConfig()
-                        .commonConfig.brandAuxiliary
+                        .commonConfig
+                        .brandAuxiliary
                     : Color(0xFFCCCCCC),
                 borderRadius: BorderRadius.all(Radius.circular(6.0)),
               ),
@@ -226,7 +224,9 @@ class BrnBottomButtonPanel extends StatelessWidget {
                         ? Colors.white
                         : BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig.colorTextBaseInverse.withOpacity(0.7),
+                            .commonConfig
+                            .colorTextBaseInverse
+                            .withOpacity(0.7),
                   ),
                 ),
               )),
@@ -249,7 +249,8 @@ class BrnBottomButtonPanel extends StatelessWidget {
             color: enableMainButton
                 ? BrnThemeConfigurator.instance
                     .getConfig()
-                    .commonConfig.brandPrimary
+                    .commonConfig
+                    .brandPrimary
                 : Color(0xFFCCCCCC),
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
           ),
@@ -266,7 +267,9 @@ class BrnBottomButtonPanel extends StatelessWidget {
                     ? Colors.white
                     : BrnThemeConfigurator.instance
                         .getConfig()
-                        .commonConfig.colorTextBaseInverse.withOpacity(0.7),
+                        .commonConfig
+                        .colorTextBaseInverse
+                        .withOpacity(0.7),
               ),
             ),
           )),

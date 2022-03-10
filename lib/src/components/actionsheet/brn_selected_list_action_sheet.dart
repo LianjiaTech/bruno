@@ -296,7 +296,7 @@ class _BrnActionSheetSelectedItemListState<T>
           widget.onDismiss!(_isClosedByClear);
         }
       });
-    widget._yAnimation = yAnimation as Animation<double>;
+    widget._yAnimation = yAnimation;
     Animation alphaAnimation = Tween(begin: 0.0, end: 0.7)
         .animate(alphaAnimationController)
       ..addListener(() {});

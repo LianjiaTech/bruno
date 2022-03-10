@@ -150,7 +150,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
             actions: actions,
             cancelTitle: "自定义取消名称",
             clickCallBack: (int index, BrnCommonActionSheetItem actionEle) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
           );
@@ -184,7 +184,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
           return BrnCommonActionSheet(
             actions: actions,
             clickCallBack: (int index, BrnCommonActionSheetItem actionEle) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
           );
@@ -218,7 +218,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
               int index,
               BrnCommonActionSheetItem actionEle,
             ) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
           );
@@ -252,7 +252,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
               int index,
               BrnCommonActionSheetItem actionEle,
             ) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
           );
@@ -309,7 +309,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
               int index,
               BrnCommonActionSheetItem actionEle,
             ) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
             onItemClickInterceptor: (

@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/button/brn_normal_button.dart';
@@ -69,7 +67,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
     this.fontSize = 14,
     this.fontWeight = FontWeight.w600,
     this.themeData,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +79,8 @@ class BrnSmallOutlineButton extends StatelessWidget {
     ));
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig.merge(defaultThemeConfig);
+        .buttonConfig
+        .merge(defaultThemeConfig);
 
     TextPainter textPainter =
         TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
@@ -97,8 +96,9 @@ class BrnSmallOutlineButton extends StatelessWidget {
         textPainter.text = TextSpan(text: title, style: style);
         textPainter.layout(maxWidth: con.maxWidth);
         double textWidth = textPainter.width;
-        double _maxWidth =
-            textWidth + BrnButtonConstant.horizontalPadding * 2 + 2 * _BBorderWith;
+        double _maxWidth = textWidth +
+            BrnButtonConstant.horizontalPadding * 2 +
+            2 * _BBorderWith;
 
         double _minWidth = min(_BMinWidth, con.maxWidth);
         if (_maxWidth <= _minWidth) {

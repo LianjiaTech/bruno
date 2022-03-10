@@ -13,9 +13,6 @@ class PopWindowExamplePage extends StatefulWidget {
 }
 
 class PopWindowExamplePageState extends State<PopWindowExamplePage> {
-  GlobalKey? _leftKeylist0;
-  GlobalKey? _leftKeylist1;
-  GlobalKey? _leftKeylist2;
   GlobalKey? _leftKey;
   GlobalKey? _leftKey1;
   GlobalKey? _leftKey2;
@@ -30,9 +27,6 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
   @override
   void initState() {
     super.initState();
-    _leftKeylist0 = GlobalKey();
-    _leftKeylist1 = GlobalKey();
-    _leftKeylist2 = GlobalKey();
     _leftKey = GlobalKey();
     _leftKey1 = GlobalKey();
     _leftKey2 = GlobalKey();
@@ -55,7 +49,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(left: 10, top: 10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey,
                   onPressed: () {
                     BrnPopupWindow.showPopWindow(context, "提示内容", _leftKey!,
@@ -66,7 +60,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey1,
                   onPressed: () {
                     BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey1!,
@@ -77,7 +71,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey2,
                   onPressed: () {
                     BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey2!,
@@ -88,7 +82,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey3,
                   onPressed: () {
                     BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey3!,
@@ -99,7 +93,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 250),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey4,
                   onPressed: () {
                     BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey4!,
@@ -112,7 +106,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 250),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey5,
                   onPressed: () {
                     BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容", _leftKey5!,
@@ -125,7 +119,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 250),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey6,
                   onPressed: () {
                     BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey6!,
@@ -139,7 +133,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 250),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey7,
                   onPressed: () {
                     BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey7!,

@@ -61,7 +61,8 @@ class BrnBigMainButton extends StatelessWidget {
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig.merge(defaultThemeConfig);
+        .buttonConfig
+        .merge(defaultThemeConfig);
 
     return BrnNormalButton(
       constraints: BoxConstraints.tightFor(

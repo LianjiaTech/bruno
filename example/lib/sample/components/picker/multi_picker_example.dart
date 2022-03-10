@@ -78,6 +78,7 @@ class MultiPickerExamplePage extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             ListItem(
+              isShowLine: false,
               title: "单列",
               describe: '自定义单列Picker',
               onPressed: () {

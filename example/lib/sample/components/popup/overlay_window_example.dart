@@ -64,7 +64,7 @@ class OverlayWindowExamplePageState extends State<OverlayWindowExample> {
           _overlayController?.removeOverlay();
         },
         onTextChange: (text) {
-          if (text == null || text == '') {
+          if (text == '') {
             _overlayController?.removeOverlay();
             return;
           }

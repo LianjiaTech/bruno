@@ -1,5 +1,4 @@
 import 'package:bruno/src/components/dialog/brn_dialog_utils.dart';
-import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_dialog_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';

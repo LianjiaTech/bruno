@@ -90,7 +90,6 @@ class BrnHorizontalStepsState extends State<BrnHorizontalSteps> {
     final List<Widget> childrenList = <Widget>[];
     final List<BrunoStep> steps = widget.steps;
     final int length = steps.length;
-    final int lastIndex = length - 1;
     for (int i = 0; i < length; i += 1) {
       childrenList.add(_applyStepItem(steps[i], i));
     }

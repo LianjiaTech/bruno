@@ -178,7 +178,6 @@ class _SelectionViewExamplePageState extends State<SelectionViewCustomViewExampl
             onTap: () {
               /// TODO  清除筛选
               _currentCalendarSelectedDate.value = null;
-              _currentCalendarSelectedDate.notifyListeners();
             },
           ),
           Expanded(

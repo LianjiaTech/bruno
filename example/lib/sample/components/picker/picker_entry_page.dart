@@ -13,7 +13,7 @@ import 'multi_picker_example.dart';
 
 class PickerEntryPage extends StatelessWidget {
   final String _title;
-  List<BrnPickerEntity> dataList = [];
+  final List<BrnPickerEntity> dataList = [];
 
   PickerEntryPage(this._title);
 
