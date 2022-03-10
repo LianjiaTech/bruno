@@ -27,7 +27,7 @@ dependencies:
   bruno:
     path: ../
   flutter_easyrefresh: ^2.2.1
-  http: any
+  lpinyin: ^2.0.3
   badges: ^2.0.2
 
 dev_dependencies:

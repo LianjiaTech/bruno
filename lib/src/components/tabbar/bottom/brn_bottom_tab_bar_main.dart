@@ -3,7 +3,6 @@ import 'dart:math' as math;
 
 import 'package:bruno/src/components/tabbar/bottom/brn_bottom_tab_bar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// 定义一些UI常量,根据UI稿进行填写
 const double _kActiveFontSize = 10.0;

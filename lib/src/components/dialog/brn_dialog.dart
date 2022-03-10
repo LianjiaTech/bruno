@@ -91,13 +91,13 @@ enum _ButtonType {
   right,
 }
 
+
 ///高度灵活的通用的弹窗组件
 ///
 ///布局规则：
 ///   弹窗由五部分组成：Icon、标题、内容、警示、按钮操作区域。
 ///   每一部分都可以显示或者不显示。
 ///
-///弹窗的样式通过[brnDialogStyle]控制，开发者可以设置每一部分的间距、颜色、字体等一切和样式相关的配置
 ///
 ///有两种使用方式：
 ///1：系统的showDialog
@@ -573,8 +573,6 @@ class BrnDialog extends AlertDialog {
 /// warningWidget 展示警示文案的widget
 ///
 /// dismiss 点击按钮后是否 消失弹窗
-///
-/// dialogStyle 对话框的样式：间距、字体、阴影等
 ///
 /// barrierDismissible 点击四周的黑色遮罩 是否关闭弹窗
 ///
