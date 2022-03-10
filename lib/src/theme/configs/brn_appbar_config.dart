@@ -58,12 +58,12 @@ class BrnAppBarConfig extends BrnBaseConfig {
         super(configId: configId) {
     _backgroundColor = Color(0xff2E313B);
     _leadIconBuilder = () => Image.asset(
-      BrnAsset.iconBackWhite,
-      package: BrnStrings.flutterPackageName,
-      width: BrnAppBarTheme.iconSize,
-      height: BrnAppBarTheme.iconSize,
-      fit: BoxFit.fitHeight,
-    );
+          BrnAsset.iconBackWhite,
+          package: BrnStrings.flutterPackageName,
+          width: BrnAppBarTheme.iconSize,
+          height: BrnAppBarTheme.iconSize,
+          fit: BoxFit.fitHeight,
+        );
     _titleStyle = BrnTextStyle(
       fontSize: BrnAppBarTheme.titleFontSize,
       fontWeight: FontWeight.w600,
@@ -94,12 +94,12 @@ class BrnAppBarConfig extends BrnBaseConfig {
         super(configId: configId) {
     _backgroundColor = Colors.white;
     _leadIconBuilder = () => Image.asset(
-      BrnAsset.iconBackBlack,
-      package: BrnStrings.flutterPackageName,
-      width: BrnAppBarTheme.iconSize,
-      height: BrnAppBarTheme.iconSize,
-      fit: BoxFit.fitHeight,
-    );
+          BrnAsset.iconBackBlack,
+          package: BrnStrings.flutterPackageName,
+          width: BrnAppBarTheme.iconSize,
+          height: BrnAppBarTheme.iconSize,
+          fit: BoxFit.fitHeight,
+        );
     _titleStyle = BrnTextStyle(
       fontSize: BrnAppBarTheme.titleFontSize,
       fontWeight: FontWeight.w600,
@@ -118,7 +118,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
 
   Color get backgroundColor =>
       _backgroundColor ??
-          BrnDefaultConfigUtils.defaultAppBarConfig.backgroundColor;
+      BrnDefaultConfigUtils.defaultAppBarConfig.backgroundColor;
 
   /// AppBar 的高度
   double? _appBarHeight;
@@ -131,7 +131,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
 
   BrnWidgetBuilder get leadIconBuilder =>
       _leadIconBuilder ??
-          BrnDefaultConfigUtils.defaultAppBarConfig.leadIconBuilder;
+      BrnDefaultConfigUtils.defaultAppBarConfig.leadIconBuilder;
 
   /// 标题样式，仅当直接 title 设置为 String 生效
   ///
@@ -160,14 +160,14 @@ class BrnAppBarConfig extends BrnBaseConfig {
 
   int get titleMaxLength =>
       _titleMaxLength ??
-          BrnDefaultConfigUtils.defaultAppBarConfig.titleMaxLength;
+      BrnDefaultConfigUtils.defaultAppBarConfig.titleMaxLength;
 
   /// 左右边距
   double? _leftAndRightPadding;
 
   double get leftAndRightPadding =>
       _leftAndRightPadding ??
-          BrnDefaultConfigUtils.defaultAppBarConfig.leftAndRightPadding;
+      BrnDefaultConfigUtils.defaultAppBarConfig.leftAndRightPadding;
 
   /// 元素间间距
   double? _itemSpacing;
@@ -194,13 +194,13 @@ class BrnAppBarConfig extends BrnBaseConfig {
 
   SystemUiOverlayStyle get systemUiOverlayStyle =>
       _systemUiOverlayStyle ??
-          BrnDefaultConfigUtils.defaultAppBarConfig.systemUiOverlayStyle;
+      BrnDefaultConfigUtils.defaultAppBarConfig.systemUiOverlayStyle;
 
   @override
   void initThemeConfig(
-      String configId, {
-        BrnCommonConfig? currentLevelCommonConfig,
-      }) {
+    String configId, {
+    BrnCommonConfig? currentLevelCommonConfig,
+  }) {
     super.initThemeConfig(
       configId,
       currentLevelCommonConfig: currentLevelCommonConfig,

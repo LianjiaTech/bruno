@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/multi_range_picker/bean/brn_multi_column_picker_entity.dart';
 
 /// BrnMultiColumnPicker相关工具类
@@ -12,8 +10,7 @@ class BrnMultiColumnPickerUtil {
       rootEntity = rootEntity?.parent!;
     }
 
-    if (rootEntity != null  &&
-        rootEntity.children.length > 0) {
+    if (rootEntity != null && rootEntity.children.length > 0) {
       count = count > 1 ? count : 1;
       for (BrnPickerEntity firstLevelEntity in rootEntity.children) {
         if (firstLevelEntity.children.length > 0) {

@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/components/tabbar/indicator/brn_custom_width_indicator.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -121,11 +119,8 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
       }
 
       return Container(
-        padding: EdgeInsets.fromLTRB(
-            widget.padding.left,
-            widget.padding.top,
-            widget.padding.right,
-            bottomPadding),
+        padding: EdgeInsets.fromLTRB(widget.padding.left, widget.padding.top,
+            widget.padding.right, bottomPadding),
         child: tx,
       );
     }).toList();

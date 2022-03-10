@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +38,8 @@ class StarInputExamplePage extends StatelessWidget {
                 BrnToast.show("点击触发onRemoveTap回调", context);
               },
               onChanged: (oldValue, newValue) {
-                BrnToast.show("点击触发回调${oldValue}_${newValue}_onChanged", context);
+                BrnToast.show(
+                    "点击触发回调${oldValue}_${newValue}_onChanged", context);
               },
             ),
             Container(
@@ -73,7 +72,8 @@ class StarInputExamplePage extends StatelessWidget {
                 BrnToast.show("点击触发onRemoveTap回调", context);
               },
               onChanged: (oldValue, newValue) {
-                BrnToast.show("点击触发回调${oldValue}_${newValue}_onChanged", context);
+                BrnToast.show(
+                    "点击触发回调${oldValue}_${newValue}_onChanged", context);
               },
             ),
             Container(
@@ -105,7 +105,8 @@ class StarInputExamplePage extends StatelessWidget {
                 BrnToast.show("点击触发onRemoveTap回调", context);
               },
               onChanged: (oldValue, newValue) {
-                BrnToast.show("点击触发回调${oldValue}_${newValue}_onChanged", context);
+                BrnToast.show(
+                    "点击触发回调${oldValue}_${newValue}_onChanged", context);
               },
             ),
           ],

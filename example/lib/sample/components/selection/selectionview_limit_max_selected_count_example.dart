@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +8,12 @@ class SelectionViewLimitMaxSelectedCountExamplePage extends StatefulWidget {
   SelectionViewLimitMaxSelectedCountExamplePage(this._title, this._filterData);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<SelectionViewLimitMaxSelectedCountExamplePage> {
+class _SelectionViewExamplePageState
+    extends State<SelectionViewLimitMaxSelectedCountExamplePage> {
   List<BrnSelectionEntity>? items;
 
   BrnSelectionViewController? controller;
@@ -55,7 +55,9 @@ class _SelectionViewExamplePageState extends State<SelectionViewLimitMaxSelected
                 Map<String, String> customParams,
                 BrnSetCustomSelectionMenuTitle setCustomTitleFunction) {
               BrnToast.show(
-                  'filterParams : $filterParams' + ',\n customParams : $customParams', context);
+                  'filterParams : $filterParams' +
+                      ',\n customParams : $customParams',
+                  context);
             },
             onMenuClickInterceptor: (index) {
               if (index == 4) {

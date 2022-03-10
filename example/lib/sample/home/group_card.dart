@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:example/sample/home/card_data_config.dart';
@@ -20,9 +18,12 @@ class GroupCard extends StatefulWidget {
   }
 }
 
-class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
+class GroupCardState extends State<GroupCard>
+    with SingleTickerProviderStateMixin {
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.easeIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0.0, end: 0.5);
   BrnExpandableContainerController? _controller;
   Widget? _arrowIcon;
   late Animation<double> _iconTurns;
@@ -33,7 +34,8 @@ class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixi
   void initState() {
     super.initState();
     _controller = BrnExpandableContainerController();
-    _animationController = AnimationController(duration: Duration(milliseconds: 200), vsync: this);
+    _animationController =
+        AnimationController(duration: Duration(milliseconds: 200), vsync: this);
     _initExpand = widget.groupInfo!.isExpand;
     _iconTurns = _animationController!.drive(_halfTween.chain(_easeInTween));
     if (_initExpand) {
@@ -55,7 +57,7 @@ class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixi
     return BrnPickerClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(6)),
       child: BrnExpandableContainerWidget(
-       key: widget.key,
+        key: widget.key,
         expandableController: _controller,
         initiallyExpanded: _initExpand,
         onExpansionChanged: (isExpand) {
@@ -96,7 +98,7 @@ class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixi
   }
 
   Widget _getContentWidget() {
-    if(widget.groupInfo == null || widget.groupInfo!.children == null){
+    if (widget.groupInfo == null || widget.groupInfo!.children == null) {
       return SizedBox.shrink();
     }
     return ListView.builder(
@@ -107,7 +109,8 @@ class GroupCardState extends State<GroupCard> with SingleTickerProviderStateMixi
         return Container(
           color: Colors.white,
           child: ListItem(
-            isSupportTheme: widget.groupInfo?.children![index].isSupportTheme ?? false,
+            isSupportTheme:
+                widget.groupInfo?.children![index].isSupportTheme ?? false,
             isShowLine: !(index == 0),
             title: widget.groupInfo?.children![index].groupName ?? '',
             describe: widget.groupInfo?.children![index].desc ?? '',

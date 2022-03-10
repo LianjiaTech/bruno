@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
@@ -248,8 +246,7 @@ class BrnEnhanceNumberCard extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
     );
     if (model.iconTapCallBack != null) {
-      Widget icon =
-          BrunoTools.getAssetSizeImage(BrnAsset.iconQuestion, 14, 14);
+      Widget icon = BrunoTools.getAssetSizeImage(BrnAsset.iconQuestion, 14, 14);
 
       if (model.numberInfoIcon == BrnNumberInfoIcon.arrow) {
         icon = BrunoTools.getAssetSizeImage(BrnAsset.iconRightArrow, 14, 14);

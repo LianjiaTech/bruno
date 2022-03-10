@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/multi_range_picker/bean/brn_multi_column_picker_entity.dart';
 import 'package:bruno/src/components/picker/multi_range_picker/brn_multi_column_picker_util.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
@@ -36,8 +34,7 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var checkbox;
-    if (!item.isUnLimit() &&
-        (item.children.length == 0)) {
+    if (!item.isUnLimit() && (item.children.length == 0)) {
       if (item.isInLastLevel() && _hasCheckBoxBrother(item)) {
         checkbox = Container(
           padding: EdgeInsets.only(left: 6),
@@ -123,7 +120,7 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
   String _getSelectedItemCount(BrnPickerEntity item) {
     String itemCount = "";
     if ((BrnMultiColumnPickerUtil.getTotalColumnCount(item) < 3 ||
-            !isFirstLevel)) {
+        !isFirstLevel)) {
       int count =
           item.children.where((f) => f.isSelected && !f.isUnLimit()).length;
       if (count > 1) {

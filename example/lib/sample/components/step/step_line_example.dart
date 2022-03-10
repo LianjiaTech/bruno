@@ -68,7 +68,7 @@ class _StepLineExampleState extends State<StepLineExample> {
                   iconTopPadding: 20,
                   //最后一个的线条为透明色 做到不显示的效果
                   lineColor:
-                  index == 2 ? Colors.transparent : const Color(0xffeeeeee),
+                      index == 2 ? Colors.transparent : const Color(0xffeeeeee),
                   contentWidget: Container(
                     padding: const EdgeInsets.only(left: 8),
                     child: Column(
@@ -187,20 +187,20 @@ class _StepLineExampleState extends State<StepLineExample> {
                   lineColor: index == 2
                       ? Colors.transparent
                       : (index == 1
-                      ? [
-                    BrnThemeConfigurator.instance
-                        .getConfig()
-                        .commonConfig
-                        .brandPrimary,
-                    Colors.red
-                  ]
-                      : null),
+                          ? [
+                              BrnThemeConfigurator.instance
+                                  .getConfig()
+                                  .commonConfig
+                                  .brandPrimary,
+                              Colors.red
+                            ]
+                          : null),
                   highlightColor: index == 2
                       ? Colors.red
                       : BrnThemeConfigurator.instance
-                      .getConfig()
-                      .commonConfig
-                      .brandPrimary,
+                          .getConfig()
+                          .commonConfig
+                          .brandPrimary,
                   contentWidget: Container(
                     padding: const EdgeInsets.only(left: 8),
                     child: Column(
@@ -377,9 +377,9 @@ class _StepLineExampleState extends State<StepLineExample> {
   dynamic getLineColor(int index) {
     return index == 1
         ? [
-      BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
-      Colors.red
-    ]
+            BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+            Colors.red
+          ]
         : (index == 2 ? Colors.transparent : const Color(0xffeeeeee));
   }
 

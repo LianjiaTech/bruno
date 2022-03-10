@@ -37,6 +37,7 @@ class MeasureSize extends SingleChildRenderObjectWidget {
     required this.onChange,
     required Widget child,
   }) : super(key: key, child: child);
+
   @override
   RenderObject createRenderObject(BuildContext context) {
     return MeasureSizeRenderObject(onChange);

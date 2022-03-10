@@ -42,10 +42,12 @@ class BrnSelectionRangeTagWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  _BrnSelectionRangeTagWidgetState createState() => _BrnSelectionRangeTagWidgetState();
+  _BrnSelectionRangeTagWidgetState createState() =>
+      _BrnSelectionRangeTagWidgetState();
 }
 
-class _BrnSelectionRangeTagWidgetState extends State<BrnSelectionRangeTagWidget> {
+class _BrnSelectionRangeTagWidgetState
+    extends State<BrnSelectionRangeTagWidget> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -57,7 +59,9 @@ class _BrnSelectionRangeTagWidgetState extends State<BrnSelectionRangeTagWidget>
 
   List<Widget> _tagWidgetList(context) {
     List<Widget> list = [];
-    for (int nameIndex = 0; nameIndex < widget.tagFilterList.length; nameIndex++) {
+    for (int nameIndex = 0;
+        nameIndex < widget.tagFilterList.length;
+        nameIndex++) {
       Widget tagWidget = _tagWidgetAtIndex(nameIndex);
       GestureDetector gdt = GestureDetector(
           child: tagWidget,
@@ -82,23 +86,26 @@ class _BrnSelectionRangeTagWidgetState extends State<BrnSelectionRangeTagWidget>
   }
 
   Widget _tagWidgetAtIndex(int nameIndex) {
-    bool selected =
-        widget.tagFilterList[nameIndex].isSelected || nameIndex == widget.initFocusedIndex;
+    bool selected = widget.tagFilterList[nameIndex].isSelected ||
+        nameIndex == widget.initFocusedIndex;
     String text = widget.tagFilterList[nameIndex].title;
-    if (widget.tagFilterList[nameIndex].filterType == BrnSelectionFilterType.date &&
+    if (widget.tagFilterList[nameIndex].filterType ==
+            BrnSelectionFilterType.date &&
         !BrunoTools.isEmpty(widget.tagFilterList[nameIndex].value)) {
       if (int.tryParse(widget.tagFilterList[nameIndex].value ?? '') != null) {
-        DateTime? dateTime =
-            DateTimeFormatter.convertIntValueToDateTime(widget.tagFilterList[nameIndex].value);
+        DateTime? dateTime = DateTimeFormatter.convertIntValueToDateTime(
+            widget.tagFilterList[nameIndex].value);
         if (dateTime != null) {
-          text = DateTimeFormatter.formatDate(dateTime, 'yyyy年MM月dd日', DateTimePickerLocale.zh_cn);
+          text = DateTimeFormatter.formatDate(
+              dateTime, 'yyyy年MM月dd日', DateTimePickerLocale.zh_cn);
         }
       } else {
         text = widget.tagFilterList[nameIndex].value ?? '';
       }
     }
 
-    Text tx = Text(text, style: selected ? _selectedTextStyle() : _tagTextStyle());
+    Text tx =
+        Text(text, style: selected ? _selectedTextStyle() : _tagTextStyle());
     Container tagItem = Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(

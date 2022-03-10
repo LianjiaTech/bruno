@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -63,11 +61,11 @@ class _TextQuickSelectInputExamplePageState
                 if (status[index]) {
                   selectedStr += '${options[index]} ';
                 } else if (selectedStr.contains(options[index])) {
-                  selectedStr = selectedStr.replaceFirst('${options[index]} ', '');
+                  selectedStr =
+                      selectedStr.replaceFirst('${options[index]} ', '');
                 }
                 BrnToast.show(
-                    "点击触发onBtnSelectChanged回调。\n index:$index",
-                    context);
+                    "点击触发onBtnSelectChanged回调。\n index:$index", context);
                 setState(() {});
               },
               onTip: () {
@@ -105,15 +103,17 @@ class _TextQuickSelectInputExamplePageState
               subTitle: "这里是副标题",
               tipLabel: "标签",
               onBtnSelectChanged: (index) {
-                statusAllFunctionExample![index] = !statusAllFunctionExample![index];
+                statusAllFunctionExample![index] =
+                    !statusAllFunctionExample![index];
                 if (statusAllFunctionExample![index]) {
                   selectedStrAllFunctionExample += '${options[index]} ';
-                } else if (selectedStrAllFunctionExample.contains(options[index])) {
-                  selectedStrAllFunctionExample = selectedStrAllFunctionExample.replaceFirst('${options[index]} ', '');
+                } else if (selectedStrAllFunctionExample
+                    .contains(options[index])) {
+                  selectedStrAllFunctionExample = selectedStrAllFunctionExample
+                      .replaceFirst('${options[index]} ', '');
                 }
                 BrnToast.show(
-                    "点击触发onBtnSelectChanged回调。\n index:$index",
-                    context);
+                    "点击触发onBtnSelectChanged回调。\n index:$index", context);
                 setState(() {});
               },
               onTip: () {

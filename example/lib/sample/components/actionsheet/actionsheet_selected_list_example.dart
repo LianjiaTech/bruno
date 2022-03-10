@@ -1,11 +1,10 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class SelectedListActionSheetExamplePage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => SelectedListActionSheetExamplePageState();
+  State<StatefulWidget> createState() =>
+      SelectedListActionSheetExamplePageState();
 }
 
 class SelectedListActionSheetExamplePageState
@@ -64,7 +63,7 @@ class SelectedListActionSheetExamplePageState
                             if (!controller.isHidden) {
                               controller.dismiss();
                             } else {
-                              if ( _data.length <= 0) {
+                              if (_data.length <= 0) {
                                 BrnToast.show('数据为空，弹窗不展示', context);
                                 return;
                               }
@@ -89,7 +88,8 @@ class SelectedListActionSheetExamplePageState
                                       ),
                                     ),
                                   ),
-                                  itemTitleBuilder: (int index, String? entity) {
+                                  itemTitleBuilder:
+                                      (int index, String? entity) {
                                     return entity;
                                   },
                                   onClear: () {

@@ -28,8 +28,7 @@ class BrnAsset {
   static const String iconArrowDownUnSelect =
       "images/icon_arrow_down_unselected.png";
   static const String iconArrowRight = "icons/icon_right_arrow_1.png";
-  static const String selectCheckedStatus =
-      "images/select_checked_status.png";
+  static const String selectCheckedStatus = "images/select_checked_status.png";
   static const String selectNormalStatus = "icons/normol_border.png";
   static const String iconSelectedUpTriangle =
       "icons/icon_selcted_triangle.png";
@@ -72,15 +71,13 @@ class BrnAsset {
   static const String iconPickerClose = 'images/icon_guanbi.png';
 
   static const String iconNotice = 'icons/icon_notice.png';
-  static const String iconNoticeArrowBlue =
-      'icons/icon_notice_arrow_blue.png';
+  static const String iconNoticeArrowBlue = 'icons/icon_notice_arrow_blue.png';
   static const String iconNoticeArrowGreen =
       'icons/icon_notice_arrow_green.png';
   static const String iconNoticeArrowOrange =
       'icons/icon_notice_arrow_orange.png';
   static const String iconNoticeArrowRed = 'icons/icon_notice_arrow_red.png';
-  static const String iconNoticeCloseBlue =
-      'icons/icon_notice_close_blue.png';
+  static const String iconNoticeCloseBlue = 'icons/icon_notice_close_blue.png';
   static const String iconNoticeCloseGreen =
       'icons/icon_notice_close_green.png';
   static const String iconNoticeCloseOrange =
@@ -107,8 +104,7 @@ class BrnAsset {
   static const String iconsAvatarNew = '/assets/icons/img_avatar_new.png';
 
   static const String iconAudioPlayer = 'icons/icon_audioplayer_play.png';
-  static const String iconAudioPlayerPause =
-      'icons/icon_audioplayer_pause.png';
+  static const String iconAudioPlayerPause = 'icons/icon_audioplayer_pause.png';
 
   static const String iconGreyPlaceHolder = 'icons/grey_place_holder.png';
 

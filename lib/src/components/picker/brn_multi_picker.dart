@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
@@ -293,7 +291,8 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
               child: Text(
                 widget.delegate.titleForRowInComponent(component, i),
                 style: _selectedIndexList[component] == i
-                    ? widget.themeData!.itemTextSelectedStyle.generateTextStyle()
+                    ? widget.themeData!.itemTextSelectedStyle
+                        .generateTextStyle()
                     : widget.themeData!.itemTextStyle.generateTextStyle(),
               ),
             ));

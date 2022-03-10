@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +97,8 @@ class MultiPickerExamplePage extends StatelessWidget {
                 BrnMultiDataPicker(
                   context: context,
                   title: '来源',
-                  delegate: Brn2RowDelegate(firstSelectedIndex: 1, secondSelectedIndex: 0),
+                  delegate: Brn2RowDelegate(
+                      firstSelectedIndex: 1, secondSelectedIndex: 0),
                   confirmClick: (list) {
                     BrnToast.show(list.toString(), context);
                   },
@@ -114,7 +113,8 @@ class MultiPickerExamplePage extends StatelessWidget {
                   sync: false,
                   context: context,
                   title: '来源',
-                  delegate: Brn2RowCustomDelegate(firstSelectedIndex: 1, secondSelectedIndex: 0),
+                  delegate: Brn2RowCustomDelegate(
+                      firstSelectedIndex: 1, secondSelectedIndex: 0),
                   confirmClick: (list) {
                     BrnToast.show(list.toString(), context);
                   },
@@ -129,7 +129,9 @@ class MultiPickerExamplePage extends StatelessWidget {
                   context: context,
                   title: '来源',
                   delegate: Brn3RowDelegate(
-                      firstSelectedIndex: 1, secondSelectedIndex: 0, thirdSelectedIndex: 0),
+                      firstSelectedIndex: 1,
+                      secondSelectedIndex: 0,
+                      thirdSelectedIndex: 0),
                   confirmClick: (list) {
                     BrnToast.show(list.toString(), context);
                   },
@@ -361,7 +363,8 @@ class Brn2RowCustomDelegate implements BrnMultiDataPickerDelegate {
   int firstSelectedIndex = 0;
   int secondSelectedIndex = 0;
 
-  Brn2RowCustomDelegate({this.firstSelectedIndex = 0, this.secondSelectedIndex = 0});
+  Brn2RowCustomDelegate(
+      {this.firstSelectedIndex = 0, this.secondSelectedIndex = 0});
 
   @override
   int numberOfComponent() {

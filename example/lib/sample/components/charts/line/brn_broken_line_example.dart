@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/bruno.dart';
@@ -72,7 +70,10 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 isShowPoint: true,
                 isCurve: true,
                 points: _linePointsForExample1(brokenData),
-                shaderColors: [Colors.green.withOpacity(0.3), Colors.green.withOpacity(0.01)],
+                shaderColors: [
+                  Colors.green.withOpacity(0.3),
+                  Colors.green.withOpacity(0.01)
+                ],
                 lineColor: Colors.green,
               )
             ],
@@ -101,7 +102,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: brokenData.indexOf(_).toDouble(),
             y: double.parse(_.value!),
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return _.value;
@@ -109,7 +109,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
         .toList();
   }
 
-  List<BrnDialItem> _getYDialValuesForExample1(List<DBDataNodeModel> brokenData) {
+  List<BrnDialItem> _getYDialValuesForExample1(
+      List<DBDataNodeModel> brokenData) {
     double min = _getMinValueForExample1(brokenData);
     double max = _getMaxValueForExample1(brokenData);
     double dValue = (max - min) / 10;
@@ -145,7 +146,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     return maxValue;
   }
 
-  List<BrnDialItem> _getXDialValuesForExample1(List<DBDataNodeModel> brokenData) {
+  List<BrnDialItem> _getXDialValuesForExample1(
+      List<DBDataNodeModel> brokenData) {
     List<BrnDialItem> _xDialValue = [];
     for (int index = 0; index < brokenData.length; index++) {
       _xDialValue.add(BrnDialItem(
@@ -205,7 +207,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: 1,
             y: 15,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '15';
@@ -215,7 +216,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 30,
             pointText: '22222',
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '30';
@@ -225,7 +225,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: 3,
             y: 17,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '17';
@@ -235,7 +234,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: 4,
             y: 45,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '45';
@@ -245,13 +243,15 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: 5,
             y: 80,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '80';
                 })),
       ],
-      shaderColors: [Colors.blue.withOpacity(0.3), Colors.blue.withOpacity(0.01)],
+      shaderColors: [
+        Colors.blue.withOpacity(0.3),
+        Colors.blue.withOpacity(0.01)
+      ],
       lineColor: Colors.blue,
     );
     _pointsLine1 = BrnPointsLine(
@@ -267,7 +267,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: 2.5,
             y: 4,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '30';
@@ -277,7 +276,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: 3,
             y: 20,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '17';
@@ -287,7 +285,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: 4,
             y: 30,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '45';
@@ -297,7 +294,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: 5,
             y: 50,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '80';
@@ -307,13 +303,15 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             x: 6,
             y: 5,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '80';
                 })),
       ],
-      shaderColors: [Colors.green.withOpacity(0.3), Colors.green.withOpacity(0.01)],
+      shaderColors: [
+        Colors.green.withOpacity(0.3),
+        Colors.green.withOpacity(0.01)
+      ],
       lineColor: Colors.green,
     );
 
@@ -434,7 +432,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 30,
             x: 1,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return Container(
@@ -465,16 +462,18 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 80,
             x: 2,
             lineTouchData: BrnLineTouchData(
-
                 onTouch: () {
                   return Container(
-                    padding: EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
+                    padding:
+                        EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
                     child: Center(
                         child: Text(
-                          'content',
-                          style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
-                        )),
+                      'content',
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
+                    )),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.8),
                       borderRadius: BorderRadius.circular(2.0),
@@ -487,7 +486,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                       ],
                     ),
                   );
-                }, tipWindowSize:Size(60, 40) )),
+                },
+                tipWindowSize: Size(60, 40))),
         BrnPointData(
             pointText: '20',
             y: 20,
@@ -502,7 +502,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 67,
             x: 4,
             lineTouchData: BrnLineTouchData(
-                tipWindowSize:Size(60, 40),
+                tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '66';
                 })),
@@ -511,7 +511,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 10,
             x: 5,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '10';
@@ -521,7 +520,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 40,
             x: 6,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '40';
@@ -531,7 +529,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 60,
             x: 7,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -541,7 +538,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 70,
             x: 8,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -551,7 +547,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 90,
             x: 9,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -561,7 +556,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 80,
             x: 10,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '11';
@@ -571,7 +565,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 100,
             x: 11,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -592,7 +585,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 15,
             x: 1,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '15';
@@ -602,7 +594,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 30,
             x: 2,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '30';
@@ -612,7 +603,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 17,
             x: 3,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '17';
@@ -622,7 +612,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 25,
             x: 4,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '18';
@@ -632,7 +621,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 40,
             x: 5,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '13';
@@ -642,7 +630,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 30,
             x: 6,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '16';
@@ -652,7 +639,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 49,
             x: 7,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '49';
@@ -671,7 +657,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 80,
             x: 9,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '77';
@@ -681,7 +666,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 90,
             x: 10,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '88';
@@ -691,13 +675,15 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 60,
             x: 11,
             lineTouchData: BrnLineTouchData(
-
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '99';
                 })),
       ],
-      shaderColors: [Colors.green.withOpacity(0.3), Colors.green.withOpacity(0.01)],
+      shaderColors: [
+        Colors.green.withOpacity(0.3),
+        Colors.green.withOpacity(0.01)
+      ],
       lineColor: Colors.green,
     );
 
@@ -804,7 +790,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 30,
             x: 1,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return Container(
@@ -838,12 +823,15 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return Container(
-                    padding: EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
+                    padding:
+                        EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
                     child: Center(
                         child: Text(
                       'content',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
                     )),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.8),
@@ -881,7 +869,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 10,
             x: 5,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '10';
@@ -891,7 +878,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 40,
             x: 6,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '40';
@@ -901,7 +887,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 60,
             x: 7,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -911,7 +896,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 70,
             x: 8,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -921,7 +905,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 90,
             x: 9,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -931,7 +914,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 80,
             x: 10,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '11';
@@ -941,7 +923,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 100,
             x: 11,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -962,7 +943,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 15,
             x: 1,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '15';
@@ -972,7 +952,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 30,
             x: 2,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '30';
@@ -982,7 +961,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 17,
             x: 3,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '17';
@@ -992,7 +970,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 25,
             x: 4,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '18';
@@ -1002,7 +979,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 40,
             x: 5,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '13';
@@ -1012,7 +988,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 30,
             x: 6,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '16';
@@ -1022,7 +997,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 49,
             x: 7,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '49';
@@ -1041,7 +1015,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 80,
             x: 9,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '77';
@@ -1051,7 +1024,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 90,
             x: 10,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '88';
@@ -1061,13 +1033,15 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 60,
             x: 11,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '99';
                 })),
       ],
-      shaderColors: [Colors.green.withOpacity(0.3), Colors.green.withOpacity(0.01)],
+      shaderColors: [
+        Colors.green.withOpacity(0.3),
+        Colors.green.withOpacity(0.01)
+      ],
       lineColor: Colors.green,
     );
 
@@ -1123,14 +1097,15 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     var chartLine = BrnBrokenLine(
       contentPadding: EdgeInsets.only(left: 20, right: 10),
       lines: _getPointsLineListWithShowPointText(),
-      size: Size(
-          MediaQuery.of(context).size.width, MediaQuery.of(context).size.height / 5 * 1.6 - 20 * 2),
+      size: Size(MediaQuery.of(context).size.width,
+          MediaQuery.of(context).size.height / 5 * 1.6 - 20 * 2),
       isShowXHintLine: true,
       yHintLineOffset: 30,
       yDialValues: _yDialValuesForExample5(),
       yDialMin: 0,
       yDialMax: 120,
-      xDialValues: _getXDialValuesForExample5(_getPointsLineListWithShowPointText()),
+      xDialValues:
+          _getXDialValuesForExample5(_getPointsLineListWithShowPointText()),
       xDialMin: 1,
       xDialMax: 11,
       isHintLineSolid: false,
@@ -1209,12 +1184,11 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
       points: [
         BrnPointData(
             pointText: '9999.99',
-            pointTextStyle:
-                TextStyle(fontWeight: FontWeight.w600, fontSize: 12, color: Colors.red),
+            pointTextStyle: TextStyle(
+                fontWeight: FontWeight.w600, fontSize: 12, color: Colors.red),
             y: 80,
             x: 1,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return Container(
@@ -1243,20 +1217,23 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
         BrnPointData(
             offset: Offset(0, -5),
             pointText: '9999.99',
-            pointTextStyle:
-                TextStyle(fontWeight: FontWeight.w600, fontSize: 12, color: Colors.red),
+            pointTextStyle: TextStyle(
+                fontWeight: FontWeight.w600, fontSize: 12, color: Colors.red),
             y: 80,
             x: 2,
             lineTouchData: BrnLineTouchData(
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return Container(
-                    padding: EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
+                    padding:
+                        EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
                     child: Center(
                         child: Text(
                       'content',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
                     )),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.8),
@@ -1276,7 +1253,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 20,
             x: 3,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '20';
@@ -1295,7 +1271,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 10,
             x: 5,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '10';
@@ -1305,7 +1280,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 40,
             x: 6,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '40';
@@ -1315,7 +1289,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 60,
             x: 7,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -1325,7 +1298,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 70,
             x: 8,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -1335,7 +1307,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 90,
             x: 9,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -1345,7 +1316,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 80,
             x: 10,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '11';
@@ -1355,7 +1325,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 100,
             x: 11,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '100';
@@ -1375,7 +1344,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 15,
             x: 1,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '15';
@@ -1385,7 +1353,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 30,
             x: 2,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '30';
@@ -1395,7 +1362,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 17,
             x: 3,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '17';
@@ -1405,7 +1371,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 25,
             x: 4,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '18';
@@ -1415,7 +1380,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 40,
             x: 5,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '13';
@@ -1425,7 +1389,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 30,
             x: 6,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '16';
@@ -1435,7 +1398,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 49,
             x: 7,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '49';
@@ -1445,7 +1407,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 66,
             x: 8,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '66';
@@ -1455,7 +1416,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 80,
             x: 9,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '77';
@@ -1465,7 +1425,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 90,
             x: 10,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '88';
@@ -1475,13 +1434,15 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             y: 60,
             x: 11,
             lineTouchData: BrnLineTouchData(
-                
                 tipWindowSize: Size(60, 40),
                 onTouch: () {
                   return '99';
                 })),
       ],
-      shaderColors: [Colors.green.withOpacity(0.3), Colors.green.withOpacity(0.01)],
+      shaderColors: [
+        Colors.green.withOpacity(0.3),
+        Colors.green.withOpacity(0.01)
+      ],
       lineColor: Colors.green,
     );
 
@@ -1498,7 +1459,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
           height: 3,
           width: 12,
           decoration: BoxDecoration(
-              color: bean.lineColor, borderRadius: BorderRadius.all(Radius.circular(1.5))),
+              color: bean.lineColor,
+              borderRadius: BorderRadius.all(Radius.circular(1.5))),
         ),
         Text('图例', style: TextStyle(fontSize: 12, color: Color(0xFF999999))),
         SizedBox(width: 6),
@@ -1509,7 +1471,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     return Column(mainAxisSize: MainAxisSize.max, children: [
       Container(
           alignment: Alignment.centerLeft,
-          child: Text('图表标题', style: TextStyle(fontSize: 18, color: Colors.black))),
+          child: Text('图表标题',
+              style: TextStyle(fontSize: 18, color: Colors.black))),
       Row(children: widgetList),
     ]);
   }

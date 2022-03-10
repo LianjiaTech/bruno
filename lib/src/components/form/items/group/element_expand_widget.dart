@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-
-
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
@@ -43,7 +41,7 @@ class ExpansionElementWidget extends StatefulWidget {
     this.deleteText,
     this.callback,
     this.themeData,
-  })  : super(key: key) {
+  }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)

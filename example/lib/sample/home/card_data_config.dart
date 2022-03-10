@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:bruno/bruno.dart';
@@ -101,9 +99,9 @@ class CardDataConfig {
         desc: "数据折线图",
         navigatorPage: (BuildContext context) {
           rootBundle.loadString('assets/brokenline_data.json').then((data) {
-            var brokenData = <DBDataNodeModel>[]
-              ..addAll(((JsonDecoder().convert(data) as List?) ?? [])
-                  .map((o) => DBDataNodeModel.fromJson(o)));
+            var brokenData = <DBDataNodeModel>[]..addAll(
+                ((JsonDecoder().convert(data) as List?) ?? [])
+                    .map((o) => DBDataNodeModel.fromJson(o)));
             Navigator.push(context, MaterialPageRoute(
               builder: (BuildContext context) {
                 return BrokenLineExample(brokenData);
@@ -428,7 +426,7 @@ class CardDataConfig {
 
   /// 内容
   static GroupInfo _getContentGroup() {
-    List<GroupInfo> children =[];
+    List<GroupInfo> children = [];
     children.add(GroupInfo(
         groupName: "Tag 标签",
         desc: "标签多种样式",

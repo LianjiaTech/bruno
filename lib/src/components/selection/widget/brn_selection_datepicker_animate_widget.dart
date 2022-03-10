@@ -57,10 +57,10 @@ class _BrnSelectionDatePickerAnimationWidgetState
   _showListViewWidget() {
     _animation = Tween(begin: MediaQuery.of(context).size.height, end: 300.0)
         .animate(_controller)
-      ..addListener(() {
-        //这行如果不写，没有动画效果
-        setState(() {});
-      });
+          ..addListener(() {
+            //这行如果不写，没有动画效果
+            setState(() {});
+          });
 
     if (_isControllerDisposed) return;
 

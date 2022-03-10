@@ -144,7 +144,8 @@ class BrnNoticeBarExample extends StatelessWidget {
               describe: '点击可查看样式1更多example',
               describeColor: Color(0xFF0984F9),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BrnNoticeBarExample();
                 }));
               },
@@ -164,7 +165,8 @@ class BrnNoticeBarExample extends StatelessWidget {
               describe: '点击可查看样式2更多example',
               describeColor: Color(0xFF0984F9),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BrnNoticeBarWithButtonExample();
                 }));
               },

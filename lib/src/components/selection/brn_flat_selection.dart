@@ -61,10 +61,12 @@ class BrnFlatSelection extends StatefulWidget {
   _BrnFlatSelectionState createState() => _BrnFlatSelectionState();
 }
 
-class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerProviderStateMixin {
+class _BrnFlatSelectionState extends State<BrnFlatSelection>
+    with SingleTickerProviderStateMixin {
   List<BrnSelectionEntity> _originalSelectedItemsList = [];
 
-  StreamController<FlatClearEvent> clearController = StreamController.broadcast();
+  StreamController<FlatClearEvent> clearController =
+      StreamController.broadcast();
   bool isValid = true;
 
   double _lineWidth = 0.0;
@@ -74,7 +76,8 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerPr
     super.initState();
 
     if (widget.isNeedConfigChild) {
-      widget.entityDataList.forEach((f) => f.configRelationshipAndDefaultValue());
+      widget.entityDataList
+          .forEach((f) => f.configRelationshipAndDefaultValue());
     }
     widget.controller?.addListener(_handleFlatControllerTick);
 
@@ -193,8 +196,8 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection> with SingleTickerPr
       }
     });
     if (widget.confirmCallback != null) {
-      widget
-          .confirmCallback!(DefaultSelectionConverter().convertSelectedData(widget.entityDataList));
+      widget.confirmCallback!(DefaultSelectionConverter()
+          .convertSelectedData(widget.entityDataList));
     }
   }
 

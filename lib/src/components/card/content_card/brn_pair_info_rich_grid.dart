@@ -1,5 +1,3 @@
-
-
 import 'dart:ui' as ui;
 
 import 'package:bruno/src/constants/brn_asset_constants.dart';
@@ -128,7 +126,8 @@ class BrnRichInfoGrid extends StatelessWidget {
               ],
             );
           },
-          itemCount: (null != this.pairInfoList) ? this.pairInfoList!.length : 0,
+          itemCount:
+              (null != this.pairInfoList) ? this.pairInfoList!.length : 0,
         );
         return gridView;
       },

@@ -8,7 +8,7 @@ class BrnSelectionDatePickerController extends ChangeNotifier {
   BrnSelectionDatePickerController({
     this.isShow = false,
     this.entry,
-});
+  });
 
   void show() {
     isShow = true;

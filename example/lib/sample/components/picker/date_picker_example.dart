@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +47,8 @@ class DatePickerExamplePage extends StatelessWidget {
               title: "Time Range Style",
               describe: '时间范围选择器-不限制选择的时间范围',
               onPressed: () {
-                _showRangePickerNoLimited(context, BrnDateTimeRangePickerMode.time);
+                _showRangePickerNoLimited(
+                    context, BrnDateTimeRangePickerMode.time);
               },
             ),
             ListItem(
@@ -149,7 +148,8 @@ class DatePickerExamplePage extends StatelessWidget {
     });
   }
 
-  _showRangePickerNoLimited(BuildContext context, BrnDateTimeRangePickerMode mode) {
+  _showRangePickerNoLimited(
+      BuildContext context, BrnDateTimeRangePickerMode mode) {
     String format;
     const String MIN_DATETIME = '2020-01-01 00:00:00';
     const String MAX_DATETIME = '2020-12-31 23:59:59';
@@ -170,14 +170,16 @@ class DatePickerExamplePage extends StatelessWidget {
         initialEndDateTime: DateTime(2020, 06, 23, 10, 00, 00),
         onConfirm: (startDateTime, endDateTime, startlist, endlist) {
       BrnToast.show(
-          "onConfirm:  $startDateTime   $endDateTime     $startlist     $endlist", context);
+          "onConfirm:  $startDateTime   $endDateTime     $startlist     $endlist",
+          context);
     }, onClose: () {
       print("onClose");
     }, onCancel: () {
       print("onCancel");
     }, onChange: (startDateTime, endDateTime, startlist, endlist) {
       BrnToast.show(
-          "onChange:  $startDateTime   $endDateTime     $startlist     $endlist", context);
+          "onChange:  $startDateTime   $endDateTime     $startlist     $endlist",
+          context);
     });
   }
 
@@ -188,7 +190,8 @@ class DatePickerExamplePage extends StatelessWidget {
     switch (mode) {
       case BrnDateTimeRangePickerMode.date:
         format = 'MM月-dd日';
-        BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig(titleContent: "选择时间范围");
+        BrnPickerTitleConfig pickerTitleConfig =
+            BrnPickerTitleConfig(titleContent: "选择时间范围");
         BrnDateRangePicker.showDatePicker(context,
             isDismissible: false,
             minDateTime: DateTime.parse(MIN_DATETIME),
@@ -199,20 +202,24 @@ class DatePickerExamplePage extends StatelessWidget {
             initialStartDateTime: DateTime(2021, 06, 21, 11, 00, 00),
             initialEndDateTime: DateTime(2021, 06, 23, 10, 00, 00),
             onConfirm: (startDateTime, endDateTime, startlist, endlist) {
-              BrnToast.show("onConfirm:  $startDateTime   $endDateTime     $startlist     $endlist", context);
-            }, onClose: () {
-              print("onClose");
-            }, onCancel: () {
-              print("onCancel");
-            },
-            onChange: (startDateTime, endDateTime, startlist, endlist) {
-              BrnToast.show("onChange:  $startDateTime   $endDateTime     $startlist     $endlist", context);
-            });
+          BrnToast.show(
+              "onConfirm:  $startDateTime   $endDateTime     $startlist     $endlist",
+              context);
+        }, onClose: () {
+          print("onClose");
+        }, onCancel: () {
+          print("onCancel");
+        }, onChange: (startDateTime, endDateTime, startlist, endlist) {
+          BrnToast.show(
+              "onChange:  $startDateTime   $endDateTime     $startlist     $endlist",
+              context);
+        });
         break;
 
       case BrnDateTimeRangePickerMode.time:
         format = 'HH时:mm分';
-        BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig(titleContent: "选择时间范围");
+        BrnPickerTitleConfig pickerTitleConfig =
+            BrnPickerTitleConfig(titleContent: "选择时间范围");
         BrnDateRangePicker.showDatePicker(context,
             minDateTime: DateTime.parse(MIN_DATETIME),
             maxDateTime: DateTime.parse(MAX_DATETIME),
@@ -224,14 +231,16 @@ class DatePickerExamplePage extends StatelessWidget {
             initialEndDateTime: DateTime(2020, 06, 23, 10, 00, 00),
             onConfirm: (startDateTime, endDateTime, startlist, endlist) {
           BrnToast.show(
-              "onConfirm:  $startDateTime   $endDateTime     $startlist     $endlist", context);
+              "onConfirm:  $startDateTime   $endDateTime     $startlist     $endlist",
+              context);
         }, onClose: () {
           print("onClose");
         }, onCancel: () {
           print("onCancel");
         }, onChange: (startDateTime, endDateTime, startlist, endlist) {
           BrnToast.show(
-              "onChange:  $startDateTime   $endDateTime     $startlist     $endlist", context);
+              "onChange:  $startDateTime   $endDateTime     $startlist     $endlist",
+              context);
         });
         break;
       default:
@@ -240,8 +249,9 @@ class DatePickerExamplePage extends StatelessWidget {
   }
 
   void _showyyyyMMddRangePicker(BuildContext context) {
-     String format = 'yyyy年-MM月-dd日';
-    BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig(titleContent: "选择时间范围");
+    String format = 'yyyy年-MM月-dd日';
+    BrnPickerTitleConfig pickerTitleConfig =
+        BrnPickerTitleConfig(titleContent: "选择时间范围");
     BrnDateRangePicker.showDatePicker(context,
         isDismissible: false,
         minDateTime: DateTime(2010, 06, 01, 00, 00, 00),
@@ -253,15 +263,17 @@ class DatePickerExamplePage extends StatelessWidget {
         initialStartDateTime: DateTime(2020, 06, 21, 11, 00, 00),
         initialEndDateTime: DateTime(2020, 06, 23, 10, 00, 00),
         onConfirm: (startDateTime, endDateTime, startlist, endlist) {
-          BrnToast.show(
-              "onConfirm:  $startDateTime   $endDateTime     $startlist     $endlist", context);
-        }, onClose: () {
-          print("onClose");
-        }, onCancel: () {
-          print("onCancel");
-        }, onChange: (startDateTime, endDateTime, startlist, endlist) {
-          BrnToast.show(
-              "onChange:  $startDateTime   $endDateTime     $startlist     $endlist", context);
-        });
+      BrnToast.show(
+          "onConfirm:  $startDateTime   $endDateTime     $startlist     $endlist",
+          context);
+    }, onClose: () {
+      print("onClose");
+    }, onCancel: () {
+      print("onCancel");
+    }, onChange: (startDateTime, endDateTime, startlist, endlist) {
+      BrnToast.show(
+          "onChange:  $startDateTime   $endDateTime     $startlist     $endlist",
+          context);
+    });
   }
 }

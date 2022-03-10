@@ -34,7 +34,6 @@ const BrnDashedLinePosition _normalPosition = BrnDashedLinePosition.leading;
 
 /// 虚线分割线
 class BrnDashedLine extends StatelessWidget {
-
   /// 虚线方向，默认值[_normalAxis]
   final Axis axis;
 
@@ -76,10 +75,10 @@ class BrnDashedLine extends StatelessWidget {
     return CustomPaint(
       painter: BrnDashedPainter(
           axis: this.axis,
-          dashedLength: this.dashedLength ,
+          dashedLength: this.dashedLength,
           dashedThickness: this.dashedThickness,
-          dashedSpacing: this.dashedSpacing ,
-          color: this.color ,
+          dashedSpacing: this.dashedSpacing,
+          color: this.color,
           dashedOffset: this.dashedOffset,
           position: this.position),
       child: this.contentWidget,
@@ -124,7 +123,11 @@ class BrnDashedPainter extends CustomPainter {
     var paint = Paint() // 创建一个画笔并配置其属性
       ..strokeWidth = this.dashedThickness // 画笔的宽度
       ..isAntiAlias = true // 是否抗锯齿
-      ..color = this.color?? BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase; // 画笔颜色
+      ..color = this.color ??
+          BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .dividerColorBase; // 画笔颜色
 
     var maxWidth = size.width; // size获取到宽度
     var maxHeight = size.height; // size获取到宽度

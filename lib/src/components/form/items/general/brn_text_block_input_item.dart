@@ -189,7 +189,7 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
                   widget.themeData!, widget.isEdit),
               inputFormatters: widget.inputFormatters,
               decoration: InputDecoration(
-                hintText: widget.hint ,
+                hintText: widget.hint,
                 hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData!),
                 contentPadding: EdgeInsets.all(0),
                 border: InputBorder.none,

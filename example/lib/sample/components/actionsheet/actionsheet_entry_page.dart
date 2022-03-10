@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:bruno/bruno.dart';
@@ -157,18 +155,18 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
         });
   }
 
-  void _showCommonStylex(){
+  void _showCommonStylex() {
     List<BrnCommonActionSheetItem> actions = [];
     // 构建标题+辅助信息的普通项
     actions.add(BrnCommonActionSheetItem(
-    '选项一（警示项）',
-    desc:'辅助信息辅助信息辅助信息辅助信息',
+      '选项一（警示项）',
+      desc: '辅助信息辅助信息辅助信息辅助信息',
       actionStyle: BrnCommonActionSheetItemStyle.alert,
     ));
     // 构建标题+辅助信息的普通项
     actions.add(BrnCommonActionSheetItem(
-     '选项二',
-    desc:'辅助信息辅助信息辅助信息',
+      '选项二',
+      desc: '辅助信息辅助信息辅助信息',
       actionStyle: BrnCommonActionSheetItemStyle.normal,
     ));
     // 构建只有标题的普通项
@@ -189,7 +187,6 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
             },
           );
         });
-
   }
 
   void _showCommonStyle1(BuildContext context) {
@@ -260,7 +257,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   }
 
   void _showCommonCustomStyle(BuildContext context) {
-    List<BrnCommonActionSheetItem> actions =[];
+    List<BrnCommonActionSheetItem> actions = [];
     actions.add(
       BrnCommonActionSheetItem(
         '选项一: 自定义主标题样式',
@@ -354,7 +351,8 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
         backgroundColor: Colors.transparent,
         builder: (BuildContext context) {
           // 通过statefulBuilder可以实现动态变换选项文案（本example只作为使用参考，请根据具体情况选择方式）
-          return StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
             if (!started) {
               started = true;
               // 设置timer，每1秒循环一次
@@ -428,7 +426,8 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
       firstShareChannels: firstRowList,
       clickCallBack: (int section, int index, BrnShareItem shareItem) {
         int channel = shareItem.shareType;
-        BrnToast.show("channel: $channel, section: $section, index: $index", context);
+        BrnToast.show(
+            "channel: $channel, section: $section, index: $index", context);
       },
       cancelTitle: "自定义取消名字", // 取消按钮title可自定义
     );
@@ -475,7 +474,8 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
       secondShareChannels: secondRowList,
       clickCallBack: (int section, int index, BrnShareItem shareItem) {
         int channel = shareItem.shareType;
-        BrnToast.show("channel: $channel, section: $section, index: $index", context);
+        BrnToast.show(
+            "channel: $channel, section: $section, index: $index", context);
       },
       clickInterceptor: (int section, int index, BrnShareItem shareItem) {
         if (shareItem.canClick) {
@@ -491,7 +491,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
 
   void _showShareThreeStyle(BuildContext context) {
     List<BrnShareItem> firstRowList = [];
-    List<BrnShareItem> secondRowList =[];
+    List<BrnShareItem> secondRowList = [];
     firstRowList.add(BrnShareItem(
       BrnShareItemConstants.shareWeiXin,
       canClick: true,
@@ -511,7 +511,8 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
       secondShareChannels: secondRowList,
       clickCallBack: (int section, int index, BrnShareItem shareItem) {
         int channel = shareItem.shareType;
-        BrnToast.show("channel: $channel, section: $section, index: $index", context);
+        BrnToast.show(
+            "channel: $channel, section: $section, index: $index", context);
       },
     );
     actionSheet.show(context);
@@ -531,7 +532,8 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
       firstShareChannels: firstRowList,
       clickCallBack: (int section, int index, BrnShareItem shareItem) {
         int channel = shareItem.shareType;
-        BrnToast.show("channel: $channel, section: $section, index: $index", context);
+        BrnToast.show(
+            "channel: $channel, section: $section, index: $index", context);
       },
     );
     actionSheet.show(context);

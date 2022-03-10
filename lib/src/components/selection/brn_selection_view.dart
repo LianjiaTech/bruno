@@ -18,8 +18,11 @@ typedef BrnConfigTagCountPerRow(int index, BrnSelectionEntity entity);
 typedef BrnSetCustomSelectionMenuTitle = void Function(
     {String menuTitle, bool isMenuTitleHighLight});
 
-typedef BrnOnSelectionChanged = void Function(int menuIndex, Map<String, String> selectedParams,
-    Map<String, String> customParams, BrnSetCustomSelectionMenuTitle setCustomMenuTitle);
+typedef BrnOnSelectionChanged = void Function(
+    int menuIndex,
+    Map<String, String> selectedParams,
+    Map<String, String> customParams,
+    BrnSetCustomSelectionMenuTitle setCustomMenuTitle);
 
 /// menu 点击拦截回调
 /// [index] menu 的索引位置
@@ -33,21 +36,26 @@ typedef BrnOnSelectionPreShow = BrnSelectionWindowType Function(
 /// 点击【更多】筛选项时的回调，
 /// [index] 为点击的位置，
 /// [openMorePage] 为让用户触发的回调用于展开更多筛选页面
-typedef BrnOnMoreSelectionMenuClick = void Function(int index, BrnOpenMorePage openMorePage);
+typedef BrnOnMoreSelectionMenuClick = void Function(
+    int index, BrnOpenMorePage openMorePage);
 
 /// 打开更多筛选页面，
 /// [updateData] 是否要更新更多筛选的数据，
 /// [moreSelections] 最新的更多筛选数据，是否更新取决于 [updateData]
-typedef BrnOpenMorePage = void Function({bool updateData, List<BrnSelectionEntity> moreSelections});
+typedef BrnOpenMorePage = void Function(
+    {bool updateData, List<BrnSelectionEntity> moreSelections});
 
 /// 自定义类型的 Menu 被点击时 让外部设置选中的 value 进来统一更新 UI，并将 function 传给外部设置筛选值。
-typedef BrnSetCustomSelectionParams = void Function(Map<String, String> customParams);
+typedef BrnSetCustomSelectionParams = void Function(
+    Map<String, String> customParams);
 
 /// 自定义类型的 menu 被点击的回调，
 /// [index] 点击位置，
 /// [customMenuItem] 自定义筛选 menu 原始数据，
 /// [customSelectionParams] 开放给外部回调给函数，用于更新自定义筛选参数，触发[BrnOnSelectionChanged]。
-typedef BrnOnCustomSelectionMenuClick = Function(int index, BrnSelectionEntity customMenuItem,
+typedef BrnOnCustomSelectionMenuClick = Function(
+    int index,
+    BrnSelectionEntity customMenuItem,
     BrnSetCustomSelectionParams customSelectionParams);
 
 /// 当更多筛选页面中，类型为 CustomLayer 被回调时，该函数用于回传参数进 BrnSelectionView 中，
@@ -62,12 +70,15 @@ typedef BrnSetCustomFloatingLayerSelectionParams = void Function(
 typedef BrnOnCustomFloatingLayerClick = Function(
     int index,
     BrnSelectionEntity customFloatingLayerEntity,
-    BrnSetCustomFloatingLayerSelectionParams setCustomFloatingLayerSelectionParams);
+    BrnSetCustomFloatingLayerSelectionParams
+        setCustomFloatingLayerSelectionParams);
 
-typedef OnDefaultParamsPrepared = void Function(Map<String, String> selectedParams);
+typedef OnDefaultParamsPrepared = void Function(
+    Map<String, String> selectedParams);
 
 /// 默认筛选参数转换器，对传入的筛选数据做处理，返回 Map 参数对象。
-const BrnSelectionConverterDelegate _defaultConverter = const DefaultSelectionConverter();
+const BrnSelectionConverterDelegate _defaultConverter =
+    const DefaultSelectionConverter();
 
 // ignore: must_be_immutable
 class BrnSelectionView extends StatefulWidget {
@@ -130,15 +141,18 @@ class BrnSelectionView extends StatefulWidget {
 class BrnSelectionViewState extends State<BrnSelectionView> {
   Map<String, String> _customParams = Map();
   BrnSelectionViewController? _selectionViewController;
+
   @override
   void initState() {
     super.initState();
-    _selectionViewController = widget.selectionViewController ?? BrnSelectionViewController();
-    widget.originalSelectionData.forEach((f) => f.configRelationshipAndDefaultValue());
+    _selectionViewController =
+        widget.selectionViewController ?? BrnSelectionViewController();
+    widget.originalSelectionData
+        .forEach((f) => f.configRelationshipAndDefaultValue());
 
     if (widget.onDefaultParamsPrepared != null) {
-      widget.onDefaultParamsPrepared!(
-          widget.selectionConverterDelegate.convertSelectedData(widget.originalSelectionData));
+      widget.onDefaultParamsPrepared!(widget.selectionConverterDelegate
+          .convertSelectedData(widget.originalSelectionData));
     }
   }
 
@@ -154,13 +168,15 @@ class BrnSelectionViewState extends State<BrnSelectionView> {
         constantTop: widget.constantTop,
         configRowCount: widget.configRowCount,
         onMenuItemClick: (int menuIndex) {
-          if (widget.onMenuClickInterceptor != null && widget.onMenuClickInterceptor!(menuIndex)) {
+          if (widget.onMenuClickInterceptor != null &&
+              widget.onMenuClickInterceptor!(menuIndex)) {
             return true;
           }
 
           if (widget.onSelectionPreShow != null) {
             widget.originalSelectionData[menuIndex].filterShowType =
-                widget.onSelectionPreShow!(menuIndex, widget.originalSelectionData[menuIndex]);
+                widget.onSelectionPreShow!(
+                    menuIndex, widget.originalSelectionData[menuIndex]);
           }
 
           /// 自定义 Menu 的时候，
@@ -170,7 +186,8 @@ class BrnSelectionViewState extends State<BrnSelectionView> {
           if (widget.originalSelectionData[menuIndex].filterType ==
                   BrnSelectionFilterType.customHandle &&
               widget.onCustomSelectionMenuClick != null) {
-            widget.onCustomSelectionMenuClick!(menuIndex, widget.originalSelectionData[menuIndex],
+            widget.onCustomSelectionMenuClick!(
+                menuIndex, widget.originalSelectionData[menuIndex],
                 (Map<String, String> customParams) {
               _customParams.clear();
               _customParams.addAll(customParams);
@@ -180,23 +197,30 @@ class BrnSelectionViewState extends State<BrnSelectionView> {
           }
 
           /// 自定义 Menu 的时候，让外部设置选中的 value 进来统一更新 UI。 然后触发 _onSelectionChanged 统一回调给外部
-          if (widget.originalSelectionData[menuIndex].filterType == BrnSelectionFilterType.more &&
+          if (widget.originalSelectionData[menuIndex].filterType ==
+                  BrnSelectionFilterType.more &&
               widget.onMoreSelectionMenuClick != null) {
             widget.onMoreSelectionMenuClick!(menuIndex, (
-                {bool updateData = false, List<BrnSelectionEntity>? moreSelections}) {
+                {bool updateData = false,
+                List<BrnSelectionEntity>? moreSelections}) {
               if (updateData) {
-                List<BrnSelectionEntity> moreSelectionEntities = moreSelections ?? [];
-                widget.originalSelectionData[menuIndex].children = moreSelectionEntities;
-                widget.originalSelectionData[menuIndex].configRelationshipAndDefaultValue();
+                List<BrnSelectionEntity> moreSelectionEntities =
+                    moreSelections ?? [];
+                widget.originalSelectionData[menuIndex].children =
+                    moreSelectionEntities;
+                widget.originalSelectionData[menuIndex]
+                    .configRelationshipAndDefaultValue();
               }
               setState(() {});
               _openMore(widget.originalSelectionData[menuIndex],
-                  onCustomFloatingLayerClick: widget.onCustomFloatingLayerClick);
+                  onCustomFloatingLayerClick:
+                      widget.onCustomFloatingLayerClick);
             });
           }
           return false;
         },
-        onConfirm: (BrnSelectionEntity results, int firstIndex, int secondIndex, int thirdIndex) {
+        onConfirm: (BrnSelectionEntity results, int firstIndex, int secondIndex,
+            int thirdIndex) {
           _onSelectionChanged(widget.originalSelectionData.indexOf(results));
         },
       );
@@ -207,11 +231,14 @@ class BrnSelectionViewState extends State<BrnSelectionView> {
   void _onSelectionChanged(int menuIndex) {
     widget.onSelectionChanged(
         menuIndex,
-        widget.selectionConverterDelegate.convertSelectedData(widget.originalSelectionData),
-        _customParams, ({String? menuTitle, bool isMenuTitleHighLight = false}) {
+        widget.selectionConverterDelegate
+            .convertSelectedData(widget.originalSelectionData),
+        _customParams, (
+            {String? menuTitle, bool isMenuTitleHighLight = false}) {
       /// 说明没有 menu 被选中，不需要更新。
       if (menuIndex >= 0) {
-        widget.originalSelectionData[menuIndex].isCustomTitleHighLight = isMenuTitleHighLight;
+        widget.originalSelectionData[menuIndex].isCustomTitleHighLight =
+            isMenuTitleHighLight;
         widget.originalSelectionData[menuIndex].customTitle = menuTitle;
       }
 
@@ -237,7 +264,8 @@ class BrnSelectionViewState extends State<BrnSelectionView> {
               onCustomFloatingLayerClick: onCustomFloatingLayerClick,
               confirmCallback: (_) {
                 EventBus.instance.fire(RefreshMenuTitleEvent());
-                _onSelectionChanged(widget.originalSelectionData.indexOf(entity));
+                _onSelectionChanged(
+                    widget.originalSelectionData.indexOf(entity));
               },
             );
           }));

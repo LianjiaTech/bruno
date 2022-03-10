@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +7,6 @@ class CheckboxExample extends StatefulWidget {
 }
 
 class _CheckboxExampleState extends State<CheckboxExample> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

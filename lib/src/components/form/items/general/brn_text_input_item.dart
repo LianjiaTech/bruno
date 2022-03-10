@@ -182,7 +182,8 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                         widget.themeData!, widget.isEdit),
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData!),
+                      hintStyle:
+                          BrnFormUtil.getHintTextStyle(widget.themeData!),
                       hintText: widget.hint,
                       counterText: "",
                       contentPadding: EdgeInsets.all(0),
