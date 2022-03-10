@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 
 import 'package:bruno/bruno.dart';
@@ -5,14 +7,14 @@ import 'package:flutter/material.dart';
 
 /// @desc    弱引导example
 class SoftGuideExample extends StatefulWidget {
-  SoftGuideExample({Key key}) : super(key: key);
+  SoftGuideExample({Key? key}) : super(key: key);
 
   @override
   _SoftGuideExampleState createState() => _SoftGuideExampleState();
 }
 
 class _SoftGuideExampleState extends State<SoftGuideExample> {
-  BrnGuide intro;
+  late BrnGuide intro;
 
   _SoftGuideExampleState() {
     /// init Guide
@@ -94,12 +96,12 @@ class _SoftGuideExampleState extends State<SoftGuideExample> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    RaisedButton(
+                    ElevatedButton(
                       key: intro.keys[2],
                       onPressed: () {},
                       child: Text("需求1"),
                     ),
-                    RaisedButton(
+                    ElevatedButton(
                       key: intro.keys[3],
                       onPressed: () {},
                       child: Text("需求2"),

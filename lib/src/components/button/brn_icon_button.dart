@@ -25,10 +25,10 @@ class BrnIconButton extends StatefulWidget {
   final String name;
 
   /// 需要传的icon
-  final Widget iconWidget;
+  final Widget? iconWidget;
 
   /// 点击的回调
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// 文字相对于图片的位置
   final Direction direction;
@@ -43,7 +43,7 @@ class BrnIconButton extends StatefulWidget {
   final double fontSize;
 
   ///  文字样式
-  final TextStyle style;
+  final TextStyle? style;
 
   /// 图文组合的宽度，默认 80
   final double widgetWidth;
@@ -58,8 +58,8 @@ class BrnIconButton extends StatefulWidget {
   final MainAxisAlignment mainAxisAlignment;
 
   const BrnIconButton({
-    Key key,
-    @required this.name,
+    Key? key,
+    required this.name,
     this.iconWidget,
     this.onTap,
     this.iconWidth = 24,
@@ -71,7 +71,7 @@ class BrnIconButton extends StatefulWidget {
     this.padding = 4,
     this.style,
     this.mainAxisAlignment = MainAxisAlignment.center,
-  });
+  }) : super(key: key);
 
   @override
   _BrnIconButtonState createState() => _BrnIconButtonState();
@@ -85,8 +85,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
     // Left、文字在左 icon在右 right、文字在右 icon在左
     if (widget.direction == Direction.bottom) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Column(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -113,42 +113,10 @@ class _BrnIconButtonState extends State<BrnIconButton> {
               )
             ],
           ));
-    } else if (widget.direction == Direction.top) {
-      ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
-          child: Column(
-            mainAxisAlignment: widget.mainAxisAlignment,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(bottom: widget.padding),
-                child: Text(
-                  widget.name,
-                  style: widget.style ??
-                      TextStyle(
-                        fontSize: 11,
-                        color: BrnThemeConfigurator.instance
-                            .getConfig()
-                            .commonConfig
-                            .colorTextSecondary,
-                      ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-
-              // 图片
-              Container(
-                child: widget.iconWidget,
-                height: widget.iconHeight,
-                width: widget.iconWidth,
-              ),
-            ],
-          ));
     } else if (widget.direction == Direction.left) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Row(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -177,8 +145,8 @@ class _BrnIconButtonState extends State<BrnIconButton> {
           ));
     } else if (widget.direction == Direction.right) {
       ctn = Container(
-          height: widget.widgetHeight ?? 80,
-          width: widget.widgetWidth ?? 80,
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
           child: Row(
             mainAxisAlignment: widget.mainAxisAlignment,
             mainAxisSize: MainAxisSize.min,
@@ -205,13 +173,45 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                   child: widget.iconWidget),
             ],
           ));
+    } else {
+      ctn = Container(
+          height: widget.widgetHeight,
+          width: widget.widgetWidth,
+          child: Column(
+            mainAxisAlignment: widget.mainAxisAlignment,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(bottom: widget.padding),
+                child: Text(
+                  widget.name,
+                  style: widget.style ??
+                      TextStyle(
+                        fontSize: 11,
+                        color: BrnThemeConfigurator.instance
+                            .getConfig()
+                            .commonConfig
+                            .colorTextSecondary,
+                      ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+
+              // 图片
+              Container(
+                child: widget.iconWidget,
+                height: widget.iconHeight,
+                width: widget.iconWidth,
+              ),
+            ],
+          ));
     }
 
     if (widget.onTap != null) {
       return GestureDetector(
         child: ctn,
         onTap: () {
-          widget?.onTap();
+          widget.onTap!();
         },
       );
     }

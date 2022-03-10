@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 import 'package:bruno/bruno.dart';
@@ -13,8 +15,8 @@ class CitySelectRoute extends StatefulWidget {
 }
 
 class _CitySelectRouteState extends State<CitySelectRoute> {
-  List<BrnSelectCityModel> _cityList = List();
-  List<BrnSelectCityModel> _hotCityList = List();
+  List<BrnSelectCityModel> _cityList = [];
+  List<BrnSelectCityModel> _hotCityList = [];
 
   int _suspensionHeight = 40;
   int _itemHeight = 50;
@@ -44,7 +46,7 @@ class _CitySelectRouteState extends State<CitySelectRoute> {
   }
 
   void _handleList(List<BrnSelectCityModel> list) {
-    if (list == null || list.isEmpty) return;
+    if (list.isEmpty) return;
     for (int i = 0, length = list.length; i < length; i++) {
       String pinyin = PinyinHelper.getPinyinE(list[i].name);
       String tag = pinyin.substring(0, 1).toUpperCase();
@@ -132,7 +134,7 @@ class _CitySelectRouteState extends State<CitySelectRoute> {
               flex: 1,
               child: AzListView(
                 data: _cityList,
-                itemBuilder: (context, model) => _buildListItem(model),
+                itemBuilder: (context, model) => _buildListItem(model as BrnSelectCityModel),
                 suspensionWidget: _buildSusWidget(_suspensionTag),
                 isUseRealIndex: true,
                 itemHeight: _itemHeight,

@@ -24,14 +24,14 @@ group:
 
 ```dart
 const BrnBigGhostButton({
-  Key key,
-  this.title = '确认',
-  this.titleColor,
-  this.bgColor,
-  this.onTap,
-  this.width,
-  this.themeData,
-}) : super(key: key);
+    Key? key,
+    this.title = '确认',
+    this.titleColor,
+    this.bgColor,
+    this.onTap,
+    this.width,
+    this.themeData,
+  }) : super(key: key);
 ```
 ### 参数说明
 
@@ -42,6 +42,7 @@ const BrnBigGhostButton({
 | bgColor | Color | 按钮的背景色 | 否 | 主题色为5透明度的颜色 |
 | width | double | 按钮的宽度 | 否 | double.infinity |
 | titleColor | Color | 按钮的文字颜色 | 否 | 主题色 |
+| themeData | BrnButtonConfig | button主题定制 | 否 | 无 |
 
 
 

@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_picker_cliprrect.dart';
@@ -24,12 +26,12 @@ import 'package:flutter/rendering.dart';
 class BrnBottomPicker {
   static void show(
     BuildContext context, {
-    @required contentWidget,
+    required contentWidget,
     String title = '请选择',
     dynamic confirm,
     dynamic cancel,
-    VoidCallback onConfirm,
-    VoidCallback onCancel,
+    VoidCallback? onConfirm,
+    VoidCallback? onCancel,
     bool barrierDismissible = true,
     bool showTitle = true,
   }) {
@@ -45,9 +47,10 @@ class BrnBottomPicker {
           onConfirmPressed: onConfirm,
           onCancelPressed: onCancel,
           barrierDismissible: barrierDismissible,
-          pickerTitleConfig: BrnPickerTitleConfig(titleContent: title, showTitle: showTitle),
+          pickerTitleConfig:
+              BrnPickerTitleConfig(titleContent: title, showTitle: showTitle),
         );
-        return theme != null ? Theme(data: theme, child: pageChild) : pageChild;
+        return Theme(data: theme, child: pageChild);
       },
       barrierDismissible: barrierDismissible,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
@@ -72,14 +75,14 @@ class BrnBottomPickerWidget extends StatefulWidget {
   final Widget contentWidget;
   final dynamic confirm;
   final dynamic cancel;
-  final Function() onConfirmPressed;
-  final Function() onCancelPressed;
+  final Function()? onConfirmPressed;
+  final Function()? onCancelPressed;
   final barrierDismissible;
   final BrnPickerTitleConfig pickerTitleConfig;
 
   const BrnBottomPickerWidget({
-    Key key,
-    this.contentWidget,
+    Key? key,
+    required this.contentWidget,
     this.confirm,
     this.cancel,
     this.onConfirmPressed,
@@ -96,15 +99,17 @@ class BrnBottomPickerWidget extends StatefulWidget {
 
 class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
     with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation _animation;
+  late AnimationController _controller;
+  late Animation _animation;
 
   @override
   void initState() {
     super.initState();
     //用于动画
-    _controller = AnimationController(duration: Duration(milliseconds: 300), vsync: this);
-    _animation = Tween(end: Offset.zero, begin: Offset(0.0, 1.0)).animate(_controller);
+    _controller =
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+    _animation =
+        Tween(end: Offset.zero, begin: Offset(0.0, 1.0)).animate(_controller);
     _controller.forward();
   }
 
@@ -112,7 +117,7 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        _controller?.reverse();
+        _controller.reverse();
         return true;
       },
       child: Scaffold(
@@ -131,18 +136,22 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
   @override
   void dispose() {
     super.dispose();
-    _controller?.dispose();
+    _controller.dispose();
   }
 
   Widget _buildBottomWidget() {
     return SlideTransition(
-      position: _animation,
+      position: _animation as Animation<Offset>,
       child: BrnPickerClipRRect(
         borderRadius: BorderRadius.only(
-          topLeft:
-              Radius.circular(BrnThemeConfigurator.instance.getConfig().pickerConfig.cornerRadius),
-          topRight:
-              Radius.circular(BrnThemeConfigurator.instance.getConfig().pickerConfig.cornerRadius),
+          topLeft: Radius.circular(BrnThemeConfigurator.instance
+              .getConfig()
+              .pickerConfig
+              .cornerRadius),
+          topRight: Radius.circular(BrnThemeConfigurator.instance
+              .getConfig()
+              .pickerConfig
+              .cornerRadius),
         ),
         child: Container(
           color: Colors.white,
@@ -168,14 +177,14 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
         if (widget.onCancelPressed == null) {
           _closeDialog();
         } else {
-          widget.onCancelPressed();
+          widget.onCancelPressed!();
         }
       },
       onConfirm: () {
         if (widget.onConfirmPressed == null) {
           _closeDialog();
         } else {
-          widget.onConfirmPressed();
+          widget.onConfirmPressed!();
         }
       },
       pickerTitleConfig: BrnPickerTitleConfig(
@@ -185,8 +194,8 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
     );
   }
 
-  Widget _buildConfirmWidget() {
-    Widget confirmWidget;
+  Widget? _buildConfirmWidget() {
+    Widget? confirmWidget;
     if (widget.confirm is Widget) {
       confirmWidget = widget.confirm;
     } else if (widget.confirm is String) {
@@ -197,8 +206,8 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
     return confirmWidget;
   }
 
-  Widget _buildCancelWidget() {
-    Widget cancelWidget;
+  Widget? _buildCancelWidget() {
+    Widget? cancelWidget;
     if (widget.cancel is Widget) {
       cancelWidget = widget.cancel;
     } else if (widget.cancel is String) {
@@ -213,17 +222,23 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
     return Text(
       string,
       style: TextStyle(
-          color: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+          color: BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .brandPrimary,
           fontSize: 16.0),
       textAlign: TextAlign.right,
     );
   }
 
-  Widget _buildDefaultCancel(String string) {
+  Widget _buildDefaultCancel(String? string) {
     return Text(
       string ?? '取消',
       style: TextStyle(
-          color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+          color: BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .colorTextBase,
           fontSize: 16.0),
       textAlign: TextAlign.right,
     );

@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 import 'package:bruno/bruno.dart';
@@ -76,7 +78,7 @@ class SelectionEntryPage extends StatelessWidget {
               onPressed: () {
                 rootBundle.loadString('assets/multi_list_filter.json').then((data) {
                   var page = SelectionViewMultiListExamplePage("SelectionView示例(一列、两列、三列情况)",
-                      BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"]).list);
+                      BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!.list);
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) {
                       return page;
@@ -95,7 +97,7 @@ class SelectionEntryPage extends StatelessWidget {
                     builder: (BuildContext context) {
                       return SelectionViewMultiRangeExamplePage(
                           "一个 Range, 两个 Range 时 Tag 展示情",
-                          BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"])
+                          BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!
                               .list);
                     },
                   ));
@@ -112,7 +114,7 @@ class SelectionEntryPage extends StatelessWidget {
                     builder: (BuildContext context) {
                       return SelectionViewMoreFilterExamplePage(
                           "更多筛选",
-                          BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"])
+                          BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!
                               .list);
                     },
                   ));
@@ -126,7 +128,7 @@ class SelectionEntryPage extends StatelessWidget {
               onPressed: () {
                 rootBundle.loadString('assets/date_range_filter.json').then((data) {
                   var page = SelectionViewDateRangeExamplePage("日期、日期范围选择",
-                      BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"]).list);
+                      BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!.list);
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) {
                       return page;
@@ -145,7 +147,7 @@ class SelectionEntryPage extends StatelessWidget {
                     builder: (BuildContext context) {
                       return SelectionViewCustomHandleFilterExamplePage(
                           "customHandle 类型筛选，自定义拦截，设置参数",
-                          BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"])
+                          BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!
                               .list);
                     },
                   ));
@@ -160,7 +162,7 @@ class SelectionEntryPage extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
                     return SelectionViewCustomViewExamplePage(
                         "自定义筛选弹出 View",
-                        BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"])
+                        BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!
                             .list);
                   }));
                 });
@@ -176,9 +178,8 @@ class SelectionEntryPage extends StatelessWidget {
                     builder: (BuildContext context) {
                       return SelectionViewCloseOrInterceptorExamplePage(
                           "新SelectionView示例(手动关闭的情况)",
-                          BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"])
+                          BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!
                               .list);
-                      ;
                     },
                   ));
                 });
@@ -191,12 +192,12 @@ class SelectionEntryPage extends StatelessWidget {
               onPressed: () {
                 rootBundle.loadString('assets/list_filter_maxcount_test.json').then((data) {
                   var datas =
-                      BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"]).list;
+                      BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!.list!;
                   datas.removeAt(0);
                   datas.removeAt(1);
                   void _configMaxSelectedCount(BrnSelectionEntity entity, int maxCount) {
                     entity.maxSelectedCount = maxCount;
-                    if (entity.children != null && entity.children.length > 0) {
+                    if (entity.children.length > 0) {
                       for (BrnSelectionEntity child in entity.children) {
                         _configMaxSelectedCount(child, maxCount);
                       }
@@ -218,8 +219,8 @@ class SelectionEntryPage extends StatelessWidget {
               isSupportTheme: true,
               onPressed: () {
                 rootBundle.loadString('assets/more_custom_floating_layer_filter.json').then((data) {
-                  var datas =
-                      BrnSelectionEntityListBean.fromMap(JsonDecoder().convert(data)["data"]).list;
+                  List<BrnSelectionEntity>? datas =
+                      BrnSelectionEntityListBean.fromJson(JsonDecoder().convert(data)["data"])!.list;
                   var page = SelectionViewMoreCustomFloatLayerExamplePage("更多筛选-跳转自定义二级页面", datas);
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) {

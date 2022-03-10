@@ -26,14 +26,14 @@ group:
 
 ```dart
 const BrnBigMainButton({
-  Key key,
-  this.title = '确认',
-  this.width,
-  this.isEnable = true,
-  this.onTap,
-  this.themeData,
-  this.bgColor,
-}) : super(key: key);
+    Key? key,
+    this.title = '确认',
+    this.width,
+    this.isEnable = true,
+    this.onTap,
+    this.themeData,
+    this.bgColor,
+  }) : super(key: key);
 ```
 ### 参数说明
 
@@ -44,6 +44,7 @@ const BrnBigMainButton({
 | isEnable | bool | 按钮是否可用 | 否 | false |
 | bgColor | Color | 按钮的背景色 | 否 | 主题色 |
 | width | double | 按钮的宽度 | 否 | double.infinity |
+| themeData | BrnButtonConfig | 按钮主题配置 | 否 | 无 |
 
 
 

@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +78,7 @@ class MultiPickerExamplePage extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             ListItem(
+              isShowLine: false,
               title: "单列",
               describe: '自定义单列Picker',
               onPressed: () {
@@ -180,7 +183,7 @@ class Brn1RowDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 
@@ -247,7 +250,7 @@ class Brn2RowDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 
@@ -324,7 +327,7 @@ class Brn3RowDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 
@@ -384,7 +387,7 @@ class Brn2RowCustomDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 

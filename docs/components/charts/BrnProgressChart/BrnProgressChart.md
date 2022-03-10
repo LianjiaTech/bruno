@@ -31,19 +31,19 @@ value属性值必须在0 到 1 之间。
 
 
 ```dart
-BrnProgressChart(
-  {Key key,
-  this.width = 0,
-  this.height = 0,
-  this.value = 0.2,
-  this.indicatorLeftPadding = 10,
-  this.textStyle = const TextStyle(color: Colors.white),
-  this.brnProgressIndicatorBuilder,
-  this.colors = const [Colors.blueAccent, Colors.blue],
-  this.backgroundColor = Colors.lightBlueAccent,
-  this.showAnimation = false})
-  : assert(0 <= value && value <= 1, 'value 必须在 0 到 1 之间'),
-    super(key: key);
+const BrnProgressChart(
+      {Key? key,
+      this.width = 0,
+      this.height = 0,
+      this.value = 0.2,
+      this.indicatorLeftPadding = 10,
+      this.textStyle = const TextStyle(color: Colors.white),
+      this.brnProgressIndicatorBuilder,
+      this.colors = const [Colors.blueAccent, Colors.blue],
+      this.backgroundColor = Colors.lightBlueAccent,
+      this.showAnimation = false})
+      : assert(0 <= value && value <= 1, 'value 必须在 0 到 1 之间'),
+        super(key: key);
 ```
 ### 参数说明
 
@@ -51,7 +51,7 @@ BrnProgressChart(
 | --- | --- | --- | --- | --- |
 | width | double | 宽度 | 是 | 0 |
 | height | double | 高度 | 是 | 0 |
-| value | double | 进度图进度值，必须在 0 到 1 之间 | 是 | 0 |
+| value | double | 进度图进度值，必须在 0 到 1 之间 | 是 | 0.2 |
 | indicatorLeftPadding | double | 进度条上自定义Widget的左侧padding | 否 | 10 |
 | textStyle | TextStyle | 展示默认进度indicator的时候的文本样式 | 否 | TextStyle(color: Colors.white) |
 | brnProgressIndicatorBuilder | BrnProgressIndicatorBuilder | 自定义进度条上面的Widget，默认显示为文本 | 否 | null |

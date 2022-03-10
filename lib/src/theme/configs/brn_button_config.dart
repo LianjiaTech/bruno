@@ -1,76 +1,119 @@
-import 'package:bruno/src/theme/brn_theme.dart';
+import 'package:bruno/src/theme/base/brn_base_config.dart';
+import 'package:bruno/src/theme/base/brn_default_config_utils.dart';
+import 'package:bruno/src/theme/brn_theme_configurator.dart';
+import 'package:bruno/src/theme/configs/brn_common_config.dart';
 
 /// 按钮基础配置
 class BrnButtonConfig extends BrnBaseConfig {
-  ///遵循外部主题配置，Bruno默认配置[BrnDefaultConfigUtils.defaultButtonConfig]
+  /// 遵循外部主题配置
+  /// 默认为 [BrnDefaultConfigUtils.defaultButtonConfig]
   BrnButtonConfig({
-    this.bigButtonRadius,
-    this.bigButtonHeight,
-    this.bigButtonFontSize,
-    this.smallButtonRadius,
-    this.smallButtonHeight,
-    this.smallButtonFontSize,
-    String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID,
-  }) : super(configId: configId);
+    double? bigButtonRadius,
+    double? bigButtonHeight,
+    double? bigButtonFontSize,
+    double? smallButtonRadius,
+    double? smallButtonHeight,
+    double? smallButtonFontSize,
+    String configId = GLOBAL_CONFIG_ID,
+  })  : _bigButtonRadius = bigButtonRadius,
+        _bigButtonHeight = bigButtonHeight,
+        _bigButtonFontSize = bigButtonFontSize,
+        _smallButtonRadius = smallButtonRadius,
+        _smallButtonHeight = smallButtonHeight,
+        _smallButtonFontSize = smallButtonFontSize,
+        super(configId: configId);
 
-  /// default value is 6
-  double bigButtonRadius;
+  /// 默认为 6
+  double? _bigButtonRadius;
 
-  /// default value is 48
-  double bigButtonHeight;
+  double get bigButtonRadius =>
+      _bigButtonRadius ??
+      BrnDefaultConfigUtils.defaultButtonConfig.bigButtonRadius;
 
-  /// default value is 16
-  double bigButtonFontSize;
+  /// 默认为 48
+  double? _bigButtonHeight;
 
-  /// default value is 4
-  double smallButtonRadius;
+  double get bigButtonHeight =>
+      _bigButtonHeight ??
+      BrnDefaultConfigUtils.defaultButtonConfig.bigButtonHeight;
 
-  /// default value is 32
-  double smallButtonHeight;
+  /// 默认为 16
+  double? _bigButtonFontSize;
 
-  /// default value is 14
-  double smallButtonFontSize;
+  double get bigButtonFontSize =>
+      _bigButtonFontSize ??
+      BrnDefaultConfigUtils.defaultButtonConfig.bigButtonFontSize;
+
+  /// 默认为 4
+  double? _smallButtonRadius;
+
+  double get smallButtonRadius =>
+      _smallButtonRadius ??
+      BrnDefaultConfigUtils.defaultButtonConfig.smallButtonRadius;
+
+  /// 默认为 32
+  double? _smallButtonHeight;
+
+  double get smallButtonHeight =>
+      _smallButtonHeight ??
+      BrnDefaultConfigUtils.defaultButtonConfig.smallButtonHeight;
+
+  /// 默认为 14
+  double? _smallButtonFontSize;
+
+  double get smallButtonFontSize =>
+      _smallButtonFontSize ??
+      BrnDefaultConfigUtils.defaultButtonConfig.smallButtonFontSize;
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
-    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+  void initThemeConfig(
+    String configId, {
+    BrnCommonConfig? currentLevelCommonConfig,
+  }) {
+    super.initThemeConfig(
+      configId,
+      currentLevelCommonConfig: currentLevelCommonConfig,
+    );
 
-    BrnButtonConfig userConfig =
-        BrnThemeConfigurator.instance.getConfig(configId: configId).buttonConfig;
+    BrnButtonConfig userConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: configId)
+        .buttonConfig;
 
-    this.bigButtonRadius ??= userConfig?.bigButtonRadius;
-    this.bigButtonHeight ??= userConfig?.bigButtonHeight;
-    this.bigButtonFontSize ??= userConfig?.bigButtonFontSize;
-    this.smallButtonRadius ??= userConfig?.smallButtonRadius;
-    this.smallButtonHeight ??= userConfig?.smallButtonHeight;
-    this.smallButtonFontSize ??= userConfig?.smallButtonFontSize;
+    _bigButtonRadius ??= userConfig._bigButtonRadius;
+    _bigButtonHeight ??= userConfig._bigButtonHeight;
+    _bigButtonFontSize ??= userConfig._bigButtonFontSize;
+    _smallButtonRadius ??= userConfig._smallButtonRadius;
+    _smallButtonHeight ??= userConfig._smallButtonHeight;
+    _smallButtonFontSize ??= userConfig._smallButtonFontSize;
   }
 
-  BrnButtonConfig copyWith(
-      {double bigButtonRadius,
-      double bigButtonHeight,
-      double bigButtonFontSize,
-      double smallButtonRadius,
-      double smallButtonHeight,
-      double smallButtonFontSize}) {
+  BrnButtonConfig copyWith({
+    double? bigButtonRadius,
+    double? bigButtonHeight,
+    double? bigButtonFontSize,
+    double? smallButtonRadius,
+    double? smallButtonHeight,
+    double? smallButtonFontSize,
+  }) {
     return BrnButtonConfig(
-      bigButtonRadius: bigButtonRadius ?? this.bigButtonRadius,
-      bigButtonHeight: bigButtonHeight ?? this.bigButtonHeight,
-      bigButtonFontSize: bigButtonFontSize ?? this.bigButtonFontSize,
-      smallButtonRadius: smallButtonRadius ?? this.smallButtonRadius,
-      smallButtonHeight: smallButtonHeight ?? this.smallButtonHeight,
-      smallButtonFontSize: smallButtonFontSize ?? this.smallButtonFontSize,
+      bigButtonRadius: bigButtonRadius ?? _bigButtonRadius,
+      bigButtonHeight: bigButtonHeight ?? _bigButtonHeight,
+      bigButtonFontSize: bigButtonFontSize ?? _bigButtonFontSize,
+      smallButtonRadius: smallButtonRadius ?? _smallButtonRadius,
+      smallButtonHeight: smallButtonHeight ?? _smallButtonHeight,
+      smallButtonFontSize: smallButtonFontSize ?? _smallButtonFontSize,
     );
   }
 
-  BrnButtonConfig merge(BrnButtonConfig other) {
+  BrnButtonConfig merge(BrnButtonConfig? other) {
     if (other == null) return this;
     return copyWith(
-        bigButtonRadius: other.bigButtonRadius,
-        bigButtonHeight: other.bigButtonHeight,
-        bigButtonFontSize: other.bigButtonFontSize,
-        smallButtonRadius: other.smallButtonRadius,
-        smallButtonHeight: other.smallButtonHeight,
-        smallButtonFontSize: other.smallButtonFontSize);
+      bigButtonRadius: other._bigButtonRadius,
+      bigButtonHeight: other._bigButtonHeight,
+      bigButtonFontSize: other._bigButtonFontSize,
+      smallButtonRadius: other._smallButtonRadius,
+      smallButtonHeight: other._smallButtonHeight,
+      smallButtonFontSize: other._smallButtonFontSize,
+    );
   }
 }

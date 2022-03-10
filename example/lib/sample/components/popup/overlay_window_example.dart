@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +13,9 @@ class OverlayWindowExample extends StatefulWidget {
 }
 
 class OverlayWindowExamplePageState extends State<OverlayWindowExample> {
-  BrnOverlayController _overlayController;
-  var _focusNode = FocusNode();
-  var _searchBarKey = GlobalKey();
+  BrnOverlayController? _overlayController;
+  FocusNode _focusNode = FocusNode();
+  GlobalKey _searchBarKey = GlobalKey();
 
   @override
   void initState() {
@@ -62,11 +64,11 @@ class OverlayWindowExamplePageState extends State<OverlayWindowExample> {
           _overlayController?.removeOverlay();
         },
         onTextChange: (text) {
-          if (text == null || text == '') {
+          if (text == '') {
             _overlayController?.removeOverlay();
             return;
           }
-          if (_overlayController == null || _overlayController.isOverlayShowing == false) {
+          if (_overlayController == null || _overlayController!.isOverlayShowing == false) {
             _overlayController = BrnOverlayWindow.showOverlayWindow(context, _searchBarKey,
                 content: _sugListView(),
                 autoDismissOnTouchOutSide: true,

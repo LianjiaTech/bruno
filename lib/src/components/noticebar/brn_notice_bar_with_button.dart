@@ -11,52 +11,52 @@ class BrnNoticeBarWithButton extends StatelessWidget {
   final String content;
 
   /// 通知的背景色
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// 通知的文字颜色
-  final Color contentTextColor;
+  final Color? contentTextColor;
 
   /// 左边标签的文字
-  final String leftTagText;
+  final String? leftTagText;
 
   /// 左边标签的文字颜色
-  final Color leftTagTextColor;
+  final Color? leftTagTextColor;
 
   /// 左边标签的背景颜色
-  final Color leftTagBackgroundColor;
+  final Color? leftTagBackgroundColor;
 
   /// 自定义左边的控件
-  final Widget leftWidget;
+  final Widget? leftWidget;
 
   ///右边按钮的文字
-  final String rightButtonText;
+  final String? rightButtonText;
 
   ///右边按钮的文字颜色
-  final Color rightButtonTextColor;
+  final Color? rightButtonTextColor;
 
   ///右边按钮的边框颜色
-  final Color rightButtonBorderColor;
+  final Color? rightButtonBorderColor;
 
   /// 自定义右边的控件
-  final Widget rightWidget;
+  final Widget? rightWidget;
 
   /// 是否跑马灯
   /// 默认值false
   final bool marquee;
 
   /// 右边按钮点击回调
-  final VoidCallback onRightButtonTap;
+  final VoidCallback? onRightButtonTap;
 
   /// 最小高度。leftWidget、rightWidget 都为空时，限制的最小高度。
   /// 可以通过该属性控制组件高度，内容会自动垂直居中。默认值 54。
   final double minHeight;
 
   /// 内容的内边距
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
   const BrnNoticeBarWithButton(
-      {Key key,
-      @required this.content,
+      {Key? key,
+      required this.content,
       this.backgroundColor,
       this.contentTextColor,
       this.leftTagText,
@@ -71,8 +71,7 @@ class BrnNoticeBarWithButton extends StatelessWidget {
       this.rightWidget,
       this.padding,
       this.minHeight = 54})
-      : assert(content != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +96,7 @@ class BrnNoticeBarWithButton extends StatelessWidget {
   /// 左边的标签
   Widget _buildLeftTag() {
     if (leftWidget != null) {
-      return leftWidget;
+      return leftWidget!;
     }
 
     if (leftTagText?.isEmpty ?? true) {
@@ -113,7 +112,7 @@ class BrnNoticeBarWithButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(2),
         ),
         child: Text(
-          leftTagText,
+          leftTagText!,
           style: TextStyle(
               color: leftTagTextColor ?? Colors.white,
               fontSize: 11,
@@ -125,14 +124,14 @@ class BrnNoticeBarWithButton extends StatelessWidget {
   }
 
   Widget _buildContent() {
-    if (content?.isEmpty ?? true) {
+    if (content.isEmpty) {
       return Container();
     }
 
     if (marquee) {
       return BrnMarqueeText(
         height: 20,
-        text: content ?? '',
+        text: content,
         textStyle: TextStyle(
           color: contentTextColor ?? Color(0xFF333333),
           fontSize: 14,
@@ -140,7 +139,7 @@ class BrnNoticeBarWithButton extends StatelessWidget {
       );
     } else {
       return Text(
-        content ?? '',
+        content,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: contentTextColor ?? Color(0xFF333333),
@@ -153,7 +152,7 @@ class BrnNoticeBarWithButton extends StatelessWidget {
   /// 右边的按钮
   Widget _buildRightBtn() {
     if (rightWidget != null) {
-      return rightWidget;
+      return rightWidget!;
     }
 
     if (rightButtonText?.isEmpty ?? true) {
@@ -162,7 +161,7 @@ class BrnNoticeBarWithButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (onRightButtonTap != null) {
-          onRightButtonTap();
+          onRightButtonTap!();
         }
       },
       child: Padding(
@@ -181,7 +180,7 @@ class BrnNoticeBarWithButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
           ),
           child: Text(
-            rightButtonText,
+            rightButtonText!,
             style: TextStyle(
               color: rightButtonTextColor ?? Color(0xFFFA5741),
               fontSize: 12,

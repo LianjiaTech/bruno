@@ -35,45 +35,43 @@ group:
 
 ```dart
 BrnDialog({
-  this.showIcon = false,
-  this.iconImage,
-  this.titleText,
-  this.messageText,
-  this.titleWidget,
-  this.contentWidget,
-  this.warningText,
-  this.warningWidget,
-  this.actionsWidget,
-  this.brnDialogStyle,
-  this.divider = cDividerLine,
-  this.verticalDivider = cVerticalDivider,
-  this.actionsText,
-  this.indexedActionCallback,
-  this.dismiss = true,
-  this.themeData,
-  this.titleMaxLines = cTitleMaxLines,
-});
+    Key? key,
+    this.showIcon = false,
+    this.iconImage,
+    this.titleText,
+    this.messageText,
+    this.titleWidget,
+    this.contentWidget,
+    this.warningText,
+    this.warningWidget,
+    this.actionsWidget,
+    this.divider = cDividerLine,
+    this.verticalDivider = cVerticalDivider,
+    this.actionsText,
+    this.indexedActionCallback,
+    this.themeData,
+    this.titleMaxLines = cTitleMaxLines,
+  }) : super(key: key);
 ```
 ### 参数配置
 
 | **参数名** | **参数类型** | **作用** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
 | showIcon | bool | 是否显示icon | 否 | false |
-| iconImage | Image | 头部显示的icon 默认为alert | 否 | 主题色alert |
-| titleText | String | 对话框的标题文案 | 否 | 无 |
-| messageText | String | 对话框中间的显示文本 | 否 | 无 |
-| warningText | String | 对话框的警示文案文本 | 否 | 无 |
-| actionsText | List | 对话框底部的按钮 | 否 | 无 |
-| titleWidget | Widget | 自定义widget的标题 | 否 | 无 |
-| contentWidget | Widget | 自定义widget的内容 | 否 | 无 |
-| warningWidget | Widget | 自定义widget的警示内容 | 否 | 无 |
-| actionsWidget | List | 对话框底部的自定义widget按钮 | 否 | 无 |
-| indexedActionCallback | DialogIndexedActionClickCallback | 对话框底部的点击回调 | 否 | 无 |
-| brnDialogStyle | BrnDialogStyle | 对话框的样式：主色调间距等等 | 否 | 自定义样式 |
+| iconImage | Image? | 头部显示的icon 默认为alert | 否 | 主题色alert |
+| titleText | String? | 对话框的标题文案 | 否 | 无 |
+| messageText | String? | 对话框中间的显示文本 | 否 | 无 |
+| warningText | String? | 对话框的警示文案文本 | 否 | 无 |
+| actionsText | List<String>? | 对话框底部的按钮 | 否 | 无 |
+| titleWidget | Widget? | 自定义widget的标题 | 否 | 无 |
+| contentWidget | Widget? | 自定义widget的内容 | 否 | 无 |
+| warningWidget | Widget? | 自定义widget的警示内容 | 否 | 无 |
+| actionsWidget | List<Widget>? | 对话框底部的自定义widget按钮 | 否 | 无 |
+| indexedActionCallback | DialogIndexedActionClickCallback? | 对话框底部的点击回调 | 否 | 无 |
 | divider | Divider | 底部按钮的水平和上面内容的水平分割线 | 否 | 高1像素的L1分割线 |
 | verticalDivider | VerticalDivider | 底部按钮之间的分割线 | 否 | 宽1像素的L1分割线 |
 | titleMaxLines | int | 标题文本的最大展示行数 | 否 | 2 |
-| dismiss | bool | 点击底部按钮是否关闭弹窗 | 否 | true |
+| themeData | BrnDialogConfig? | 主题配置 | 否 | 无 |
 
 ### 快捷使用类BrnDialogManager
 
@@ -86,19 +84,18 @@ BrnDialog({
 | context | BuildContext | 用于显示弹窗的上下文 | 是 | 五 |
 | label | String | 弹窗的按钮文案 | 是 | 无 |
 | showIcon | bool | 是否显示icon | 否 | false |
-| iconImage | Image | 头部显示的icon 默认为alert | 否 | 主题色alert |
-| title | String | 对话框的标题文案 | 否 | 无 |
-| titleWidget | Widget | 自定义widget的标题 | 否 | 无 |
-| message | String | 对话框中间的显示文本 | 否 | 无 |
-| messageWidget | Widget | 自定义widget的内容 | 否 | 无 |
-| warning | String | 对话框的警示文案文本 | 否 | 无 |
+| iconWidget | Image? | 头部显示的icon 默认为alert | 否 | 主题色alert |
+| title | String? | 对话框的标题文案 | 否 | 无 |
+| titleWidget | Widget? | 自定义widget的标题 | 否 | 无 |
+| message | String? | 对话框中间的显示文本 | 否 | 无 |
+| messageWidget | Widget? | 自定义widget的内容 | 否 | 无 |
+| warning | String? | 对话框的警示文案文本 | 否 | 无 |
 | warningWidget | Widget | 自定义widget的警示内容 | 否 | 无 |
-| dismiss | bool | 点击对话框按钮之后，对话框是否消失 | 否 | true 消失 |
-| labelWidget | Widget | 对话框底部的自定义widget按钮 | 否 | 无 |
-| onTap | GestureTapCallback | 对话框按钮的点击回调 | 否 | 无 |
-| indexedActionCallback | DialogIndexedActionClickCallback | 对话框底部的点击回调 | 否 | 无 |
-| dialogStyle | BrnDialogStyle | 对话框的样式：主色调间距等等 | 否 | B端样式 |
+| labelWidget | Widget? | 对话框底部的自定义widget按钮 | 否 | 无 |
+| onTap | GestureTapCallback? | 对话框按钮的点击回调 | 否 | 无 |
 | barrierDismissible | bool | 点击对话框遮罩是否消失对话框 | 否 | true 关闭 |
+| titleMaxLines | int | 标题最大行数 | 否 | 3 |
+| themeData | BrnDialogConfig? | 主题配置 | 否 | 无 |
 
 #### 效果2: showConfirmDialog（双按钮）
 
@@ -110,20 +107,21 @@ BrnDialog({
 | cancel | String | 弹窗的左侧文案 | 是 | 无 |
 | confirm | String | 弹窗的右侧文案 | 是 | 无 |
 | showIcon | bool | 是否显示icon | 否 | false |
-| iconImage | Image | 头部显示的icon 默认为alert | 否 | 主题色alert |
-| title | String | 对话框的标题文案 | 否 | 无 |
-| titleWidget | Widget | 自定义widget的标题 | 否 | 无 |
-| message | String | 对话框中间的显示文本 | 否 | 无 |
-| messageWidget | Widget | 自定义widget的内容 | 否 | 无 |
-| warning | String | 对话框的警示文案文本 | 否 | 无 |
-| warningWidget | Widget | 自定义widget的警示内容 | 否 | 无 |
+| iconWidget | Image? | 头部显示的icon 默认为alert | 否 | 主题色alert |
+| title | String? | 对话框的标题文案 | 否 | 无 |
+| titleWidget | Widget? | 自定义widget的标题 | 否 | 无 |
+| message | String? | 对话框中间的显示文本 | 否 | 无 |
+| messageWidget | Widget? | 自定义widget的内容 | 否 | 无 |
+| warning | String? | 对话框的警示文案文本 | 否 | 无 |
+| warningWidget | Widget? | 自定义widget的警示内容 | 否 | 无 |
 | dismiss | bool | 点击对话框按钮之后，对话框是否消失 | 否 | true 消失 |
-| cancelWidget | Widget | 对话框底部左侧的自定义widget按钮 | 否 | 无 |
-| conformWidget | Widget | 对话框底部右侧的自定义widget按钮 | 否 | 无 |
-| cancelTap | GestureTapCallback | 对话框左侧按钮的点击回调 | 否 | 无 |
-| confirmTap | GestureTapCallback | 对话框右侧按钮的点击回调 | 否 | 无 |
-| dialogStyle | BrnDialogStyle | 对话框的样式：主色调间距等等 | 否 | B端样式 |
+| cancelWidget | Widget? | 对话框底部左侧的自定义widget按钮 | 否 | 无 |
+| conformWidget | Widget? | 对话框底部右侧的自定义widget按钮 | 否 | 无 |
+| onCancel | GestureTapCallback? | 对话框左侧按钮的点击回调 | 否 | 无 |
+| onConfirm | GestureTapCallback? | 对话框右侧按钮的点击回调 | 否 | 无 |
 | barrierDismissible | bool | 点击对话框遮罩是否消失对话框 | 否 | true 关闭 |
+| titleMaxLines | int | 标题最大行数 | 否 | 3 |
+| themeData | BrnDialogConfig？ | 主题配置 | 否 | 无 |
 
 #### 效果3: showMoreButtonDialog（多按钮）
 
@@ -132,20 +130,20 @@ BrnDialog({
 | **参数名** | **参数类型** | **作用** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
 | context | BuildContext | 用于显示弹窗的上下文 | 是 | 五 |
-| actionsText | List | 对话框底部的按钮 | 否 | 无 |
+| actions | List<String> | 对话框底部的按钮 | 否 | 无 |
 | showIcon | bool | 是否显示icon | 否 | false |
-| iconWidget | Image | 头部显示的icon 默认为alert | 否 | 主题色alert |
-| title | String | 对话框的标题文案 | 否 | 无 |
-| titleWidget | Widget | 自定义widget的标题 | 否 | 无 |
-| message | String | 对话框中间的显示文本 | 否 | 无 |
-| messageWidget | Widget | 自定义widget的内容 | 否 | 无 |
-| warning | String | 对话框的警示文案文本 | 否 | 无 |
-| warningWidget | Widget | 自定义widget的警示内容 | 否 | 无 |
-| dismiss | bool | 点击对话框按钮之后，对话框是否消失 | 否 | true 消失 |
-| actionsWidget | List | 对话框底部的自定义widget按钮 | 否 | 无 |
-| indexedActionClickCallback | DialogIndexedActionClickCallback | 对话按钮点击的回调 | 否 | 无 |
-| dialogStyle | BrnDialogStyle | 对话框的样式：主色调间距等等 | 否 | B端样式 |
+| iconWidget | Image? | 头部显示的icon 默认为alert | 否 | 主题色alert |
+| title | String? | 对话框的标题文案 | 否 | 无 |
+| titleWidget | Widget? | 自定义widget的标题 | 否 | 无 |
+| message | String? | 对话框中间的显示文本 | 否 | 无 |
+| messageWidget | Widget? | 自定义widget的内容 | 否 | 无 |
+| warning | String? | 对话框的警示文案文本 | 否 | 无 |
+| warningWidget | Widget? | 自定义widget的警示内容 | 否 | 无 |
+| actionsWidget | List<Widget>? | 对话框底部的自定义widget按钮 | 否 | 无 |
+| indexedActionClickCallback | DialogIndexedActionClickCallback? | 对话按钮点击的回调 | 否 | 无 |
+| titleMaxLines | int | 标题最大行数 | 否 | 3 |
 | barrierDismissible | bool | 点击对话框遮罩是否消失对话框 | 否 | true 关闭 |
+| themeData | BrnDialogConfig? | 主题配置 | 否 | 无 |
 
 ## 四、效果及代码展示
 

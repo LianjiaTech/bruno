@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -21,21 +23,20 @@ import 'package:flutter/widgets.dart';
 ///  * The "Expand/collapse" section of
 
 class BrnExpandableContainerWidget extends StatefulWidget {
-  final Widget Function(BuildContext context) headerBuilder;
+  final Widget Function(BuildContext context)? headerBuilder;
 
   /// Creates a single-line [ListTile] with a trailing button that expands or collapses
   /// the tile to reveal or hide the [children]. The [initiallyExpanded] property must
   /// be non-null.
   const BrnExpandableContainerWidget({
-    Key key,
+    Key? key,
     this.onExpansionChanged,
     this.headerBuilder,
     this.child,
     this.initiallyExpanded = false,
     this.animationDuration,
     this.expandableController,
-  })  : assert(initiallyExpanded != null),
-        super(key: key);
+  })  : super(key: key);
 
   /// A widget to display before the title.
   ///
@@ -45,19 +46,19 @@ class BrnExpandableContainerWidget extends StatefulWidget {
   /// When the tile starts expanding, this function is called with the value
   /// true. When the tile starts collapsing, this function is called with
   /// the value false.
-  final ValueChanged<bool> onExpansionChanged;
+  final ValueChanged<bool>? onExpansionChanged;
 
   /// The widgets that are displayed when the tile expands.
   ///
   /// Typically [ListTile] widgets.
-  final Widget child;
+  final Widget? child;
 
   /// Specifies if the list tile is initially expanded (true) or collapsed (false, the default).
   final bool initiallyExpanded;
 
-  final Duration animationDuration;
+  final Duration? animationDuration;
 
-  final BrnExpandableContainerController expandableController;
+  final BrnExpandableContainerController? expandableController;
 
   @override
   _BrnExpansionContainerElementState createState() => _BrnExpansionContainerElementState();
@@ -67,13 +68,13 @@ class _BrnExpansionContainerElementState extends State<BrnExpandableContainerWid
     with SingleTickerProviderStateMixin {
   static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
 
-  BrnExpandableContainerController _expandableController;
-  AnimationController _animationController;
-  Animation<double> _heightFactor;
+  BrnExpandableContainerController? _expandableController;
+  AnimationController? _animationController;
+  late Animation<double> _heightFactor;
 
   bool _isExpanded = false;
 
-  Widget arrowIcon;
+  Widget? arrowIcon;
 
   @override
   void initState() {
@@ -82,21 +83,21 @@ class _BrnExpansionContainerElementState extends State<BrnExpandableContainerWid
 
     _expandableController = widget.expandableController ?? BrnExpandableContainerController();
 
-    _expandableController.addListener(_expandableContainerControllerTick);
+    _expandableController!.addListener(_expandableContainerControllerTick);
     _animationController = AnimationController(
         duration: widget.animationDuration ?? Duration(milliseconds: 200) /*_kExpand*/,
         vsync: this);
-    _heightFactor = _animationController.drive(_easeInTween);
+    _heightFactor = _animationController!.drive(_easeInTween);
     if (_isExpanded) {
-      _animationController.value = 1.0;
+      _animationController!.value = 1.0;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final bool closed = !_isExpanded && _animationController.isDismissed;
+    final bool closed = !_isExpanded && _animationController!.isDismissed;
     return AnimatedBuilder(
-      animation: _animationController.view,
+      animation: _animationController!.view,
       builder: _buildHeader,
       child: closed ? null : widget.child,
     );
@@ -111,18 +112,18 @@ class _BrnExpansionContainerElementState extends State<BrnExpandableContainerWid
   }
 
   void _expandableContainerControllerTick() {
-    if (_expandableController.expandableAction != BrnExpandableAction.none) {
-      if (_expandableController.expandableAction == BrnExpandableAction.toggle) {
+    if (_expandableController!.expandableAction != BrnExpandableAction.none) {
+      if (_expandableController!.expandableAction == BrnExpandableAction.toggle) {
         _handleTap();
       } else if (_isExpanded == false &&
-          _expandableController.expandableAction == BrnExpandableAction.expand) {
+          _expandableController!.expandableAction == BrnExpandableAction.expand) {
         _handleTap();
       } else if (_isExpanded == true &&
-          _expandableController.expandableAction == BrnExpandableAction.collapse) {
+          _expandableController!.expandableAction == BrnExpandableAction.collapse) {
         _handleTap();
       }
     }
-    _expandableController.expandableAction = BrnExpandableAction.none;
+    _expandableController!.expandableAction = BrnExpandableAction.none;
   }
 
   void _handleTap() {
@@ -130,19 +131,19 @@ class _BrnExpansionContainerElementState extends State<BrnExpandableContainerWid
     setState(() {
       _isExpanded = !_isExpanded;
       if (_isExpanded) {
-        _animationController.forward();
+        _animationController!.forward();
       } else {
-        _animationController.reverse();
+        _animationController!.reverse();
       }
       PageStorage.of(context)?.writeState(context, _isExpanded);
     });
-    if (widget.onExpansionChanged != null) widget.onExpansionChanged(_isExpanded);
+    if (widget.onExpansionChanged != null) widget.onExpansionChanged!(_isExpanded);
   }
 
-  Widget _buildHeader(BuildContext context, Widget child) {
-    Widget content;
+  Widget _buildHeader(BuildContext context, Widget? child) {
+    Widget? content;
     if (widget.headerBuilder != null) {
-      content = widget.headerBuilder(context);
+      content = widget.headerBuilder!(context);
     }
     content ??= Container();
 

@@ -28,24 +28,24 @@ group:
 
 ```dart
 BrnMultiDataPickerWidget(  
-  {Key key,  
-  @required this.context,  
-  @required this.delegate,  
-  this.title = "",  
-  this.titleTextStyle,  
-  this.confirmTextStyle,  
-  this.cancelTextStyle,  
-  this.pickerTitles,  
-  this.pickerTitleFontSize = 16,  
-  this.pickerTitleColor = const Color(0XFF4A4E59),  
-  this.textFontSize = 18,  
-  this.textColor = const Color(0xff222222),  
-  this.textSelectedColor,  
-  this.behavior,  
-  this.confirmClick,  
-  this.createItemWidget,  
-  this.sync = true,
-  this.themeData})
+ {Key? key,
+      required this.context,
+      required this.delegate,
+      this.title = "",
+      this.titleTextStyle,
+      this.confirmTextStyle,
+      this.cancelTextStyle,
+      this.pickerTitles,
+      this.pickerTitleFontSize,
+      this.pickerTitleColor,
+      this.textFontSize,
+      this.textColor,
+      this.textSelectedColor,
+      this.behavior,
+      this.confirmClick,
+      this.createItemWidget,
+      this.themeData,
+      this.sync = true})
 ```
 
 ### 参数说明
@@ -54,21 +54,21 @@ BrnMultiDataPickerWidget(
 | --- | --- | --- | --- | --- |
 | context | Buildcontext |  | 是 |  |
 | delegate | BrnMultiDataPickerDelegate | 滚动组件每一列、每一行的具体内容设置，自定义delegate继承这个类，实现具体方法。 | 是 |  |
-| title | String | 滚动选择弹框的标题 | 否 |  |
-| titleTextStyle | TextStyle | 标题样式 | 否 |  |
-| confirmTextStyle | TextStyle | 确认文案样式 | 否 |  |
-| cancelTextStyle | TextStyle | 取消文案样式 | 否 |  |
-| pickerTitles | List<String> | 多级数据选择每一级的默认标题 | 否 | 无 |
-| pickerTitleFontSize | double | 多级数据选择每一级默认标题的字体大小 | 否 | 16 |
-| pickerTitleColor | Color | 多级数据选择每一级默认标题的文案颜色 | 否 | Color(0XFF4A4E59) |
-| textFontSize | double | 多级数据选择数据字体大小 | 否 | 18 |
-| textColor | Color | 多级数据选择数据文案颜色 | 否 | Color(0xff222222) |
-| textSelectedColor | Color | 多级数据选择数据选中文案颜色 | 否 |  |
-| behavior | ScrollBehavior | 选择轮盘的滚动行为 | 否 |  |
-| confirmClick | ConfirmButtonClick | 点击【完成】回调数据给调用方 | 否 |  |
-| createItemWidget | BrnMultiDataPickerCreateWidgetCallback | 返回自定义itemwidget | 否 |  |
+| title | String | 滚动选择弹框的标题 | 否 | "" |
+| titleTextStyle | TextStyle? | 标题样式 | 否 |  |
+| confirmTextStyle | TextStyle? | 确认文案样式 | 否 |  |
+| cancelTextStyle | TextStyle? | 取消文案样式 | 否 |  |
+| pickerTitles | List<String>? | 多级数据选择每一级的默认标题 | 否 | 无 |
+| pickerTitleFontSize | double? | 多级数据选择每一级默认标题的字体大小 | 否 | 16 |
+| pickerTitleColor | Color? | 多级数据选择每一级默认标题的文案颜色 | 否 | Color(0XFF4A4E59) |
+| textFontSize | double? | 多级数据选择数据字体大小 | 否 | 18 |
+| textColor | Color? | 多级数据选择数据文案颜色 | 否 | Color(0xff222222) |
+| textSelectedColor | Color? | 多级数据选择数据选中文案颜色 | 否 |  |
+| behavior | ScrollBehavior? | 选择轮盘的滚动行为 | 否 |  |
+| confirmClick | ConfirmButtonClick? | 点击【完成】回调数据给调用方 | 否 |  |
+| createItemWidget | BrnMultiDataPickerCreateWidgetCallback? | 返回自定义itemwidget | 否 |  |
 | sync | bool | 是否复位数据位置 | 否 | true |
-| themeData | BrnPickerConfig | Picker配置类，配置详情见BrnPickerConfig | 否 |  |
+| themeData | BrnPickerConfig? | Picker配置类，配置详情见BrnPickerConfig | 否 |  |
 
 ### 其它数据
 
@@ -158,7 +158,7 @@ class Brn1RowDelegate implements BrnMultiDataPickerDelegate {
   }  
   
   @override  
-  double rowHeightForComponent(int component) {  
+  double? rowHeightForComponent(int component) {  
     return PICKER_ITEM_HEIGHT;  
   }  
   
@@ -283,7 +283,7 @@ class Brn1RowDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 
@@ -369,7 +369,7 @@ class Brn2RowDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 
@@ -483,7 +483,7 @@ class Brn2RowCustomDelegate implements BrnMultiDataPickerDelegate {
   }
 
   @override
-  double rowHeightForComponent(int component) {
+  double? rowHeightForComponent(int component) {
     return null;
   }
 

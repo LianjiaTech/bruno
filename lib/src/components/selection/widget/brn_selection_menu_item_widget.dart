@@ -9,19 +9,19 @@ typedef void ItemClickFunction();
 class BrnSelectionMenuItemWidget extends StatelessWidget {
   final String title;
   final bool isHighLight;
-  final int index;
   final bool active;
-  final ItemClickFunction itemClickFunction;
+  final ItemClickFunction? itemClickFunction;
 
   BrnSelectionConfig themeData;
 
   BrnSelectionMenuItemWidget(
-      {@required this.title,
+      {Key? key,
+      required this.title,
       this.isHighLight = false,
-      this.index,
       this.active = false,
       this.itemClickFunction,
-      this.themeData});
+      required this.themeData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,22 +45,25 @@ class BrnSelectionMenuItemWidget extends StatelessWidget {
                   maxLines: 1,
                   softWrap: true,
                   style: isHighLight
-                      ? themeData.menuSelectedTextStyle?.generateTextStyle()
-                      : themeData.menuNormalTextStyle?.generateTextStyle(),
+                      ? themeData.menuSelectedTextStyle.generateTextStyle()
+                      : themeData.menuNormalTextStyle.generateTextStyle(),
                 ),
               )),
               Padding(
                   padding: EdgeInsets.only(left: 4),
                   child: isHighLight
                       ? (active
-                          ? BrunoTools.getAssetImageWithBandColor(BrnAsset.ICON_ARROWUP_SELECT,
+                          ? BrunoTools.getAssetImageWithBandColor(
+                              BrnAsset.iconArrowUpSelect,
                               configId: themeData.configId)
-                          : BrunoTools.getAssetImageWithBandColor(BrnAsset.ICON_ARROWDOWN_SELECT))
+                          : BrunoTools.getAssetImageWithBandColor(
+                              BrnAsset.iconArrowDownSelect))
                       : (active
-                          ? BrunoTools.getAssetImageWithBandColor(BrnAsset.ICON_ARROWUP_SELECT,
+                          ? BrunoTools.getAssetImageWithBandColor(
+                              BrnAsset.iconArrowUpSelect,
                               configId: themeData.configId)
-                          : BrunoTools.getAssetImage(BrnAsset.ICON_ARROWDOWN_UNSELECT))
-                  )
+                          : BrunoTools.getAssetImage(
+                              BrnAsset.iconArrowDownUnSelect)))
             ],
           ),
         ),
@@ -71,7 +74,7 @@ class BrnSelectionMenuItemWidget extends StatelessWidget {
 
   void _menuItemTapped() {
     if (this.itemClickFunction != null) {
-      this.itemClickFunction();
+      this.itemClickFunction!();
     }
   }
 }

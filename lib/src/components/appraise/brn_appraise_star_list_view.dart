@@ -1,4 +1,3 @@
-import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -11,37 +10,41 @@ class BrnAppraiseStarListView extends StatefulWidget {
   final int count;
 
   /// 未选中时的提示
-  final String hint;
+  final String? hint;
 
   /// 星星下面的文案，点击对应的星星会显示相应index的文案，titles长度不能比count小
   final List<String> titles;
 
   /// 点击回调
-  final BrnAppraiseIconClick onTap;
+  final ValueChanged<int>? onTap;
 
-  BrnAppraiseStarListView({this.count = 5, this.titles, this.hint, this.onTap})
+  BrnAppraiseStarListView(
+      {Key? key, this.count = 5, required this.titles, this.hint, this.onTap})
       : assert(count > 0 && count <= 5),
-        assert(titles == null || titles.length >= count);
+        assert(titles.length >= count),
+        super(key: key);
 
   @override
-  _BrnAppraiseStarListViewState createState() => _BrnAppraiseStarListViewState();
+  _BrnAppraiseStarListViewState createState() =>
+      _BrnAppraiseStarListViewState();
 }
 
 class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
-  Image _star = BrunoTools.getAssetImage(BrnAsset.iconStarSize, gaplessPlayback: true);
+  Image _star =
+      BrunoTools.getAssetImage(BrnAsset.iconStarSize, gaplessPlayback: true);
 
-  Image _selectedStar =
-      BrunoTools.getAssetImage(BrnAsset.iconStarSizeSelected, gaplessPlayback: true);
+  Image _selectedStar = BrunoTools.getAssetImage(BrnAsset.iconStarSizeSelected,
+      gaplessPlayback: true);
 
   int _selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
-    if (widget.titles?.isEmpty ?? true) {
+    if (widget.titles.isEmpty) {
       return _buildStars();
     } else {
       Widget subWidget = Container();
-      String subTitle = widget.hint;
+      String? subTitle = widget.hint;
       if (_selectedIndex >= 0 && _selectedIndex < widget.titles.length) {
         subTitle = widget.titles[_selectedIndex];
       }
@@ -52,7 +55,10 @@ class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
             subTitle ?? '',
             style: TextStyle(
                 fontSize: 12.0,
-                color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextSecondary,
+                color: BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .colorTextSecondary,
                 fontWeight: FontWeight.w600),
           ),
         );
@@ -67,7 +73,7 @@ class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
   }
 
   Widget _buildStars() {
-    List<Widget> list = List();
+    List<Widget> list = [];
     for (int i = 0; i < widget.count; i++) {
       Widget item = GestureDetector(
         child: Padding(
@@ -76,7 +82,7 @@ class _BrnAppraiseStarListViewState extends State<BrnAppraiseStarListView> {
         ),
         onTap: () {
           if (widget.onTap != null) {
-            widget.onTap(i);
+            widget.onTap!(i);
           }
           _selectedIndex = i;
         },

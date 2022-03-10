@@ -1,14 +1,17 @@
+
+
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_bottom_picker.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
 ///取消输入事件回调
-typedef BrnBottomWritePickerClickCallback = Future<void> Function(String content);
+typedef BrnBottomWritePickerClickCallback = Future<void>? Function(
+    String? content);
 
 ///确认输入事件回调
-typedef BrnBottomWritePickerConfirmClickCallback = Future<void> Function(
-    BuildContext dialogContext, String content);
+typedef BrnBottomWritePickerConfirmClickCallback = Future<void>? Function(
+    BuildContext dialogContext, String? content);
 
 class BrnBottomWritePicker extends StatefulWidget {
   /// 弹窗左边自定义文案，默认 '取消'
@@ -27,22 +30,22 @@ class BrnBottomWritePicker extends StatefulWidget {
   final int maxLength;
 
   /// 取消输入事件回调
-  final BrnBottomWritePickerClickCallback onCancel;
+  final BrnBottomWritePickerClickCallback? onCancel;
 
   /// 确认输入内容事件回调
-  final BrnBottomWritePickerConfirmClickCallback onConfirm;
+  final BrnBottomWritePickerConfirmClickCallback? onConfirm;
 
   /// 弹窗右边文案颜色
-  final Color rightTextColor;
+  final Color? rightTextColor;
 
   /// 光标颜色
-  final Color cursorColor;
+  final Color? cursorColor;
 
   /// 默认文本
-  final String defaultText;
+  final String? defaultText;
 
   /// 用于对 TextField  更精细的控制，若传入该字段，[defaultText] 参数将失效，可使用 TextEditingController.text 进行赋值。
-  final TextEditingController textEditingController;
+  final TextEditingController? textEditingController;
 
   const BrnBottomWritePicker(
       {this.maxLength = 200,
@@ -68,14 +71,14 @@ class BrnBottomWritePicker extends StatefulWidget {
       String leftTag = "取消",
       String title = "",
       String rightTag = "确认",
-      BrnBottomWritePickerClickCallback onCancel,
-      BrnBottomWritePickerConfirmClickCallback onConfirm,
+      BrnBottomWritePickerClickCallback? onCancel,
+      BrnBottomWritePickerConfirmClickCallback? onConfirm,
       bool confirmDismiss = false,
       bool cancelDismiss = true,
-      Color rightTextColor,
-      Color cursorColor,
-      String defaultText,
-      TextEditingController textEditingController}) {
+      Color? rightTextColor,
+      Color? cursorColor,
+      String? defaultText,
+      TextEditingController? textEditingController}) {
     final ThemeData theme = Theme.of(context);
     showGeneralDialog(
         context: context,
@@ -90,29 +93,36 @@ class BrnBottomWritePicker extends StatefulWidget {
             onConfirm: onConfirm,
             onCancel: onCancel,
             rightTextColor: rightTextColor ??
-                BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
-            cursorColor:
-                cursorColor ?? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+                BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .brandPrimary,
+            cursorColor: cursorColor ??
+                BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .brandPrimary,
             defaultText: defaultText,
             textEditingController: textEditingController,
           );
-          return theme != null ? Theme(data: theme, child: pageChild) : pageChild;
+          return Theme(data: theme, child: pageChild);
         });
   }
 }
 
 class _BottomWritePickerState extends State<BrnBottomWritePicker> {
-  TextEditingController _controller;
+  TextEditingController? _controller;
 
   @override
   void initState() {
     super.initState();
     if (_controller == null) {
-      if (widget.defaultText != null && widget.defaultText.length > 0) {
+      if (widget.defaultText != null && widget.defaultText!.length > 0) {
         _controller = TextEditingController.fromValue(TextEditingValue(
-            text: widget.defaultText,
+            text: widget.defaultText!,
             selection: TextSelection.fromPosition(TextPosition(
-                affinity: TextAffinity.downstream, offset: widget.defaultText.length))));
+                affinity: TextAffinity.downstream,
+                offset: widget.defaultText!.length))));
       } else {
         _controller = TextEditingController();
       }
@@ -128,7 +138,10 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
         child: TextField(
             style: TextStyle(
                 fontSize: 16,
-                color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase),
+                color: BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .colorTextBase),
             controller: _controller,
             autofocus: true,
             maxLines: 8,
@@ -138,10 +151,16 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
               border: InputBorder.none,
               hintStyle: TextStyle(
                   fontSize: 16,
-                  color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint),
+                  color: BrnThemeConfigurator.instance
+                      .getConfig()
+                      .commonConfig
+                      .colorTextHint),
               counterStyle: TextStyle(
                   fontSize: 16,
-                  color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint),
+                  color: BrnThemeConfigurator.instance
+                      .getConfig()
+                      .commonConfig
+                      .colorTextHint),
               hintText: widget.hintText,
             )),
       ),
@@ -152,12 +171,12 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
       cancel: widget.leftTag,
       onConfirmPressed: () {
         if (widget.onConfirm != null) {
-          widget.onConfirm(context, _controller?.text);
+          widget.onConfirm!(context, _controller?.text);
         }
       },
       onCancelPressed: () {
         if (widget.onCancel != null) {
-          widget.onCancel(_controller?.text);
+          widget.onCancel!(_controller?.text);
         }
       },
       barrierDismissible: true,

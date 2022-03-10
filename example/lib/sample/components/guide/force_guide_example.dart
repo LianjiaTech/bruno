@@ -1,17 +1,19 @@
+
+
 import 'dart:async';
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 /// @desc    强引导example
 class ForceGuideExample extends StatefulWidget {
-  ForceGuideExample({Key key}) : super(key: key);
+  ForceGuideExample({Key? key}) : super(key: key);
 
   @override
   _ForceGuideExampleState createState() => _ForceGuideExampleState();
 }
 
 class _ForceGuideExampleState extends State<ForceGuideExample> {
-  BrnGuide intro;
+  late BrnGuide intro;
 
   _ForceGuideExampleState() {
     /// init Guide
@@ -94,12 +96,12 @@ class _ForceGuideExampleState extends State<ForceGuideExample> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    RaisedButton(
+                    ElevatedButton(
                       key: intro.keys[2],
                       onPressed: () {},
                       child: Text("需求1"),
                     ),
-                    RaisedButton(
+                    ElevatedButton(
                       key: intro.keys[3],
                       onPressed: () {},
                       child: Text("需求2"),

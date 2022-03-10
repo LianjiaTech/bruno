@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +11,10 @@ class SelectedListActionSheetCustomExamplePage extends StatefulWidget {
 
 class SelectedListActionSheetCustomExamplePageState
     extends State<SelectedListActionSheetCustomExamplePage> {
-  BrnSelectedListActionSheetController controller;
+  late BrnSelectedListActionSheetController controller;
 
   var _bottomActionKey = GlobalKey();
-  List<String> _data;
+  List<String>? _data;
 
   @override
   void initState() {
@@ -51,18 +53,18 @@ class SelectedListActionSheetCustomExamplePageState
                   key: _bottomActionKey,
                   mainButtonName: 'BrnBottomButtonPanel',
                   mainButtonOnTap: () {
-                    BrnToast.show('确定！sheet 的数据源长度 ${_data.length}', context);
+                    BrnToast.show('确定！sheet 的数据源长度 ${_data!.length}', context);
                   },
                   iconButtonList: [
                     BrnVerticalIconButton(
-                        name: '已选(${_data.length})',
+                        name: '已选(${_data!.length})',
                         iconWidget: BrunoTools.getAssetImage(
                             'icons/grey_place_holder.png'),
                         onTap: () {
                           if (!controller.isHidden) {
                             controller.dismiss();
                           } else {
-                            if (_data == null || _data.length <= 0) {
+                            if (_data == null || _data!.length <= 0) {
                               BrnToast.show('数据为空，弹窗不展示', context);
                               return;
                             }
@@ -70,12 +72,12 @@ class SelectedListActionSheetCustomExamplePageState
                                     context: context,
                                     isClearButtonHidden: false,
                                     isDeleteButtonHidden: true,
-                                    items: _data,
+                                    items: _data!,
                                     bottomOffset: 82,
                                     maxHeight: 400,
                                     controller: controller,
                                     title: '自定义行视图例子',
-                                    itemTitleBuilder: (int index, String entity) {
+                                    itemTitleBuilder: (int index, String? entity) {
                                       return Material(
                                         child: BrnStepInputFormItem(
                                           title: 'BrnStepInputFormItemWidget',
@@ -100,7 +102,7 @@ class SelectedListActionSheetCustomExamplePageState
                                           cancel: '取消',
                                           confirm: '确定', onConfirm: () {
                                         setState(() {});
-                                        _data.clear();
+                                        _data!.clear();
                                       }, onCancel: () {});
                                     })
                                 .showWithTargetKey(

@@ -29,37 +29,39 @@ group:
 
 ```dart
 BrnDoughnutChart(
-  {this.width = 0,
-  this.height = 0,
-  this.padding = EdgeInsets.zero,
-  this.ringWidth = 50,
-  this.data,
-  this.fontSize = 12,
-  this.fontColor = Colors.white,
-  this.selectedItem,
-  this.showTitleWhenSelected = false,
-  this.brnDoughnutSelectCallback});
+    {this.width = 0,
+    this.height = 0,
+    this.padding = EdgeInsets.zero,
+    this.ringWidth = 50,
+    required this.data,
+    this.fontSize = 12,
+    this.fontColor = Colors.white,
+    this.selectedItem,
+    this.showTitleWhenSelected = false,
+    this.selectCallback});
 ```
 ### 参数说明
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| width | double | 宽 | 是 | 0 |
-| height | double | 高 | 是 | 0 |
+| width | double | 宽 | 否 | 0 |
+| height | double | 高 | 否 | 0 |
 | padding | EdgeInsetsGeometry | 内边距 | 否 | EdgeInsets.zero |
 | ringWidth | double | 圆环宽度 | 否 | 50 |
 | data | `List<BrnDoughnutDataItem>` | 饼图数据 | 是 |  |
 | fontSize | double | 选中时展示文字大小 | 否 | 12 |
-| fontColor | Color | 选中时展示文字颜色 | 否 |  |
-| selectedItem | BrnDoughnutDataItem | 选中的项目 | 否 |  |
-| selectCallback | BrnDoughnutSelectCallback | 选中项目时候的回掉 | 否 |  |
-| showTitleWhenSelected | bool | 是否仅在选中时展示 title  | 否 |  |
+| fontColor | Color | 选中时展示文字颜色 | 否 | Colors.white |
+| selectedItem | BrnDoughnutDataItem? | 选中的项目 | 否 |  |
+| selectCallback | BrnDoughnutSelectCallback? | 选中项目时候的回掉 | 否 |  |
+| showTitleWhenSelected | bool | 是否仅在选中时展示 title  | 否 | false |
 
 ### 其他数据
 
 
 ```dart
-DoughnutChartLegend({this.legendStyle = BrnDoughnutChartLegendStyle.wrap, this.data});
+DoughnutChartLegend(
+      {this.legendStyle = BrnDoughnutChartLegendStyle.wrap,
+      required this.data});
 ```
 ## 四、代码演示
 
@@ -79,7 +81,7 @@ Column(
       data: dataList,
       selectedItem: selectedItem,
       showTitleWhenSelected: true,
-      selectCallback: (BrnDoughnutDataItem selectedItem) {
+      selectCallback: (BrnDoughnutDataItem? selectedItem) {
         setState(() {
           this.selectedItem = selectedItem;
         });

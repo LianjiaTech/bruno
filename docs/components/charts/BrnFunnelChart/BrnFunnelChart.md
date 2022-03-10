@@ -47,36 +47,36 @@ group:
 
 ```dart
 BrnFunnelChart({
-  Key key,
-  @required this.layerCount,
-  @required this.markerCount,
-  @required this.layerPainter,
-  @required MarkerBuilder builder,
-  this.shape = FunnelShape.LeftAndRight,
-  this.maxLayerWidth = 200,
-  this.minLayerWidth = 0,
-  this.layerHeight = 40,
-  this.layerMargin = 0,
-  this.childOffset = Offset.zero,
-  this.alignment = MarkerAlignment.right,
-})
+    Key? key,
+    required this.layerCount,
+    required this.markerCount,
+    required this.layerPainter,
+    required MarkerBuilder builder,
+    this.shape = FunnelShape.leftAndRight,
+    this.maxLayerWidth = 200,
+    this.minLayerWidth = 0,
+    this.layerHeight = 40,
+    this.layerMargin = 0,
+    this.childOffset = Offset.zero,
+    this.alignment = MarkerAlignment.right,
+  }) 
 ```
 
 ### 参数说明
 
-| 参数名        | 参数类型              | 描述                        | 是否必填 | 默认值                   | 备注                                                                                         |
-| ------------- | --------------------- | --------------------------- | -------- | ------------------------ | -------------------------------------------------------------------------------------------- |
-| layerCount    | int                   | 漏斗图的层级数              | 是       |                          |                                                                                              |
-| markerCount   | int                   | 漏斗图的标签个数            | 是       |                          | 标签个数和层技数必须相等或者是少一个                                                         |
-| layerPainer   | BrnFunnelLayerPainter | 用于控制绘制每一次层的文案  | 是       |                          | 见详细 BrnFunnelLayerPainter 介绍                                                            |
-| builder       | Function              | 用于提供每一层的标签 Widget | 是       |                          |                                                                                              |
+| 参数名        | 参数类型              | 描述                        | 是否必填 | 默认值                   | 备注                                                         |
+| ------------- | --------------------- | --------------------------- | -------- | ------------------------ | ------------------------------------------------------------ |
+| layerCount    | int                   | 漏斗图的层级数              | 是       |                          |                                                              |
+| markerCount   | int                   | 漏斗图的标签个数            | 是       |                          | 标签个数和层技数必须相等或者是少一个                         |
+| layerPainer   | BrnFunnelLayerPainter | 用于控制绘制每一次层的文案  | 是       |                          | 见详细 BrnFunnelLayerPainter 介绍                            |
+| builder       | Function              | 用于提供每一层的标签 Widget | 是       |                          |                                                              |
 | shape         | FunnelShape           | 用于控制漏斗的形状          | 否       | FunnelShape.LeftAndRight | FunnelShape.LeftAndRight 表示倒三角的漏斗图形状 FunnelShape.LeftorRight 表示梯形形状的漏斗图 |
-| maxLayerWidth | double                | 漏斗每层的最大宽度          | 否       | 200                      |                                                                                              |
-| minLayerWidth | double                | 漏斗每层的最小宽度          | 否       | 0                        |                                                                                              |
-| layerHeight   | double                | 漏斗每层的高度              | 否       | 40                       |                                                                                              |
-| layerMargin   | double                | 漏斗每层的间距              | 否       | 0                        |                                                                                              |
-| childOffset   | Offset                | 标签的偏移量                | 否       | Offset.Zero              | 标签在初始摆放位置上的相对偏移量                                                             |
-| alignment     | MarkerAlignment       | 标签的对齐方式              | 否       |                          | 总共有三种情况偏左，居中和偏右。当漏斗 shape 为 FunnelShape.LeftorRight 时不能设置成居中     |
+| maxLayerWidth | double                | 漏斗每层的最大宽度          | 否       | 200                      |                                                              |
+| minLayerWidth | double                | 漏斗每层的最小宽度          | 否       | 0                        |                                                              |
+| layerHeight   | double                | 漏斗每层的高度              | 否       | 40                       |                                                              |
+| layerMargin   | double                | 漏斗每层的间距              | 否       | 0                        |                                                              |
+| childOffset   | Offset                | 标签的偏移量                | 否       | Offset.Zero              | 标签在初始摆放位置上的相对偏移量                             |
+| alignment     | MarkerAlignment       | 标签的对齐方式              | 否       | MarkerAlignment.right    | 总共有三种情况偏左，居中和偏右。当漏斗 shape 为 FunnelShape.leftOrRight 时不能设置成居中 |
 
 #### BrnFunnelLayerPainter
 
@@ -107,7 +107,7 @@ abstract class BrnFunnelLayerPainter {
 
 ```dart
 BrnFunnelChart(
-  shape: FunnelShape.LeftOrRight,
+  shape: FunnelShape.leftOrRight,
   alignment: MarkerAlignment.right,
   maxLayerWidth: maxLayerWidth,
   minLayerWidth: minLayerWidth,

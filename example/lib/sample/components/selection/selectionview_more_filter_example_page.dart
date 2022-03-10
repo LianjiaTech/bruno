@@ -1,10 +1,11 @@
+
+
 import 'package:bruno/bruno.dart';
-import 'package:example/sample/components/button/big_fu_example.dart';
 import 'package:flutter/material.dart';
 
 class SelectionViewMoreFilterExamplePage extends StatefulWidget {
   final String _title;
-  final List<BrnSelectionEntity> _filters;
+  final List<BrnSelectionEntity>? _filters;
 
   SelectionViewMoreFilterExamplePage(this._title, this._filters);
 
@@ -27,7 +28,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewMoreFilterExampl
         body: Column(
           children: <Widget>[
             BrnSelectionView(
-              originalSelectionData: widget._filters,
+              originalSelectionData: widget._filters!,
               onMoreSelectionMenuClick: (int index, BrnOpenMorePage openMore) {
                 openMore(updateData: false);
               },

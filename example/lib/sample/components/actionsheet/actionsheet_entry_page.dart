@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 
 import 'package:bruno/bruno.dart';
@@ -121,7 +123,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   }
 
   void _showCommonStyle(BuildContext context) {
-    List<BrnCommonActionSheetItem> actions = List();
+    List<BrnCommonActionSheetItem> actions = [];
     actions.add(BrnCommonActionSheetItem(
       '选项一（警示项）',
       desc: '辅助信息辅助信息辅助信息',
@@ -148,7 +150,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
             actions: actions,
             cancelTitle: "自定义取消名称",
             clickCallBack: (int index, BrnCommonActionSheetItem actionEle) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
           );
@@ -156,7 +158,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   }
 
   void _showCommonStylex(){
-    List<BrnCommonActionSheetItem> actions = List();
+    List<BrnCommonActionSheetItem> actions = [];
     // 构建标题+辅助信息的普通项
     actions.add(BrnCommonActionSheetItem(
     '选项一（警示项）',
@@ -182,7 +184,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
           return BrnCommonActionSheet(
             actions: actions,
             clickCallBack: (int index, BrnCommonActionSheetItem actionEle) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
           );
@@ -191,7 +193,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   }
 
   void _showCommonStyle1(BuildContext context) {
-    List<BrnCommonActionSheetItem> actions = List();
+    List<BrnCommonActionSheetItem> actions = [];
     actions.add(BrnCommonActionSheetItem(
       '选项一（警示项）',
       actionStyle: BrnCommonActionSheetItemStyle.alert,
@@ -216,7 +218,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
               int index,
               BrnCommonActionSheetItem actionEle,
             ) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
           );
@@ -224,7 +226,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   }
 
   void _showCommonStyle2(BuildContext context) {
-    List<BrnCommonActionSheetItem> actions = List();
+    List<BrnCommonActionSheetItem> actions = [];
     actions.add(BrnCommonActionSheetItem(
       '选项一: （010）1234567',
       actionStyle: BrnCommonActionSheetItemStyle.link,
@@ -250,7 +252,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
               int index,
               BrnCommonActionSheetItem actionEle,
             ) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
           );
@@ -258,7 +260,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   }
 
   void _showCommonCustomStyle(BuildContext context) {
-    List<BrnCommonActionSheetItem> actions = List();
+    List<BrnCommonActionSheetItem> actions =[];
     actions.add(
       BrnCommonActionSheetItem(
         '选项一: 自定义主标题样式',
@@ -307,7 +309,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
               int index,
               BrnCommonActionSheetItem actionEle,
             ) {
-              String title = actionEle.title;
+              String? title = actionEle.title;
               BrnToast.show("title: $title, index: $index", context);
             },
             onItemClickInterceptor: (
@@ -332,8 +334,8 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
     // 用于控制timer只加载一次
     var started = false;
     // 计时器
-    var periodTimer;
-    List<BrnCommonActionSheetItem> actions = List();
+    late Timer periodTimer;
+    List<BrnCommonActionSheetItem> actions = [];
     actions.add(BrnCommonActionSheetItem(
       '倒计时:$countdown',
       actionStyle: BrnCommonActionSheetItemStyle.alert,
@@ -367,7 +369,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
                     actions[0].desc = '倒计时:$times';
                   });
                 } else if (countdown == 0) {
-                  periodTimer.onCancel();
+                  periodTimer.cancel();
                 }
               });
             }
@@ -378,7 +380,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
                 BrnCommonActionSheetItem actionEle,
               ) {
                 // 点击后立即停止计时
-                periodTimer.onCancel();
+                periodTimer.cancel();
                 var title = actionEle.title;
                 BrnToast.show("title: $title, index: $index", context);
               },
@@ -386,38 +388,38 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
           });
           // then用来在pop折后停止timer，如果不需要在pop后进行操作，不需要使用then
         }).then((value) {
-      periodTimer.onCancel();
+      periodTimer.cancel();
     });
   }
 
   void _showShareSevenStyle(BuildContext context) {
-    List<BrnShareItem> firstRowList = List();
+    List<BrnShareItem> firstRowList = [];
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIXIN,
+      BrnShareItemConstants.shareWeiXin,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_BROWSER,
+      BrnShareItemConstants.shareBrowser,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_COPY_LINK,
+      BrnShareItemConstants.shareCopyLink,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_FRIEND,
+      BrnShareItemConstants.shareFriend,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_LINK,
+      BrnShareItemConstants.shareLink,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_QQ,
+      BrnShareItemConstants.shareQQ,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_CUSTOM,
+      BrnShareItemConstants.shareCustom,
       customImage: BrunoTools.getAssetImage("images/icon_custom_share.png"),
       customTitle: "自定义",
       canClick: true,
@@ -434,38 +436,38 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   }
 
   void _showShareFourStyle(BuildContext context) {
-    List<BrnShareItem> firstRowList = List();
-    List<BrnShareItem> secondRowList = List();
+    List<BrnShareItem> firstRowList = [];
+    List<BrnShareItem> secondRowList = [];
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_QZONE,
+      BrnShareItemConstants.shareQZone,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_SAVE_IMAGE,
+      BrnShareItemConstants.shareSaveImage,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_SMS,
+      BrnShareItemConstants.shareSms,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIBO,
+      BrnShareItemConstants.shareWeiBo,
       canClick: true,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_QZONE,
+      BrnShareItemConstants.shareQZone,
       canClick: false,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_SAVE_IMAGE,
+      BrnShareItemConstants.shareSaveImage,
       canClick: false,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_SMS,
+      BrnShareItemConstants.shareSms,
       canClick: false,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIBO,
+      BrnShareItemConstants.shareWeiBo,
       canClick: false,
     ));
     BrnShareActionSheet actionSheet = new BrnShareActionSheet(
@@ -488,18 +490,18 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   }
 
   void _showShareThreeStyle(BuildContext context) {
-    List<BrnShareItem> firstRowList = List();
-    List<BrnShareItem> secondRowList = List();
+    List<BrnShareItem> firstRowList = [];
+    List<BrnShareItem> secondRowList =[];
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIXIN,
+      BrnShareItemConstants.shareWeiXin,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_FRIEND,
+      BrnShareItemConstants.shareFriend,
       canClick: true,
     ));
     secondRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_CUSTOM,
+      BrnShareItemConstants.shareCustom,
       customImage: BrunoTools.getAssetImage("images/icon_custom_share.png"),
       customTitle: "自定义",
       canClick: true,
@@ -516,13 +518,13 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
   }
 
   void _showShareTwoStyle(BuildContext context) {
-    List<BrnShareItem> firstRowList = List();
+    List<BrnShareItem> firstRowList = [];
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_WEIXIN,
+      BrnShareItemConstants.shareWeiXin,
       canClick: true,
     ));
     firstRowList.add(BrnShareItem(
-      BrnShareItemConstants.SHARE_FRIEND,
+      BrnShareItemConstants.shareFriend,
       canClick: true,
     ));
     BrnShareActionSheet actionSheet = new BrnShareActionSheet(

@@ -1,23 +1,21 @@
 import 'package:bruno/src/components/selectcity/brn_az_common.dart';
 
 class BrnSelectCityModel extends ISuspensionBean {
-  String name;
-  String tagIndex;
-  String namePinyin;
-  String tag;
-  String cityCode;
+  String name = "";
+  String tagIndex = "";
+  String? namePinyin;
+  String tag = "";
+  String cityCode = "";
 
   BrnSelectCityModel({
-    this.name,
-    this.tagIndex,
+    required this.name,
+    this.tagIndex = "",
     this.namePinyin,
-    this.tag,
-    this.cityCode,
+    this.tag = "",
+    this.cityCode = "",
   });
 
-  BrnSelectCityModel.fromJson(Map<String, dynamic> json)
-      : name = json['name'] == null ? "" : json['name'],
-        cityCode = json['cityCode'] == null ? "" : json['cityCode'];
+  BrnSelectCityModel.fromJson(Map<String, dynamic> json);
 
   Map<String, dynamic> toJson() => {
         'name': name,

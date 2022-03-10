@@ -9,39 +9,39 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class BrnContentExportWidget extends StatelessWidget {
   /// 标题
-  final String title;
+  final String? title;
 
   /// 是否可关闭
   final bool isClose;
 
   /// 中间内容widget
-  final Widget contentWidget;
+  final Widget? contentWidget;
 
   /// 提交按钮文字
-  final String submitText;
+  final String? submitText;
 
   /// 内容最大高度
-  final Color submitBgColor;
+  final Color? submitBgColor;
 
   /// 提交操作
-  final VoidCallback onSubmit;
+  final VoidCallback? onSubmit;
 
   /// 是否展示底部操作区域
   final bool isShowOperateWidget;
 
-  BrnDialogConfig themeData;
+  BrnDialogConfig? themeData;
 
   BrnContentExportWidget(this.contentWidget,
       {this.title,
-      this.isClose,
+      required this.isClose,
       this.submitText,
       this.onSubmit,
       this.submitBgColor,
-      this.isShowOperateWidget,
+      required this.isShowOperateWidget,
       this.themeData}) {
     this.themeData ??= BrnDialogConfig();
     this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
+        .getConfig(configId: themeData!.configId)
         .dialogConfig
         .merge(themeData);
   }
@@ -67,7 +67,7 @@ class BrnContentExportWidget extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(
                           BrnDialogUtils.getDialogRadius(
-                              themeData))), //设置四周圆角 角度
+                              themeData!))), //设置四周圆角 角度
                     ),
                     child: Stack(
                       children: <Widget>[
@@ -76,7 +76,7 @@ class BrnContentExportWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             _generateTitleWidget(),
-                            contentWidget,
+                            contentWidget ?? Container(),
                             _generateBottomWidget(context),
                           ],
                         ),
@@ -100,7 +100,7 @@ class BrnContentExportWidget extends StatelessWidget {
               behavior: HitTestBehavior.opaque,
               child: Padding(
                 padding: EdgeInsets.all(15),
-                child: BrunoTools.getAssetImage(BrnAsset.ICON_PICKER_CLOSE),
+                child: BrunoTools.getAssetImage(BrnAsset.iconPickerClose),
               )));
     }
     return Container();
@@ -109,13 +109,13 @@ class BrnContentExportWidget extends StatelessWidget {
   /// 构建Dialog标题
   Widget _generateTitleWidget() {
     return Padding(
-      padding: null != title && title.isNotEmpty
+      padding: null != title && title!.isNotEmpty
           ? EdgeInsets.fromLTRB(20, 28, 20, 12)
           : EdgeInsets.only(top: 20),
-      child: null != title && title.isNotEmpty
+      child: null != title && title!.isNotEmpty
           ? Text(
-              title,
-              style: BrnDialogUtils.getDialogTitleStyle(themeData),
+              title!,
+              style: BrnDialogUtils.getDialogTitleStyle(themeData!),
             )
           : Container(),
     );
@@ -133,20 +133,20 @@ class BrnContentExportWidget extends StatelessWidget {
                     decoration: BoxDecoration(
                       //背景
                       color:
-                          submitBgColor ?? themeData.commonConfig.brandPrimary,
+                          submitBgColor ?? themeData!.commonConfig.brandPrimary,
                       borderRadius:
                           BorderRadius.all(Radius.circular(6.0)), //设置四周圆角 角度
                     ),
                     alignment: Alignment.center,
                     height: 48,
-                    child: Text(submitText,
+                    child: Text(submitText ?? "",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
                             fontSize: 18))),
                 onTap: () {
-                  if (onSubmit != null) onSubmit();
+                  if (onSubmit != null) onSubmit!();
                 },
               )
             : Container());

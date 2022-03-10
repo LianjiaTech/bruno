@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +14,9 @@ class FlatSelectionThreeTagsExample extends StatefulWidget {
 }
 
 class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample> {
-  BrnSelectionEntity entity;
+  BrnSelectionEntity? entity;
 
-  BrnFlatSelectionController controller;
+  BrnFlatSelectionController? controller;
 
   var selectionKey = GlobalKey();
 
@@ -29,7 +31,7 @@ class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample
 
   @override
   void dispose() {
-    controller.dispose();
+    controller!.dispose();
     controller = null;
     super.dispose();
   }
@@ -64,7 +66,7 @@ class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample
                             entityDataList: widget._filterData,
                             confirmCallback: (data) {
                               var str = "";
-                              data.forEach((k, v) => str = str + " " + '${k}: ${v}');
+                              data.forEach((k, v) => str = str + " " + '$k: $v');
                               BrnToast.show(str, context);
                             },
                             controller: controller)),
@@ -108,7 +110,7 @@ class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample
                 ),
                 onTap: () {
                   if (controller != null) {
-                    controller.resetSelectedOptions();
+                    controller!.resetSelectedOptions();
                   }
                 },
               ),
@@ -121,7 +123,7 @@ class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample
                       title: "取消",
                       onTap: () {
                         if (controller != null) {
-                          controller.cancelSelectedOptions();
+                          controller!.cancelSelectedOptions();
                           setState(() {
                             _isShow = false;
                           });
@@ -135,7 +137,7 @@ class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample
                       title: "确定",
                       onTap: () {
                         if (controller != null) {
-                          controller.confirmSelectedOptions();
+                          controller!.confirmSelectedOptions();
                           setState(() {
                             _isShow = false;
                           });
@@ -150,7 +152,4 @@ class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample
     );
   }
 
-  void _backButtonClickEvent() {
-    Navigator.of(context).pop();
-  }
 }

@@ -67,7 +67,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
               BrnAppraise(
                 title: "这里是标题文字",
                 headerType: BrnAppraiseHeaderType.center,
-                type: BrnAppraiseType.Star,
+                type: BrnAppraiseType.star,
                 tags: tags,
                 inputHintText: '这里是文本输入的组件',
                 iconDescriptions: [
@@ -80,11 +80,12 @@ class _AppraiseExampleState extends State<AppraiseExample> {
                 config: BrnAppraiseConfig(
                     showConfirmButton: false,
                     starAppraiseHint: '星星未选择时的文案',
+                    inputDefaultText: '这是一段默认文字',
                     inputTextChangeCallback: (input) {
                       BrnToast.show('输入的内容为' + input, context);
                     },
                     iconClickCallback: (index) {
-                      BrnToast.show('选中的评价为${index}', context);
+                      BrnToast.show('选中的评价为$index', context);
                     },
                     tagSelectCallback: (list) {
                       BrnToast.show('选中的标签为:' + list.toString(), context);
@@ -132,7 +133,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
                                 BrnToast.show('输入的内容为' + input, context);
                               },
                               iconClickCallback: (index) {
-                                BrnToast.show('选中的评价为${index}', context);
+                                BrnToast.show('选中的评价为$index', context);
                               },
                               tagSelectCallback: (list) {
                                 BrnToast.show(
@@ -171,7 +172,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
                           },
 
                           ///必须传入5个字符串，没有的位置传''
-                          type: BrnAppraiseType.Emoji,
+                          type: BrnAppraiseType.emoji,
                           iconDescriptions: ['很差', '', '可以', '', '非常好'],
                           config: BrnAppraiseConfig(
                               indexes: [0, 2, 4], titleMaxLines: 3),
@@ -205,7 +206,7 @@ class _AppraiseExampleState extends State<AppraiseExample> {
                             showToast(index, list, input, context);
                             Navigator.pop(context);
                           },
-                          type: BrnAppraiseType.Star,
+                          type: BrnAppraiseType.star,
                           iconDescriptions: ['很差', '不行', '可以', '好'],
                           config: BrnAppraiseConfig(
                               showTextInput: false,
@@ -228,10 +229,10 @@ class _AppraiseExampleState extends State<AppraiseExample> {
   void showToast(int index, List<String> selectedTags, String input,
       BuildContext context) {
     String str = '选中的评价为$index';
-    if (selectedTags?.isNotEmpty ?? false) {
+    if (selectedTags.isNotEmpty) {
       str = str + ',选中的标签为:' + selectedTags.toString();
     }
-    if (input?.isNotEmpty ?? false) {
+    if (input.isNotEmpty) {
       str = str + '，输入的内容为:' + input;
     }
     BrnToast.show(str, context);

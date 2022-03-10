@@ -10,7 +10,7 @@ typedef BarItemEnumeratorCallback = void Function(
 
 /// 点击柱状数据的回调
 typedef BrnProgressBarChartSelectCallback = void Function(
-    BrnProgressBarItem barItem);
+    BrnProgressBarItem? barItem);
 
 /// 点击柱状数据的拦截器
 typedef bool OnBarItemClickInterceptor(
@@ -31,13 +31,13 @@ enum BarChartStyle {
 //坐标轴样式
 enum AxisStyle {
   ///无线条
-  AxisStyleNone,
+  axisStyleNone,
 
   ///虚线
-  AxisStyleDot,
+  axisStyleDot,
 
   ///实线
-  AxisStyleSolid,
+  axisStyleSolid,
 }
 
 /// 坐标轴项目
@@ -46,32 +46,34 @@ class AxisItem {
   final String showText;
 
   /// 文本大小
-  Size textSize;
-  AxisItem({this.showText});
+  late Size textSize;
+  AxisItem({required this.showText});
 }
 
 /// ChartAxis 图表的坐标轴样式
 /// 可对坐标轴的刻度样式、线条样式、偏移量等数据进行设置
 class ChartAxis {
-  @required
   final List<AxisItem> axisItemList;
 
   /// 是否有刻度
   final bool hasMark;
+
   /// 实线/虚线/无
   final AxisStyle axisStyle;
+
   /// 两个刻度间距
-  double space;
+  double? space;
   double maxTextHeight = 0;
   double maxTextWidth = 0;
+
   /// 0/刻度偏移量
   double leadingSpace = 30;
   TextStyle textStyle = TextStyle(color: Color(0x999999), fontSize: 12);
 
   ChartAxis({
-    this.axisItemList = const <AxisItem>[],
-    this.hasMark,
-    this.axisStyle = AxisStyle.AxisStyleSolid,
+    required this.axisItemList,
+    this.hasMark = true,
+    this.axisStyle = AxisStyle.axisStyleSolid,
   });
 }
 
@@ -82,30 +84,30 @@ const _showBarValueTextStyle =
 /// 可对数据的数值、展示文本、选中状态的文字以及柱形的样式进行设置
 class BrnProgressBarItem {
   /// 柱状数据的描述文本
-  final String text;
+  final String? text;
 
   /// 柱状数据的值
   final double value;
 
   /// 柱状数据的参考值，展示在当前柱状图的后面
-  final double hintValue;
+  final double? hintValue;
 
   ///选中时气泡文字
-  final String selectedHintText;
+  final String? selectedHintText;
 
   /// 展示柱形的值
-  final String showBarValueText;
+  final String? showBarValueText;
 
   /// 展示柱形值文本样式
   final TextStyle showBarValueTextStyle;
-  double percentage;
-  double hintPercentage;
-  Rect barRect;
-  Rect barHintRect;
-  Offset barGroupAxisCenter;
+  late double percentage;
+  double? hintPercentage;
+  Rect? barRect;
+  Rect? barHintRect;
+  late Offset barGroupAxisCenter;
   BrnProgressBarItem(
       {this.text,
-      @required this.value,
+      required this.value,
       this.hintValue,
       this.selectedHintText,
       this.showBarValueText,
@@ -122,7 +124,7 @@ class BrnProgressBarBundle {
   final List<Color> colors;
   final List<Color> hintColors;
   BrnProgressBarBundle(
-      {this.barList,
+      {required this.barList,
       this.colors = _defaultColor,
       this.hintColors = _defaultHintColor});
 }
@@ -155,15 +157,15 @@ class BrnProgressBarChartPainter extends CustomPainter {
   final bool drawBar;
 
   /// 是否可点击回调
-  final OnBarItemClickInterceptor onBarItemClickInterceptor;
+  final OnBarItemClickInterceptor? onBarItemClickInterceptor;
 
   /// 选中柱状图时条形文案颜色
   final Color selectedHintTextColor;
 
   /// 选中柱状图时条形文案背景颜色
   final Color selectedHintTextBackgroundColor;
-  final BrnProgressBarItem selectedBarItem;
-  final BrnProgressBarChartSelectCallback brnProgressBarChartSelectCallback;
+  final BrnProgressBarItem? selectedBarItem;
+  final BrnProgressBarChartSelectCallback? brnProgressBarChartSelectCallback;
 
   Color unselectedColor = Color(0xffDAEDFE);
 
@@ -184,13 +186,13 @@ class BrnProgressBarChartPainter extends CustomPainter {
   final double _xAxisHeight = 22;
 
   BrnProgressBarChartPainter(
-      {this.barChartStyle,
-      this.xAxis,
-      this.yAxis,
-      this.barBundleList,
-      this.barGroupSpace,
-      this.singleBarWidth,
-      this.barMaxValue,
+      {required this.barChartStyle,
+      required this.xAxis,
+      required this.yAxis,
+      required this.barBundleList,
+      required this.barGroupSpace,
+      required this.singleBarWidth,
+      required this.barMaxValue,
       this.drawX = true,
       this.drawY = true,
       this.drawBar = true,
@@ -274,7 +276,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
     }
 
     // 找到柱状图最大值
-    if (null != this.barMaxValue && 0 != this.barMaxValue) {
+    if (0 != this.barMaxValue) {
       this.maxValue = this.barMaxValue;
     } else {
       this.barBundleList.forEach((BrnProgressBarBundle barbundle) {
@@ -292,7 +294,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
       barItem.percentage = barItem.value / this.maxValue;
 
       if (null != barItem.hintValue) {
-        barItem.hintPercentage = barItem.hintValue / this.maxValue;
+        barItem.hintPercentage = barItem.hintValue! / this.maxValue;
       }
 
       if (BarChartStyle.horizontal == this.barChartStyle) {
@@ -308,11 +310,11 @@ class BrnProgressBarChartPainter extends CustomPainter {
         barItem.barRect = barRect;
 
         // 条形组的坐标轴中间Offset，此处目前仅考虑有一组条形值的情况
-        barItem.barGroupAxisCenter = barItem.barRect.centerLeft;
+        barItem.barGroupAxisCenter = barItem.barRect!.centerLeft;
 
         // BarHintRect
         if (null != barItem.hintPercentage) {
-          double hintWidth = this.contentRect.width * barItem.hintPercentage;
+          double hintWidth = this.contentRect.width * barItem.hintPercentage!;
           Rect barHintRect =
               Rect.fromLTWH(leftTop.dx, leftTop.dy, hintWidth, height);
           barItem.barHintRect = barHintRect;
@@ -343,7 +345,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
 
         // BarHintRect
         if (null != barItem.hintPercentage) {
-          double hintHeight = this.contentRect.height * barItem.hintPercentage;
+          double hintHeight = this.contentRect.height * barItem.hintPercentage!;
           Rect barHintRect = Rect.fromLTWH(
               leftBottom.dx, leftBottom.dy - hintHeight, width, hintHeight);
           barItem.barHintRect = barHintRect;
@@ -372,13 +374,13 @@ class BrnProgressBarChartPainter extends CustomPainter {
   }
 
   void _drawXAxisIn(Canvas canvas, Rect xAxisRect) {
-    if (0 == this.xAxis?.axisItemList?.length) return;
-    if (AxisStyle.AxisStyleSolid == this.xAxis.axisStyle) {
+    if (0 == this.xAxis.axisItemList.length) return;
+    if (AxisStyle.axisStyleSolid == this.xAxis.axisStyle) {
       Offset xLineStart = xAxisRect.topLeft;
       Offset xLineEnd = xAxisRect.topRight;
       Paint xAxisPaint = Paint()..color = Color(0xff222222);
       canvas.drawLine(xLineStart, xLineEnd, xAxisPaint);
-    } else if (AxisStyle.AxisStyleDot == this.xAxis.axisStyle) {
+    } else if (AxisStyle.axisStyleDot == this.xAxis.axisStyle) {
       Offset xLineStart = xAxisRect.topLeft;
       Offset xLineEnd = xAxisRect.topRight;
       _drawDashLineOn(canvas, xLineStart, xLineEnd, Color(0xff222222));
@@ -409,7 +411,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
         AxisItem axisItem = this.xAxis.axisItemList[xAxisItemIndex];
         TextPainter textPainter = TextPainter(
             text: TextSpan(
-                text: axisItem.showText ?? '',
+                text: axisItem.showText,
                 style: TextStyle(fontSize: 12, color: Color(0xff999999))),
             textDirection: TextDirection.ltr)
           ..layout(maxWidth: double.infinity, minWidth: 0);
@@ -435,7 +437,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
           AxisItem axisItem = this.xAxis.axisItemList[barGroupIndex];
           TextPainter textPainter = TextPainter(
               text: TextSpan(
-                  text: axisItem.showText ?? '',
+                  text: axisItem.showText,
                   style: TextStyle(fontSize: 12, color: Color(0xff999999))),
               textDirection: TextDirection.ltr)
             ..layout(maxWidth: double.infinity, minWidth: 0);
@@ -452,13 +454,13 @@ class BrnProgressBarChartPainter extends CustomPainter {
   }
 
   void _drawYAxisIn(Canvas canvas, Rect yAxisRect) {
-    if (0 == this.yAxis?.axisItemList?.length) return;
-    if (AxisStyle.AxisStyleSolid == this.yAxis.axisStyle) {
+    if (0 == this.yAxis.axisItemList.length) return;
+    if (AxisStyle.axisStyleSolid == this.yAxis.axisStyle) {
       Offset yLineStart = yAxisRect.bottomRight;
       Offset yLineEnd = yAxisRect.topRight;
       Paint yAxisPaint = Paint()..color = Color(0xff222222);
       canvas.drawLine(yLineStart, yLineEnd, yAxisPaint);
-    } else if (AxisStyle.AxisStyleDot == this.xAxis.axisStyle) {
+    } else if (AxisStyle.axisStyleDot == this.xAxis.axisStyle) {
       Offset yLineStart = yAxisRect.bottomRight;
       Offset yLineEnd = yAxisRect.topRight;
       _drawDashLineOn(canvas, yLineStart, yLineEnd, Color(0xff222222));
@@ -483,7 +485,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
             height: textSize.height);
         TextPainter(
             text: TextSpan(
-                text: axisItem.showText ?? '',
+                text: axisItem.showText,
                 style: TextStyle(fontSize: 12, color: Color(0xff999999))),
             textDirection: TextDirection.ltr)
           ..layout(maxWidth: double.infinity, minWidth: 0)
@@ -511,7 +513,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
             height: textSize.height);
         TextPainter(
             text: TextSpan(
-                text: axisItem.showText ?? '',
+                text: axisItem.showText,
                 style: TextStyle(fontSize: 12, color: Color(0xff999999))),
             textDirection: TextDirection.ltr)
           ..layout(maxWidth: double.infinity, minWidth: 0)
@@ -553,7 +555,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
                 end: Alignment.topCenter,
                 tileMode: TileMode.clamp,
                 colors: barBundle.hintColors)
-            .createShader(barItem.barHintRect);
+            .createShader(barItem.barHintRect!);
 
         Paint hintBarPaint = Paint()
           ..shader = hintShader
@@ -562,22 +564,22 @@ class BrnProgressBarChartPainter extends CustomPainter {
           ..strokeWidth = 1.5
           ..style = PaintingStyle.fill;
 
-        canvas.drawRect(barItem.barHintRect, hintBarPaint);
+        canvas.drawRect(barItem.barHintRect!, hintBarPaint);
       }
 
-      RRect barRRect = RRect.fromRectAndCorners(barItem.barRect,
+      RRect barRRect = RRect.fromRectAndCorners(barItem.barRect!,
           topRight: Radius.circular(4), topLeft: Radius.circular(4));
       if (this.selectedBarItem != null) {
         // 有选中的柱形，选中柱形保持原样，未选中的置灰
         Shader shader;
-        if (this.selectedBarItem.barRect == barItem.barRect) {
+        if (this.selectedBarItem!.barRect == barItem.barRect) {
           // 选中的柱形
           shader = LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   tileMode: TileMode.clamp,
                   colors: barBundle.colors)
-              .createShader(barItem.barRect);
+              .createShader(barItem.barRect!);
         } else {
           // 未选中需要置灰的柱形
           shader = LinearGradient(
@@ -585,7 +587,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
                   end: Alignment.topCenter,
                   tileMode: TileMode.clamp,
                   colors: <Color>[this.unselectedColor, this.unselectedColor])
-              .createShader(barItem.barRect);
+              .createShader(barItem.barRect!);
         }
         Paint barPaint = Paint()
           ..shader = shader
@@ -594,10 +596,10 @@ class BrnProgressBarChartPainter extends CustomPainter {
           ..strokeWidth = 1.5
           ..style = PaintingStyle.fill;
         canvas.drawRRect(barRRect, barPaint);
-        if (this.selectedBarItem.barRect == barItem.barRect) {
+        if (this.selectedBarItem!.barRect == barItem.barRect) {
           // 选中柱形的虚线以及 HintText
-          this._drawDashLineOn(canvas, barItem.barRect.bottomCenter,
-              Offset(barItem.barRect.bottomCenter.dx, 0), Color(0xff222222));
+          this._drawDashLineOn(canvas, barItem.barRect!.bottomCenter,
+              Offset(barItem.barRect!.bottomCenter.dx, 0), Color(0xff222222));
         }
       } else {
         Shader shader = LinearGradient(
@@ -605,7 +607,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
                 end: Alignment.topCenter,
                 tileMode: TileMode.clamp,
                 colors: barBundle.colors)
-            .createShader(barItem.barRect);
+            .createShader(barItem.barRect!);
         Paint barPaint = Paint()
           ..shader = shader
           ..isAntiAlias = true
@@ -623,14 +625,14 @@ class BrnProgressBarChartPainter extends CustomPainter {
       if (null != barItem.showBarValueText) {
         TextPainter textPainter = TextPainter(
             text: TextSpan(
-                text: barItem.showBarValueText ?? '',
+                text: barItem.showBarValueText!,
                 style: barItem.showBarValueTextStyle),
             textDirection: TextDirection.ltr)
           ..layout(maxWidth: double.infinity, minWidth: 0);
         double textWidth = textPainter.size.width;
         double textHeight = textPainter.size.height;
-        Offset textOffset = Offset(barItem.barRect.center.dx - textWidth / 2,
-            barItem.barRect.top - textHeight - 2);
+        Offset textOffset = Offset(barItem.barRect!.center.dx - textWidth / 2,
+            barItem.barRect!.top - textHeight - 2);
         textPainter.paint(canvas, textOffset);
       }
     });
@@ -640,8 +642,8 @@ class BrnProgressBarChartPainter extends CustomPainter {
       // 画选中文字 Start
       TextPainter selectedBarTextPainter = TextPainter(
           text: TextSpan(
-              text: selectedBarItem.selectedHintText ??
-                  (selectedBarItem.text ?? ''),
+              text: selectedBarItem!.selectedHintText ??
+                  (selectedBarItem!.text ?? ''),
               style:
                   TextStyle(fontSize: 12, color: this.selectedHintTextColor)),
           textDirection: TextDirection.ltr)
@@ -650,16 +652,16 @@ class BrnProgressBarChartPainter extends CustomPainter {
       double textHeight = selectedBarTextPainter.size.height;
 
       Offset selectedBarTextBgCenterOffset;
-      if (selectedBarItem.barRect.bottomCenter.dx + 10 + textWidth + 10 * 2 >
+      if (selectedBarItem!.barRect!.bottomCenter.dx + 10 + textWidth + 10 * 2 >
           this.contentRect.right) {
         // 需要显示在左侧
         selectedBarTextBgCenterOffset = Offset(
-            selectedBarItem.barRect.bottomCenter.dx - 10 - 10 - textWidth / 2,
+            selectedBarItem!.barRect!.bottomCenter.dx - 10 - 10 - textWidth / 2,
             16.0 + 16.0);
       } else {
         // 需要显示在右侧
         selectedBarTextBgCenterOffset = Offset(
-            selectedBarItem.barRect.bottomCenter.dx + 10 + 10 + textWidth / 2,
+            selectedBarItem!.barRect!.bottomCenter.dx + 10 + 10 + textWidth / 2,
             16.0 + 16.0);
       }
 
@@ -699,7 +701,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
                 end: Alignment.centerRight,
                 tileMode: TileMode.clamp,
                 colors: barBundle.hintColors)
-            .createShader(barItem.barHintRect);
+            .createShader(barItem.barHintRect!);
         Paint hintBarPaint = Paint()
           ..shader = hintShader
           ..isAntiAlias = true
@@ -707,11 +709,11 @@ class BrnProgressBarChartPainter extends CustomPainter {
           ..strokeWidth = 1.5
           ..style = PaintingStyle.fill;
 
-        canvas.drawRect(barItem.barHintRect, hintBarPaint);
+        canvas.drawRect(barItem.barHintRect!, hintBarPaint);
       }
 
       // 绘制柱状图形
-      RRect barRRect = RRect.fromRectAndCorners(barItem.barRect,
+      RRect barRRect = RRect.fromRectAndCorners(barItem.barRect!,
           topRight: Radius.circular(4), bottomRight: Radius.circular(4));
 
       Shader shader = LinearGradient(
@@ -719,7 +721,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
               end: Alignment.centerRight,
               tileMode: TileMode.clamp,
               colors: barBundle.colors)
-          .createShader(barItem.barRect);
+          .createShader(barItem.barRect!);
       Paint barPaint = Paint()
         ..shader = shader
         ..isAntiAlias = true
@@ -761,7 +763,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
   }
 
   @override
-  bool hitTest(Offset position) {
+  bool? hitTest(Offset position) {
     if (this.brnProgressBarChartSelectCallback != null &&
         BarChartStyle.vertical == this.barChartStyle) {
       this.barItemEnumerator((int barBundleIndex,
@@ -769,12 +771,12 @@ class BrnProgressBarChartPainter extends CustomPainter {
           int barGroupIndex,
           BrnProgressBarItem barItem) {
         if (this.brnProgressBarChartSelectCallback != null &&
-            barItem.barRect.contains(position)) {
+            barItem.barRect!.contains(position)) {
           if (this.onBarItemClickInterceptor == null ||
               true ==
-                  this.onBarItemClickInterceptor(
+                  this.onBarItemClickInterceptor!(
                       barBundleIndex, barBundle, barGroupIndex, barItem)) {
-            this.brnProgressBarChartSelectCallback(
+            this.brnProgressBarChartSelectCallback!(
                 barItem.barRect == this.selectedBarItem?.barRect
                     ? null
                     : barItem);

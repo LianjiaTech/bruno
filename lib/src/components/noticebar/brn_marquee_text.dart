@@ -8,7 +8,7 @@ class BrnMarqueeText extends StatefulWidget {
   final String text;
 
   /// 文字样式
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   ///滚动方向，水平或者垂直
   final Axis scrollAxis;
@@ -25,16 +25,14 @@ class BrnMarqueeText extends StatefulWidget {
   double height;
 
   BrnMarqueeText({
-    @required this.text,
+    required this.text,
     this.width: 0,
     this.height: 0,
     this.timerRest: 100,
     this.textStyle,
     this.scrollAxis: Axis.horizontal,
     this.ratioOfBlankToScreen: 0.25,
-  }) : assert(
-          text != null,
-        );
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -42,27 +40,28 @@ class BrnMarqueeText extends StatefulWidget {
   }
 }
 
-class BrnMarqueeTextState extends State<BrnMarqueeText> with SingleTickerProviderStateMixin {
-  ScrollController scroController;
+class BrnMarqueeTextState extends State<BrnMarqueeText>
+    with SingleTickerProviderStateMixin {
+  late ScrollController scroController;
   double blankWidth = 1;
   double blankHeight = 1;
   double position = 0.0;
-  Timer timer;
+  Timer? timer;
   final double _moveDistance = 3.0;
-  GlobalKey _key = null;
+  GlobalKey? _key;
 
   @override
   void initState() {
     super.initState();
     scroController = new ScrollController();
-    WidgetsBinding.instance.addPostFrameCallback((callback) {
-      var size = context?.findRenderObject()?.paintBounds?.size;
+    WidgetsBinding.instance?.addPostFrameCallback((callback) {
+      var size = context.findRenderObject()!.paintBounds.size;
       widget.width = (widget.width) > 0 ? widget.width : size.width;
       widget.height = (widget.height) > 0 ? widget.height : size.height;
 
       _key = GlobalKey();
-      if (calculateTextWith(widget.text, widget.textStyle.fontSize, widget.textStyle.fontWeight,
-              double.infinity, 1, context) >
+      if (calculateTextWith(widget.text, widget.textStyle?.fontSize,
+              widget.textStyle?.fontWeight, double.infinity, 1, context) >
           widget.width) {
         blankWidth = widget.width * widget.ratioOfBlankToScreen;
         blankHeight = widget.height * widget.ratioOfBlankToScreen;
@@ -78,21 +77,27 @@ class BrnMarqueeTextState extends State<BrnMarqueeText> with SingleTickerProvide
   }
 
   void startTimer() {
-    timer = Timer.periodic(new Duration(milliseconds: widget.timerRest), (timer) {
+    timer =
+        Timer.periodic(new Duration(milliseconds: widget.timerRest), (timer) {
       double maxScrollExtent = scroController.position.maxScrollExtent;
       double pixels = scroController.position.pixels;
       //当animateTo的距离大于最大滑动距离时，则要返回第一个child的特定位置，让末尾正好处于最右侧，然后继续滚动，造成跑马灯的假象
       if (pixels + _moveDistance >= maxScrollExtent) {
         if (widget.scrollAxis == Axis.horizontal) {
-          position = (maxScrollExtent - blankWidth - widget.width) / 2 + pixels - maxScrollExtent;
+          position = (maxScrollExtent - blankWidth - widget.width) / 2 +
+              pixels -
+              maxScrollExtent;
         } else {
-          position = (maxScrollExtent - blankHeight - widget.height) / 2 + pixels - maxScrollExtent;
+          position = (maxScrollExtent - blankHeight - widget.height) / 2 +
+              pixels -
+              maxScrollExtent;
         }
         scroController.jumpTo(position);
       }
       position += _moveDistance;
       scroController.animateTo(position,
-          duration: new Duration(milliseconds: widget.timerRest), curve: Curves.linear);
+          duration: new Duration(milliseconds: widget.timerRest),
+          curve: Curves.linear);
     });
   }
 
@@ -129,10 +134,8 @@ class BrnMarqueeTextState extends State<BrnMarqueeText> with SingleTickerProvide
 
   @override
   void dispose() {
-    if (timer != null) {
-      timer.cancel();
-    }
-    scroController = null;
+    timer?.cancel();
+    scroController.dispose();
     super.dispose();
   }
 
@@ -155,8 +158,13 @@ class BrnMarqueeTextState extends State<BrnMarqueeText> with SingleTickerProvide
     );
   }
 
-  double calculateTextWith(String value, double fontSize, FontWeight fontWeight, double maxWidth,
-      int maxLines, BuildContext context) {
+  double calculateTextWith(
+      String value,
+      double? fontSize,
+      FontWeight? fontWeight,
+      double maxWidth,
+      int maxLines,
+      BuildContext context) {
     TextPainter painter = TextPainter(
 
         ///AUTO：华为手机如果不指定locale的时候，该方法算出来的文字高度是比系统计算偏小的。

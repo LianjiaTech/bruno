@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +12,7 @@ class BrnTabExample extends StatefulWidget {
 }
 
 class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateMixin {
-  BrnCloseWindowController closeWindowController;
+  BrnCloseWindowController? closeWindowController;
 
   @override
   void initState() {
@@ -35,7 +37,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
                 ),
                 Divider(),
                 Center(
-                  child: OutlineButton(
+                  child: OutlinedButton(
                     onPressed: () {
                       Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
                         return BrnTabbarStickyExample();
@@ -69,8 +71,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
           ),
         ),
         onWillPop: () {
-          if (closeWindowController.isShow) {
-            closeWindowController.closeMoreWindow();
+          if (closeWindowController!.isShow) {
+            closeWindowController!.closeMoreWindow();
             return Future.value(false);
           }
           return Future.value(true);
@@ -78,7 +80,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   }
 
   _createExpandedMoreTabbarWidgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "业务一"));
     tabs.add(BadgeTab(text: "业务二"));
     tabs.add(BadgeTab(text: "业务三"));
@@ -98,7 +100,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   }
 
   _createStableTabbar4Widgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "业务一"));
     tabs.add(BadgeTab(text: "业务二"));
     tabs.add(BadgeTab(text: "业务三"));
@@ -114,7 +116,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   }
 
   _createStableTabbarWidgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "特殊业务详情一", badgeText: "新"));
     tabs.add(BadgeTab(text: "业务二", badgeNum: 22));
     tabs.add(BadgeTab(text: "业务三", badgeNum: 11));
@@ -140,7 +142,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   }
 
   _createTabbarBadgeWidgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "业务一", badgeText: "新"));
     tabs.add(BadgeTab(text: "业务二", badgeNum: 22));
     tabs.add(BadgeTab(text: "业务三", badgeNum: 11));
@@ -161,7 +163,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   }
 
   _createStableTabbarBadgeWidgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "业务一", badgeNum: 100));
     tabs.add(BadgeTab(text: "业务二", badgeNum: 22));
     tabs.add(BadgeTab(text: "业务三", badgeNum: 11));
@@ -177,7 +179,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   }
 
   _createDividerTabbarWidgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "业务一", topText: "1"));
     tabs.add(BadgeTab(text: "业务二", topText: "2"));
     tabs.add(BadgeTab(text: "业务三", topText: "3"));
@@ -197,7 +199,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   /// 自定义Tab宽度，如果tab宽度之和大于屏幕宽度，默认能左右滚动
   ///
   _createCustomTabbarWidgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "业务一", badgeNum: 2));
     tabs.add(BadgeTab(text: "业务二"));
     tabs.add(BadgeTab(text: "业务三", badgeNum: 33));
@@ -213,7 +215,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   }
 
   _createTopTabbarWidgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "08月09日", topText: "今天"));
     tabs.add(BadgeTab(text: "08月10日", topText: "明天"));
     tabs.add(BadgeTab(text: "08月11日", topText: "周三"));
@@ -232,7 +234,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   }
 
   _createTopTabbarCountWidgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "08月09日", topText: "今天"));
     tabs.add(BadgeTab(text: "08月10日", topText: "明天"));
     tabs.add(BadgeTab(text: "08月11日", topText: "周三"));
@@ -249,7 +251,7 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
   }
 
   _createOriginWidgets() {
-    var tabs = List<BadgeTab>();
+    var tabs = <BadgeTab>[];
     tabs.add(BadgeTab(text: "业务一", badgeText: "新"));
     tabs.add(BadgeTab(text: "业务二", badgeNum: 22));
     tabs.add(BadgeTab(text: "业务三", badgeNum: 11));
@@ -269,9 +271,5 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
       indicatorPadding: EdgeInsets.only(left: 10),
       onTap: (state, index) {},
     );
-  }
-
-  Widget _createText(String string) {
-    return Text(string);
   }
 }

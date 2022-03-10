@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_constants.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
@@ -16,27 +18,28 @@ typedef BrnMultiSelectListPickerSubmit = void Function(
 
 /// item 被点击时的回调
 /// [index] item 的索引
-typedef BrnMultiSelectListPickerItemClick = void Function(BuildContext context, int index);
+typedef BrnMultiSelectListPickerItemClick = void Function(
+    BuildContext context, int index);
 
 /// 多选列表 Picker
 
 class BrnMultiSelectListPicker extends StatefulWidget {
-  final String title;
+  final String? title;
   final List<BrnMultiSelectBottomPickerItem> items;
-  final BrnMultiSelectListPickerSubmit onSubmit;
-  final VoidCallback onCancel;
-  final BrnMultiSelectListPickerItemClick onItemClick;
+  final BrnMultiSelectListPickerSubmit? onSubmit;
+  final VoidCallback? onCancel;
+  final BrnMultiSelectListPickerItemClick? onItemClick;
   final BrnPickerTitleConfig pickerTitleConfig;
 
   static void show(
-      BuildContext context, {
-        @required List<BrnMultiSelectBottomPickerItem> items,
-        BrnMultiSelectListPickerSubmit onSubmit,
-        VoidCallback onCancel,
-        BrnMultiSelectListPickerItemClick onItemClick,
-        BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
-        bool isDismissible = true,
-      }) {
+    BuildContext context, {
+    required List<BrnMultiSelectBottomPickerItem> items,
+    BrnMultiSelectListPickerSubmit? onSubmit,
+    VoidCallback? onCancel,
+    BrnMultiSelectListPickerItemClick? onItemClick,
+    BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
+    bool isDismissible = true,
+  }) {
     showModalBottomSheet(
       context: context,
       isDismissible: isDismissible,
@@ -52,11 +55,11 @@ class BrnMultiSelectListPicker extends StatefulWidget {
       },
     );
   }
-  
+
   BrnMultiSelectListPicker({
-    Key key,
+    Key? key,
     this.title,
-    this.items,
+    required this.items,
     this.pickerTitleConfig = BrnPickerTitleConfig.Default,
     this.onSubmit,
     this.onCancel,
@@ -74,10 +77,14 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
   Widget build(BuildContext context) {
     return BrnPickerClipRRect(
       borderRadius: BorderRadius.only(
-        topLeft:
-            Radius.circular(BrnThemeConfigurator.instance.getConfig().pickerConfig.cornerRadius),
-        topRight:
-            Radius.circular(BrnThemeConfigurator.instance.getConfig().pickerConfig.cornerRadius),
+        topLeft: Radius.circular(BrnThemeConfigurator.instance
+            .getConfig()
+            .pickerConfig
+            .cornerRadius),
+        topRight: Radius.circular(BrnThemeConfigurator.instance
+            .getConfig()
+            .pickerConfig
+            .cornerRadius),
       ),
       child: Container(
         color: Colors.white,
@@ -92,30 +99,33 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
                   child: BrnPickerTitle(
                     pickerTitleConfig: widget.pickerTitleConfig,
                     onConfirm: () {
-                      List<BrnMultiSelectBottomPickerItem> selectedItems = List();
+                      List<BrnMultiSelectBottomPickerItem> selectedItems =
+                          [];
                       if (widget.onSubmit != null) {
-                        for (int i = 0; i < widget.items?.length; i++) {
+                        for (int i = 0; i < widget.items.length; i++) {
                           if (widget.items[i].isChecked) {
                             selectedItems.add(widget.items[i]);
                           }
                         }
-                        if(widget.onSubmit != null) {
-                          widget.onSubmit(selectedItems);
+                        if (widget.onSubmit != null) {
+                          widget.onSubmit!(selectedItems);
                         }
                       }
                     },
-                    onCancel: widget.onCancel ?? () {
-                      Navigator.of(context).pop();
-                    },
+                    onCancel: widget.onCancel ??
+                        () {
+                          Navigator.of(context).pop();
+                        },
                   ),
                 ),
                 LimitedBox(
                     maxWidth: double.infinity,
-                    maxHeight: PICKER_HEIGHT,
+                    maxHeight: pickerHeight,
                     child: ListView.builder(
                         shrinkWrap: true,
-                        itemBuilder: (context, index) => _buildItem(context, index),
-                        itemCount: widget.items?.length)),
+                        itemBuilder: (context, index) =>
+                            _buildItem(context, index),
+                        itemCount: widget.items.length)),
               ],
             ),
           ],
@@ -125,9 +135,7 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
   }
 
   Widget _buildItem(BuildContext context, int index) {
-    if (widget.items[index] == null) {
-      return Container();
-    } else {
+
       return GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
@@ -135,7 +143,7 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
               widget.items[index].isChecked = !widget.items[index].isChecked;
             });
             if (widget.onItemClick != null) {
-              widget.onItemClick(context, index);
+              widget.onItemClick!(context, index);
             }
           },
           child: Column(
@@ -164,16 +172,19 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
                         alignment: Alignment.center,
                         height: 50,
                         child: widget.items[index].isChecked
-                            ? BrunoTools.getAssetImageWithBandColor(BrnAsset.iconMultiSelected)
+                            ? BrunoTools.getAssetImageWithBandColor(
+                                BrnAsset.iconMultiSelected)
                             : BrunoTools.getAssetImage(BrnAsset.iconUnSelect)),
                   ],
                 ),
               ),
-              index != widget.items.length - 1
-                  ? Padding(padding: EdgeInsets.fromLTRB(20, 0, 20, 0), child: BrnLine())
+              index != widget.items.length  - 1
+                  ? Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: BrnLine())
                   : Container()
             ],
           ));
-    }
+
   }
 }

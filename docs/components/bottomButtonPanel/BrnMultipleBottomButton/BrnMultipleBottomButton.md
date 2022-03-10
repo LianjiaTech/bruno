@@ -27,16 +27,17 @@ group:
 ### 构造函数
 
 ```dart
-BrnMultipleBottomButton(
-  {Key key,
-  this.mainButtonName,
-  this.subButtonName,
-  this.onSelectAllTap,
-  this.onMainButtonTap,
-  this.onSelectedButtonTap,
-  this.onSubButtonTap,
-  this.hasArrow = false,
-  this.bottomController})
+const BrnMultipleBottomButton(
+      {Key? key,
+      this.mainButton,
+      this.subButton,
+      this.onMainButtonTap,
+      this.onSubButtonTap,
+      this.onSelectedButtonTap,
+      this.onSelectAll,
+      this.hasArrow = false,
+      this.bottomController})
+      : super(key: key);
 ```
 
 
@@ -47,13 +48,13 @@ BrnMultipleBottomButton(
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
 | mainButton | dynamic | 主按钮的显示文案，传入String即使用默认的Text样式，传入其他样式则使用对应的Widget | 否 |  |
-| onMainButtonTap | VoidCallback | 主按钮点击回调 | 否 |  |
+| onMainButtonTap | VoidCallback? | 主按钮点击回调 | 否 |  |
 | subButton | dynamic | 次按钮的显示文案，传入String即使用默认的Text样式，传入其他样式则使用对应的Widget | 否 |  |
-| onSubButtonTap | VoidCallback | 次按钮点击回调 | 否 |  |
-| onSelectedButtonTap | Function(int) | selectedButtonOnTap', '点击已选的回调，存在三种状态：-1:不可展开（当value为0的时候），0：收起，1：展开 | 否 |  |
-| onSelectAll | Function(bool) | 全选的点击回调，不传则不展示多选按钮，回传参数true表示选中全选，false表示取消全选 | 否 |  |
+| onSubButtonTap | VoidCallback? | 次按钮点击回调 | 否 |  |
+| onSelectedButtonTap | Function(BrnMultipleButtonArrowState)? | selectedButtonOnTap', '点击已选的回调，存在三种状态：-1:不可展开（当value为0的时候），0：收起，1：展开 | 否 |  |
+| onSelectAll | void Function(bool?)? | 全选的点击回调，不传则不展示多选按钮，回传参数true表示选中全选，false表示取消全选 | 否 |  |
 | hasArrow | bool | 已选侧边是否需要小箭头 | 否 | false |
-| bottomController | BrnMultipleBottomController | 暴露给外界设置按钮状态的控制器 | 否 |  |
+| bottomController | BrnMultipleBottomController? | 暴露给外界设置按钮状态的控制器 | 否 |  |
 
 
 

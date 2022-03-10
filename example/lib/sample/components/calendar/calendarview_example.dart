@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -56,69 +58,66 @@ class TagViewExamplePageState extends State<CalendarViewExample> {
   }
 
   Widget _calendarViewWeekNocontroll(context) {
-    return BrnCalendarView(
-      displayMode: DisplayMode.Week,
-      selectMode: SelectMode.SINGLE,
+    return BrnCalendarView.single(
+      displayMode: DisplayMode.week,
       showControllerBar: false,
-      startEndDateChange: (startDate, endDate) {
-        BrnToast.show('开始时间： $startDate , 结束时间：$endDate', context);
+      dateChange: (date) {
+        BrnToast.show('选中的时间： $date', context);
       },
     );
   }
 
   Widget _calendarViewWeekNocontrollCustomWeekName(context) {
-    return BrnCalendarView(
-      displayMode: DisplayMode.Week,
-      selectMode: SelectMode.SINGLE,
+    return BrnCalendarView.single(
+      displayMode: DisplayMode.week,
       showControllerBar: false,
       weekNames: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-      startEndDateChange: (startDate, endDate) {
-        BrnToast.show('开始时间： $startDate , 结束时间：$endDate', context);
+      dateChange: (date) {
+        BrnToast.show('选中的时间： $date', context);
       },
     );
   }
 
   Widget _calendarViewWeek(context) {
-    return BrnCalendarView(
-      displayMode: DisplayMode.Week,
+    return BrnCalendarView.single(
+      displayMode: DisplayMode.week,
       initDisplayDate: DateTime.parse('2020-06-01'),
       minDate: DateTime(2020),
       maxDate: DateTime(2021),
-      startEndDateChange: (startDate, endDate) {
-        BrnToast.show('开始时间： $startDate , 结束时间：$endDate', context);
+      dateChange: (date) {
+        BrnToast.show('选中的时间： $date', context);
       },
     );
   }
 
   Widget _calendarViewWeekRange(context) {
-    return BrnCalendarView(
-      displayMode: DisplayMode.Week,
-      selectMode: SelectMode.RANGE,
-      startEndDateChange: (startDate, endDate) {
-        BrnToast.show('开始时间： $startDate , 结束时间：$endDate', context);
+    return BrnCalendarView.range(
+      displayMode: DisplayMode.week,
+      rangeDateChange: (rangeDate) {
+        BrnToast.show(
+            '开始时间： ${rangeDate.start} , 结束时间：${rangeDate.end}', context);
       },
     );
   }
 
   Widget _calendarViewMonth(context) {
-    return BrnCalendarView(
-      selectMode: SelectMode.SINGLE,
+    return BrnCalendarView.single(
       initDisplayDate: DateTime.parse('2020-06-01'),
       minDate: DateTime(2020),
       maxDate: DateTime(2021),
-      startEndDateChange: (startDate, endDate) {
-        BrnToast.show('开始时间： $startDate , 结束时间：$endDate', context);
+      dateChange: (date) {
+        BrnToast.show('选中的时间： $date', context);
       },
     );
   }
 
   Widget _calendarViewMonthRange(context) {
-    return BrnCalendarView(
-      selectMode: SelectMode.RANGE,
+    return BrnCalendarView.range(
       minDate: DateTime(2020),
       maxDate: DateTime(2023),
-      startEndDateChange: (startDate, endDate) {
-        BrnToast.show('开始时间： $startDate , 结束时间：$endDate', context);
+      rangeDateChange: (rangeDate) {
+        BrnToast.show(
+            '开始时间： ${rangeDate.start} , 结束时间：${rangeDate.end}', context);
       },
     );
   }

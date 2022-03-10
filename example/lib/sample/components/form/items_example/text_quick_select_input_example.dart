@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -19,8 +21,8 @@ class _TextQuickSelectInputExamplePageState
   String selectedStr = '';
   String selectedStrAllFunctionExample = '';
   List<String> options = ['选项1', '选项2', '选项3', '选项4', '选项5', '选项6', '选项7'];
-  List<bool> status;
-  List<bool> statusAllFunctionExample;
+  late List<bool> status;
+  List<bool>? statusAllFunctionExample;
 
   _TextQuickSelectInputExamplePageState(this._title);
 
@@ -92,7 +94,7 @@ class _TextQuickSelectInputExamplePageState
               ),
             ),
             BrnTextQuickSelectFormItem(
-              prefixIconType: BrnPrefixIconType.TYPE_ADD,
+              prefixIconType: BrnPrefixIconType.add,
               isRequire: true,
               btnsTxt: options,
               selectBtnList: statusAllFunctionExample,
@@ -103,8 +105,8 @@ class _TextQuickSelectInputExamplePageState
               subTitle: "这里是副标题",
               tipLabel: "标签",
               onBtnSelectChanged: (index) {
-                statusAllFunctionExample[index] = !statusAllFunctionExample[index];
-                if (statusAllFunctionExample[index]) {
+                statusAllFunctionExample![index] = !statusAllFunctionExample![index];
+                if (statusAllFunctionExample![index]) {
                   selectedStrAllFunctionExample += '${options[index]} ';
                 } else if (selectedStrAllFunctionExample.contains(options[index])) {
                   selectedStrAllFunctionExample = selectedStrAllFunctionExample.replaceFirst('${options[index]} ', '');

@@ -32,40 +32,49 @@ group:
 
 ```dart
 BrnProgressBarChart(
-  {Key key,
-  this.minWidth = 0,
-  this.padding = const EdgeInsets.all(20),
-  this.barChartStyle = BarChartStyle.vertical,
-  this.xAxis,
-  this.yAxis,
-  this.barBundleList,
-  this.barGroupSpace = 30,
-  this.singleBarWidth = 30,
-  this.barMaxValue,
-  this.selectedHintTextColor = Colors.white,
-  this.selectedHintTextBackgroundColor = Colors.black,
-  this.onBarItemClickInterceptor,
-  this.barChartSelectCallback,
-  this.height = 300})
+      {Key? key,
+      this.minWidth = 0,
+      this.padding = const EdgeInsets.all(20),
+      this.barChartStyle = BarChartStyle.vertical,
+      required this.xAxis,
+      required this.yAxis,
+      required this.barBundleList,
+      this.barGroupSpace = 30,
+      this.singleBarWidth = 30,
+      this.barMaxValue = 0,
+      this.selectedHintTextColor = Colors.white,
+      this.selectedHintTextBackgroundColor = Colors.black,
+      this.onBarItemClickInterceptor,
+      this.barChartSelectCallback,
+      this.height = 300})
+      : super(key: key) {
+    if (BarChartStyle.horizontal == barChartStyle) {
+      assert(barBundleList[0].barList.length == yAxis.axisItemList.length,
+          '水平柱状图个数与Y轴坐标数目要相等');
+    } else if (BarChartStyle.vertical == barChartStyle) {
+      assert(barBundleList[0].barList.length == xAxis.axisItemList.length,
+          '竖直柱状图个数与X轴坐标数目要相等');
+    }
+  }
 ```
 ### 参数说明
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| minWidth | double | 最小宽度 |  | 0 |
+| minWidth | double | 最小宽度 | 否 | 0 |
 | height | double | 图标高度 | 否 | 300 |
-| padding | EdgeInsetsGeometry | 内边距 |  | EdgeInsets.all(20) |
-| barChartStyle | BarChartStyle | 水平/竖直方向条形图 |  | BarChartStyle.vertical |
+| padding | EdgeInsetsGeometry | 内边距 | 否 | EdgeInsets.all(20) |
+| barChartStyle | BarChartStyle | 水平/竖直方向条形图 | 否 | BarChartStyle.vertical |
 | xAxis | ChartAxis | x轴数据 | 是 |  |
 | yAxis | ChartAxis | y轴数据 | 是 |  |
 | barBundleList | `List<BarBundle>` | 柱形数据 | 是 |  |
-| barGroupSpace | double | 柱状图间距 |  | 30 |
-| singleBarWidth | double | 条形宽度 |  | 30 |
-| barMaxValue | double | 柱状图最大值 |  |  |
-| selectedHintTextColor | Color | 选中柱状图提示文案文本颜色 |  | Colors.white |
-| selectedHintTextBackgroundColor | Color | 选中柱状图提示文案文本背景颜色 |  | Colors.black |
-| barChartSelectCallback | void Function(BarItem barItem) | 选中柱状图时候的回调 |  |  |
-| onBarItemClickInterceptor | bool OnBarItemClickInterceptor(int barBundleIndex, BarBundle barBundle, int barGroupIndex, BarItem barItem) | 柱状图是否可点击回调 |  |  |
+| barGroupSpace | double | 柱状图间距 | 否 | 30 |
+| singleBarWidth | double | 条形宽度 | 否 | 30 |
+| barMaxValue | double | 柱状图最大值 | 否 | 0 |
+| selectedHintTextColor | Color | 选中柱状图提示文案文本颜色 | 否 | Colors.white |
+| selectedHintTextBackgroundColor | Color | 选中柱状图提示文案文本背景颜色 | 否 | Colors.black |
+| barChartSelectCallback | void Function(BarItem barItem) | 选中柱状图时候的回调 | 否 |  |
+| onBarItemClickInterceptor | bool OnBarItemClickInterceptor(int barBundleIndex, BarBundle barBundle, int barGroupIndex, BarItem barItem) | 柱状图是否可点击回调 | 否 |  |
 
 ## 四、代码演示
 

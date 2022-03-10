@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 /// 描述: radio组件
 /// 1. 支持单选/多选
@@ -20,10 +20,10 @@ class BrnRadioCore extends StatefulWidget {
 
   /// 选择按钮的padding
   /// 默认EdgeInsets.all(5)
-  final EdgeInsets iconPadding;
+  final EdgeInsets? iconPadding;
 
   /// 配合使用的控件，比如卡片或者text
-  final Widget child;
+  final Widget? child;
 
   /// 控件是否在选择按钮的右边，
   /// true时 控件在选择按钮右边
@@ -39,19 +39,22 @@ class BrnRadioCore extends StatefulWidget {
   /// 默认值MainAxisSize.min
   final MainAxisSize mainAxisSize;
 
-  final Image selectedImage;
+  final Image? selectedImage;
 
-  final Image unselectedImage;
+  final Image? unselectedImage;
 
-  final Image disSelectedImage;
+  final Image? disSelectedImage;
 
-  final Image disUnselectedImage;
+  final Image? disUnselectedImage;
 
-  final VoidCallback onRadioItemClick;
+  final VoidCallback? onRadioItemClick;
+
+  /// 默认值HitTestBehavior.translucent控制widget.onRadioItemClick触发的点击范围
+  final HitTestBehavior behavior;
 
   const BrnRadioCore(
-      {Key key,
-      @required this.radioIndex,
+      {Key? key,
+      required this.radioIndex,
       this.disable = false,
       this.isSelected = false,
       this.iconPadding,
@@ -63,7 +66,8 @@ class BrnRadioCore extends StatefulWidget {
       this.unselectedImage,
       this.disSelectedImage,
       this.disUnselectedImage,
-      this.onRadioItemClick})
+      this.onRadioItemClick,
+      this.behavior = HitTestBehavior.translucent})
       : super(key: key);
 
   @override
@@ -71,8 +75,8 @@ class BrnRadioCore extends StatefulWidget {
 }
 
 class _BrnRadioCoreState extends State<BrnRadioCore> {
-  bool _isSelected;
-  bool _disable;
+  late bool _isSelected;
+  late bool _disable;
 
   @override
   void initState() {
@@ -104,7 +108,9 @@ class _BrnRadioCoreState extends State<BrnRadioCore> {
       padding: widget.iconPadding ?? EdgeInsets.all(5),
       child: this._isSelected
           ? (this._disable ? widget.disSelectedImage : widget.selectedImage)
-          : (this._disable ? widget.disUnselectedImage : widget.unselectedImage),
+          : (this._disable
+              ? widget.disUnselectedImage
+              : widget.unselectedImage),
     );
 
     Widget radioWidget;
@@ -112,12 +118,12 @@ class _BrnRadioCoreState extends State<BrnRadioCore> {
       // 没设置左右widget的时候就不返回row
       radioWidget = icon;
     } else {
-      List<Widget> list = List();
+      List<Widget> list = [];
       if (widget.childOnRight) {
         list.add(icon);
-        list.add(widget.child);
+        list.add(widget.child!);
       } else {
-        list.add(widget.child);
+        list.add(widget.child!);
         list.add(icon);
       }
       radioWidget = Row(
@@ -129,10 +135,12 @@ class _BrnRadioCoreState extends State<BrnRadioCore> {
 
     return GestureDetector(
       child: radioWidget,
-      behavior: HitTestBehavior.translucent,
+      behavior: widget.behavior,
       onTap: () {
         if (widget.disable == true) return;
-        widget.onRadioItemClick();
+        if (widget.onRadioItemClick != null) {
+          widget.onRadioItemClick!();
+        }
 //        if (widget.onValueChangedAtIndex != null) {
 //          if (widget.radioType == BrnRadioType.single) {
 //            // 单选

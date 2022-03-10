@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
@@ -12,18 +14,18 @@ class BrnSubSwitchTitle extends StatefulWidget {
   final int defaultSelectIndex;
 
   /// 选中回调
-  final void Function(int index) onSelect;
+  final void Function(int index)? onSelect;
 
   /// 二级标题的padding
   /// 默认 EdgeInsets.only(right: 20)
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
   /// tab切换控制器，默认不需要传递
-  final TabController controller;
+  final TabController? controller;
 
   const BrnSubSwitchTitle({
-    Key key,
-    @required this.nameList,
+    Key? key,
+    required this.nameList,
     this.defaultSelectIndex = 0,
     this.onSelect,
     this.padding,
@@ -34,10 +36,11 @@ class BrnSubSwitchTitle extends StatefulWidget {
   _BrnSubSwitchTitleState createState() => _BrnSubSwitchTitleState();
 }
 
-class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle> with TickerProviderStateMixin {
-  List<Widget> widgetList;
+class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle>
+    with TickerProviderStateMixin {
+  List<Widget>? widgetList;
 
-  TabController _controller;
+  TabController? _controller;
 
   int _defaultSelectIndex = 0;
 
@@ -48,7 +51,7 @@ class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle> with TickerProvid
     _controller = widget.controller ??
         TabController(
           initialIndex: _defaultSelectIndex,
-          length: widget.nameList?.length ?? 0,
+          length: widget.nameList.length,
           vsync: this,
         );
   }
@@ -58,7 +61,7 @@ class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle> with TickerProvid
     super.didUpdateWidget(oldWidget);
     _defaultSelectIndex = widget.defaultSelectIndex;
     if (_controller != null) {
-      _controller.index = _defaultSelectIndex;
+      _controller!.index = _defaultSelectIndex;
     }
   }
 
@@ -68,7 +71,7 @@ class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle> with TickerProvid
   }
 
   Widget _toggleButtonsWidget(context) {
-    if (widget.nameList == null || widget.nameList.isEmpty) {
+    if (widget.nameList.isEmpty) {
       return Container(
         height: 0,
         width: 0,
@@ -105,7 +108,8 @@ class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle> with TickerProvid
       ),
       labelPadding: EdgeInsets.all(0),
       //未选中态颜色
-      unselectedLabelColor: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+      unselectedLabelColor:
+          BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
       //未选中态样式
       unselectedLabelStyle: TextStyle(
         fontWeight: FontWeight.w400,
@@ -113,7 +117,7 @@ class _BrnSubSwitchTitleState extends State<BrnSubSwitchTitle> with TickerProvid
       ),
       onTap: (index) {
         if (null != widget.onSelect) {
-          widget.onSelect(index);
+          widget.onSelect!(index);
         }
       },
     );
