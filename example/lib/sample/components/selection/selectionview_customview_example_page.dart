@@ -40,9 +40,8 @@ class _SelectionViewExamplePageState
 
   @override
   void initState() {
-    _currentCalendarSelectedDate = ValueNotifier(
-        DateTimeFormatter.convertStringToDate(
-            _dateForamt, _filterSelectedDate));
+    _currentCalendarSelectedDate =
+        ValueNotifier(DateTimeFormatter.convertStringToDate(_dateForamt, _filterSelectedDate!));
     super.initState();
   }
 

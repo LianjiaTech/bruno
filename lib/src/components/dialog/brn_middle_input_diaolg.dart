@@ -26,6 +26,9 @@ class BrnMiddleInputDialog {
   /// 点击确定时的回调，参数为输入框中的字符
   final void Function(String value)? onConfirm;
 
+  /// 弹窗样式。具体参见 [BrnDialogStyle]
+  final BrnDialogStyle? dialogStyle;
+
   /// 点击取消时的回调
   final VoidCallback? onCancel;
 
@@ -69,6 +72,7 @@ class BrnMiddleInputDialog {
       this.textInputAction = TextInputAction.newline,
       this.cancelText = '取消',
       this.confirmText = '确定',
+      this.dialogStyle,
       this.onConfirm,
       this.onCancel,
       this.dismissOnActionsTap = true,
@@ -158,6 +162,7 @@ class BrnMiddleInputDialog {
         confirm: confirmText,
         title: title,
         barrierDismissible: barrierDismissible,
+        dialogStyle: dialogStyle ?? BrnDialogStyle(),
         messageWidget: Padding(
           padding: const EdgeInsets.only(top: 12, left: 24, right: 24),
           child: Column(

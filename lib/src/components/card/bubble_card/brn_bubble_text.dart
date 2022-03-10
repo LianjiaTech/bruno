@@ -31,10 +31,10 @@ class BrnBubbleText extends StatelessWidget {
   /// 显示的文本
   final String text;
 
-  /// 最多显示的行数
+  ///最多显示的行数
   final int? maxLines;
 
-  /// 展开收起回调
+  ///展开收起回调
   final TextExpandedCallback? onExpanded;
 
   /// 气泡的圆角 默认是4
@@ -56,7 +56,6 @@ class BrnBubbleText extends StatelessWidget {
       this.textStyle})
       : super(key: key);
 
-  @override
   @override
   Widget build(BuildContext context) {
     Image image = BrunoTools.getAssetImageWithColor(

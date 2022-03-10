@@ -91,6 +91,86 @@ enum _ButtonType {
   right,
 }
 
+/// 对话框的样式
+class BrnDialogStyle {
+  /// title的间距
+  EdgeInsets? titlePadding;
+
+  /// 主色调按钮样式
+  TextStyle? mainTextStyle;
+
+  /// 主色调按钮的背景
+  Color? mainBackgroundColor;
+
+  /// 其他按钮的样式
+  TextStyle? greyActionsTextStyle;
+
+  /// 其他按钮的背景
+  Color? greyActionsBackgroundColor;
+
+  /// 标题的文字样式
+  TextStyle? titleTextStyle;
+
+  /// 标题的文字对齐
+  TextAlign? titleTextAlign;
+
+  /// 内容文字的对齐
+  TextAlign? contentTextAlign;
+
+  /// 内容widget的间距
+  EdgeInsets? contentPadding;
+
+  /// 内容文字的样式
+  TextStyle? contentTextStyle;
+
+  /// 对话框的背景
+  Color? backgroundColor;
+
+  /// 对话框的底部按钮的高度
+  double? bottomHeight;
+
+  /// 对话框圆角的大小
+  double? radius;
+
+  /// 边框阴影
+  double? elevation;
+
+  /// 警示文案的样式
+  TextStyle? warningTextStyle;
+
+  /// 警示文案文字的对齐
+  TextAlign? warningTextAlign;
+
+  /// 警示文案的间距
+  EdgeInsets? warningPadding;
+
+  /// icon的间距
+  EdgeInsets? iconPadding;
+
+  /// 标题最大行数
+  int? titleMaxLines;
+
+  BrnDialogStyle({
+    this.titlePadding,
+    this.titleTextAlign,
+    this.titleTextStyle,
+    this.contentPadding,
+    this.contentTextStyle,
+    this.warningTextStyle,
+    this.backgroundColor,
+    this.contentTextAlign,
+    this.mainBackgroundColor,
+    this.mainTextStyle,
+    this.greyActionsBackgroundColor,
+    this.greyActionsTextStyle,
+    this.bottomHeight,
+    this.warningPadding,
+    this.warningTextAlign,
+    this.iconPadding,
+    this.radius,
+  });
+}
+
 ///高度灵活的通用的弹窗组件
 ///
 ///布局规则：
@@ -158,6 +238,9 @@ class BrnDialog extends AlertDialog {
   /// 水平分割线
   final Divider divider;
 
+  /// 对话框样式
+  final BrnDialogStyle? brnDialogStyle;
+
   /// 底部按钮的点击监听回调
   final DialogIndexedActionClickCallback? indexedActionCallback;
 
@@ -184,6 +267,7 @@ class BrnDialog extends AlertDialog {
     this.warningText,
     this.warningWidget,
     this.actionsWidget,
+    this.brnDialogStyle,
     this.divider = cDividerLine,
     this.verticalDivider = cVerticalDivider,
     this.actionsText,
@@ -194,7 +278,8 @@ class BrnDialog extends AlertDialog {
 
   @override
   Widget build(BuildContext context) {
-    BrnDialogConfig? defaultConfig = BrnDialogConfig();
+    BrnDialogConfig? defaultConfig =
+        _convertStyleToConfig() ?? BrnDialogConfig();
 
     defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultConfig.configId)
@@ -534,6 +619,43 @@ class BrnDialog extends AlertDialog {
     return actionsWidget == null || actionsWidget!.isEmpty;
   }
 
+  /// 将已有的BrnDialogStyle转换成BrnDialogConfig
+  /// 当用户配置了最新的themeData则ljDialogStyle失效
+  /// 当用户配置仅配置ljDialogStyle，则将ljDialogStyle转换成themeData
+  BrnDialogConfig? _convertStyleToConfig() {
+    if (brnDialogStyle == null) {
+      return themeData;
+    }
+    BrnDialogConfig defaultConfig = themeData ?? BrnDialogConfig();
+    defaultConfig = defaultConfig.merge(BrnDialogConfig(
+      mainActionTextStyle:
+          BrnTextStyle.withStyle(brnDialogStyle!.mainTextStyle),
+      mainActionBackgroundColor: brnDialogStyle!.mainBackgroundColor,
+      assistActionsTextStyle:
+          BrnTextStyle.withStyle(brnDialogStyle!.greyActionsTextStyle),
+      assistActionsBackgroundColor: brnDialogStyle!.greyActionsBackgroundColor,
+      radius: brnDialogStyle!.radius,
+      iconPadding: brnDialogStyle!.iconPadding,
+      titlePaddingSm: brnDialogStyle!.titlePadding,
+      titlePaddingLg: brnDialogStyle!.titlePadding,
+      titleTextAlign: brnDialogStyle!.titleTextAlign,
+      titleTextStyle: BrnTextStyle.withStyle(brnDialogStyle!.titleTextStyle),
+      contentPaddingSm: brnDialogStyle!.contentPadding,
+      contentPaddingLg: brnDialogStyle!.contentPadding,
+      contentTextAlign: brnDialogStyle!.contentTextAlign,
+      contentTextStyle:
+          BrnTextStyle.withStyle(brnDialogStyle!.contentTextStyle),
+      warningPaddingSm: brnDialogStyle!.warningPadding,
+      warningPaddingLg: brnDialogStyle!.warningPadding,
+      warningTextAlign: brnDialogStyle!.warningTextAlign,
+      warningTextStyle:
+          BrnTextStyle.withStyle(brnDialogStyle!.warningTextStyle),
+      bottomHeight: brnDialogStyle!.bottomHeight,
+      backgroundColor: brnDialogStyle!.backgroundColor,
+    ));
+    return defaultConfig;
+  }
+
   /// 主题配置的标题间距
   EdgeInsetsGeometry _configTitlePadding(BrnDialogConfig dialogConfig) {
     return _isShowIcon()
@@ -596,6 +718,7 @@ class BrnDialogManager {
     String? warning,
     Widget? warningWidget,
     Widget? labelWidget,
+    BrnDialogStyle? dialogStyle,
     GestureTapCallback? onTap,
     bool barrierDismissible = true,
     int titleMaxLines = cTitleMaxLines,
@@ -654,6 +777,7 @@ class BrnDialogManager {
     Widget? warningWidget,
     Widget? cancelWidget,
     Widget? conformWidget,
+    BrnDialogStyle? dialogStyle,
     GestureTapCallback? onCancel,
     GestureTapCallback? onConfirm,
     bool barrierDismissible = true,
@@ -718,6 +842,7 @@ class BrnDialogManager {
     Widget? warningWidget,
     List<Widget>? actionsWidget,
     bool barrierDismissible = true,
+    BrnDialogStyle? dialogStyle,
     int titleMaxLines = cTitleMaxLines,
     BrnDialogConfig? themeData,
     DialogIndexedActionClickCallback? indexedActionClickCallback,
