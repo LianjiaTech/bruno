@@ -43,7 +43,7 @@ class _SelectionViewExamplePageState
   @override
   void initState() {
     _currentCalendarSelectedDate =
-        ValueNotifier(DateTimeFormatter.convertStringToDate(_dateForamt, _filterSelectedDate!));
+        ValueNotifier(DateTimeFormatter.convertStringToDate(_dateForamt, _filterSelectedDate));
     super.initState();
   }
 
@@ -118,7 +118,7 @@ class _SelectionViewExamplePageState
 
     _currentCalendarSelectedDate = ValueNotifier(
         DateTimeFormatter.convertStringToDate(
-            _dateForamt, _filterSelectedDate!));
+            _dateForamt, _filterSelectedDate));
 
     var content = Column(children: [
       Flexible(

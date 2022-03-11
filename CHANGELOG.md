@@ -1,6 +1,4 @@
-
-
-## [2.1.0-Beta] - 2022-2-15
+## [2.1.0-nullsafety.0] - 2022-3-10
 ### Changed
 
 #### base
@@ -12,11 +10,14 @@
 
 #### components
 - **Breaking change**: remove <code>BrnHorizontalStepsManager</code> and put function <code>forwardStep()</code>  <code>backStep()</code> into <code>BrnStepsController</code> thanks to leftcoding.
+- **Breaking change**:  remove <code>BrnDialogStyle</code> and replace with <code>BrnDialogConfig</code>.
 - <code>BrnCalendarView</code>: add <code>BrnCalendarView.single()</code> and <code>BrnCalendarView.range()</code> constructor and had its argument <code>startEndDateChange</code> removed.
 - <code>BrnSelectionEntityListBean</code>: <code>fromMap</code> is renamed to <code>fromJson</code>.
 - <code>BrnRadioButton</code>: optimize click area [#31](https://github.com/LianjiaTech/bruno/pull/31) , thanks to **a1017480401** .
 - <code>BrnScrollableTextDialog</code>: remove Navigator.pop(context) in <code>onSubmit()</code> and hand it over to external processing (user).
-- <code>BrnBubbleText</code>: add attribute <code>bgColor</code> and <code>textStyle</code>
+- <code>BrnBubbleText</code>: add attribute <code>bgColor</code> and <code>textStyle</code>.
+- <code>BrnPairInfoTable</code>: add attribute <code>defaultVerticalAlignment</code>.
+- <code>BrnDialog</code>: remove <code>BrnDialogStyle</code> and replace with <code>BrnDialogConfig</code>.
 
 
 
@@ -40,5 +41,4 @@ Thanks again to **leftcoding**,  **jojinshallar**,  **laiiihz**,  **donywan**,  
 ## [1.0.0] - 2021-12-7
 
 - First publish adapt flutter sdk 1.22.4
-
 

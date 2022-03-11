@@ -23,7 +23,7 @@ enum BrnCommonActionSheetItemStyle {
 
 class BrnCommonActionSheetItem {
   /// 标题文字
-  String? title;
+  String title;
 
   /// 辅助信息
   String? desc;
@@ -232,31 +232,24 @@ class BrnCommonActionSheet extends StatelessWidget {
   // action 每个item配置项 [BrnCommonActionSheetItem]
   Widget _configTile(BrnCommonActionSheetItem action) {
     List<Widget> tileElements = [];
-    bool hasTitle = false;
-    // 如果有标题则添加标题
-    if (action.title != null) {
-      tileElements.add(Center(
-        child: Text(
-          action.title!,
-          maxLines: 1,
-          style: action.titleStyle ??
-              (action.actionStyle == BrnCommonActionSheetItemStyle.alert
-                  ? this.themeData!.itemTitleStyleAlert.generateTextStyle()
-                  : (action.actionStyle == BrnCommonActionSheetItemStyle.link
-                      ? this.themeData!.itemTitleStyleLink.generateTextStyle()
-                      : this.themeData!.itemTitleStyle.generateTextStyle())),
-        ),
-      ));
-      hasTitle = true;
-    }
+    // 添加标题
+    tileElements.add(Center(
+      child: Text(
+        action.title,
+        maxLines: 1,
+        style: action.titleStyle ??
+            (action.actionStyle == BrnCommonActionSheetItemStyle.alert
+                ? this.themeData!.itemTitleStyleAlert.generateTextStyle()
+                : (action.actionStyle == BrnCommonActionSheetItemStyle.link
+                    ? this.themeData!.itemTitleStyleLink.generateTextStyle()
+                    : this.themeData!.itemTitleStyle.generateTextStyle())),
+      ),
+    ));
     // 如果有辅助信息则添加辅助信息
     if (action.desc != null) {
-      // 如果有标题添加间距
-      if (hasTitle) {
-        tileElements.add(SizedBox(
-          height: 2,
-        ));
-      }
+      tileElements.add(SizedBox(
+        height: 2,
+      ));
       tileElements.add(
         Center(
           child: Text(
