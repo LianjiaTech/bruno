@@ -11,7 +11,8 @@ class BrnTabExample extends StatefulWidget {
   _BrnTabExampleState createState() => _BrnTabExampleState();
 }
 
-class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateMixin {
+class _BrnTabExampleState extends State<BrnTabExample>
+    with TickerProviderStateMixin {
   BrnCloseWindowController? closeWindowController;
 
   @override
@@ -39,7 +40,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
                 Center(
                   child: OutlinedButton(
                     onPressed: () {
-                      Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+                      Navigator.of(context)
+                          .push(new MaterialPageRoute(builder: (context) {
                         return BrnTabbarStickyExample();
                       }));
                     },
@@ -86,7 +88,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "业务三"));
     tabs.add(BadgeTab(text: "业务四"));
     tabs.add(BadgeTab(text: "业务五"));
-    TabController tabController = TabController(length: tabs.length, vsync: this);
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
@@ -105,7 +108,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "业务二"));
     tabs.add(BadgeTab(text: "业务三"));
     tabs.add(BadgeTab(text: "业务四"));
-    TabController tabController = TabController(length: tabs.length, vsync: this);
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
@@ -127,13 +131,13 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "业务八", badgeNum: 23));
     tabs.add(BadgeTab(text: "业务九"));
     TabController tabController =
-    TabController(length: tabs.length, vsync: this);
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
       mode: BrnTabBarBadgeMode.origin,
       isScroll: false,
-      labelPadding: EdgeInsets.only(left:20,right: 12),
+      labelPadding: EdgeInsets.only(left: 20, right: 12),
       indicatorPadding: EdgeInsets.only(left: 10),
       onTap: (state, index) {
         BrnToast.show("点击了", context);
@@ -152,7 +156,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "业务七"));
     tabs.add(BadgeTab(text: "业务八", badgeNum: 23));
     tabs.add(BadgeTab(text: "业务九", badgeNum: 43));
-    TabController tabController = TabController(length: tabs.length, vsync: this);
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
@@ -168,7 +173,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "业务二", badgeNum: 22));
     tabs.add(BadgeTab(text: "业务三", badgeNum: 11));
     tabs.add(BadgeTab(text: "业务四"));
-    TabController tabController = TabController(length: tabs.length, vsync: this);
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
@@ -185,7 +191,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "业务三", topText: "3"));
     tabs.add(BadgeTab(text: "业务四", topText: "4"));
     tabs.add(BadgeTab(text: "业务五", topText: "5"));
-    TabController tabController = TabController(length: tabs.length, vsync: this);
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
@@ -203,7 +210,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "业务一", badgeNum: 2));
     tabs.add(BadgeTab(text: "业务二"));
     tabs.add(BadgeTab(text: "业务三", badgeNum: 33));
-    TabController tabController = TabController(length: tabs.length, vsync: this);
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
@@ -221,7 +229,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "08月11日", topText: "周三"));
     tabs.add(BadgeTab(text: "08月12日", topText: "周四"));
     tabs.add(BadgeTab(text: "08月13日", topText: "周五"));
-    TabController tabController = TabController(length: tabs.length, vsync: this);
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
@@ -238,7 +247,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "08月09日", topText: "今天"));
     tabs.add(BadgeTab(text: "08月10日", topText: "明天"));
     tabs.add(BadgeTab(text: "08月11日", topText: "周三"));
-    TabController tabController = TabController(length: tabs.length, vsync: this);
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
@@ -261,7 +271,8 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
     tabs.add(BadgeTab(text: "业务七"));
     tabs.add(BadgeTab(text: "业务八", badgeNum: 23));
     tabs.add(BadgeTab(text: "业务九"));
-    TabController tabController = TabController(length: tabs.length, vsync: this);
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
       controller: tabController,
       tabs: tabs,
@@ -271,9 +282,5 @@ class _BrnTabExampleState extends State<BrnTabExample> with TickerProviderStateM
       indicatorPadding: EdgeInsets.only(left: 10),
       onTap: (state, index) {},
     );
-  }
-
-  Widget _createText(String string) {
-    return Text(string);
   }
 }

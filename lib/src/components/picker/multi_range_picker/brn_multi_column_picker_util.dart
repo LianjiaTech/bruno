@@ -12,8 +12,7 @@ class BrnMultiColumnPickerUtil {
       rootEntity = rootEntity?.parent!;
     }
 
-    if (rootEntity != null  &&
-        rootEntity.children.length > 0) {
+    if (rootEntity != null && rootEntity.children.length > 0) {
       count = count > 1 ? count : 1;
       for (BrnPickerEntity firstLevelEntity in rootEntity.children) {
         if (firstLevelEntity.children.length > 0) {

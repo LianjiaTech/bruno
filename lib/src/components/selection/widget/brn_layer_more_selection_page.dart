@@ -21,10 +21,11 @@ class BrnLayerMoreSelectionPage extends StatefulWidget {
     Key? key,
     required this.entityData,
     required this.themeData,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
-  _BrnLayerMoreSelectionPageState createState() => _BrnLayerMoreSelectionPageState();
+  _BrnLayerMoreSelectionPageState createState() =>
+      _BrnLayerMoreSelectionPageState();
 }
 
 class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
@@ -52,7 +53,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    _animation = Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
+    _animation =
+        Tween(end: Offset.zero, begin: Offset(1.0, 0.0)).animate(_controller);
     _controller.forward();
     _originalSelectedItemsList = widget.entityData.selectedList();
 
@@ -125,7 +127,10 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                 leading: IconButton(
                   icon: Icon(
                     Icons.arrow_back,
-                    color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+                    color: BrnThemeConfigurator.instance
+                        .getConfig()
+                        .commonConfig
+                        .colorTextBase,
                   ),
                   onPressed: () {
                     //将选中的筛选项返回
@@ -140,7 +145,10 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                 title: Text(
                   '选择${widget.entityData.title}',
                   style: TextStyle(
-                      color: BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+                      color: BrnThemeConfigurator.instance
+                          .getConfig()
+                          .commonConfig
+                          .colorTextBase,
                       fontSize: 16,
                       fontWeight: FontWeight.w600),
                 ),
@@ -224,7 +232,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
               });
 
               if (!this._firstList[index].isSelected) {
-                if (!BrnSelectionUtil.checkMaxSelectionCount(_firstList[index])) {
+                if (!BrnSelectionUtil.checkMaxSelectionCount(
+                    _firstList[index])) {
                   BrnToast.show('您选择的筛选条件数量已达上限', context);
                   setState(() {});
                   return;
@@ -290,10 +299,12 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildLeftItem(int index) {
     //如果房山 被选中了或者房山处于正在选择的状态 则加粗
-    TextStyle textStyle = widget.themeData.flayerNormalTextStyle.generateTextStyle();
+    TextStyle textStyle =
+        widget.themeData.flayerNormalTextStyle.generateTextStyle();
     if (index == _currentIndex) {
       textStyle = widget.themeData.flayerSelectedTextStyle.generateTextStyle();
-    } else if ((_firstList[index].isSelected) && _firstList[index].selectedList().isNotEmpty) {
+    } else if ((_firstList[index].isSelected) &&
+        _firstList[index].selectedList().isNotEmpty) {
       textStyle = widget.themeData.flayerBoldTextStyle.generateTextStyle();
     }
 
@@ -313,7 +324,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
         bool containsCheckChildren = false;
 
         if (_firstList[index].children.isNotEmpty) {
-          containsCheckChildren = _firstList[index].children[0].hasCheckBoxBrother();
+          containsCheckChildren =
+              _firstList[index].children[0].hasCheckBoxBrother();
         }
         if (containsCheck && containsCheckChildren) {
           name += '(${list.length})';
@@ -335,9 +347,10 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
   }
 
   Widget _buildRightItem(int index) {
-    bool isSingle =
-        (_currentFirstEntity?.children[index].filterType == BrnSelectionFilterType.radio) ||
-            (_currentFirstEntity?.children[index].filterType == BrnSelectionFilterType.unLimit);
+    bool isSingle = (_currentFirstEntity?.children[index].filterType ==
+            BrnSelectionFilterType.radio) ||
+        (_currentFirstEntity?.children[index].filterType ==
+            BrnSelectionFilterType.unLimit);
 
     return GestureDetector(
       onTap: () {
@@ -431,8 +444,9 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
             height: 16,
             width: 16,
             child: entity.isSelected
-              ? BrunoTools.getAssetImageWithBandColor(BrnAsset.selectCheckedStatus)
-              : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
+                ? BrunoTools.getAssetImageWithBandColor(
+                    BrnAsset.selectCheckedStatus)
+                : BrunoTools.getAssetImage(BrnAsset.iconUnSelect),
           )
         ],
       );

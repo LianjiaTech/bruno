@@ -414,7 +414,8 @@ class RadarChartExample extends StatefulWidget {
   }
 }
 
-class _RadarChartExampleState extends State<RadarChartExample> with SingleTickerProviderStateMixin {
+class _RadarChartExampleState extends State<RadarChartExample>
+    with SingleTickerProviderStateMixin {
   late double radius;
   int? sideCount;
   double? angle;
@@ -445,7 +446,8 @@ class _RadarChartExampleState extends State<RadarChartExample> with SingleTicker
       dataList1[i.toString()] = data1;
       dataList2[i.toString()] = data2;
     }
-    controller = new AnimationController(duration: const Duration(milliseconds: 300), vsync: this);
+    controller = new AnimationController(
+        duration: const Duration(milliseconds: 300), vsync: this);
     animation = new CurvedAnimation(parent: controller, curve: Curves.ease);
     animation = new Tween(begin: 0.0, end: 1.0).animate(animation);
     controller.forward();
@@ -464,8 +466,17 @@ class _RadarChartExampleState extends State<RadarChartExample> with SingleTicker
                   sidesCount: 5,
                   markerMargin: padding,
                   rotateAngle: angle! * 2 * pi / 360,
-                  data: [dataList1[sideCount.toString()]!, dataList2[sideCount.toString()]!],
-                  tagNames: ['合作共赢诚实守信', '合作共赢诚实守信', '合作共赢诚实守信', '合作共赢诚实守信', '合作共赢诚实守信'],
+                  data: [
+                    dataList1[sideCount.toString()]!,
+                    dataList2[sideCount.toString()]!
+                  ],
+                  tagNames: [
+                    '合作共赢诚实守信',
+                    '合作共赢诚实守信',
+                    '合作共赢诚实守信',
+                    '合作共赢诚实守信',
+                    '合作共赢诚实守信'
+                  ],
                 );
               } else {
                 return BrnRadarChart(

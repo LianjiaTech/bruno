@@ -191,9 +191,7 @@ class BrnMultiChoiceInputFormItemState
                 radioIndex: index,
                 disable: getRadioEnableState(index),
                 isSelected:
-                    (pos < _selectStatus.length)
-                        ? _selectStatus[pos]
-                        : false,
+                    (pos < _selectStatus.length) ? _selectStatus[pos] : false,
                 onValueChangedAtIndex: (position, value) {
                   _selectStatus[position] = value;
                   List<String> oldValue = <String>[]..addAll(widget.value);

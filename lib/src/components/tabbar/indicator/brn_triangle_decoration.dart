@@ -31,7 +31,6 @@ class BrnTriangleIndicator extends Decoration {
 
   factory BrnTriangleIndicator.fromBoxDecoration(BoxDecoration source) {
     ShapeBorder? shape;
-    assert(source.shape != null);
     switch (source.shape) {
       case BoxShape.circle:
         if (source.border != null) {
@@ -96,7 +95,6 @@ class BrnTriangleIndicator extends Decoration {
 
   static BrnTriangleIndicator? lerp(
       BrnTriangleIndicator? a, BrnTriangleIndicator? b, double t) {
-    assert(t != null);
     if (a == null && b == null) return null;
     if (a != null && b != null) {
       if (t == 0.0) return a;
@@ -175,8 +173,7 @@ class BrnTriangleIndicator extends Decoration {
 class _TriangleDecorationPainter extends BoxPainter {
   _TriangleDecorationPainter(
       this._decoration, this._path, this._paint, VoidCallback? onChanged)
-      : assert(_decoration != null),
-        super(onChanged);
+      : super(onChanged);
 
   final BrnTriangleIndicator _decoration;
 
@@ -211,7 +208,6 @@ class _TriangleDecorationPainter extends BoxPainter {
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    assert(configuration != null);
     assert(configuration.size != null);
     final Rect rect = offset & configuration.size!;
 

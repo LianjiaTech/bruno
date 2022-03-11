@@ -293,7 +293,8 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
               child: Text(
                 widget.delegate.titleForRowInComponent(component, i),
                 style: _selectedIndexList[component] == i
-                    ? widget.themeData!.itemTextSelectedStyle.generateTextStyle()
+                    ? widget.themeData!.itemTextSelectedStyle
+                        .generateTextStyle()
                     : widget.themeData!.itemTextStyle.generateTextStyle(),
               ),
             ));

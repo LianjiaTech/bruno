@@ -48,9 +48,6 @@ class BrnDefaultConfigUtils {
     galleryDetailConfig: defaultGalleryDetailConfig,
   );
 
-
-
-
   /// 全局默认配置
   static BrnCommonConfig defaultCommonConfig = BrnCommonConfig(
     /// 主题色相关
@@ -224,8 +221,8 @@ class BrnDefaultConfigUtils {
     ),
     formPadding: EdgeInsets.only(
       left: 0.0,
-      top: defaultCommonConfig.vSpacingLg ,
-      right: defaultCommonConfig.hSpacingLg ,
+      top: defaultCommonConfig.vSpacingLg,
+      right: defaultCommonConfig.hSpacingLg,
       bottom: defaultCommonConfig.vSpacingLg,
     ),
     titlePaddingSm: EdgeInsets.only(left: 10),
@@ -398,7 +395,6 @@ class BrnDefaultConfigUtils {
     tagWidth: 75.0,
     tagMinWidth: 75.0,
   );
-
 
   /// 导航栏配置
   static BrnAppBarConfig defaultAppBarConfig = BrnAppBarConfig(

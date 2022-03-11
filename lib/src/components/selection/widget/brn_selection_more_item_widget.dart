@@ -49,7 +49,8 @@ class _BrnMoreSelectionWidgetState extends State<BrnMoreSelectionWidget> {
   Widget build(BuildContext context) {
     //弹出浮层
     if (widget.selectionEntity.filterType == BrnSelectionFilterType.layer ||
-        widget.selectionEntity.filterType == BrnSelectionFilterType.customLayer) {
+        widget.selectionEntity.filterType ==
+            BrnSelectionFilterType.customLayer) {
       return FilterLayerTypeWidget(
         selectionEntity: widget.selectionEntity,
         onCustomFloatingLayerClick: widget.onCustomFloatingLayerClick,
@@ -80,7 +81,8 @@ class _FilterCommonTypeWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  __FilterCommonTypeWidgetState createState() => __FilterCommonTypeWidgetState();
+  __FilterCommonTypeWidgetState createState() =>
+      __FilterCommonTypeWidgetState();
 }
 
 class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
@@ -132,14 +134,18 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 20, right: _isVisibleMore() ? 40 : 0),
+                padding:
+                    EdgeInsets.only(top: 20, right: _isVisibleMore() ? 40 : 0),
                 child: _buildTitleWidget(),
               ),
               //自定义输入框
               _buildRangeWidget(),
               //标签的筛选条件
               Visibility(
-                visible: widget.selectionEntity.currentShowTagByExpanded(isExpanded).length > 0,
+                visible: widget.selectionEntity
+                        .currentShowTagByExpanded(isExpanded)
+                        .length >
+                    0,
                 child: Padding(
                   padding: EdgeInsets.only(top: 12),
                   child: _buildSelectionTag(),
@@ -256,9 +262,12 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
       if (BrunoTools.isEmpty(entity.value)) {
         showName = entity.title;
       } else {
-        int time = int.tryParse(entity.value ?? "") ?? DateTime.now().millisecondsSinceEpoch;
+        int time = int.tryParse(entity.value ?? "") ??
+            DateTime.now().millisecondsSinceEpoch;
         showName = DateTimeFormatter.formatDate(
-            DateTime.fromMillisecondsSinceEpoch(time), 'yyyy/MMMM/dd', DateTimePickerLocale.zh_cn);
+            DateTime.fromMillisecondsSinceEpoch(time),
+            'yyyy/MMMM/dd',
+            DateTimePickerLocale.zh_cn);
       }
     } else {
       showName = entity.title;
@@ -289,7 +298,8 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
   }
 
   void _showDatePicker(BrnSelectionEntity data) {
-    int time = int.tryParse(data.value ?? "") ?? DateTime.now().millisecondsSinceEpoch;
+    int time =
+        int.tryParse(data.value ?? "") ?? DateTime.now().millisecondsSinceEpoch;
     BrnDatePicker.showDatePicker(context,
         pickerMode: BrnDateTimePickerMode.date,
         pickerTitleConfig: BrnPickerTitleConfig.Default,
@@ -425,7 +435,8 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
     maxController.text = widget.rangeEntity.customMap!['max']?.toString() ?? '';
 
     min = int.tryParse(widget.rangeEntity.extMap['min']?.toString() ?? "") ?? 0;
-    max = int.tryParse(widget.rangeEntity.extMap['max']?.toString() ?? "") ?? 9999;
+    max = int.tryParse(widget.rangeEntity.extMap['max']?.toString() ?? "") ??
+        9999;
 
     ///处理的逻辑：
     ///       1：将输入框的 文本写入 customMap中
@@ -464,13 +475,15 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
     ///        如果是多选 则不处理
     minFocusNode.addListener(() {
       if (minFocusNode.hasFocus) {
-        widget.streamController?.add(InputEvent(filter: false, rangeEntity: widget.rangeEntity));
+        widget.streamController
+            ?.add(InputEvent(filter: false, rangeEntity: widget.rangeEntity));
       }
     });
 
     maxFocusNode.addListener(() {
       if (maxFocusNode.hasFocus) {
-        widget.streamController?.add(InputEvent(filter: false, rangeEntity: widget.rangeEntity));
+        widget.streamController
+            ?.add(InputEvent(filter: false, rangeEntity: widget.rangeEntity));
       }
     });
 
@@ -501,14 +514,16 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
           themeData: widget.themeData,
           onTapped: () {
             //点击选择框通知标签清空
-            widget.streamController?.add(InputEvent(filter: false, rangeEntity: widget.rangeEntity));
+            widget.streamController?.add(
+                InputEvent(filter: false, rangeEntity: widget.rangeEntity));
           });
     } else {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Expanded(
-            child: _buildRangeField('最小值', minController, minFocusNode, widget.themeData),
+            child: _buildRangeField(
+                '最小值', minController, minFocusNode, widget.themeData),
           ),
           Container(
 //          height: 38,
@@ -520,7 +535,8 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
             ),
           ),
           Expanded(
-            child: _buildRangeField('最大值', maxController, maxFocusNode, widget.themeData),
+            child: _buildRangeField(
+                '最大值', maxController, maxFocusNode, widget.themeData),
           ),
         ],
       );
@@ -539,20 +555,27 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
           focusNode: focusNode,
           textAlign: TextAlign.center,
           controller: textEditingController,
-          cursorColor: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+          cursorColor: BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .brandPrimary,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           style: widget.themeData.inputTextStyle.generateTextStyle(),
           decoration: InputDecoration(
               hintText: hint,
               hintStyle: widget.themeData.hintTextStyle.generateTextStyle(),
               enabledBorder: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(widget.themeData.tagRadius),
-                  borderSide:
-                      BorderSide(width: 1, color: widget.themeData.commonConfig.borderColorBase)),
+                  borderRadius:
+                      BorderRadius.circular(widget.themeData.tagRadius),
+                  borderSide: BorderSide(
+                      width: 1,
+                      color: widget.themeData.commonConfig.borderColorBase)),
               focusedBorder: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(widget.themeData.tagRadius),
-                  borderSide:
-                      BorderSide(width: 1, color: widget.themeData.commonConfig.borderColorBase))),
+                  borderRadius:
+                      BorderRadius.circular(widget.themeData.tagRadius),
+                  borderSide: BorderSide(
+                      width: 1,
+                      color: widget.themeData.commonConfig.borderColorBase))),
         ),
       ),
     );
@@ -594,7 +617,8 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
           padding: const EdgeInsets.only(left: 20, right: 20, top: 6),
           child: GestureDetector(
             onTap: () {
-              if (widget.selectionEntity.filterType == BrnSelectionFilterType.layer) {
+              if (widget.selectionEntity.filterType ==
+                  BrnSelectionFilterType.layer) {
                 Navigator.of(context)
                     .push(PageRouteBuilder<BrnSelectionEntity>(
                         opaque: false,
@@ -607,18 +631,21 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
                     .then((data) {
                   setState(() {});
                 });
-              } else if (widget.selectionEntity.filterType == BrnSelectionFilterType.customLayer) {
+              } else if (widget.selectionEntity.filterType ==
+                  BrnSelectionFilterType.customLayer) {
                 if (widget.onCustomFloatingLayerClick != null) {
                   int entityIndex = -1;
                   if (widget.selectionEntity.parent != null) {
-                    entityIndex =
-                        widget.selectionEntity.parent!.children.indexOf(widget.selectionEntity);
+                    entityIndex = widget.selectionEntity.parent!.children
+                        .indexOf(widget.selectionEntity);
                   }
-                  widget.onCustomFloatingLayerClick!(entityIndex, widget.selectionEntity,
+                  widget.onCustomFloatingLayerClick!(
+                      entityIndex, widget.selectionEntity,
                       (List<BrnSelectionEntity> customFloatingLayerParams) {
                     widget.selectionEntity.children.clear();
                     widget.selectionEntity.children = [];
-                    widget.selectionEntity.children.addAll(customFloatingLayerParams);
+                    widget.selectionEntity.children
+                        .addAll(customFloatingLayerParams);
                     widget.selectionEntity.configDefaultValue();
                     setState(() {});
                   });
@@ -632,7 +659,8 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
                   child: Text(_isEmptyCondition() ? '请选择' : _getCondition(),
                       style: _isEmptyCondition()
                           ? widget.themeData.hintTextStyle.generateTextStyle()
-                          : widget.themeData.optionTextStyle.generateTextStyle()),
+                          : widget.themeData.optionTextStyle
+                              .generateTextStyle()),
                 ),
                 Container(
                   height: 16,
@@ -655,7 +683,8 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
   String _getCondition() {
     String tmp = "";
     //返回所有选中的
-    List<BrnSelectionEntity> selectedList = widget.selectionEntity.selectedList();
+    List<BrnSelectionEntity> selectedList =
+        widget.selectionEntity.selectedList();
 
     //判断步骤：
     //第一步：取出来所有选中的： 房山 不限 小白楼 西城 不限

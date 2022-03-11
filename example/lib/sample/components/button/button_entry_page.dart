@@ -28,7 +28,8 @@ class ButtonEntryPage extends StatelessWidget {
               isSupportTheme: true,
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BigMainButtonExample();
                 }));
               },
@@ -39,7 +40,8 @@ class ButtonEntryPage extends StatelessWidget {
               describe: '宽度为屏幕宽度，背景色为白色，带有边框线',
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BigOutlineButtonExample();
                 }));
               },
@@ -49,7 +51,8 @@ class ButtonEntryPage extends StatelessWidget {
               describe: '宽度为屏幕宽度，背景色为次级辅助色',
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BigFuButtonExample();
                 }));
               },
@@ -60,7 +63,8 @@ class ButtonEntryPage extends StatelessWidget {
               describe: '宽度为屏幕宽度，背景色为浅主题色',
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BigGhostButtonExample();
                 }));
               },
@@ -71,7 +75,8 @@ class ButtonEntryPage extends StatelessWidget {
               isSupportTheme: true,
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BrnSmallMainButtonExample();
                 }));
               },
@@ -82,12 +87,12 @@ class ButtonEntryPage extends StatelessWidget {
               describe: '最小宽度为84，宽度自适应文字',
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BrnSmallOutlineButtonExample();
                 }));
               },
             ),
-
           ],
         ),
       ),

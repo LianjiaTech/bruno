@@ -47,6 +47,7 @@ class AxisItem {
 
   /// 文本大小
   late Size textSize;
+
   AxisItem({required this.showText});
 }
 
@@ -105,6 +106,7 @@ class BrnProgressBarItem {
   Rect? barRect;
   Rect? barHintRect;
   late Offset barGroupAxisCenter;
+
   BrnProgressBarItem(
       {this.text,
       required this.value,
@@ -123,6 +125,7 @@ class BrnProgressBarBundle {
   final List<BrnProgressBarItem> barList;
   final List<Color> colors;
   final List<Color> hintColors;
+
   BrnProgressBarBundle(
       {required this.barList,
       this.colors = _defaultColor,

@@ -10,10 +10,12 @@ class SelectionViewMultiRangeExamplePage extends StatefulWidget {
   SelectionViewMultiRangeExamplePage(this._title, this._filters);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<SelectionViewMultiRangeExamplePage> {
+class _SelectionViewExamplePageState
+    extends State<SelectionViewMultiRangeExamplePage> {
   List<String>? titles;
 
   @override
@@ -36,7 +38,8 @@ class _SelectionViewExamplePageState extends State<SelectionViewMultiRangeExampl
                 BrnToast.show(filterParams.toString(), context);
               },
               onSelectionPreShow: (int index, BrnSelectionEntity entity) {
-                if (entity.key == "one_range_key" || entity.key == "two_range_key") {
+                if (entity.key == "one_range_key" ||
+                    entity.key == "two_range_key") {
                   return BrnSelectionWindowType.range;
                 }
                 return entity.filterShowType!;

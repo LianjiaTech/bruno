@@ -23,8 +23,11 @@ class _TextContentExampleState extends State<TextContentExample> {
       BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
       BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
       BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
-      BrnInfoModal(keyPart: "名称名称名称名称：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
-      BrnInfoModal.valueLastClickInfo("名称名：", '内容内容内容内容内容', '可点击内容', clickCallback: (text) {
+      BrnInfoModal(
+          keyPart: "名称名称名称名称：",
+          valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+      BrnInfoModal.valueLastClickInfo("名称名：", '内容内容内容内容内容', '可点击内容',
+          clickCallback: (text) {
         BrnToast.show(text!, context);
       })
     ];
@@ -44,7 +47,10 @@ class _TextContentExampleState extends State<TextContentExample> {
           children: <Widget>[
             Text(
               '规则',
-              style: TextStyle(color: Color(0xFF222222), fontSize: 28, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Color(0xFF222222),
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold),
             ),
             BrnBubbleText(
               maxLines: 4,
@@ -210,7 +216,8 @@ class _TextContentExampleState extends State<TextContentExample> {
                 BrnInfoModal(keyPart: "名称名：", valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(
-                    keyPart: "名称名称名称名称：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+                    keyPart: "名称名称名称名称：",
+                    valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
               ],
             ),
             Text(
@@ -230,9 +237,10 @@ class _TextContentExampleState extends State<TextContentExample> {
                   BrnInfoModal(keyPart: "名称名：", valuePart: "内容内容内容内容内容"),
                   BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
                   BrnInfoModal(
-                      keyPart: "名称名称名称名称：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
-                  BrnInfoModal.valueLastClickInfo("名称名：", '11111111', '22222222',
-                      clickCallback: (text) {
+                      keyPart: "名称名称名称名称：",
+                      valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+                  BrnInfoModal.valueLastClickInfo(
+                      "名称名：", '11111111', '22222222', clickCallback: (text) {
                     BrnToast.show(text!, context);
                   }),
                 ],
@@ -256,7 +264,8 @@ class _TextContentExampleState extends State<TextContentExample> {
                 BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(
-                    keyPart: "名称名称名称名称：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+                    keyPart: "名称名称名称名称：",
+                    valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
                 BrnInfoModal.valueLastClickInfo("名称名：", '内容内容内容内容内容', '可点击内容',
                     clickCallback: (text) {
                   BrnToast.show(text!, context);
@@ -303,12 +312,17 @@ class _TextContentExampleState extends State<TextContentExample> {
                             ),
                             Transform.rotate(
                                 angle: pi,
-                                child: BrunoTools.getAssetImage('icons/icon_up_arrow.png')),
+                                child: BrunoTools.getAssetImage(
+                                    'icons/icon_up_arrow.png')),
                           ],
                         ),
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                          colors: [Colors.white.withAlpha(100), Colors.white, Colors.white],
+                          colors: [
+                            Colors.white.withAlpha(100),
+                            Colors.white,
+                            Colors.white
+                          ],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         )),
@@ -354,12 +368,17 @@ class _TextContentExampleState extends State<TextContentExample> {
                             ),
                             Transform.rotate(
                                 angle: pi,
-                                child: BrunoTools.getAssetImage('icons/icon_down_arrow.png')),
+                                child: BrunoTools.getAssetImage(
+                                    'icons/icon_down_arrow.png')),
                           ],
                         ),
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                          colors: [Colors.white.withAlpha(100), Colors.white, Colors.white],
+                          colors: [
+                            Colors.white.withAlpha(100),
+                            Colors.white,
+                            Colors.white
+                          ],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         )),
@@ -379,9 +398,11 @@ class _TextContentExampleState extends State<TextContentExample> {
                 BrnInfoModal(keyPart: "名称：", valuePart: "内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名：", valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(
-                    keyPart: "11111111111111111111111111111111111：", valuePart: "内容内容内容内容内容"),
+                    keyPart: "11111111111111111111111111111111111：",
+                    valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
-                BrnInfoModal.valueLastClickInfo("名称十分的长名称十分的长名称十分的长名称十分的长：", '内容内容内容内容内容', '可点击内容',
+                BrnInfoModal.valueLastClickInfo(
+                    "名称十分的长名称十分的长名称十分的长名称十分的长：", '内容内容内容内容内容', '可点击内容',
                     clickCallback: (text) {
                   BrnToast.show(text!, context);
                 }),
@@ -396,13 +417,18 @@ class _TextContentExampleState extends State<TextContentExample> {
             ),
             BrnAlignPairInfo(
               children: <BrnInfoModal>[
-                BrnInfoModal(keyPart: "名称：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+                BrnInfoModal(
+                    keyPart: "名称：",
+                    valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名：", valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称正常：", valuePart: "内容内容内容内容内容"),
-                BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+                BrnInfoModal(
+                    keyPart: "名称名称名：",
+                    valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
                 BrnInfoModal.valueLastClickInfo(
-                    "名称十分的长名称十分的长名称十分的长名称十分的长：", '内容内容内容内容内容', '可点击内容可点击内容可点击内容可点击内容可点击内容可点击内容',
-                    clickCallback: (text) {
+                    "名称十分的长名称十分的长名称十分的长名称十分的长：",
+                    '内容内容内容内容内容',
+                    '可点击内容可点击内容可点击内容可点击内容可点击内容可点击内容', clickCallback: (text) {
                   BrnToast.show(text!, context);
                 }),
               ],

@@ -58,13 +58,13 @@ class BrnSmallMainButton extends StatelessWidget {
     this.maxWidth,
     this.width,
     this.themeData,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     BrnButtonConfig defaultThemeConfig = themeData ?? BrnButtonConfig();
-    defaultThemeConfig = defaultThemeConfig
-        .merge(BrnButtonConfig(smallButtonFontSize: fontSize, smallButtonRadius: radius));
+    defaultThemeConfig = defaultThemeConfig.merge(BrnButtonConfig(
+        smallButtonFontSize: fontSize, smallButtonRadius: radius));
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
@@ -112,7 +112,8 @@ class BrnSmallMainButton extends StatelessWidget {
           ),
           alignment: Alignment.center,
           text: title,
-          backgroundColor: bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
+          backgroundColor:
+              bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
           disableBackgroundColor: Color(0xFFCCCCCC),
           borderRadius: BorderRadius.all(Radius.circular(defaultThemeConfig.smallButtonRadius)),
           onTap: onTap,

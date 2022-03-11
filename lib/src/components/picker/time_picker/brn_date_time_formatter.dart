@@ -148,7 +148,7 @@ class DateTimeFormatter {
   /// Format day display
   static String formatDate(
       DateTime dateTime, String format, DateTimePickerLocale locale) {
-    if (format == null || format.length == 0) {
+    if (format.length == 0) {
       return dateTime.toString();
     }
 

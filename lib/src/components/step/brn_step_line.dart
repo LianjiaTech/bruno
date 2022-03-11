@@ -252,11 +252,11 @@ class _BrnStepLinePainter extends CustomPainter {
 
   _BrnStepLinePainter(
       {required this.lineColor,
-        this.paintWidth = 1,
-        required this.iconTopPadding,
-        required this.isDash,
-        required this.dashSpace,
-        required this.dashLength});
+      this.paintWidth = 1,
+      required this.iconTopPadding,
+      required this.isDash,
+      required this.dashSpace,
+      required this.dashLength});
 
   final Paint _paint = Paint()
     ..strokeCap = StrokeCap.round // 画笔笔触类型

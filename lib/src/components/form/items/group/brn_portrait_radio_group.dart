@@ -73,7 +73,7 @@ class BrnPortraitRadioGroup extends StatefulWidget {
     this.onChanged,
     this.isCollapseContent = false,
     this.themeData,
-  }) :super(key: key){
+  }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)

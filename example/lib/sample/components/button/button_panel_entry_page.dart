@@ -4,8 +4,7 @@ import 'package:example/sample/components/button/button_panel_example.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
 
-class ButtonPanelEntryPage extends StatelessWidget{
-
+class ButtonPanelEntryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +22,8 @@ class ButtonPanelEntryPage extends StatelessWidget{
               isShowLine: false,
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return ButtonPanelExample();
                 }));
               },
@@ -33,7 +33,8 @@ class ButtonPanelEntryPage extends StatelessWidget{
               describe: '文本类型按钮集合',
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BrnTextButtonPanelExample();
                 }));
               },

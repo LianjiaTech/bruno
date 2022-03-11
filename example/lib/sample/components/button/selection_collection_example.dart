@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 class BrnSelectionBottomButtonExample extends StatefulWidget {
   @override
-  _BrnSelectionBottomButtonExampleState createState() => _BrnSelectionBottomButtonExampleState();
+  _BrnSelectionBottomButtonExampleState createState() =>
+      _BrnSelectionBottomButtonExampleState();
 }
 
-class _BrnSelectionBottomButtonExampleState extends State<BrnSelectionBottomButtonExample> {
-
+class _BrnSelectionBottomButtonExampleState
+    extends State<BrnSelectionBottomButtonExample> {
   BrnMultipleBottomController controller = BrnMultipleBottomController();
 
   @override
@@ -83,7 +84,8 @@ class _BrnSelectionBottomButtonExampleState extends State<BrnSelectionBottomButt
                 ),
                 BrnMultipleBottomButton(
                   bottomController: BrnMultipleBottomController(
-                      initMultiSelectState: MultiSelectState(selectedCount: 99)),
+                      initMultiSelectState:
+                          MultiSelectState(selectedCount: 99)),
                   onSelectedButtonTap: selectedButtonOnTap,
                   hasArrow: false,
                   mainButton: '主要按钮',

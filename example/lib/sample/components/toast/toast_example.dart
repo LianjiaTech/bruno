@@ -64,13 +64,10 @@ class _ToastExampleState extends State<ToastExample>
               ),
               ElevatedButton(
                 onPressed: () {
-                  BrnToast.show(
-                      "自定义位置Toast",
-                      context,
+                  BrnToast.show("自定义位置Toast", context,
                       duration: BrnDuration.short,
                       verticalOffset: 100,
-                      gravity: BrnToastGravity.bottom
-                  );
+                      gravity: BrnToastGravity.bottom);
                 },
                 child: Text("自定义位置Toast"),
               ),

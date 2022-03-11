@@ -50,7 +50,7 @@ class BrnFlatMoreSelection extends StatefulWidget {
     this.preLineTagSize = 3,
     this.parentWidth = 0,
     required this.themeData,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   _BrnFlatMoreSelectionState createState() => _BrnFlatMoreSelectionState();
@@ -61,7 +61,8 @@ class _BrnFlatMoreSelectionState extends State<BrnFlatMoreSelection> {
   Widget build(BuildContext context) {
     //弹出浮层
     if (widget.selectionEntity.filterType == BrnSelectionFilterType.layer ||
-        widget.selectionEntity.filterType == BrnSelectionFilterType.customLayer) {
+        widget.selectionEntity.filterType ==
+            BrnSelectionFilterType.customLayer) {
       return FilterLayerTypeWidget(
         selectionEntity: widget.selectionEntity,
         onCustomFloatingLayerClick: widget.onCustomFloatingLayerClick,
@@ -97,7 +98,8 @@ class _FilterCommonTypeWidget extends StatefulWidget {
       required this.themeData});
 
   @override
-  __FilterCommonTypeWidgetState createState() => __FilterCommonTypeWidgetState();
+  __FilterCommonTypeWidgetState createState() =>
+      __FilterCommonTypeWidgetState();
 }
 
 class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
@@ -151,11 +153,14 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
   @override
   Widget build(BuildContext context) {
     try {
-      _tagWidth = (widget.parentWidth - _spacing * (widget.preLineTagSize - 1) - _padding * 2) /
+      _tagWidth = (widget.parentWidth -
+              _spacing * (widget.preLineTagSize - 1) -
+              _padding * 2) /
           widget.preLineTagSize;
       //保留小数点后3位
-      _tagWidth = double.parse(
-          _tagWidth.toStringAsFixed(4).substring(0, _tagWidth.toStringAsFixed(4).length - 1));
+      _tagWidth = double.parse(_tagWidth
+          .toStringAsFixed(4)
+          .substring(0, _tagWidth.toStringAsFixed(4).length - 1));
       _tagWidth = _tagWidth < 75 ? 75 : _tagWidth;
     } catch (e) {
       debugPrint('get tag width error');
@@ -173,7 +178,10 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
                 child: _buildTitleWidget(),
               ),
               Visibility(
-                visible: widget.selectionEntity.currentShowTagByExpanded(isExpanded).length > 0,
+                visible: widget.selectionEntity
+                        .currentShowTagByExpanded(isExpanded)
+                        .length >
+                    0,
                 child: Container(
                   padding: EdgeInsets.only(top: 12),
                   child: _buildOptionWidgets(),
@@ -297,9 +305,12 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
       if (data.value == null || data.value!.isEmpty) {
         showName = data.title;
       } else {
-        int time = int.tryParse(data.value ?? "") ?? DateTime.now().millisecondsSinceEpoch;
+        int time = int.tryParse(data.value ?? "") ??
+            DateTime.now().millisecondsSinceEpoch;
         showName = DateTimeFormatter.formatDate(
-            DateTime.fromMillisecondsSinceEpoch(time), 'yyyy/MMMM/dd', DateTimePickerLocale.zh_cn);
+            DateTime.fromMillisecondsSinceEpoch(time),
+            'yyyy/MMMM/dd',
+            DateTimePickerLocale.zh_cn);
       }
     } else {
       showName = data.title;
@@ -331,7 +342,8 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
   }
 
   void _showDatePicker(BrnSelectionEntity data) {
-    int time = int.tryParse(data.value ?? "") ?? DateTime.now().millisecondsSinceEpoch;
+    int time =
+        int.tryParse(data.value ?? "") ?? DateTime.now().millisecondsSinceEpoch;
     BrnDatePicker.showDatePicker(context,
         pickerMode: BrnDateTimePickerMode.date,
         pickerTitleConfig: BrnPickerTitleConfig.Default,
@@ -365,8 +377,7 @@ class __MoreArrowState extends State<_MoreArrow> {
 
   @override
   Widget build(BuildContext context) {
-    String asset =
-        isExpanded ? BrnAsset.iconUpArrow : BrnAsset.iconDownArrow;
+    String asset = isExpanded ? BrnAsset.iconUpArrow : BrnAsset.iconDownArrow;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -383,7 +394,8 @@ class __MoreArrowState extends State<_MoreArrow> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text('更多', style: widget.themeData.moreTextStyle.generateTextStyle()),
+            Text('更多',
+                style: widget.themeData.moreTextStyle.generateTextStyle()),
             Container(
               height: 16,
               width: 16,
@@ -468,7 +480,8 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
         : '';
 
     min = int.tryParse(widget.rangeEntity.extMap['min']?.toString() ?? '') ?? 0;
-    max = int.tryParse(widget.rangeEntity.extMap['max']?.toString() ?? '') ?? 9999;
+    max = int.tryParse(widget.rangeEntity.extMap['max']?.toString() ?? '') ??
+        9999;
 
     ///处理的逻辑：
     ///       1：将输入框的 文本写入 customMap中
@@ -520,13 +533,15 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
     ///        如果是多选 则不处理
     minFocusNode.addListener(() {
       if (minFocusNode.hasFocus) {
-        widget.streamController?.add(InputEvent(filter: false, rangeEntity: widget.rangeEntity));
+        widget.streamController
+            ?.add(InputEvent(filter: false, rangeEntity: widget.rangeEntity));
       }
     });
 
     maxFocusNode.addListener(() {
       if (maxFocusNode.hasFocus) {
-        widget.streamController?.add(InputEvent(filter: false, rangeEntity: widget.rangeEntity));
+        widget.streamController
+            ?.add(InputEvent(filter: false, rangeEntity: widget.rangeEntity));
       }
     });
 
@@ -550,7 +565,8 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        _buildRangeField('最小值', minController, minFocusNode, widget.width, widget.themeData),
+        _buildRangeField(
+            '最小值', minController, minFocusNode, widget.width, widget.themeData),
         Padding(
           padding: EdgeInsets.only(left: 2),
         ),
@@ -562,7 +578,8 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
         Padding(
           padding: EdgeInsets.only(right: 2),
         ),
-        _buildRangeField('最大值', maxController, maxFocusNode, widget.width, widget.themeData),
+        _buildRangeField(
+            '最大值', maxController, maxFocusNode, widget.width, widget.themeData),
       ],
     );
   }
@@ -576,7 +593,8 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
   ) {
     return Container(
       decoration: BoxDecoration(
-          color: Color(0xFFF9F9F9), borderRadius: BorderRadius.all(Radius.circular(4.0))),
+          color: Color(0xFFF9F9F9),
+          borderRadius: BorderRadius.all(Radius.circular(4.0))),
       height: 32,
       width: width,
       child: Center(
@@ -603,7 +621,10 @@ class FilterLayerTypeWidget extends StatefulWidget {
   final BrnOnCustomFloatingLayerClick? onCustomFloatingLayerClick;
   final BrnSelectionConfig themeData;
 
-  FilterLayerTypeWidget({required this.selectionEntity, this.onCustomFloatingLayerClick, required this.themeData});
+  FilterLayerTypeWidget(
+      {required this.selectionEntity,
+      this.onCustomFloatingLayerClick,
+      required this.themeData});
 
   @override
   _FilterLayerTypeWidgetState createState() => _FilterLayerTypeWidgetState();
@@ -627,7 +648,8 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
           padding: const EdgeInsets.only(left: 20, right: 20, top: 6),
           child: GestureDetector(
             onTap: () {
-              if (widget.selectionEntity.filterType == BrnSelectionFilterType.layer) {
+              if (widget.selectionEntity.filterType ==
+                  BrnSelectionFilterType.layer) {
                 Navigator.of(context)
                     .push(PageRouteBuilder<BrnSelectionEntity>(
                         opaque: false,
@@ -640,18 +662,21 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
                     .then((data) {
                   updateContent();
                 });
-              } else if (widget.selectionEntity.filterType == BrnSelectionFilterType.customLayer) {
+              } else if (widget.selectionEntity.filterType ==
+                  BrnSelectionFilterType.customLayer) {
                 if (widget.onCustomFloatingLayerClick != null) {
                   int entityIndex = -1;
                   if (widget.selectionEntity.parent != null &&
                       widget.selectionEntity.parent!.children.isNotEmpty) {
-                    entityIndex =
-                        widget.selectionEntity.parent!.children.indexOf(widget.selectionEntity);
+                    entityIndex = widget.selectionEntity.parent!.children
+                        .indexOf(widget.selectionEntity);
                   }
-                  widget.onCustomFloatingLayerClick!(entityIndex, widget.selectionEntity,
+                  widget.onCustomFloatingLayerClick!(
+                      entityIndex, widget.selectionEntity,
                       (List<BrnSelectionEntity> customFloatingLayerParams) {
                     widget.selectionEntity.children.clear();
-                    widget.selectionEntity.children.addAll(customFloatingLayerParams);
+                    widget.selectionEntity.children
+                        .addAll(customFloatingLayerParams);
                     widget.selectionEntity.configDefaultValue();
                     setState(() {});
                   });
@@ -665,7 +690,8 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
                   child: Text(isEmptyCondition() ? '请选择' : getCondition(),
                       style: isEmptyCondition()
                           ? widget.themeData.hintTextStyle.generateTextStyle()
-                          : widget.themeData.optionTextStyle.generateTextStyle()),
+                          : widget.themeData.optionTextStyle
+                              .generateTextStyle()),
                 ),
                 Container(
                   height: 16,
@@ -693,7 +719,8 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
   String getCondition() {
     String tmp = "";
     //返回所有选中的
-    List<BrnSelectionEntity> selectedList = widget.selectionEntity.selectedList();
+    List<BrnSelectionEntity> selectedList =
+        widget.selectionEntity.selectedList();
 
     //判断步骤：
     //第一步：取出来所有选中的： 房山 不限 小白楼 西城 不限

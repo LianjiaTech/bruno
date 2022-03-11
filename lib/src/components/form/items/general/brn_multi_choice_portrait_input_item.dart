@@ -187,9 +187,8 @@ class BrnMultiChoicePortraitInputFormItemState
           mainAxisSize: MainAxisSize.max,
           radioIndex: index,
           disable: getRadioEnableState(index),
-          isSelected: (index < _selectStatus.length)
-              ? _selectStatus[index]
-              : false,
+          isSelected:
+              (index < _selectStatus.length) ? _selectStatus[index] : false,
           onValueChangedAtIndex: (position, value) {
             _selectStatus[position] = value;
             List<String> oldValue = <String>[]..addAll(widget.value);

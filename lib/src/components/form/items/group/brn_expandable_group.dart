@@ -41,7 +41,7 @@ class BrnExpandableGroup extends StatefulWidget {
     this.children = const <Widget>[],
     this.initiallyExpanded = false,
     this.themeData,
-  })  : super(key: key) {
+  }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
@@ -126,8 +126,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
     }
 
     if (_isExpanded) {
-      arrowIcon =
-          BrunoTools.getAssetSizeImage(BrnAsset.iconDownArrow, 12, 12);
+      arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconDownArrow, 12, 12);
     } else {
       arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconUpArrow, 12, 12);
     }

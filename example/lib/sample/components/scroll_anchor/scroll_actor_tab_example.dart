@@ -23,9 +23,7 @@ class ScrollActorTabExample extends StatelessWidget {
           );
         },
         tabIndexedBuilder: (context, index) {
-          return BadgeTab(
-            text: 'index $index'
-          );
+          return BadgeTab(text: 'index $index');
         },
       ),
     );

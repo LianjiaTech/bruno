@@ -336,7 +336,7 @@ class DialogEntryPage extends StatelessWidget {
 
   ///多选弹框
   void _showMiddleMultiSelectDialog(BuildContext context) {
-    List<MultiSelectItem> data =  [];
+    List<MultiSelectItem> data = [];
     data.add(new MultiSelectItem("100", "感兴趣待跟进"));
     data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
     data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));
@@ -363,7 +363,7 @@ class DialogEntryPage extends StatelessWidget {
 
   void _showMiddleMultiSelectWithMessageWidgetDialog(BuildContext context) {
     String hintText = "感兴趣待跟进";
-    List<MultiSelectItem> data =  [];
+    List<MultiSelectItem> data = [];
     data.add(new MultiSelectItem("100", "感兴趣待跟进"));
     data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
     data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));
@@ -432,7 +432,7 @@ class DialogEntryPage extends StatelessWidget {
 
   ///多选弹框
   void _showMiddleMultiSelectWithMessageDialog(BuildContext context) {
-    List<MultiSelectItem> data =  [];
+    List<MultiSelectItem> data = [];
     data.add(new MultiSelectItem("100", "感兴趣待跟进"));
     data.add(new MultiSelectItem("101", "感兴趣但对本商圈没兴趣", isChecked: true));
     data.add(new MultiSelectItem("102", "接通后挂断/不感兴趣", isChecked: true));

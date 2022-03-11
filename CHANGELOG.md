@@ -3,7 +3,7 @@
 ## [2.1.0-Beta] - 2022-2-15
 ### Changed
 
-#### base 
+#### base
 
 - **Breaking change**: Sound null safety support, thanks to  @leftcoding #39#33 @donywan #20 @laiiihz #80#64#59#32#14  @kalifun #36 @jojinshallar #81#75#65#62#56#42 @junlandroid #73 @Kenneth #53 @HappyImp #55 @kkkman22 #23 @AlexV525 #30
 - **Breaking change**: Refer to the dart language specification to optimized constant and enum naming.

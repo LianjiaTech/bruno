@@ -10,10 +10,12 @@ class SelectionViewCloseOrInterceptorExamplePage extends StatefulWidget {
   SelectionViewCloseOrInterceptorExamplePage(this._title, this._filterData);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<SelectionViewCloseOrInterceptorExamplePage> {
+class _SelectionViewExamplePageState
+    extends State<SelectionViewCloseOrInterceptorExamplePage> {
   List<BrnSelectionEntity>? items;
 
   BrnSelectionViewController? controller;
@@ -62,7 +64,7 @@ class _SelectionViewExamplePageState extends State<SelectionViewCloseOrIntercept
                 Map<String, String> customParams,
                 BrnSetCustomSelectionMenuTitle setCustomTitleFunction) {
               BrnToast.show('选中 ${filterParams.toString()}，但筛选条件被清除了', context);
-              if (menuIndex == 1 && filterParams != null && filterParams['two_list_key'] != null) {
+              if (menuIndex == 1 && filterParams['two_list_key'] != null) {
                 widget._filterData![1].clearChildSelection();
                 widget._filterData![1].configRelationshipAndDefaultValue();
                 controller!.refreshSelectionTitle();

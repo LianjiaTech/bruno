@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TextModel {
-   String? text;
+  String? text;
 }
 
 class BrnInputTextExample extends StatefulWidget {
@@ -62,30 +62,6 @@ class _BrnInputTextExampleState extends State<BrnInputTextExample> {
       onSubmit: (text) {
         print(text);
       },
-    );
-  }
-
-  Widget _inputTextBg() {
-    return Container(
-      padding: EdgeInsets.all(20),
-      child: BrnInputText(
-        maxHeight: 200,
-        minHeight: 30,
-        minLines: 1,
-        maxLength: 500,
-        bgColor: Color(0xFFeeF0F0),
-        borderRadius: 4,
-        textString: '12121212',
-        maxHintLines: 4,
-        hint: 'input动态算高input动态算高input动态算高input动态算高input动态算高',
-        padding: EdgeInsets.fromLTRB(20, 10, 20, 14),
-        onTextChange: (text) {
-          print(text);
-        },
-        onSubmit: (text) {
-          print(text);
-        },
-      ),
     );
   }
 }

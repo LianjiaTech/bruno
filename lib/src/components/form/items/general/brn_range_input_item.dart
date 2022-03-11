@@ -309,7 +309,7 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
   void dispose() {
     super.dispose();
     // 如果controller由外部创建不需要销毁, 若由内部创建则需要销毁
-      _minController.dispose();
-      _maxController.dispose();
+    _minController.dispose();
+    _maxController.dispose();
   }
 }

@@ -10,10 +10,12 @@ class SelectionViewCustomHandleFilterExamplePage extends StatefulWidget {
   SelectionViewCustomHandleFilterExamplePage(this._title, this._filters);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<SelectionViewCustomHandleFilterExamplePage> {
+class _SelectionViewExamplePageState
+    extends State<SelectionViewCustomHandleFilterExamplePage> {
   int count = 0;
 
   @override
@@ -29,11 +31,14 @@ class _SelectionViewExamplePageState extends State<SelectionViewCustomHandleFilt
           children: <Widget>[
             BrnSelectionView(
               originalSelectionData: widget._filters!,
-              onCustomSelectionMenuClick: (int index, BrnSelectionEntity customMenuItem,
+              onCustomSelectionMenuClick: (int index,
+                  BrnSelectionEntity customMenuItem,
                   BrnSetCustomSelectionParams customHandleCallBack) {
                 /// 用户操作一段时间之后，将自定义参数回传，触发 onSelectionChanged回调。
                 BrnDialogManager.showConfirmDialog(context,
-                    cancel: '取消', confirm: '确定', message: '点击确定，回传自定义参数到筛选', onConfirm: () {
+                    cancel: '取消',
+                    confirm: '确定',
+                    message: '点击确定，回传自定义参数到筛选', onConfirm: () {
                   count++;
                   customHandleCallBack({"CKey": "CValue" + '$count'});
                 }, onCancel: () {});
@@ -44,8 +49,11 @@ class _SelectionViewExamplePageState extends State<SelectionViewCustomHandleFilt
                   BrnSetCustomSelectionMenuTitle setCustomTitleFunction) {
                 if (menuIndex == 1) {
                   setCustomTitleFunction(
-                      menuTitle: BrunoTools.isEmpty(customParams) ? "" : customParams['CKey'] ?? "",
-                      isMenuTitleHighLight: !BrunoTools.isEmpty(customParams['CKey']));
+                      menuTitle: BrunoTools.isEmpty(customParams)
+                          ? ""
+                          : customParams['CKey'] ?? "",
+                      isMenuTitleHighLight:
+                          !BrunoTools.isEmpty(customParams['CKey']));
                 }
               },
             ),

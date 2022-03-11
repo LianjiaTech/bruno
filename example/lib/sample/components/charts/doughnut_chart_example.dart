@@ -29,7 +29,9 @@ class DoughnutChartExampleState extends State<DoughnutChartExample> {
     super.initState();
     for (int i = 0; i < count; i++) {
       dataList.add(BrnDoughnutDataItem(
-          title: '示例', value: random(1, 5).toDouble(), color: getColorWithIndex(i)));
+          title: '示例',
+          value: random(1, 5).toDouble(),
+          color: getColorWithIndex(i)));
     }
   }
 
@@ -63,7 +65,9 @@ class DoughnutChartExampleState extends State<DoughnutChartExample> {
               });
             },
           ),
-          DoughnutChartLegend(data: this.dataList, legendStyle: BrnDoughnutChartLegendStyle.wrap),
+          DoughnutChartLegend(
+              data: this.dataList,
+              legendStyle: BrnDoughnutChartLegendStyle.wrap),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[

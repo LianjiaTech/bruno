@@ -12,7 +12,7 @@ class BrnBottomTabBarItem {
     this.badge,
     this.badgeNo,
     this.maxBadgeNo = 99,
-  })  : activeIcon = activeIcon ?? icon;
+  }) : activeIcon = activeIcon ?? icon;
 
   /// 未选中时的icon
   final Widget icon;

@@ -29,9 +29,7 @@ class BrnFixedUnderlineIndicator extends Decoration {
     this.width = 1.0,
     this.thickness = 1.0,
     this.color = Colors.white,
-  })  : assert(borderSide != null),
-        assert(insets != null),
-        assert(width >= 1.0);
+  }) : assert(width >= 1.0);
 
   /// The color and weight of the horizontal line drawn below the selected tab.
   final BorderSide borderSide;
@@ -77,8 +75,7 @@ class BrnFixedUnderlineIndicator extends Decoration {
 
 class _FixedUnderlinePainter extends BoxPainter {
   _FixedUnderlinePainter(this.decoration, VoidCallback? onChanged)
-      : assert(decoration != null),
-        super(onChanged);
+      : super(onChanged);
 
   final BrnFixedUnderlineIndicator decoration;
 
@@ -87,8 +84,6 @@ class _FixedUnderlinePainter extends BoxPainter {
   EdgeInsetsGeometry get insets => decoration.insets;
 
   Rect _indicatorRectFor(Rect rect, TextDirection textDirection) {
-    assert(rect != null);
-    assert(textDirection != null);
     final Rect indicator = insets.resolve(textDirection).deflateRect(rect);
     return Rect.fromLTWH(
       indicator.left,
@@ -100,7 +95,6 @@ class _FixedUnderlinePainter extends BoxPainter {
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    assert(configuration != null);
     assert(configuration.size != null);
     final Rect rect = offset & configuration.size!;
     final TextDirection textDirection = configuration.textDirection!;

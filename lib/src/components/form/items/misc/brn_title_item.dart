@@ -104,8 +104,8 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
                       Container(
                           child: Text(
                         widget.title,
-                        style:
-                            BrnFormUtil.getHeadTitleTextStyle(widget.themeData!),
+                        style: BrnFormUtil.getHeadTitleTextStyle(
+                            widget.themeData!),
                       )),
 
                       // 问号提示

@@ -45,8 +45,11 @@ class BrnLine extends StatelessWidget {
       child: Divider(
         thickness: this.height,
         height: this.height,
-        color:
-            this.color ?? BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase,
+        color: this.color ??
+            BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .dividerColorBase,
       ),
     );
   }

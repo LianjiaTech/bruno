@@ -186,7 +186,8 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                       color: value.selectedCount != 0
                           ? BrnThemeConfigurator.instance
                               .getConfig()
-                              .commonConfig.brandPrimary
+                              .commonConfig
+                              .brandPrimary
                           : Color(0x99999999),
                       fontSize: 16),
                 ));
@@ -273,16 +274,19 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                     padding: EdgeInsets.only(left: 10, right: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(4)),
-                        color: value.mainButtonState? BrnThemeConfigurator.instance
+                        color: value.mainButtonState
+                            ? BrnThemeConfigurator.instance
                                 .getConfig()
-                                .commonConfig.brandPrimary
+                                .commonConfig
+                                .brandPrimary
                             : Color(0xFFCCCCCC)),
                     child: widget.mainButton is String
                         ? Center(
                             child: Text(
                             widget.mainButton,
                             style: TextStyle(
-                                color: value.mainButtonState? Colors.white
+                                color: value.mainButtonState
+                                    ? Colors.white
                                     : Color(0xAAFFFFFF),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
@@ -313,16 +317,19 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                     padding: EdgeInsets.only(left: 10, right: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(4)),
-                        color: value.subButtonState? BrnThemeConfigurator.instance
+                        color: value.subButtonState
+                            ? BrnThemeConfigurator.instance
                                 .getConfig()
-                                .commonConfig.brandAuxiliary
+                                .commonConfig
+                                .brandAuxiliary
                             : Color(0xFFCCCCCC)),
                     child: widget.subButton is String
                         ? Center(
                             child: Text(
                             widget.subButton,
                             style: TextStyle(
-                                color: value.subButtonState? Colors.white
+                                color: value.subButtonState
+                                    ? Colors.white
                                     : Color(0xAAFFFFFF),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
@@ -364,8 +371,7 @@ class BrnMultipleBottomController {
     MultiSelectState data = MultiSelectState(
         selectedCount: selectedCount ?? valueNotifier.value.selectedCount,
         selectAllState: selectAllState ?? valueNotifier.value.selectAllState,
-        mainButtonState:
-            mainButtonState ?? valueNotifier.value.mainButtonState,
+        mainButtonState: mainButtonState ?? valueNotifier.value.mainButtonState,
         subButtonState: subButtonState ?? valueNotifier.value.subButtonState,
         arrowStatus: arrowStatus ?? valueNotifier.value.arrowStatus);
     valueNotifier.value = data;

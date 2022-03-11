@@ -16,10 +16,12 @@ class BrnSelectionAnimationWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _BrnSelectionAnimationWidgetState createState() => _BrnSelectionAnimationWidgetState();
+  _BrnSelectionAnimationWidgetState createState() =>
+      _BrnSelectionAnimationWidgetState();
 }
 
-class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidget>
+class _BrnSelectionAnimationWidgetState
+    extends State<BrnSelectionAnimationWidget>
     with SingleTickerProviderStateMixin {
   bool _isControllerDisposed = false;
   late AnimationController _animationController;
@@ -29,7 +31,8 @@ class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidge
     super.initState();
     widget.controller.addListener(_onController);
     _animationController = AnimationController(
-        duration: Duration(milliseconds: widget.animationMilliseconds), vsync: this);
+        duration: Duration(milliseconds: widget.animationMilliseconds),
+        vsync: this);
   }
 
   dispose() {
@@ -45,14 +48,16 @@ class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidge
 
   @override
   Widget build(BuildContext context) {
-    _animationController.duration = Duration(milliseconds: widget.animationMilliseconds);
+    _animationController.duration =
+        Duration(milliseconds: widget.animationMilliseconds);
     return _buildListViewWidget();
   }
 
   _showListViewWidget() {
     Animation<double> animation = Tween(
             begin: 0.0,
-            end: MediaQuery.of(context).size.height - (widget.controller.listViewTop ?? 0))
+            end: MediaQuery.of(context).size.height -
+                (widget.controller.listViewTop ?? 0))
         .animate(_animationController)
           ..addListener(() {
             //这行如果不写，没有动画效果
@@ -78,7 +83,8 @@ class _BrnSelectionAnimationWidgetState extends State<BrnSelectionAnimationWidge
         color: Color(0xB3000000),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height - (widget.controller.listViewTop ?? 0),
+          height: MediaQuery.of(context).size.height -
+              (widget.controller.listViewTop ?? 0),
           child: Padding(
             padding: EdgeInsets.all(0),
             child: widget.view,

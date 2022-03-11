@@ -130,7 +130,7 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
   Widget _buildGridViewWidget(
       BuildContext context, VoidCallback? onUpdate, double maxWidth) {
     int brnCrossAxisCount =
-    (this.crossAxisCount == null || this.crossAxisCount == 0)
+        (this.crossAxisCount == null || this.crossAxisCount == 0)
             ? 4
             : this.crossAxisCount!;
     double width =

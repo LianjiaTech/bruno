@@ -129,7 +129,6 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
         min(max(_minuteRange.first, _currStartMinute), _minuteRange.last);
     _currStartMinute -= _currStartMinute % _minuteDivider;
 
-
     _onInitSelectedChange();
     // create scroll controller
     _startHourScrollCtrl = FixedExtentScrollController(

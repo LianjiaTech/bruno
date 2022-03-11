@@ -96,12 +96,12 @@ class _SoftGuideExampleState extends State<SoftGuideExample> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    RaisedButton(
+                    ElevatedButton(
                       key: intro.keys[2],
                       onPressed: () {},
                       child: Text("需求1"),
                     ),
-                    RaisedButton(
+                    ElevatedButton(
                       key: intro.keys[3],
                       onPressed: () {},
                       child: Text("需求2"),

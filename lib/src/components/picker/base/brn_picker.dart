@@ -74,14 +74,10 @@ class BrnPicker extends StatefulWidget {
     required this.onSelectedItemChanged,
     required List<Widget> children,
     bool looping = false,
-  })  : assert(children != null),
-        assert(diameterRatio != null),
-        assert(diameterRatio > 0.0,
+  })  : assert(diameterRatio > 0.0,
             RenderListWheelViewport.diameterRatioZeroMessage),
         assert(magnification > 0),
-        assert(itemExtent != null),
         assert(itemExtent > 0),
-        assert(squeeze != null),
         assert(squeeze > 0),
         childDelegate = looping
             ? ListWheelChildLoopingListDelegate(children: children)
@@ -119,14 +115,10 @@ class BrnPicker extends StatefulWidget {
     required this.onSelectedItemChanged,
     required IndexedWidgetBuilder itemBuilder,
     int? childCount,
-  })  : assert(itemBuilder != null),
-        assert(diameterRatio != null),
-        assert(diameterRatio > 0.0,
+  })  : assert(diameterRatio > 0.0,
             RenderListWheelViewport.diameterRatioZeroMessage),
         assert(magnification > 0),
-        assert(itemExtent != null),
         assert(itemExtent > 0),
-        assert(squeeze != null),
         assert(squeeze > 0),
         childDelegate = ListWheelChildBuilderDelegate(
             builder: itemBuilder, childCount: childCount),
@@ -234,10 +226,7 @@ class _CupertinoPickerState extends State<BrnPicker> {
       _lastHapticIndex = index;
       HapticFeedback.selectionClick();
     }
-
-    if (widget.onSelectedItemChanged != null) {
-      widget.onSelectedItemChanged(index);
-    }
+    widget.onSelectedItemChanged(index);
   }
 
   /// Makes the fade to [CupertinoPicker.backgroundColor] edge gradients.
@@ -246,8 +235,7 @@ class _CupertinoPickerState extends State<BrnPicker> {
     // have to just do a color blend. And a due to the way we are layering
     // the magnifier and the gradient on the background, using a transparent
     // background color makes the picker look odd.
-    if (widget.backgroundColor != null && widget.backgroundColor.alpha < 255)
-      return Container();
+    if (widget.backgroundColor.alpha < 255) return Container();
 
     final Color widgetBackgroundColor = widget.backgroundColor;
     return Positioned.fill(
@@ -383,7 +371,7 @@ class _CupertinoPickerState extends State<BrnPicker> {
     );
     // Adds the appropriate opacity under the magnifier if the background
     // color is transparent.
-    if (widget.backgroundColor != null && widget.backgroundColor.alpha < 255) {
+    if (widget.backgroundColor.alpha < 255) {
       result = Stack(
         children: <Widget>[
           _buildUnderMagnifierScreen(),

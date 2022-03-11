@@ -105,7 +105,7 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
                   return;
                 }
                 _processFilterData(entity);
-                if(widget.singleListItemPick!=null){
+                if (widget.singleListItemPick != null) {
                   widget.singleListItemPick!(
                       widget.currentListIndex ?? 0, index, entity);
                 }
@@ -141,7 +141,7 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
 
     int totalLevel =
         BrnMultiColumnPickerUtil.getTotalColumnCount(selectedEntity);
-    if (selectedEntity.isUnLimit() && selectedEntity.parent !=null) {
+    if (selectedEntity.isUnLimit() && selectedEntity.parent != null) {
       selectedEntity.parent!.clearChildSelection();
     }
 
@@ -161,7 +161,7 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
     /// 只有当它子节点被选中时才会认为第一列的节点相应被选中。
     if (widget.items != null &&
         widget.items!.length > 0 &&
-        widget.items![0].parent != null ) {
+        widget.items![0].parent != null) {
       widget.items![0].parent?.isSelected = widget.items![0].parent!.children
               .where((BrnPickerEntity f) => f.isSelected)
               .length >
@@ -209,7 +209,8 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
     }
   }
 
-  void _configSecondList(BrnPickerEntity selectedEntity, int? currentListIndex) {
+  void _configSecondList(
+      BrnPickerEntity selectedEntity, int? currentListIndex) {
     if (currentListIndex == 1) {
       if (PickerFilterType.checkbox != selectedEntity.filterType) {
         selectedEntity.parent!.clearChildSelection();

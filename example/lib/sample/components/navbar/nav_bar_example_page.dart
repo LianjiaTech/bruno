@@ -37,18 +37,20 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
     textEditingController = TextEditingController();
     valueNotifier = ValueNotifier(false);
 
-    selectedHeiStyle =
-        TextStyle(fontSize: 18, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w600);
-    selectedBaiStyle =
-        TextStyle(fontSize: 18, color: Color(0xFF222222), fontWeight: FontWeight.w600);
+    selectedHeiStyle = TextStyle(
+        fontSize: 18, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w600);
+    selectedBaiStyle = TextStyle(
+        fontSize: 18, color: Color(0xFF222222), fontWeight: FontWeight.w600);
 
-    unSelectedHeiStyle =
-        TextStyle(fontSize: 18, color: Color(0xFF999999), fontWeight: FontWeight.w600);
-    unSelectedBaiStyle =
-        TextStyle(fontSize: 18, color: Color(0xFF999999), fontWeight: FontWeight.w600);
+    unSelectedHeiStyle = TextStyle(
+        fontSize: 18, color: Color(0xFF999999), fontWeight: FontWeight.w600);
+    unSelectedBaiStyle = TextStyle(
+        fontSize: 18, color: Color(0xFF999999), fontWeight: FontWeight.w600);
 
-    commonHeiStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white);
-    commonBaiStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF222222));
+    commonHeiStyle = TextStyle(
+        fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white);
+    commonBaiStyle = TextStyle(
+        fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF222222));
 
     focusNode = FocusNode();
     focusNode!.addListener(() {
@@ -145,8 +147,9 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
     Widget? widget;
     switch (this.widget.index) {
       case 0:
-        widget =
-            Center(child: Text('1. 左上角的返回按钮图标支持自定义，本例改成了搜索图标\n2.切换类型的导航栏\n3.顶部模块切换可不限于两个，可多个'));
+        widget = Center(
+            child: Text(
+                '1. 左上角的返回按钮图标支持自定义，本例改成了搜索图标\n2.切换类型的导航栏\n3.顶部模块切换可不限于两个，可多个'));
         break;
       case 4:
         widget = Center(child: Text('多Actions'));
@@ -305,13 +308,17 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           Text(
             '标题名称',
             style: TextStyle(
-                fontSize: 18, height: 1, fontWeight: FontWeight.w600, color: Color(0xFF222222)),
+                fontSize: 18,
+                height: 1,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF222222)),
           ),
           Container(
               height: 17,
               padding: EdgeInsets.only(left: 3, right: 3),
               margin: EdgeInsets.only(left: 6),
-              decoration: BoxDecoration(color: Color(0xff8E8E8E).withOpacity(0.15)),
+              decoration:
+                  BoxDecoration(color: Color(0xff8E8E8E).withOpacity(0.15)),
               child: Center(
                 child: Text(
                   '住宅',
@@ -479,7 +486,8 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           children: <Widget>[
             Text(
               '类型1',
-              style: TextStyle(color: Color(0xFF222222), height: 1, fontSize: 16),
+              style:
+                  TextStyle(color: Color(0xFF222222), height: 1, fontSize: 16),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 5),
@@ -655,7 +663,9 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
               child: Center(
                 child: Text(
                   '标题',
-                  style: index == currentIndex ? selectedHeiStyle : unSelectedHeiStyle,
+                  style: index == currentIndex
+                      ? selectedHeiStyle
+                      : unSelectedHeiStyle,
                 ),
               ),
             );

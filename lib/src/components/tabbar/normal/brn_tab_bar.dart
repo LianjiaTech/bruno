@@ -12,7 +12,9 @@ import 'package:flutter/material.dart';
 /// [state]:当前组件的State对象，[BrnTabBarState]
 /// [index]:当前组件的角标
 typedef BrnTabBarOnTap = Function(BrnTabBarState state, int index);
+
 const double _tagDefaultSize = 75.0;
+
 /// 带小红点的Tabbar
 // ignore: must_be_immutable
 class BrnTabBar extends StatefulWidget {
@@ -135,16 +137,16 @@ class BrnTabBar extends StatefulWidget {
   }) : assert(tabs == null || tabs is List<BadgeTab>) {
     this.themeData ??= BrnTabBarConfig();
     this.themeData = this.themeData!.merge(BrnTabBarConfig(
-      backgroundColor: backgroundcolor,
-      tabHeight: tabHeight,
-      indicatorHeight: indicatorWeight,
-      indicatorWidth: indicatorWidth,
-      labelStyle: BrnTextStyle.withStyle(labelStyle),
-      unselectedLabelStyle: BrnTextStyle.withStyle(unselectedLabelStyle),
-      tagSpacing: tagSpacing,
-      preLineTagCount: preLineTagCount,
-      tagHeight: tagHeight,
-    ));
+          backgroundColor: backgroundcolor,
+          tabHeight: tabHeight,
+          indicatorHeight: indicatorWeight,
+          indicatorWidth: indicatorWidth,
+          labelStyle: BrnTextStyle.withStyle(labelStyle),
+          unselectedLabelStyle: BrnTextStyle.withStyle(unselectedLabelStyle),
+          tagSpacing: tagSpacing,
+          preLineTagCount: preLineTagCount,
+          tagHeight: tagHeight,
+        ));
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
         .tabBarConfig
@@ -327,7 +329,7 @@ class BrnTabBarState extends State<BrnTabBar> {
             child: !_brnTabbarController.isShow
                 ? BrunoTools.getAssetImage(BrnAsset.iconTriangleDown)
                 : BrunoTools.getAssetImageWithBandColor(
-                BrnAsset.iconTriangleUp)),
+                    BrnAsset.iconTriangleUp)),
       ),
     );
   }
@@ -336,7 +338,7 @@ class BrnTabBarState extends State<BrnTabBar> {
   void refreshBadgeState(int index) {
     setState(() {
       BadgeTab badgeTab = widget.tabs![index];
-      if (badgeTab != null && badgeTab.isAutoDismiss) {
+      if (badgeTab.isAutoDismiss) {
         badgeTab.badgeNum = null;
         badgeTab.badgeText = null;
         badgeTab.showRedBadge = false;
@@ -395,8 +397,8 @@ class BrnTabBarState extends State<BrnTabBar> {
                   )),
               Badge(
                 showBadge: (badgeTab.badgeNum != null
-                    ? badgeTab.badgeNum! > 0
-                    : false) ||
+                        ? badgeTab.badgeNum! > 0
+                        : false) ||
                     badgeTab.showRedBadge ||
                     (badgeTab.badgeText != null
                         ? badgeTab.badgeText!.isNotEmpty
@@ -413,7 +415,7 @@ class BrnTabBarState extends State<BrnTabBar> {
                 alignment: Alignment.topLeft,
                 padding: _badgePadding,
                 position:
-                BadgePosition.topEnd(top: _paddingTop, end: _paddingRight),
+                    BadgePosition.topEnd(top: _paddingTop, end: _paddingRight),
                 child: Text(badgeTab.text!,
                     maxLines: 1,
                     softWrap: true,
@@ -446,47 +448,47 @@ class BrnTabBarState extends State<BrnTabBar> {
         children: <Widget>[
           Expanded(
               child: Container(
-                alignment: Alignment.center,
-                height: 47,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Visibility(
-                        visible: widget.hasIndex && badgeTab.topText != null,
-                        child: Text(
-                          badgeTab.topText ?? "",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        )),
-                    Badge(
-                      showBadge: (badgeTab.badgeNum != null
+            alignment: Alignment.center,
+            height: 47,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Visibility(
+                    visible: widget.hasIndex && badgeTab.topText != null,
+                    child: Text(
+                      badgeTab.topText ?? "",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    )),
+                Badge(
+                  showBadge: (badgeTab.badgeNum != null
                           ? badgeTab.badgeNum! > 0
                           : false) ||
-                          badgeTab.showRedBadge ||
-                          (badgeTab.badgeText != null
-                              ? badgeTab.badgeText!.isNotEmpty
-                              : false),
-                      badgeContent: Text(
-                        _badgeText,
-                        style: TextStyle(
-                            color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
-                      ),
-                      shape: _badgeShape,
-                      elevation: 0,
-                      toAnimate: false,
-                      borderRadius: _borderRadius,
-                      alignment: Alignment.topLeft,
-                      padding: _badgePadding,
-                      position: BadgePosition.topEnd(
-                          top: _paddingTop, end: _paddingRight),
-                      child: Text(badgeTab.text!,
-                          maxLines: 1,
-                          softWrap: true,
-                          overflow: TextOverflow.ellipsis),
-                    )
-                  ],
-                ),
-              )),
+                      badgeTab.showRedBadge ||
+                      (badgeTab.badgeText != null
+                          ? badgeTab.badgeText!.isNotEmpty
+                          : false),
+                  badgeContent: Text(
+                    _badgeText,
+                    style: TextStyle(
+                        color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
+                  ),
+                  shape: _badgeShape,
+                  elevation: 0,
+                  toAnimate: false,
+                  borderRadius: _borderRadius,
+                  alignment: Alignment.topLeft,
+                  padding: _badgePadding,
+                  position: BadgePosition.topEnd(
+                      top: _paddingTop, end: _paddingRight),
+                  child: Text(badgeTab.text!,
+                      maxLines: 1,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis),
+                )
+              ],
+            ),
+          )),
           Visibility(
             visible: widget.hasDivider && !lastElement,
             child: Container(
@@ -550,9 +552,9 @@ class BrnTabBarState extends State<BrnTabBar> {
   // 展开更多
   void showMoreWindow(BuildContext context) {
     final RenderBox dropDownItemRenderBox =
-    context.findRenderObject() as RenderBox;
+        context.findRenderObject() as RenderBox;
     var position =
-    dropDownItemRenderBox.localToGlobal(Offset.zero, ancestor: null);
+        dropDownItemRenderBox.localToGlobal(Offset.zero, ancestor: null);
     var size = dropDownItemRenderBox.size;
     _brnTabbarController.top = size.height + position.dy;
 
@@ -626,7 +628,6 @@ class BrnTabBarState extends State<BrnTabBar> {
 // 更多弹框样式
 // ignore: must_be_immutable
 class _TabBarOverlayWidget extends StatefulWidget {
-
   List<BadgeTab>? tabs;
 
   String? moreWindowText;
@@ -723,7 +724,10 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
 
   Widget _createMoreItems() {
     // 计算tag的宽度
-    _tagWidth = (_parentWidth - widget.spacing * (widget.preLineTagCount - 1) - _padding * 2) / widget.preLineTagCount;
+    _tagWidth = (_parentWidth -
+            widget.spacing * (widget.preLineTagCount - 1) -
+            _padding * 2) /
+        widget.preLineTagCount;
     _tagWidth = _tagWidth <= _tagDefaultSize ? _tagDefaultSize : _tagWidth;
     List<Widget> widgets = <Widget>[];
     List<BadgeTab>? tabList = widget.tabs;

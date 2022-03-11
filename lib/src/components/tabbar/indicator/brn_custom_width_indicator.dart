@@ -10,8 +10,7 @@ class CustomWidthUnderlineTabIndicator extends Decoration {
     this.width = 24,
     this.borderSide = const BorderSide(width: 2.0, color: Colors.white),
     this.insets = EdgeInsets.zero,
-  })  : assert(borderSide != null),
-        assert(insets != null);
+  });
 
   /// The color and weight of the horizontal line drawn below the selected tab.
   final BorderSide borderSide;
@@ -56,8 +55,7 @@ class CustomWidthUnderlineTabIndicator extends Decoration {
 
 class _UnderlinePainter extends BoxPainter {
   _UnderlinePainter(this.decoration, this.width, VoidCallback? onChanged)
-      : assert(decoration != null),
-        super(onChanged);
+      : super(onChanged);
 
   final CustomWidthUnderlineTabIndicator decoration;
 
@@ -68,8 +66,6 @@ class _UnderlinePainter extends BoxPainter {
   EdgeInsetsGeometry get insets => decoration.insets;
 
   Rect _indicatorRectFor(Rect rect, TextDirection textDirection) {
-    assert(rect != null);
-    assert(textDirection != null);
     final Rect indicator = insets.resolve(textDirection).deflateRect(rect);
     //希望的宽度
     double wantWidth = width;
@@ -81,7 +77,6 @@ class _UnderlinePainter extends BoxPainter {
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    assert(configuration != null);
     assert(configuration.size != null);
     final Rect rect = offset & configuration.size!;
     final TextDirection textDirection = configuration.textDirection!;

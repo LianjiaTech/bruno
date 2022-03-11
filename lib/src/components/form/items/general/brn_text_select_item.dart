@@ -377,7 +377,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       return Text(
         widget.value!,
         overflow: TextOverflow.ellipsis,
-        maxLines: widget.valueMaxLines ,
+        maxLines: widget.valueMaxLines,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
         style: BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit,

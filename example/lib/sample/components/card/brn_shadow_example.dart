@@ -29,8 +29,10 @@ class _BrnShadowExampleState extends State<BrnShadowExample> {
             children: <Widget>[
               Text(
                 '规则',
-                style:
-                    TextStyle(color: Color(0xFF222222), fontSize: 28, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Color(0xFF222222),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold),
               ),
               BrnBubbleText(
                   maxLines: 2,
@@ -92,7 +94,7 @@ class _BrnShadowExampleState extends State<BrnShadowExample> {
   }
 
   Color getRandomColor() {
-    return Color.fromARGB(
-        Random().nextInt(255), Random().nextInt(255), Random().nextInt(255), Random().nextInt(255));
+    return Color.fromARGB(Random().nextInt(255), Random().nextInt(255),
+        Random().nextInt(255), Random().nextInt(255));
   }
 }

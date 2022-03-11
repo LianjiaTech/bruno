@@ -290,7 +290,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
   }
 
   Widget _buildTitleTextWidget() {
-    return Text(widget.title ,
+    return Text(widget.title,
         overflow: widget.titleMaxLines == null
             ? TextOverflow.clip
             : TextOverflow.ellipsis,
@@ -365,7 +365,8 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
                     )),
                 disable: getRadioEnableState(index),
                 radioIndex: index,
-                isSelected: index == widget.options!.indexOf(widget.value ?? ''),
+                isSelected:
+                    index == widget.options!.indexOf(widget.value ?? ''),
                 onValueChangedAtIndex: (int position, bool selected) {
                   if (getRadioEnableState(position)) {
                     return;

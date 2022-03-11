@@ -24,9 +24,9 @@ enum AbnormalState {
 class BrnAbnormalStateUtils {
   /// 通过状态获取对应空页面widget
   /// status: 页面状态类型为[EmptyState]
-  static Widget getEmptyWidgetByState(BuildContext context,
-      AbnormalState status,
-      {Image? img,BrnEmptyStatusIndexedActionClickCallback? action}) {
+  static Widget getEmptyWidgetByState(
+      BuildContext context, AbnormalState status,
+      {Image? img, BrnEmptyStatusIndexedActionClickCallback? action}) {
     if (AbnormalState.getDataFailed == status) {
       return BrnAbnormalStateWidget(
         img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
@@ -136,7 +136,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          if (this.enablePageTap && action!=null) {
+          if (this.enablePageTap && action != null) {
             action!(0);
           }
         },

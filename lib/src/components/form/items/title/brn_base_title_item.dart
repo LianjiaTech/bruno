@@ -52,11 +52,11 @@ class BrnBaseTitle extends StatefulWidget {
 
   BrnBaseTitle({
     Key? key,
-    this.title= "",
+    this.title = "",
     this.subTitle,
-    this.isRequire= false,
-    this.isEdit= true,
-    this.error= "",
+    this.isRequire = false,
+    this.isEdit = true,
+    this.error = "",
     this.tipLabel,
     this.titleWidget,
     this.subTitleWidget,
