@@ -20,7 +20,7 @@ class BrnSingleSelectDialog extends Dialog {
   /// 弹窗标题
   final String title;
 
-  /// 描述文案
+  /// 描述文案，优先级较 messageWidget 低，优先使用 messageWidget
   final String? messageText;
 
   /// 描述widget

@@ -46,8 +46,8 @@ const BrnSingleSelectDialog(
 | ------------------------ | ----------------------------------- | --------------------------------------------------------- | ------------ | ---------- |
 | isClose                  | bool                                | 用于控制弹窗是否相应电机外部关闭，true 关闭，false 不关闭 | 否           | true       |
 | title                    | String                              | 弹窗标题名称                                              | 否           | ""         |
-| messageText              | String?                             | 副标题内容                                                | 否           |            |
-| messageWidget            | Widget?                             | 副标题内容                                                | 否           |            |
+| messageText              | String?                             | 描述文案，优先级较 messageWidget 低，优先使用 messageWidget                                                | 否           |            |
+| messageWidget            | Widget?                             | 描述 Widget                                          | 否           |            |
 | conditions               | List<String>                        | 备选项数组                                                | 否           |            |
 | checkedItem              | String                              | 选中的选项名称                                            | 否           |            |
 | submitText               | String                              | 确定/提交 按钮文案                                        | 否           |            |
