@@ -27,6 +27,8 @@ group:
 const BrnSingleSelectDialog(
       {this.isClose: true,
       this.title: "",
+      this.messageText,
+      this.messageWidget,
       required this.conditions,
       this.submitText: "提交",
       this.submitBgColor,
@@ -44,6 +46,8 @@ const BrnSingleSelectDialog(
 | ------------------------ | ----------------------------------- | --------------------------------------------------------- | ------------ | ---------- |
 | isClose                  | bool                                | 用于控制弹窗是否相应电机外部关闭，true 关闭，false 不关闭 | 否           | true       |
 | title                    | String                              | 弹窗标题名称                                              | 否           | ""         |
+| messageText              | String?                             | 副标题内容                                                | 否           |            |
+| messageWidget            | Widget?                             | 副标题内容                                                | 否           |            |
 | conditions               | List<String>                        | 备选项数组                                                | 否           |            |
 | checkedItem              | String                              | 选中的选项名称                                            | 否           |            |
 | submitText               | String                              | 确定/提交 按钮文案                                        | 否           |            |
@@ -60,6 +64,7 @@ const BrnSingleSelectDialog(
 
 <img src="./img/BrnSingleSelectDialog.png" style="zoom: 33%;" />
 
+
 ```dart
 String hintText = "感兴趣待跟进";
   int selectedIndex = 0;
@@ -75,51 +80,53 @@ String hintText = "感兴趣待跟进";
     "vzxczxc"
   ];
   showDialog(
-      context: context,
-      builder: (_) => StatefulBuilder(
-        builder: (context, state) {
-          return BrnSingleSelectDialog(
-            isClose: true,
-            title: '请选择无效客源原因',
-            conditions: conditions,
-            checkedItem: conditions[selectedIndex],
-            submitText: '提交',
-            isCustomFollowScroll: true,
-            customWidget: TextField(
-              //光标颜色
-              maxLines: 2,
-              cursorColor: Color(0xFF0984F9),
-              //光标圆角弧度
-              cursorRadius: Radius.circular(2.0),
-              style: TextStyle(fontSize: 14, color: Color(0xFF222222)),
-              maxLengthEnforcement: MaxLengthEnforcement.enforced,
-              onChanged: (value) {},
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(8.0),
-                hintText: hintText,
-                hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(2.0),
-                    borderSide: BorderSide(
-                      width: 0.5,
-                      color: Color(0xFFCCCCCC),
-                    )),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(2.0),
-                    borderSide: BorderSide(
-                      width: 0.5,
-                      color: Color(0xFFCCCCCC),
-                    )),
-              ),
-            ),
-            onItemClick: (BuildContext context, int index) {
-              hintText = conditions[index];
-              selectedIndex = index;
-              state(() {});
-            },
-            onSubmitClick: (data) {
-              BrnToast.show(data, context);
-            });
-        },
-      ));
+          context: context,
+          builder: (_) => StatefulBuilder(
+                builder: (context, state) {
+                  return BrnSingleSelectDialog(
+                      isClose: true,
+                      title: '请选择无效客源原因',
+                      messageText: '请您评价该条线索请您评价该条线索请您评价该条线索请您评价该条线索请您评价该条线索',
+                      conditions: conditions,
+                      checkedItem: conditions[selectedIndex],
+                      submitText: '提交',
+                      isCustomFollowScroll: true,
+                      customWidget: TextField(
+                        //光标颜色
+                        maxLines: 2,
+                        cursorColor: Color(0xFF0984F9),
+                        //光标圆角弧度
+                        cursorRadius: Radius.circular(2.0),
+                        style: TextStyle(fontSize: 14, color: Color(0xFF222222)),
+                        maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                        onChanged: (value) {},
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(8.0),
+                          hintText: hintText,
+                          hintStyle:
+                              TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(2.0),
+                              borderSide: BorderSide(
+                                width: 0.5,
+                                color: Color(0xFFCCCCCC),
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(2.0),
+                              borderSide: BorderSide(
+                                width: 0.5,
+                                color: Color(0xFFCCCCCC),
+                              )),
+                        ),
+                      ),
+                      onItemClick: (BuildContext context, int index) {
+                        hintText = conditions[index];
+                        selectedIndex = index;
+                        state(() {});
+                      },
+                      onSubmitClick: (data) {
+                        BrnToast.show(data!, context);
+                      });
+                },
+              ));
 ```
