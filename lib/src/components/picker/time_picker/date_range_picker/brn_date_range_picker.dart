@@ -236,7 +236,8 @@ class _DatePickerComponent extends StatelessWidget {
         builder: (BuildContext context, Widget? child) {
           return ClipRect(
             child: CustomSingleChildLayout(
-              delegate: _BottomPickerLayout(route.animation!.value, _pickerHeight),
+              delegate:
+                  _BottomPickerLayout(route.animation!.value, _pickerHeight),
               child: BrnPickerClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(route.themeData!.cornerRadius),

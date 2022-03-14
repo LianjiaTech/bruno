@@ -9,7 +9,6 @@ import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 ///
 /// 选择型表单项
@@ -378,7 +377,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       return Text(
         widget.value!,
         overflow: TextOverflow.ellipsis,
-        maxLines: widget.valueMaxLines ,
+        maxLines: widget.valueMaxLines,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
         style: BrnFormUtil.getIsEditTextStyle(widget.themeData!, widget.isEdit,

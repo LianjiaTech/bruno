@@ -36,29 +36,29 @@ group:
 ### 构造函数
 
 ```dart
-BrnStepInputFormItem(
-    {Key key,
-    this.label,
-    this.title: "",
-    this.subTitle,
-    this.tipLabel,
-    this.prefixIconType: BrnPrefixIconType.normal,
-    this.error: "",
-    this.isEdit: true,
-    this.isRequire: false,
-    this.onAddTap,
-    this.onRemoveTap,
-    this.onTip,
-    this.value: 0,
-    this.maxLimit: 10,
-    this.minLimit: 0,
-    this.defaultValue,
-    this.onChanged,
-    this.themeData, })
-    : super() {
+BrnStepInputFormItem({
+  Key? key,
+  this.label,
+  this.title = "",
+  this.subTitle,
+  this.tipLabel,
+  this.prefixIconType = BrnPrefixIconType.normal,
+  this.error = "",
+  this.isEdit = true,
+  this.isRequire = false,
+  this.onAddTap,
+  this.onRemoveTap,
+  this.onTip,
+  this.value,
+  this.maxLimit = 10,
+  this.minLimit = 0,
+  this.onChanged,
+  this.themeData,
+})  : assert(value == null || value >= minLimit && value <= maxLimit),
+      super(key: key) {
   this.themeData ??= BrnFormItemConfig();
   this.themeData = BrnThemeConfigurator.instance
-      .getConfig(configId: this.themeData.configId)
+      .getConfig(configId: this.themeData!.configId)
       .formItemConfig
       .merge(this.themeData);
 }
@@ -68,28 +68,29 @@ BrnStepInputFormItem(
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
 | --- | --- | --- | --- | --- | --- |
-| label | String | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
+| label | String? | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
+| type | Stirng | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.textStepInputType | 外部可根据此字段判断表单项类型 |
 | title | String | 录入项标题 | 否 | '' |  |
-| subTitle | String | 录入项子标题 | 否 | 无 |  |
-| tipLabel | String | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
+| subTitle | String? | 录入项子标题 | 否 | 无 |  |
+| tipLabel | String? | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
 | prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.normal | 1. 不展示图标：BrnPrefixIconType.normal 2. 展示加号图标：BrnPrefixIconType.add 3. 展示减号图标：BrnPrefixIconType.remove |
 | error | String | 录入项错误提示 | 否 | '' |  |
 | isRequire | bool | 录入项是否为必填项（展示`*`图标） 默认为 false 不必填 | 否 | false |  |
 | isEdit | bool | 录入项 是否可编辑 | 否 | true | true：可编辑false：禁用 |
-| onAddTap | VoidCallback | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onRemoveTap | VoidCallback | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
-| onTip | VoidCallback | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
-| value | int | 外部设置初始值 | 否 | 0 |  |
+| onAddTap | VoidCallback? | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
+| onRemoveTap | VoidCallback? | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
+| onTip | VoidCallback? | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
+| value | int? | 外部设置初始值 | 否 | 0 |  |
 | maxLimit | int | 单步上限值 | 否 | 10 |  |
 | minLimit | int | 单步下限值 | 否 | 0 |  |
-| onChanged | OnBrnFormValueChanged | 递增值变化回调 | 否 | 无 |  |
-| themeData | BrnFormItemConfig | form配置 | 否 | 无 | |
+| onChanged | OnBrnFormValueChanged? | 递增值变化回调 | 否 | 无 |  |
+| themeData | BrnFormItemConfig? | form配置 | 否 | 无 | |
 
 ### 其他数据说明:
 
 #### BrnPrefixIconType
 
-```
+```dart
 class BrnPrefixIconType {  
   static const String TYPE_NORMAL = "type_normal";  
   static const String TYPE_ADD = "type_add";  

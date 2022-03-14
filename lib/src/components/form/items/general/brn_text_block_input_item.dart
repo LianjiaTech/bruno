@@ -3,7 +3,6 @@ import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 ///
 /// 文本块输入型录入项
@@ -189,7 +188,7 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
                   widget.themeData!, widget.isEdit),
               inputFormatters: widget.inputFormatters,
               decoration: InputDecoration(
-                hintText: widget.hint ,
+                hintText: widget.hint,
                 hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData!),
                 contentPadding: EdgeInsets.all(0),
                 border: InputBorder.none,

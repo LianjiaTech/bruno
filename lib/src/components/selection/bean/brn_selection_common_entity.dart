@@ -158,19 +158,19 @@ class BrnSelectionEntity {
     entity.value = map['value'] ?? "";
     if (map['maxSelectedCount'] != null &&
         int.tryParse(map['maxSelectedCount']) != null) {
-      entity.maxSelectedCount = int.tryParse(map['maxSelectedCount']) ?? BrnSelectionConstant.maxSelectCount;
+      entity.maxSelectedCount = int.tryParse(map['maxSelectedCount']) ??
+          BrnSelectionConstant.maxSelectCount;
     } else {
       entity.maxSelectedCount = BrnSelectionConstant.maxSelectCount;
     }
     entity.extMap = map['ext'] ?? {};
-    if(map['children'] != null && map['children'] is List) {
-      entity.children = []..addAll((map['children'] as List)
-          .map((o) => BrnSelectionEntity.fromMap(o)));
+    if (map['children'] != null && map['children'] is List) {
+      entity.children = []..addAll(
+          (map['children'] as List).map((o) => BrnSelectionEntity.fromMap(o)));
     }
     entity.filterType = entity.parserFilterTypeWithType(map['type'] ?? "");
     return entity;
   }
-
 
   BrnSelectionEntity.fromJson(Map<dynamic, dynamic>? map)
       : this.title = '',
@@ -186,13 +186,14 @@ class BrnSelectionEntity {
     type = map['type'] ?? '';
     defaultValue = map['defaultValue'] ?? '';
     value = map['value'] ?? '';
-    if (map['maxSelectedCount'] != null && int.tryParse(map['maxSelectedCount']) != null) {
-      maxSelectedCount =
-          int.tryParse(map['maxSelectedCount']) ?? BrnSelectionConstant.maxSelectCount;
+    if (map['maxSelectedCount'] != null &&
+        int.tryParse(map['maxSelectedCount']) != null) {
+      maxSelectedCount = int.tryParse(map['maxSelectedCount']) ??
+          BrnSelectionConstant.maxSelectCount;
     }
     extMap = map['ext'] ?? {};
-    children = []
-      ..addAll((map['children'] ?? []).map((o) => BrnSelectionEntity.fromJson(o)));
+    children = []..addAll(
+        (map['children'] ?? []).map((o) => BrnSelectionEntity.fromJson(o)));
     filterType = parserFilterTypeWithType(map['type'] ?? '');
     isSelected = false;
   }
@@ -251,7 +252,8 @@ class BrnSelectionEntity {
       if (hasCheckBoxBrother()) {
         isSelected = children.where((_) => _.isSelected).length > 0;
       } else {
-        isSelected = isSelected || children.where((_) => _.isSelected).length > 0;
+        isSelected =
+            isSelected || children.where((_) => _.isSelected).length > 0;
       }
     }
   }
@@ -342,19 +344,20 @@ class BrnSelectionEntity {
   List<BrnSelectionEntity> selectedListWithoutUnlimit() {
     List<BrnSelectionEntity> selected = selectedList();
     return selected
-            .where((_) => !_.isUnLimit())
-            .where((_) =>
-                (_.filterType != BrnSelectionFilterType.range) ||
-                (_.filterType == BrnSelectionFilterType.range && !BrunoTools.isEmpty(_.customMap)))
-            .where((_) =>
-                (_.filterType != BrnSelectionFilterType.dateRange) ||
-                (_.filterType == BrnSelectionFilterType.dateRange &&
-                    !BrunoTools.isEmpty(_.customMap)))
-            .where((_) =>
-                (_.filterType != BrnSelectionFilterType.dateRangeCalendar) ||
-                (_.filterType == BrnSelectionFilterType.dateRangeCalendar &&
-                    !BrunoTools.isEmpty(_.customMap)))
-            .toList();
+        .where((_) => !_.isUnLimit())
+        .where((_) =>
+            (_.filterType != BrnSelectionFilterType.range) ||
+            (_.filterType == BrnSelectionFilterType.range &&
+                !BrunoTools.isEmpty(_.customMap)))
+        .where((_) =>
+            (_.filterType != BrnSelectionFilterType.dateRange) ||
+            (_.filterType == BrnSelectionFilterType.dateRange &&
+                !BrunoTools.isEmpty(_.customMap)))
+        .where((_) =>
+            (_.filterType != BrnSelectionFilterType.dateRangeCalendar) ||
+            (_.filterType == BrnSelectionFilterType.dateRangeCalendar &&
+                !BrunoTools.isEmpty(_.customMap)))
+        .toList();
   }
 
   List<BrnSelectionEntity> selectedList() {
@@ -362,7 +365,8 @@ class BrnSelectionEntity {
       return this.selectedLastColumnList();
     } else {
       List<BrnSelectionEntity> results = [];
-      List<BrnSelectionEntity> firstColumn = BrnSelectionUtil.currentSelectListForEntity(this);
+      List<BrnSelectionEntity> firstColumn =
+          BrnSelectionUtil.currentSelectListForEntity(this);
       results.addAll(firstColumn);
       if (firstColumn.length > 0) {
         for (BrnSelectionEntity firstEntity in firstColumn) {
@@ -384,7 +388,8 @@ class BrnSelectionEntity {
 
   List<BrnSelectionEntity> allSelectedList() {
     List<BrnSelectionEntity> results = [];
-    List<BrnSelectionEntity> firstColumn = BrnSelectionUtil.currentSelectListForEntity(this);
+    List<BrnSelectionEntity> firstColumn =
+        BrnSelectionUtil.currentSelectListForEntity(this);
     results.addAll(firstColumn);
     if (firstColumn.length > 0) {
       for (BrnSelectionEntity firstEntity in firstColumn) {
@@ -413,7 +418,8 @@ class BrnSelectionEntity {
 
   BrnSelectionEntity getRootEntity(BrnSelectionEntity rootEntity) {
     if (rootEntity.parent == null ||
-        rootEntity.parent!.maxSelectedCount == BrnSelectionConstant.maxSelectCount) {
+        rootEntity.parent!.maxSelectedCount ==
+            BrnSelectionConstant.maxSelectCount) {
       return rootEntity;
     } else {
       return getRootEntity(rootEntity.parent!);
@@ -460,8 +466,9 @@ class BrnSelectionEntity {
 
   /// 检查自己的兄弟结点是否存在 checkbox 类型。
   bool hasCheckBoxBrother() {
-    int? count =
-        parent?.children.where((f) => f.filterType == BrnSelectionFilterType.checkbox).length;
+    int? count = parent?.children
+        .where((f) => f.filterType == BrnSelectionFilterType.checkbox)
+        .length;
     return count == null ? false : count > 0;
   }
 
@@ -561,7 +568,9 @@ class BrnSelectionEntity {
         int? inputMax = int.tryParse(customMap!['max'] ?? "");
 
         if (inputMax != null && inputMin != null) {
-          if (inputMin >= limitMin && inputMax <= limitMax && inputMax >= inputMin) {
+          if (inputMin >= limitMin &&
+              inputMax <= limitMax &&
+              inputMax >= inputMin) {
             return true;
           } else {
             return false;

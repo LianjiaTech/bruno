@@ -9,7 +9,6 @@ import 'package:bruno/src/components/radio/brn_radio_button.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 ///
 /// 横向单选录入项
@@ -291,7 +290,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
   }
 
   Widget _buildTitleTextWidget() {
-    return Text(widget.title ,
+    return Text(widget.title,
         overflow: widget.titleMaxLines == null
             ? TextOverflow.clip
             : TextOverflow.ellipsis,
@@ -366,7 +365,8 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
                     )),
                 disable: getRadioEnableState(index),
                 radioIndex: index,
-                isSelected: index == widget.options!.indexOf(widget.value ?? ''),
+                isSelected:
+                    index == widget.options!.indexOf(widget.value ?? ''),
                 onValueChangedAtIndex: (int position, bool selected) {
                   if (getRadioEnableState(position)) {
                     return;

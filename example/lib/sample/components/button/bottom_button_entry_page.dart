@@ -22,7 +22,8 @@ class BottomButtonEntryWidget extends StatelessWidget {
               isShowLine: false,
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BrnCommonBottomExample();
                 }));
               },
@@ -32,7 +33,8 @@ class BottomButtonEntryWidget extends StatelessWidget {
               describe: '全选、已选、主按钮、次按钮',
               describeColor: Color(0xFF222222),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BrnSelectionBottomButtonExample();
                 }));
               },

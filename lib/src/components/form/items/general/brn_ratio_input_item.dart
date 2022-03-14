@@ -6,7 +6,6 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 ///
 /// 比例输入型录入项
@@ -213,6 +212,6 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
   void dispose() {
     super.dispose();
     // 如果controller由外部创建不需要销毁, 若由内部创建则需要销毁
-      _controller.dispose();
+    _controller.dispose();
   }
 }

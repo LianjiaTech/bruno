@@ -26,7 +26,10 @@ class _BorderTagExampleState extends State<BorderTagExample> {
       children: <Widget>[
         Text(
           '规则',
-          style: TextStyle(color: Color(0xFF222222), fontSize: 28, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Color(0xFF222222),
+              fontSize: 28,
+              fontWeight: FontWeight.bold),
         ),
         BrnBubbleText(maxLines: 4, text: ' 文字大小 11，上下左右间距 3'),
         Text(

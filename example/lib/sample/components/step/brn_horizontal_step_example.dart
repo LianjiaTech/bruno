@@ -134,7 +134,8 @@ class SliverBrnHorizontalStep extends StatefulWidget {
   final ValueNotifier<double> valueNotifier;
 
   @override
-  _SliverBrnHorizontalStepsState createState() => _SliverBrnHorizontalStepsState();
+  _SliverBrnHorizontalStepsState createState() =>
+      _SliverBrnHorizontalStepsState();
 }
 
 class _SliverBrnHorizontalStepsState extends State<SliverBrnHorizontalStep> {

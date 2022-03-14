@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://bruno.ke.com">
-    <img width="200" src="https://img.ljcdn.com/beike/zjz/bruno/img/1637306783951.jpg">
+    <img width="200" src="https://img.ljcdn.com/beike/zjz/bruno/img/1638883523735.jpg">
   </a>
 </p>
 
@@ -25,7 +25,7 @@ An enterprise-class package of Flutter components for mobile applications.
 
 
 
-![](https://img.ljcdn.com/beike/zjz/bruno/img/1637308027692.png)
+![](https://img.ljcdn.com/beike/zjz/bruno/img/1638883534391.png)
 
 ## ✨ Features
 
@@ -36,10 +36,10 @@ An enterprise-class package of Flutter components for mobile applications.
 
 ### Demo download
 
-[Bruno for Android]()
 
-[Bruno  for iOS]()
+<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005085.png"  />       <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005077.png"  />
 
+If you cannot access the demo, you can directly watch [Overview](https://github.com/Nayuta403/bruno/blob/patch/demo/Overview.MP4) or download the [APK](https://github.com/Nayuta403/bruno/blob/patch/demo/bruno_1.0.0_1_release_develop_c801f2db_20211210034820.apk) file.
 
 ## Adapted version of Flutter
 
@@ -48,7 +48,9 @@ An enterprise-class package of Flutter components for mobile applications.
 | ---------- | ---------------- |
 | 1.0.0      | 1.22.4           |
 | 2.0.0      | 2.2.2            |
+| 2.1.0-nullsafety.0      | 2.2.2            |
 
+> Attention although we have adapted version 2.2.2, support for null-safe is in the works. We'll keep you updated on github as soon as possible, so stay tuned to 🙂.
 
 
 ## Preparing for use
@@ -73,13 +75,13 @@ BrnBubbleText(
 
 ### 🌈 Customize themes
 
-Reference [custom theme] ().
+Reference [custom theme](https://bruno.ke.com/page/guide/theme).
 
 
 
 ## Contributing
 
-Please read our [Contributing]() first.
+Please read our [Contributing](https://bruno.ke.com/page/guide/contribution) first.
 
 Thanks to all the developers who contributed to Bruno !
 
@@ -147,14 +149,14 @@ Thanks to all the developers who contributed to Bruno !
 
 ## 🔗 Links
 
-- [Homepage]()
-- [All component ]()
-- [Design concept]()
-- [Preparing for use ]()
-- [Customize themes]()
-- [Frequently asked question]()
-- [Sketch usage]()
-- [Download of Design]()
+- [Homepage](https://bruno.ke.com)
+- [All component ](https://bruno.ke.com/page/widgets)
+- [Design concept](https://mp.weixin.qq.com/s?__biz=MzIyODcxODY0OA==&mid=2247486048&idx=1&sn=0cc95bd85a54ce0f39f6247d15618ae8&chksm=e84ceb37df3b62216b34c7be041229630eca3d7c4fd3823ebf0520a9f2c99ed2cdf3e677904b&mpshare=1&scene=1&srcid=11012tvWvcYunVGfiPa8EfCT&sharer_sharetime=1635751229200&sharer_shareid=dbde8f595d5b99a8f5cfb27122964615&version=3.1.16.90294)
+- [Preparing for use ](https://bruno.ke.com/page/guide/start)
+- [Customize themes](https://bruno.ke.com/page/guide/theme)
+- [Frequently asked question](https://bruno.ke.com/page/guide/faq)
+- [Sketch usage](https://bruno.ke.com/page/guide/sketch)
+- [Download of Design](https://bruno.ke.com/download/sketch)
 
 ## Acknowledgements
 

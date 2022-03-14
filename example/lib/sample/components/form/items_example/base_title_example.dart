@@ -50,10 +50,10 @@ class BaseTitleExamplePage extends StatelessWidget {
               tipLabel: "提示",
               isRequire: true,
               customActionWidget: Container(
-                color:Colors.lightBlue,
+                color: Colors.lightBlue,
                 child: Center(
-                  child: Text('我是自定义视图', style: TextStyle(color: Colors.white))
-                ),
+                    child:
+                        Text('我是自定义视图', style: TextStyle(color: Colors.white))),
               ),
               onTip: () {
                 BrnToast.show("点击触发回调_onTip", context);

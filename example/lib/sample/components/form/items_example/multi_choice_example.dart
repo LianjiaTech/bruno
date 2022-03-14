@@ -44,7 +44,8 @@ class MultiChoiceInputExamplePage extends StatelessWidget {
               },
               onChanged: (List<String> oldValue, List<String>? newValue) {
                 BrnToast.show(
-                    "点击触发onChanged回调${oldValue.length}_${newValue!.length}_onChanged", context);
+                    "点击触发onChanged回调${oldValue.length}_${newValue!.length}_onChanged",
+                    context);
               },
             ),
             Container(
@@ -83,7 +84,8 @@ class MultiChoiceInputExamplePage extends StatelessWidget {
               },
               onChanged: (List<String> oldValue, List<String>? newValue) {
                 BrnToast.show(
-                    "点击触发onChanged回调${oldValue.length}_${newValue!.length}_onChanged", context);
+                    "点击触发onChanged回调${oldValue.length}_${newValue!.length}_onChanged",
+                    context);
               },
             ),
             Container(
@@ -121,7 +123,8 @@ class MultiChoiceInputExamplePage extends StatelessWidget {
               },
               onChanged: (List<String> oldValue, List<String> newValue) {
                 BrnToast.show(
-                    "点击触发onChanged回调${oldValue.length}_${newValue.length}_onChanged", context);
+                    "点击触发onChanged回调${oldValue.length}_${newValue.length}_onChanged",
+                    context);
               },
             ),
           ],

@@ -221,7 +221,7 @@ class AllFormItemStyleExamplePage extends StatelessWidget {
             ));
           },
         ),
-         ListItem(
+        ListItem(
           title: "全选表单项",
           describe: "杂项类型",
           isSupportTheme: true,

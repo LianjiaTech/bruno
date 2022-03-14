@@ -22,30 +22,33 @@ group:
 ### 构造函数
 
 ```dart
-  BrnPairInfoTable({
-    Key key,
-    @required this.children,
-    this.isValueAlign = true,
-    this.expandAtIndex = -1,
-    this.rowDistance,
-    this.itemSpacing,
-    this.isFolded = true,
-    this.themeData,
-    this.customKeyWidth,
-  });
+BrnPairInfoTable({
+  Key? key,
+  required this.children,
+  this.defaultVerticalAlignment = TableCellVerticalAlignment.baseline,
+  this.isValueAlign = true,
+  this.expandAtIndex = -1,
+  this.rowDistance,
+  this.itemSpacing,
+  this.isFolded = true,
+  this.themeData,
+  this.customKeyWidth,
+});
 ```
 
 ### 参数说明
 
-| **参数名**     | **参数类型**     | **描述**                                            | **是否必填** | **默认值**      |
-| -------------- | ---------------- | --------------------------------------------------- | ------------ | --------------- |
-| children       | List             | 待展示的文本信息                                    | 是           | 无              |
-| isValueAlign   | bool             | value 是否对齐                                      | 否           | 无              |
-| expandAtIndex  | int              | 从第几个位置开始展开收起，-1 表示不需要展开收起功能 | 否           | -1              |
-| rowDistance    | double           | 行与行之间的间距                                    | 否           | 4               |
-| itemSpacing    | double           | key-value 之间的间距                                | 否           | 2               |
-| isFolded       | true             | 初始的展开收起状态                                  | 否           | bool            |
-| customKeyWidth | TableColumnWidth | value 的对齐策略                                    | 否           | key 最大宽度 94 |
+| **参数名**               | **参数类型**               | **描述**                                                     | **是否必填** | **默认值**      |
+| ------------------------ | -------------------------- | ------------------------------------------------------------ | ------------ | --------------- |
+| children                 | List                       | 待展示的文本信息                                             | 是           | 无              |
+| isValueAlign             | bool                       | value 是否对齐                                               | 否           | 无              |
+| defaultVerticalAlignment | TableCellVerticalAlignment | TableCell 默认垂直对齐方式， 默认值为 [TableCellVerticalAlignment.baseline]，当 [BrnInfoModal.valuePart] 为自定义 Widget 时，可设置该参数调整对齐方式，仅在 [isValueAlign] 为 true 时设置才生效 | 否           |                 |
+| expandAtIndex            | int                        | 从第几个位置开始展开收起，-1 表示不需要展开收起功能          | 否           | -1              |
+| rowDistance              | double?                    | 行与行之间的间距                                             | 否           | 4               |
+| itemSpacing              | double?                    | key-value 之间的间距                                         | 否           | 2               |
+| isFolded                 | true                       | 初始的展开收起状态                                           | 否           | bool            |
+| customKeyWidth           | TableColumnWidth?          | 对齐情况下，自定义的key展示规则，默认是最大的Key展示长度是107，可以参考[_MaxWrapTableWidth]实现自定义的展示规则，指定长度等 | 否           | key 最大宽度 94 |
+| themeData                | BrnPairInfoTableConfig?    | 主题定制属性                                                 | 否           |                 |
 
 ## 四、代码演示
 

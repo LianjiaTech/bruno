@@ -11,10 +11,12 @@ class SelectionViewSimpleMultiCheckExamplePage extends StatefulWidget {
   SelectionViewSimpleMultiCheckExamplePage(this._title, this._filterData);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<SelectionViewSimpleMultiCheckExamplePage> {
+class _SelectionViewExamplePageState
+    extends State<SelectionViewSimpleMultiCheckExamplePage> {
   List<BrnSelectionEntity>? items;
 
   @override
@@ -34,9 +36,10 @@ class _SelectionViewExamplePageState extends State<SelectionViewSimpleMultiCheck
               items: widget._filterData.children,
               maxSelectedCount: 4,
               defaultValue: widget._filterData.defaultValue,
-              onSimpleSelectionChanged: (
-                  List<ItemEntity> filterParams) {
-                BrnToast.show(filterParams.map((e) => e.value).toList().join(','), context);
+              onSimpleSelectionChanged: (List<ItemEntity> filterParams) {
+                BrnToast.show(
+                    filterParams.map((e) => e.value).toList().join(','),
+                    context);
               },
             ),
             Container(

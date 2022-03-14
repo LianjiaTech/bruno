@@ -10,10 +10,12 @@ class FlatSelectionThreeTagsExample extends StatefulWidget {
   FlatSelectionThreeTagsExample(this._title, this._filterData);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample> {
+class _SelectionViewExamplePageState
+    extends State<FlatSelectionThreeTagsExample> {
   BrnSelectionEntity? entity;
 
   BrnFlatSelectionController? controller;
@@ -66,7 +68,8 @@ class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample
                             entityDataList: widget._filterData,
                             confirmCallback: (data) {
                               var str = "";
-                              data.forEach((k, v) => str = str + " " + '${k}: ${v}');
+                              data.forEach(
+                                  (k, v) => str = str + " " + '$k: $v');
                               BrnToast.show(str, context);
                             },
                             controller: controller)),
@@ -99,11 +102,13 @@ class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample
                       Container(
                         height: 24,
                         width: 24,
-                        child: BrunoTools.getAssetImage(BrnAsset.iconSelectionReset),
+                        child: BrunoTools.getAssetImage(
+                            BrnAsset.iconSelectionReset),
                       ),
                       Text(
                         "重置",
-                        style: TextStyle(fontSize: 11, color: Color(0xFF999999)),
+                        style:
+                            TextStyle(fontSize: 11, color: Color(0xFF999999)),
                       )
                     ],
                   ),
@@ -150,9 +155,5 @@ class _SelectionViewExamplePageState extends State<FlatSelectionThreeTagsExample
         )
       ],
     );
-  }
-
-  void _backButtonClickEvent() {
-    Navigator.of(context).pop();
   }
 }

@@ -45,13 +45,11 @@ class ListItem extends StatefulWidget {
 class _ListItemState extends State<ListItem> {
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       onPressed: widget.onPressed,
-      padding: EdgeInsets.all(0.0),
-      shape: Border.all(
-        color: Colors.transparent,
-        width: 0.0,
-        style: BorderStyle.none,
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Colors.white),
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
       ),
       child: Container(
           color: Colors.white,
@@ -84,7 +82,8 @@ class _ListItemState extends State<ListItem> {
                 widget.isSupportTheme
                     ? BrnTagCustom(
                         tagText: "可定制",
-                        textPadding: EdgeInsets.only(bottom: 0, left: 4, right: 4, top: 0),
+                        textPadding: EdgeInsets.only(
+                            bottom: 0, left: 4, right: 4, top: 0),
                         textColor: Color(0xFFFF5722),
                         backgroundColor: Color(0x24FF5722),
                       )

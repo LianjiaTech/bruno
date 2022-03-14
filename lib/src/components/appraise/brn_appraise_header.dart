@@ -33,7 +33,8 @@ class BrnAppraiseHeader extends StatelessWidget {
       this.maxLines = 1,
       this.headerType = BrnAppraiseHeaderType.spaceBetween,
       this.headPadding,
-      this.cancelCallBack}) : super(key: key);
+      this.cancelCallBack})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

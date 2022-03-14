@@ -18,7 +18,7 @@ class GalleryDetailPageThemeExample extends StatelessWidget {
             ListItem(
               title: "图片详情-白色主题",
               describe: "图片详情带白色主题",
-              isShowLine:false,
+              isShowLine: false,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (BuildContext context) {

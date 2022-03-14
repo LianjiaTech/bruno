@@ -23,7 +23,7 @@ import 'package:example/sample/components/charts/progress_bar_chart_example.dart
 import 'package:example/sample/components/charts/progress_chart_entry_page.dart';
 import 'package:example/sample/components/dialog/dialog_entry_page.dart';
 import 'package:example/sample/components/empty/abnormal_entry_page.dart';
-import 'package:example/sample/components/form/form_item_entry_example.dart';
+import 'package:example/sample/components/form/all_item_style_example.dart';
 import 'package:example/sample/components/gallery/gallery_example.dart';
 import 'package:example/sample/components/guide/guide_entry_page.dart';
 import 'package:example/sample/components/input/input_example.dart';
@@ -101,9 +101,9 @@ class CardDataConfig {
         desc: "数据折线图",
         navigatorPage: (BuildContext context) {
           rootBundle.loadString('assets/brokenline_data.json').then((data) {
-            var brokenData = <DBDataNodeModel>[]
-              ..addAll(((JsonDecoder().convert(data) as List?) ?? [])
-                  .map((o) => DBDataNodeModel.fromJson(o)));
+            var brokenData = <DBDataNodeModel>[]..addAll(
+                ((JsonDecoder().convert(data) as List?) ?? [])
+                    .map((o) => DBDataNodeModel.fromJson(o)));
             Navigator.push(context, MaterialPageRoute(
               builder: (BuildContext context) {
                 return BrokenLineExample(brokenData);
@@ -175,7 +175,7 @@ class CardDataConfig {
         navigatorPage: (BuildContext context) {
           Navigator.push(context, MaterialPageRoute(
             builder: (BuildContext context) {
-              return FormItemExamplePage("表单项类型示例");
+              return AllFormItemStyleExamplePage("表单项类型示例");
             },
           ));
         }));
@@ -428,7 +428,7 @@ class CardDataConfig {
 
   /// 内容
   static GroupInfo _getContentGroup() {
-    List<GroupInfo> children =[];
+    List<GroupInfo> children = [];
     children.add(GroupInfo(
         groupName: "Tag 标签",
         desc: "标签多种样式",

@@ -43,19 +43,18 @@ class BrnRadioButton extends StatelessWidget {
   /// 默认值HitTestBehavior.translucent控制widget.onRadioItemClick触发的点击范围
   final HitTestBehavior behavior;
 
-  const BrnRadioButton({
-    Key? key,
-    required this.radioIndex,
-    required this.onValueChangedAtIndex,
-    this.disable = false,
-    this.isSelected = false,
-    this.iconPadding,
-    this.child,
-    this.childOnRight = true,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.mainAxisSize = MainAxisSize.min,
-    this.behavior = HitTestBehavior.translucent
-  });
+  const BrnRadioButton(
+      {Key? key,
+      required this.radioIndex,
+      required this.onValueChangedAtIndex,
+      this.disable = false,
+      this.isSelected = false,
+      this.iconPadding,
+      this.child,
+      this.childOnRight = true,
+      this.mainAxisAlignment = MainAxisAlignment.start,
+      this.mainAxisSize = MainAxisSize.min,
+      this.behavior = HitTestBehavior.translucent});
 
   @override
   Widget build(BuildContext context) {

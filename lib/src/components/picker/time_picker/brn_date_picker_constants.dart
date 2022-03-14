@@ -1,7 +1,5 @@
 /// Selected value of DatePicker.
 
-
-
 typedef DateValueCallback(DateTime dateTime, List<int> selectedIndex);
 
 typedef DateRangeValueCallback(DateTime startDateTime, DateTime endDateTime,

@@ -17,8 +17,8 @@ import 'package:flutter/material.dart';
 
 typedef bool BrnOnMenuItemClick(int index);
 
-typedef void BrnOnRangeSelectionConfirm(
-    BrnSelectionEntity results, int firstIndex, int secondIndex, int thirdIndex);
+typedef void BrnOnRangeSelectionConfirm(BrnSelectionEntity results,
+    int firstIndex, int secondIndex, int thirdIndex);
 
 class BrnSelectionMenuWidget extends StatefulWidget {
   final List<BrnSelectionEntity> data;
@@ -38,7 +38,8 @@ class BrnSelectionMenuWidget extends StatefulWidget {
   final BrnSelectionConfig themeData;
 
   BrnSelectionMenuWidget(
-      {    Key? key,required this.context,
+      {Key? key,
+      required this.context,
       required this.data,
       this.height = 50.0,
       this.width,
@@ -47,7 +48,8 @@ class BrnSelectionMenuWidget extends StatefulWidget {
       this.configRowCount,
       this.extraScrollController,
       this.constantTop,
-      required this.themeData}): super(key: key);
+      required this.themeData})
+      : super(key: key);
 
   @override
   _BrnSelectionMenuWidgetState createState() => _BrnSelectionMenuWidgetState();
@@ -59,7 +61,8 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   List<String> titles = [];
   List<bool> menuItemActiveState = [];
   List<bool> menuItemHighlightState = [];
-  BrnSelectionListViewController listViewController = BrnSelectionListViewController();
+  BrnSelectionListViewController listViewController =
+      BrnSelectionListViewController();
   ScrollController? _scrollController;
 
   late StreamSubscription _refreshTitleSubscription;
@@ -69,14 +72,16 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   @override
   void initState() {
     super.initState();
-    _refreshTitleSubscription =
-        EventBus.instance.on<RefreshMenuTitleEvent>().listen((RefreshMenuTitleEvent event) {
+    _refreshTitleSubscription = EventBus.instance
+        .on<RefreshMenuTitleEvent>()
+        .listen((RefreshMenuTitleEvent event) {
       _needRefreshTitle = true;
       setState(() {});
     });
 
-    _closeSelectionPopupWindowSubscription =
-        EventBus.instance.on<CloseSelectionViewEvent>().listen((CloseSelectionViewEvent event) {
+    _closeSelectionPopupWindowSubscription = EventBus.instance
+        .on<CloseSelectionViewEvent>()
+        .listen((CloseSelectionViewEvent event) {
       _closeSelectionPopupWindow();
     });
 
@@ -120,7 +125,9 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
 
   /// 根据【Filter组】 创建 widget。
   OverlayEntry _createEntry(BrnSelectionEntity entity) {
-    var content = _isRange(entity) ? _createRangeView(entity) : _createSelectionListView(entity);
+    var content = _isRange(entity)
+        ? _createRangeView(entity)
+        : _createSelectionListView(entity);
     return OverlayEntry(builder: (context) {
       return GestureDetector(
         onTap: () {
@@ -132,7 +139,8 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
           ),
           child: Stack(
             children: <Widget>[
-              BrnSelectionAnimationWidget(controller: listViewController, view: content)
+              BrnSelectionAnimationWidget(
+                  controller: listViewController, view: content)
             ],
           ),
         ),
@@ -144,7 +152,9 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: widget.height,
-      width: (widget.width != null) ? widget.width : MediaQuery.of(context).size.width,
+      width: (widget.width != null)
+          ? widget.width
+          : MediaQuery.of(context).size.width,
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -187,7 +197,8 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
         title: titles[index],
         themeData: widget.themeData,
         active: menuItemActiveState[index],
-        isHighLight: menuItemActiveState[index] || menuItemHighlightState[index],
+        isHighLight:
+            menuItemActiveState[index] || menuItemHighlightState[index],
         itemClickFunction: () {
           if (widget.onMenuItemClick != null) {
             /// 拦截 menuItem 点击。
@@ -196,14 +207,17 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
             }
           }
           RenderBox? dropDownItemRenderBox;
-          if (context.findRenderObject() != null && context.findRenderObject() is RenderBox) {
+          if (context.findRenderObject() != null &&
+              context.findRenderObject() is RenderBox) {
             dropDownItemRenderBox = context.findRenderObject() as RenderBox;
           }
-          Offset? position = dropDownItemRenderBox?.localToGlobal(Offset.zero, ancestor: null);
+          Offset? position =
+              dropDownItemRenderBox?.localToGlobal(Offset.zero, ancestor: null);
           Size? size = dropDownItemRenderBox?.size;
           listViewController.listViewTop =
               (size?.height ?? 0) + (widget.constantTop ?? position?.dy ?? 0);
-          if (listViewController.isShow && listViewController.menuIndex != index) {
+          if (listViewController.isShow &&
+              listViewController.menuIndex != index) {
             listViewController.hide();
           }
 
@@ -212,14 +226,16 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
           } else {
             /// 点击不是 More、自定义类型，则直接展开。
             if (widget.data[index].filterType != BrnSelectionFilterType.more &&
-                widget.data[index].filterType != BrnSelectionFilterType.customHandle) {
+                widget.data[index].filterType !=
+                    BrnSelectionFilterType.customHandle) {
               /// 创建 筛选组件的的入口
               OverlayEntry entry = _createEntry(widget.data[index]);
               Overlay.of(widget.context)?.insert(entry);
 
               listViewController.entry = entry;
               listViewController.show(index);
-            } else if (widget.data[index].filterType == BrnSelectionFilterType.customHandle) {
+            } else if (widget.data[index].filterType ==
+                BrnSelectionFilterType.customHandle) {
               /// 记录自定义筛选 menu 的点击状态，当点击自定义的 menu 时，menu 文案默认高亮。
               listViewController.show(index);
               _refreshSelectionMenuTitle(index, widget.data[index]);
@@ -261,7 +277,8 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
       return true;
     }
     var totalLevel = BrnSelectionUtil.getTotalLevel(entity);
-    if (totalLevel == 1 && entity.filterType == BrnSelectionFilterType.checkbox) {
+    if (totalLevel == 1 &&
+        entity.filterType == BrnSelectionFilterType.checkbox) {
       return true;
     }
     return false;
@@ -270,13 +287,15 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
   Widget _createRangeView(BrnSelectionEntity entity) {
     int? rowCount;
     if (widget.configRowCount != null) {
-      rowCount = widget.configRowCount!(widget.data.indexOf(entity), entity) ?? rowCount;
+      rowCount = widget.configRowCount!(widget.data.indexOf(entity), entity) ??
+          rowCount;
     }
     return BrnRangeSelectionGroupWidget(
       entity: entity,
       marginTop: listViewController.listViewTop ?? 0,
-      maxContentHeight:
-          DESIGN_SELECTION_HEIGHT / DESIGN_SCREEN_HEIGHT * MediaQuery.of(context).size.height,
+      maxContentHeight: DESIGN_SELECTION_HEIGHT /
+          DESIGN_SCREEN_HEIGHT *
+          MediaQuery.of(context).size.height,
       // UI 给出的内容高度比例 248:812
       themeData: widget.themeData,
       rowCount: rowCount,
@@ -289,8 +308,8 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
           listViewController.hide();
         });
       },
-      onSelectionConfirm:
-          (BrnSelectionEntity result, int firstIndex, int secondIndex, int thirdIndex) {
+      onSelectionConfirm: (BrnSelectionEntity result, int firstIndex,
+          int secondIndex, int thirdIndex) {
         setState(() {
           _onConfirmSelect(entity, result, firstIndex, secondIndex, thirdIndex);
         });
@@ -302,8 +321,9 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
     /// 顶层筛选 Tab
     return BrnListSelectionGroupWidget(
       entity: entity,
-      maxContentHeight:
-          DESIGN_SELECTION_HEIGHT / DESIGN_SCREEN_HEIGHT * MediaQuery.of(context).size.height,
+      maxContentHeight: DESIGN_SELECTION_HEIGHT /
+          DESIGN_SCREEN_HEIGHT *
+          MediaQuery.of(context).size.height,
       themeData: widget.themeData,
       // UI 给出的内容高度比例 248:812
       bgClickFunction: () {
@@ -315,8 +335,8 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
           listViewController.hide();
         });
       },
-      onSelectionConfirm:
-          (BrnSelectionEntity result, int firstIndex, int secondIndex, int thirdIndex) {
+      onSelectionConfirm: (BrnSelectionEntity result, int firstIndex,
+          int secondIndex, int thirdIndex) {
         setState(() {
           _onConfirmSelect(entity, result, firstIndex, secondIndex, thirdIndex);
         });
@@ -324,8 +344,8 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
     );
   }
 
-  void _onConfirmSelect(BrnSelectionEntity entity, BrnSelectionEntity result, int firstIndex,
-      int secondIndex, int thirdIndex) {
+  void _onConfirmSelect(BrnSelectionEntity entity, BrnSelectionEntity result,
+      int firstIndex, int secondIndex, int thirdIndex) {
     if (listViewController.menuIndex < titles.length) {
       if (widget.onConfirm != null) {
         widget.onConfirm!(result, firstIndex, secondIndex, thirdIndex);
@@ -351,15 +371,18 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
 
   String? _getTitle(BrnSelectionEntity entity) {
     String? title;
-    List<BrnSelectionEntity> firstColumn = BrnSelectionUtil.currentSelectListForEntity(entity);
+    List<BrnSelectionEntity> firstColumn =
+        BrnSelectionUtil.currentSelectListForEntity(entity);
     List<BrnSelectionEntity> secondColumn = [];
     List<BrnSelectionEntity> thirdColumn = [];
     if (firstColumn.length > 0) {
       for (BrnSelectionEntity firstEntity in firstColumn) {
-        secondColumn.addAll(BrnSelectionUtil.currentSelectListForEntity(firstEntity));
+        secondColumn
+            .addAll(BrnSelectionUtil.currentSelectListForEntity(firstEntity));
         if (secondColumn.length > 0) {
           for (BrnSelectionEntity secondEntity in secondColumn) {
-            thirdColumn.addAll(BrnSelectionUtil.currentSelectListForEntity(secondEntity));
+            thirdColumn.addAll(
+                BrnSelectionUtil.currentSelectListForEntity(secondEntity));
           }
         }
       }
@@ -374,7 +397,8 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
       } else if (firstColumn[0].filterType == BrnSelectionFilterType.range ||
           firstColumn[0].filterType == BrnSelectionFilterType.date ||
           firstColumn[0].filterType == BrnSelectionFilterType.dateRange ||
-          firstColumn[0].filterType == BrnSelectionFilterType.dateRangeCalendar) {
+          firstColumn[0].filterType ==
+              BrnSelectionFilterType.dateRangeCalendar) {
         title = _getDateAndRangeTitle(firstColumn, entity);
       } else {
         if (secondColumn.length == 0 || secondColumn.length > 1) {
@@ -383,10 +407,12 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
           /// 第二列选中了一个，为【不限】类型，使用上一级别的名字展示。
           if (secondColumn[0].isUnLimit()) {
             title = firstColumn[0].title;
-          } else if (secondColumn[0].filterType == BrnSelectionFilterType.range ||
+          } else if (secondColumn[0].filterType ==
+                  BrnSelectionFilterType.range ||
               secondColumn[0].filterType == BrnSelectionFilterType.date ||
               secondColumn[0].filterType == BrnSelectionFilterType.dateRange ||
-              secondColumn[0].filterType == BrnSelectionFilterType.dateRangeCalendar) {
+              secondColumn[0].filterType ==
+                  BrnSelectionFilterType.dateRangeCalendar) {
             title = _getDateAndRangeTitle(secondColumn, firstColumn[0]);
           } else {
             if (thirdColumn.length == 0 || thirdColumn.length > 1) {
@@ -395,10 +421,13 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
               /// 第三列选中了一个，为【不限】类型，使用上一级别的名字展示。
               if (thirdColumn[0].isUnLimit()) {
                 title = secondColumn[0].title;
-              } else if (thirdColumn[0].filterType == BrnSelectionFilterType.range ||
+              } else if (thirdColumn[0].filterType ==
+                      BrnSelectionFilterType.range ||
                   thirdColumn[0].filterType == BrnSelectionFilterType.date ||
-                  thirdColumn[0].filterType == BrnSelectionFilterType.dateRange ||
-                  thirdColumn[0].filterType == BrnSelectionFilterType.dateRangeCalendar) {
+                  thirdColumn[0].filterType ==
+                      BrnSelectionFilterType.dateRange ||
+                  thirdColumn[0].filterType ==
+                      BrnSelectionFilterType.dateRangeCalendar) {
                 title = _getDateAndRangeTitle(thirdColumn, secondColumn[0]);
               } else {
                 title = thirdColumn[0].title;
@@ -408,12 +437,14 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
         }
       }
     }
-    String joinTitle = _getJoinTitle(entity, firstColumn, secondColumn, thirdColumn);
+    String joinTitle =
+        _getJoinTitle(entity, firstColumn, secondColumn, thirdColumn);
     title = BrunoTools.isEmpty(joinTitle) ? title : joinTitle;
     return title;
   }
 
-  String? _getDateAndRangeTitle(List<BrnSelectionEntity> list, BrnSelectionEntity entity) {
+  String? _getDateAndRangeTitle(
+      List<BrnSelectionEntity> list, BrnSelectionEntity entity) {
     String? title = '';
     if (!BrunoTools.isEmpty(list[0].customMap)) {
       if (list[0].filterType == BrnSelectionFilterType.range) {
@@ -440,19 +471,21 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
     if (list[0].customMap != null &&
         list[0].customMap!['min'] != null &&
         int.tryParse(list[0].customMap!['min'] ?? '') != null) {
-      DateTime? minDate = DateTimeFormatter.convertIntValueToDateTime(list[0].customMap!['min']);
+      DateTime? minDate = DateTimeFormatter.convertIntValueToDateTime(
+          list[0].customMap!['min']);
       if (minDate != null) {
-        minDateTime =
-            DateTimeFormatter.formatDate(minDate, 'yyyy年MM月dd日', DateTimePickerLocale.zh_cn);
+        minDateTime = DateTimeFormatter.formatDate(
+            minDate, 'yyyy年MM月dd日', DateTimePickerLocale.zh_cn);
       }
     }
     if (list[0].customMap != null &&
         list[0].customMap!['max'] != null &&
         int.tryParse(list[0].customMap!['max'] ?? '') != null) {
-      DateTime? maxDate = DateTimeFormatter.convertIntValueToDateTime(list[0].customMap!['max']);
+      DateTime? maxDate = DateTimeFormatter.convertIntValueToDateTime(
+          list[0].customMap!['max']);
       if (maxDate != null) {
-        maxDateTime =
-            DateTimeFormatter.formatDate(maxDate, 'yyyy年MM月dd日', DateTimePickerLocale.zh_cn);
+        maxDateTime = DateTimeFormatter.formatDate(
+            maxDate, 'yyyy年MM月dd日', DateTimePickerLocale.zh_cn);
       }
     }
     return '$minDateTime-$maxDateTime';
@@ -462,14 +495,19 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
     String? title = "";
     int? msDateTime = int.tryParse(list[0].value ?? '');
     title = msDateTime != null
-        ? DateTimeFormatter.formatDate(DateTime.fromMillisecondsSinceEpoch(msDateTime),
-            'yyyy年MM月dd日', DateTimePickerLocale.zh_cn)
+        ? DateTimeFormatter.formatDate(
+            DateTime.fromMillisecondsSinceEpoch(msDateTime),
+            'yyyy年MM月dd日',
+            DateTimePickerLocale.zh_cn)
         : list[0].title;
     return title;
   }
 
-  String _getJoinTitle(BrnSelectionEntity entity, List<BrnSelectionEntity> firstColumn,
-      List<BrnSelectionEntity> secondColumn, List<BrnSelectionEntity> thirdColumn) {
+  String _getJoinTitle(
+      BrnSelectionEntity entity,
+      List<BrnSelectionEntity> firstColumn,
+      List<BrnSelectionEntity> secondColumn,
+      List<BrnSelectionEntity> thirdColumn) {
     String title = "";
     if (entity.canJoinTitle) {
       if (firstColumn.length == 1) {

@@ -8,7 +8,6 @@ class BrnInitializer {
     BrnAllThemeConfig? allThemeConfig,
     String configId = GLOBAL_CONFIG_ID,
   }) {
-
     /// 配置主题定制
     BrnThemeConfigurator.instance.register(allThemeConfig, configId: configId);
   }

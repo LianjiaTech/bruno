@@ -17,8 +17,7 @@ class BrnInputItemType {
   static const String textArrayInputType = "text_array_input_type";
   static const String textSelectInputType = "text_select_input_type";
   static const String textBlockInputType = "text_block_input_type";
-  static const String textInputTitleSelectType =
-      "text_input_title_select_type";
+  static const String textInputTitleSelectType = "text_input_title_select_type";
   static const String textRangeInputType = "text_range_input_type";
   static const String textStepInputType = "text_step_input_type";
   static const String radioInputType = "radio_input_type";
@@ -34,8 +33,7 @@ class BrnInputItemType {
   static const String normalGroupType = "normal_group_type";
   static const String textInputRatioType = "text_input_ratio_type";
 
-  static const String textQuickSelectInputType =
-      "text_quick_select_input_type";
+  static const String textQuickSelectInputType = "text_quick_select_input_type";
 
   /// bottom类型
   static const String bottomBtnType = "bottom_btn_type";

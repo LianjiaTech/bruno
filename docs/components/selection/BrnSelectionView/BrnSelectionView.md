@@ -84,21 +84,21 @@ BrnSelectionView(
 
 ### 参数说明
 
-| **参数名**                 | **参数类型**                                                                                                                                            | **作用**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | **是否必填** | **默认值** |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- |
-| originalSelectionData      | List<**BrnSelectionEntity**>                                                                                                                            | 筛选所需数据用于展示筛选菜单栏，以及展开的筛选弹窗。                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 否           | 空         |
-| selectionViewController    | BrnSelectionViewController                                                                                                                              | 用于主动控制筛选弹窗的关闭和刷新菜单的内容状态                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 否           |            |
+| **参数名**                 | **参数类型**                                                 | **作用**                                                     | **是否必填** | **默认值** |
+| -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------ | ---------- |
+| originalSelectionData      | List<**BrnSelectionEntity**>                                 | 筛选所需数据用于展示筛选菜单栏，以及展开的筛选弹窗。         | 是           | 空         |
+| selectionViewController    | BrnSelectionViewController?                                  | 用于主动控制筛选弹窗的关闭和刷新菜单的内容状态               | 否           |            |
 | onSelectionChanged         | `void Function(int menuIndex, Map<String, String> selectedParams, Map<String, String> customParams, BrnSetCustomSelectionMenuTitle setCustomMenuTitle)` | 点击筛选弹窗中的【确认】按钮时回调给外部选中的参数,包括:<br />menuIndex：当前展开的 menu 位置;<br />selectedParams 所有筛选弹窗中选中的参数；<br />customParams：拦截 CustomHandle 类型的筛选并设置的自定义参数；setCustomMenuTitle：对当前的筛选 Menu 设置 title 和高亮的回调函数，一般与 customParams 、**onCustomSelectionMenuClick**搭配使用，例如，通过 onCustomSelectionMenuClick 回调返回 customParams 参数，setCustomMenuTitle 根据 customParams 参数判断是否高亮，是否需要根据参数更新筛选菜单的 Title。 | 是           |            |
-| configRowCount             | `BrnConfigTagCountPerRow(int index, BrnSelectionEntity entity)`                                                                                         | 仅适用于类型为 SelectionWindowType.Range 的筛选弹窗，用于对 SelectionWindowType.Range 类型的列数做配置，回调参数为 menu 的所在位置 index 和 menu 的数据。                                                                                                                                                                                                                                                                                                                                                         | 否           | 空         |
-| selectionConverterDelegate | DefaultSelectionConverter                                                                                                                               | 用于对处理 originalSelectionData 筛选数据，返回选中的参数。返回选中的参数返回类型为 Map<String, String>。                                                                                                                                                                                                                                                                                                                                                                                                         | 否           |            |
-| onCustomSelectionMenuClick | `Function(int index, BrnSelectionEntity customMenuItem, BrnSetCustomSelectionParams customSelectionParams)`                                             | 自定义（CustomHandle）类型的 menu 被点击的回调。<br />int index: 自定义 menu 所在位置 BrnSelectionEntity customMenuItem 自定义 menu 的数据<br />customSelectionParams：设置自定义参数                                                                                                                                                                                                                                                                                                                             | 否           |            |
-| onCustomFloatingLayerClick | `Function(int index, BrnSelectionEntity customFloatingLayerEntity, BrnSetCustomFloatingLayerSelectionParams setCustomFloatingLayerSelectionParams);`    | 用于【**更多-筛选**】中自定义二级浮层的点击回调（自定义二级浮层类型为 customfloatinglayer）                                                                                                                                                                                                                                                                                                                                                                                                                       |              |            |
-| onMoreSelectionMenuClick   | `void Function(int index, BrnOpenMorePage openMorePage)`                                                                                                | 点击【更多】筛选项时的回调。<br />index 为点击的位置<br />openMorePage：让用户触发的回调，用于展开更多筛选页面。`OpenMorePage = void Function({bool updateData, List moreSelections});`                                                                                                                                                                                                                                                                                                                           | 否           |            |
-| onDefaultParamsPrepared    | `void Function(Map<String, String> selectedParams);`                                                                                                    | 数据初始化完成之后返回默认选中参数的回调，在 BrnSelectioinViewState **initState** 中回触发回调<br />Map<String, String> selectedParams: 所有筛选菜单中的默认选中参数                                                                                                                                                                                                                                                                                                                                              | 否           |            |
-| onSelectionPreShow         | `SelectionWindowType Function(int index, BrnSelectionEntity entity);`                                                                                   | 筛选弹窗打开前的回调方法, 并返回 SelectionWindowType 指定展示类型，是 Range 类型还是 List 类型。调用时机早于 onMenuItemClick<br />int index:点击筛选菜单的位置。<br />BrnSelectionEntity entity: index 菜单位置的筛选数据。                                                                                                                                                                                                                                                                                       | 否           |            |
-| onMenuClickInterceptor     | `bool Function(int index);`                                                                                                                             | 筛选菜单被点击时的回调函数，<br />返回 true 拦截 menu 点击事件<br />返回 false 不拦截<br />int index:被点击的菜单栏位置                                                                                                                                                                                                                                                                                                                                                                                           | 否           |            |
-| constantTop                | double                                                                                                                                                  | 指定筛选弹窗相对于屏幕的顶部距离，默认 null 不指定位置，依附于筛选菜单组件下方。                                                                                                                                                                                                                                                                                                                                                                                                                                  | 否           |            |
-| extraScrollController      | ScrollController                                                                                                                                        | 如需要在滚动视图中监听滚动状态并隐藏筛选弹窗，可以设置要监听的 ScrollController，当监听到滚动时筛选弹窗消失。                                                                                                                                                                                                                                                                                                                                                                                                     | 否           |            |
+| configRowCount             | `BrnConfigTagCountPerRow(int index, BrnSelectionEntity entity)?` | 仅适用于类型为 SelectionWindowType.Range 的筛选弹窗，用于对 SelectionWindowType.Range 类型的列数做配置，回调参数为 menu 的所在位置 index 和 menu 的数据。 | 否           | 空         |
+| selectionConverterDelegate | DefaultSelectionConverter                                    | 用于对处理 originalSelectionData 筛选数据，返回选中的参数。返回选中的参数返回类型为 Map<String, String>。 | 是           |            |
+| onCustomSelectionMenuClick | `Function(int index, BrnSelectionEntity customMenuItem, BrnSetCustomSelectionParams customSelectionParams)?` | 自定义（CustomHandle）类型的 menu 被点击的回调。<br />int index: 自定义 menu 所在位置 BrnSelectionEntity customMenuItem 自定义 menu 的数据<br />customSelectionParams：设置自定义参数 | 否           |            |
+| onCustomFloatingLayerClick | `Function(int index, BrnSelectionEntity customFloatingLayerEntity, BrnSetCustomFloatingLayerSelectionParams setCustomFloatingLayerSelectionParams)?` | 用于【**更多-筛选**】中自定义二级浮层的点击回调（自定义二级浮层类型为 customfloatinglayer） | 否           |            |
+| onMoreSelectionMenuClick   | `void Function(int index, BrnOpenMorePage openMorePage)?`    | 点击【更多】筛选项时的回调。<br />index 为点击的位置<br />openMorePage：让用户触发的回调，用于展开更多筛选页面。`OpenMorePage = void Function({bool updateData, List moreSelections});` | 否           |            |
+| onDefaultParamsPrepared    | `void Function(Map<String, String> selectedParams)?`         | 数据初始化完成之后返回默认选中参数的回调，在 BrnSelectioinViewState **initState** 中回触发回调<br />Map<String, String> selectedParams: 所有筛选菜单中的默认选中参数 | 否           |            |
+| onSelectionPreShow         | `SelectionWindowType?` </br>`SelectionWindowType Function(int index, BrnSelectionEntity entity);` | 筛选弹窗打开前的回调方法, 并返回 SelectionWindowType 指定展示类型，是 Range 类型还是 List 类型。调用时机早于 onMenuItemClick<br />int index:点击筛选菜单的位置。<br />BrnSelectionEntity entity: index 菜单位置的筛选数据。 | 否           |            |
+| onMenuClickInterceptor     | `bool Function(int index)?`                                  | 筛选菜单被点击时的回调函数，<br />返回 true 拦截 menu 点击事件<br />返回 false 不拦截<br />int index:被点击的菜单栏位置 | 否           |            |
+| constantTop                | double?                                                      | 指定筛选弹窗相对于屏幕的顶部距离，默认 null 不指定位置，依附于筛选菜单组件下方。 | 否           |            |
+| extraScrollController      | ScrollController?                                            | 如需要在滚动视图中监听滚动状态并隐藏筛选弹窗，可以设置要监听的 ScrollController，当监听到滚动时筛选弹窗消失。 | 否           |            |
 
 ### 其它数据结构
 
@@ -278,7 +278,7 @@ BrnLayerMoreSelectionPage({this.entityData, this.themeData});
 
 ### 效果 1: 普通筛选弹窗-List 类型
 
-[示例数据 multi_list_filter.json](https://bruno.ke.com:3008/widgets/selection/brn-selection-view/multi_list_filter.json)
+[示例数据 multi_list_filter.json](https://bruno.ke.com/widgets/selection/brn-selection-view/multi_list_filter.json)
 
 <img src="./img/BrnSelectionViewDemo1.png" alt="image-20211031102133506" style="zoom:50%;" />
 
@@ -296,7 +296,7 @@ BrnSelectionView(
 
 ### 效果 2: 普通筛选弹窗-Range 类型
 
-[示例数据 multi_range_filter.json](https://bruno.ke.com:3008/widgets/selection/brn-selection-view/multi_range_filter.json)
+[示例数据 multi_range_filter.json](https://bruno.ke.com/widgets/selection/brn-selection-view/multi_range_filter.json)
 
 <img src="./img/BrnSelectionViewDemo2.png" alt="image-20211031103127927" style="zoom:50%;" />
 
@@ -320,7 +320,7 @@ BrnSelectionView(
 
 ### 效果 3: 更多筛选展示
 
-[示例数据 more_filter.json](https://bruno.ke.com:3008/widgets/selection/brn-selection-view/more_filter.json)
+[示例数据 more_filter.json](https://bruno.ke.com/widgets/selection/brn-selection-view/more_filter.json)
 
  <img src="./img/BrnSelectionViewMorePage.png" alt="image-20211031104023886" style="zoom: 25%;" />
 
@@ -340,7 +340,7 @@ BrnSelectionView(
 
 ### 效果 4: 自定义筛选参数设置
 
-[示例数据 customhandle_filter.json](https://bruno.ke.com:3008/widgets/selection/brn-selection-view/customhandle_filter.json)
+[示例数据 customhandle_filter.json](https://bruno.ke.com/widgets/selection/brn-selection-view/customhandle_filter.json)
 
 ![customhandle_filter](./img/BrnSelectionViewDemo4.gif)
 
@@ -374,7 +374,7 @@ BrnSelectionView(
 
 ### 效果 5: 筛选日期范围选择
 
-[示例数据 date_range_filter.json](https://bruno.ke.com:3008/widgets/selection/brn-selection-view/date_range_filter.json)
+[示例数据 date_range_filter.json](https://bruno.ke.com/widgets/selection/brn-selection-view/date_range_filter.json)
 
 ![](./img/BrnSelectionViewDemo5.png)
 

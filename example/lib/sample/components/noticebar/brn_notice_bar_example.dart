@@ -1,9 +1,8 @@
 
 
 import 'package:bruno/bruno.dart';
-import 'package:example/sample/home/list_item.dart';
-import 'package:example/sample/components/noticebar/notice_bar_example.dart';
 import 'package:example/sample/components/noticebar/notice_bar_with_button_example.dart';
+import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
 
 /// 描述: 通知样式example入口
@@ -147,7 +146,8 @@ class BrnNoticeBarExample extends StatelessWidget {
               describe: '点击可查看样式1更多example',
               describeColor: Color(0xFF0984F9),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BrnNoticeBarExample();
                 }));
               },
@@ -167,7 +167,8 @@ class BrnNoticeBarExample extends StatelessWidget {
               describe: '点击可查看样式2更多example',
               describeColor: Color(0xFF0984F9),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return BrnNoticeBarWithButtonExample();
                 }));
               },

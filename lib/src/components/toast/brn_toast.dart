@@ -76,8 +76,7 @@ class BrnToast {
 
     /// 自动根据内容长度决定显示时长，更加人性化
     final int autoDuration = min(text.length * 0.06 + 0.8, 5.0).ceil();
-    final Duration finalDuration =
-        duration ?? Duration(seconds: autoDuration);
+    final Duration finalDuration = duration ?? Duration(seconds: autoDuration);
     final OverlayEntry overlayEntry = OverlayEntry(
       builder: (context) {
         return _ToastWidget(

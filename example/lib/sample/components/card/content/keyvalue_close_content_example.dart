@@ -1,14 +1,14 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class KeyTextCloseContentExample extends StatefulWidget {
   @override
-  _KeyTextCloseContentExampleState createState() => _KeyTextCloseContentExampleState();
+  _KeyTextCloseContentExampleState createState() =>
+      _KeyTextCloseContentExampleState();
 }
 
-class _KeyTextCloseContentExampleState extends State<KeyTextCloseContentExample> {
+class _KeyTextCloseContentExampleState
+    extends State<KeyTextCloseContentExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,10 @@ class _KeyTextCloseContentExampleState extends State<KeyTextCloseContentExample>
           children: <Widget>[
             Text(
               '规则',
-              style: TextStyle(color: Color(0xFF222222), fontSize: 28, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Color(0xFF222222),
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold),
             ),
             BrnBubbleText(
               maxLines: 4,
@@ -88,8 +91,12 @@ class _KeyTextCloseContentExampleState extends State<KeyTextCloseContentExample>
               children: <BrnInfoModal>[
                 BrnInfoModal(keyPart: "名称：", valuePart: "内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名：", valuePart: "内容内容内容内容内容"),
-                BrnInfoModal(keyPart: "名称十分的长名称十分的长名称十分的长名称十分的长：", valuePart: "内容内容内容内容内容"),
-                BrnInfoModal(keyPart: "名称十分的长名称十分的长名称十分的长名称十分的长十分的长：", valuePart: "内容内容内容内容内容"),
+                BrnInfoModal(
+                    keyPart: "名称十分的长名称十分的长名称十分的长名称十分的长：",
+                    valuePart: "内容内容内容内容内容"),
+                BrnInfoModal(
+                    keyPart: "名称十分的长名称十分的长名称十分的长名称十分的长十分的长：",
+                    valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
               ],
             ),
@@ -103,10 +110,14 @@ class _KeyTextCloseContentExampleState extends State<KeyTextCloseContentExample>
             BrnPairInfoTable(
               isValueAlign: false,
               children: <BrnInfoModal>[
-                BrnInfoModal(keyPart: "名称：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+                BrnInfoModal(
+                    keyPart: "名称：",
+                    valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名：", valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称正常：", valuePart: "内容内容内容内容内容"),
-                BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+                BrnInfoModal(
+                    keyPart: "名称名称名：",
+                    valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
                 BrnInfoModal(
                     keyPart: "名称名称名：",
                     valuePart:
@@ -122,23 +133,29 @@ class _KeyTextCloseContentExampleState extends State<KeyTextCloseContentExample>
             ),
             BrnPairInfoTable(
               isValueAlign: false,
-              expandAtIndex:2,
+              expandAtIndex: 2,
               children: <BrnInfoModal>[
-                BrnInfoModal(keyPart: "名称：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+                BrnInfoModal(
+                    keyPart: "名称：",
+                    valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名：", valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称正常：", valuePart: "内容内容内容内容内容"),
-                BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
+                BrnInfoModal(
+                    keyPart: "名称名称名：",
+                    valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
                 BrnInfoModal(
                     keyPart: "名称名称名：",
                     valuePart:
                         "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内"),
-                BrnInfoModal.valueLastClickInfo("名称十分的长名：", '内容内容内容内容内容', '可点击内容可点击内容可点击内容可点击内容',
+                BrnInfoModal.valueLastClickInfo(
+                    "名称十分的长名：", '内容内容内容内容内容', '可点击内容可点击内容可点击内容可点击内容',
                     clickCallback: (text) {
                   BrnToast.show(text!, context);
                 }),
                 BrnInfoModal.valueLastClickInfo(
-                    "名称十分的长名：", '内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容', '可点击内容可点击内容可点击内容可点击内容',
-                    clickCallback: (text) {
+                    "名称十分的长名：",
+                    '内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容',
+                    '可点击内容可点击内容可点击内容可点击内容', clickCallback: (text) {
                   BrnToast.show(text!, context);
                 }),
               ],

@@ -200,7 +200,7 @@ class _IndexBarState extends State<_IndexBar> {
       onVerticalDragDown: (DragDownDetails details) {
         if (_widgetTop == -1 || _widgetTopChange) {
           _widgetTopChange = false;
-          RenderBox box = context.findRenderObject() as RenderBox;
+          RenderBox? box = context.findRenderObject() as RenderBox;
           Offset topLeftPosition = box.localToGlobal(Offset.zero);
           _widgetTop = topLeftPosition.dy.toInt();
         }

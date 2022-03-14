@@ -44,18 +44,13 @@ class _BrnTabbarStickyExampleState extends State<BrnTabbarStickyExample>
           ),
           body: NestedScrollView(
             controller: scrollController,
-            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
-                SliverAppBar(
-                  pinned: true,
-                  elevation: 0,
-                  flexibleSpace: FlexibleSpaceBar(
-                    title: Text('Tabbar sticky效果(通过代码注释打开 TabbarBadge 示例)'),
-                  ),
-                ),
                 buildHeaderWidget(),
                 SliverOverlapAbsorber(
-                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                  handle:
+                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                   sliver: SliverPersistentHeader(
                     pinned: true,
                     delegate: StickyTabBarDelegate(
@@ -66,8 +61,10 @@ class _BrnTabbarStickyExampleState extends State<BrnTabbarStickyExample>
                       moreWindowText: "Tabs描述",
                       onTap: (state, index) {
                         state.refreshBadgeState(index);
-                        scrollController.animateTo(globalKey.currentContext!.size!.height,
-                            duration: Duration(milliseconds: 200), curve: Curves.linear);
+                        scrollController.animateTo(
+                            globalKey.currentContext!.size!.height,
+                            duration: Duration(milliseconds: 200),
+                            curve: Curves.linear);
                       },
                       onMorePop: () {},
                       closeController: closeWindowController,
@@ -117,15 +114,16 @@ class StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   StickyTabBarDelegate({required this.child});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return this.child;
   }
 
   @override
-  double get maxExtent => this.child.tabHeight!;
+  double get maxExtent => this.child.tabHeight ?? 50;
 
   @override
-  double get minExtent => this.child.tabHeight!;
+  double get minExtent => this.child.tabHeight ?? 50;
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {

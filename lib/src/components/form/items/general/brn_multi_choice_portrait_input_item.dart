@@ -6,7 +6,6 @@ import 'package:bruno/src/components/radio/brn_checkbox.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 ///
 /// 纵向多选录入项
@@ -188,9 +187,8 @@ class BrnMultiChoicePortraitInputFormItemState
           mainAxisSize: MainAxisSize.max,
           radioIndex: index,
           disable: getRadioEnableState(index),
-          isSelected: (index < _selectStatus.length)
-              ? _selectStatus[index]
-              : false,
+          isSelected:
+              (index < _selectStatus.length) ? _selectStatus[index] : false,
           onValueChangedAtIndex: (position, value) {
             _selectStatus[position] = value;
             List<String> oldValue = <String>[]..addAll(widget.value);

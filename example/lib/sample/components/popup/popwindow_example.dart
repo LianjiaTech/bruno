@@ -13,9 +13,6 @@ class PopWindowExamplePage extends StatefulWidget {
 }
 
 class PopWindowExamplePageState extends State<PopWindowExamplePage> {
-  GlobalKey? _leftKeylist0;
-  GlobalKey? _leftKeylist1;
-  GlobalKey? _leftKeylist2;
   GlobalKey? _leftKey;
   GlobalKey? _leftKey1;
   GlobalKey? _leftKey2;
@@ -30,9 +27,6 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
   @override
   void initState() {
     super.initState();
-    _leftKeylist0 = GlobalKey();
-    _leftKeylist1 = GlobalKey();
-    _leftKeylist2 = GlobalKey();
     _leftKey = GlobalKey();
     _leftKey1 = GlobalKey();
     _leftKey2 = GlobalKey();
@@ -55,7 +49,7 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(left: 10, top: 10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey,
                   onPressed: () {
                     BrnPopupWindow.showPopWindow(context, "提示内容", _leftKey!,
@@ -66,10 +60,11 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey1,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey1!,
+                    BrnPopupWindow.showPopWindow(
+                        context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey1!,
                         hasCloseIcon: false);
                   },
                   child: Text("左侧带无关闭Tips"),
@@ -77,32 +72,37 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey2,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey2!,
-                        popDirection: BrnPopupDirection.top, hasCloseIcon: true);
+                    BrnPopupWindow.showPopWindow(context,
+                        "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey2!,
+                        popDirection: BrnPopupDirection.top,
+                        hasCloseIcon: true);
                   },
                   child: Text("左侧带关闭，箭头朝下Tips"),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey3,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey3!,
-                        dismissCallback: () {}, popDirection: BrnPopupDirection.top);
+                    BrnPopupWindow.showPopWindow(
+                        context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey3!,
+                        dismissCallback: () {},
+                        popDirection: BrnPopupDirection.top);
                   },
                   child: Text("左侧无关闭，箭头朝下Tips"),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 250),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey4,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey4!,
+                    BrnPopupWindow.showPopWindow(
+                        context, "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey4!,
                         hasCloseIcon: true,
                         dismissCallback: () {},
                         popDirection: BrnPopupDirection.bottom);
@@ -112,10 +112,11 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 250),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey5,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容", _leftKey5!,
+                    BrnPopupWindow.showPopWindow(
+                        context, "提示内容提示内容提示内容提示内容", _leftKey5!,
                         hasCloseIcon: false,
                         dismissCallback: () {},
                         popDirection: BrnPopupDirection.bottom);
@@ -125,10 +126,11 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 250),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey6,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey6!,
+                    BrnPopupWindow.showPopWindow(
+                        context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey6!,
                         hasCloseIcon: true,
                         canWrap: false,
                         dismissCallback: () {},
@@ -139,10 +141,11 @@ class PopWindowExamplePageState extends State<PopWindowExamplePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 250),
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: _leftKey7,
                   onPressed: () {
-                    BrnPopupWindow.showPopWindow(context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey7!,
+                    BrnPopupWindow.showPopWindow(
+                        context, "提示内容提示内容提示内容提示内容提示内容提示内容", _leftKey7!,
                         hasCloseIcon: false,
                         dismissCallback: () {},
                         popDirection: BrnPopupDirection.top);

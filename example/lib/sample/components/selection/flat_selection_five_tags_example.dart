@@ -10,10 +10,12 @@ class NewSelectionViewExamplePage23 extends StatefulWidget {
   NewSelectionViewExamplePage23(this._title, this._filterData);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<NewSelectionViewExamplePage23> {
+class _SelectionViewExamplePageState
+    extends State<NewSelectionViewExamplePage23> {
   BrnSelectionEntity? entity;
 
   BrnFlatSelectionController? controller;
@@ -67,7 +69,8 @@ class _SelectionViewExamplePageState extends State<NewSelectionViewExamplePage23
                             entityDataList: widget._filterData,
                             confirmCallback: (data) {
                               var str = "";
-                              data.forEach((k, v) => str = str + " " + '${k}: ${v}');
+                              data.forEach(
+                                  (k, v) => str = str + " " + '$k: $v');
                               BrnToast.show(str, context);
                             },
                             controller: controller)),
@@ -100,11 +103,13 @@ class _SelectionViewExamplePageState extends State<NewSelectionViewExamplePage23
                       Container(
                         height: 24,
                         width: 24,
-                        child: BrunoTools.getAssetImage(BrnAsset.iconSelectionReset),
+                        child: BrunoTools.getAssetImage(
+                            BrnAsset.iconSelectionReset),
                       ),
                       Text(
                         "重置",
-                        style: TextStyle(fontSize: 11, color: Color(0xFF999999)),
+                        style:
+                            TextStyle(fontSize: 11, color: Color(0xFF999999)),
                       )
                     ],
                   ),
@@ -151,9 +156,5 @@ class _SelectionViewExamplePageState extends State<NewSelectionViewExamplePage23
         )
       ],
     );
-  }
-
-  void _backButtonClickEvent() {
-    Navigator.of(context).pop();
   }
 }

@@ -36,9 +36,8 @@ class BrnCalendarView extends StatefulWidget {
       this.minDate,
       this.maxDate})
       : assert(weekNames.length == 7),
-        assert(
-            selectMode == SelectMode.single && dateChange != null ||
-                selectMode == SelectMode.range && rangeDateChange != null),
+        assert(selectMode == SelectMode.single && dateChange != null ||
+            selectMode == SelectMode.range && rangeDateChange != null),
         super(key: key);
 
   const BrnCalendarView.single(

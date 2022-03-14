@@ -73,7 +73,8 @@ class BrnEnhanceNumberCardConfig extends BrnBaseConfig {
       BrnTextStyle(color: commonConfig.colorTextBase).merge(_titleTextStyle),
     );
     _descTextStyle = userConfig.descTextStyle.merge(
-      BrnTextStyle(color: commonConfig.colorTextSecondary).merge(_descTextStyle),
+      BrnTextStyle(color: commonConfig.colorTextSecondary)
+          .merge(_descTextStyle),
     );
   }
 

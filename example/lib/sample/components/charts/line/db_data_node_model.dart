@@ -26,6 +26,7 @@ class DBDataNodeModel {
   /// section data field
   String? url;
   DBDataNodeModel? total;
+
   DBDataNodeModel();
 
   factory DBDataNodeModel.fromJson(Map<String, dynamic>? json) {

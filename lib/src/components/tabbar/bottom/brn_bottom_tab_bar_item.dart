@@ -1,7 +1,3 @@
-
-
-import 'dart:ui' show Color;
-
 import 'package:flutter/material.dart';
 
 /// 简述：[BrnBottomTabBar]中的单个选择按钮组件
@@ -16,7 +12,7 @@ class BrnBottomTabBarItem {
     this.badge,
     this.badgeNo,
     this.maxBadgeNo = 99,
-  })  : activeIcon = activeIcon ?? icon;
+  }) : activeIcon = activeIcon ?? icon;
 
   /// 未选中时的icon
   final Widget icon;

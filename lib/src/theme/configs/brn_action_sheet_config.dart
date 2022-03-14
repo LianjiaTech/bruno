@@ -263,7 +263,8 @@ class BrnActionSheetConfig extends BrnBaseConfig {
       titleStyle: titleStyle.merge(other._titleStyle),
       itemTitleStyle: itemTitleStyle.merge(other._itemTitleStyle),
       itemTitleStyleLink: itemTitleStyleLink.merge(other._itemTitleStyleLink),
-      itemTitleStyleAlert: itemTitleStyleAlert.merge(other._itemTitleStyleAlert),
+      itemTitleStyleAlert:
+          itemTitleStyleAlert.merge(other._itemTitleStyleAlert),
       itemDescStyle: itemDescStyle.merge(other._itemDescStyle),
       itemDescStyleLink: itemDescStyleLink.merge(other._itemDescStyleLink),
       itemDescStyleAlert: itemDescStyleAlert.merge(other._itemDescStyleAlert),

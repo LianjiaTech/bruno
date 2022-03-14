@@ -10,10 +10,12 @@ class SelectionViewMultiListExamplePage extends StatefulWidget {
   SelectionViewMultiListExamplePage(this._title, this._filterData);
 
   @override
-  _SelectionViewExamplePageState createState() => _SelectionViewExamplePageState();
+  _SelectionViewExamplePageState createState() =>
+      _SelectionViewExamplePageState();
 }
 
-class _SelectionViewExamplePageState extends State<SelectionViewMultiListExamplePage> {
+class _SelectionViewExamplePageState
+    extends State<SelectionViewMultiListExamplePage> {
   List<BrnSelectionEntity>? items;
 
   @override

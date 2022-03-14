@@ -5,7 +5,6 @@ import 'dart:math' as math;
 
 import 'package:bruno/src/components/tabbar/bottom/brn_bottom_tab_bar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// 定义一些UI常量,根据UI稿进行填写
 const double _kActiveFontSize = 10.0;
@@ -45,8 +44,8 @@ class BrnBottomTabBar extends StatefulWidget {
         ),
         assert(0 <= currentIndex && currentIndex < items.length),
         type = items.length <= 3
-                ? BrnBottomTabBarDisplayType.fixed
-                : BrnBottomTabBarDisplayType.shifting,
+            ? BrnBottomTabBarDisplayType.fixed
+            : BrnBottomTabBarDisplayType.shifting,
         super(key: key);
 
   /// 动画是否可见，默认：true
@@ -95,7 +94,7 @@ class _BottomNavigationTile extends StatelessWidget {
     this.isAnimation = true,
     this.isInkResponse = true,
     this.badgeColor,
-  }) ;
+  });
 
   final BrnBottomTabBarDisplayType type;
   final BrnBottomTabBarItem item;
@@ -236,7 +235,7 @@ class _BottomNavigationTile extends StatelessWidget {
     );
   }
 
-  String _getUnReadText(){
+  String _getUnReadText() {
     int _badgeNo = 0;
     try {
       if (item.badgeNo != null) {

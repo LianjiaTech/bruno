@@ -99,8 +99,7 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
                   child: BrnPickerTitle(
                     pickerTitleConfig: widget.pickerTitleConfig,
                     onConfirm: () {
-                      List<BrnMultiSelectBottomPickerItem> selectedItems =
-                          [];
+                      List<BrnMultiSelectBottomPickerItem> selectedItems = [];
                       if (widget.onSubmit != null) {
                         for (int i = 0; i < widget.items.length; i++) {
                           if (widget.items[i].isChecked) {
@@ -135,56 +134,54 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
   }
 
   Widget _buildItem(BuildContext context, int index) {
-
-      return GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () {
-            setState(() {
-              widget.items[index].isChecked = !widget.items[index].isChecked;
-            });
-            if (widget.onItemClick != null) {
-              widget.onItemClick!(context, index);
-            }
-          },
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                        child: Text(widget.items[index].content,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: widget.items[index].isChecked
-                                    ? FontWeight.w600
-                                    : FontWeight.normal,
-                                color: widget.items[index].isChecked
-                                    ? BrnThemeConfigurator.instance
-                                        .getConfig()
-                                        .commonConfig
-                                        .brandPrimary
-                                    : BrnThemeConfigurator.instance
-                                        .getConfig()
-                                        .commonConfig
-                                        .colorTextBase))),
-                    Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        child: widget.items[index].isChecked
-                            ? BrunoTools.getAssetImageWithBandColor(
-                                BrnAsset.iconMultiSelected)
-                            : BrunoTools.getAssetImage(BrnAsset.iconUnSelect)),
-                  ],
-                ),
+    return GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          setState(() {
+            widget.items[index].isChecked = !widget.items[index].isChecked;
+          });
+          if (widget.onItemClick != null) {
+            widget.onItemClick!(context, index);
+          }
+        },
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                      child: Text(widget.items[index].content,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: widget.items[index].isChecked
+                                  ? FontWeight.w600
+                                  : FontWeight.normal,
+                              color: widget.items[index].isChecked
+                                  ? BrnThemeConfigurator.instance
+                                      .getConfig()
+                                      .commonConfig
+                                      .brandPrimary
+                                  : BrnThemeConfigurator.instance
+                                      .getConfig()
+                                      .commonConfig
+                                      .colorTextBase))),
+                  Container(
+                      alignment: Alignment.center,
+                      height: 50,
+                      child: widget.items[index].isChecked
+                          ? BrunoTools.getAssetImageWithBandColor(
+                              BrnAsset.iconMultiSelected)
+                          : BrunoTools.getAssetImage(BrnAsset.iconUnSelect)),
+                ],
               ),
-              index != widget.items.length  - 1
-                  ? Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      child: BrnLine())
-                  : Container()
-            ],
-          ));
-
+            ),
+            index != widget.items.length - 1
+                ? Padding(
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: BrnLine())
+                : Container()
+          ],
+        ));
   }
 }

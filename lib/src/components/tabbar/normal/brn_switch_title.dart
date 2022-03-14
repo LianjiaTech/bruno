@@ -101,7 +101,7 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
   }
 
   Widget _toggleButtonsWidget(context) {
-    if (widget.nameList == null || widget.nameList.isEmpty) {
+    if (widget.nameList.isEmpty) {
       return Container(
         height: 0,
         width: 0,
@@ -121,11 +121,8 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
       }
 
       return Container(
-        padding: EdgeInsets.fromLTRB(
-            widget.padding.left,
-            widget.padding.top,
-            widget.padding.right,
-            bottomPadding),
+        padding: EdgeInsets.fromLTRB(widget.padding.left, widget.padding.top,
+            widget.padding.right, bottomPadding),
         child: tx,
       );
     }).toList();

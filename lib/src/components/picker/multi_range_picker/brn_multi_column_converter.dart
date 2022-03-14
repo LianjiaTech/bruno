@@ -56,7 +56,7 @@ class BrnMultiRangeSelConverter {
       Map<String?, List<BrnPickerEntity>> params,
       Map<String?, List<BrnPickerEntity>> selectedParams) {
     selectedParams.forEach((String? key, List<BrnPickerEntity> value) {
-      if ( params.containsKey(key)) {
+      if (params.containsKey(key)) {
         params[key]?.addAll(value);
       } else {
         params.addAll(selectedParams);

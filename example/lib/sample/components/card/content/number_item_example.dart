@@ -24,8 +24,10 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
             children: <Widget>[
               Text(
                 '规则',
-                style:
-                    TextStyle(color: Color(0xFF222222), fontSize: 28, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Color(0xFF222222),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold),
               ),
               BrnBubbleText(
                 maxLines: 4,
@@ -164,7 +166,8 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
                     title: '主题定制可去掉分割线',
                     number: '2',
                   ),
-                  BrnNumberInfoItemModel(title: '数字和描述文案字体都可配置', number: '3', lastDesc: '单位'),
+                  BrnNumberInfoItemModel(
+                      title: '数字和描述文案字体都可配置', number: '3', lastDesc: '单位'),
                   BrnNumberInfoItemModel(
                     title: '上下间距可配置',
                     number: '5',
@@ -235,7 +238,9 @@ class _NumberItemRowExampleState extends State<NumberItemRowExample> {
                         "自定义底部",
                         maxLines: 2,
                         style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xFF999999)),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xFF999999)),
                         overflow: TextOverflow.ellipsis,
                       )),
                   BrnNumberInfoItemModel(

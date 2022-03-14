@@ -89,6 +89,7 @@ class BrnBarBean {
 
   ///用户当前进行位置的小图标（比如一个小锁），默认没有只显示y轴的值，如果有内容则显示这个小图标，
   ui.Image? placehoderImage;
+
   BrnBarBean(
       {this.name,
       this.xTitleStyle,

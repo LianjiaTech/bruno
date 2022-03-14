@@ -4,7 +4,6 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// 标题类型录入项
 // ignore: must_be_immutable
@@ -105,8 +104,8 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
                       Container(
                           child: Text(
                         widget.title,
-                        style:
-                            BrnFormUtil.getHeadTitleTextStyle(widget.themeData!),
+                        style: BrnFormUtil.getHeadTitleTextStyle(
+                            widget.themeData!),
                       )),
 
                       // 问号提示

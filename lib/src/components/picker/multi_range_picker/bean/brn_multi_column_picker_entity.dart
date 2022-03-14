@@ -63,9 +63,8 @@ class BrnPickerEntity {
     }
     entity.extMap = map['ext'] ?? {};
 //    entity.children = map['children'] ?? [];
-    entity.children = []
-      ..addAll((map['children'] as List? ?? [])
-          .map((o) => BrnPickerEntity.fromMap(o)));
+    entity.children = []..addAll((map['children'] as List? ?? [])
+        .map((o) => BrnPickerEntity.fromMap(o)));
     return entity;
   }
 
@@ -158,7 +157,7 @@ class BrnPickerEntity {
 
   List<BrnPickerEntity> selectedListWithoutUnlimit() {
     List<BrnPickerEntity> selected = selectedList();
-    return selected.where((_) => !_.isUnLimit()).toList() ;
+    return selected.where((_) => !_.isUnLimit()).toList();
   }
 
   List<BrnPickerEntity> selectedList() {
@@ -167,16 +166,16 @@ class BrnPickerEntity {
     results.addAll(firstColumn);
     if (firstColumn.length > 0) {
       for (BrnPickerEntity firstEntity in firstColumn) {
-          List<BrnPickerEntity> secondColumn =
-              this.currentSelectListForEntity(firstEntity);
-          results.addAll(secondColumn);
-          if (secondColumn.length > 0) {
-            for (BrnPickerEntity secondEntity in secondColumn) {
-              List<BrnPickerEntity> thirdColumn =
-                  this.currentSelectListForEntity(secondEntity);
-              results.addAll(thirdColumn);
-            }
+        List<BrnPickerEntity> secondColumn =
+            this.currentSelectListForEntity(firstEntity);
+        results.addAll(secondColumn);
+        if (secondColumn.length > 0) {
+          for (BrnPickerEntity secondEntity in secondColumn) {
+            List<BrnPickerEntity> thirdColumn =
+            this.currentSelectListForEntity(secondEntity);
+            results.addAll(thirdColumn);
           }
+        }
       }
     }
     return results;
@@ -222,8 +221,7 @@ class BrnPickerEntity {
   }
 
   bool isInLastLevel() {
-    if (parent == null ||
-        parent!.children.length == 0) return true;
+    if (parent == null || parent!.children.length == 0) return true;
 
     for (BrnPickerEntity entity in parent!.children) {
       if (entity.children.length > 0) {
