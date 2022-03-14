@@ -510,6 +510,12 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           context,
           keyLeading,
           data: ["aaaa", "bbbbb"],
+          onItemClick: (index, data) {
+            // BrnToast.show(data, context);
+          },
+          onDismiss: (){
+            BrnToast.show('text', context);
+          },
         );
       },
       //输入框 文本内容变化的监听
@@ -568,7 +574,18 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
       leadClickCallback: (controller, update) {
         //controller 是文本控制器，通过controller 可以拿到输入的内容 以及 对输入的内容更改
         //update 是setState方法的方法命，update() 就可以刷新输入框
-        BrnPopupListWindow.showPopListWindow(context, keyLeading, data: ["aaaa", "bbbbb"], offset: 10);
+        BrnPopupListWindow.showPopListWindow(
+          context,
+          keyLeading,
+          data: ["aaaa", "bbbbb"],
+          offset: 10,
+          onItemClick: (index, data) {
+            return true;
+          },
+          onDismiss: (){
+            BrnToast.show('text', context);
+          },
+        );
       },
       //输入框 文本内容变化的监听
       searchBarInputChangeCallback: (input) {

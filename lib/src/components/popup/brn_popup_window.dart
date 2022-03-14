@@ -66,9 +66,6 @@ class BrnPopupWindow extends StatefulWidget {
   /// 箭头图标水平方向的绝对偏移量，为 null 时则自动计算
   final double? arrowOffset;
 
-  /// popUpWindow 消失回调，此回调会在 pop 之后执行
-  final VoidCallback? onDismiss;
-
   /// popWindow 距离底部的距离小于此值的时候，
   /// 自动将 popWindow 在 targetView 上面弹出
   final double turnOverFromBottom;
@@ -91,7 +88,6 @@ class BrnPopupWindow extends StatefulWidget {
       this.canWrap = false,
       this.spaceMargin = 20,
       this.arrowOffset,
-      this.onDismiss,
       this.turnOverFromBottom = 50.0})
       : super(key: key);
 
@@ -157,7 +153,6 @@ class BrnPopupWindow extends StatefulWidget {
           canWrap: canWrap,
           spaceMargin: spaceMargin,
           arrowOffset: arrowOffset,
-          onDismiss: dismissCallback,
           turnOverFromBottom: turnOverFromBottom,
         )));
   }
@@ -254,9 +249,6 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
             behavior: HitTestBehavior.translucent,
             onTap: () {
               Navigator.pop(context);
-              if (widget.onDismiss != null) {
-                widget.onDismiss!();
-              }
             },
             child: Material(
               color: Colors.transparent,
@@ -270,9 +262,6 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
             ),
           ),
           onWillPop: () {
-            if (widget.onDismiss != null) {
-              widget.onDismiss!();
-            }
             return Future.value(true);
           }),
     );
@@ -469,7 +458,7 @@ class BrnPopupRoute extends PopupRoute {
 /// popup 中每个 Item 被点击时的回调，
 /// [index] Item 的索引
 /// [item] Item 内容
-typedef BrnPopupListItemClick = Function(int index, String item);
+typedef BrnPopupListItemClick = bool? Function(int index, String item);
 
 /// popup 用于构造自定义的 Item
 /// [index] Item 的索引
@@ -533,7 +522,13 @@ class BrnPopupListWindow {
                       padding: EdgeInsets.only(top: 6, bottom: 6),
                       child: Column(
                         children: _getItems(context, minWidth, maxWidth,
-                            itemBuilder, textStyle, data!, onItemClick, null),
+                            itemBuilder, textStyle, data!, (index, item) {
+                              if (onItemClick != null) {
+                                dynamic isIntercept = onItemClick(index, item);
+                                if ((isIntercept is bool) && isIntercept) return;
+                              }
+                              Navigator.pop(context, {'index': index, 'item': item});
+                            }),
                       ),
                     ),
                   ),
@@ -582,9 +577,9 @@ class BrnPopupListWindow {
     bool hasCloseIcon = true;
 
     Navigator.push(
-        context,
-        BrnPopupRoute(
-            child: BrnPopupWindow(
+      context,
+      BrnPopupRoute(
+        child: BrnPopupWindow(
           context,
           arrowHeight: arrowHeight,
           popKey: popKey,
@@ -595,18 +590,22 @@ class BrnPopupListWindow {
           offset: offset,
           widget: BrunoTools.isEmpty(data)
               ? Container(
-                  constraints:
-                      BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
+                  constraints: BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
                 )
               : Container(
-                  constraints:
-                      BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
+                  constraints: BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight),
                   child: SingleChildScrollView(
                     child: Container(
                       padding: EdgeInsets.only(top: 6, bottom: 6),
                       child: Column(
-                        children: _getItems(context, minWidth, maxWidth, null,
-                            textStyle, data!, onItemClick, onDismiss),
+                        children: _getItems(context, minWidth, maxWidth, null, textStyle, data!,
+                            (index, item) {
+                          if (onItemClick != null) {
+                            dynamic isIntercept = onItemClick(index, item);
+                            if ((isIntercept is bool) && isIntercept) return;
+                          }
+                          Navigator.pop(context, {'index': index, 'item': item});
+                        }),
                       ),
                     ),
                   ),
@@ -615,8 +614,16 @@ class BrnPopupListWindow {
           borderRadius: borderRadius,
           borderColor: borderColor,
           spaceMargin: spaceMargin,
-          onDismiss: onDismiss,
-        )));
+        ),
+      ),
+    ).then((result) {
+      if (onItemClick != null && result != null) {
+        onItemClick(result['index'], result['item']);
+      }
+      if (onDismiss != null) {
+        onDismiss();
+      }
+    });
   }
 
   static List<Widget> _getItems(
@@ -626,8 +633,7 @@ class BrnPopupListWindow {
       BrnPopupListItemBuilder? itemBuilder,
       TextStyle textStyle,
       List<String> data,
-      BrnPopupListItemClick? onItemClick,
-      VoidCallback? onDismiss) {
+      BrnPopupListItemClick onItemClick) {
     double textMaxWidth = _getMaxWidth(textStyle, data);
     if (textMaxWidth + 52 < minWidth) {
       textMaxWidth = minWidth;
@@ -639,14 +645,7 @@ class BrnPopupListWindow {
     return data.map((f) {
       return GestureDetector(
           onTap: () {
-            if (onItemClick != null) {
-              dynamic isIntercept = onItemClick(data.indexOf(f), f);
-              if ((isIntercept is bool) && isIntercept) return;
-            }
-            Navigator.pop(context);
-            if (onDismiss != null) {
-              onDismiss();
-            }
+            onItemClick(data.indexOf(f), f);
           },
           child: Container(
               width: textMaxWidth,
