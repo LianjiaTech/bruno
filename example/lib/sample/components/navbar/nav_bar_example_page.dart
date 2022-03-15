@@ -511,10 +511,10 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           keyLeading,
           data: ["aaaa", "bbbbb"],
           onItemClick: (index, data) {
-            // BrnToast.show(data, context);
+            BrnToast.show('index: $index -- $data clicked!', context);
           },
           onDismiss: (){
-            BrnToast.show('text', context);
+            BrnToast.show('onDismiss', context);
           },
         );
       },
@@ -578,13 +578,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           context,
           keyLeading,
           data: ["aaaa", "bbbbb"],
-          offset: 10,
-          onItemClick: (index, data) {
-            return true;
-          },
-          onDismiss: (){
-            BrnToast.show('text', context);
-          },
+          offset: 10
         );
       },
       //输入框 文本内容变化的监听
