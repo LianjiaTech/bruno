@@ -245,7 +245,11 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
         key: actionKey,
         iconPressed: () {
           BrnPopupListWindow.showPopListWindow(context, actionKey,
-              offset: 10, data: ["aaaa", "bbbbb"]);
+              offset: 10, data: ["aaaa", "bbbbb"], onItemClick: (index, item){
+                BrnDialogManager.showConfirmDialog(context, cancel: 'cancel', confirm: 'confirm', message: 'message');
+              }, onDismiss: (){
+                BrnToast.show('onDismiss', context);
+              });
         },
       ),
     );
@@ -511,7 +515,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           keyLeading,
           data: ["aaaa", "bbbbb"],
           onItemClick: (index, data) {
-            BrnToast.show('index: $index -- $data clicked!', context);
+            BrnDialogManager.showConfirmDialog(context, cancel: 'cancel', confirm: 'confirm', message: 'message');
           },
           onDismiss: (){
             BrnToast.show('onDismiss', context);
