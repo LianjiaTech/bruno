@@ -10,17 +10,18 @@
 
   <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.INTERNET" />
 
   <application
-    android:name="io.flutter.app.FlutterApplication"
+    android:name="${applicationName}"
+    android:appComponentFactory="bruno"
     android:icon="@mipmap/ic_launcher"
     android:label="Bruno"
-    tools:replace="android:appComponentFactory, android:label"
-    android:appComponentFactory="bruno">
+    tools:replace="android:appComponentFactory, android:label">
     <activity
       android:name=".MainActivity"
       android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+      android:exported="true"
       android:hardwareAccelerated="true"
       android:launchMode="singleTop"
       android:theme="@style/LaunchTheme"
@@ -33,13 +34,15 @@
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
+
       <meta-data
-        android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
-        android:value="true" />
+        android:name="io.flutter.embedding.android.NormalTheme"
+        android:resource="@style/NormalTheme" />
+
     </activity>
 
     <meta-data
-        android:name="flutterEmbedding"
-        android:value="2" />
+      android:name="flutterEmbedding"
+      android:value="2" />
   </application>
 </manifest>
