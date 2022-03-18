@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <a href="https://bruno.ke.com">
     <img width="200" src="https://img.ljcdn.com/beike/zjz/bruno/img/1638883523735.jpg">
@@ -23,7 +21,6 @@
 
 ![](https://img.ljcdn.com/beike/zjz/bruno/img/1638883534391.png)
 
-
 ## ✨ 特性
 
 - 提炼自企业级移动端产品的交互和视觉风格
@@ -35,10 +32,7 @@
 
 <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005085.png"  />       <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005077.png"  />
 
-
 ## 适配 Flutter 版本
-
- 
 
 | Bruno 版本 | Flutter SDK 版本 |
 | ---------- | ---------------- |
@@ -46,34 +40,34 @@
 | 2.0.0      | 2.2.2            |
 | 2.1.0-nullsafety.1      | 2.2.2            |
 
-
-
 ## 接入
 
 Flutter 工程中 pubspec.yaml 文件里加入以下依赖：
 
 ```dart
-dependencies:
-  bruno: version
-     
+dependencies:bruno: version
+
 ```
 
 ## 示例
 
 ```dart
 import 'package:bruno/bruno.dart';
-...
-BrnBubbleText(
-  maxLines: 3,
-  text: 'I am first bubble text',
+
+...BrnBubbleText
+(
+maxLines: 3
+,
+text: '
+I am first bubble text
+'
+,
 )
 ```
 
 ### 🌈 主题定制
 
 参考 [主题定制](https://bruno.ke.com/page/guide/theme) 文档
-
-
 
 ## 参与贡献
 
@@ -141,8 +135,7 @@ BrnBubbleText(
   </a>
   </div>
 
-
-## 🔗 链接 
+## 🔗 链接
 
 - [首页](https://bruno.ke.com)
 
@@ -164,7 +157,7 @@ BrnBubbleText(
 
 Bruno 作为整套标准组件，参考和引用部分开源库如下：
 
-- [flutter_gifimage](https://github.com/peng8350/flutter_gifimage) 
+- [flutter_gifimage](https://github.com/peng8350/flutter_gifimage)
 - [expansion_tile_card.dart](https://gist.github.com/Skylled/7ac0f2f99881f7df2a0a850e60ef2df0)
 - [photo_view](https://github.com/bluefireteam/photo_view)
 - [flutter_intro](https://github.com/tal-tech/flutter_intro)
@@ -172,7 +165,6 @@ Bruno 作为整套标准组件，参考和引用部分开源库如下：
 - [lpinyin](https://github.com/flutterchina/lpinyin)
 - [azlistview](https://github.com/flutterchina/azlistview)
 - [flutter_path_drawing](https://github.com/dnfield/flutter_path_drawing)
-
 
 感谢以上开源库的作者
 
