@@ -1,6 +1,3 @@
-#
-Owl 猫头鹰
-
 <p align="center">
   <a href="https://bruno.ke.com">
     <img width="200" src="https://img.ljcdn.com/beike/zjz/bruno/img/1638883523735.jpg">
