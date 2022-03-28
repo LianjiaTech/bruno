@@ -81,10 +81,14 @@ const BrnBottomTabBarItem({
 | icon | Widget | 未选中时的icon | 是 | 无 |
 | activeIcon | Widget | 选中时的icon | 否 | 无 |
 | title | Widget? | Tab标题名调 | 否 | 无 |
+| selectedTextStyle | TextStyle? | tab 选中文本样式 | 否 | 否 |
+| unSelectedTextStyle | TextStyle? | tab 未选中文本样式 | 否 | 否 |
 | backgroundColor | Color? | 背景色 | 否 | 无 |
 | badge | Widget? | 未读信息 | 否 | 无 |
 | badgeNo | String? | 未读信息个数 | 否 | 无 |
 | maxBadgeNo | int | 未读消息最大个数 | 否 | 99 |
+
+
 
 ## 四、代码演示
 

@@ -3,7 +3,9 @@
 import 'dart:collection' show Queue;
 import 'dart:math' as math;
 
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/tabbar/bottom/brn_bottom_tab_bar_item.dart';
+import 'package:bruno/src/theme/configs/brn_all_config.dart';
 import 'package:flutter/material.dart';
 
 /// 定义一些UI常量,根据UI稿进行填写
@@ -79,246 +81,9 @@ class BrnBottomTabBar extends StatefulWidget {
   _BottomTabBarState createState() => _BottomTabBarState();
 }
 
-/// 表示底部导航栏中的单个tile，它的目的是进入一个伸缩页面
-class _BottomNavigationTile extends StatelessWidget {
-  const _BottomNavigationTile(
-    this.type,
-    this.item,
-    this.animation,
-    this.iconSize, {
-    this.onTap,
-    this.colorTween,
-    this.flex,
-    this.selected = false,
-    this.indexLabel,
-    this.isAnimation = true,
-    this.isInkResponse = true,
-    this.badgeColor,
-  });
-
-  final BrnBottomTabBarDisplayType type;
-  final BrnBottomTabBarItem item;
-  final Animation<double> animation;
-  final double iconSize;
-  final VoidCallback? onTap;
-  final ColorTween? colorTween;
-  final double? flex;
-  final bool selected;
-  final String? indexLabel;
-  final bool isAnimation;
-  final bool isInkResponse;
-  final Color? badgeColor;
-
-  /// 构建icon
-  Widget _buildIcon() {
-    double? tweenStart;
-    Color? iconColor;
-    switch (type) {
-      case BrnBottomTabBarDisplayType.fixed:
-        tweenStart = 8.0;
-        iconColor = colorTween?.evaluate(animation);
-        break;
-      case BrnBottomTabBarDisplayType.shifting:
-        tweenStart = 16.0;
-        iconColor = Colors.blue;
-        break;
-    }
-    return Align(
-      alignment: Alignment.topCenter,
-      heightFactor: 1.0,
-      child: Container(
-        margin: EdgeInsets.only(
-          top: isAnimation
-              ? Tween<double>(
-                  begin: tweenStart,
-                  end: _kTopMargin,
-                ).evaluate(animation)
-              : _kTopMargin,
-        ),
-        child: IconTheme(
-          data: IconThemeData(
-            color: iconColor,
-            size: iconSize,
-          ),
-          child: selected ? item.activeIcon : item.icon,
-        ),
-      ),
-    );
-  }
-
-  /// 构建固定Label
-  /// 修改icon与text间距在这里修改
-  Widget _buildFixedLabel() {
-    double scale = isAnimation
-        ? Tween<double>(
-            begin: _kInactiveFontSize / _kActiveFontSize,
-            end: 1.0,
-          ).evaluate(animation)
-        : 1.0;
-    return Align(
-      alignment: Alignment.bottomCenter,
-      heightFactor: 1.0,
-      child: Container(
-        margin: const EdgeInsets.only(
-            bottom: _kBottomMargin, top: _kMiddleInterval),
-        child: DefaultTextStyle.merge(
-          style: TextStyle(
-            fontSize: _kActiveFontSize,
-            color: colorTween?.evaluate(animation),
-          ),
-
-          /// 使用矩阵变化控制字体大小
-          child: Transform(
-            transform: Matrix4.diagonal3Values(
-              scale,
-              scale,
-              scale,
-            ),
-            alignment: Alignment.bottomCenter,
-            child: item.title,
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// 构建可变Label
-  Widget _buildShiftingLabel() {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      heightFactor: 1.0,
-      child: Container(
-        margin: EdgeInsets.only(
-          bottom: Tween<double>(
-            /// 在规范中，他们只是删除了非活动项目的标签，并指定了16dp的底部边距，
-            /// 我们不想移除标签因为我们想淡入淡出它，所以这修改了底部边距来考虑到这一点。
-            begin: 2.0,
-            end: _kBottomMargin,
-          ).evaluate(animation),
-        ),
-        child: FadeTransition(
-          alwaysIncludeSemantics: true,
-          opacity: animation,
-          child: DefaultTextStyle.merge(
-            style: const TextStyle(
-              fontSize: _kActiveFontSize,
-              color: Colors.blue,
-            ),
-            child: item.title!,
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// 构建未读消息弹窗
-  Widget? _buildBadge() {
-    if (item.badge == null && (item.badgeNo == null || item.badgeNo!.isEmpty)) {
-      return Container();
-    }
-    if (item.badge != null) {
-      return item.badge;
-    }
-    return Container(
-      width: 24,
-      padding: EdgeInsets.fromLTRB(0, 2, 0, 2),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          color: badgeColor,
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Text(
-        /// 设置未读数 > item.maxBadgeNo 则报加+ 默认 99
-        _getUnReadText(),
-        style: TextStyle(fontSize: 10, color: Colors.white),
-      ),
-    );
-  }
-
-  String _getUnReadText() {
-    int _badgeNo = 0;
-    try {
-      if (item.badgeNo != null) {
-        _badgeNo = int.parse(item.badgeNo!);
-      }
-    } catch (e) {
-      debugPrint('badgeNo has FormatException');
-    }
-    return '${_badgeNo > item.maxBadgeNo ? '${item.maxBadgeNo}+' : _badgeNo}';
-  }
-
-  /// 构建底字体缩放动画
-  /// label: 传入的文字组件
-  Widget _buildInkWidget(Widget? label) {
-    if (isInkResponse) {
-      return InkResponse(
-        onTap: onTap,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            _buildIcon(),
-            label!,
-          ],
-        ),
-      );
-    }
-    return GestureDetector(
-        onTap: onTap,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            _buildIcon(),
-            label!,
-          ],
-        ));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    /// 为了在动画过程中使用flex容器来增长平铺块，我们
-    /// 需要将flex分配中的更改划分为更小的块
-    /// 制作流畅的动画。我们通过将flex值相乘来实现这一点
-    /// (这是一个整数)乘以一个大数。
-    late int size;
-    Widget? label;
-    switch (type) {
-      case BrnBottomTabBarDisplayType.fixed:
-        size = 1;
-        label = _buildFixedLabel();
-        break;
-      case BrnBottomTabBarDisplayType.shifting:
-        size = (flex! * 1000.0).round();
-        label = _buildShiftingLabel();
-        break;
-    }
-
-    return Expanded(
-      flex: size,
-      child: Semantics(
-        container: true,
-        header: true,
-        selected: selected,
-        child: Stack(
-          children: <Widget>[
-            Positioned(right: 4, top: 4, child: _buildBadge()!),
-            _buildInkWidget(label),
-            Semantics(
-              label: indexLabel,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 /// 底部导航栏中状态控制类
-class _BottomTabBarState extends State<BrnBottomTabBar>
-    with TickerProviderStateMixin {
+class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderStateMixin {
   List<AnimationController> _controllers = <AnimationController>[];
   late List<CurvedAnimation> _animations;
 
@@ -582,6 +347,244 @@ class _BottomTabBarState extends State<BrnBottomTabBar>
   }
 }
 
+
+/// 表示底部导航栏中的单个tile，它的目的是进入一个伸缩页面
+class _BottomNavigationTile extends StatelessWidget {
+
+  const _BottomNavigationTile(
+      this.type,
+      this.item,
+      this.animation,
+      this.iconSize, {
+        this.onTap,
+        this.colorTween,
+        this.flex,
+        this.selected = false,
+        this.indexLabel,
+        this.isAnimation = true,
+        this.isInkResponse = true,
+        this.badgeColor,
+      });
+
+  final BrnBottomTabBarDisplayType type;
+  final BrnBottomTabBarItem item;
+  final Animation<double> animation;
+  final double iconSize;
+  final VoidCallback? onTap;
+  final ColorTween? colorTween;
+  final double? flex;
+  final bool selected;
+  final String? indexLabel;
+  final bool isAnimation;
+  final bool isInkResponse;
+  final Color? badgeColor;
+
+  @override
+  Widget build(BuildContext context) {
+    /// 为了在动画过程中使用flex容器来增长平铺块，我们
+    /// 需要将flex分配中的更改划分为更小的块
+    /// 制作流畅的动画。我们通过将flex值相乘来实现这一点
+    /// (这是一个整数)乘以一个大数。
+    late int size;
+    Widget? label;
+    switch (type) {
+      case BrnBottomTabBarDisplayType.fixed:
+        size = 1;
+        label = _buildFixedLabel();
+        break;
+      case BrnBottomTabBarDisplayType.shifting:
+        size = (flex! * 1000.0).round();
+        label = _buildShiftingLabel();
+        break;
+    }
+
+    return Expanded(
+      flex: size,
+      child: Semantics(
+        container: true,
+        header: true,
+        selected: selected,
+        child: Stack(
+          children: <Widget>[
+            Positioned(right: 4, top: 4, child: _buildBadge()!),
+            _buildInkWidget(label),
+            Semantics(
+              label: indexLabel,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+
+  /// 构建icon
+  Widget _buildIcon() {
+    double? tweenStart;
+    Color? iconColor;
+    switch (type) {
+      case BrnBottomTabBarDisplayType.fixed:
+        tweenStart = 8.0;
+        iconColor = colorTween?.evaluate(animation);
+        break;
+      case BrnBottomTabBarDisplayType.shifting:
+        tweenStart = 16.0;
+        iconColor = Colors.blue;
+        break;
+    }
+    return Align(
+      alignment: Alignment.topCenter,
+      heightFactor: 1.0,
+      child: Container(
+        margin: EdgeInsets.only(
+          top: isAnimation
+              ? Tween<double>(
+            begin: tweenStart,
+            end: _kTopMargin,
+          ).evaluate(animation)
+              : _kTopMargin,
+        ),
+        child: IconTheme(
+          data: IconThemeData(
+            color: iconColor,
+            size: iconSize,
+          ),
+          child: selected ? item.activeIcon : item.icon,
+        ),
+      ),
+    );
+  }
+
+  /// 构建固定Label
+  /// 修改icon与text间距在这里修改
+  Widget _buildFixedLabel() {
+    double scale = isAnimation
+        ? Tween<double>(
+      begin: _kInactiveFontSize / _kActiveFontSize,
+      end: 1.0,
+    ).evaluate(animation)
+        : 1.0;
+    return Align(
+      alignment: Alignment.bottomCenter,
+      heightFactor: 1.0,
+      child: Container(
+        margin: const EdgeInsets.only(
+            bottom: _kBottomMargin, top: _kMiddleInterval),
+        child: DefaultTextStyle.merge(
+          style: TextStyle(
+            fontSize: _kActiveFontSize,
+            color: colorTween?.evaluate(animation),
+          ),
+
+          /// 使用矩阵变化控制字体大小
+          child: Transform(
+            transform: Matrix4.diagonal3Values(
+              scale,
+              scale,
+              scale,
+            ),
+            alignment: Alignment.bottomCenter,
+            child: item.title,
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// 构建可变Label
+  Widget _buildShiftingLabel() {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      heightFactor: 1.0,
+      child: Container(
+        margin: EdgeInsets.only(
+          bottom: Tween<double>(
+            /// 在规范中，他们只是删除了非活动项目的标签，并指定了16dp的底部边距，
+            /// 我们不想移除标签因为我们想淡入淡出它，所以这修改了底部边距来考虑到这一点。
+            begin: 2.0,
+            end: _kBottomMargin,
+          ).evaluate(animation),
+        ),
+        child: DefaultTextStyle.merge(
+          style: TextStyle(
+            fontSize: _kActiveFontSize,
+            color: selected ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary
+                : BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+          ).merge(selected ? item.selectedTextStyle : item.unSelectedTextStyle),
+          child: item.title!,
+        ),
+      ),
+    );
+  }
+
+  /// 构建未读消息弹窗
+  Widget? _buildBadge() {
+    if (item.badge == null && (item.badgeNo == null || item.badgeNo!.isEmpty)) {
+      return Container();
+    }
+    if (item.badge != null) {
+      return item.badge;
+    }
+    return Container(
+      width: 24,
+      padding: EdgeInsets.fromLTRB(0, 2, 0, 2),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: badgeColor,
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: Text(
+        /// 设置未读数 > item.maxBadgeNo 则报加+ 默认 99
+        _getUnReadText(),
+        style: TextStyle(fontSize: 10, color: Colors.white),
+      ),
+    );
+  }
+
+  String _getUnReadText() {
+    int _badgeNo = 0;
+    try {
+      if (item.badgeNo != null) {
+        _badgeNo = int.parse(item.badgeNo!);
+      }
+    } catch (e) {
+      debugPrint('badgeNo has FormatException');
+    }
+    return '${_badgeNo > item.maxBadgeNo ? '${item.maxBadgeNo}+' : _badgeNo}';
+  }
+
+  /// 构建底字体缩放动画
+  /// label: 传入的文字组件
+  Widget _buildInkWidget(Widget? label) {
+    if (isInkResponse) {
+      return InkResponse(
+        onTap: onTap,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _buildIcon(),
+            label!,
+          ],
+        ),
+      );
+    }
+    return GestureDetector(
+        onTap: onTap,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _buildIcon(),
+            label!,
+          ],
+        ));
+  }
+}
+
+
 /// 简介：TabBarItem点击飞溅动画私有类
 /// 功能：实现点击飞溅动画
 class _Circle {
@@ -632,6 +635,7 @@ class _Circle {
     controller.dispose();
   }
 }
+
 
 /// 绘制动画色彩飞溅的圆圈
 class _RadialPainter extends CustomPainter {
