@@ -55,7 +55,7 @@ class BrnToast {
     BuildContext context, {
     Duration? duration,
     Color? background,
-    TextStyle? textStyle,
+    TextStyle? textStyle = const TextStyle(fontSize: 16, color: Colors.white),
     double? radius,
     Image? preIcon,
     double? verticalOffset,
