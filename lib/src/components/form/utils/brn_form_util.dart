@@ -157,20 +157,6 @@ class BrnFormUtil {
     return BrunoTools.getAssetImage(BrnAsset.iconQuestion);
   }
 
-  /// 设置录入项总的padding, 不包括顶部和底部padding
-  static EdgeInsets computeItemEdgeInsets2(String type, bool isRequire) {
-    return EdgeInsets.fromLTRB(0, 0, 20, 14);
-  }
-
-  /// 设置内容行padding, 包括顶部和底部padding
-  static EdgeInsets computeEdgeInsets2(String type, bool isRequire) {
-    if (isRequire && type == BrnPrefixIconType.normal) {
-      return EdgeInsets.only(left: 10, top: 14);
-    }
-
-    return EdgeInsets.only(left: 20, top: 14);
-  }
-
   static EdgeInsets computeErrorEdgeInsets(String type, bool isRequire) {
     return EdgeInsets.only(
       left: 20,
