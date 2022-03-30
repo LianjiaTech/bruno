@@ -39,13 +39,13 @@ const BrnBigOutlineButton({
 
 | **参数名** | **参数类型** | 描述 | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| title | String | 按钮显示文案 | 否 | 确认 |
-| onTap | VoidCallback | 点击的回调 | 否 | 无 |
+| title | String | 按钮显示文案 | 否 | '确认' |
+| onTap | VoidCallback? | 点击的回调 | 否 | 无 |
 | isEnable | bool | 按钮是否可用 | 否 | True |
-| lineColor | Color | 边框颜色 | 否 | 主题色 |
-| textColor | Color | 按钮文本颜色 | 否 | 黑色 |
-| width | double | 按钮的宽度 | 否 | double.infinity |
-| themeData | BrnButtonConfig | 按钮主题配置 | 否 | 无 |
+| lineColor | Color? | 边框颜色 | 否 | 主题色 |
+| textColor | Color? | 按钮文本颜色 | 否 | 黑色 |
+| width | double? | 按钮的宽度 | 否 | double.infinity |
+| themeData | BrnButtonConfig? | 按钮主题配置 | 否 | 无 |
 
 ## 四、效果及代码演示
 

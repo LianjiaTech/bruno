@@ -24,14 +24,13 @@ group:
 ### 构造函数
 
 ```dart
- BrnStateTag(
-  {Key key,
-  this.tagText,
-  this.backgroundColor,
-  this.textColor,
-  this.tagState = TagState.waiting})
-  : super(key: key)
-
+const BrnStateTag({
+    Key? key,
+    required this.tagText,
+    this.tagState = TagState.waiting,
+    this.backgroundColor,
+    this.textColor,
+  }) : super(key: key);
 ```
 
 ### 参数说明
@@ -40,8 +39,8 @@ group:
 | --------------- | ------------ | ------------------ | ------------ | ------------------ |
 | tagText         | String       | 标签显示文本       | 是           |                    |
 | tagState        | TagState     | 标签状态           | 否           | TagState.waiting   |
-| backgroundColor | Color        | 自定义标签背景颜色 | 否           | 0xFFFAAD14 10%透明 |
-| textColor       | Color        | 自定义标签文字颜色 | 否           | 0xFFFAAD14         |
+| backgroundColor | Color?       | 自定义标签背景颜色 | 否           | 0xFFFAAD14 10%透明 |
+| textColor       | Color?       | 自定义标签文字颜色 | 否           | 0xFFFAAD14         |
 
 其中 TagState 为枚举，共 5 种状态：
 

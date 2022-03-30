@@ -25,27 +25,26 @@ group:
 
 ```dart
 BrnActionCardTitle({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
     this.accessoryText,
     this.onTap,
     this.subTitle,
     this.subTitleWidget,
     this.themeData,
-  })  : assert(null != title),
-        super(key: key);
+  }) : super(key: key);
 ```
 
 ### 参数说明
 
-| **参数名**     | **参数类型**       | **描述**                            | **是否必填** | **默认值** |
-| -------------- | ------------------ | ----------------------------------- | ------------ | ---------- |
-| title          | String             | 标题文本                            | 是           |            |
-| subTitle       | String             | 标题右侧的小文字                    | 否           |            |
-| subTitleWidget | Widget             | 标题右侧的显示 widget               | 否           |            |
-| accessoryText  | String             | 箭头左边的文字                      | 否           |            |
-| onTap          | VoidCallback       | 整个标题点击的事件                  | 否           |            |
-| themeData      | BrnCardTitleConfig | 标题主题配置详见 BrnCardTitleConfig | 否           |            |
+| **参数名**     | **参数类型**        | **描述**                            | **是否必填** | **默认值** |
+| -------------- | ------------------- | ----------------------------------- | ------------ | ---------- |
+| title          | String              | 标题文本                            | 是           |            |
+| subTitle       | String？            | 标题右侧的小文字                    | 否           |            |
+| subTitleWidget | Widget?             | 标题右侧的显示 widget               | 否           |            |
+| accessoryText  | String?             | 箭头左边的文字                      | 否           |            |
+| onTap          | VoidCallback?       | 整个标题点击的事件                  | 否           |            |
+| themeData      | BrnCardTitleConfig? | 标题主题配置详见 BrnCardTitleConfig | 否           |            |
 
 ## 四、代码演示
 

@@ -40,17 +40,18 @@ const BrnSmallOutlineButton({
 
 ### 参数说明
 
-| 参数名     | 参数类型     | 描述         | 是否必填 | 默认值          |
-| ---------- | ------------ | ------------ | -------- | --------------- |
-| title      | String       | 按钮显示文案 | 否       | 确认            |
-| onTap      | VoidCallback | 点击的回调   | 否       | 无              |
-| isEnable   | bool         | 按钮是否可用 | 否       | true            |
-| lineColor  | Color        | 边框的背景色 | 否       | 主题色          |
-| width      | double       | 按钮的宽度   | 否       | 无              |
-| textColor  | Color        | 文本的颜色   | 否       | 白色            |
-| fontWeight | FontWeight   | 文本的粗细   | 否       | FontWeight.w600 |
-| fontSize   | double       | 文字的大小   | 否       | 14              |
-| radius     | double       | 按钮的圆角   | 否       | 无              |
+| 参数名     | 参数类型         | 描述         | 是否必填 | 默认值          |
+| ---------- | ---------------- | ------------ | -------- | --------------- |
+| title      | String           | 按钮显示文案 | 否       | '确认'          |
+| onTap      | VoidCallback?    | 点击的回调   | 否       | 无              |
+| isEnable   | bool             | 按钮是否可用 | 否       | true            |
+| lineColor  | Color?           | 边框的背景色 | 否       | 主题色          |
+| width      | double?          | 按钮的宽度   | 否       | 无              |
+| textColor  | Color?           | 文本的颜色   | 否       | 白色            |
+| fontWeight | FontWeight       | 文本的粗细   | 否       | FontWeight.w600 |
+| fontSize   | double           | 文字的大小   | 否       | 14              |
+| radius     | double?          | 按钮的圆角   | 否       | 无              |
+| themeData  | BrnButtonConfig? | 主题定制属性 | 否       | 无              |
 
 ## 四、代码演示
 

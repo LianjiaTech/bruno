@@ -24,19 +24,19 @@ group:
 ### 构造函数
 
 ```dart
-  BrnTagCustom({
-    Key key,
-    this.tagText,
-    this.textColor,
-    this.backgroundColor,
-    this.tagBorderRadius,
-    this.textPadding,
-    this.border,
-    this.fontSize = 11,
-    this.fontWeight = FontWeight.normal,
-    this.maxWidth = double.infinity,
-  }) : super(key: key);
-
+BrnTagCustom({
+  Key? key,
+  required this.tagText,
+  this.textColor,
+  this.backgroundColor,
+  this.tagBorderRadius = const BorderRadius.all(Radius.circular(2)),
+  this.textPadding =
+      const EdgeInsets.only(bottom: 0.5, left: 3, right: 3, top: 0),
+  this.border,
+  this.fontSize = 11,
+  this.fontWeight = FontWeight.normal,
+  this.maxWidth = double.infinity,
+}) : super(key: key);
 ```
 
 ### 参数说明
@@ -44,13 +44,14 @@ group:
 | **参数名**      | **参数类型** | **描述**           | **是否必填** | **默认值**                         |
 | --------------- | ------------ | ------------------ | ------------ | ---------------------------------- |
 | tagText         | String       | 标签显示文本       | 是           |                                    |
-| backgroundColor | Color        | 标签背景色         | 否           | 主题色                             |
-| textColor       | Color        | 文本颜色           | 否           | F4Color                            |
+| backgroundColor | Color?       | 标签背景色         | 否           | 主题色                             |
+| textColor       | Color?       | 文本颜色           | 否           | F4Color                            |
 | tagBorderRadius | BorderRadius | 标签圆角           | 否           | 圆角为 2                           |
 | textPadding     | EdgetInsets  | 标签文字的 padding | 否           | EdgeInsets.symmetric(horizontal:2) |
 | fontSize        | double       | 标签文字的大小     | 否           | 11                                 |
 | fontWeight      | FontWeight   | 文字的粗细         | 否           | FontWeight.normal                  |
 | maxWidth        | Double       | 标签高度           | 否           | double.infinity                    |
+| border          | Border?      | 标签边框           | 否           | 无                                 |
 
 ## 四、代码演示
 

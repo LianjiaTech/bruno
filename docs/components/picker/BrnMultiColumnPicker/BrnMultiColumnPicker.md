@@ -45,12 +45,13 @@ BrnMultiColumnPicker(
 | entity                    | BrnPickerEntity                                              | 筛选数据源                                                   | 是       |                              |
 | maxHeight                 | double                                                       | Picker 展示最大高度                                          | 否       | 280.0                        |
 | showSelectedCount         | bool                                                         | 展示选中的条目的个数                                         | 否       | false                        |
-| onConfirm                 | BrnOnPickerConfirm                                           | 选择数据后回调函数                                           | 否       | null                         |
-| onEntityTap               | BrnOnEntityTap                                               | 选择项目后回调函数                                           | 否       | null                         |
+| onConfirm                 | `void BrnOnPickerConfirm(Map<String, List<BrnPickerEntity>> results,int? firstIndex, int? secondIndex, int? thirdIndex)?` | 选择数据后回调函数                                           | 否       | null                         |
+| onEntityTap               | `void BrnOnEntityTap(int columnIndex, int rowIndex, BrnPickerEntity entity)?` | 选择项目后回调函数                                           | 否       | null                         |
 | pickerTitleConfig         | BrnPickerTitleConfig                                         | Picker 标题数据配置                                          | 否       | BrnPickerTitleConfig.Default |
 | isIncludeUnLimit          | bool                                                         | 当选中”不限“的时候，返回的 reslut 结果是否包含 “不限” 选项，“不限” 选项 value 字段不能为空，上一级 key 字段不能为空 | 否       | false                        |
-| canSelectEntryInterceptor | bool BrnOnSelectEntityInterceptor( int listIndex, int index, BrnPickerEntity entity) | 当前选项是否可以被选中:返回 true 可以被选中 false 不可以被选中 | 否       |                              |
-| defaultFocusedIndexes     | `List<int>`                                                  | 初始化时的选中选项                                           | 否       |                              |
+| canSelectEntryInterceptor | `bool BrnOnSelectEntityInterceptor( int listIndex, int index, BrnPickerEntity entity)?` | 当前选项是否可以被选中:返回 true 可以被选中 false 不可以被选中 | 否       |                              |
+| defaultFocusedIndexes     | `List<int>?`                                                 | 初始化时的选中选项                                           | 否       |                              |
+| themeData                 | BrnPickerConfig?                                             | 主题定制，只有 Picker Title 部分样式生效                     | 否       |                              |
 
 ### 其它数据结构
 
@@ -88,7 +89,7 @@ class BrnPickerEntity {
 
 ### 效果1：
 
-[示例数据 list_picker.json](../../../example/assets/list_picker.json)
+[示例数据 list_picker.json](https://bruno.ke.com/widgets/picker/brn-multi-column-picker/list_picker.json)
 
 <img src="./img/BrnMultiColumnPickerDemo.png" alt="image-20211115110957518" style="zoom: 33%;" />
 

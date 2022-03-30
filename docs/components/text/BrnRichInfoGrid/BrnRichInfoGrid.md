@@ -27,7 +27,7 @@ group:
 
 ```dart
 BrnRichInfoGrid({
-  Key key,
+  Key? key,
   this.pairInfoList,
   this.padding,
   this.rowSpace,
@@ -40,14 +40,15 @@ BrnRichInfoGrid({
 
 ### 参数说明
 
-| **参数名**     | **参数类型**       | **描述**          | **是否必填** | **默认值**       |
-| -------------- | ------------------ | ----------------- | ------------ | ---------------- |
-| pairInfoList   | List               | 待展示的文本信息  | 是           | 无               |
-| padding        | EdgeInsetsGeometry | 字体大小          | 否           | 无               |
-| rowSpace       | double             | 纵向间距          | 否           | 4                |
-| space          | double             | 横向间距          | 否           | 2                |
-| itemHeight     | double             | item 的高度       | 否           | 和文字相关的行高 |
-| crossAxisCount | int                | GridView 分为几列 | 否           | 2                |
+| **参数名**     | **参数类型**               | **描述**          | **是否必填** | **默认值**       |
+| -------------- | -------------------------- | ----------------- | ------------ | ---------------- |
+| pairInfoList   | `List<BrnRichGridInfo>?`   | 待展示的文本信息  | 是           | 无               |
+| padding        | EdgeInsetsGeometry?        | 字体大小          | 否           | 无               |
+| rowSpace       | double?                    | 纵向间距          | 否           | 4                |
+| space          | double?                    | 横向间距          | 否           | 2                |
+| itemHeight     | double?                    | item 的高度       | 否           | 和文字相关的行高 |
+| crossAxisCount | int                        | GridView 分为几列 | 否           | 2                |
+| themeData      | BrnPairRichInfoGridConfig? | 主题定制属性      | 否           | 无               |
 
 ## 四、代码演示
 

@@ -39,12 +39,12 @@ const BrnBigMainButton({
 
 | **参数名** | **参数类型** | 描述 | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| title | String | 按钮显示文案 | 否 | 确认 |
-| onTap | VoidCallback | 点击的回调 | 否 | 无 |
+| title | String | 按钮显示文案 | 否 | `'确认'` |
+| onTap | VoidCallback? | 点击的回调 | 否 | 无 |
 | isEnable | bool | 按钮是否可用 | 否 | false |
-| bgColor | Color | 按钮的背景色 | 否 | 主题色 |
-| width | double | 按钮的宽度 | 否 | double.infinity |
-| themeData | BrnButtonConfig | 按钮主题配置 | 否 | 无 |
+| bgColor | Color? | 按钮的背景色 | 否 | 主题色 |
+| width | double? | 按钮的宽度 | 否 | double.infinity |
+| themeData | BrnButtonConfig? | 按钮主题配置 | 否 | 无 |
 
 
 

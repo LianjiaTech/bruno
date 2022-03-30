@@ -30,37 +30,37 @@ group:
 
 ```dart
 BrnBrokenLine({
-    Key? key,
-    required this.size,
-    required this.lines,
-    this.contentPadding = const EdgeInsets.only(left: 10, right: 10),
-    this.backgroundColor,
-    this.xyDialLineWidth = 2,
-    this.xDialColor,
-    this.yDialColor,
-    this.yHintLineOffset = 20.0,
-    this.showPointDashLine = true,
-    this.dialWidth = 4,
-    this.xDialMin,
-    this.xDialMax,
-    this.xDialValues,
-    required this.yDialMin,
-    required this.yDialMax,
-    this.yDialValues,
-    this.isShowXHintLine = true,
-    this.isShowYHintLine = false,
-    this.isHintLineSolid = true,
-    this.hintLineColor,
-    this.isTipWindowAutoDismiss = true,
-    this.isShowXDialText = false,
-    this.isShowYDialText = false,
-  }) : super(key: key) {
-    // 设置自定义 X 轴时，检查 x轴的最大、最小刻度范围
-    if (xDialValues != null) {
-      assert(xDialMin != null);
-      assert(xDialMax != null);
-    }
+  Key? key,
+  required this.size,
+  required this.lines,
+  this.contentPadding = const EdgeInsets.only(left: 10, right: 10),
+  this.backgroundColor,
+  this.xyDialLineWidth = 2,
+  this.xDialColor,
+  this.yDialColor,
+  this.yHintLineOffset = 20.0,
+  this.showPointDashLine = true,
+  this.dialWidth = 4,
+  this.xDialMin,
+  this.xDialMax,
+  this.xDialValues,
+  required this.yDialMin,
+  required this.yDialMax,
+  this.yDialValues,
+  this.isShowXHintLine = true,
+  this.isShowYHintLine = false,
+  this.isHintLineSolid = true,
+  this.hintLineColor,
+  this.isTipWindowAutoDismiss = true,
+  this.isShowXDialText = false,
+  this.isShowYDialText = false,
+}) : super(key: key) {
+  // 设置自定义 X 轴时，检查 x轴的最大、最小刻度范围
+  if (xDialValues != null) {
+    assert(xDialMin != null);
+    assert(xDialMax != null);
   }
+}
 ```
 
 ### 参数说明：
@@ -77,19 +77,19 @@ BrnBrokenLine({
 | yHintLineOffset        | double                | Y 轴辅助线向右偏移量，默认 20（X 轴刻度线也会跟随该偏移量向右偏移） | 否       | 20.0                                 |      |
 | showPointDashLine      | bool                  | 是否展示数据点选中时的辅助线                                 | 否       | true                                 |      |
 | dialWidth              | double                | Y 轴刻度的宽度，和 X 轴刻度的高度                            | 否       | 4                                    |      |
-| xDialMin               | double                | X 轴展示范围最小值                                           | 否       |                                      |      |
-| xDialMax               | double                | X 轴展示范围最大值                                           | 否       |                                      |      |
+| xDialMin               | double?                | X 轴展示范围最小值                                           | 否       |                                      |      |
+| xDialMax               | double?                | X 轴展示范围最大值                                           | 否       |                                      |      |
 | yDialMin               | double                | Y 轴展示范围最小值                                           | 是       |                                      |      |
 | yDialMax               | double                | Y 轴展示范围最大值                                           | 是       |                                      |      |
-| xDialValues            | `List<BrnDialItem>`   | X 轴刻度数据                                                 | 否       |                                      |      |
-| yDialValues            | `List<BrnDialItem>`？ | Y 轴刻度数据                                                 | 否       |                                      |      |
-| isShowXHintLine        | bool                  | 是否展示 X 轴辅助线                                          |          | true                                 |      |
-| isShowYHintLine        | bool                  | 是否展示 Y 轴辅助线                                          |          | false                                |      |
-| isHintLineSolid        | bool                  | 辅助线是否为虚线                                             |          | true                                 |      |
-| hintLineColor          | Color？               | 辅助线颜色                                                   |          |                                      |      |
-| isTipWindowAutoDismiss | bool                  | 点击弹出的 tip 提示框，是否自动消失                          |          | true                                 |      |
-| isShowXDialText        | bool                  | 是否展示 X 坐标刻度文案                                      |          | false                                |      |
-| isShowYDialText        | bool                  | 是否展示 Y 坐标刻度文案                                      |          | false                                |      |
+| xDialValues            | `List<BrnDialItem>?`  | X 轴刻度数据                                                 | 否       |                                      |      |
+| yDialValues            | `List<BrnDialItem>?` | Y 轴刻度数据                                                 | 否       |                                      |      |
+| isShowXHintLine        | bool                  | 是否展示 X 轴辅助线                                          | 否 | true                                 |      |
+| isShowYHintLine        | bool                  | 是否展示 Y 轴辅助线                                          | 否 | false                                |      |
+| isHintLineSolid        | bool                  | 辅助线是否为虚线                                             | 否 | true                                 |      |
+| hintLineColor          | Color？               | 辅助线颜色                                                   | 否 |                                      |      |
+| isTipWindowAutoDismiss | bool                  | 点击弹出的 tip 提示框，是否自动消失                          | 否 | true                                 |      |
+| isShowXDialText        | bool                  | 是否展示 X 坐标刻度文案                                      | 否 | false                                |      |
+| isShowYDialText        | bool                  | 是否展示 Y 坐标刻度文案                                      | 否 | false                                |      |
 
 ### 其他数据结构
 
@@ -121,7 +121,7 @@ class BrnPointData {
 
 #### BrnLineTouchData 每个点的点击行为配置数据
 
-```
+```dart
 class BrnLineTouchData {
   /// 用于临时存储要展示 tip 内容在坐标的位置
   double? x, y;
