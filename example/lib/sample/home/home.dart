@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BrnAppBar(
-        title: Text("UI组件"),
+        title: 'UI组件',
         leading: null,
         automaticallyImplyLeading: false,
       ),

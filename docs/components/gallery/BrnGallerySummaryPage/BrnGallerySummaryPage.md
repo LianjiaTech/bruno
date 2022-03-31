@@ -10,7 +10,7 @@ group:
 
 查看大图交互模式-列表页
 
-相关组件 [BrnGalleryDetailPage](../brn-gallery-detail-page/brn-gallery-detail-page)
+相关组件 [BrnGalleryDetailPage](../widgets/brn-gallery-detail-page)
 
 ## 一、效果总览
 

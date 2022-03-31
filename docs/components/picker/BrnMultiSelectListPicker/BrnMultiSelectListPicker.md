@@ -11,9 +11,9 @@ group:
 
 相似组件有：
 
-[BrnMultiSelectTagsPicker](../brn-multi-select-tags-picker/brn-multi-select-tags-picker)从底部弹出的 Tag 样式多选。
+[BrnMultiSelectTagsPicker](../widgets/brn-multi-select-tags-picker)从底部弹出的 Tag 样式多选。
 
-[BrnMultiSelectDialog](../../dialog/brn-multi-select-dialog/brn-multi-select-dialog) 从页面中部弹出多选弹窗。
+[BrnMultiSelectDialog](../widgets/brn-multi-select-dialog) 从页面中部弹出多选弹窗。
 
 ## 一、效果总览
 
@@ -44,13 +44,14 @@ BrnMultiSelectListPicker({
 
 ### 参数说明
 
-| 参数名            | 参数类型                                                     | 作用                                          | 是否必填 | 默认值                       |
-| ----------------- | ------------------------------------------------------------ | --------------------------------------------- | -------- | ---------------------------- |
-| items             | `List<BrnMultiSelectBottomPickerItem>`                       | 数据源                                        | 是       |                              |
-| pickerTitleConfig | BrnPickerTitleConfig                                         | 设置 Picker 主题                              | 否       | BrnPickerTitleConfig.Default |
-| onSubmit          | `BrnMultiSelectListPickerSubmit = bool Function(List<BrnMultiSelectBottomPickerItem> checkedItems)`? | 点击【完成】时回调给外部选中的数据            | 否       |                              |
-| onItemClick       | BrnMultiSelectListPickerItemClick = void Function(BuildContext context, int index)? | Item 被点击的回调                             | 否       |                              |
-| isDismissible     | bool                                                         | 是否可电机外部关闭弹窗，true 点击外部关闭弹窗 | 否       | true                         |
+| 参数名            | 参数类型                                                     | 作用                                                         | 是否必填 | 默认值                       |
+| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ---------------------------- |
+| items             | `List<BrnMultiSelectBottomPickerItem>`                       | 数据源                                                       | 是       |                              |
+| pickerTitleConfig | BrnPickerTitleConfig                                         | 设置 Picker 主题                                             | 否       | BrnPickerTitleConfig.Default |
+| onSubmit          | `BrnMultiSelectListPickerSubmit = bool Function(List<BrnMultiSelectBottomPickerItem> checkedItems)?` | 点击【完成】时回调给外部选中的数据                           | 否       |                              |
+| onItemClick       | `BrnMultiSelectListPickerItemClick = void Function(BuildContext context, int index)?` | Item 被点击的回调                                            | 否       |                              |
+| isDismissible     | bool                                                         | 是否可电机外部关闭弹窗，true 点击外部关闭弹窗。只在`show`方法里才有 | 否       | true                         |
+| onCancel          | VoidCallback?                                                | 点击取消时的回调                                             | 否       |                              |
 
 ### 其它数据结构
 

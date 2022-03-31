@@ -613,18 +613,18 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
       if (date.isAfter(_currentEndSelectedDate!)) {
         _currentEndSelectedDate = date;
       }
-      setState(() {
-        try {
-          if (widget.rangeDateChange != null) {
-            widget.rangeDateChange!(DateTimeRange(
-              start: _currentStartSelectedDate!,
-              end: _currentEndSelectedDate!,
-            ));
-          }
-        } catch (_) {}
-      });
     }
 
+    setState(() {
+      if (_currentStartSelectedDate != null &&
+          _currentEndSelectedDate != null &&
+          widget.rangeDateChange != null) {
+        widget.rangeDateChange!(DateTimeRange(
+          start: _currentStartSelectedDate!,
+          end: _currentEndSelectedDate!,
+        ));
+      }
+    });
   }
 
   String _getChinaWeekName(int weekOfDay) {
