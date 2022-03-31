@@ -157,8 +157,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: BrnFormUtil.computeItemEdgeInsets2(
-          widget.prefixIconType, widget.isRequire),
+      padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -202,8 +201,8 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
         children: <Widget>[
           Flexible(
             child: Container(
-              padding: BrnFormUtil.computeEdgeInsets2(
-                  widget.prefixIconType, widget.isRequire),
+              padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                  widget.isRequire, widget.themeData!),
               child: Row(
                 children: <Widget>[
                   BrnFormUtil.buildPrefixIcon(
@@ -243,7 +242,6 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
         BrnFormUtil.notifyTap(context, widget.onTap);
       },
       child: Container(
-        padding: EdgeInsets.only(top: 14),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -319,8 +317,8 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          padding: BrnFormUtil.computeEdgeInsets2(
-              widget.prefixIconType, widget.isRequire),
+          padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+              widget.isRequire, widget.themeData!),
           child: Row(
             children: <Widget>[
               BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit,
