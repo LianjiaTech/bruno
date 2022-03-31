@@ -31,8 +31,8 @@ group:
 
 ```dart
 const BrnSwitchTitle(
-    {Key key,
-    @required this.nameList,
+    {Key? key,
+    required this.nameList,
     this.defaultSelectIndex = 0,
     this.onSelect,
     this.indicatorWeight = 2.0,
@@ -49,13 +49,13 @@ const BrnSwitchTitle(
 | --- | --- | --- | --- | --- |
 | nameList | `List<String>` | 标题的文案列表 | 是 | 无 |
 | defaultSelectIndex | int | 默认选中的 index | 否 | 0 |
-| onSelect | void Function(int index) | 标题选中时的回调 | 否 | 无 |
-| controller | TabController | 控制tab切换，默认不需要传递 | 否 | 无 |
+| onSelect | `void Function(int index)?` | 标题选中时的回调 | 否 | 无 |
+| controller | TabController? | 控制tab切换，默认不需要传递 | 否 | 无 |
 | padding | EdgeInsets | 标题的 padding | 否 | 默认 `EdgeInsets.fromLTRB(0, 14, 20, 14)` |
 | indicatorWeight | double | 下划线的高度 | 否 | 默认是 2 |
 | indicatorWidth | double | 下划线的宽度。indicatorWidth 要大于等于 indicatorWeight。 | 否 | 默认是 24 |
-| selectedTextStyle | TextStyle | 标题选中时的样式 | 否 | `TextStyle(fontWeight: FontWeight.w600,fontSize: 18)` |
-| unselectedTextStyle | TextStyle | 标题未选中时的样式 | 否 | `TextStyle(fontWeight: FontWeight.w600,fontSize: 18)` |
+| selectedTextStyle | TextStyle? | 标题选中时的样式 | 否 | `TextStyle(fontWeight: FontWeight.w600,fontSize: 18)` |
+| unselectedTextStyle | TextStyle? | 标题未选中时的样式 | 否 | `TextStyle(fontWeight: FontWeight.w600,fontSize: 18)` |
 
 ## 四、代码演示
 

@@ -7,7 +7,7 @@ group:
 
 # BrnAppraiseBottomPicker
 
-以 picker 样式展现的评价组件。具体参数和 [BrnAppraise](../brn-appraise/brn-appraise) 一样。
+以 picker 样式展现的评价组件。具体参数和 [BrnAppraise](../widgets/brn-appraise) 一样。
 
 ## 一、效果总览
 ![](./img/BrnAppraiseBottomPickerIntro.png)
@@ -16,7 +16,7 @@ group:
 
 ### 适用场景
 
-需要收集用户评价和反馈的业务场景，并以弹窗形式展示。页面交互规则和使用规范参见 [BrnAppraise](../brn-appraise/brn-appraise)。
+需要收集用户评价和反馈的业务场景，并以弹窗形式展示。页面交互规则和使用规范参见 [BrnAppraise](../widgets/brn-appraise)。
 
 ## 三、构造函数及参数说明
 
@@ -47,7 +47,7 @@ BrnAppraiseBottomPicker({
 | tags | `List<String>?` | 供选择的标签数据 | 否 | 无 |
 | inputHintText | String | 输入框的提示文字 | 否 | '' |
 | onConfirm | `void Function(int index, List<String> selectedTags, String input)?` | 点击提交时的回调，其中index是选中的表情或者五角星的index，selectedTags是选中的标签，input是输入框的内容 | 否 | 无 |
-| config | BrnAppraiseConfig | 配置类，具体参见 [BrnAppraise](../brn-appraise/brn-appraise) | 否 | BrnAppraiseConfig() |
+| config | BrnAppraiseConfig | 配置类，具体参见 [BrnAppraise](../widgets/brn-appraise) | 否 | BrnAppraiseConfig() |
 
 ### 四、代码演示
 

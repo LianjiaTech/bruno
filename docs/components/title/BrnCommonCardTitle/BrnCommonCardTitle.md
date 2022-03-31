@@ -25,34 +25,34 @@ group:
 
 ```dart
 BrnCommonCardTitle(
-  {Key key,
-  @required this.title,
-  this.accessoryText,
-  this.accessoryWidget,
-  this.onTap,
-  this.subTitleWidget,
-  this.detailTextString,
-  this.detailColor,
-  this.alignment,
-  this.padding,
-  this.themeData})
-  : super(key: key);
+    {Key? key,
+    required this.title,
+    this.accessoryText,
+    this.accessoryWidget,
+    this.onTap,
+    this.subTitleWidget,
+    this.detailTextString,
+    this.detailColor,
+    this.alignment,
+    this.padding,
+    this.themeData})
+    : super(key: key);
 ```
 
 ### 参数说明
 
-| **参数名**       | **参数类型**         | **描述**                            | **是否必填** | **默认值**        |
-| ---------------- | -------------------- | ----------------------------------- | ------------ | ----------------- |
-| title            | String               | 标题文本                            | 是           |                   |
-| subTitleWidget   | Widget               | 标题右侧的显示 widget               | 否           |                   |
-| accessoryText    | String               | 最右侧的文字                        | 否           |                   |
-| accessoryWidget  | Widget               | 最右侧的 widget                     | 否           |                   |
-| onTap            | VoidCallback         | 整个标题点击的事件                  | 否           |                   |
-| detailTextString | String               | 标题下面的文字                      | 否           |                   |
-| detailColor      | Color                | 标题下方文字颜色                    | 否           | Color(0xFF222222) |
-| alignment        | PlaceholderAlignment | title 的流式文本的对齐方式          | 否           |                   |
-| padding          | EdgeInsetsGeometry   | 内容的间距                          | 否           |                   |
-| themeData        | BrnCardTitleConfig   | 标题配置，详情见 BrnCardTitleConfig | 否           |                   |
+| **参数名**       | **参数类型**          | **描述**                            | **是否必填** | **默认值**        |
+| ---------------- | --------------------- | ----------------------------------- | ------------ | ----------------- |
+| title            | String                | 标题文本                            | 是           |                   |
+| subTitleWidget   | Widget?               | 标题右侧的显示 widget               | 否           |                   |
+| accessoryText    | String?               | 最右侧的文字                        | 否           |                   |
+| accessoryWidget  | Widget?               | 最右侧的 widget                     | 否           |                   |
+| onTap            | VoidCallback?         | 整个标题点击的事件                  | 否           |                   |
+| detailTextString | String?               | 标题下面的文字                      | 否           |                   |
+| detailColor      | Color?                | 标题下方文字颜色                    | 否           | Color(0xFF222222) |
+| alignment        | PlaceholderAlignment? | title 的流式文本的对齐方式          | 否           |                   |
+| padding          | EdgeInsetsGeometry?   | 内容的间距                          | 否           |                   |
+| themeData        | BrnCardTitleConfig?   | 标题配置，详情见 BrnCardTitleConfig | 否           |                   |
 
 ## 四、代码演示
 

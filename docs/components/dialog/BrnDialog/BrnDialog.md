@@ -62,11 +62,11 @@ BrnDialog({
 | titleText | String? | 对话框的标题文案 | 否 | 无 |
 | messageText | String? | 对话框中间的显示文本 | 否 | 无 |
 | warningText | String? | 对话框的警示文案文本 | 否 | 无 |
-| actionsText | List<String>? | 对话框底部的按钮 | 否 | 无 |
+| actionsText | `List<String>?` | 对话框底部的按钮 | 否 | 无 |
 | titleWidget | Widget? | 自定义widget的标题 | 否 | 无 |
 | contentWidget | Widget? | 自定义widget的内容 | 否 | 无 |
 | warningWidget | Widget? | 自定义widget的警示内容 | 否 | 无 |
-| actionsWidget | List<Widget>? | 对话框底部的自定义widget按钮 | 否 | 无 |
+| actionsWidget | `List<Widget>?` | 对话框底部的自定义widget按钮 | 否 | 无 |
 | indexedActionCallback | DialogIndexedActionClickCallback? | 对话框底部的点击回调 | 否 | 无 |
 | divider | Divider | 底部按钮的水平和上面内容的水平分割线 | 否 | 高1像素的L1分割线 |
 | verticalDivider | VerticalDivider | 底部按钮之间的分割线 | 否 | 宽1像素的L1分割线 |
@@ -130,7 +130,7 @@ BrnDialog({
 | **参数名** | **参数类型** | **作用** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
 | context | BuildContext | 用于显示弹窗的上下文 | 是 | 五 |
-| actions | List<String> | 对话框底部的按钮 | 否 | 无 |
+| actions | `List<String>` | 对话框底部的按钮 | 否 | 无 |
 | showIcon | bool | 是否显示icon | 否 | false |
 | iconWidget | Image? | 头部显示的icon 默认为alert | 否 | 主题色alert |
 | title | String? | 对话框的标题文案 | 否 | 无 |
@@ -139,7 +139,7 @@ BrnDialog({
 | messageWidget | Widget? | 自定义widget的内容 | 否 | 无 |
 | warning | String? | 对话框的警示文案文本 | 否 | 无 |
 | warningWidget | Widget? | 自定义widget的警示内容 | 否 | 无 |
-| actionsWidget | List<Widget>? | 对话框底部的自定义widget按钮 | 否 | 无 |
+| actionsWidget |` List<Widget>?` | 对话框底部的自定义widget按钮 | 否 | 无 |
 | indexedActionClickCallback | DialogIndexedActionClickCallback? | 对话按钮点击的回调 | 否 | 无 |
 | titleMaxLines | int | 标题最大行数 | 否 | 3 |
 | barrierDismissible | bool | 点击对话框遮罩是否消失对话框 | 否 | true 关闭 |

@@ -34,12 +34,19 @@ group:
 ### 构造函数
 
 ```dart
-BrnHorizontalSteps({this.steps, this.controller, this.doingIcon, this.completedIcon});
+const BrnHorizontalSteps({
+    Key? key,
+    required this.steps,
+    this.controller,
+    this.doingIcon,
+    this.completedIcon,
+  })  : assert(steps.length < 6),
+        super(key: key);
 ```
 
 ### 参数说明
 
-#### BrnHorizontalStepsManager方法说明
+#### BrnStepsController 方法说明
 
 | **方法名** | **参数** | **描述** |
 | --- | --- | --- |
@@ -63,11 +70,11 @@ BrnHorizontalSteps({this.steps, this.controller, this.doingIcon, this.completedI
 
 | 参数名称 | 参数类型 | 描述 |
 | --- | --- | --- |
-| stepContentText | String | 步骤显示的文案 |
-| stepContent | Widget | 步骤自定义视图，如果stepContentText同时存在，此属性优先级更高 |
-| doingIcon | Widget | 步骤正在进行时的图标自定义视图 |
-| completedIcon | Widget | 步骤完成时的图标自定义视图 |
-| state | BrunoStepState | indexed/doing/complete未进行/正在进行/已完成 |
+| stepContentText | String? | 步骤显示的文案 |
+| stepContent | Widget? | 步骤自定义视图，如果stepContentText同时存在，此属性优先级更高 |
+| doingIcon | Widget? | 步骤正在进行时的图标自定义视图 |
+| completedIcon | Widget? | 步骤完成时的图标自定义视图 |
+| state | BrunoStepState? | indexed/doing/complete未进行/正在进行/已完成 |
 
 ## 四、代码演示
 
