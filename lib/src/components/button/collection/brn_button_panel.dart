@@ -202,18 +202,17 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
                         fontSize: 16));
               },
               popDirection: widget.popDirection,
-              onItemClickInterceptor: (index, item) {
-                // 按钮不可用的时候，点击无响应；
-                if (_secondaryButtonList[index + 2].isEnable) {
-                  return false;
-                } else {
-                  return true;
-                }
-              },
               onItemClick: (index, item) {
+                // 按钮不可用的时候，点击无响应；
                 if (widget.secondaryButtonOnTap != null) {
-                  widget.secondaryButtonOnTap!(index + 2);
+                  if (_secondaryButtonList[index + 2].isEnable) {
+                    widget.secondaryButtonOnTap!(index + 2);
+                    return false;
+                  } else {
+                    return true;
+                  }
                 }
+                return false;
               });
         },
       );

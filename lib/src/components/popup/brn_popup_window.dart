@@ -455,16 +455,11 @@ class BrnPopupRoute extends PopupRoute {
   Duration get transitionDuration => _duration;
 }
 
-/// popup 中每个 Item 被点击时的回调，
+/// popup 中每个 Item 被点击时的回调，并决定是否拦截点击事件
 /// [index] Item 的索引
 /// [item] Item 内容
-typedef BrnPopupListItemClick = void Function(int index, String item);
-
-/// popup 中每个 Item 被点击时，是否拦截点击事件
-/// [index] Item 的索引
-/// [item] Item 内容
-/// 返回 true 则拦截点击事件，不再回调 [onItemClick]。
-typedef BrnPopupListItemClickInterceptor = bool Function(int index, String item);
+/// 返回 true 则拦截点击事件，不再走 pop 逻辑
+typedef BrnPopupListItemClick = bool Function(int index, String item);
 
 /// popup 用于构造自定义的 Item
 /// [index] Item 的索引
@@ -488,7 +483,6 @@ class BrnPopupListWindow {
     BrnPopupDirection popDirection = BrnPopupDirection.bottom,
     BrnPopupListItemBuilder? itemBuilder,
     BrnPopupListItemClick? onItemClick,
-    BrnPopupListItemClickInterceptor? onItemClickInterceptor,
     VoidCallback? onDismiss,
   }) {
     TextStyle textStyle = TextStyle(
@@ -529,8 +523,8 @@ class BrnPopupListWindow {
                         children:
                             _getItems(context, minWidth, maxWidth, itemBuilder, textStyle, data!,
                                 (index, item) {
-                          if (onItemClickInterceptor != null) {
-                            bool isIntercept = onItemClickInterceptor(index, item);
+                          if (onItemClick != null) {
+                            bool isIntercept = onItemClick(index, item);
                             if (isIntercept) return;
                           }
                           Navigator.pop(context, {'index': index, 'item': item});
@@ -544,9 +538,6 @@ class BrnPopupListWindow {
           borderColor: borderColor,
           spaceMargin: spaceMargin,
         ))).then((result) {
-      if (onItemClick != null && result != null) {
-        onItemClick(result['index'], result['item']);
-      }
       if (onDismiss != null) {
         onDismiss();
       }
@@ -566,7 +557,6 @@ class BrnPopupListWindow {
       BrnPopupDirection popDirection = BrnPopupDirection.bottom,
       double offset = 0,
       BrnPopupListItemClick? onItemClick,
-      BrnPopupListItemClickInterceptor? onItemClickInterceptor,
       VoidCallback? onDismiss}) {
     assert(popKey.currentContext != null && popKey.currentContext!.findRenderObject() != null);
     if (popKey.currentContext == null || popKey.currentContext!.findRenderObject() == null) return;
@@ -608,11 +598,11 @@ class BrnPopupListWindow {
                       child: Column(
                         children: _getItems(context, minWidth, maxWidth, null, textStyle, data!,
                             (index, item) {
-                          if (onItemClickInterceptor != null) {
-                            bool isIntercept = onItemClickInterceptor(index, item);
+                          if (onItemClick != null) {
+                            bool isIntercept = onItemClick(index, item);
                             if (isIntercept) return;
                           }
-                          Navigator.pop(context, {'index': index, 'item': item});
+                          Navigator.pop(context);
                         }),
                       ),
                     ),
@@ -625,9 +615,6 @@ class BrnPopupListWindow {
         ),
       ),
     ).then((result) {
-      if (onItemClick != null && result != null) {
-        onItemClick(result['index'], result['item']);
-      }
       if (onDismiss != null) {
         onDismiss();
       }
@@ -641,7 +628,7 @@ class BrnPopupListWindow {
       BrnPopupListItemBuilder? itemBuilder,
       TextStyle textStyle,
       List<String> data,
-      BrnPopupListItemClick onItemClick) {
+      void Function(int index, String item) onItemClick) {
     double textMaxWidth = _getMaxWidth(textStyle, data);
     if (textMaxWidth + 52 < minWidth) {
       textMaxWidth = minWidth;
