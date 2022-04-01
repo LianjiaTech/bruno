@@ -1,6 +1,6 @@
 name: bruno
 description: An enterprise-class package of Flutter components for mobile applications.
-version: 2.1.0-nullsafety.0
+version: 2.1.0-nullsafety
 homepage: https://github.com/LianjiaTech/bruno
 
 environment:

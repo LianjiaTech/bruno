@@ -1,5 +1,3 @@
-
-
 ## [2.1.0-nullsafety] - 2022-4-1
 
 ### Changed
@@ -28,18 +26,11 @@
 ### Fixed
 
 - Fix example error [#71](https://github.com/LianjiaTech/bruno/issues/71) thanks to **leftcoding** fixing this issue.
-
 - Fix <code>BrnPickerTitleConfig</code>  <code>titleContent</code> setting is invalid  [#70](https://github.com/LianjiaTech/bruno/issues/70).
-
 - Optimize <code>BrnPopupWindow </code> <code>onItemClick</code>  logic  [#57 ](https://github.com/LianjiaTech/bruno/issues/57) .
-
 - Fix <code>BrnDialog</code>  is obscured  by keyboard  [#7](https://github.com/LianjiaTech/bruno/issues/7) .
-
 - Fix <code>BrnTextSelectFormItem</code> set <code>titlePaddingLg</code> doesn't work [#108](https://github.com/LianjiaTech/bruno/issues/108).
-
 - Fix  the bottom text of <code>BrnBottomTabBar</code>  cannot be displayed in some cases [#141](https://github.com/LianjiaTech/bruno/issues/141).
-
-
 
 Thanks again to **leftcoding**,  **jojinshallar**,  **laiiihz**,  **donywan**,  **kalifun**,  **junlandroid**, **Kenneth**, **HappyImp**,  **kkkman22** , **a1017480401** and  **Alex**.
 
