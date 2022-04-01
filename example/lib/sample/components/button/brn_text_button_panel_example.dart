@@ -104,7 +104,9 @@ class BrnTextButtonPanelExample extends StatelessWidget {
               nameList: ['操作1', '操作2', '操作3', '操作4', '操作5', '操作6'],
               popDirection: BrnPopupDirection.top,
               onTap: (index) {
-                BrnToast.show('第$index个操作', context);
+                BrnDialogManager.showSingleButtonDialog(context, message: 'index $index clicked!', label: 'OK', onTap: (){
+                  Navigator.pop(context);
+                });
               },
             ),
             Text(
