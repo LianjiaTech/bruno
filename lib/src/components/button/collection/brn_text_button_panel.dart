@@ -156,9 +156,11 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
                 offset: 10,
                 popDirection: widget.popDirection,
                 data: list, onItemClick: (index, item) {
+              Navigator.pop(context);
               if (widget.onTap != null) {
                 widget.onTap!(index + 3);
               }
+              return true;
             }, onDismiss: () {
               setState(() {
                 _isExpanded = false;

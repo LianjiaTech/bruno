@@ -124,10 +124,12 @@ RaisedButton(
 
 ![image-20211028170442805](./img/BrnPopupWindowDemo3.png)
 
+注意：onItemClick 必须返回 true 或 false 决定是否拦截点击事件， 如果为 true 拦截事件，则内部不再走 pop 消失逻辑。
 ```dart
 BrnPopupListWindow.showPopListWindow(context, _leftKeylist0,
     data: ['选项一', '选项二', '选项三'], onItemClick: (index, item) {
   BrnToast.show(item, context);
+  return false;
 }, hasCloseIcon: true);
 ```
 

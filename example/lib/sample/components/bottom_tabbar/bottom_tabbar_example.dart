@@ -91,6 +91,9 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
       home: Scaffold(
           appBar: BrnAppBar(
             title: 'BottomTabBar',
+            backLeadCallback: (){
+              Navigator.pop(context);
+            },
           ),
 
           /// 首先定义一个BottomTabBar容器
