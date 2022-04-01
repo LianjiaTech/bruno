@@ -5,7 +5,7 @@ group:
   order: 23
 ---
 
-#  BrnMultiDataPicker
+# BrnMultiDataPicker
 
 适用于单列或者多列数据选择的情况
 
