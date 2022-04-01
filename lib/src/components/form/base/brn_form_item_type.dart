@@ -1,3 +1,5 @@
+
+
 class BrnPrefixIconType {
   static const String normal = "type_normal";
   static const String add = "type_add";

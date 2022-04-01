@@ -197,14 +197,8 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
                     maxLines: 1,
                     style: TextStyle(
                         color: _secondaryButtonList[index + 2].isEnable
-                            ? BrnThemeConfigurator.instance
-                                .getConfig()
-                                .commonConfig
-                                .colorTextBase
-                            : BrnThemeConfigurator.instance
-                                .getConfig()
-                                .commonConfig
-                                .colorTextHint,
+                            ? BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase
+                            : BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextHint,
                         fontSize: 16));
               },
               popDirection: widget.popDirection,

@@ -246,14 +246,14 @@ class BrnTabBarState extends State<BrnTabBar> {
       color: widget.themeData!.backgroundColor,
       child: widget.showMore
           ? Row(
-              children: <Widget>[
-                Container(
-                  width: MediaQuery.of(context).size.width - _moreSpacing,
-                  child: _buildTabBar(),
-                ),
-                showMoreWidget(context)
-              ],
-            )
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width - _moreSpacing,
+            child: _buildTabBar(),
+          ),
+          showMoreWidget(context)
+        ],
+      )
           : _buildTabBar(),
     );
   }
@@ -788,12 +788,12 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
 class BadgeTab {
   BadgeTab(
       {this.key,
-      this.text,
-      this.badgeNum,
-      this.topText,
-      this.badgeText,
-      this.showRedBadge = false,
-      this.isAutoDismiss = true});
+        this.text,
+        this.badgeNum,
+        this.topText,
+        this.badgeText,
+        this.showRedBadge = false,
+        this.isAutoDismiss = true});
 
   final Key? key;
 

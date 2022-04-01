@@ -71,8 +71,7 @@ class BrnSmallMainButton extends StatelessWidget {
         .buttonConfig
         .merge(defaultThemeConfig);
 
-    TextPainter textPainter =
-        TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
+    TextPainter textPainter = TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
 
     return LayoutBuilder(
       builder: (_, con) {
@@ -116,8 +115,7 @@ class BrnSmallMainButton extends StatelessWidget {
           backgroundColor:
               bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
           disableBackgroundColor: Color(0xFFCCCCCC),
-          borderRadius: BorderRadius.all(
-              Radius.circular(defaultThemeConfig.smallButtonRadius)),
+          borderRadius: BorderRadius.all(Radius.circular(defaultThemeConfig.smallButtonRadius)),
           onTap: onTap,
           textStyle: style,
         );

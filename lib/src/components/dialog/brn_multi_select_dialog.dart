@@ -244,11 +244,9 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
     if (!BrunoTools.isEmpty(widget.messageText)) {
       return Padding(
         padding: EdgeInsets.only(bottom: 8, left: 20, right: 20),
-        child: Center(
-          child: Text(
-            widget.messageText!,
-            style: cContentTextStyle,
-          ),
+        child: Text(
+          widget.messageText!,
+          style: cContentTextStyle,
         ),
       );
     }

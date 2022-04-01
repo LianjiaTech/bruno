@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/button/brn_vertical_icon_button.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
@@ -224,9 +226,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
                         ? Colors.white
                         : BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig
-                            .colorTextBaseInverse
-                            .withOpacity(0.7),
+                            .commonConfig.colorTextBaseInverse.withOpacity(0.7),
                   ),
                 ),
               )),
@@ -267,9 +267,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
                     ? Colors.white
                     : BrnThemeConfigurator.instance
                         .getConfig()
-                        .commonConfig
-                        .colorTextBaseInverse
-                        .withOpacity(0.7),
+                        .commonConfig.colorTextBaseInverse.withOpacity(0.7),
               ),
             ),
           )),
