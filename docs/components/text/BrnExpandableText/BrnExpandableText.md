@@ -24,25 +24,25 @@ group:
 ### 构造函数
 
 ```dart
-BrnExpandableText(
-  {Key key,
-  @required this.text,
-  this.maxLines = 1000000,
-  this.textStyle,
-  this.onExpanded,
-  this.color})
-  : super(key: key)
+const BrnExpandableText(
+    {Key? key,
+    required this.text,
+    this.maxLines = 1000000,
+    this.textStyle,
+    this.onExpanded,
+    this.color})
+    : super(key: key);
 ```
 
 ### 参数说明
 
-| **参数名** | **参数类型**        | **描述**         | **是否必填** | **默认值**      |
-| ---------- | ------------------- | ---------------- | ------------ | --------------- |
-| text       | String              | 待显示的文案     | 是           |                 |
-| maxLines   | int                 | 最大可展示的行数 | 否           | 1000000         |
-| textStyle  | TextStyle           | 文本显示的样式   | 否           | 14 号的 F0 字体 |
-| onExpanded | void Function(bool) | 展开收起的回调   | 否           | 无              |
-| color      | Colors              | 背景色           | 否           | 白色            |
+| **参数名** | **参数类型**           | **描述**         | **是否必填** | **默认值**      |
+| ---------- | ---------------------- | ---------------- | ------------ | --------------- |
+| text       | String                 | 待显示的文案     | 是           |                 |
+| maxLines   | int?                   | 最大可展示的行数 | 否           | 1000000         |
+| textStyle  | TextStyle?             | 文本显示的样式   | 否           | 14 号的 F0 字体 |
+| onExpanded | `void Function(bool)?` | 展开收起的回调   | 否           | 无              |
+| color      | Colors?                | 背景色           | 否           | 白色            |
 
 ## 四、代码演示
 

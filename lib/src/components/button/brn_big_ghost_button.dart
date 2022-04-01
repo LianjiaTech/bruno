@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/src/components/button/brn_normal_button.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +51,7 @@ class BrnBigGhostButton extends StatelessWidget {
     BrnButtonConfig defaultThemeConfig = themeData ?? BrnButtonConfig();
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig
-        .merge(defaultThemeConfig);
+        .buttonConfig.merge(defaultThemeConfig);
 
     return BrnNormalButton(
       borderRadius: BorderRadius.circular(defaultThemeConfig.bigButtonRadius),

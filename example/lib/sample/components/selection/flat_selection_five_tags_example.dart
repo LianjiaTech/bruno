@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +41,7 @@ class _SelectionViewExamplePageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget._title)),
+      appBar: BrnAppBar(title: widget._title),
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[

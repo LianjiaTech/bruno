@@ -34,45 +34,44 @@ group:
 
 ```dart
 const BrnNoticeBarWithButton(
-  {Key key,
-  @required this.contentStr,
-  this.bgColor,
-  this.contentTextColor,
-  this.leftTagTxt,
-  this.leftTagBgColor,
-  this.leftTagTxtColor,
-  this.rightBtnBorderColor,
-  this.rightBtnTxt,
-  this.rightBtnTxtColor,
-  this.onRightBtnTap,
-  this.marquee = false,
-  this.leftWidget,
-  this.rightWidget,
-  this.padding,
-  this.minHeight = 54})
-  : assert(contentStr != null),
-    super(key: key);
+    {Key? key,
+    required this.content,
+    this.backgroundColor,
+    this.contentTextColor,
+    this.leftTagText,
+    this.leftTagBackgroundColor,
+    this.leftTagTextColor,
+    this.rightButtonBorderColor,
+    this.rightButtonText,
+    this.rightButtonTextColor,
+    this.onRightButtonTap,
+    this.marquee = false,
+    this.leftWidget,
+    this.rightWidget,
+    this.padding,
+    this.minHeight = 54})
+    : super(key: key);
 ```
 
 ### 参数说明
 
-| 参数名                 | 参数类型     | 描述                                                                                                         | 是否必填 | 默认值            |
-| ---------------------- | ------------ | ------------------------------------------------------------------------------------------------------------ | -------- | ----------------- |
-| content                | String       | 通知的具体内容                                                                                               | 是       | 无                |
-| backgroundColor        | Color        | 通知的背景颜色                                                                                               | 否       | Color(0x14FA5741) |
-| contentTextColor       | Color        | 通知的文字颜色                                                                                               | 否       | Color(0xFF333333) |
-| leftTagText            | String       | 左边标签的文案，为空或者 null 时不显示标签视图                                                               | 否       | 无                |
-| leftTagTextColor       | Color        | 左边标签文字的颜色                                                                                           | 否       | Colors.white      |
-| leftTagBackgroundColor | Color        | 标签背景的颜色                                                                                               | 否       | Color(0xFFFA5741) |
-| leftWidget             | Widget       | 自定义左侧控件                                                                                               | 否       | 无                |
-| rightButtonText        | String       | 右侧按钮的文案，为空时不显示按钮                                                                             | 否       |                   |
-| rightButtonTextColor   | Color        | 右侧按钮文字颜色                                                                                             | 否       | Color(0xFFFA5741) |
-| rightButtonBorderColor | Color        | 右侧按钮边框颜色                                                                                             | 否       | Color(0xFFFA5741) |
-| rightWidget            | Widget       | 自定义右侧控件                                                                                               | 否       |                   |
-| marquee                | bool         | 通知文案是否以跑马灯效果展示                                                                                 | 否       | false             |
-| onRightButtonTap       | VoidCallback | 右侧按钮的点击回调                                                                                           | 否       |                   |
-| minHeight              | double       | 最小高度。leftWidget、rightWidget 都为空时，限制的最小高度。可以通过该属性控制组件高度，内容会自动垂直居中。 | 否       | 54                |
-| padding                | EdgeInsets   | 内容的内边距                                                                                                 | 否       | 无                |
+| 参数名                 | 参数类型      | 描述                                                         | 是否必填 | 默认值            |
+| ---------------------- | ------------- | ------------------------------------------------------------ | -------- | ----------------- |
+| content                | String        | 通知的具体内容                                               | 是       | 无                |
+| backgroundColor        | Color?        | 通知的背景颜色                                               | 否       | Color(0x14FA5741) |
+| contentTextColor       | Color?        | 通知的文字颜色                                               | 否       | Color(0xFF333333) |
+| leftTagText            | String?       | 左边标签的文案，为空或者 null 时不显示标签视图               | 否       | 无                |
+| leftTagTextColor       | Color?        | 左边标签文字的颜色                                           | 否       | Colors.white      |
+| leftTagBackgroundColor | Color?        | 标签背景的颜色                                               | 否       | Color(0xFFFA5741) |
+| leftWidget             | Widget?       | 自定义左侧控件                                               | 否       | 无                |
+| rightButtonText        | String?       | 右侧按钮的文案，为空时不显示按钮                             | 否       |                   |
+| rightButtonTextColor   | Color?        | 右侧按钮文字颜色                                             | 否       | Color(0xFFFA5741) |
+| rightButtonBorderColor | Color?        | 右侧按钮边框颜色                                             | 否       | Color(0xFFFA5741) |
+| rightWidget            | Widget?       | 自定义右侧控件                                               | 否       |                   |
+| marquee                | bool          | 通知文案是否以跑马灯效果展示                                 | 否       | false             |
+| onRightButtonTap       | VoidCallback? | 右侧按钮的点击回调                                           | 否       |                   |
+| minHeight              | double        | 最小高度。leftWidget、rightWidget 都为空时，限制的最小高度。可以通过该属性控制组件高度，内容会自动垂直居中。 | 否       | 54                |
+| padding                | EdgeInsets?   | 内容的内边距                                                 | 否       | 无                |
 
 ## 四、代码演示
 

@@ -47,7 +47,7 @@ BrnDoughnutChart(
 | width | double | 宽 | 否 | 0 |
 | height | double | 高 | 否 | 0 |
 | padding | EdgeInsetsGeometry | 内边距 | 否 | EdgeInsets.zero |
-| ringWidth | double | 圆环宽度 | 否 | 50 |
+| ringWidth | int | 圆环宽度 | 否 | 50 |
 | data | `List<BrnDoughnutDataItem>` | 饼图数据 | 是 |  |
 | fontSize | double | 选中时展示文字大小 | 否 | 12 |
 | fontColor | Color | 选中时展示文字颜色 | 否 | Colors.white |

@@ -16,7 +16,7 @@ group:
 ## 二、描述
 
 1. 带输入框的Dialog，在BrnDialogManager 基础上封装了输入框功能。
-2. 更进一步的细节定制，可使用 [BrnDialog](../brn-dialog/brn-dialog) 实现
+2. 更进一步的细节定制，可使用 [BrnDialog](../widgets/brn-dialog) 实现
 
 ## 三、构造方法及参数说明
 
@@ -57,7 +57,7 @@ const BrnMiddleInputDialog(
 | inputEditingController | TextEditingController? | 输入控制器。如果有初始状态的填充文字，可以通过 [inputEditingController] 设置 | 否 |  |
 | cancelText | String | 取消文案 | 否 | 取消 |
 | confirmText | String | 确定文案 | 否 | 确定 |
-| inputFormatters | List<TextInputFormatter>? | 键盘操作按钮类型，可参见系统的 TextField.textInputAction | 否 | TextInputAction.newline |
+| inputFormatters | `List<TextInputFormatter>?` | 键盘操作按钮类型，可参见系统的 TextField.textInputAction | 否 | TextInputAction.newline |
 | textInputAction | `TextInputAction` | 用于控制输入的内容范围比如只能输入数字可以填写:`FilteringTextInputFormatter.digitsOnly` | 否 | 无 |
 | onConfirm | void Function(String value)? | 确定回调，返回输入的值 | 否 |  |
 | onCancel | VoidCallback | 取消回调 | 否 |  |

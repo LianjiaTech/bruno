@@ -59,8 +59,8 @@ const BrnBottomButtonPanel(
 
 | 参数名 | 参数类型 | 描述 | 是否必填 | 默认值 |
 | --- | --- | --- | --- | --- |
-| mainButtonName | String | 主按钮的显示文案 | 否 | 无 |
-| mainButtonOnTap | VoidCallback | 主按钮的点击回调 | 否 | 无 |
+| mainButtonName | String | 主按钮的显示文案 | 是 | 无 |
+| mainButtonOnTap | VoidCallback | 主按钮的点击回调 | 是 | 无 |
 | secondaryButtonName | String? | 次按钮显示文案 | 否 | 无 |
 | secondaryButtonOnTap | VoidCallback? | 次按钮的点击回调 | 否 | 无 |
 | iconButtonList | List<BrnVerticalIconButton>? | icon按钮的集合 | 否 | 无 |

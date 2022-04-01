@@ -228,6 +228,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
       }
     }
 
+
     this._sourceTags = tagItems;
     // 重新排序，name 越长，越靠后
     this._sourceTags.sort((left, right) {

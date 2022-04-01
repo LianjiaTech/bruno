@@ -35,41 +35,40 @@ group:
 
 ```dart
 const BrnNoticeBar(
-  {Key key,
-  this.leftWidget,
-  this.showLeftIcon = true,
-  @required this.content,
-  this.textColor,
-  this.backgroundColor,
-  this.rightWidget,
-  this.showRightIcon = true,
-  this.noticeStyle,
-  this.onNoticeTap,
-  this.onRightIconTap,
-  this.marquee = false,
-  this.padding,
-  this.minHeight = 36})
-  : assert(content != null),
-    super(key: key);
+    {Key? key,
+    this.leftWidget,
+    this.showLeftIcon = true,
+    required this.content,
+    this.textColor,
+    this.backgroundColor,
+    this.rightWidget,
+    this.showRightIcon = true,
+    this.noticeStyle,
+    this.onNoticeTap,
+    this.onRightIconTap,
+    this.marquee = false,
+    this.padding,
+    this.minHeight = 36})
+    : super(key: key);
 ```
 
 ### 参数说明
 
-| 参数名          | 参数类型     | 描述                                                                                                         | 是否必填 | 默认值                        |
-| --------------- | ------------ | ------------------------------------------------------------------------------------------------------------ | -------- | ----------------------------- |
-| noticeStyle     | NoticeStyle  | 样式，取 NoticeStyles 里面的值                                                                               | 否       | NoticeStyles.runningWithArrow |
-| content         | String       | 通知具体内容                                                                                                 | 是       | 无                            |
-| textColor       | Color        | 文案的颜色                                                                                                   | 否       | 随 defaultStyle 改变          |
-| backgroundColor | Color        | 通知栏的背景颜色                                                                                             | 否       | 随 defaultStyle 改变          |
-| leftWidget      | Widget       | 左侧图标区域自定义视图                                                                                       | 否       | 无                            |
-| showLeftIcon    | bool         | 是否显示左侧图标                                                                                             | 否       | true                          |
-| rightWidget     | Widget       | 右侧图标区域自定义视图                                                                                       | 否       | 无                            |
-| showRightIcon   | bool         | 是否显示右侧图标                                                                                             | 否       | true                          |
-| onNoticeTap     | VoidCallback | 点击通知回调                                                                                                 | 否       | 无                            |
-| onRightIconTap  | VoidCallback | 点击右侧图标回掉                                                                                             | 否       | 无                            |
-| marquee         | bool         | 跑马灯                                                                                                       | 否       | false                         |
-| minHeight       | double       | 最小高度。leftWidget、rightWidget 都为空时，限制的最小高度。可以通过该属性控制组件高度，内容会自动垂直居中。 | 否       | 36                            |
-| padding         | EdgeInsets   | 内容的内边距                                                                                                 | 否       | 无                            |
+| 参数名          | 参数类型      | 描述                                                         | 是否必填 | 默认值                        |
+| --------------- | ------------- | ------------------------------------------------------------ | -------- | ----------------------------- |
+| noticeStyle     | NoticeStyle?  | 样式，取 NoticeStyles 里面的值                               | 否       | NoticeStyles.runningWithArrow |
+| content         | String        | 通知具体内容                                                 | 是       | 无                            |
+| textColor       | Color?        | 文案的颜色                                                   | 否       | 随 defaultStyle 改变          |
+| backgroundColor | Color?        | 通知栏的背景颜色                                             | 否       | 随 defaultStyle 改变          |
+| leftWidget      | Widget?       | 左侧图标区域自定义视图                                       | 否       | 无                            |
+| showLeftIcon    | bool          | 是否显示左侧图标                                             | 否       | true                          |
+| rightWidget     | Widget?       | 右侧图标区域自定义视图                                       | 否       | 无                            |
+| showRightIcon   | bool          | 是否显示右侧图标                                             | 否       | true                          |
+| onNoticeTap     | VoidCallback? | 点击通知回调                                                 | 否       | 无                            |
+| onRightIconTap  | VoidCallback? | 点击右侧图标回掉                                             | 否       | 无                            |
+| marquee         | bool          | 跑马灯                                                       | 否       | false                         |
+| minHeight       | double        | 最小高度。leftWidget、rightWidget 都为空时，限制的最小高度。可以通过该属性控制组件高度，内容会自动垂直居中。 | 否       | 36                            |
+| padding         | EdgeInsets?   | 内容的内边距                                                 | 否       | 无                            |
 
 ### 其他参数说明
 

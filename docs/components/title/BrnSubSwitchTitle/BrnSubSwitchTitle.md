@@ -31,13 +31,13 @@ group:
 
 ```dart
 const BrnSubSwitchTitle({
-  Key key,
-  @required this.nameList,
-  this.defaultSelectIndex = 0,
-  this.onSelect,
-  this.padding,
-  this.controller,
-}) : super(key: key);
+    Key? key,
+    required this.nameList,
+    this.defaultSelectIndex = 0,
+    this.onSelect,
+    this.padding,
+    this.controller,
+  }) : super(key: key);
 ```
 ### 参数说明
 
@@ -45,9 +45,9 @@ const BrnSubSwitchTitle({
 | --- | --- | --- | --- | --- |
 | nameList | `List<String>` | 标题的文案列表 | 是 | 无 |
 | defaultSelectIndex | int | 默认选中的 index | 否 | 0 |
-| onSelect | void Function(int index) | 选择指定标题的回调 | 否 | 无 |
-| padding | EdgeInsets | 二级标题的padding | 否 | EdgeInsets.only(right: 20) |
-| controller | TabController | 控制tab切换，默认不需要传递 | 否 | 无 |
+| onSelect | `void Function(int index)?` | 选择指定标题的回调 | 否 | 无 |
+| padding | EdgeInsets? | 二级标题的padding | 否 | EdgeInsets.only(right: 20) |
+| controller | TabController? | 控制tab切换，默认不需要传递 | 否 | 无 |
 
 ## 四、代码演示
 

@@ -1,11 +1,12 @@
 ## [2.1.0-nullsafety.1] - 2022-3-10
 ### Changed
 
-#### base 
+#### base
 
 - **Breaking change**: Sound null safety support, thanks to  @leftcoding #39#33 @donywan #20 @laiiihz #80#64#59#32#14  @kalifun #36 @jojinshallar #81#75#65#62#56#42 @junlandroid #73 @Kenneth #53 @HappyImp #55 @kkkman22 #23 @AlexV525 #30
 - **Breaking change**: Refer to the dart language specification to optimized constant and enum naming.
 - Replace <code>DIN Font</code> with <code>Bebas Font</code> .
+- Add build test thank to **AlexV525**.
 
 #### components
 - **Breaking change**: remove <code>BrnHorizontalStepsManager</code> and put function <code>forwardStep()</code>  <code>backStep()</code> into <code>BrnStepsController</code> thanks to leftcoding.
@@ -16,7 +17,7 @@
 - <code>BrnScrollableTextDialog</code>: remove Navigator.pop(context) in <code>onSubmit()</code> and hand it over to external processing (user).
 - <code>BrnBubbleText</code>: add attribute <code>bgColor</code> and <code>textStyle</code>.
 - <code>BrnPairInfoTable</code>: add attribute <code>defaultVerticalAlignment</code>.
-
+- <code>BrnDialog</code>: remove <code>BrnDialogStyle</code> and replace with <code>BrnDialogConfig</code>.
 
 
 

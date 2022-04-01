@@ -61,9 +61,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
     List<Widget> widgetList = <Widget>[];
     //文本按钮不超过4个，就全不显示
     //超过4个的话，就只显示3个，剩下的显示在更多里
-    int length = widget.nameList.length <= _maxNum
-        ? widget.nameList.length
-        : _maxNum - 1;
+    int length = widget.nameList.length <= _maxNum ? widget.nameList.length : _maxNum - 1;
     for (int textIndex = 0; textIndex < length; textIndex++) {
       Widget operationWidget = _operationWidgetAtIndex(textIndex);
       widgetList.add(operationWidget);
@@ -101,10 +99,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
       style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w500,
-          color: BrnThemeConfigurator.instance
-              .getConfig()
-              .commonConfig
-              .brandPrimary),
+          color: BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary),
     );
 
     return GestureDetector(

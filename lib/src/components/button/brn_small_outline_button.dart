@@ -1,3 +1,5 @@
+
+
 import 'dart:math';
 
 import 'package:bruno/src/components/button/brn_normal_button.dart';
@@ -79,8 +81,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
     ));
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig
-        .merge(defaultThemeConfig);
+        .buttonConfig.merge(defaultThemeConfig);
 
     TextPainter textPainter =
         TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);

@@ -23,6 +23,9 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
   /// test3
   int _selectedIndexTest3 = 0;
 
+  /// test4
+  int _selectedIndexTest4 = 0;
+
   /// 未读消息数量
   String badgeNo1 = '100';
 
@@ -74,6 +77,14 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
     });
   }
 
+  /// test4
+  void _onItemSelectedTest4(int index) {
+    setState(() {
+      /// 置为当前选中item的索引值
+      _selectedIndexTest4 = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -96,32 +107,47 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
             items: <BrnBottomTabBarItem>[
               // 定义每个BottomTabBarItem，子属性请看源码
               BrnBottomTabBarItem(
-                  icon:
-                      Image(image: AssetImage("assets/icons/navbar_house.png")),
-                  activeIcon:
-                      Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  activeIcon: Image(
+                    image: AssetImage("assets/icons/navbar_house.png"),
+                    color: Colors.blue,
+                  ),
                   title: Text(titles[0])),
               BrnBottomTabBarItem(
-                  icon:
-                      Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  activeIcon: Image(
+                    image: AssetImage("assets/icons/navbar_house.png"),
+                    color: Colors.blue,
+                  ),
                   title: Text(titles[1])),
               BrnBottomTabBarItem(
-                  icon:
-                      Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  activeIcon: Image(
+                    image: AssetImage("assets/icons/navbar_house.png"),
+                    color: Colors.blue,
+                  ),
                   title: Text(titles[2])),
               BrnBottomTabBarItem(
-                  icon:
-                      Image(image: AssetImage("assets/icons/navbar_house.png")),
-                  activeIcon:
-                      Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  activeIcon: Image(
+                    image: AssetImage("assets/icons/navbar_house.png"),
+                    color: Colors.blue,
+                  ),
                   title: Text(titles[3])),
               BrnBottomTabBarItem(
-                  icon:
-                      Image(image: AssetImage("assets/icons/navbar_house.png")),
-                  title: Text(titles[4])),
+                icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                activeIcon: Image(
+                  image: AssetImage("assets/icons/navbar_house.png"),
+                  color: Colors.blue,
+                ),
+                title: Text(titles[4]),
+              ),
               BrnBottomTabBarItem(
-                  icon:
-                      Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  activeIcon: Image(
+                    image: AssetImage("assets/icons/navbar_house.png"),
+                    color: Colors.blue,
+                  ),
                   title: Text(titles[5])),
             ],
           ),
@@ -136,8 +162,20 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
                 currentIndex: _selectedIndexTest1,
                 onTap: _onItemSelectedTest1,
                 items: <BrnBottomTabBarItem>[
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text(titles[0])),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text(titles[0])),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text('有 2 个 item'),
+              ),
+              BrnBottomTabBar(
+                fixedColor: Colors.blue,
+                currentIndex: _selectedIndexTest2,
+                onTap: _onItemSelectedTest2,
+                items: <BrnBottomTabBarItem>[
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text(titles[0])),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text(titles[0])),
                 ],
               ),
               Padding(
@@ -146,26 +184,9 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
               ),
               BrnBottomTabBar(
                 fixedColor: Colors.blue,
-                currentIndex: _selectedIndexTest2,
-                onTap: _onItemSelectedTest2,
-                items: <BrnBottomTabBarItem>[
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text(titles[0])),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text(titles[0])),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text(titles[0])),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text(titles[0])),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text(titles[0])),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text(titles[0])),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text(titles[0])),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text(titles[0])),
-                ],
+                currentIndex: _selectedIndexTest3,
+                onTap: _onItemSelectedTest3,
+                items: _getTabBarItems(count: 8),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -173,29 +194,37 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
               ),
               BrnBottomTabBar(
                 fixedColor: Colors.blue,
-                currentIndex: _selectedIndexTest3,
-                onTap: _onItemSelectedTest3,
+                currentIndex: _selectedIndexTest4,
+                onTap: _onItemSelectedTest4,
                 items: <BrnBottomTabBarItem>[
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text("1111111111")),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text("2222222222")),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text("3333333333")),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text("4444444444")),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text("5555555555")),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text("6666666666")),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text("7777777777")),
-                  BrnBottomTabBarItem(
-                      icon: Icon(icons[0]), title: Text("8888888888")),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("1111111111")),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("2222222222")),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("3333333333")),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("4444444444")),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("5555555555")),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("6666666666")),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("7777777777")),
+                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("8888888888")),
                 ],
               ),
             ],
           )),
     );
+  }
+
+  List<BrnBottomTabBarItem> _getTabBarItems({int count = 1}) {
+    return List<BrnBottomTabBarItem>.generate(
+        count,
+        (index) => BrnBottomTabBarItem(
+              icon: Icon(
+                icons[0],
+                color: Colors.grey,
+              ),
+              title: Text(titles[0]),
+              activeIcon: Icon(
+                icons[0],
+                color: Colors.blue,
+              ),
+            ));
   }
 }

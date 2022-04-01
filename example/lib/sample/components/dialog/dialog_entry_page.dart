@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -288,6 +290,7 @@ class DialogEntryPage extends StatelessWidget {
                 return BrnSingleSelectDialog(
                     isClose: true,
                     title: '请选择无效客源原因',
+                    messageText: '请您评价该条线索请您评价该条线索请您评价该条线索请您评价该条线索请您评价该条线索',
                     conditions: conditions,
                     checkedItem: conditions[selectedIndex],
                     submitText: '提交',

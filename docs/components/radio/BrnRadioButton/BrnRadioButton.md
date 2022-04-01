@@ -29,18 +29,18 @@ group:
 ### 构造函数
 
 ```dart
-const BrnRadioButton({
-  Key key,
-  @required this.radioIndex,
-  @required this.onValueChangedAtIndex,
-  this.disable = false,
-  this.isSelected = false,
-  this.iconPadding,
-  this.child,
-  this.childOnRight = true,
-  this.mainAxisAlignment = MainAxisAlignment.start,
-  this.mainAxisSize = MainAxisSize.min,
-});
+const BrnRadioButton(
+    {Key? key,
+    required this.radioIndex,
+    required this.onValueChangedAtIndex,
+    this.disable = false,
+    this.isSelected = false,
+    this.iconPadding,
+    this.child,
+    this.childOnRight = true,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.min,
+    this.behavior = HitTestBehavior.translucent});
 ```
 ### 参数说明
 
@@ -50,11 +50,12 @@ const BrnRadioButton({
 | onValueChangedAtIndex | void Function(int, bool) | radio选中状态发生变化产生的回调，int 为 选项的index，bool 为选项的选中状态，true表示选中，false未选中 | 是 | 无 |
 | isSelected | bool | 初始选中状态 | 否 | false |
 | disable | bool | 选项是否禁用 | 否 | false |
-| child | widget | 除了 icon 部分的自定义视图 | 否 | 无 |
-| iconPadding | EdgeInsets | 选择图标的padding | 否 | EdgeInsets.all(5) |
+| child | widget? | 除了 icon 部分的自定义视图 | 否 | 无 |
+| iconPadding | EdgeInsets? | 选择图标的padding | 否 | EdgeInsets.all(5) |
 | childOnRight | bool | widget在是否在选择 icon 的右边，false 就在左边 | 否 | true |
 | mainAxisAlignment | MainAxisAlignment | child 视图和 icon 在row布局里面的alignment | 否 | MainAxisAlignment.start |
 | mainAxisSize | MainAxisSize | child 视图和 icon 在row布局里面的mainAxisSize | 否 | MainAxisSize.min |
+| behavior | HitTestBehavior | 默认值HitTestBehavior.translucent，控制widget.onRadioItemClick触发的点击范围 | 否 | HitTestBehavior.translucent |
 
 ## 四、代码演示
 

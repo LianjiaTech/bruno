@@ -32,9 +32,9 @@ group:
 ### 构造函数
 
 ```dart
-BrnStepLine({
-  Key key,
-  @required this.contentWidget,
+const BrnStepLine({
+  Key? key,
+  required this.contentWidget,
   this.isGrey = false,
   this.lineColor,
   this.lineWidth = 2,
@@ -46,25 +46,25 @@ BrnStepLine({
   this.normalColor,
   this.highlightColor,
   this.iconWidget,
-})
+}) : super(key: key);
 ```
 
 ### 参数说明
 
-| **参数名**         | **参数类型**             | **描述**                               | **是否必填** | **默认值**        |
-| ------------------ | ------------------------ | -------------------------------------- | ------------ | ----------------- |
-| contentWidget      | Widget                   | 右侧显示的 widget                      | 是           | 无                |
-| isGrey             | bool                     | 是否整体是灰色：线条和 Icon，          | 否           | false             |
-| lineColor          | Color 或者 `List<Color>` | 边框线的颜色，如果是数组则分段展示线条 | 否           | 主题色            |
-| lineWidth          | double                   | 线的宽度                               | 否           | 2                 |
-| iconTopPadding     | double                   | icon 距离所在 Item 项顶部的 padding    | 否           | 0                 |
-| isDashLine         | bool                     | 是否是虚线模式                         | 否           | false             |
-| dashLength         | double                   | 小虚线短的长度                         | 否           | 4                 |
-| dashSpace          | double                   | 小虚线段之间的间隔                     | 否           | 4                 |
-| contentLeftPadding | double                   | contentWidget 距离左侧的 padding       | 否           | 12                |
-| normalColor        | Color                    | 普通状态(isGrey=true)的颜色            | 否           | Color(0xffeeeeee) |
-| highlightColor     | Color                    | 高亮状态(isGrey=false)的颜色           | 否           | 主题色            |
-| iconWidget         | Widget                   | 自定义 icon 的 widget                  | 否           | 无                |
+| **参数名**         | **参数类型** | **描述**                                                     | **是否必填** | **默认值**        |
+| ------------------ | ------------ | ------------------------------------------------------------ | ------------ | ----------------- |
+| contentWidget      | Widget       | 右侧显示的 widget                                            | 是           | 无                |
+| isGrey             | bool         | 是否整体是灰色：线条和 Icon                                  | 否           | false             |
+| lineColor          | dynamic      | Color 或者 `List<Color>`,边框线的颜色，如果是数组则分段展示线条 | 否           | 主题色            |
+| lineWidth          | double       | 线的宽度                                                     | 否           | 2                 |
+| iconTopPadding     | double       | icon 距离所在 Item 项顶部的 padding                          | 否           | 0                 |
+| isDashLine         | bool         | 是否是虚线模式                                               | 否           | false             |
+| dashLength         | double       | 小虚线短的长度                                               | 否           | 4                 |
+| dashSpace          | double       | 小虚线段之间的间隔                                           | 否           | 4                 |
+| contentLeftPadding | double       | contentWidget 距离左侧的 padding                             | 否           | 12                |
+| normalColor        | Color?       | 普通状态(isGrey=true)的颜色                                  | 否           | Color(0xffeeeeee) |
+| highlightColor     | Color?       | 高亮状态(isGrey=false)的颜色                                 | 否           | 主题色            |
+| iconWidget         | Widget?      | 自定义 icon 的 widget                                        | 否           | 无                |
 
 ## 四、代码演示
 

@@ -6,6 +6,8 @@ import 'package:bruno/src/theme/configs/brn_dialog_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
+import 'brn_dialog.dart';
+
 typedef BrnSingleSelectOnSubmitCallback = Function(String? data);
 typedef BrnSingleSelectOnItemClickCallback = void Function(
     BuildContext dialogContext, int index);
@@ -17,6 +19,12 @@ class BrnSingleSelectDialog extends Dialog {
 
   /// 弹窗标题
   final String title;
+
+  /// 描述文案，优先级较 messageWidget 低，优先使用 messageWidget
+  final String? messageText;
+
+  /// 描述widget
+  final Widget? messageWidget;
 
   /// 时间区间最大值
   final List<String> conditions;
@@ -48,6 +56,8 @@ class BrnSingleSelectDialog extends Dialog {
   const BrnSingleSelectDialog(
       {this.isClose: true,
       this.title: "",
+      this.messageText,
+      this.messageWidget,
       required this.conditions,
       this.submitText: "提交",
       this.submitBgColor,
@@ -63,6 +73,8 @@ class BrnSingleSelectDialog extends Dialog {
     return BrnSingleSelectDialogWidget(
         isClose: isClose,
         title: title,
+        messageText: messageText,
+        messageWidget: messageWidget,
         conditions: conditions,
         submitText: submitText,
         onSubmitClick: onSubmitClick,
@@ -79,6 +91,8 @@ class BrnSingleSelectDialog extends Dialog {
 class BrnSingleSelectDialogWidget extends StatefulWidget {
   final bool isClose;
   final String title;
+  final String? messageText;
+  final Widget? messageWidget;
   final List<String>? conditions;
   final String submitText;
   final BrnSingleSelectOnSubmitCallback? onSubmitClick;
@@ -97,6 +111,8 @@ class BrnSingleSelectDialogWidget extends StatefulWidget {
   BrnSingleSelectDialogWidget(
       {this.isClose = true,
       this.title = "",
+      this.messageText,
+      this.messageWidget,
       this.conditions,
       this.submitText = "",
       this.submitBgColor,
@@ -151,6 +167,7 @@ class BrnSingleSelectDialogWidgetState
                               widget.themeData!),
                         ),
                       ),
+                      _generateContentWidget(),
                       Container(
                         constraints: BoxConstraints(maxHeight: 300),
                         child: widget.isCustomFollowScroll
@@ -249,6 +266,29 @@ class BrnSingleSelectDialogWidgetState
               ),
             )));
   }
+
+  /// 内容widget 以 messageWidget 为准，
+  /// 若无则以 messageText 生成widget 填充，
+  /// 都没设置则为空 Container
+  Widget _generateContentWidget() {
+    if (widget.messageWidget != null)
+      return Padding(
+        padding: EdgeInsets.only(bottom: 8, left: 20, right: 20),
+        child: widget.messageWidget,
+      );
+
+    if (!BrunoTools.isEmpty(widget.messageText)) {
+      return Padding(
+        padding: EdgeInsets.only(bottom: 8, left: 20, right: 20),
+        child: Text(
+          widget.messageText!,
+          style: cContentTextStyle,
+        ),
+      );
+    }
+    return Container();
+  }
+
 
   Widget _buildItem(BuildContext context, int index) {
     if (widget.conditions == null) {

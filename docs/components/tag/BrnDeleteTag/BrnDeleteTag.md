@@ -34,7 +34,7 @@ group:
 
 ```dart
 BrnDeleteTag(
-    {Key key,
+    {Key? key,
     this.tags,
     this.controller,
     this.onTagDelete,
@@ -46,8 +46,17 @@ BrnDeleteTag(
     this.deleteIconColor,
     this.deleteIconSize,
     this.softWrap = true,
-    this.padding,
+    this.padding = const EdgeInsets.fromLTRB(20, 0, 20, 0),
     this.themeData})
+    : super(key: key) {
+  themeData ??= BrnTagConfig();
+  themeData = themeData!.merge(BrnTagConfig(
+      tagBackgroundColor: this.backgroundColor,
+      tagTextStyle: BrnTextStyle.withStyle(tagTextStyle)));
+  themeData = BrnThemeConfigurator.instance
+      .getConfig(configId: themeData!.configId)
+      .tagConfig
+      .merge(this.themeData);
 ```
 
 
@@ -56,18 +65,19 @@ BrnDeleteTag(
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| tags | List | 展示的标签列表 | 是 |  |
-| controller | BrnDeleteTagController | 标签控制器，用于主动添加标签，如果只需要删除标签并进行回调可以不传控制器 | 否 |  |
-| onTagDelete | Function(List, String, int) | 点击删除某个标签后将现有的所有标签，删除的标签内容，删除的标签index回传 | 否 |  |
-| verticalSpacing | double | 垂直方向的间距 | 否 | 10 |
-| horizontalSpacing | double  | 水平方向的间距  | 否 | 10，softWrap false 时 12 |
-| tagTextStyle | TextStyle | 标签的字体样式 | 否 |  |
-| shape | ShapeBorder | 标签的圆角 | 否 |  |
-| backgroundColor | Color | 标签背景色 | 否 |  |
-| deleteIconSize | Size | 设置删除 Icon的大小  | 否 | 默认值为内置删除 icon 的图片大小。 |
-| deleteIconColor | Color | 删除图标的颜色 | 否 |  |
+| tags | `List<String>?` | 展示的标签列表 | 是 |  |
+| controller | BrnDeleteTagController? | 标签控制器，用于主动添加标签，如果只需要删除标签并进行回调可以不传控制器 | 否 |  |
+| onTagDelete | `Function(List<String>, String?, int)?` | 点击删除某个标签后将现有的所有标签，删除的标签内容，删除的标签index回传 | 否 |  |
+| verticalSpacing | double? | 垂直方向的间距 | 否 | 10 |
+| horizontalSpacing | double? | 水平方向的间距  | 否 | 10，softWrap false 时 12 |
+| tagTextStyle | TextStyle? | 标签的字体样式 | 否 |  |
+| shape | OutlinedBorder? | 标签的圆角 | 否 |  |
+| backgroundColor | Color? | 标签背景色 | 否 |  |
+| deleteIconSize | Size? | 设置删除 Icon的大小  | 否 | 默认值为内置删除 icon 的图片大小。 |
+| deleteIconColor | Color? | 删除图标的颜色 | 否 |  |
 | softWrap | bool  | 是否为流式布局true流式，false横向滑动  | 否 | true |
 | padding | EdgeInsets | 内容边距 | 否 | EdgeInsets.fromLTRB(20, 0, 20, 0) |
+| themeData; | BrnTagConfig? | 主题配置信息，包含标签背景色、文本颜色等字段 | 否 |  |
 
 ### BrnDeleteTagController
 
@@ -75,8 +85,8 @@ BrnDeleteTag(
 
 | 方法名 | **参数类型** | **作用** |
 | --- | --- | --- |
-| setTags | List | 设置标签 |
-| addTags | List | 将标签集合添加到现有的标签集合中 |
+| setTags | `List<String>` | 设置标签 |
+| addTags | `List<String>` | 将标签集合添加到现有的标签集合中 |
 | addTag | String | 添加一个标签 |
 | clear | Function | 清空标签 |
 | deleteForIndex | int | 删除某个index底下tag |

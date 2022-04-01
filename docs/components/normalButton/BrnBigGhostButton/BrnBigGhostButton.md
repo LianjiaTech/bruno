@@ -38,11 +38,11 @@ const BrnBigGhostButton({
 | **参数名** | **参数类型** | 描述 | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
 | title | String | 按钮显示文案 | 否 | 确认 |
-| onTap | VoidCallback | 点击的回调 | 否 | 无 |
-| bgColor | Color | 按钮的背景色 | 否 | 主题色为5透明度的颜色 |
-| width | double | 按钮的宽度 | 否 | double.infinity |
-| titleColor | Color | 按钮的文字颜色 | 否 | 主题色 |
-| themeData | BrnButtonConfig | button主题定制 | 否 | 无 |
+| onTap | VoidCallback? | 点击的回调 | 否 | 无 |
+| bgColor | Color? | 按钮的背景色 | 否 | 主题色为5透明度的颜色 |
+| width | double? | 按钮的宽度 | 否 | double.infinity |
+| titleColor | Color? | 按钮的文字颜色 | 否 | 主题色 |
+| themeData | BrnButtonConfig? | button主题定制 | 否 | 无 |
 
 
 

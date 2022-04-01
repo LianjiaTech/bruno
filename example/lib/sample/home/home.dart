@@ -1,3 +1,5 @@
+
+
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/card_data_config.dart';
 import 'package:example/sample/home/group_card.dart';
@@ -9,7 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BrnAppBar(
-        title: Text("UI组件"),
+        title: 'UI组件',
         leading: null,
         automaticallyImplyLeading: false,
       ),
