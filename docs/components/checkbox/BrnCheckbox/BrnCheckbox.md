@@ -1,17 +1,17 @@
 ---
-title: BrnRadioItem
+title: BrnCheckbox
 group:
   title: Radio
   order: 25
 ---
 
-# BrnRadioItem
+# BrnCheckbox
 
 多项选择
 
 ## 一、效果总览
 
-<img src="./img/BrnRadioItemIntro.png" style="zoom:50%;" />
+<img src="./img/BrnCheckboxIntro.png" style="zoom:50%;" />
 
 ## 二、描述
 
@@ -60,7 +60,7 @@ const BrnCheckbox({
 
 ### 效果1：多选+选项居右+不可用状态
 
-![](./img/BrnRadioItemDemo1.png)
+![](./img/BrnCheckboxDemo1.png)
 ```dart
 Container(
   height: 130,
@@ -93,7 +93,7 @@ Container(
 
 ### 效果2：自定义视图
 
-![](./img/BrnRadioItemDemo2.png)
+![](./img/BrnCheckboxDemo2.png)
 ```dart
 BrnCheckbox(
   radioIndex: 10,
