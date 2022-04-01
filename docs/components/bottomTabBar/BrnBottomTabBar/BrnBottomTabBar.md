@@ -64,14 +64,16 @@ BrnBottomTabBar({
 
 ```dart
 const BrnBottomTabBarItem({
-  required this.icon,
-  this.title,
-  Widget? activeIcon,
-  this.backgroundColor,
-  this.badge,
-  this.badgeNo,
-  this.maxBadgeNo = 99,
-})  : activeIcon = activeIcon ?? icon;
+ this.title,
+ required this.icon,
+ Widget? activeIcon,
+ this.selectedTextStyle,
+ this.unSelectedTextStyle,
+ this.backgroundColor,
+ this.badge,
+ this.badgeNo,
+ this.maxBadgeNo = 99,
+}) : activeIcon = activeIcon ?? icon;
 ```
 
 

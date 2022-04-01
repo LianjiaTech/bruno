@@ -77,7 +77,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 lineColor: Colors.green,
               )
             ],
-            size: Size(MediaQuery.of(context).size.width * 1 - 100 * 2,
+            size: Size(MediaQuery.of(context).size.width,
                 MediaQuery.of(context).size.height / 5 * 1.6 - 20 * 2),
             isShowXHintLine: true,
             xDialValues: _getXDialValuesForExample1(brokenData),
