@@ -48,7 +48,7 @@ If you cannot access the demo, you can directly watch [Overview](https://github.
 | ---------- | ---------------- |
 | 1.0.0      | 1.22.4           |
 | 2.0.0      | 2.2.2            |
-| 2.1.0-nullsafety      | 2.2.2            |
+| 2.1.1 (support nullsafety)      | 2.2.2            |
 
 
 ## Preparing for use
