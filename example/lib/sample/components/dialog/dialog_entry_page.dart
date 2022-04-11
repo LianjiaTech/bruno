@@ -533,7 +533,7 @@ class DialogEntryPage extends StatelessWidget {
         hintText: '提示信息',
         cancelText: '取消',
         confirmText: '确定',
-        maxLength: 100,
+        maxLength: 10,
         barrierDismissible: false,
         textInputAction: TextInputAction.done,
         onConfirm: (value) {
