@@ -78,7 +78,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
   final int minLines;
 
   /// 最大行数，默认值20
-  final int maxLines;
+  final int? maxLines;
 
   /// form配置
   BrnFormItemConfig? themeData;
