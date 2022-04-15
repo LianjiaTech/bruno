@@ -100,6 +100,8 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
                       widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
+                      // 必填项
+                      BrnFormUtil.buildRequireWidget(widget.isRequire),
                       // 主标题
                       Container(
                           child: Text(
@@ -107,7 +109,6 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
                         style: BrnFormUtil.getHeadTitleTextStyle(
                             widget.themeData!),
                       )),
-
                       // 问号提示
                       BrnFormUtil.buildTipLabelWidget(
                           widget.tipLabel, widget.onTip, widget.themeData!),
