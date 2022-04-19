@@ -75,10 +75,10 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
   final TextEditingController? controller;
 
   /// 最小行数，默认值4
-  final int minLines;
+  final int? minLines;
 
   /// 最大行数，默认值20
-  final int maxLines;
+  final int? maxLines;
 
   /// form配置
   BrnFormItemConfig? themeData;
