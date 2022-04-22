@@ -140,7 +140,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                     Navigator.pop(context, widget.entityData);
                   },
                 ),
-                systemOverlayStyle: SystemUiOverlayStyle.light,
+                systemOverlayStyle: SystemUiOverlayStyle.dark,
                 backgroundColor: Colors.white,
                 title: Text(
                   '选择${widget.entityData.title}',
