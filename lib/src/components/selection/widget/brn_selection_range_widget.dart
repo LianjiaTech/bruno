@@ -18,7 +18,6 @@ import 'package:bruno/src/utils/brn_event_bus.dart';
 import 'package:bruno/src/utils/brn_text_util.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 typedef void BrnOnRangeSelectionBgClick();
 

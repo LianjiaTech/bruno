@@ -2,7 +2,6 @@
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class TextModel {
   String? text;

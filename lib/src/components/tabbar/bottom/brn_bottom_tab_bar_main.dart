@@ -4,8 +4,6 @@ import 'dart:collection' show Queue;
 import 'dart:math' as math;
 
 import 'package:bruno/bruno.dart';
-import 'package:bruno/src/components/tabbar/bottom/brn_bottom_tab_bar_item.dart';
-import 'package:bruno/src/theme/configs/brn_all_config.dart';
 import 'package:flutter/material.dart';
 
 /// 定义一些UI常量,根据UI稿进行填写
@@ -213,7 +211,7 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
             themeColor = themeData.primaryColor;
             break;
           case Brightness.dark:
-            themeColor = themeData.accentColor;
+            themeColor = themeData.colorScheme.secondary;
             break;
         }
         final ColorTween colorTween = ColorTween(

@@ -134,7 +134,7 @@ class BrnTabBar extends StatefulWidget {
     this.tagSpacing,
     this.preLineTagCount,
     this.tagHeight,
-  }) : assert(tabs == null || tabs is List<BadgeTab>) {
+  }) : assert(tabs == null) {
     this.themeData ??= BrnTabBarConfig();
     this.themeData = this.themeData!.merge(BrnTabBarConfig(
           backgroundColor: backgroundcolor,
