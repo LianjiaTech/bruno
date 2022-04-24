@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 /// Picker 顶端 圆角装饰类，参考系统 [ClipRRect]，

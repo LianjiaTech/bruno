@@ -4,7 +4,6 @@ import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/card/bubble/common_bubble_example.dart';
 import 'package:example/sample/components/card/bubble/brn_expanded_bubble_example.dart';
 import 'package:example/sample/home/list_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BubbleEntryPage extends StatelessWidget {
