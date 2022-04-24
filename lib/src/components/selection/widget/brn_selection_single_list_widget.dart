@@ -204,8 +204,17 @@ class _BrnSelectionSingleListWidgetState
 
   void configMultiLevelList(
       BrnSelectionEntity selectedEntity, int currentListIndex) {
-    /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
-    if (BrnSelectionFilterType.radio == selectedEntity.filterType) {
+    /// 选中【不限】清除同一级别其他的状态
+    if(selectedEntity.isUnLimit()){
+      selectedEntity.parent?.children
+          .where((f) => f != selectedEntity)
+          .forEach((f) {
+        f.clearChildSelection();
+        f.isSelected = false;
+      });
+      selectedEntity.isSelected = true;
+    } else if (BrnSelectionFilterType.radio == selectedEntity.filterType) {
+      /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
       selectedEntity.parent?.children
           .where((f) => f != selectedEntity)
           .forEach((f) {
@@ -214,16 +223,6 @@ class _BrnSelectionSingleListWidgetState
       });
       selectedEntity.isSelected = true;
     } else if (BrnSelectionFilterType.checkbox == selectedEntity.filterType) {
-      /// 选中【不限】清除同一级别其他的状态
-      if (selectedEntity.isUnLimit()) {
-        selectedEntity.parent?.children
-            .where((f) => f != selectedEntity)
-            .forEach((f) {
-          f.clearChildSelection();
-          f.isSelected = false;
-        });
-        selectedEntity.isSelected = true;
-      } else {
         ///清除【不限】类型。
         List<BrnSelectionEntity> brotherItems;
         if (selectedEntity.parent == null) {
@@ -238,7 +237,6 @@ class _BrnSelectionSingleListWidgetState
           }
         }
         selectedEntity.isSelected = !selectedEntity.isSelected;
-      }
     }
   }
 }
