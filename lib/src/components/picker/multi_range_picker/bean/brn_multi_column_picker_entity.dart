@@ -74,7 +74,7 @@ class BrnPickerEntity {
   }
 
   void configDefaultValue() {
-    if (this.children.length > 0) {
+    if (this.children.isNotEmpty) {
       for (BrnPickerEntity entity in this.children) {
         if (!BrunoTools.isEmpty(defaultValue)) {
           List<String> values = defaultValue!.split(',');
@@ -83,12 +83,12 @@ class BrnPickerEntity {
         entity.configDefaultValue();
       }
 
-      isSelected = isSelected || children.where((_) => _.isSelected).length > 0;
+      isSelected = isSelected || children.where((_) => _.isSelected).isNotEmpty;
     }
   }
 
   void configRelationship() {
-    if (this.children.length > 0) {
+    if (this.children.isNotEmpty) {
       for (BrnPickerEntity entity in this.children) {
         entity.parent = this;
         entity.configRelationship();
@@ -117,7 +117,7 @@ class BrnPickerEntity {
   }
 
   void clearChildSelection() {
-    if (this.children.length > 0) {
+    if (this.children.isNotEmpty) {
       for (BrnPickerEntity entity in this.children) {
         entity.isSelected = false;
         entity.clearChildSelection();
@@ -127,16 +127,16 @@ class BrnPickerEntity {
 
   List<BrnPickerEntity> selectedLastColumnList() {
     List<BrnPickerEntity> list = [];
-    if (this.children.length > 0) {
+    if (this.children.isNotEmpty) {
       List<BrnPickerEntity> firstList = [];
       for (BrnPickerEntity firstEntity in this.children) {
-        if (firstEntity.children.length > 0) {
+        if (firstEntity.children.isNotEmpty) {
           List<BrnPickerEntity> secondList = [];
           for (BrnPickerEntity secondEntity in firstEntity.children) {
-            if (secondEntity.children.length > 0) {
+            if (secondEntity.children.isNotEmpty) {
               List<BrnPickerEntity> thirds =
                   this.currentSelectListForEntity(secondEntity);
-              if (thirds.length > 0) {
+              if (thirds.isNotEmpty) {
                 list.addAll(thirds);
               } else if (secondEntity.isSelected) {
                 secondList.add(secondEntity);
@@ -164,12 +164,12 @@ class BrnPickerEntity {
     List<BrnPickerEntity> results = [];
     List<BrnPickerEntity> firstColumn = this.currentSelectListForEntity(this);
     results.addAll(firstColumn);
-    if (firstColumn.length > 0) {
+    if (firstColumn.isNotEmpty) {
       for (BrnPickerEntity firstEntity in firstColumn) {
         List<BrnPickerEntity> secondColumn =
             this.currentSelectListForEntity(firstEntity);
         results.addAll(secondColumn);
-        if (secondColumn.length > 0) {
+        if (secondColumn.isNotEmpty) {
           for (BrnPickerEntity secondEntity in secondColumn) {
             List<BrnPickerEntity> thirdColumn =
             this.currentSelectListForEntity(secondEntity);
@@ -184,7 +184,7 @@ class BrnPickerEntity {
   /// 返回状态为选中的子节点
   List<BrnPickerEntity> currentSelectListForEntity(BrnPickerEntity entity) {
     List<BrnPickerEntity> list = [];
-    if (entity.children.length > 0) {
+    if (entity.children.isNotEmpty) {
       for (BrnPickerEntity entity in entity.children) {
         if (entity.isSelected) {
           list.add(entity);
@@ -210,7 +210,7 @@ class BrnPickerEntity {
   /// 判断当前的筛选 Item 是否为当前层次中第一个被选中的 Item。
   /// 用于展开筛选弹窗时显示选中效果。
   int getIndexInCurrentLevel() {
-    if (parent == null || parent!.children.length == 0) return -1;
+    if (parent == null || parent!.children.isEmpty) return -1;
 
     for (BrnPickerEntity entity in parent!.children) {
       if (entity == this) {
@@ -221,10 +221,10 @@ class BrnPickerEntity {
   }
 
   bool isInLastLevel() {
-    if (parent == null || parent!.children.length == 0) return true;
+    if (parent == null || parent!.children.isEmpty) return true;
 
     for (BrnPickerEntity entity in parent!.children) {
-      if (entity.children.length > 0) {
+      if (entity.children.isNotEmpty) {
         return false;
       }
     }

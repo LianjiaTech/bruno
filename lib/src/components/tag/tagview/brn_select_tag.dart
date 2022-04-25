@@ -223,8 +223,9 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
   void didUpdateWidget(BrnSelectTag oldWidget) {
     super.didUpdateWidget(oldWidget);
     // 如果两个数组不相等,重置选中状态
-    if (!sameList(oldWidget.tags, widget.tags))
+    if (!sameList(oldWidget.tags, widget.tags)) {
       _tagState = List.filled(widget.tags.length, false);
+    }
   }
 
   /// 比较两个数组内容是否一致，如果一致，返回 true，否则 false

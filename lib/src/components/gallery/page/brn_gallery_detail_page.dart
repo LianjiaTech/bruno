@@ -22,10 +22,10 @@ class BrnGalleryDetailPage extends StatefulWidget {
   final List<BrnBasicGroupConfig> allConfig;
 
   /// 初始位于第几组，默认 0
-  final initGroupId;
+  final int initGroupId;
 
   /// 初始位于组内的第几个，默认 0
-  final initIndexId;
+  final int initIndexId;
 
   /// 是否来自于列表页，一般情况不要使用，默认 false
   final bool fromSummary;
@@ -188,7 +188,7 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
 
     _allConfig.forEach((item) => _tabs.add(
         BadgeTab(text: '${item.title ?? ""}(${item.configList!.length})')));
-    if (_allConfig.length > 1)
+    if (_allConfig.length > 1) {
       _columnViews.add(BrnTabBar(
         backgroundcolor: _tabBarConfig.backgroundColor,
         unselectedLabelStyle:
@@ -204,6 +204,7 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
               duration: Duration(microseconds: 100), curve: Curves.linear);
         },
       ));
+    }
 
     for (int i = 0; i < _allConfig.length; i++) {
       for (int j = 0; j < _allConfig[i].configList!.length; j++) {

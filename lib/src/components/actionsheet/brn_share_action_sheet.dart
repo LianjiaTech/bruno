@@ -5,12 +5,12 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
 /// section为所在行数（0或1），index是在第几位（从0开始记）, shareItem为渠道相关信息
-typedef void BrnShareActionSheetItemClickCallBack(
+typedef BrnShareActionSheetItemClickCallBack = void Function(
     int section, int index, BrnShareItem shareItem);
 
 /// 点击事件拦截回调（如果配置了此项，返回值为是否拦截，如果为true，则进行拦截，不进行默认回调）
 /// section为所在行数（0或1），index是在第几位（从0开始记）,shareItem为渠道相关信息
-typedef bool BrnShareActionSheetOnItemClickInterceptor(
+typedef BrnShareActionSheetOnItemClickInterceptor = bool Function(
     int section, int index, BrnShareItem shareItem);
 
 /// 分享元素
@@ -222,7 +222,7 @@ class BrnShareActionSheet extends StatelessWidget {
     ));
 
     // 添加“预设分享”容器
-    if (firstSectionItems.length > 0) {
+    if (firstSectionItems.isNotEmpty) {
       tiles.add(Container(
         padding: EdgeInsets.only(left: leftGap, top: topGap, bottom: bottomGap),
         alignment: Alignment.centerLeft,
@@ -243,7 +243,7 @@ class BrnShareActionSheet extends StatelessWidget {
     ));
 
     // 添加“自定义分享”容器
-    if (secondSectionItems.length > 0) {
+    if (secondSectionItems.isNotEmpty) {
       tiles.add(Container(
         alignment: Alignment.centerLeft,
         padding: EdgeInsets.only(left: leftGap, top: topGap, bottom: bottomGap),

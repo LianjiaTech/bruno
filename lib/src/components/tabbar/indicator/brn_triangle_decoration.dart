@@ -202,11 +202,6 @@ class _TriangleDecorationPainter extends BoxPainter {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
     assert(configuration.size != null);
     final Rect rect = offset & configuration.size!;

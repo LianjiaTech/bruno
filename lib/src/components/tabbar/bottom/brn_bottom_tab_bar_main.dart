@@ -37,7 +37,7 @@ class BrnBottomTabBar extends StatefulWidget {
     this.isAnimation = false,
     this.badgeColor,
     this.isInkResponse = false,
-  })  : assert(items.length >= 1),
+  })  : assert(items.isNotEmpty),
         assert(
           items.every((BrnBottomTabBarItem item) => item.title != null) == true,
           'Every item must have a non-null title',
@@ -92,8 +92,12 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
       Tween<double>(begin: 1.0, end: 1.5);
 
   void _resetState() {
-    for (AnimationController controller in _controllers) controller.dispose();
-    for (_Circle circle in _circles) circle.dispose();
+    for (AnimationController controller in _controllers) {
+      controller.dispose();
+    }
+    for (_Circle circle in _circles) {
+      circle.dispose();
+    }
     _circles.clear();
 
     _controllers =
@@ -129,8 +133,12 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
 
   @override
   void dispose() {
-    for (AnimationController controller in _controllers) controller.dispose();
-    for (_Circle circle in _circles) circle.dispose();
+    for (AnimationController controller in _controllers) {
+      controller.dispose();
+    }
+    for (_Circle circle in _circles) {
+      circle.dispose();
+    }
     super.dispose();
   }
 
@@ -188,8 +196,9 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
       _controllers[oldWidget.currentIndex].reverse();
       _controllers[widget.currentIndex].forward();
     } else {
-      if (_backgroundColor != widget.items[widget.currentIndex].backgroundColor)
+      if (_backgroundColor != widget.items[widget.currentIndex].backgroundColor) {
         _backgroundColor = widget.items[widget.currentIndex].backgroundColor;
+      }
     }
   }
 
@@ -655,8 +664,9 @@ class _RadialPainter extends CustomPainter {
     if (textDirection != oldPainter.textDirection) return true;
     if (circles == oldPainter.circles) return false;
     if (circles.length != oldPainter.circles.length) return true;
-    for (int i = 0; i < circles.length; i += 1)
+    for (int i = 0; i < circles.length; i += 1) {
       if (circles[i] != oldPainter.circles[i]) return true;
+    }
     return false;
   }
 

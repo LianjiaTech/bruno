@@ -339,8 +339,9 @@ class RenderRadarChart extends RenderBox
 
   @override
   void setupParentData(RenderBox child) {
-    if (child.parentData is! BrnRadarChartParentData)
+    if (child.parentData is! BrnRadarChartParentData) {
       child.parentData = BrnRadarChartParentData();
+    }
   }
 
   double _getIntrinsicDimensionHorizontal(

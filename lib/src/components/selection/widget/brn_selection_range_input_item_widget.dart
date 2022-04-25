@@ -4,8 +4,8 @@ import 'package:bruno/src/utils/brn_event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-typedef void OnRangeChangedFunction(String minInput, String maxInput);
-typedef void OnFocusChangedFunction(bool focus);
+typedef OnRangeChangedFunction = void Function(String minInput, String maxInput);
+typedef OnFocusChangedFunction = void Function(bool focus);
 
 /// 清空自定义范围输入框焦点的事件类
 class ClearSelectionFocusEvent {}

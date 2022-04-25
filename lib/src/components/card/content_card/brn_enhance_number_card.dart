@@ -101,7 +101,7 @@ class BrnEnhanceNumberCard extends StatelessWidget {
         .enhanceNumberCardConfig
         .merge(defaultConfig);
 
-    if (itemChildren == null || itemChildren!.length == 0) {
+    if (itemChildren == null || itemChildren!.isEmpty) {
       return Container(
         height: 0,
         width: 0,

@@ -234,9 +234,10 @@ class BrnDoughnut extends CustomPainter {
       double radain = pointRadianInSector(position);
       if (item.startRadius < radain &&
           radain < (item.startRadius + item.radius)) {
-        if (null != brnDoughnutSelectCallback)
+        if (null != brnDoughnutSelectCallback) {
           brnDoughnutSelectCallback!(
               item.startRadius == selectedItem?.startRadius ? null : item);
+        }
         break;
       }
     }

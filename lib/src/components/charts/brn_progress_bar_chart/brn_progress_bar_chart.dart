@@ -199,8 +199,9 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
                           widget.selectedHintTextBackgroundColor,
                       brnProgressBarChartSelectCallback:
                           (BrnProgressBarItem? item) {
-                        if (null != widget.barChartSelectCallback)
+                        if (null != widget.barChartSelectCallback) {
                           widget.barChartSelectCallback!(item);
+                        }
                         setState(() {
                           _selectedBarItem = item;
                         });

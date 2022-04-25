@@ -117,7 +117,7 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
   void initState() {
     super.initState();
     if (_controller == null) {
-      if (widget.defaultText != null && widget.defaultText!.length > 0) {
+      if (widget.defaultText != null && widget.defaultText!.isNotEmpty) {
         _controller = TextEditingController.fromValue(TextEditingValue(
             text: widget.defaultText!,
             selection: TextSelection.fromPosition(TextPosition(

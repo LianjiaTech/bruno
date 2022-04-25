@@ -10,8 +10,8 @@ import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-typedef void OnRangeChangedFunction(String minInput, String maxInput);
-typedef void OnTappedFunction();
+typedef OnRangeChangedFunction = void Function(String minInput, String maxInput);
+typedef OnTappedFunction = void Function();
 
 const String _defaultDateFormat = 'yyyy年MM月dd日';
 
@@ -58,13 +58,13 @@ class _BrnSelectionDateRangeItemWidgetState
 
   @override
   void initState() {
-    var minDateTime;
+    DateTime? minDateTime;
     if (widget.item.customMap != null &&
         widget.item.customMap!['min'] != null) {
       minDateTime = DateTimeFormatter.convertIntValueToDateTime(
           widget.item.customMap!['min']);
     }
-    var maxDateTime;
+    DateTime? maxDateTime;
     if (widget.item.customMap != null &&
         widget.item.customMap!['max'] != null) {
       maxDateTime = DateTimeFormatter.convertIntValueToDateTime(
@@ -256,7 +256,6 @@ class _BrnSelectionDateRangeItemWidgetState
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _datePickerController.hide();
     super.dispose();
   }

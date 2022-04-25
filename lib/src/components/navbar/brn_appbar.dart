@@ -592,13 +592,13 @@ class BrnBarBottomDivider extends PreferredSize {
 class _BrnSearchResultAppBar extends StatelessWidget {
   final BrnAppBarConfig? appBarConfig;
   final String? title;
-  final backgroundColor;
-  final bottom;
-  final brightness;
-  final showLeadingDivider;
-  final flexibleSpace;
-  final backLeadCallback;
-  final showDefaultBottom;
+  final Color? backgroundColor;
+  final PreferredSizeWidget? bottom;
+  final Brightness? brightness;
+  final bool showLeadingDivider;
+  final Widget? flexibleSpace;
+  final VoidCallback? backLeadCallback;
+  final bool showDefaultBottom;
 
   _BrnSearchResultAppBar(
       {this.appBarConfig,
@@ -639,7 +639,7 @@ class _BrnSearchResultAppBar extends StatelessWidget {
 
         /// divider
         Visibility(
-          visible: showLeadingDivider ?? true,
+          visible: showLeadingDivider,
           child: Container(
             margin: EdgeInsets.only(left: 12, right: 12),
             height: 16,
@@ -650,7 +650,7 @@ class _BrnSearchResultAppBar extends StatelessWidget {
 
         /// padding
         Visibility(
-          visible: !(showLeadingDivider ?? true),
+          visible: !(showLeadingDivider),
           child: Padding(
             padding: EdgeInsets.only(left: 12),
           ),

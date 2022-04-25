@@ -48,7 +48,7 @@ class BrnTipInfoWidget extends StatelessWidget {
     Color borderColor =
         mode == GuideMode.force ? Colors.transparent : Color(0xFFCCCCCC);
     if (direction == GuideDirection.bottomLeft ||
-        direction == GuideDirection.bottomRight)
+        direction == GuideDirection.bottomRight) {
       return Column(
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
@@ -70,8 +70,9 @@ class BrnTipInfoWidget extends StatelessWidget {
           ),
         ],
       );
+    }
     if (direction == GuideDirection.topLeft ||
-        direction == GuideDirection.topRight)
+        direction == GuideDirection.topRight) {
       return Column(
         children: <Widget>[
           buildContent(),
@@ -90,7 +91,8 @@ class BrnTipInfoWidget extends StatelessWidget {
           ),
         ],
       );
-    if (direction == GuideDirection.left)
+    }
+    if (direction == GuideDirection.left) {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -107,7 +109,8 @@ class BrnTipInfoWidget extends StatelessWidget {
           ),
         ],
       );
-    if (direction == GuideDirection.right)
+    }
+    if (direction == GuideDirection.right) {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         textDirection: TextDirection.rtl,
@@ -127,6 +130,7 @@ class BrnTipInfoWidget extends StatelessWidget {
           ),
         ],
       );
+    }
     return Row();
   }
 

@@ -6,7 +6,7 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:bruno/src/utils/css/brn_css_2_text.dart';
 import 'package:flutter/material.dart';
 
-typedef void ItemSelectFunction(BrnSelectionEntity entity);
+typedef ItemSelectFunction = void Function(BrnSelectionEntity entity);
 
 class BrnSelectionCommonItemWidget extends StatelessWidget {
   final BrnSelectionEntity item;
@@ -34,8 +34,8 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var checkbox;
-    if (!item.isUnLimit() && (item.children.length == 0)) {
+    Container checkbox;
+    if (!item.isUnLimit() && (item.children.isEmpty)) {
       if (item.isInLastLevel() && item.hasCheckBoxBrother()) {
         checkbox = Container(
           padding: EdgeInsets.only(left: 6),
@@ -129,7 +129,7 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
     if (isHighLight(item)) {
       return true;
     } else {
-      return item.hasCheckBoxBrother() && item.selectedList().length > 0;
+      return item.hasCheckBoxBrother() && item.selectedList().isNotEmpty;
     }
   }
 
@@ -155,7 +155,7 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
       } else {
         var unLimited =
             item.children.where((f) => f.isSelected && f.isUnLimit()).toList();
-        if (unLimited.length > 0) {
+        if (unLimited.isNotEmpty) {
           return '(全部)';
         }
       }

@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:bruno/src/components/tabbar/normal/brn_tab_bar.dart';
@@ -180,14 +178,15 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     listDy = globalToLocal.dy;
 
     for (int i = 0, n = widget.itemCount; i < n; i++) {
-      if (_cardOffsetList[i] == -1.0) if (_bodyKeyList[i].currentContext !=
-          null) {
-        double cardOffset =
-            (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
-                .localToGlobal(Offset.zero) //相对于原点 控件的位置
-                .dy; //y点坐标
+      if (_cardOffsetList[i] == -1.0) {
+        if (_bodyKeyList[i].currentContext != null) {
+          double cardOffset =
+              (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
+                  .localToGlobal(Offset.zero) //相对于原点 控件的位置
+                  .dy; //y点坐标
 
-        _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
+          _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
+        }
       }
     }
   }
@@ -200,14 +199,15 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
   void updateOffset() {
     for (int i = 0, n = widget.itemCount; i < n; i++) {
-      if (_cardOffsetList[i] == -1.0) if (_bodyKeyList[i].currentContext !=
-          null) {
-        double cardOffset =
-            (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
-                .localToGlobal(Offset.zero) //相对于原点 控件的位置
-                .dy; //y点坐标
+      if (_cardOffsetList[i] == -1.0) {
+        if (_bodyKeyList[i].currentContext != null) {
+          double cardOffset =
+              (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
+                  .localToGlobal(Offset.zero) //相对于原点 控件的位置
+                  .dy; //y点坐标
 
-        _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
+          _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
+        }
       }
     }
   }

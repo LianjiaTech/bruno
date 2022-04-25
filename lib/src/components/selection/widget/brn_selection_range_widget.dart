@@ -19,7 +19,7 @@ import 'package:bruno/src/utils/brn_text_util.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef void BrnOnRangeSelectionBgClick();
+typedef BrnOnRangeSelectionBgClick = void Function();
 
 class BrnRangeSelectionGroupWidget extends StatefulWidget {
   static final double screenWidth =
@@ -253,7 +253,7 @@ class _BrnRangeSelectionGroupWidgetState
           widget.rowCount!;
     }
 
-    var tagContainer = (tagFilterList.length) > 0
+    var tagContainer = tagFilterList.isNotEmpty
         ? Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
@@ -275,7 +275,7 @@ class _BrnRangeSelectionGroupWidgetState
           )
         : Container();
 
-    var content;
+    Widget? content;
     for (BrnSelectionEntity item in subFilterList) {
       if (item.filterType == BrnSelectionFilterType.range) {
         content = BrnSelectionRangeItemWidget(
@@ -407,7 +407,7 @@ class _BrnRangeSelectionGroupWidgetState
           widget.entity.children[_tabController.index].children;
       List<BrnSelectionEntity> selectItems =
           subFilterList.where((f) => f.isSelected).toList();
-      if (selectItems.length > 0) {
+      if (selectItems.isNotEmpty) {
         _firstList[_tabController.index].isSelected = true;
       } else {
         _firstList[_tabController.index].isSelected = false;
@@ -595,7 +595,7 @@ class _BrnRangeSelectionGroupWidgetState
             f.isSelected)
         .toList();
 
-    if (ranges.length > 0) {
+    if (ranges.isNotEmpty) {
       return ranges[0];
     }
     return null;
@@ -657,9 +657,7 @@ class _BrnRangeSelectionGroupWidgetState
             .where((_) =>
                 _.filterType == BrnSelectionFilterType.date ||
                 _.filterType == BrnSelectionFilterType.dateRangeCalendar)
-            .toList()
-            .length >
-        0;
+            .toList().isNotEmpty;
 
     /// 查找第二层级
     if (!hasCalendarItem) {

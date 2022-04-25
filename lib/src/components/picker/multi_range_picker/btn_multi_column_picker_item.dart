@@ -6,7 +6,7 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef void ItemSelectFunction(BrnPickerEntity entity);
+typedef ItemSelectFunction = void Function(BrnPickerEntity entity);
 
 class BrnMultiRangePickerCommonItem extends StatelessWidget {
   final BrnPickerEntity item;
@@ -35,8 +35,8 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var checkbox;
-    if (!item.isUnLimit() && (item.children.length == 0)) {
+    Container checkbox;
+    if (!item.isUnLimit() && (item.children.isEmpty)) {
       if (item.isInLastLevel() && _hasCheckBoxBrother(item)) {
         checkbox = Container(
           padding: EdgeInsets.only(left: 6),

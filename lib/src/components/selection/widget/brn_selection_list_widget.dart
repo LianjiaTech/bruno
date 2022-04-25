@@ -10,10 +10,10 @@ import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef void SingleListItemSelect(
+typedef SingleListItemSelect = void Function(
     int listIndex, int index, BrnSelectionEntity entity);
 
-typedef void ListBgClickFunction();
+typedef ListBgClickFunction = void Function();
 
 // ignore: must_be_immutable
 class BrnListSelectionGroupWidget extends StatefulWidget {
@@ -434,7 +434,7 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
 
   int _getInitialSelectIndex(List<BrnSelectionEntity> levelList) {
     int index = -1;
-    if (levelList.length == 0) {
+    if (levelList.isEmpty) {
       return index;
     }
 
@@ -555,11 +555,11 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
   }
 
   _processSelectedStatus(BrnSelectionEntity entity) {
-    if (entity.children.length > 0) {
+    if (entity.children.isNotEmpty) {
       entity.children.forEach((f) => _processSelectedStatus(f));
       if (entity.hasCheckBoxBrother()) {
         entity.isSelected =
-            entity.children.where((_) => _.isSelected).length > 0;
+            entity.children.where((_) => _.isSelected).isNotEmpty;
       }
     }
   }

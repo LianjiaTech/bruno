@@ -149,8 +149,9 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
       }
       PageStorage.of(context)?.writeState(context, _isExpanded);
     });
-    if (widget.onExpansionChanged != null)
+    if (widget.onExpansionChanged != null) {
       widget.onExpansionChanged!(_isExpanded);
+    }
   }
 
   Widget _buildHeader(BuildContext context, Widget? child) {

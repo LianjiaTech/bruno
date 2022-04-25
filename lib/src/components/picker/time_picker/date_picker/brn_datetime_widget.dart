@@ -216,19 +216,19 @@ class _BrnDateTimeWidgetState extends State<BrnDateTimeWidget> {
       /// 如果传入的时间格式不包含 月、天、小时、分钟、秒。则相对应的时间置为 1,1,0,0,0；
       DateTime dateTime = DateTime(
         _currYear,
-        (formatArr.where((format) => format.contains('M')).toList()).length > 0
+        (formatArr.where((format) => format.contains('M')).toList()).isNotEmpty
             ? _currMonth
             : 1,
-        (formatArr.where((format) => format.contains('d')).toList()).length > 0
+        (formatArr.where((format) => format.contains('d')).toList()).isNotEmpty
             ? _currDay
             : 1,
-        (formatArr.where((format) => format.contains('H')).toList()).length > 0
+        (formatArr.where((format) => format.contains('H')).toList()).isNotEmpty
             ? _currHour
             : 0,
-        (formatArr.where((format) => format.contains('m')).toList()).length > 0
+        (formatArr.where((format) => format.contains('m')).toList()).isNotEmpty
             ? _currMinute
             : 0,
-        (formatArr.where((format) => format.contains('s')).toList()).length > 0
+        (formatArr.where((format) => format.contains('s')).toList()).isNotEmpty
             ? _currSecond
             : 0,
       );

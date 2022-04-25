@@ -46,7 +46,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.nameList.length > 0) {
+    if (widget.nameList.isNotEmpty) {
       Row row = Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,

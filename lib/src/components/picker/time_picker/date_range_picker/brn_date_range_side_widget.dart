@@ -212,7 +212,7 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
     required String format,
     required ValueChanged<int> valueChanged,
   }) {
-    var globalKey;
+    GlobalKey? globalKey;
     if (_scrolledNotDay && format.contains("d")) {
       globalKey = GlobalKey();
       _scrolledNotDay = false;

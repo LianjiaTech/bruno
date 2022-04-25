@@ -311,13 +311,14 @@ class BrnDialog extends AlertDialog {
   /// 内容widget：以contentWidget为准，辅以message生成的Text
   Widget _generateContentWidget(
       BuildContext context, BrnDialogConfig dialogConfig) {
-    if (contentWidget != null)
+    if (contentWidget != null) {
       return Flexible(
         child: DefaultTextStyle(
           style: dialogConfig.contentTextStyle.generateTextStyle(),
           child: contentWidget!,
         ),
       );
+    }
 
     return Padding(
       padding: _configContentPadding(dialogConfig),
@@ -334,13 +335,14 @@ class BrnDialog extends AlertDialog {
   /// 警示widget：以warningWidget为准，辅以warning生成的Text
   Widget _generateWarningWidget(
       BuildContext context, BrnDialogConfig dialogConfig) {
-    if (warningWidget != null)
+    if (warningWidget != null) {
       return Flexible(
         child: DefaultTextStyle(
           style: dialogConfig.warningTextStyle.generateTextStyle(),
           child: warningWidget!,
         ),
       );
+    }
 
     return Padding(
       padding: _configWarningPadding(dialogConfig),

@@ -143,9 +143,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
               //标签的筛选条件
               Visibility(
                 visible: widget.selectionEntity
-                        .currentShowTagByExpanded(isExpanded)
-                        .length >
-                    0,
+                        .currentShowTagByExpanded(isExpanded).isNotEmpty,
                 child: Padding(
                   padding: EdgeInsets.only(top: 12),
                   child: _buildSelectionTag(),

@@ -13,7 +13,7 @@ typedef BrnProgressBarChartSelectCallback = void Function(
     BrnProgressBarItem? barItem);
 
 /// 点击柱状数据的拦截器
-typedef bool OnBarItemClickInterceptor(
+typedef OnBarItemClickInterceptor = bool Function(
     int barBundleIndex,
     BrnProgressBarBundle barBundle,
     int barGroupIndex,
@@ -231,27 +231,29 @@ class BrnProgressBarChartPainter extends CustomPainter {
       return Size(textWidth, textHeight);
     }
 
-    if (yAxis.axisItemList.length > 0) {
+    if (yAxis.axisItemList.isNotEmpty) {
       //确定y轴文本最大宽度，以及每个文本大小
       yAxis.axisItemList.forEach((AxisItem item) {
         Size textSize = getTextAreaSize(item.showText, yAxis.textStyle);
         item.textSize = textSize;
-        if (textSize.width > yAxis.maxTextWidth)
+        if (textSize.width > yAxis.maxTextWidth) {
           yAxis.maxTextWidth = textSize.width;
+        }
       });
     }
     return yAxis.maxTextWidth + 10;
   }
 
   void _prepareData(Canvas canvas, Size size) {
-    if (this.yAxis.axisItemList.length > 0) {
+    if (this.yAxis.axisItemList.isNotEmpty) {
       //确定y轴文本最大宽度，以及每个文本大小
       this.yAxis.axisItemList.forEach((AxisItem item) {
         Size textSize =
             this.getTextAreaSize(item.showText, this.yAxis.textStyle);
         item.textSize = textSize;
-        if (textSize.width > this.yAxis.maxTextWidth)
+        if (textSize.width > this.yAxis.maxTextWidth) {
           this.yAxis.maxTextWidth = textSize.width;
+        }
       });
 
       this.yAxisRect = Rect.fromLTWH(
@@ -259,21 +261,22 @@ class BrnProgressBarChartPainter extends CustomPainter {
           0,
           this.yAxis.maxTextWidth + _yTextAxisSpace,
           size.height -
-              (0 == this.xAxis.axisItemList.length ? 0 : this._xAxisHeight));
+              (this.xAxis.axisItemList.isEmpty ? 0 : this._xAxisHeight));
     }
 
-    if (!this.drawY)
+    if (!this.drawY) {
       this.yAxisRect = Rect.fromLTWH(
           0,
           0,
           0,
           size.height -
-              (0 == this.xAxis.axisItemList.length ? 0 : this._xAxisHeight));
+              (this.xAxis.axisItemList.isEmpty ? 0 : this._xAxisHeight));
+    }
 
     this.xAxisRect = Rect.fromPoints(
         this.yAxisRect.bottomRight, Offset(size.width, size.height));
 
-    if (this.barBundleList.length > 0) {
+    if (this.barBundleList.isNotEmpty) {
       this.contentRect =
           Rect.fromPoints(this.yAxisRect.topRight, this.xAxisRect.topRight);
     }
@@ -377,7 +380,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
   }
 
   void _drawXAxisIn(Canvas canvas, Rect xAxisRect) {
-    if (0 == this.xAxis.axisItemList.length) return;
+    if (this.xAxis.axisItemList.isEmpty) return;
     if (AxisStyle.axisStyleSolid == this.xAxis.axisStyle) {
       Offset xLineStart = xAxisRect.topLeft;
       Offset xLineEnd = xAxisRect.topRight;
@@ -457,7 +460,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
   }
 
   void _drawYAxisIn(Canvas canvas, Rect yAxisRect) {
-    if (0 == this.yAxis.axisItemList.length) return;
+    if (this.yAxis.axisItemList.isEmpty) return;
     if (AxisStyle.axisStyleSolid == this.yAxis.axisStyle) {
       Offset yLineStart = yAxisRect.bottomRight;
       Offset yLineEnd = yAxisRect.topRight;

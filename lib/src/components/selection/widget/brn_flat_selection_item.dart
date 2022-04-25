@@ -178,9 +178,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
               ),
               Visibility(
                 visible: widget.selectionEntity
-                        .currentShowTagByExpanded(isExpanded)
-                        .length >
-                    0,
+                        .currentShowTagByExpanded(isExpanded).isNotEmpty,
                 child: Container(
                   padding: EdgeInsets.only(top: 12),
                   child: _buildOptionWidgets(),

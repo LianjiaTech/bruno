@@ -2,7 +2,7 @@ import 'package:bruno/src/components/selectcity/brn_az_common.dart';
 import 'package:flutter/material.dart';
 
 /// on all sus section callback(map: Used to scroll the list to the specified tag location).
-typedef void OnSusSectionCallBack(Map<String, int> map);
+typedef OnSusSectionCallBack = void Function(Map<String, int> map);
 
 ///Suspension Widget.Currently only supports fixed height items!
 class SuspensionView extends StatefulWidget {

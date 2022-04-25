@@ -461,8 +461,8 @@ class _BrnSelectTagsWithInputPickerWidgetState
         break;
       }
     }
-    return this._selectedTags.length > 0 &&
-        (needExpend ? _textEditingController!.text.length > 0 : true);
+    return this._selectedTags.isNotEmpty &&
+        (needExpend ? _textEditingController!.text.isNotEmpty : true);
   }
 
   bool isShowTextInput() {
