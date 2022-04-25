@@ -31,7 +31,7 @@ class BrnBottomTabBar extends StatefulWidget {
     required this.items,
     this.onTap,
     this.currentIndex = 0,
-    BrnBottomTabBarDisplayType type = BrnBottomTabBarDisplayType.fixed,
+    this.type = BrnBottomTabBarDisplayType.fixed,
     this.fixedColor,
     this.iconSize = 24.0,
     this.isAnimation = false,
@@ -43,9 +43,6 @@ class BrnBottomTabBar extends StatefulWidget {
           'Every item must have a non-null title',
         ),
         assert(0 <= currentIndex && currentIndex < items.length),
-        type = items.length <= 3
-            ? BrnBottomTabBarDisplayType.fixed
-            : BrnBottomTabBarDisplayType.shifting,
         super(key: key);
 
   /// 动画是否可见，默认：true
@@ -427,7 +424,7 @@ class _BottomNavigationTile extends StatelessWidget {
         break;
       case BrnBottomTabBarDisplayType.shifting:
         tweenStart = 16.0;
-        iconColor = Colors.blue;
+        iconColor = selected ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary : null;
         break;
     }
     return Align(
