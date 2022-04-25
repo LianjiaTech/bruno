@@ -749,6 +749,10 @@ class BrnInfoModal {
     BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
+    themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData.configId)
+        .pairInfoTableConfig
+        .merge(themeData);
     themeData = themeData.merge(BrnPairInfoTableConfig(
         itemSpacing: itemSpacing,
         keyTextStyle: BrnTextStyle(fontSize: fontSize),
@@ -756,10 +760,6 @@ class BrnInfoModal {
             .merge(BrnTextStyle.withStyle(valueTextStyle)),
         linkTextStyle: BrnTextStyle(fontSize: fontSize, color: linkColor)
             .merge(BrnTextStyle.withStyle(valueTextStyle))));
-    themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .pairInfoTableConfig
-        .merge(themeData);
 
     Widget valueWidget;
     if (isArrow) {
@@ -845,16 +845,16 @@ class BrnInfoModal {
     BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
+    themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData.configId)
+        .pairInfoTableConfig
+        .merge(themeData);
     themeData = themeData.merge(BrnPairInfoTableConfig(
         itemSpacing: itemSpacing,
         keyTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(keyTextStyle)),
         valueTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(valueTextStyle))));
-    themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .pairInfoTableConfig
-        .merge(themeData);
 
     dynamic valueWidget;
     dynamic keyWidget;
@@ -986,16 +986,16 @@ class BrnInfoModal {
     BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
+    themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData.configId)
+        .pairInfoTableConfig
+        .merge(themeData);
     themeData = themeData.merge(BrnPairInfoTableConfig(
         itemSpacing: itemSpacing,
         keyTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(keyTextStyle)),
         valueTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(valueTextStyle))));
-    themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .pairInfoTableConfig
-        .merge(themeData);
 
     BrnRichTextGenerator keyGen = BrnRichTextGenerator();
     if (headIcon != null) {
@@ -1036,15 +1036,15 @@ class BrnInfoModal {
     BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
+    themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData.configId)
+        .pairInfoTableConfig
+        .merge(themeData);
     themeData = themeData.merge(BrnPairInfoTableConfig(
         itemSpacing: itemSpacing,
         keyTextStyle: BrnTextStyle(fontSize: fontSize),
         valueTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(valueTextStyle))));
-    themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .pairInfoTableConfig
-        .merge(themeData);
 
     return BrnInfoModal(
         keyPart: keyTitle,

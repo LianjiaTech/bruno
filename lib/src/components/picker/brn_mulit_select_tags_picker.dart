@@ -1,5 +1,6 @@
 
 
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_tags_common_picker.dart';
 import 'package:bruno/src/components/picker/brn_tags_picker_config.dart';
@@ -217,21 +218,23 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
 
   ///流式布局
   Widget _buildWrapViewWidget(BuildContext context, VoidCallback? onUpdate) {
-    Color selectedTagTitleColor = this.tagPickerConfig.selectedTagTitleColor ??
-        BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary;
-    Color tagTitleColor = this.tagPickerConfig.tagTitleColor ??
-        BrnThemeConfigurator.instance
-            .getConfig()
-            .commonConfig
-            .colorTextImportant;
-    Color tagBackgroundColor =
-        this.tagPickerConfig.tagBackgroudColor ?? Color(0xffF8F8F8);
+    BrnTagConfig tagConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData!.configId)
+        .tagConfig
+        .merge(BrnTagConfig());
+    tagConfig = tagConfig.merge(BrnTagConfig(
+        selectTagTextStyle:
+            BrnTextStyle(color: this.tagPickerConfig.selectedTagTitleColor),
+        tagTextStyle: BrnTextStyle(color: this.tagPickerConfig.tagTitleColor),
+        tagBackgroundColor: this.tagPickerConfig.tagBackgroudColor,
+        selectedTagBackgroundColor:
+            this.tagPickerConfig.selectedTagBackgroudColor));
+
+    Color selectedTagTitleColor = tagConfig.selectTagTextStyle.color ?? BrnDefaultConfigUtils.defaultCommonConfig.brandPrimary;
+    Color tagTitleColor = tagConfig.tagTextStyle.color ?? BrnDefaultConfigUtils.defaultCommonConfig.colorTextBase;
+    Color tagBackgroundColor = tagConfig.tagBackgroundColor;
     Color selectedTagBackgroundColor =
-        this.tagPickerConfig.selectedTagBackgroudColor ??
-            BrnThemeConfigurator.instance
-                .getConfig()
-                .commonConfig
-                .brandPrimary
+        tagConfig.selectedTagBackgroundColor
                 .withAlpha(0x14);
 
     return Container(

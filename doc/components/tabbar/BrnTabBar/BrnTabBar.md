@@ -65,8 +65,12 @@ BrnTabBar({
   this.tagSpacing,
   this.preLineTagCount,
   this.tagHeight,
-}) : assert(tabs == null || tabs is List<BadgeTab>) {
+}) : assert(tabs != null) {
   this.themeData ??= BrnTabBarConfig();
+  this.themeData = BrnThemeConfigurator.instance
+      .getConfig(configId: this.themeData!.configId)
+      .tabBarConfig
+      .merge(this.themeData);
   this.themeData = this.themeData!.merge(BrnTabBarConfig(
     tabHeight: tabHeight,
     indicatorHeight: indicatorWeight,
@@ -77,10 +81,6 @@ BrnTabBar({
     preLineTagCount: preLineTagCount,
     tagHeight: tagHeight,
   ));
-  this.themeData = BrnThemeConfigurator.instance
-      .getConfig(configId: this.themeData!.configId)
-      .tabBarConfig
-      .merge(this.themeData);
 }
 ```
 
