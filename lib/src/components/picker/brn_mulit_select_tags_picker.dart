@@ -223,19 +223,19 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
         .tagConfig
         .merge(BrnTagConfig());
     tagConfig = tagConfig.merge(BrnTagConfig(
-        selectTagTextStyle:
-            BrnTextStyle(color: this.tagPickerConfig.selectedTagTitleColor),
-        tagTextStyle: BrnTextStyle(color: this.tagPickerConfig.tagTitleColor),
+        selectTagTextStyle: BrnTextStyle(
+            height: 1,
+            color: this.tagPickerConfig.selectedTagTitleColor,
+            fontSize: this.tagPickerConfig.tagTitleFontSize,
+            fontWeight: FontWeight.w600),
+        tagTextStyle: BrnTextStyle(
+            height: 1,
+            color: this.tagPickerConfig.tagTitleColor,
+            fontSize: this.tagPickerConfig.tagTitleFontSize,
+            fontWeight: FontWeight.w400),
         tagBackgroundColor: this.tagPickerConfig.tagBackgroudColor,
         selectedTagBackgroundColor:
             this.tagPickerConfig.selectedTagBackgroudColor));
-
-    Color selectedTagTitleColor = tagConfig.selectTagTextStyle.color ?? BrnDefaultConfigUtils.defaultCommonConfig.brandPrimary;
-    Color tagTitleColor = tagConfig.tagTextStyle.color ?? BrnDefaultConfigUtils.defaultCommonConfig.colorTextBase;
-    Color tagBackgroundColor = tagConfig.tagBackgroundColor;
-    Color selectedTagBackgroundColor =
-        tagConfig.selectedTagBackgroundColor
-                .withAlpha(0x14);
 
     return Container(
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -243,16 +243,15 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
           spacing: 15.0,
           children: this._sourceTags.map((choice) {
             bool selected = choice.isSelect;
-            Color titleColor = selected ? selectedTagTitleColor : tagTitleColor;
-
             EdgeInsets edgeInsets = this.tagPickerConfig.chipPadding ??
                 EdgeInsets.only(top: 9.0, left: 10.0, right: 10, bottom: 11.0);
             return ChoiceChip(
               selected: selected,
               padding: edgeInsets,
               pressElevation: 0,
-              backgroundColor: tagBackgroundColor,
-              selectedColor: selectedTagBackgroundColor,
+              backgroundColor: tagConfig.tagBackgroundColor,
+              selectedColor: tagConfig.selectedTagBackgroundColor
+                  .withAlpha(0x14),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(2.0)),
               label: Text(
@@ -260,11 +259,7 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 strutStyle: StrutStyle(forceStrutHeight: true, height: 1),
-                style: TextStyle(
-                    height: 1,
-                    color: titleColor,
-                    fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-                    fontSize: this.tagPickerConfig.tagTitleFontSize),
+                style: TextStyle(color: Colors.grey),
               ),
               onSelected: (bool value) {
                 if (_selectedTags.length > this.maxSelectItemCount &&

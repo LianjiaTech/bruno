@@ -35,7 +35,7 @@ class BrnTextStyle {
       color: color,
       fontSize: fontSize,
       fontWeight: fontWeight,
-      decoration: decoration ?? TextDecoration.none,
+      decoration: decoration,
       height: height,
       textBaseline: textBaseline,
     );
