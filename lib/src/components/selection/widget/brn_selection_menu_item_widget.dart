@@ -3,14 +3,12 @@ import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef void ItemClickFunction();
-
 // ignore: must_be_immutable
 class BrnSelectionMenuItemWidget extends StatelessWidget {
   final String title;
   final bool isHighLight;
   final bool active;
-  final ItemClickFunction? itemClickFunction;
+  final VoidCallback? itemClickFunction;
 
   BrnSelectionConfig themeData;
 

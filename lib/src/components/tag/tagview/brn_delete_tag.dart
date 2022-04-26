@@ -264,8 +264,9 @@ class BrnDeleteTagController {
       String result = _tags.removeAt(index);
       _asyncData();
       return result;
-    } else
+    } else {
       return null;
+    }
   }
 
   /// 删除某个具体内容的标签，成功返回 true，失败返回 false

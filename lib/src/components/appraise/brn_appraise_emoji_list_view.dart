@@ -24,7 +24,7 @@ class BrnAppraiseEmojiListView extends StatefulWidget {
       this.indexes = const [0, 1, 2, 3, 4],
       this.titles = _defaultTitles,
       this.onTap})
-      : assert(indexes.length > 0),
+      : assert(indexes.isNotEmpty),
         assert(titles.length == 5),
         super(key: key);
 

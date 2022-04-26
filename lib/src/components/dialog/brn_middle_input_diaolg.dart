@@ -82,7 +82,7 @@ class BrnMiddleInputDialog {
   void _doShow(BuildContext context) {
     String _value = inputEditingController?.text ?? "";
     var dialogMessageWidgets = <Widget>[];
-    if (message != null && message!.length > 0) {
+    if (message != null && message!.isNotEmpty) {
       dialogMessageWidgets.add(Text(
         message!,
         style: cContentTextStyle,

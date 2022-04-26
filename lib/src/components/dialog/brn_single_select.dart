@@ -271,11 +271,12 @@ class BrnSingleSelectDialogWidgetState
   /// 若无则以 messageText 生成widget 填充，
   /// 都没设置则为空 Container
   Widget _generateContentWidget() {
-    if (widget.messageWidget != null)
+    if (widget.messageWidget != null) {
       return Padding(
         padding: EdgeInsets.only(bottom: 8, left: 20, right: 20),
         child: widget.messageWidget,
       );
+    }
 
     if (!BrunoTools.isEmpty(widget.messageText)) {
       return Padding(

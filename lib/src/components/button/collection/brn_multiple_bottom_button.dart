@@ -118,8 +118,9 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                         onValueChangedAtIndex: (index, value) {
                           //同步到外界的当前的全选状态
                           _controller.setState(selectAllState: value);
-                          if (widget.onSelectAll != null)
+                          if (widget.onSelectAll != null) {
                             widget.onSelectAll!(value);
+                          }
                         },
                         key: Key(DateTime.now().toString()),
                       );

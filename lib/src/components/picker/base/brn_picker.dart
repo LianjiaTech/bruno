@@ -424,10 +424,11 @@ class _RenderCupertinoPickerSemantics extends RenderProxyBox {
 
   set controller(FixedExtentScrollController? value) {
     if (value == _controller) return;
-    if (_controller != null)
+    if (_controller != null) {
       _controller!.removeListener(_handleScrollUpdate);
-    else
+    } else {
       _currentIndex = value!.initialItem;
+    }
     value?.addListener(_handleScrollUpdate);
     _controller = value;
   }
@@ -468,8 +469,9 @@ class _RenderCupertinoPickerSemantics extends RenderProxyBox {
   @override
   void assembleSemanticsNode(SemanticsNode node, SemanticsConfiguration config,
       Iterable<SemanticsNode> children) {
-    if (children.isEmpty)
+    if (children.isEmpty) {
       return super.assembleSemanticsNode(node, config, children);
+    }
     final SemanticsNode scrollable = children.first;
     final Map<int?, SemanticsNode> indexedChildren = <int?, SemanticsNode>{};
     scrollable.visitChildren((SemanticsNode child) {

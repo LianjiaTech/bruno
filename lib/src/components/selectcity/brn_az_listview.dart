@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 
 /// Called to build children for the listView.
 /// 列表的Item
-typedef Widget ItemWidgetBuilder(BuildContext context, ISuspensionBean model);
+typedef ItemWidgetBuilder = Widget Function(BuildContext context, ISuspensionBean model);
 
 /// Called to build IndexBar.
 /// 右侧索引区域
-typedef Widget IndexBarBuilder(
+typedef IndexBarBuilder = Widget Function(
     BuildContext context, List<String> tags, IndexBarTouchCallback onTouch);
 
 /// Called to build index hint.
 /// 右侧索引项滑动或点击 页面显示的Widget
-typedef Widget IndexHintBuilder(BuildContext context, String hint);
+typedef IndexHintBuilder = Widget Function(BuildContext context, String hint);
 
 /// _Header.
 class _Header extends ISuspensionBean {

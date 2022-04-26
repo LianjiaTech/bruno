@@ -360,7 +360,7 @@ class _BrnActionSheetSelectedItemListState<T>
   Widget build(BuildContext context) {
     // 顶部标题处理
     String title =
-        (widget.itemWidget.title != null && widget.itemWidget.title!.length > 0)
+        (widget.itemWidget.title != null && widget.itemWidget.title!.isNotEmpty)
             ? widget.itemWidget.title!
             : '已选列表';
     TextStyle titleStyle = const TextStyle(

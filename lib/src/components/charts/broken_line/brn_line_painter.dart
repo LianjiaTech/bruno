@@ -270,7 +270,7 @@ class BrnLinePainter extends BrnBasePainter {
     double? x0, y0, x1, y1, t0;
     var path = Path();
     for (int i = 0; i < targetPoints.length; i++) {
-      var t1;
+      double? t1;
       var x = targetPoints[i].x;
       var y = targetPoints[i].y;
       if (x == x1 && y == y1) break;
@@ -512,7 +512,7 @@ class BrnLinePainter extends BrnBasePainter {
           var length = item.points.length;
           for (var i = 0; i < length; i++) {
             if (item.points[i].pointText == null ||
-                item.points[i].pointText!.length == 0) {
+                item.points[i].pointText!.isEmpty) {
               continue;
             }
             var tpX = TextPainter(
@@ -545,7 +545,7 @@ class BrnLinePainter extends BrnBasePainter {
   bool isAdjustPosition(
       int lineIndex, Point currentPoint, List<List<Point<num>>> lines) {
     List<Point<num>> sameXPoints = getSameXValuePoints(currentPoint, lines);
-    if (sameXPoints.length > 0) {
+    if (sameXPoints.isNotEmpty) {
       if (currentPoint.distanceTo(sameXPoints[0]) == 0) {
         return lineIndex > 0;
       } else if (currentPoint.distanceTo(sameXPoints[0]) < 40) {

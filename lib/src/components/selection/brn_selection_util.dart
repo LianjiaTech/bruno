@@ -48,14 +48,14 @@ class BrnSelectionUtil {
       rootEntity = rootEntity.parent!;
     }
 
-    if (rootEntity.children.length > 0) {
+    if (rootEntity.children.isNotEmpty) {
       level = level > 1 ? level : 1;
       for (BrnSelectionEntity firstLevelEntity in rootEntity.children) {
-        if (firstLevelEntity.children.length > 0) {
+        if (firstLevelEntity.children.isNotEmpty) {
           level = level > 2 ? level : 2;
           for (BrnSelectionEntity secondLevelEntity
               in firstLevelEntity.children) {
-            if (secondLevelEntity.children.length > 0) {
+            if (secondLevelEntity.children.isNotEmpty) {
               level = 3;
               break;
             }
@@ -104,7 +104,7 @@ class BrnSelectionUtil {
         filledCustomInputItem = entity;
         break;
       }
-      if (entity.children.length > 0) {
+      if (entity.children.isNotEmpty) {
         filledCustomInputItem = getFilledCustomInputItem(entity.children);
       }
       if (filledCustomInputItem != null) {

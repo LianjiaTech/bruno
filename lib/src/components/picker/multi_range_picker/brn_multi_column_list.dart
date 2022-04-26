@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 /// [listIndex] 点击位置处于第几列
 /// [index] 点击位置处于当前列的位置
 /// [entity] 被点击位置的数据
-typedef bool BrnOnSelectEntityInterceptor(
+typedef BrnOnSelectEntityInterceptor = bool Function(
     int? listIndex, int index, BrnPickerEntity entity);
 
 // ignore: must_be_immutable
@@ -49,7 +49,7 @@ class BrnMultiColumnListWidget extends StatefulWidget {
     });
 
     currentListIndex = BrnMultiColumnPickerUtil.getCurrentColumnIndex(
-        items!.length > 0 ? items![0] : null);
+        items!.isNotEmpty ? items![0] : null);
 
     _selectedItems = items?.where((f) => f.isSelected).toList();
     if (_selectedItems == null) {
@@ -160,12 +160,10 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
     /// （两列、三列时）第一列节点是否被选中取决于它的子节点是否被选中，
     /// 只有当它子节点被选中时才会认为第一列的节点相应被选中。
     if (widget.items != null &&
-        widget.items!.length > 0 &&
+        widget.items!.isNotEmpty &&
         widget.items![0].parent != null) {
       widget.items![0].parent?.isSelected = widget.items![0].parent!.children
-              .where((BrnPickerEntity f) => f.isSelected)
-              .length >
-          0;
+              .where((BrnPickerEntity f) => f.isSelected).isNotEmpty;
     }
 
     for (BrnPickerEntity item in widget.items!) {
@@ -193,9 +191,9 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
         selectedEntity.isSelected = true;
       } else {
         ///清除【不限】类型。
-        var brotherItems;
+        List<BrnPickerEntity> brotherItems;
         if (selectedEntity.parent == null) {
-          brotherItems = widget.items;
+          brotherItems = widget.items ?? [];
         } else {
           brotherItems = selectedEntity.parent!.children;
         }
@@ -227,9 +225,9 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
           selectedEntity.isSelected = true;
         } else {
           ///清除【不限】类型。
-          var brotherItems;
+          List<BrnPickerEntity> brotherItems;
           if (selectedEntity.parent == null) {
-            brotherItems = widget.items;
+            brotherItems = widget.items ?? [];
           } else {
             brotherItems = selectedEntity.parent!.children;
           }
@@ -261,9 +259,9 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
           selectedEntity.isSelected = true;
         } else {
           ///清除【不限】类型。
-          var brotherItems;
+          List<BrnPickerEntity> brotherItems;
           if (selectedEntity.parent == null) {
-            brotherItems = widget.items;
+            brotherItems = widget.items ?? [];
           } else {
             brotherItems = selectedEntity.parent!.children;
           }

@@ -76,7 +76,7 @@ class BrnBottomPickerWidget extends StatefulWidget {
   final dynamic cancel;
   final Function()? onConfirmPressed;
   final Function()? onCancelPressed;
-  final barrierDismissible;
+  final bool barrierDismissible;
   final BrnPickerTitleConfig pickerTitleConfig;
 
   const BrnBottomPickerWidget({

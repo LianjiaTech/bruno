@@ -342,7 +342,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   ///城市搜索结果页
   Widget _buildSearchResultList(String searchText) {
     List<BrnSelectCityModel> cList = _searchCityList(searchText);
-    return (cList.length == 0)
+    return (cList.isEmpty)
         ? _noDataWidget()
         : Expanded(
             flex: 1,

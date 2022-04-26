@@ -149,7 +149,6 @@ class _SearchTextState extends State<BrnSearchText> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     tmpController?.dispose();
     focusNode!.removeListener(_handleFocusNodeChangeListenerTick);

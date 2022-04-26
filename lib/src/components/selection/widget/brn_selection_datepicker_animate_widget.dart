@@ -1,8 +1,6 @@
 import 'package:bruno/src/components/selection/controller/brn_selection_view_date_picker_controller.dart';
 import 'package:flutter/material.dart';
 
-typedef void MaskClickFunction(int index);
-
 class BrnSelectionDatePickerAnimationWidget extends StatefulWidget {
   final BrnSelectionDatePickerController controller;
   final Widget view;

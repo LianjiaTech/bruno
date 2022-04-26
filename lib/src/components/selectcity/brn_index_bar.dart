@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// IndexBar touch callback IndexModel.
-typedef void IndexBarTouchCallback(IndexBarDetails model);
+typedef IndexBarTouchCallback = void Function(IndexBarDetails model);
 
 /// IndexModel.
 class IndexBarDetails {

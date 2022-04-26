@@ -18,10 +18,10 @@ typedef BrnMultiDataPickerCreateWidgetCallback = Widget Function(
     bool isSelect, int column, int row, List selectedItems);
 
 /// 创建一级数据widget列表
-typedef List<Widget> CreateWidgetList();
+typedef CreateWidgetList = List<Widget> Function();
 
 /// 确定筛选内容事件回调
-typedef void ConfirmButtonClick(List selectedIndexList);
+typedef ConfirmButtonClick = void Function(List selectedIndexList);
 
 /// 数据适配 Delegate
 abstract class BrnMultiDataPickerDelegate {
@@ -197,8 +197,9 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
       },
       onConfirm: () {
         Navigator.of(context).pop(_selectedIndexList);
-        if (widget.confirmClick != null)
+        if (widget.confirmClick != null) {
           widget.confirmClick!(_selectedIndexList);
+        }
       },
     );
   }
@@ -383,7 +384,7 @@ class _MyPickerState extends State<MyPicker> {
               widget.changed!(index);
             }
           },
-          children: children.length > 0
+          children: children.isNotEmpty
               ? children
               : [
                   Center(child: Text('')),
