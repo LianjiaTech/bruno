@@ -69,13 +69,13 @@ class BrnDeleteTag extends StatefulWidget {
       this.themeData})
       : super(key: key) {
     themeData ??= BrnTagConfig();
-    themeData = themeData!.merge(BrnTagConfig(
-        tagBackgroundColor: this.backgroundColor,
-        tagTextStyle: BrnTextStyle.withStyle(tagTextStyle)));
     themeData = BrnThemeConfigurator.instance
         .getConfig(configId: themeData!.configId)
         .tagConfig
         .merge(this.themeData);
+    themeData = themeData!.merge(BrnTagConfig(
+        tagBackgroundColor: this.backgroundColor,
+        tagTextStyle: BrnTextStyle.withStyle(tagTextStyle)));
   }
 
   @override

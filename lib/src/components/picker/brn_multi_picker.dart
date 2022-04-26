@@ -120,19 +120,18 @@ class BrnMultiDataPicker extends StatefulWidget {
       this.themeData,
       this.sync = true}) {
     this.themeData ??= BrnPickerConfig();
-    this.themeData = this.themeData!.merge(BrnPickerConfig(
-          cancelTextStyle: BrnTextStyle.withStyle(cancelTextStyle),
-          confirmTextStyle: BrnTextStyle.withStyle(confirmTextStyle),
-          titleTextStyle: BrnTextStyle.withStyle(titleTextStyle),
-          itemTextStyle: BrnTextStyle(color: textColor, fontSize: textFontSize),
-          itemTextSelectedStyle:
-              BrnTextStyle(color: textSelectedColor, fontSize: textFontSize),
-        ));
-
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
         .pickerConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(BrnPickerConfig(
+      cancelTextStyle: BrnTextStyle.withStyle(cancelTextStyle),
+      confirmTextStyle: BrnTextStyle.withStyle(confirmTextStyle),
+      titleTextStyle: BrnTextStyle.withStyle(titleTextStyle),
+      itemTextStyle: BrnTextStyle(color: textColor, fontSize: textFontSize),
+      itemTextSelectedStyle:
+      BrnTextStyle(color: textSelectedColor, fontSize: textFontSize),
+    ));
   }
 
   @override

@@ -29,7 +29,7 @@ BrnBottomTabBar({
   required this.items,
   this.onTap,
   this.currentIndex = 0,
-  BrnBottomTabBarDisplayType type = BrnBottomTabBarDisplayType.fixed,
+  this.type = BrnBottomTabBarDisplayType.fixed,
   this.fixedColor,
   this.iconSize = 24.0,
   this.isAnimation = false,

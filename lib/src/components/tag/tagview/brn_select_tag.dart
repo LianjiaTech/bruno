@@ -82,6 +82,10 @@ class BrnSelectTag extends StatefulWidget {
       assert(initTagState == null || (initTagState!.length <= 1));
     }
     this.themeData ??= BrnTagConfig();
+    this.themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: this.themeData!.configId)
+        .tagConfig
+        .merge(this.themeData);
     this.themeData = this.themeData!.merge(BrnTagConfig(
         tagBackgroundColor: this.tagBackgroundColor,
         tagTextStyle: BrnTextStyle.withStyle(this.tagTextStyle),
@@ -89,10 +93,6 @@ class BrnSelectTag extends StatefulWidget {
         tagWidth: this.tagWidth,
         tagHeight: this.tagHeight,
         selectedTagBackgroundColor: this.selectedTagBackgroundColor));
-    this.themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: this.themeData!.configId)
-        .tagConfig
-        .merge(this.themeData);
   }
 
   @override
