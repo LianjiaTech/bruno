@@ -73,12 +73,12 @@ class BrnCommonCardTitle extends StatelessWidget {
   /// 内容的padding 默认上下16 左右0
   final EdgeInsetsGeometry? padding;
 
+  /// 标题最大行数
+  final int? titleMaxLines;
+
   /// 标题 Overflow 展示方式，默认 TextOverflow.clip
   /// 注意，由于 subTitleWidget 与 title 是流式布局，所以 subTitleWidget 会折叠
   final TextOverflow titleOverflow;
-
-  /// 标题最大行数
-  final int? titleMaxLines;
 
   final BrnCardTitleConfig? themeData;
 
