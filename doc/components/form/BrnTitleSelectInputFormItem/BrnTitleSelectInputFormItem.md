@@ -58,6 +58,7 @@ BrnTitleSelectInputFormItem(
   this.inputType = BrnInputType.TEXT,
   this.selectedIndex = -1,
   this.inputFormatters,
+  this.autofocus: false,
   this.onChanged,
   this.onTitleSelected,
   this.controller,
@@ -92,6 +93,7 @@ this.themeData = BrnThemeConfigurator.instance
 | maxCount | int? | 最大输入字符数 | 否 | 无 |  |
 | inputType | String | 指定键盘类型 | 否 | BrnInputType.TEXT | 详见**BrnInputType**类，注意：无法通过指定键盘类型确保输入。比如不能通过指定数字键盘确保用户只输入数字。如果有要求用户只输入特定字符的需求请使用**inputFormatters**参数 |
 | inputFormatters | `List<TextInputFormatter>?` | 指定对输入数据的格式化要求 | 否 | 无 |  |
+| autofocus | bool | 是否自动获取焦点 | 否 | false |  |
 | onChanged | `ValueChanged<String>?` | 输入文本变化回调 | 否 | 无 |  |
 | controller | TextEditingController? | 文本输入controller | 否 | 无 |  |
 | selectedIndex | int | 当前Title选中索引 | 否 | -1 |  |
