@@ -521,11 +521,11 @@ class BrnSelectionEntity {
 
   /// 接口返回默认展示tag个数
   int getDefaultShowCount() {
-    int defaultCount = 3;
+    int defaultShowCount = 3;
     if (extMap.containsKey('defaultShowCount')) {
-      defaultCount = extMap['defaultShowCount'] ?? 3;
+      defaultShowCount = extMap['defaultShowCount'] ?? defaultShowCount;
     }
-    return defaultCount;
+    return defaultShowCount;
   }
 
   List<BrnSelectionEntity> currentRangeListForEntity() {

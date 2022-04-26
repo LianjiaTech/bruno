@@ -133,6 +133,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                         .colorTextBase,
                   ),
                   onPressed: () {
+                    BrnSelectionUtil.resetSelectionDatas(widget.entityData);
                     //将选中的筛选项返回
                     _originalSelectedItemsList.forEach((data) {
                       data.isSelected = true;
@@ -340,6 +341,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
         padding: const EdgeInsets.only(left: 20),
         child: Text(
           name,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
           style: textStyle,
         ),
       ),
