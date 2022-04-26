@@ -74,17 +74,17 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
     List<Widget> showWidget = [];
     for (int i = 0, n = widgetList.length; i < n; ++i) {
       showWidget.add(Expanded(
-        child: Center(
-          child: widgetList[i],
-        ),
+        child: widgetList[i],
       ));
       if (i != n - 1) {
-        showWidget.add(Container(
-          alignment: Alignment.center,
-          height: 26,
-          width: 1,
-          color: Color(0xFFf8f8f8),
-        ));
+        showWidget.add(
+          Container(
+            alignment: Alignment.center,
+            height: 26,
+            width: 1,
+            color: Color(0xFFf8f8f8),
+          ),
+        );
       }
     }
     return showWidget;
@@ -103,7 +103,9 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
     );
 
     return GestureDetector(
+        behavior: HitTestBehavior.opaque,
         child: Container(
+          alignment: Alignment.center,
           padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
           child: tx,
         ),
@@ -140,6 +142,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
           : BrunoTools.getAssetImage(BrnAsset.iconDownArrow);
 
       return GestureDetector(
+          behavior:HitTestBehavior.opaque,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
