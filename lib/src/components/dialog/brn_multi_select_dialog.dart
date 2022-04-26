@@ -162,6 +162,7 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
   Widget build(BuildContext context) {
     return BrnContentExportWidget(
       Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _generateContentWidget(),
           Container(
@@ -247,11 +248,15 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
         padding: EdgeInsets.only(bottom: 8, left: 20, right: 20),
         child: Text(
           widget.messageText!,
-          style: cContentTextStyle,
+          style: BrnThemeConfigurator.instance
+              .getConfig()
+              .dialogConfig
+              .contentTextStyle
+              .generateTextStyle(),
         ),
       );
     }
-    return Container();
+    return SizedBox.shrink();
   }
 
   Widget _buildItem(BuildContext context, int index) {
