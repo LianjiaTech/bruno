@@ -598,7 +598,7 @@ class _BrnSearchResultAppBar extends StatelessWidget {
   final bool showLeadingDivider;
   final Widget? flexibleSpace;
   final VoidCallback? backLeadCallback;
-  final bool showDefaultBottom;
+  final bool? showDefaultBottom;
 
   _BrnSearchResultAppBar(
       {this.appBarConfig,
@@ -622,7 +622,11 @@ class _BrnSearchResultAppBar extends StatelessWidget {
     }
 
     _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(backgroundColor: this.backgroundColor));
+        .merge(BrnAppBarConfig(
+      backgroundColor: this.backgroundColor,
+      showDefaultBottom: this.showDefaultBottom,
+    ));
+
     _defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: _defaultConfig.configId)
         .appBarConfig
