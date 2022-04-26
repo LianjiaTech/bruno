@@ -90,10 +90,7 @@ class BrnTagsPickerConfig {
       this.tagBackgroudColor,
       this.selectedTagBackgroudColor,
       this.chipPadding,
-      this.tagItemSource = const []}) {
-    this.tagTitleColor =
-        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-  }
+      this.tagItemSource = const []});
 
   ///tag 文字大小
   double tagTitleFontSize;

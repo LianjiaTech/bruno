@@ -6,6 +6,11 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
+typedef BrnItemTitleBuilder<T> = dynamic Function<T>(int index, T entity);
+typedef BrnItemDeleteCallback<T> = bool Function<T>(int deleteIdx, T deleteEntity);
+typedef BrnListDismissCallback = void Function(bool isClosedByClearButton);
+
+
 /// 监听数据刷新和列表关闭操作
 class BrnSelectedListActionSheetController extends ChangeNotifier {
   /// 是否刷新数据
@@ -50,7 +55,7 @@ class BrnSelectedListActionSheet<T> {
   final List<T> items;
 
   /// 获取对应 index 行内容的回调。类型必须为 String 或者自定义的 widget.自定义 widget 时，左边的 icon 会自动隐藏，自定义widget填充整行。
-  final dynamic Function(int index, T entity) itemTitleBuilder;
+  final BrnItemTitleBuilder<T> itemTitleBuilder;
 
   /// 控制视图隐藏/刷新列表等方法
   final BrnSelectedListActionSheetController? controller;
@@ -95,13 +100,13 @@ class BrnSelectedListActionSheet<T> {
   final VoidCallback? onClearCanceled;
 
   /// 每一行删除按钮的点击回调。返回值：是否要删除该 entity，如果该 handler 没有实现或者返回 true，则删除
-  final bool Function(int deleteIdx, T deleteEntity)? onItemDelete;
+  final BrnItemDeleteCallback<T>? onItemDelete;
 
   /// 视图显示时的回调
   final VoidCallback? onListShowed;
 
   /// 视图隐藏时的回调，会把是否是清空按钮触发的销毁视图回传
-  final void Function(bool isClosedByClearButton)? onListDismissed;
+  final BrnListDismissCallback? onListDismissed;
 
   OverlayEntry? _overlayEntry;
   double? _leftOffset;

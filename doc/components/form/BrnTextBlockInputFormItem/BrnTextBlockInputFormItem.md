@@ -95,8 +95,8 @@ BrnTextBlockInputFormItem(
 | inputFormatters | `List<TextInputFormatter>?` | 指定对输入数据的格式化要求 | 否 | 无 |  |
 | onChanged | `ValueChanged<String>?` | 输入文案回调 | 否 | 无 |  |
 | controller | TextEditingController? | 文本输入controller | 否 | 无 |  |
-| minLines | int | 最小行数 | 否 | 4 |  |
-| maxLines | int | 最大行数 | 否 | 20 |  |
+| minLines | int? | 最小行数 | 否 | 4 |  |
+| maxLines | int? | 最大行数 | 否 | 20 |  |
 | themeData | BrnFormItemConfig? | 表单主题配置 | 否 | 无 | |
 
 ### 其他数据说明
