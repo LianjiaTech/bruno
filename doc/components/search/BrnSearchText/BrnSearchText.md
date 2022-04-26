@@ -62,6 +62,8 @@ const BrnSearchText({
   this.focusNode,
   this.autoFocus = false,
   this.textInputAction,
+  this.inputFormatters,
+  this.textInputType,
 }) : super(key: key);
 ```
 
@@ -93,6 +95,8 @@ const BrnSearchText({
 | focusNode | FocusNode? | 管理焦点 | 否 | 无 |
 | autofocus | bool | 是否自动获取焦点 | 否 | false |
 | textInputAction | TextInputAction? | 用于控制键盘动作 | 否 | 无 |
+| inputFormatters | List\<TextInputFormatter\>? | 过滤输入内容 | 否 | 无 |
+| textInputType | TextInputType? | 输入类型 | 否 | 无 |
 
 
 
