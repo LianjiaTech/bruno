@@ -36,27 +36,29 @@ const BrnSingleSelectDialog(
       this.onItemClick,
       this.checkedItem,
       this.customWidget,
+      this.onCloseClick,
       this.canDismissOnConfirmClick = true,
       this.isCustomFollowScroll = true});
 ```
 
 ### 参数说明
 
-| **参数名**               | **参数类型**                        | **描述**                                                  | **是否必填** | **默认值** |
-| ------------------------ | ----------------------------------- | --------------------------------------------------------- | ------------ | ---------- |
-| isClose                  | bool                                | 用于控制弹窗是否相应电机外部关闭，true 关闭，false 不关闭 | 否           | true       |
-| title                    | String                              | 弹窗标题名称                                              | 否           | ""         |
-| messageText              | String?                             | 描述文案，优先级较 messageWidget 低，优先使用 messageWidget                                                | 否           |            |
-| messageWidget            | Widget?                             | 描述 Widget                                          | 否           |            |
-| conditions               | List<String>                        | 备选项数组                                                | 否           |            |
-| checkedItem              | String                              | 选中的选项名称                                            | 否           |            |
-| submitText               | String                              | 确定/提交 按钮文案                                        | 否           |            |
-| submitBgColor            | Color                               | 提交按钮背景颜色                                          | 否           |            |
-| customWidget             | Widget                              | 在单选列表底部自定义 Widget                               | 否           | null       |
-| isCustomFollowScroll     | bool                                | 内容是否可滑动                                            | 否           | true       |
-| canDismissOnConfirmClick | bool                                | 是否在点击时让 Diallog 消失                               | 否           | true       |
-| onSubmitClick            | BrnSingleSelectOnSubmitCallback?    | 提交按钮点击的回调                                        | 否           |            |
-| onItemClick              | BrnSingleSelectOnItemClickCallback? | item 的点击回调                                           | 否           |            |
+| **参数名**               | **参数类型**                        | **描述**                                                    | **是否必填** | **默认值** |
+| ------------------------ | ----------------------------------- | ----------------------------------------------------------- | ------------ | ---------- |
+| isClose                  | bool                                | 用于控制弹窗是否相应电机外部关闭，true 关闭，false 不关闭   | 否           | true       |
+| title                    | String                              | 弹窗标题名称                                                | 否           | ""         |
+| messageText              | String?                             | 描述文案，优先级较 messageWidget 低，优先使用 messageWidget | 否           |            |
+| messageWidget            | Widget?                             | 描述 Widget                                                 | 否           |            |
+| conditions               | List<String>                        | 备选项数组                                                  | 否           |            |
+| checkedItem              | String                              | 选中的选项名称                                              | 否           |            |
+| submitText               | String                              | 确定/提交 按钮文案                                          | 否           |            |
+| submitBgColor            | Color                               | 提交按钮背景颜色                                            | 否           |            |
+| customWidget             | Widget                              | 在单选列表底部自定义 Widget                                 | 否           | null       |
+| onCloseClick             | VoidCallback                        | 点击关闭 icon 的回调                                        | 否           | null       |
+| isCustomFollowScroll     | bool                                | 内容是否可滑动                                              | 否           | true       |
+| canDismissOnConfirmClick | bool                                | 是否在点击时让 Diallog 消失                                 | 否           | true       |
+| onSubmitClick            | BrnSingleSelectOnSubmitCallback?    | 提交按钮点击的回调                                          | 否           |            |
+| onItemClick              | BrnSingleSelectOnItemClickCallback? | item 的点击回调                                             | 否           |            |
 
 ## 三、代码演示
 
