@@ -19,8 +19,6 @@ import 'package:bruno/src/utils/brn_text_util.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef BrnOnRangeSelectionBgClick = void Function();
-
 class BrnRangeSelectionGroupWidget extends StatefulWidget {
   static final double screenWidth =
       window.physicalSize.width / window.devicePixelRatio;
@@ -28,7 +26,7 @@ class BrnRangeSelectionGroupWidget extends StatefulWidget {
   final BrnSelectionEntity entity;
   final double maxContentHeight;
   final bool showSelectedCount;
-  final BrnOnRangeSelectionBgClick? bgClickFunction;
+  final VoidCallback? bgClickFunction;
   final BrnOnRangeSelectionConfirm? onSelectionConfirm;
 
   final int? rowCount;

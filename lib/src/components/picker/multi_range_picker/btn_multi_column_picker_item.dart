@@ -6,7 +6,7 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef ItemSelectFunction = void Function(BrnPickerEntity entity);
+typedef ItemOnSelectCallback = void Function(BrnPickerEntity entity);
 
 class BrnMultiRangePickerCommonItem extends StatelessWidget {
   final BrnPickerEntity item;
@@ -19,7 +19,7 @@ class BrnMultiRangePickerCommonItem extends StatelessWidget {
 
   final bool isMoreSelectionListType;
 
-  final ItemSelectFunction? itemSelectFunction;
+  final ItemOnSelectCallback? itemSelectFunction;
 
   BrnMultiRangePickerCommonItem({
     required this.item,

@@ -1,8 +1,6 @@
 import 'package:bruno/src/components/selection/controller/brn_selection_view_controller.dart';
 import 'package:flutter/material.dart';
 
-typedef MaskClickFunction = void Function(int index);
-
 class BrnSelectionAnimationWidget extends StatefulWidget {
   final BrnSelectionListViewController controller;
   final Widget view;

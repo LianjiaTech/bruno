@@ -13,14 +13,12 @@ import 'package:flutter/material.dart';
 typedef SingleListItemSelect = void Function(
     int listIndex, int index, BrnSelectionEntity entity);
 
-typedef ListBgClickFunction = void Function();
-
 // ignore: must_be_immutable
 class BrnListSelectionGroupWidget extends StatefulWidget {
   final BrnSelectionEntity entity;
   final double maxContentHeight;
   final bool showSelectedCount;
-  final ListBgClickFunction? bgClickFunction;
+  final VoidCallback? bgClickFunction;
   final BrnOnRangeSelectionConfirm? onSelectionConfirm;
   BrnSelectionConfig themeData;
 

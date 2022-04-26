@@ -10,8 +10,7 @@ import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-typedef OnRangeChangedFunction = void Function(String minInput, String maxInput);
-typedef OnTappedFunction = void Function();
+typedef OnRangeChangedCallback = void Function(String minInput, String maxInput);
 
 const String _defaultDateFormat = 'yyyy年MM月dd日';
 
@@ -31,7 +30,7 @@ class BrnSelectionDateRangeItemWidget extends StatefulWidget {
   final TextEditingController minTextEditingController;
   final TextEditingController maxTextEditingController;
 
-  final OnTappedFunction? onTapped;
+  final VoidCallback? onTapped;
 
   BrnSelectionConfig themeData;
 
