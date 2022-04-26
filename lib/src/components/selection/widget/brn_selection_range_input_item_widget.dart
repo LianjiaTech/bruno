@@ -4,7 +4,7 @@ import 'package:bruno/src/utils/brn_event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-typedef OnRangeChangedCallback = void Function(String minInput, String maxInput);
+typedef RangeChangedCallback = void Function(String minInput, String maxInput);
 
 /// 清空自定义范围输入框焦点的事件类
 class ClearSelectionFocusEvent {}
@@ -12,7 +12,7 @@ class ClearSelectionFocusEvent {}
 class BrnSelectionRangeItemWidget extends StatefulWidget {
   final BrnSelectionEntity item;
 
-  final OnRangeChangedCallback? onRangeChanged;
+  final RangeChangedCallback? onRangeChanged;
   final ValueChanged<bool>? onFocusChanged;
 
   final bool isShouldClearText;

@@ -10,8 +10,6 @@ import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-typedef OnRangeChangedCallback = void Function(String minInput, String maxInput);
-
 const String _defaultDateFormat = 'yyyy年MM月dd日';
 
 // ignore: must_be_immutable

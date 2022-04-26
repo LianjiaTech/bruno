@@ -6,8 +6,6 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:bruno/src/utils/css/brn_css_2_text.dart';
 import 'package:flutter/material.dart';
 
-typedef ItemOnSelectCallback = void Function(BrnSelectionEntity entity);
-
 class BrnSelectionCommonItemWidget extends StatelessWidget {
   final BrnSelectionEntity item;
   final Color? backgroundColor;
@@ -16,7 +14,7 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
   final bool isFirstLevel;
   final bool isMoreSelectionListType;
 
-  final ItemOnSelectCallback? itemSelectFunction;
+  final ValueChanged<BrnSelectionEntity>? itemSelectFunction;
 
   final BrnSelectionConfig? themeData;
 
