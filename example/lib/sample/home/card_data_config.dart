@@ -38,6 +38,7 @@ import 'package:example/sample/components/scroll_anchor/scroll_actor_tab_example
 import 'package:example/sample/components/selection/selection_entry_page.dart';
 import 'package:example/sample/components/step/step_example.dart';
 import 'package:example/sample/components/sugsearch/search_text_example.dart';
+import 'package:example/sample/components/switch/brn_switch_example.dart';
 import 'package:example/sample/components/switch/checkbox_example.dart';
 import 'package:example/sample/components/switch/radio_example.dart';
 import 'package:example/sample/components/tabbar/brn_tab_example.dart';
@@ -420,6 +421,17 @@ class CardDataConfig {
           Navigator.push(context, MaterialPageRoute(
             builder: (BuildContext context) {
               return CheckboxExample();
+            },
+          ));
+        }));
+    children.add(GroupInfo(
+        groupName: "SwitchButton 普通按钮",
+        desc: "Switch 按钮",
+        isSupportTheme: true,
+        navigatorPage: (BuildContext context) {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (BuildContext context) {
+              return BrnMetaSwitchExample();
             },
           ));
         }));
