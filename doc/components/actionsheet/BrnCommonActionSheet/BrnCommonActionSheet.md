@@ -53,19 +53,19 @@ BrnCommonActionSheet({
 
 ### 参数说明
 
-| **参数名**                                                   | **参数类型**                                                 | **描述**                                                     | **是否必填** | **默认值**                |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------ | ------------------------- |
-| actions                                                      | `List<BrnCommonActionSheetItem>`                             | 用于存储每个选项的相关配置信息的列表（BrnActionItem 含有参数 title---选项标题文案(**必填**)，desc----辅助信息文案，actionEleStyle----普通项或警示项，titleStyle---自定义主标题文本样式（覆盖 actionEleStyle）descStyle---自定义辅助信息文本样式（覆盖 actionEleStyle）） | 是           | 空                        |
-| title                                                        | String?                                                      | 列表标题的文案                                               | 否           | 空                        |
-| titleWidget                                                  | Widget?                                                      | 列表标题区域自定义 Widget                                    | 否           | 空                        |
-| cancelTitle                                                  | String?                                                      | 取消按钮的文案                                               | 否           | ''取消''                  |
-| maxTitleLines                                                | Int                                                          | 列表标题文案最大行数                                         | 否           | 2                         |
-| onItemClickInterceptor                                       | BrnCommonActionSheetItemClickInterceptor? =void( int index, BrnCommonActionSheetItem actionItem)? | **返回值为 bool**，返回值用于判断是否拦截点击事件，如果为**true**将拦截，用户点击将**不会触发 clickCallBack**，当前 actionSheet 也**不会消失**。如果为**false**，则不会造成任何影响，只是提前拦截了一下点击事件。 | 否           | 空                        |
-| clickCallBack(默认回调后会执行 pop 操作，如过不想 pop，请使用 onItemClickInterceptor) | BrnCommonActionSheetItemClickCallBack?=void ( int index, BrnCommonActionSheetItem actionItem)? | **返回值为 void**，点击后回调方法（方法传参为被点击的按钮的**index**及相关配置信息**BrnActionItem**），使用者**根据参数自行配置响应动作**。 | 是           | 空                        |
-| spaceColor                                                   | Color                                                        | “取消”按钮上方间隔颜色                                       | 否           | **Color(0xfff8f8f8)**浅灰 |
-| separatorLineColor                                           | Color?                                                       | 分割线颜色                                                   | 否           | **Color(0xfff0f0f0)**浅灰 |
-| maxSheetHeight                                               | double                                                       | 列表最大高度限制                                             | 否           | 默认为0                   |
-| themeData                                                    | BrnActionSheetConfig?                                        | ActionSheet 主题配置类，支持配置字段详见 BrnActionSheetConfig | 否           |                           |
+| **参数名**                                                   | **参数类型**                              | **描述**                                                     | **是否必填** | **默认值**                |
+| ------------------------------------------------------------ | ----------------------------------------- | ------------------------------------------------------------ | ------------ | ------------------------- |
+| actions                                                      | `List<BrnCommonActionSheetItem>`          | 用于存储每个选项的相关配置信息的列表（BrnActionItem 含有参数 title---选项标题文案(**必填**)，desc----辅助信息文案，actionEleStyle----普通项或警示项，titleStyle---自定义主标题文本样式（覆盖 actionEleStyle）descStyle---自定义辅助信息文本样式（覆盖 actionEleStyle）） | 是           | 空                        |
+| title                                                        | String?                                   | 列表标题的文案                                               | 否           | 空                        |
+| titleWidget                                                  | Widget?                                   | 列表标题区域自定义 Widget                                    | 否           | 空                        |
+| cancelTitle                                                  | String?                                   | 取消按钮的文案                                               | 否           | ''取消''                  |
+| maxTitleLines                                                | Int                                       | 列表标题文案最大行数                                         | 否           | 2                         |
+| onItemClickInterceptor                                       | BrnCommonActionSheetItemClickInterceptor? | **返回值为 bool**，返回值用于判断是否拦截点击事件，如果为**true**将拦截，用户点击将**不会触发 clickCallBack**，当前 actionSheet 也**不会消失**。如果为**false**，则不会造成任何影响，只是提前拦截了一下点击事件。 | 否           | 空                        |
+| clickCallBack(默认回调后会执行 pop 操作，如过不想 pop，请使用 onItemClickInterceptor) | BrnCommonActionSheetItemClickCallBack?    | **返回值为 void**，点击后回调方法（方法传参为被点击的按钮的**index**及相关配置信息**BrnActionItem**），使用者**根据参数自行配置响应动作**。 | 是           | 空                        |
+| spaceColor                                                   | Color                                     | “取消”按钮上方间隔颜色                                       | 否           | **Color(0xfff8f8f8)**浅灰 |
+| separatorLineColor                                           | Color?                                    | 分割线颜色                                                   | 否           | **Color(0xfff0f0f0)**浅灰 |
+| maxSheetHeight                                               | double                                    | 列表最大高度限制                                             | 否           | 默认为0                   |
+| themeData                                                    | BrnActionSheetConfig?                     | ActionSheet 主题配置类，支持配置字段详见 BrnActionSheetConfig | 否           |                           |
 
 ## 四、代码演示
 

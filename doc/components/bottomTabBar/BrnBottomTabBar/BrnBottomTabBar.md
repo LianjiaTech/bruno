@@ -41,9 +41,6 @@ BrnBottomTabBar({
         'Every item must have a non-null title',
       ),
       assert(0 <= currentIndex && currentIndex < items.length),
-      type = items.length <= 3
-              ? BrnBottomTabBarDisplayType.fixed
-              : BrnBottomTabBarDisplayType.shifting,
       super(key: key);
 ```
 

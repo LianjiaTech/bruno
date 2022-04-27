@@ -73,8 +73,8 @@ BrnProgressBarChart(
 | barMaxValue | double | 柱状图最大值 | 否 | 0 |
 | selectedHintTextColor | Color | 选中柱状图提示文案文本颜色 | 否 | Colors.white |
 | selectedHintTextBackgroundColor | Color | 选中柱状图提示文案文本背景颜色 | 否 | Colors.black |
-| barChartSelectCallback | void Function(BarItem barItem) | 选中柱状图时候的回调 | 否 |  |
-| onBarItemClickInterceptor | bool OnBarItemClickInterceptor(int barBundleIndex, BarBundle barBundle, int barGroupIndex, BarItem barItem) | 柱状图是否可点击回调 | 否 |  |
+| barChartSelectCallback | BrnProgressBarChartSelectCallback | 选中柱状图时候的回调 | 否 |  |
+| onBarItemClickInterceptor | OnBarItemClickInterceptor | 柱状图是否可点击回调 | 否 |  |
 
 ## 四、代码演示
 
