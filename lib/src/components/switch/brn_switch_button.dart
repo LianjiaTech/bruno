@@ -23,8 +23,8 @@ class BrnSwitchButton extends StatefulWidget {
   BrnSwitchButton({
     Key? key,
     required this.value,
-    this.enabled = true,
     required this.onChanged,
+    this.enabled = true,
     this.size = const Size(42, 26),
     this.borderColor,
   }) : super(key: key);

@@ -78,7 +78,6 @@ class BrnBaseSwitchButton extends StatelessWidget {
             ),
           )
         : Positioned(
-            left: 0,
             child: Container(
               height: size.height,
               width: size.height,
