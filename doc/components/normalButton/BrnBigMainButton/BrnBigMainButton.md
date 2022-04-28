@@ -70,7 +70,7 @@ BrnBigMainButton(
 
 ```dart
 //置灰效果 无法点击
-BrnMetaBigMainButtonWidget(  
+BrnBigMainButton(  
   title: '提交',  
   isEnable: false,
   onTap: () {  

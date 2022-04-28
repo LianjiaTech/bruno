@@ -165,7 +165,7 @@ class BrnSwitchFormItemState extends State<BrnSwitchFormItem> {
                     ],
                   ),
                 ),
-                BrnMetaSwitch(
+                BrnSwitchButton(
                   size: Size(42,25),
                   value: widget.value,
                   enabled: widget.isEdit,

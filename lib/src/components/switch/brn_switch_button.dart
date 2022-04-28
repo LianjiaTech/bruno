@@ -5,7 +5,7 @@ import 'brn_switch_button_base.dart';
 
 
 /// 描述: 开关按钮
-class BrnMetaSwitch extends StatefulWidget {
+class BrnSwitchButton extends StatefulWidget {
   final Size size;
 
   ///选中的状态
@@ -20,7 +20,7 @@ class BrnMetaSwitch extends StatefulWidget {
   ///未选中时边框的颜色
   final Color? borderColor;
 
-  BrnMetaSwitch({
+  BrnSwitchButton({
     Key? key,
     required this.value,
     this.enabled = true,
@@ -30,13 +30,13 @@ class BrnMetaSwitch extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _BrnMetaSwitchState createState() => _BrnMetaSwitchState();
+  _BrnSwitchButtonState createState() => _BrnSwitchButtonState();
 }
 
-class _BrnMetaSwitchState extends State<BrnMetaSwitch> {
+class _BrnSwitchButtonState extends State<BrnSwitchButton> {
   @override
   Widget build(BuildContext context) {
-    return BrnMetaBaseSwitch(
+    return BrnBaseSwitchButton(
       borderColor: widget.borderColor ?? _getBorderColor(),
       value: widget.value,
       enabled: widget.enabled,

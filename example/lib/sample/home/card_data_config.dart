@@ -431,7 +431,7 @@ class CardDataConfig {
         navigatorPage: (BuildContext context) {
           Navigator.push(context, MaterialPageRoute(
             builder: (BuildContext context) {
-              return BrnMetaSwitchExample();
+              return BrnSwitchButtonExample();
             },
           ));
         }));

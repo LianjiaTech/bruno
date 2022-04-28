@@ -65,12 +65,12 @@ class AllFormItemStyleExamplePage extends StatelessWidget {
         ),
         ListItem(
           title: "基础通用表单项",
-          describe: "基础类型",
+          describe: "自定义基础表单",
           isSupportTheme: true,
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(
               builder: (BuildContext context) {
-                return GeneralFormExamplePage("标题表单项");
+                return GeneralFormExamplePage("自定义基础表单");
               },
             ));
           },

@@ -63,10 +63,13 @@ BrnCommonCardTitle(
 ```dart
 BrnCommonCardTitle(
   title: '非箭头Title',
-  accessoryWidget: BrnMetaStateTag(tagText: '状态标签'),
-  subTitleWidget: BrnMetaStartRatingIndicator(rating: 4),
+  accessoryWidget: BrnStateTag(tagText: '状态标签'),
+  subTitleWidget: BrnRatingStar(
+      count: 4,
+      selectedCount: 2,
+  ),
   onTap: () {
-    BrnToast.show('BrnMetaPlainCardTitle is clicked', context);
+    BrnToast.show('BrnPlainCardTitle is clicked', context);
   },
 )
 ```
@@ -78,13 +81,15 @@ BrnCommonCardTitle(
 ```dart
 BrnCommonCardTitle(
   title: '非箭头Title',
-  accessoryWidget: BrnMetaStateTag(tagText: '状态标签'),
-  subTitleWidget: BrnMetaStartRatingIndicator(rating: 4),
-  detailTextString: '副标题副标题副标题',
+  accessoryWidget: BrnStateTag(tagText: '状态标签'),
+  subTitleWidget: BrnRatingStar(
+    count: 4,
+    selectedCount: 2,
+  ),
   onTap: () {
-    BrnToast.show('BrnMetaPlainCardTitle is clicked', context);
+    BrnToast.show('BrnPlainCardTitle is clicked', context);
   },
-)
+),
 ```
 
 ### 效果 3：标题和副文本
@@ -96,7 +101,7 @@ BrnCommonCardTitle(
   title: '非箭头Title',
   accessoryText: '辅助文本',
   onTap: () {
-  BrnToast.show('BrnMetaPlainCardTitle is clicked', context);
+  BrnToast.show('BrnPlainCardTitle is clicked', context);
   },
 )
 ```

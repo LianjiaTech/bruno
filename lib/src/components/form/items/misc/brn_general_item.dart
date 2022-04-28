@@ -7,53 +7,53 @@ import 'package:flutter/material.dart';
 class BrnGeneralFormItem extends StatefulWidget{
 
   /// 录入项的唯一标识，主要用于录入类型页面框架中
-  String? label;
+  final String? label;
 
   /// 录入项类型，主要用于录入类型页面框架中
-  String type = BrnInputItemType.labelGeneralType;
+  final String type = BrnInputItemType.labelGeneralType;
 
   /// 录入项标题
-  String title;
+  final String title;
 
   /// 录入项子标题
-  Widget? titleWidget;
+  final Widget? titleWidget;
 
   /// 录入项子标题
-  String? subTitle;
+  final String? subTitle;
 
   /// 录入项子标题 widget
-  Widget? subTitleWidget;
+  final Widget? subTitleWidget;
 
   /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
   /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
   /// 2. 若赋值为非空字符串时 展示"问号图标&文案"，
   /// 3. 若不赋值或赋值为null时 不显示提示项
   /// 默认值为 3
-  String? tipLabel;
+  final String? tipLabel;
 
   /// 录入项前缀图标样式 "添加项" "删除项" 详见 PrefixIconType类
-  String prefixIconType;
+  final String prefixIconType;
 
   /// 录入项错误提示
-  String error;
+  final String error;
 
   /// 录入项是否为必填项（展示*图标） 默认为 false 不必填
-  bool isRequire;
+  final bool isRequire;
 
   /// 录入项 是否可编辑
-  bool isEdit;
+  final bool isEdit;
 
   /// 点击"+"图标回调
-  VoidCallback? onAddTap;
+  final VoidCallback? onAddTap;
 
   /// 点击"-"图标回调
-  VoidCallback? onRemoveTap;
+  final VoidCallback? onRemoveTap;
 
   /// 点击"？"图标回调
-  VoidCallback? onTip;
+  final VoidCallback? onTip;
 
   /// 右侧操作widget
-  Widget? operateWidget;
+  final Widget? operateWidget;
 
   /// form配置
   BrnFormItemConfig? themeData;
@@ -176,7 +176,7 @@ class BrnGeneralFormItemState extends State<BrnGeneralFormItem> {
 
 
               Container(
-                child: widget.operateWidget ?? Container(),
+                child: widget.operateWidget ?? SizedBox.shrink(),
               ),
 
             ],

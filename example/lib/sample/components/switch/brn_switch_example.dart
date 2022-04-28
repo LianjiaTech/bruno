@@ -1,12 +1,12 @@
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
-class BrnMetaSwitchExample extends StatefulWidget {
+class BrnSwitchButtonExample extends StatefulWidget {
   @override
-  _BrnMetaSwitchExampleState createState() => _BrnMetaSwitchExampleState();
+  _BrnSwitchButtonExampleState createState() => _BrnSwitchButtonExampleState();
 }
 
-class _BrnMetaSwitchExampleState extends State<BrnMetaSwitchExample> {
+class _BrnSwitchButtonExampleState extends State<BrnSwitchButtonExample> {
   bool value1 = true;
   bool value2 = true;
   bool value3 = false;
@@ -46,7 +46,7 @@ class _BrnMetaSwitchExampleState extends State<BrnMetaSwitchExample> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: BrnMetaSwitch(
+              child: BrnSwitchButton(
                 value: value1,
                 onChanged: (value) {
                   setState(() {
@@ -64,7 +64,7 @@ class _BrnMetaSwitchExampleState extends State<BrnMetaSwitchExample> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: BrnMetaSwitch(
+              child: BrnSwitchButton(
                 enabled: false,
                 value: value2,
                 onChanged: (value) {
@@ -83,7 +83,7 @@ class _BrnMetaSwitchExampleState extends State<BrnMetaSwitchExample> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: BrnMetaSwitch(
+              child: BrnSwitchButton(
                 value: value3,
                 onChanged: (value) {
                   setState(() {
@@ -101,7 +101,7 @@ class _BrnMetaSwitchExampleState extends State<BrnMetaSwitchExample> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: BrnMetaSwitch(
+              child: BrnSwitchButton(
                 enabled: false,
                 value: false,
                 onChanged: (value) {},
@@ -116,7 +116,7 @@ class _BrnMetaSwitchExampleState extends State<BrnMetaSwitchExample> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: BrnMetaSwitch(
+              child: BrnSwitchButton(
                 size: Size(80, 40),
                 value: value5,
                 onChanged: (value) {
