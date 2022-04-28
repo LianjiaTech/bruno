@@ -106,15 +106,6 @@ class BrnPrefixIconType {
 BrnSwitchFormItem(
   title: "自然到访保护期",
   value: _isFirstSwitchOn,
-  onTip: () {
-    BrnToast.show("点击触发onTip回调", context);
-  },
-  onAddTap: () {
-    BrnToast.show("点击触发onAddTap回调", context);
-  },
-  onRemoveTap: () {
-    BrnToast.show("点击触发onRemoveTap回调", context);
-  },
   onChanged: (oldValue, newValue) {
     setState(() {
       _isFirstSwitchOn = newValue;
@@ -139,15 +130,6 @@ BrnSwitchFormItem(
   subTitle: "这里是副标题",
   tipLabel: "标签",
   value: _isSecondSwitchOn,
-  onTip: () {
-    BrnToast.show("点击触发onTip回调", context);
-  },
-  onAddTap: () {
-    BrnToast.show("点击触发onAddTap回调", context);
-  },
-  onRemoveTap: () {
-    BrnToast.show("点击触发onRemoveTap回调", context);
-  },
   onChanged: (oldValue, newValue) {
     setState(() {
       _isSecondSwitchOn = newValue;

@@ -67,7 +67,6 @@ BrnSwitchButton(
 ![](./img/BrnSwitchButtonNomal.png)
 
 ```dart
-//置灰效果 无法点击
 BrnSwitchButton(
   value: value1,
   onChanged: (value) {
