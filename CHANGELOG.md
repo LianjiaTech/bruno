@@ -1,3 +1,50 @@
+## [2.2.0] - 2022-4-29
+
+### Changed
+
+#### base 
+- Adapt flutter sdk 2.10.5.
+- Fix flutter analyze issues.
+- Fixed  some component theme configurations customization not taking effect  [#177](https://github.com/LianjiaTech/bruno/issues/177)  . 
+
+#### example
+
+- Optimize the <code> maxLength</code> setting of <code>BrnMiddleInputDialog</code> from 100 to 10 [#176](https://github.com/LianjiaTech/bruno/pull/176) thank to **北陆**.
+- Optimize demo freeze problem.
+
+#### docs
+- Remove obsolete fields <code>meta</code>.
+- Fix incorrect description of <code>BrnTagCustom</code> fields [ #199](https://github.com/LianjiaTech/bruno/issues/199).
+
+#### components
+
+**New components** <code>BrnSwitchFormItem</code> <code>BrnGeneralFormItem</code> <code>BrnMetaSwitch</code>.
+
+- <code>BrnTitleFormItem</code>: fix  <code>isRequire</code> parameter invalid [#179](https://github.com/LianjiaTech/bruno/issues/179).
+- <code>BrnTextBlockInputFormItem</code> : change the <code>minLines</code> and <code>maxLines</code> attributes  to be nullable [#181](https://github.com/LianjiaTech/bruno/pull/181) thanks to **xiao luobei**.
+- <code>BrnSelectionView</code> : fix "unlimited" option not taking effect .
+- <code>BrnBottomTabBar</code>: remove the restriction on <code> type</code>  by <code> item.length</code> in the construction method.
+- <code>BrnPairInfoTable</code> adds a callback attribute <code>onFolded</code> for expanding and collapsing state changes.
+- <code>BrnCheckbox</code>:  add attribute <code>crossAxisAlignment</code>.
+- <code>BrnRadioButton</code>: add attribute <code>crossAxisAlignment</code>.
+- <code>BrnMiddleInputDialog</code>: add attribute <code>themeData</code> support theme.
+- <code>BrnTextButtonPanel</code>: optimize button display, fix the space cannot be filled in some cases.
+- <code>BrnCommonCardTitle</code>: add attribute <code>titleMaxLines</code> and <code>titleOverflow</code>.
+- <code>BrnMultiSelectDialog</code>: uses the default contentStyle of BrnDialogConfig.
+- <code>BrnScrollableTextDialog</code>: optimize ScrollBar placement and styling.
+- <code>BrnSingleSelectDialog</code>: Add click callback for closeIcon.
+- <code>BrnSelectionView</code>: optimizes the data display of the [More] filter page, and supports the display of up to 2 rows.
+- <code>BrnTextInputFormItem</code> <code>BrnTextBlockInputFormItem</code> <code>BrnTitleSelectInputFormItem</code> : add attribute <code>autofocus</code> and default value is false.
+- <code>BrnAppBar</code> theme customization <code>BrnAppBarConfig</code> supports the attribute <code>showDefaultBottom</code> to control the bottom dividing line of the AppBar
+- <code>BrnMultiDataPicker</code>:  add default delegate implementation<code>BrnDefaultMultiDataPickerDelegate</code>.
+- <code>BrnStepInputFormItem</code>: add attribute <code>canManualInput</code> and <code>controller</code> to support manual input function.
+- <code>BrnPairInfoTable</code>: add a callback <code>onExpanded</code> for expanding and collapsing state changes.
+- <code>BrnSearchText</code>: add attribute <code>inputFormatters</code><code>textInputType</code>.
+- <code>BrnAnchorTab</code>: support content dynamic change.
+- <code>BrnProgressBarChart</code>: when <code>barChartStyle</code> is  <code>BarChartStyle.horizontal</code> support item click callback.
+
+
+
 ## [2.1.1] - 2022-4-1
 
 ### Changed
