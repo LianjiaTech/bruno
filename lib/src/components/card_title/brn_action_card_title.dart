@@ -134,7 +134,7 @@ class BrnActionCardTitle extends StatelessWidget {
       );
     }
 
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   Widget _arrowWidget() {

@@ -174,7 +174,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
             });
           });
     } else {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
   }
 }

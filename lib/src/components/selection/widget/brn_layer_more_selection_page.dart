@@ -431,7 +431,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildRightMultiItem(BrnSelectionEntity? entity) {
     if (entity == null) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     } else {
       return Row(
         children: <Widget>[
@@ -458,7 +458,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildRightSingleItem(BrnSelectionEntity? entity) {
     if (entity == null) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     } else {
       return Text(entity.title,
           textAlign: TextAlign.left,

@@ -256,7 +256,7 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
         ),
       );
     }
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   Widget _buildItem(BuildContext context, int index) {

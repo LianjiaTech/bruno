@@ -104,7 +104,7 @@ class GroupCardState extends State<GroupCard>
 
   Widget _getContentWidget() {
     if (widget.groupInfo == null || widget.groupInfo!.children == null) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
     return ListView.builder(
       physics: new NeverScrollableScrollPhysics(),

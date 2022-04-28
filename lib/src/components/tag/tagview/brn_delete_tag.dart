@@ -107,7 +107,7 @@ class _BrnDeleteTagState extends State<BrnDeleteTag> {
   /// 根据标签集合构建标签 UI
   Widget _buildContent(List<String> tags) {
     if (tags.isEmpty) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
 
     List<Widget> itemList = [];
