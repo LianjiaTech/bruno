@@ -104,7 +104,7 @@ class BrnPairInfoTable extends StatefulWidget {
   final TableColumnWidth? customKeyWidth;
 
   /// Table 展开收起状态变化的回调
-  final ValueChanged<bool>? onExpanded;
+  final ValueChanged<bool>? onFolded;
 
   BrnPairInfoTable({
     Key? key,
@@ -115,7 +115,7 @@ class BrnPairInfoTable extends StatefulWidget {
     this.rowDistance,
     this.itemSpacing,
     this.isFolded = true,
-    this.onExpanded,
+    this.onFolded,
     this.customKeyWidth,
     this.themeData
   });
@@ -126,7 +126,7 @@ class BrnPairInfoTable extends StatefulWidget {
 
 class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   //当前的展示状态
-  late bool _isExpanded;
+  late bool _isFolded;
 
   //指定索引位置去具备展开功能
   late int _expandAtIndex;
@@ -144,7 +144,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   BrnInfoModal? indexModal;
 
   // 是否具备展开收起功能 如果不展示则显示全部
-  bool canExpanded = false;
+  bool _canFold = false;
 
   late BrnPairInfoTableConfig themeData;
 
@@ -158,19 +158,19 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
         .pairInfoTableConfig
         .merge(themeData);
 
-    _isExpanded = widget.isFolded;
+    _isFolded = widget.isFolded;
     _expandAtIndex = widget.expandAtIndex;
 
     if (_expandAtIndex < 0 ||
         widget.expandAtIndex >= (widget.children.length - 1)) {
       _expandAtIndex = -1;
       showList = widget.children;
-      canExpanded = false;
+      _canFold = false;
     } else {
       indexModal = widget.children[_expandAtIndex];
       foldList = _generateFoldList();
       expandedList = _generateExpandedList();
-      canExpanded = true;
+      _canFold = true;
     }
     super.initState();
   }
@@ -190,8 +190,8 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   Widget build(BuildContext context) {
     Widget showWidget;
 
-    if (canExpanded) {
-      if (_isExpanded) {
+    if (_canFold) {
+      if (_isFolded) {
         showList = foldList;
       } else {
         showList = expandedList;
@@ -300,9 +300,9 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     GestureDetector gdt = GestureDetector(
         child: row,
         onTap: () {
-          widget.onExpanded?.call(!_isExpanded);
+          widget.onFolded?.call(!_isFolded);
           setState(() {
-            _isExpanded = !_isExpanded;
+            _isFolded = !_isFolded;
           });
         });
 
@@ -360,9 +360,9 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     GestureDetector gdt = GestureDetector(
         child: row,
         onTap: () {
-          widget.onExpanded?.call(!_isExpanded);
+          widget.onFolded?.call(!_isFolded);
           setState(() {
-            _isExpanded = !_isExpanded;
+            _isFolded = !_isFolded;
           });
         });
 
