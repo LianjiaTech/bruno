@@ -3,7 +3,7 @@
 import 'package:example/sample/home/home.dart';
 import 'package:flutter/material.dart';
 
-main() async {
+main() {
   runApp(MyApp());
 }
 
