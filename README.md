@@ -27,7 +27,7 @@
 
 <code>BrnSwitchButton</code>  <code>BrnSwitchFormItem</code>  <code>BrnGeneralFormItem</code>
 
- <img src="https://img.ljcdn.com/beike/zjz/bruno/img/1651141461442.png" style="zoom: 33%;" />
+ <img src="https://img.ljcdn.com/beike/zjz/bruno/img/1651141461442.png" width="300" height="359" />
 
 
 

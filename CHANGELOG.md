@@ -7,15 +7,6 @@
 - Fix flutter analyze issues.
 - Fixed  some component theme configurations customization not taking effect  [#177](https://github.com/LianjiaTech/bruno/issues/177)  . 
 
-#### example
-
-- Optimize the <code> maxLength</code> setting of <code>BrnMiddleInputDialog</code> from 100 to 10 [#176](https://github.com/LianjiaTech/bruno/pull/176) thank to **北陆**.
-- Optimize demo freeze problem.
-
-#### docs
-- Remove obsolete fields <code>meta</code>.
-- Fix incorrect description of <code>BrnTagCustom</code> fields [ #199](https://github.com/LianjiaTech/bruno/issues/199).
-
 #### components
 
 **New components** <code>BrnSwitchFormItem</code> <code>BrnGeneralFormItem</code> <code>BrnMetaSwitch</code>.
