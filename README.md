@@ -40,7 +40,9 @@
 
 ### Demo 下载
 
-<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005085.png"  />       <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005077.png"  />
+- 最新 Demo 下载地址：https://github.com/LianjiaTech/bruno/releases
+
+  
 
 
 ## 适配 Flutter 版本
