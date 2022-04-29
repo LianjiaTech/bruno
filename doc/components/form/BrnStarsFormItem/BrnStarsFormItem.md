@@ -87,10 +87,10 @@ BrnStarsFormItem(
 #### BrnPrefixIconType:
 
 ```dart
-class BrnPrefixIconType {  
-  static const String TYPE_NORMAL = "type_normal";  
-  static const String TYPE_ADD = "type_add";  
-  static const String TYPE_REMOVE = "type_remove";  
+class BrnPrefixIconType {
+  static const String normal = "type_normal";
+  static const String add = "type_add";
+  static const String remove = "type_remove";
 }
 ```
 

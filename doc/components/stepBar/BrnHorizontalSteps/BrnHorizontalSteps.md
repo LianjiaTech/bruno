@@ -13,7 +13,7 @@ group:
 
 ## 一、效果总览
 
-<img src="./img/BrnMetaHorizontalSteps1.jpg" style="zoom:50%;" /><img src="./img/BrnMetaHorizontalSteps2.jpg" style="zoom:50%;" /><img src="./img/BrnMetaHorizontalSteps3.jpg" style="zoom:50%;" /><img src="./img/BrnMetaHorizontalSteps4.jpg" style="zoom:50%;" />
+<img src="./img/BrnHorizontalSteps1.jpg" style="zoom:50%;" /><img src="./img/BrnHorizontalSteps2.jpg" style="zoom:50%;" /><img src="./img/BrnHorizontalSteps3.jpg" style="zoom:50%;" /><img src="./img/BrnHorizontalSteps4.jpg" style="zoom:50%;" />
 
 ## 二、描述
 
@@ -80,7 +80,7 @@ const BrnHorizontalSteps({
 
 ### 效果1
 
-![](./img/BrnMetaHorizontalSteps5.png)
+![](img/BrnHorizontalSteps5.png)
 
 
 

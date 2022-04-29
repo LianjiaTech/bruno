@@ -119,7 +119,7 @@ class SelectedListActionSheetExamplePageState
                                   onListShowed: () {
                                     BrnToast.show("显示了哦~~", context);
                                   },
-                                  onItemDelete: (int idx, String entity) {
+                                  onItemDelete: (int idx, String? entity) {
                                     _data[idx] = '$idx 变化了哈';
                                     controller.reloadData();
                                     BrnToast.show("$idx 奇数行无法删除", context);

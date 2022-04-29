@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bruno/src/components/popup/brn_measure_size.dart';
 import 'package:bruno/src/components/tabbar/normal/brn_tab_bar.dart';
 import 'package:flutter/gestures.dart';
@@ -14,7 +12,7 @@ typedef AnchorTabIndexedBuilder = BadgeTab Function(BuildContext context, int in
 class BrnAnchorTab extends StatefulWidget {
   // TabBar的样式
   final BrnAnchorTabBarStyle tabBarStyle;
-  final AnchorTabWidgetIndexedBuilder widgetIndexedBuilder;
+  final AnchorTabWidgetIndexedBuilder? widgetIndexedBuilder;
   final AnchorTabIndexedBuilder tabIndexedBuilder;
   final Widget? tabDivider;
 
@@ -153,7 +151,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     if (widget.widgetIndexedBuilder != null) {
       for (int i = 0, n = widget.itemCount; i < n; i++) {
         Widget itemWidget =
-            Container(key: _bodyKeyList[i], child: widget.widgetIndexedBuilder(context, i));
+            Container(key: _bodyKeyList[i], child: widget.widgetIndexedBuilder!(context, i));
         itemWidget = MeasureSize(
           onChange: (size) {
             _updateOffset();

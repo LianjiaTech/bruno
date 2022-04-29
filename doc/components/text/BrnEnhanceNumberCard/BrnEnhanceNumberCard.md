@@ -24,7 +24,7 @@ group:
 
 ### **注意事项**
 
-1、需要强化的信息，必须是非中文（BrnMetaNumberInfoItemModel的number 字段），否则会显示异常，如下所示：
+1、需要强化的信息，必须是非中文（BrnNumberInfoItemModel的number 字段），否则会显示异常，如下所示：
 
 ![image-20211031145233093](./img/BrnEnhanceNumberCardIntro1.png) 
 
@@ -69,9 +69,9 @@ BrnEnhanceNumberCard({
 ![image-20211031143416320](./img/BrnEnhanceNumberCardDemo1.png) 
 
 ```dart
-BrnMetaNumberInfoWidget(
+BrnEnhanceNumberCard(
   itemChildren: [
-    BrnMetaNumberInfoItemModel(
+    BrnNumberInfoItemModel(
       title: '数字信息',
       number: '3',
     )
@@ -106,14 +106,14 @@ BrnEnhanceNumberCard(
 <img src="./img/BrnEnhanceNumberCardDemo3.png" style="zoom:50%;" /> 
 
 ```dart
-BrnMetaNumberInfoWidget(
+BrnEnhanceNumberCard(
   rowCount: 2,
   itemChildren: [
-    BrnMetaNumberInfoItemModel(
+    BrnNumberInfoItemModel(
       title: '文案信息',
       number: '24',
     ),
-    BrnMetaNumberInfoItemModel(
+    BrnNumberInfoItemModel(
       title: '文案信息',
       number: '180',
     ),

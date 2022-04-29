@@ -322,7 +322,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     Widget foldButtonWidget = layerCtn;
 
     /// 将原有的value显示替换为 stack
-    BrnInfoModal brnMetaInfoModal = BrnInfoModal(
+    BrnInfoModal brnInfoModal = BrnInfoModal(
       isArrow: indexModal!.isArrow,
       keyPart: indexModal!.keyPart,
       valuePart: indexModal!.valuePart,
@@ -330,13 +330,13 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     Container stack = Container(
       child: Stack(
         children: <Widget>[
-          _finalValueWidget(brnMetaInfoModal, itemSpacing: 0),
+          _finalValueWidget(brnInfoModal, itemSpacing: 0),
           Positioned(bottom: 0, right: 0, child: foldButtonWidget),
         ],
       ),
     );
-    brnMetaInfoModal.valuePart = stack;
-    return brnMetaInfoModal;
+    brnInfoModal.valuePart = stack;
+    return brnInfoModal;
   }
 
   BrnInfoModal _expandedButtonWidget() {
@@ -381,7 +381,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     ///收起的widget
     Widget foldButtonWidget = layerCtn;
 
-    BrnInfoModal brnMetaInfoModal = BrnInfoModal(
+    BrnInfoModal brnInfoModal = BrnInfoModal(
       isArrow: widget.children.last.isArrow,
       keyPart: widget.children.last.keyPart,
       valuePart: widget.children.last.valuePart,
@@ -390,13 +390,13 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     Container stack = Container(
       child: Stack(
         children: <Widget>[
-          _finalValueWidget(brnMetaInfoModal, itemSpacing: 0),
+          _finalValueWidget(brnInfoModal, itemSpacing: 0),
           Positioned(bottom: 0, right: 0, child: foldButtonWidget),
         ],
       ),
     );
-    brnMetaInfoModal.valuePart = stack;
-    return brnMetaInfoModal;
+    brnInfoModal.valuePart = stack;
+    return brnInfoModal;
   }
 
   Widget _valueTitleText(String text,
@@ -706,7 +706,7 @@ class BrnAlignPairInfo extends StatelessWidget with PairInfoPart {
 /// 用于展示信息的modal，封装了key和value的基本信息
 ///
 /// 基本的文本展示只需 传入keyPart和valuePart为字符串
-/// 复杂的展示 需要传入Widget，BrnMetaInfoModal的若干静态方法 提供了丰富简便的富文本使用方式
+/// 复杂的展示 需要传入Widget，BrnInfoModal的若干静态方法 提供了丰富简便的富文本使用方式
 ///
 class BrnInfoModal {
   /// 方便业务调用，具备两种类型 string 和 widget

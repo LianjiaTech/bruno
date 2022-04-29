@@ -9,7 +9,7 @@ group:
 
 ## 一、效果总览
 
-![](./img/BrnMetaStateTagIntro.png)
+![](img/BrnStateTagIntro.png)
 
 ## 二、描述
 
@@ -58,7 +58,7 @@ enum TagState {
 
 ### 效果 1
 
-<img src="./img/BrnMetaStateTagSucceed.png" style="zoom: 40%;" />
+<img src="./img/BrnStateTagSucceed.png" style="zoom: 40%;" />
 
 ```dart
 BrnStateTag(

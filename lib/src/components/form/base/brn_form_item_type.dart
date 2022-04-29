@@ -44,6 +44,7 @@ class BrnInputItemType {
 
   static const String labelTitle = "label_title";
   static const String labelAdd = "label_add";
+  static const String labelGeneralType = "label_general_type";
 }
 
 class BrnInputType {
