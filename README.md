@@ -23,6 +23,13 @@
 
 ![](https://img.ljcdn.com/beike/zjz/bruno/img/1638883534391.png)
 
+#### 组件上新 :tada: :tada: :tada:
+
+<code>BrnSwitchButton</code>  <code>BrnSwitchFormItem</code>  <code>BrnGeneralFormItem</code>
+
+ <img src="https://img.ljcdn.com/beike/zjz/bruno/img/1651141461442.png" width="300" height="359" />
+
+
 
 ## ✨ 特性
 
@@ -45,6 +52,7 @@
 | 1.0.0      | 1.22.4           |
 | 2.0.0      | 2.2.2            |
 | 2.1.1 (支持空安全)      | 2.2.2            |
+| 2.2.0 | 2.10.5 |
 
 
 
