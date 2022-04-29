@@ -6,8 +6,8 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef BrnItemTitleBuilder<T> = dynamic Function (int index, T entity);
-typedef BrnItemDeleteCallback<T> = bool Function (int deleteIdx, T deleteEntity);
+typedef BrnItemTitleBuilder<T> = dynamic Function(int index, T entity);
+typedef BrnItemDeleteCallback<T> = bool Function(int deleteIdx, T deleteEntity);
 typedef BrnListDismissCallback = void Function(bool isClosedByClearButton);
 
 
@@ -165,10 +165,10 @@ class BrnSelectedListActionSheet<T> {
     if (_overlayEntry != null) {
       return;
     }
-    BrnSelectedListActionSheetController? tempCcontroller = controller;
-    if (tempCcontroller == null) {
-      tempCcontroller = BrnSelectedListActionSheetController();
-      tempCcontroller._isHidden = false;
+    BrnSelectedListActionSheetController? tempController = controller;
+    if (tempController == null) {
+      tempController = BrnSelectedListActionSheetController();
+      tempController._isHidden = false;
     }
     _BrnActionSheetSelectedItemListContentWidget content =
         _BrnActionSheetSelectedItemListContentWidget<T>(
@@ -178,7 +178,7 @@ class BrnSelectedListActionSheet<T> {
       },
       itemTitleBuilder: this.itemTitleBuilder,
       onItemDelete: this.onItemDelete,
-      controller: tempCcontroller,
+      controller: tempController,
     );
     content._overlayState = Overlay.of(context);
     OverlayEntry overlayEntry = OverlayEntry(builder: (context) {
