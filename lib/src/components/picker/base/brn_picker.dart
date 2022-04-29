@@ -8,7 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 /// Color of the 'magnifier' lens border.
 const Color _kHighlighterBorder = Color(0xFFF0F0F0);
@@ -425,10 +424,11 @@ class _RenderCupertinoPickerSemantics extends RenderProxyBox {
 
   set controller(FixedExtentScrollController? value) {
     if (value == _controller) return;
-    if (_controller != null)
+    if (_controller != null) {
       _controller!.removeListener(_handleScrollUpdate);
-    else
+    } else {
       _currentIndex = value!.initialItem;
+    }
     value?.addListener(_handleScrollUpdate);
     _controller = value;
   }
@@ -469,8 +469,9 @@ class _RenderCupertinoPickerSemantics extends RenderProxyBox {
   @override
   void assembleSemanticsNode(SemanticsNode node, SemanticsConfiguration config,
       Iterable<SemanticsNode> children) {
-    if (children.isEmpty)
+    if (children.isEmpty) {
       return super.assembleSemanticsNode(node, config, children);
+    }
     final SemanticsNode scrollable = children.first;
     final Map<int?, SemanticsNode> indexedChildren = <int?, SemanticsNode>{};
     scrollable.visitChildren((SemanticsNode child) {

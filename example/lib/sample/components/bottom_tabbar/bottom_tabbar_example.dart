@@ -175,6 +175,7 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
               BrnBottomTabBar(
                 fixedColor: Colors.blue,
                 currentIndex: _selectedIndexTest2,
+                type: BrnBottomTabBarDisplayType.shifting,
                 onTap: _onItemSelectedTest2,
                 items: <BrnBottomTabBarItem>[
                   BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text(titles[0])),
@@ -187,6 +188,7 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
               ),
               BrnBottomTabBar(
                 fixedColor: Colors.blue,
+                type: BrnBottomTabBarDisplayType.shifting,
                 currentIndex: _selectedIndexTest3,
                 onTap: _onItemSelectedTest3,
                 items: _getTabBarItems(count: 8),

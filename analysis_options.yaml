@@ -1,0 +1,6 @@
+include: package:lints/core.yaml
+# include: package:lints/recommended.yaml
+
+analyzer:
+  exclude:
+    - doc/**

@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 /// [columnIndex] 数据项所在列
 /// [rowIndex] 数据项所在列中的位置
 /// [entity] 被点击的数据项
-typedef void BrnOnEntityTap(
+typedef BrnOnEntityTap = void Function(
     int columnIndex, int rowIndex, BrnPickerEntity entity);
 
 /// 单个数据项被点击的回调，
@@ -24,7 +24,7 @@ typedef void BrnOnEntityTap(
 /// [firstIndex] 第一列被选中数据的位置
 /// [secondIndex] 第二列被选中数据的位置
 /// [thirdIndex] 第三列被选中数据的位置
-typedef void BrnOnPickerConfirm(Map<String, List<BrnPickerEntity>> results,
+typedef BrnOnPickerConfirm = void Function(Map<String, List<BrnPickerEntity>> results,
     int? firstIndex, int? secondIndex, int? thirdIndex);
 
 /// 从屏幕下方弹起的多级筛选选择器
@@ -455,7 +455,7 @@ class _BrnSelectionGroupViewState extends State<BrnMultiColumnPicker> {
 
   int _getInitialSelectIndex(List<BrnPickerEntity>? levelList) {
     int index = -1;
-    if (levelList == null || levelList.length == 0) {
+    if (levelList == null || levelList.isEmpty) {
       return index;
     }
 

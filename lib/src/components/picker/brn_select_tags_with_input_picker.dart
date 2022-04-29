@@ -3,7 +3,6 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 ///传入的泛型数据转换为值 以填充Widget
 typedef SelectTagWithInputValueGetter<V> = String Function(V data);
@@ -462,8 +461,8 @@ class _BrnSelectTagsWithInputPickerWidgetState
         break;
       }
     }
-    return this._selectedTags.length > 0 &&
-        (needExpend ? _textEditingController!.text.length > 0 : true);
+    return this._selectedTags.isNotEmpty &&
+        (needExpend ? _textEditingController!.text.isNotEmpty : true);
   }
 
   bool isShowTextInput() {

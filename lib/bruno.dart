@@ -125,6 +125,8 @@ export 'src/components/form/items/group/brn_normal_group.dart';
 export 'src/components/form/items/group/brn_expandable_group.dart';
 export 'src/components/form/items/group/brn_portrait_radio_group.dart';
 export 'src/components/form/items/group/brn_expandable_group_with_opreate.dart';
+export 'src/components/form/items/misc/brn_general_item.dart';
+export 'src/components/form/items/general/brn_switch_item.dart';
 
 // 新增表单项
 export 'src/components/form/items/title/brn_base_title_item.dart';
@@ -241,3 +243,6 @@ export 'src/components/scroll_anchor/brn_scroll_anchor_tab.dart';
 
 // 城市选择
 export 'src/components/selectcity/brn_single_select_city_page.dart';
+
+// 切换
+export 'src/components/switch/brn_switch_button.dart';

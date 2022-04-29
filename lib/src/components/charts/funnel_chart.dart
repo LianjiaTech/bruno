@@ -267,8 +267,9 @@ abstract class RenderFunnelChart extends RenderBox
 
   @override
   void setupParentData(RenderBox child) {
-    if (child.parentData is! BrnFunnelChartParentData)
+    if (child.parentData is! BrnFunnelChartParentData) {
       child.parentData = BrnFunnelChartParentData();
+    }
   }
 
   @override

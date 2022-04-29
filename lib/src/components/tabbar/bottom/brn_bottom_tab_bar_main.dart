@@ -4,8 +4,6 @@ import 'dart:collection' show Queue;
 import 'dart:math' as math;
 
 import 'package:bruno/bruno.dart';
-import 'package:bruno/src/components/tabbar/bottom/brn_bottom_tab_bar_item.dart';
-import 'package:bruno/src/theme/configs/brn_all_config.dart';
 import 'package:flutter/material.dart';
 
 /// 定义一些UI常量,根据UI稿进行填写
@@ -33,21 +31,18 @@ class BrnBottomTabBar extends StatefulWidget {
     required this.items,
     this.onTap,
     this.currentIndex = 0,
-    BrnBottomTabBarDisplayType type = BrnBottomTabBarDisplayType.fixed,
+    this.type = BrnBottomTabBarDisplayType.fixed,
     this.fixedColor,
     this.iconSize = 24.0,
     this.isAnimation = false,
     this.badgeColor,
     this.isInkResponse = false,
-  })  : assert(items.length >= 1),
+  })  : assert(items.isNotEmpty),
         assert(
           items.every((BrnBottomTabBarItem item) => item.title != null) == true,
           'Every item must have a non-null title',
         ),
         assert(0 <= currentIndex && currentIndex < items.length),
-        type = items.length <= 3
-            ? BrnBottomTabBarDisplayType.fixed
-            : BrnBottomTabBarDisplayType.shifting,
         super(key: key);
 
   /// 动画是否可见，默认：true
@@ -97,8 +92,12 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
       Tween<double>(begin: 1.0, end: 1.5);
 
   void _resetState() {
-    for (AnimationController controller in _controllers) controller.dispose();
-    for (_Circle circle in _circles) circle.dispose();
+    for (AnimationController controller in _controllers) {
+      controller.dispose();
+    }
+    for (_Circle circle in _circles) {
+      circle.dispose();
+    }
     _circles.clear();
 
     _controllers =
@@ -134,8 +133,12 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
 
   @override
   void dispose() {
-    for (AnimationController controller in _controllers) controller.dispose();
-    for (_Circle circle in _circles) circle.dispose();
+    for (AnimationController controller in _controllers) {
+      controller.dispose();
+    }
+    for (_Circle circle in _circles) {
+      circle.dispose();
+    }
     super.dispose();
   }
 
@@ -193,8 +196,9 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
       _controllers[oldWidget.currentIndex].reverse();
       _controllers[widget.currentIndex].forward();
     } else {
-      if (_backgroundColor != widget.items[widget.currentIndex].backgroundColor)
+      if (_backgroundColor != widget.items[widget.currentIndex].backgroundColor) {
         _backgroundColor = widget.items[widget.currentIndex].backgroundColor;
+      }
     }
   }
 
@@ -213,7 +217,7 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
             themeColor = themeData.primaryColor;
             break;
           case Brightness.dark:
-            themeColor = themeData.accentColor;
+            themeColor = themeData.colorScheme.secondary;
             break;
         }
         final ColorTween colorTween = ColorTween(
@@ -429,7 +433,7 @@ class _BottomNavigationTile extends StatelessWidget {
         break;
       case BrnBottomTabBarDisplayType.shifting:
         tweenStart = 16.0;
-        iconColor = Colors.blue;
+        iconColor = selected ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary : null;
         break;
     }
     return Align(
@@ -572,6 +576,7 @@ class _BottomNavigationTile extends StatelessWidget {
     }
     return GestureDetector(
         onTap: onTap,
+        behavior: HitTestBehavior.opaque,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -660,8 +665,9 @@ class _RadialPainter extends CustomPainter {
     if (textDirection != oldPainter.textDirection) return true;
     if (circles == oldPainter.circles) return false;
     if (circles.length != oldPainter.circles.length) return true;
-    for (int i = 0; i < circles.length; i += 1)
+    for (int i = 0; i < circles.length; i += 1) {
       if (circles[i] != oldPainter.circles[i]) return true;
+    }
     return false;
   }
 

@@ -134,23 +134,23 @@ class BrnTabBar extends StatefulWidget {
     this.tagSpacing,
     this.preLineTagCount,
     this.tagHeight,
-  }) : assert(tabs == null || tabs is List<BadgeTab>) {
+  }) : assert(tabs != null) {
     this.themeData ??= BrnTabBarConfig();
-    this.themeData = this.themeData!.merge(BrnTabBarConfig(
-          backgroundColor: backgroundcolor,
-          tabHeight: tabHeight,
-          indicatorHeight: indicatorWeight,
-          indicatorWidth: indicatorWidth,
-          labelStyle: BrnTextStyle.withStyle(labelStyle),
-          unselectedLabelStyle: BrnTextStyle.withStyle(unselectedLabelStyle),
-          tagSpacing: tagSpacing,
-          preLineTagCount: preLineTagCount,
-          tagHeight: tagHeight,
-        ));
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
         .tabBarConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(BrnTabBarConfig(
+      backgroundColor: backgroundcolor,
+      tabHeight: tabHeight,
+      indicatorHeight: indicatorWeight,
+      indicatorWidth: indicatorWidth,
+      labelStyle: BrnTextStyle.withStyle(labelStyle),
+      unselectedLabelStyle: BrnTextStyle.withStyle(unselectedLabelStyle),
+      tagSpacing: tagSpacing,
+      preLineTagCount: preLineTagCount,
+      tagHeight: tagHeight,
+    ));
   }
 
   @override

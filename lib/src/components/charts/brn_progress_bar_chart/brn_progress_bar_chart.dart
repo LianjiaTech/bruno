@@ -199,8 +199,9 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
                           widget.selectedHintTextBackgroundColor,
                       brnProgressBarChartSelectCallback:
                           (BrnProgressBarItem? item) {
-                        if (null != widget.barChartSelectCallback)
+                        if (null != widget.barChartSelectCallback) {
                           widget.barChartSelectCallback!(item);
+                        }
                         setState(() {
                           _selectedBarItem = item;
                         });
@@ -212,19 +213,60 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
         ),
       );
     } else if (BarChartStyle.horizontal == widget.barChartStyle) {
+      double yAxisWidth =
+      BrnProgressBarChartPainter.maxYAxisWidth(widget.yAxis);
       return Padding(
         padding: widget.padding,
-        child: CustomPaint(
-          size: chartSize,
-          painter: BrnProgressBarChartPainter(
-            xAxis: widget.xAxis,
-            yAxis: widget.yAxis,
-            barChartStyle: widget.barChartStyle,
-            singleBarWidth: widget.singleBarWidth,
-            barMaxValue: widget.barMaxValue,
-            barGroupSpace: widget.barGroupSpace,
-            barBundleList: widget.barBundleList,
-          ),
+        child: Stack(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: yAxisWidth),
+              child: CustomPaint(
+                size: chartSize,
+                painter: BrnProgressBarChartPainter(
+                  drawBar: false,
+                  drawY: false,
+                  xAxis: widget.xAxis,
+                  yAxis: widget.yAxis,
+                  barChartStyle: widget.barChartStyle,
+                  singleBarWidth: widget.singleBarWidth,
+                  barMaxValue: widget.barMaxValue,
+                  barGroupSpace: widget.barGroupSpace,
+                  barBundleList: widget.barBundleList,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 22),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: CustomPaint(
+                  size: chartSize,
+                  painter: BrnProgressBarChartPainter(
+                      drawX: false,
+                      xAxis: widget.xAxis,
+                      yAxis: widget.yAxis,
+                      barChartStyle: widget.barChartStyle,
+                      singleBarWidth: widget.singleBarWidth,
+                      barMaxValue: widget.barMaxValue,
+                      barGroupSpace: widget.barGroupSpace,
+                      barBundleList: widget.barBundleList,
+                      onBarItemClickInterceptor:
+                      widget.onBarItemClickInterceptor,
+                      selectedBarItem: _selectedBarItem,
+                      selectedHintTextColor: widget.selectedHintTextColor,
+                      selectedHintTextBackgroundColor:
+                      widget.selectedHintTextBackgroundColor,
+                      brnProgressBarChartSelectCallback: (BrnProgressBarItem? item) {
+                        widget.barChartSelectCallback?.call(item);
+                        setState(() {
+                          _selectedBarItem = item;
+                        });
+                      }),
+                ),
+              ),
+            ),
+          ],
         ),
       );
     } else {

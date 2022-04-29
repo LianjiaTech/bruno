@@ -53,6 +53,8 @@ BrnStepInputFormItem({
   this.maxLimit = 10,
   this.minLimit = 0,
   this.onChanged,
+  this.canManualInput = false,
+  this.controller,
   this.themeData,
 })  : assert(value == null || value >= minLimit && value <= maxLimit),
       super(key: key) {
@@ -84,6 +86,8 @@ BrnStepInputFormItem({
 | maxLimit | int | 单步上限值 | 否 | 10 |  |
 | minLimit | int | 单步下限值 | 否 | 0 |  |
 | onChanged | OnBrnFormValueChanged? | 递增值变化回调 | 否 | 无 |  |
+| canManualInput | bool | 是否可手动输入 | 否 | false |  |
+| controller | TextEditingController? | 输入框控制器 | 否 | 无 |  |
 | themeData | BrnFormItemConfig? | form配置 | 否 | 无 | |
 
 ### 其他数据说明:
@@ -91,10 +95,10 @@ BrnStepInputFormItem({
 #### BrnPrefixIconType
 
 ```dart
-class BrnPrefixIconType {  
-  static const String TYPE_NORMAL = "type_normal";  
-  static const String TYPE_ADD = "type_add";  
-  static const String TYPE_REMOVE = "type_remove";  
+class BrnPrefixIconType {
+  static const String normal = "type_normal";
+  static const String add = "type_add";
+  static const String remove = "type_remove";
 }
 ```
 ## 四、代码演示

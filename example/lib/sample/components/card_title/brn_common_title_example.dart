@@ -45,6 +45,11 @@ class _BrnCommonTitleExampleState extends State<BrnCommonTitleExample> {
             ),
             BrnCommonCardTitle(
               title: '非箭头Title',
+              accessoryWidget: BrnStateTag(tagText: '状态标签'),
+              subTitleWidget: BrnRatingStar(
+                count: 2,
+                selectedCount: 2,
+              ),
               onTap: () {
                 BrnToast.show('BrnPlainCardTitle is clicked', context);
               },

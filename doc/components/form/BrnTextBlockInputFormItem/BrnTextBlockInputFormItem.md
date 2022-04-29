@@ -58,6 +58,7 @@ BrnTextBlockInputFormItem(
     this.onChanged,
     this.hint = "请输入",
     this.maxCharCount,
+    this.autofocus: false,
     this.inputType,
     this.inputFormatters,
     this.controller,
@@ -91,12 +92,13 @@ BrnTextBlockInputFormItem(
 | onTip | VoidCallback? | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
 | hint | String | 录入项 hint 提示 | 否 | "请输入" |  |
 | maxCharCount | int? | 最大输入字符数 | 否 | 无 |  |
+| autofocus | bool | 是否自动获取焦点 | 否 | false |  |
 | inputType | String? | 输入内容类型，指定键盘类型，参见 `BrnInputType` | 否 | 无 | 详见**BrnInputType**类，注意：无法通过指定键盘类型确保输入。比如不能通过指定数字键盘确保用户只输入数字。如果有要求用户只输入特定字符的需求请使用**inputFormatters**参数 |
 | inputFormatters | `List<TextInputFormatter>?` | 指定对输入数据的格式化要求 | 否 | 无 |  |
 | onChanged | `ValueChanged<String>?` | 输入文案回调 | 否 | 无 |  |
 | controller | TextEditingController? | 文本输入controller | 否 | 无 |  |
-| minLines | int | 最小行数 | 否 | 4 |  |
-| maxLines | int | 最大行数 | 否 | 20 |  |
+| minLines | int? | 最小行数 | 否 | 4 |  |
+| maxLines | int? | 最大行数 | 否 | 20 |  |
 | themeData | BrnFormItemConfig? | 表单主题配置 | 否 | 无 | |
 
 ### 其他数据说明

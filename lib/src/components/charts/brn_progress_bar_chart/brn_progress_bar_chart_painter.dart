@@ -13,7 +13,7 @@ typedef BrnProgressBarChartSelectCallback = void Function(
     BrnProgressBarItem? barItem);
 
 /// 点击柱状数据的拦截器
-typedef bool OnBarItemClickInterceptor(
+typedef OnBarItemClickInterceptor = bool Function(
     int barBundleIndex,
     BrnProgressBarBundle barBundle,
     int barGroupIndex,
@@ -69,12 +69,17 @@ class ChartAxis {
 
   /// 0/刻度偏移量
   double leadingSpace = 30;
+
   TextStyle textStyle = TextStyle(color: Color(0x999999), fontSize: 12);
+
+  /// 倾斜坐标轴文本，避免文本距离过近，目前仅针对X轴文本有效
+  final bool inclineText;
 
   ChartAxis({
     required this.axisItemList,
     this.hasMark = true,
     this.axisStyle = AxisStyle.axisStyleSolid,
+    this.inclineText = false,
   });
 }
 
@@ -231,27 +236,29 @@ class BrnProgressBarChartPainter extends CustomPainter {
       return Size(textWidth, textHeight);
     }
 
-    if (yAxis.axisItemList.length > 0) {
+    if (yAxis.axisItemList.isNotEmpty) {
       //确定y轴文本最大宽度，以及每个文本大小
       yAxis.axisItemList.forEach((AxisItem item) {
         Size textSize = getTextAreaSize(item.showText, yAxis.textStyle);
         item.textSize = textSize;
-        if (textSize.width > yAxis.maxTextWidth)
+        if (textSize.width > yAxis.maxTextWidth) {
           yAxis.maxTextWidth = textSize.width;
+        }
       });
     }
     return yAxis.maxTextWidth + 10;
   }
 
   void _prepareData(Canvas canvas, Size size) {
-    if (this.yAxis.axisItemList.length > 0) {
+    if (this.yAxis.axisItemList.isNotEmpty) {
       //确定y轴文本最大宽度，以及每个文本大小
       this.yAxis.axisItemList.forEach((AxisItem item) {
         Size textSize =
             this.getTextAreaSize(item.showText, this.yAxis.textStyle);
         item.textSize = textSize;
-        if (textSize.width > this.yAxis.maxTextWidth)
+        if (textSize.width > this.yAxis.maxTextWidth) {
           this.yAxis.maxTextWidth = textSize.width;
+        }
       });
 
       this.yAxisRect = Rect.fromLTWH(
@@ -259,21 +266,32 @@ class BrnProgressBarChartPainter extends CustomPainter {
           0,
           this.yAxis.maxTextWidth + _yTextAxisSpace,
           size.height -
-              (0 == this.xAxis.axisItemList.length ? 0 : this._xAxisHeight));
+              (this.xAxis.axisItemList.isEmpty ? 0 : this._xAxisHeight));
     }
 
-    if (!this.drawY)
+    if (!this.drawY) {
       this.yAxisRect = Rect.fromLTWH(
           0,
           0,
           0,
           size.height -
-              (0 == this.xAxis.axisItemList.length ? 0 : this._xAxisHeight));
+              (this.xAxis.axisItemList.isEmpty ? 0 : this._xAxisHeight));
+    }
 
     this.xAxisRect = Rect.fromPoints(
         this.yAxisRect.bottomRight, Offset(size.width, size.height));
 
-    if (this.barBundleList.length > 0) {
+    if (this.barChartStyle == BarChartStyle.horizontal) {
+      if (!this.drawX) {
+        // 仅画x
+        this.xAxisRect = Rect.fromLTWH(this.yAxisRect.bottomRight.dx,
+            size.height, size.width - this.yAxisRect.width, 0);
+        this.yAxisRect = Rect.fromLTWH(
+            0, 0, this.yAxis.maxTextWidth + _yTextAxisSpace, size.height - (this.xAxis.axisItemList.isEmpty ? 0 : this._xAxisHeight));
+      }
+    }
+
+    if (this.barBundleList.isNotEmpty) {
       this.contentRect =
           Rect.fromPoints(this.yAxisRect.topRight, this.xAxisRect.topRight);
     }
@@ -377,7 +395,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
   }
 
   void _drawXAxisIn(Canvas canvas, Rect xAxisRect) {
-    if (0 == this.xAxis.axisItemList.length) return;
+    if (this.xAxis.axisItemList.isEmpty) return;
     if (AxisStyle.axisStyleSolid == this.xAxis.axisStyle) {
       Offset xLineStart = xAxisRect.topLeft;
       Offset xLineEnd = xAxisRect.topRight;
@@ -421,8 +439,16 @@ class BrnProgressBarChartPainter extends CustomPainter {
 
         double textWidth = textPainter.size.width;
 
-        textPainter.paint(canvas,
-            Offset(currentOffset.dx - textWidth / 2, currentOffset.dy + 5));
+        if (this.xAxis.inclineText == true) {
+          canvas.save();
+          canvas.translate(currentOffset.dx, currentOffset.dy + 3);
+          canvas.rotate(-0.3);
+          textPainter.paint(canvas, Offset(-textWidth, 0));
+          canvas.restore();
+        } else {
+          textPainter.paint(canvas,
+              Offset(currentOffset.dx - textWidth / 2, currentOffset.dy + 5));
+        }
       }
     } else if (BarChartStyle.vertical == this.barChartStyle) {
       Paint markLinkePaint = Paint()..color = Color(0xff222222);
@@ -457,7 +483,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
   }
 
   void _drawYAxisIn(Canvas canvas, Rect yAxisRect) {
-    if (0 == this.yAxis.axisItemList.length) return;
+    if (this.yAxis.axisItemList.isEmpty) return;
     if (AxisStyle.axisStyleSolid == this.yAxis.axisStyle) {
       Offset yLineStart = yAxisRect.bottomRight;
       Offset yLineEnd = yAxisRect.topRight;
@@ -719,21 +745,57 @@ class BrnProgressBarChartPainter extends CustomPainter {
       RRect barRRect = RRect.fromRectAndCorners(barItem.barRect!,
           topRight: Radius.circular(4), bottomRight: Radius.circular(4));
 
-      Shader shader = LinearGradient(
+      if (this.selectedBarItem != null) {
+        // 有选中的柱形，选中柱形保持原样，未选中的置灰
+        Shader shader;
+        if (this.selectedBarItem!.barRect == barItem.barRect) {
+          // 选中的柱形
+          shader = LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               tileMode: TileMode.clamp,
               colors: barBundle.colors)
-          .createShader(barItem.barRect!);
-      Paint barPaint = Paint()
-        ..shader = shader
-        ..isAntiAlias = true
-        ..strokeCap = StrokeCap.round
-        ..strokeWidth = 1.5
-        ..style = PaintingStyle.fill;
+              .createShader(barItem.barRect!);
+        } else {
+          // 未选中需要置灰的柱形
+          shader = LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              tileMode: TileMode.clamp,
+              colors: <Color>[this.unselectedColor, this.unselectedColor])
+              .createShader(barItem.barRect!);
+        }
+        Paint barPaint = Paint()
+          ..shader = shader
+          ..isAntiAlias = true
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = 1.5
+          ..style = PaintingStyle.fill;
+        canvas.drawRRect(barRRect, barPaint);
+        if (this.selectedBarItem!.barRect == barItem.barRect) {
+          // 选中柱形的虚线以及 HintText
+          this._drawDashLineOn(
+              canvas,
+              barItem.barRect!.centerLeft,
+              Offset(this.xAxisRect.right, barItem.barRect!.centerLeft.dy),
+              Color(0xff222222));
+        }
+      } else {
+        Shader shader = LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            tileMode: TileMode.clamp,
+            colors: barBundle.colors)
+            .createShader(barItem.barRect!);
+        Paint barPaint = Paint()
+          ..shader = shader
+          ..isAntiAlias = true
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = 1.5
+          ..style = PaintingStyle.fill;
 
-      canvas.drawRRect(barRRect, barPaint);
-
+        canvas.drawRRect(barRRect, barPaint);
+      }
       // 绘制柱状图上的数值
       TextStyle textStyle = TextStyle(color: Colors.white, fontSize: 12);
       this.barItemEnumerator((int barBundleIndex,
@@ -750,6 +812,60 @@ class BrnProgressBarChartPainter extends CustomPainter {
         textPainter.paint(canvas, textOffset);
       });
     });
+
+
+    // 最后画选中柱形的提示文字，否则可能被遮挡
+    if (null != this.selectedBarItem) {
+      // 画选中文字 Start
+      TextPainter selectedBarTextPainter = TextPainter(
+          text: TextSpan(
+              text: selectedBarItem!.selectedHintText ??
+                  (selectedBarItem!.text ?? ''),
+              style:
+              TextStyle(fontSize: 12, color: this.selectedHintTextColor)),
+          textDirection: TextDirection.ltr)
+        ..layout(maxWidth: double.infinity, minWidth: 0);
+      double textWidth = selectedBarTextPainter.size.width;
+      double textHeight = selectedBarTextPainter.size.height;
+
+      Offset selectedBarTextBgCenterOffset;
+      if (selectedBarItem!.barRect!.centerLeft.dy + 10 + textHeight + 10 * 2 >
+          this.contentRect.bottom) {
+        // 需要显示在上侧
+        selectedBarTextBgCenterOffset = Offset(
+            this.xAxisRect.bottomRight.dx - 10 - 10 - textWidth / 2,
+            selectedBarItem!.barRect!.centerRight.dy - (10 + textWidth / 2));
+      } else {
+        // 需要显示在下侧
+        selectedBarTextBgCenterOffset = Offset(
+            this.xAxisRect.bottomRight.dx - 10 - 10 - textWidth / 2,
+            selectedBarItem!.barRect!.centerRight.dy + (10 + textWidth / 2));
+      }
+
+      // 文本背景区域超出整个图形范围
+      if (textHeight / 2 + 8 > selectedBarTextBgCenterOffset.dy) {
+        selectedBarTextBgCenterOffset =
+            Offset(selectedBarTextBgCenterOffset.dx, textHeight / 2 + 8);
+      }
+
+      // 画选中文字背景
+      Paint selectTextBgPaint = Paint()
+        ..color = this.selectedHintTextBackgroundColor
+        ..style = PaintingStyle.fill;
+      RRect selectTextBgRRect = RRect.fromRectAndRadius(
+          Rect.fromCenter(
+              center: selectedBarTextBgCenterOffset,
+              width: textWidth + 10 * 2,
+              height: textHeight + 8 * 2),
+          Radius.circular(2));
+      canvas.drawRRect(selectTextBgRRect, selectTextBgPaint);
+      selectedBarTextPainter.paint(
+          canvas,
+          Offset(selectedBarTextBgCenterOffset.dx - textWidth / 2,
+              selectedBarTextBgCenterOffset.dy - textHeight / 2));
+
+      // 画选中文字 End
+    }
   }
 
   Size getTextAreaSize(String text, TextStyle textStyle) {
@@ -767,8 +883,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
 
   @override
   bool? hitTest(Offset position) {
-    if (this.brnProgressBarChartSelectCallback != null &&
-        BarChartStyle.vertical == this.barChartStyle) {
+    if (this.brnProgressBarChartSelectCallback != null) {
       this.barItemEnumerator((int barBundleIndex,
           BrnProgressBarBundle barBundle,
           int barGroupIndex,

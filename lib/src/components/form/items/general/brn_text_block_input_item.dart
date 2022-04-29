@@ -66,6 +66,9 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
   /// 输入内容类型
   final String? inputType;
 
+  /// 是否自动获取焦点
+  bool autofocus;
+
   /// 指定对输入数据的格式化要求
   final List<TextInputFormatter>? inputFormatters;
 
@@ -75,10 +78,10 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
   final TextEditingController? controller;
 
   /// 最小行数，默认值4
-  final int minLines;
+  final int? minLines;
 
   /// 最大行数，默认值20
-  final int maxLines;
+  final int? maxLines;
 
   /// form配置
   BrnFormItemConfig? themeData;
@@ -100,6 +103,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
       this.onChanged,
       this.hint = "请输入",
       this.maxCharCount,
+      this.autofocus: false,
       this.inputType,
       this.inputFormatters,
       this.controller,
@@ -176,6 +180,7 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
           Container(
             padding: BrnFormUtil.errorEdgeInsets(widget.themeData!),
             child: TextField(
+              autofocus: widget.autofocus,
               keyboardType: BrnFormUtil.getInputType(widget.inputType),
               controller: _controller,
               maxLength: widget.maxCharCount,

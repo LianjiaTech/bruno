@@ -43,7 +43,7 @@ class BrnSelectionSingleListWidget extends StatefulWidget {
 
     /// 当前 Items 所在的层级
     currentListIndex = BrnSelectionUtil.getCurrentListIndex(
-        items.length > 0 ? items[0] : null);
+        items.isNotEmpty ? items[0] : null);
     _selectedItems = items.where((f) => f.isSelected).toList();
   }
 
@@ -153,7 +153,7 @@ class _BrnSelectionSingleListWidgetState
     /// Warning !!!
     /// （两列、三列时）第一列节点是否被选中取决于它的子节点是否被选中，
     /// 只有当它子节点被选中时才会认为第一列的节点相应被选中。
-    if (widget.items.length > 0) {
+    if (widget.items.isNotEmpty) {
       widget.items[0].parent?.isSelected = (widget.items[0].parent?.children
                   .where((BrnSelectionEntity f) => f.isSelected)
                   .length ??
@@ -204,8 +204,17 @@ class _BrnSelectionSingleListWidgetState
 
   void configMultiLevelList(
       BrnSelectionEntity selectedEntity, int currentListIndex) {
-    /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
-    if (BrnSelectionFilterType.radio == selectedEntity.filterType) {
+    /// 选中【不限】清除同一级别其他的状态
+    if(selectedEntity.isUnLimit()){
+      selectedEntity.parent?.children
+          .where((f) => f != selectedEntity)
+          .forEach((f) {
+        f.clearChildSelection();
+        f.isSelected = false;
+      });
+      selectedEntity.isSelected = true;
+    } else if (BrnSelectionFilterType.radio == selectedEntity.filterType) {
+      /// 单选，清除同一级别选中的状态，则其他的设置为未选中。
       selectedEntity.parent?.children
           .where((f) => f != selectedEntity)
           .forEach((f) {
@@ -214,16 +223,6 @@ class _BrnSelectionSingleListWidgetState
       });
       selectedEntity.isSelected = true;
     } else if (BrnSelectionFilterType.checkbox == selectedEntity.filterType) {
-      /// 选中【不限】清除同一级别其他的状态
-      if (selectedEntity.isUnLimit()) {
-        selectedEntity.parent?.children
-            .where((f) => f != selectedEntity)
-            .forEach((f) {
-          f.clearChildSelection();
-          f.isSelected = false;
-        });
-        selectedEntity.isSelected = true;
-      } else {
         ///清除【不限】类型。
         List<BrnSelectionEntity> brotherItems;
         if (selectedEntity.parent == null) {
@@ -238,7 +237,6 @@ class _BrnSelectionSingleListWidgetState
           }
         }
         selectedEntity.isSelected = !selectedEntity.isSelected;
-      }
     }
   }
 }

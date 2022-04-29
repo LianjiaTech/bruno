@@ -27,7 +27,7 @@ class BrnTimeRangeWidget extends StatefulWidget {
   final DateTime? initialEndDateTime;
 
   /// 是否限制 Picker 选择的时间范围（开始时间≤结束时间）
-  final isLimitTimeRange;
+  final bool isLimitTimeRange;
 
   /// 时间格式
   final String? dateFormat;
@@ -212,8 +212,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
   /// render the picker widget of year、month and day
   Widget _renderDatePickerWidget() {
     /// 用于强制刷新 Widget
-    var firstGlobalKey;
-    var secondGlobalKey;
+    GlobalKey? firstGlobalKey;
+    GlobalKey? secondGlobalKey;
 
     if (widget._isFirstScroll) {
       secondGlobalKey = GlobalKey();
@@ -237,7 +237,7 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
               maxDateTime: _maxTime,
               initialStartDateTime: _startSelectedDateTime,
               minuteDivider: _minuteDivider,
-              onInitSelectChange: (widget.isLimitTimeRange ?? true)
+              onInitSelectChange: (widget.isLimitTimeRange)
                   ? (DateTime selectedDateTime, List<int> selected) {
                       _startSelectedDateTime = selectedDateTime;
                       _startSelectedIndex = selected;
@@ -260,17 +260,17 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
             child: BrnTimeRangeSideWidget(
               key: secondGlobalKey,
               dateFormat: widget.dateFormat,
-              minDateTime: (widget.isLimitTimeRange ?? true)
+              minDateTime: (widget.isLimitTimeRange)
                   ? _startSelectedDateTime
                   : _minTime,
               maxDateTime: _maxTime,
-              initialStartDateTime: (widget.isLimitTimeRange ?? true)
+              initialStartDateTime: (widget.isLimitTimeRange)
                   ? _endSelectedDateTime.compareTo(_startSelectedDateTime) > 0
                       ? _endSelectedDateTime
                       : _startSelectedDateTime
                   : _endSelectedDateTime,
               minuteDivider: _minuteDivider,
-              onInitSelectChange: (widget.isLimitTimeRange ?? true)
+              onInitSelectChange: (widget.isLimitTimeRange)
                   ? (DateTime selectedDateTime, List<int> selected) {
                       _endSelectedDateTime = selectedDateTime;
                       _endSelectedIndex = selected;

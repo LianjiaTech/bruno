@@ -1,5 +1,5 @@
 import 'package:bruno/src/components/dialog/brn_dialog.dart';
-import 'package:bruno/src/theme/brn_theme_configurator.dart';
+import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -56,7 +56,10 @@ class BrnMiddleInputDialog {
   /// 点击取消/确认按钮之后，是否自动关闭弹窗，默认为 true，关闭
   final bool dismissOnActionsTap;
 
-  const BrnMiddleInputDialog(
+  /// 点击取消/确认按钮之后，是否自动关闭弹窗，默认为 true，关闭
+  BrnDialogConfig? themeData;
+
+  BrnMiddleInputDialog(
       {this.title,
       this.message,
       this.hintText,
@@ -73,7 +76,14 @@ class BrnMiddleInputDialog {
       this.onCancel,
       this.dismissOnActionsTap = true,
       this.barrierDismissible = true,
-      this.autoFocus = false});
+      this.autoFocus = false,
+      this.themeData}) {
+    this.themeData ??= BrnDialogConfig();
+    this.themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: this.themeData!.configId)
+        .dialogConfig
+        .merge(this.themeData);
+  }
 
   void show(BuildContext context) {
     _doShow(context);
@@ -82,11 +92,19 @@ class BrnMiddleInputDialog {
   void _doShow(BuildContext context) {
     String _value = inputEditingController?.text ?? "";
     var dialogMessageWidgets = <Widget>[];
-    if (message != null && message!.length > 0) {
-      dialogMessageWidgets.add(Text(
-        message!,
-        style: cContentTextStyle,
-        textAlign: cContentTextAlign,
+    if (message != null && message!.isNotEmpty) {
+      dialogMessageWidgets.add(Flexible(
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Align(
+            alignment: _getMessageAlign(themeData!.contentTextAlign),
+            child: Text(
+              message!,
+              style: themeData!.contentTextStyle.generateTextStyle(),
+              textAlign: themeData!.contentTextAlign,
+            ),
+          ),
+        ),
       ));
       dialogMessageWidgets.add(Container(
         height: 12,
@@ -158,8 +176,9 @@ class BrnMiddleInputDialog {
         confirm: confirmText,
         title: title,
         barrierDismissible: barrierDismissible,
+        themeData: themeData,
         messageWidget: Padding(
-          padding: const EdgeInsets.only(top: 12, left: 24, right: 24),
+          padding: themeData!.contentPaddingLg,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: dialogMessageWidgets,
@@ -169,5 +188,16 @@ class BrnMiddleInputDialog {
     }, onCancel: () {
       if (onCancel != null) onCancel!();
     });
+  }
+
+
+  Alignment _getMessageAlign(TextAlign messageTextAlign) {
+    if(messageTextAlign == TextAlign.left || messageTextAlign == TextAlign.start) {
+      return Alignment.centerLeft;
+    }
+    if(messageTextAlign == TextAlign.right || messageTextAlign == TextAlign.end) {
+      return Alignment.centerRight;
+    }
+    return Alignment.center;
   }
 }

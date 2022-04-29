@@ -232,7 +232,7 @@ class _TimePickerWidgetState extends State<BrnTimeRangeSideWidget> {
     required String format,
     required ValueChanged<int> valueChanged,
   }) {
-    var globalKey;
+    GlobalKey? globalKey;
     if (_scrolledNotMinute && format.contains("m")) {
       globalKey = GlobalKey();
       _scrolledNotMinute = false;

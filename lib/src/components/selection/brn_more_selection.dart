@@ -94,7 +94,7 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
       ),
       //为了解决 键盘抬起按钮的问题 将按钮移动到 此区域
       bottomNavigationBar: Container(
-        height: 80,
+        height: 80 + _getBottomAreaHeight(),
         child: Row(
           children: <Widget>[
             _buildLeftSlide(context),
@@ -265,6 +265,10 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
         tmp.add(data);
       });
     }
+  }
+
+  double _getBottomAreaHeight() {
+    return MediaQuery.of(context).padding.bottom;
   }
 }
 

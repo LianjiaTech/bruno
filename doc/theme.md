@@ -113,6 +113,6 @@ BrnMultiChoiceInputFormItem(
   subTitle: "这里是副标题",
   tipLabel: "标签",
   ...
-  themeData: BrnFormItemV2Config(titleTextStyle:BrnTextStyle(color: Colors.red)),
+  themeData: BrnFormItemConfig(titleTextStyle:BrnTextStyle(color: Colors.red)),
 )
 ```

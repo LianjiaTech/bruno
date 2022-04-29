@@ -191,8 +191,8 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
   /// render the picker widget of year、month and day
   Widget _renderDatePickerWidget() {
     /// 用于强制刷新 Widget
-    var firstGlobalKey;
-    var secondGlobalKey;
+    GlobalKey? firstGlobalKey;
+    GlobalKey? secondGlobalKey;
 
     if (_isFirstScroll) {
       secondGlobalKey = GlobalKey();

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
@@ -179,9 +178,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
               ),
               Visibility(
                 visible: widget.selectionEntity
-                        .currentShowTagByExpanded(isExpanded)
-                        .length >
-                    0,
+                        .currentShowTagByExpanded(isExpanded).isNotEmpty,
                 child: Container(
                   padding: EdgeInsets.only(top: 12),
                   child: _buildOptionWidgets(),

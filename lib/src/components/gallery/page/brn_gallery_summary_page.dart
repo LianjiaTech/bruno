@@ -99,7 +99,7 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
   Widget _buildItem(BrnBasicGroupConfig? groupConfig, int groupId) {
     if (groupConfig == null) return Row();
     List<Widget> columnViews = <Widget>[];
-    if (groupConfig.title != null)
+    if (groupConfig.title != null) {
       columnViews.add(Container(
         height: 53,
         child: Padding(
@@ -113,15 +113,16 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
           ),
         ),
       ));
+    }
     if (groupConfig.configList != null) {
       List<Widget> gridViews = <Widget>[];
-      for (int i = 0; i < groupConfig.configList!.length; i++)
+      for (int i = 0; i < groupConfig.configList!.length; i++) {
         gridViews.add(GestureDetector(
           onTap: () {
             //页面的跳转不应该交个子Widget处理
-            if (widget.fromDetail)
+            if (widget.fromDetail) {
               Navigator.of(context).pop([groupId, i]);
-            else
+            } else {
               Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
                 return BrnGalleryDetailPage(
                   allConfig: widget.allConfig,
@@ -132,10 +133,12 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
                   controller: widget.controller,
                 );
               }));
+            }
           },
           child: groupConfig.configList![i]
               .buildSummaryWidget(context, widget.allConfig, groupId, i),
         ));
+      }
       columnViews.add(GridView.count(
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,

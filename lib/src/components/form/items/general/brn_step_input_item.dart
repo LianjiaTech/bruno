@@ -2,6 +2,7 @@ import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ///
 /// 递增/递减型录入项
@@ -63,6 +64,11 @@ class BrnStepInputFormItem extends StatefulWidget {
   /// 当前值变化回调
   final OnBrnFormValueChanged? onChanged;
 
+  /// 是否可通过键盘手动输入内容
+  final bool canManualInput;
+
+  final TextEditingController? controller;
+
   /// form配置
   BrnFormItemConfig? themeData;
 
@@ -83,9 +89,18 @@ class BrnStepInputFormItem extends StatefulWidget {
     this.maxLimit = 10,
     this.minLimit = 0,
     this.onChanged,
+    this.canManualInput = false,
+    this.controller,
     this.themeData,
-  })  : assert(value == null || value >= minLimit && value <= maxLimit),
-        super(key: key) {
+  }) : super(key: key) {
+    if (value != null) {
+      assert(value! >= minLimit && value! <= maxLimit);
+    }
+    if (controller != null) {
+      int? defaultValue = int.tryParse(controller!.text);
+      assert(defaultValue == null || (defaultValue >= minLimit && defaultValue <= maxLimit),
+          'The text or value in the controller is not in the limits.');
+    }
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
@@ -100,12 +115,33 @@ class BrnStepInputFormItem extends StatefulWidget {
 }
 
 class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
-  late int _value;
-
+  late TextEditingController _textEditingController;
+  late int _oldValue;
   @override
   void initState() {
     super.initState();
-    _value = widget.value ?? widget.minLimit;
+    if (widget.controller == null) {
+      _textEditingController = TextEditingController();
+      _textEditingController.text = (widget.value ?? 0).toString();
+    } else {
+      _textEditingController = widget.controller!;
+    }
+    _oldValue = _value;
+    _textEditingController.addListener(_onControllerTextChangedHandleTicker);
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.removeListener(_onControllerTextChangedHandleTicker);
+    super.dispose();
+  }
+
+  void _onControllerTextChangedHandleTicker() {
+    if (_oldValue != _value) {
+      BrnFormUtil.notifyValueChanged(widget.onChanged, context, _oldValue, _value);
+      setState(() {});
+      _oldValue = _value;
+    }
   }
 
   @override
@@ -124,19 +160,14 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                      widget.isRequire, widget.themeData!),
+                  padding: BrnFormUtil.titleEdgeInsets(
+                      widget.prefixIconType, widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
-                      BrnFormUtil.buildPrefixIcon(
-                          widget.prefixIconType,
-                          widget.isEdit,
-                          context,
-                          widget.onAddTap,
-                          widget.onRemoveTap),
+                      BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context,
+                          widget.onAddTap, widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
-                      BrnFormUtil.buildTitleWidget(
-                          widget.title, widget.themeData!),
+                      BrnFormUtil.buildTitleWidget(widget.title, widget.themeData!),
                       BrnFormUtil.buildTipLabelWidget(
                           widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
@@ -147,55 +178,25 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        if (!isEnable()) {
+                        if (!widget.isEdit) {
                           return;
                         }
-
-                        if (isReachMinLevel()) {
-                          return;
-                        }
-
-                        if (!isReachMinLevel()) {
-                          _value = _value - 1;
-                          BrnFormUtil.notifyValueChanged(
-                              widget.onChanged, context, _value + 1, _value);
-                          setState(() {});
-                        }
+                        _checkReachMinLevel();
                       },
                       child: Container(
-                        child: getMinusIcon(),
+                        child: _getMinusIcon(),
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      child: Text(
-                        "$_value",
-                        style: TextStyle(
-                          color: Color(0xFF222222),
-                          fontSize: BrnFonts.f16,
-                        ),
-                      ),
-                    ),
+                    _buildValueWidget(),
                     GestureDetector(
                       onTap: () {
-                        if (!isEnable()) {
+                        if (!widget.isEdit) {
                           return;
                         }
-
-                        if (isReachMaxLevel()) {
-                          return;
-                        }
-
-                        if (!isReachMaxLevel()) {
-                          _value = _value + 1;
-                          BrnFormUtil.notifyValueChanged(
-                              widget.onChanged, context, _value - 1, _value);
-                          setState(() {});
-                        }
+                        _checkReachMaxLevel();
                       },
                       child: Container(
-                        child: getAddIcon(),
+                        child: _getAddIcon(),
                       ),
                     ),
                   ],
@@ -213,45 +214,126 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
     );
   }
 
-  bool isEnable() {
-    return widget.isEdit;
-  }
-
-  Image getAddIcon() {
+  Image _getAddIcon() {
     if (!widget.isEdit) {
       return BrunoTools.getAssetImage(BrnAsset.iconAddDisable);
     }
 
-    if (isReachMaxLevel()) {
+    if (_isReachMaxLevel()) {
       return BrunoTools.getAssetImage(BrnAsset.iconAddDisable);
     }
 
     return BrunoTools.getAssetImage(BrnAsset.iconAddEnable);
   }
 
-  bool isReachMaxLevel() {
+  bool _isReachMaxLevel() {
     if (_value >= widget.maxLimit) {
       return true;
     }
     return false;
   }
 
-  Image getMinusIcon() {
+  Image _getMinusIcon() {
     if (!widget.isEdit) {
       return BrunoTools.getAssetImage(BrnAsset.iconMinusDisable);
     }
 
-    if (isReachMinLevel()) {
+    if (_isReachMinLevel()) {
       return BrunoTools.getAssetImage(BrnAsset.iconMinusDisable);
     }
 
     return BrunoTools.getAssetImage(BrnAsset.iconMinusEnable);
   }
 
-  bool isReachMinLevel() {
+  bool _isReachMinLevel() {
     if (_value <= widget.minLimit) {
       return true;
     }
     return false;
+  }
+
+  Widget _buildValueWidget() {
+    if (widget.canManualInput) {
+      return Container(
+        alignment: Alignment.center,
+        width: 50,
+        child: TextField(
+          maxLines: 1,
+          minLines: 1,
+          enabled: widget.isEdit,
+          textAlign: TextAlign.center,
+          controller: _textEditingController,
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+            RangeLimitedTextInputFormatter(minValue: widget.minLimit, maxValue: widget.maxLimit)
+          ],
+          style: TextStyle(
+            color: Color(0xFF222222),
+            fontSize: BrnFonts.f16,
+          ),
+          decoration: InputDecoration(
+            hintText: '0',
+            hintStyle: TextStyle(
+              color: Color(0xFFCCCCCC),
+              fontSize: BrnFonts.f16,
+            ),
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.all(0),
+            isDense: true,
+          ),
+        ),
+      );
+    } else {
+      return Container(
+        alignment: Alignment.center,
+        width: 50,
+        child: Text(
+          "$_value",
+          style: TextStyle(
+            color: Color(0xFF222222),
+            fontSize: BrnFonts.f16,
+          ),
+        ),
+      );
+    }
+  }
+
+  void _checkReachMinLevel() {
+    if (!_isReachMinLevel()) {
+      _value = _value - 1;
+      return;
+    }
+  }
+
+  void _checkReachMaxLevel() {
+    if (!_isReachMaxLevel()) {
+      _value = _value + 1;
+      return;
+    }
+  }
+
+  int get _value => int.tryParse(_textEditingController.text) ?? 0;
+
+  set _value(int value) {
+    _textEditingController.text = value.toString();
+  }
+}
+
+class RangeLimitedTextInputFormatter extends TextInputFormatter {
+  int minValue;
+  int maxValue;
+
+  RangeLimitedTextInputFormatter({this.minValue = 0, this.maxValue = 0});
+
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    int? newNum = int.tryParse(newValue.text);
+    if(newNum == null && minValue == 0) {
+      return TextEditingValue(text: '');
+    } else if (newNum != null && minValue <= newNum && newNum <= maxValue) {
+      return TextEditingValue(text: newNum.toString());
+    } else {
+      return oldValue;
+    }
   }
 }

@@ -124,7 +124,7 @@ class BrunoTools {
       return obj.isEmpty;
     }
     if (obj is Map) {
-      return obj.length == 0;
+      return obj.isEmpty;
     }
     return obj == null;
   }

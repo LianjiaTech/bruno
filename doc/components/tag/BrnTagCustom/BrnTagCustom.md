@@ -50,7 +50,7 @@ BrnTagCustom({
 | textPadding     | EdgetInsets  | 标签文字的 padding | 否           | EdgeInsets.symmetric(horizontal:2) |
 | fontSize        | double       | 标签文字的大小     | 否           | 11                                 |
 | fontWeight      | FontWeight   | 文字的粗细         | 否           | FontWeight.normal                  |
-| maxWidth        | Double       | 标签高度           | 否           | double.infinity                    |
+| maxWidth        | Double       | 标签宽度           | 否           | double.infinity                    |
 | border          | Border?      | 标签边框           | 否           | 无                                 |
 
 ## 四、代码演示

@@ -136,7 +136,7 @@ class BrnAppBar extends PreferredSize {
   final VoidCallback? backLeadCallback;
 
   /// 是否显示默认的eeeeee分割线，默认显示，可以设置为不显示
-  final bool showDefaultBottom;
+  final bool? showDefaultBottom;
   final bool showLeadingDivider;
   final BrnAppBarConfig? themeData;
 
@@ -156,7 +156,7 @@ class BrnAppBar extends PreferredSize {
       this.titleAlignment = Alignment.center,
       this.flexibleSpace,
       this.backLeadCallback,
-      this.showDefaultBottom = true,
+      this.showDefaultBottom,
       this.themeData,
       this.leadingWidth,
       this.shadowColor,
@@ -233,7 +233,7 @@ class BrnAppBar extends PreferredSize {
       _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.dark());
     }
     _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(backgroundColor: this.backgroundColor));
+        .merge(BrnAppBarConfig(backgroundColor: this.backgroundColor, showDefaultBottom: this.showDefaultBottom));
 
     _defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: _defaultConfig.configId)
@@ -246,9 +246,9 @@ class BrnAppBar extends PreferredSize {
     return super.build(context);
   }
 
-  PreferredSizeWidget? _buildBarBottom() {
+  PreferredSizeWidget? _buildBarBottom(BrnAppBarConfig defaultConfig) {
     if (brightness == null || brightness == Brightness.light) {
-      if (bottom == null && showDefaultBottom) {
+      if (bottom == null && defaultConfig.showDefaultBottom) {
         return BrnBarBottomDivider();
       }
     }
@@ -292,7 +292,7 @@ class BrnAppBar extends PreferredSize {
       elevation: elevation,
       backgroundColor: _defaultConfig.backgroundColor,
       actions: _wrapActions(_defaultConfig),
-      bottom: _buildBarBottom(),
+      bottom: _buildBarBottom(_defaultConfig),
       brightness: brightness ?? Brightness.light,
       toolbarOpacity: toolbarOpacity,
       bottomOpacity: bottomOpacity,
@@ -592,13 +592,13 @@ class BrnBarBottomDivider extends PreferredSize {
 class _BrnSearchResultAppBar extends StatelessWidget {
   final BrnAppBarConfig? appBarConfig;
   final String? title;
-  final backgroundColor;
-  final bottom;
-  final brightness;
-  final showLeadingDivider;
-  final flexibleSpace;
-  final backLeadCallback;
-  final showDefaultBottom;
+  final Color? backgroundColor;
+  final PreferredSizeWidget? bottom;
+  final Brightness? brightness;
+  final bool showLeadingDivider;
+  final Widget? flexibleSpace;
+  final VoidCallback? backLeadCallback;
+  final bool? showDefaultBottom;
 
   _BrnSearchResultAppBar(
       {this.appBarConfig,
@@ -622,7 +622,11 @@ class _BrnSearchResultAppBar extends StatelessWidget {
     }
 
     _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(backgroundColor: this.backgroundColor));
+        .merge(BrnAppBarConfig(
+      backgroundColor: this.backgroundColor,
+      showDefaultBottom: this.showDefaultBottom,
+    ));
+
     _defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: _defaultConfig.configId)
         .appBarConfig
@@ -639,7 +643,7 @@ class _BrnSearchResultAppBar extends StatelessWidget {
 
         /// divider
         Visibility(
-          visible: showLeadingDivider ?? true,
+          visible: showLeadingDivider,
           child: Container(
             margin: EdgeInsets.only(left: 12, right: 12),
             height: 16,
@@ -650,7 +654,7 @@ class _BrnSearchResultAppBar extends StatelessWidget {
 
         /// padding
         Visibility(
-          visible: !(showLeadingDivider ?? true),
+          visible: !(showLeadingDivider),
           child: Padding(
             padding: EdgeInsets.only(left: 12),
           ),

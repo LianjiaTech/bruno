@@ -204,7 +204,7 @@ class BrnSelectionEntity {
   }
 
   void configRelationship() {
-    if (children.length > 0) {
+    if (children.isNotEmpty) {
       for (BrnSelectionEntity entity in children) {
         entity.parent = this;
       }
@@ -215,7 +215,7 @@ class BrnSelectionEntity {
   }
 
   void configDefaultValue() {
-    if (children.length > 0) {
+    if (children.isNotEmpty) {
       for (BrnSelectionEntity entity in children) {
         if (!BrunoTools.isEmpty(defaultValue)) {
           List<String> values = defaultValue!.split(',');
@@ -224,7 +224,7 @@ class BrnSelectionEntity {
       }
 
       /// 当 default 不在普通 Item 类型中时，尝试填充 同级别 Range Item.
-      if (children.where((_) => _.isSelected).toList().length == 0) {
+      if (children.where((_) => _.isSelected).toList().isEmpty) {
         List<BrnSelectionEntity> rangeItems = this.children.where((_) {
           return (_.filterType == BrnSelectionFilterType.range ||
               _.filterType == BrnSelectionFilterType.dateRange ||
@@ -250,10 +250,10 @@ class BrnSelectionEntity {
         entity.configDefaultValue();
       }
       if (hasCheckBoxBrother()) {
-        isSelected = children.where((_) => _.isSelected).length > 0;
+        isSelected = children.where((_) => _.isSelected).isNotEmpty;
       } else {
         isSelected =
-            isSelected || children.where((_) => _.isSelected).length > 0;
+            isSelected || children.where((_) => _.isSelected).isNotEmpty;
       }
     }
   }
@@ -295,7 +295,7 @@ class BrnSelectionEntity {
   }
 
   void clearChildSelection() {
-    if (children.length > 0) {
+    if (children.isNotEmpty) {
       for (BrnSelectionEntity entity in children) {
         entity.isSelected = false;
         if (entity.filterType == BrnSelectionFilterType.date) {
@@ -313,16 +313,16 @@ class BrnSelectionEntity {
 
   List<BrnSelectionEntity> selectedLastColumnList() {
     List<BrnSelectionEntity> list = [];
-    if (this.children.length > 0) {
+    if (this.children.isNotEmpty) {
       List<BrnSelectionEntity> firstList = [];
       for (BrnSelectionEntity firstEntity in this.children) {
-        if (firstEntity.children.length > 0) {
+        if (firstEntity.children.isNotEmpty) {
           List<BrnSelectionEntity> secondList = [];
           for (BrnSelectionEntity secondEntity in firstEntity.children) {
-            if (secondEntity.children.length > 0) {
+            if (secondEntity.children.isNotEmpty) {
               List<BrnSelectionEntity> thirds =
                   BrnSelectionUtil.currentSelectListForEntity(secondEntity);
-              if (thirds.length > 0) {
+              if (thirds.isNotEmpty) {
                 list.addAll(thirds);
               } else if (secondEntity.isSelected) {
                 secondList.add(secondEntity);
@@ -368,12 +368,12 @@ class BrnSelectionEntity {
       List<BrnSelectionEntity> firstColumn =
           BrnSelectionUtil.currentSelectListForEntity(this);
       results.addAll(firstColumn);
-      if (firstColumn.length > 0) {
+      if (firstColumn.isNotEmpty) {
         for (BrnSelectionEntity firstEntity in firstColumn) {
           List<BrnSelectionEntity> secondColumn =
               BrnSelectionUtil.currentSelectListForEntity(firstEntity);
           results.addAll(secondColumn);
-          if (secondColumn.length > 0) {
+          if (secondColumn.isNotEmpty) {
             for (BrnSelectionEntity secondEntity in secondColumn) {
               List<BrnSelectionEntity> thirdColumn =
                   BrnSelectionUtil.currentSelectListForEntity(secondEntity);
@@ -391,12 +391,12 @@ class BrnSelectionEntity {
     List<BrnSelectionEntity> firstColumn =
         BrnSelectionUtil.currentSelectListForEntity(this);
     results.addAll(firstColumn);
-    if (firstColumn.length > 0) {
+    if (firstColumn.isNotEmpty) {
       for (BrnSelectionEntity firstEntity in firstColumn) {
         List<BrnSelectionEntity> secondColumn =
             BrnSelectionUtil.currentSelectListForEntity(firstEntity);
         results.addAll(secondColumn);
-        if (secondColumn.length > 0) {
+        if (secondColumn.isNotEmpty) {
           for (BrnSelectionEntity secondEntity in secondColumn) {
             List<BrnSelectionEntity> thirdColumn =
                 BrnSelectionUtil.currentSelectListForEntity(secondEntity);
@@ -442,7 +442,7 @@ class BrnSelectionEntity {
   /// 判断当前的筛选 Item 是否为当前层次中第一个被选中的 Item。
   /// 用于展开筛选弹窗时显示选中效果。
   int getIndexInCurrentLevel() {
-    if (parent == null || parent!.children.length == 0) return -1;
+    if (parent == null || parent!.children.isEmpty) return -1;
 
     for (BrnSelectionEntity entity in parent!.children) {
       if (entity == this) {
@@ -454,10 +454,10 @@ class BrnSelectionEntity {
 
   /// 是否在筛选数据的最后一层。 如果最大层次为 3；某个筛选数据层次为 2，但其无子节点。此时认为不在最后一层。
   bool isInLastLevel() {
-    if (parent == null || parent!.children.length == 0) return true;
+    if (parent == null || parent!.children.isEmpty) return true;
 
     for (BrnSelectionEntity entity in parent!.children) {
-      if (entity.children.length > 0) {
+      if (entity.children.isNotEmpty) {
         return false;
       }
     }
@@ -521,11 +521,11 @@ class BrnSelectionEntity {
 
   /// 接口返回默认展示tag个数
   int getDefaultShowCount() {
-    int defaultCount = 3;
+    int defaultShowCount = 3;
     if (extMap.containsKey('defaultShowCount')) {
-      defaultCount = extMap['defaultShowCount'] ?? 3;
+      defaultShowCount = extMap['defaultShowCount'] ?? defaultShowCount;
     }
-    return defaultCount;
+    return defaultShowCount;
   }
 
   List<BrnSelectionEntity> currentRangeListForEntity() {

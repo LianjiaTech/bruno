@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
@@ -18,10 +16,10 @@ typedef BrnMultiDataPickerCreateWidgetCallback = Widget Function(
     bool isSelect, int column, int row, List selectedItems);
 
 /// 创建一级数据widget列表
-typedef List<Widget> CreateWidgetList();
+typedef CreateWidgetList = List<Widget> Function();
 
 /// 确定筛选内容事件回调
-typedef void ConfirmButtonClick(List selectedIndexList);
+typedef ConfirmButtonClick = void Function(List selectedIndexList);
 
 /// 数据适配 Delegate
 abstract class BrnMultiDataPickerDelegate {
@@ -120,19 +118,18 @@ class BrnMultiDataPicker extends StatefulWidget {
       this.themeData,
       this.sync = true}) {
     this.themeData ??= BrnPickerConfig();
-    this.themeData = this.themeData!.merge(BrnPickerConfig(
-          cancelTextStyle: BrnTextStyle.withStyle(cancelTextStyle),
-          confirmTextStyle: BrnTextStyle.withStyle(confirmTextStyle),
-          titleTextStyle: BrnTextStyle.withStyle(titleTextStyle),
-          itemTextStyle: BrnTextStyle(color: textColor, fontSize: textFontSize),
-          itemTextSelectedStyle:
-              BrnTextStyle(color: textSelectedColor, fontSize: textFontSize),
-        ));
-
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
         .pickerConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(BrnPickerConfig(
+      cancelTextStyle: BrnTextStyle.withStyle(cancelTextStyle),
+      confirmTextStyle: BrnTextStyle.withStyle(confirmTextStyle),
+      titleTextStyle: BrnTextStyle.withStyle(titleTextStyle),
+      itemTextStyle: BrnTextStyle(color: textColor, fontSize: textFontSize),
+      itemTextSelectedStyle:
+      BrnTextStyle(color: textSelectedColor, fontSize: textFontSize),
+    ));
   }
 
   @override
@@ -198,8 +195,9 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
       },
       onConfirm: () {
         Navigator.of(context).pop(_selectedIndexList);
-        if (widget.confirmClick != null)
+        if (widget.confirmClick != null) {
           widget.confirmClick!(_selectedIndexList);
+        }
       },
     );
   }
@@ -211,17 +209,14 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
         color: widget.themeData?.backgroundColor,
         child: Row(
             mainAxisSize: MainAxisSize.max,
-            children: widget.pickerTitles != null
-                ? _pickersWithTitle()
-                : _pickers()));
+            children: widget.pickerTitles != null ? _pickersWithTitle() : _pickers()));
   }
 
   List<Widget> _pickersWithTitle() {
     List<Widget> pickersWithTitle = [];
     for (int i = 0; i < widget.delegate.numberOfComponent(); i++) {
       int initRow = widget.delegate.initSelectedRowForComponent(i);
-      FixedExtentScrollController controller =
-          FixedExtentScrollController(initialItem: initRow);
+      FixedExtentScrollController controller = FixedExtentScrollController(initialItem: initRow);
       widget.controllers.add(controller);
       if (i >= _selectedIndexList.length) _selectedIndexList.add(0);
       Widget picker = _configSinglePicker(i);
@@ -237,8 +232,7 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
                   child: Text(
                     widget.pickerTitles == null ? '' : widget.pickerTitles![i],
                     style: TextStyle(
-                        fontSize: widget.pickerTitleFontSize,
-                        color: widget.pickerTitleColor),
+                        fontSize: widget.pickerTitleFontSize, color: widget.pickerTitleColor),
                   ),
                 ),
               ),
@@ -254,8 +248,7 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
     List<Widget> pickers = [];
     for (int i = 0; i < widget.delegate.numberOfComponent(); i++) {
       int initRow = widget.delegate.initSelectedRowForComponent(i);
-      FixedExtentScrollController controller =
-          FixedExtentScrollController(initialItem: initRow);
+      FixedExtentScrollController controller = FixedExtentScrollController(initialItem: initRow);
       widget.controllers.add(controller);
       if (i >= _selectedIndexList.length) _selectedIndexList.add(0);
       Widget picker = _configSinglePicker(i);
@@ -274,27 +267,21 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
       createWidgetList: () {
         if (widget.createItemWidget != null) {
           List<Widget> widgetList = [];
-          for (int i = 0;
-              i < widget.delegate.numberOfRowsInComponent(component);
-              i++) {
+          for (int i = 0; i < widget.delegate.numberOfRowsInComponent(component); i++) {
             bool isSelect = _selectedIndexList[component] == i;
             widgetList.add(widget.createItemWidget != null
-                ? widget.createItemWidget!(
-                    isSelect, component, i, _selectedIndexList)
+                ? widget.createItemWidget!(isSelect, component, i, _selectedIndexList)
                 : Container());
           }
           return widgetList;
         } else {
           List<Widget> list = [];
-          for (int i = 0;
-              i < widget.delegate.numberOfRowsInComponent(component);
-              i++) {
+          for (int i = 0; i < widget.delegate.numberOfRowsInComponent(component); i++) {
             list.add(Center(
               child: Text(
                 widget.delegate.titleForRowInComponent(component, i),
                 style: _selectedIndexList[component] == i
-                    ? widget.themeData!.itemTextSelectedStyle
-                        .generateTextStyle()
+                    ? widget.themeData!.itemTextSelectedStyle.generateTextStyle()
                     : widget.themeData!.itemTextStyle.generateTextStyle(),
               ),
             ));
@@ -302,21 +289,15 @@ class _BrnMultiDataPickerState extends State<BrnMultiDataPicker> {
           return list;
         }
       },
-      itemExtent: widget.delegate.rowHeightForComponent(component) ??
-          widget.themeData!.itemHeight,
+      itemExtent: widget.delegate.rowHeightForComponent(component) ?? widget.themeData!.itemHeight,
       changed: (int index) {
         widget.delegate.selectRowInComponent(component, index);
         _selectedIndexList[component] = index;
         setState(() {
-          for (int i = component + 1;
-              i < widget.delegate.numberOfComponent();
-              i++) {
+          for (int i = component + 1; i < widget.delegate.numberOfComponent(); i++) {
             List list = [];
-            for (int j = 0;
-                j < widget.delegate.numberOfRowsInComponent(component);
-                j++) {
-              list.add(
-                  widget.delegate.titleForRowInComponent(component, index));
+            for (int j = 0; j < widget.delegate.numberOfRowsInComponent(component); j++) {
+              list.add(widget.delegate.titleForRowInComponent(component, index));
             }
             FixedExtentScrollController controller = widget.controllers[i];
             if (widget.sync) {
@@ -384,7 +365,7 @@ class _MyPickerState extends State<MyPicker> {
               widget.changed!(index);
             }
           },
-          children: children.length > 0
+          children: children.isNotEmpty
               ? children
               : [
                   Center(child: Text('')),
@@ -398,8 +379,130 @@ class _MyPickerState extends State<MyPicker> {
 ///默认的选择轮盘滚动行为，Android去除默认的水波纹动画效果
 class _DefaultScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(
-      BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
     return child;
   }
+}
+
+/// 实现了部分默认逻辑的 Delegate
+class BrnDefaultMultiDataPickerDelegate implements BrnMultiDataPickerDelegate {
+  ///数据源
+  List<BrnMultiDataPickerEntity> data;
+
+  ///第一列选中角标，默认0
+  int firstSelectedIndex;
+
+  ///第二列选中角标，默认0
+  int secondSelectedIndex;
+
+  ///第三列选中角标，默认0
+  int thirdSelectedIndex;
+
+  int _numberOfComponent = 0;
+
+  BrnDefaultMultiDataPickerDelegate(
+      {required this.data,
+      this.firstSelectedIndex = 0,
+      this.secondSelectedIndex = 0,
+      this.thirdSelectedIndex = 0}) {
+    if (data.isNotEmpty) {
+      _numberOfComponent = 1;
+      for (BrnMultiDataPickerEntity brnPickerItem in data) {
+        if (brnPickerItem.children.isNotEmpty) {
+          _numberOfComponent = 2;
+
+          for (BrnMultiDataPickerEntity brnPickerItem1 in brnPickerItem.children) {
+            if (brnPickerItem1.children.isNotEmpty) {
+              _numberOfComponent = 3;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @override
+  int initSelectedRowForComponent(int component) {
+    if (0 == component) {
+      return firstSelectedIndex;
+    } else if (1 == component) {
+      return secondSelectedIndex;
+    } else {
+      return thirdSelectedIndex;
+    }
+  }
+
+  ///显示几列内容
+  @override
+  int numberOfComponent() {
+    return _numberOfComponent;
+  }
+
+  @override
+  int numberOfRowsInComponent(int component) {
+    if (data.isEmpty) {
+      return 0;
+    }
+
+    if (0 == component) {
+      return data.length;
+    } else if (1 == component) {
+      List fl = data[firstSelectedIndex].children;
+      return fl.length;
+    } else {
+      List<BrnMultiDataPickerEntity> secondMap = data[firstSelectedIndex].children;
+      List thirdMap = secondMap[secondSelectedIndex].children;
+      return thirdMap.length;
+    }
+  }
+
+  @override
+  double rowHeightForComponent(int component) {
+    return pickerItemHeight;
+  }
+
+  @override
+  void selectRowInComponent(int component, int row) {
+    if (0 == component) {
+      firstSelectedIndex = row;
+    } else if (1 == component) {
+      secondSelectedIndex = row;
+    } else {
+      thirdSelectedIndex = row;
+    }
+  }
+
+  @override
+  String titleForRowInComponent(int component, int index) {
+    if (0 == component) {
+      return data[index].text;
+    } else if (1 == component) {
+      BrnMultiDataPickerEntity brnPickerItem = data[firstSelectedIndex];
+      List<BrnMultiDataPickerEntity> secondList = brnPickerItem.children;
+      return secondList[index].text;
+    } else {
+      BrnMultiDataPickerEntity brnPickerItem = data[firstSelectedIndex];
+      List<BrnMultiDataPickerEntity> secondList = brnPickerItem.children;
+      List<BrnMultiDataPickerEntity> threeList = secondList[secondSelectedIndex].children;
+      return threeList[index].text;
+    }
+  }
+}
+
+/// 适用于 BrnDefaultMultiDataPickerDelegate 的数据类
+class BrnMultiDataPickerEntity {
+  /// 显示内容
+  final String text;
+
+  /// 数据值
+  final dynamic value;
+
+  /// 子项
+  final List<BrnMultiDataPickerEntity> children;
+
+  BrnMultiDataPickerEntity({
+    required this.text,
+    this.value,
+    this.children = const [],
+  });
 }

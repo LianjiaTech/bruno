@@ -215,12 +215,12 @@ class BrnRichGridInfo {
     BrnPairRichInfoGridConfig? themeData,
   }) {
     themeData ??= BrnPairRichInfoGridConfig();
-    themeData = themeData.merge(BrnPairRichInfoGridConfig(
-        linkTextStyle: BrnTextStyle(color: clickColor)));
     themeData = BrnThemeConfigurator.instance
         .getConfig(configId: themeData.configId)
         .pairRichInfoGridConfig
         .merge(themeData);
+    themeData = themeData.merge(BrnPairRichInfoGridConfig(
+        linkTextStyle: BrnTextStyle(color: clickColor)));
 
     Widget _getQuestionImage(bool isKey) {
       return GestureDetector(

@@ -9,15 +9,15 @@ import 'package:flutter/material.dart';
 
 /// 点击item回调
 /// shareChannel 是分享渠道一般传入 [BrnShareItemConstants] 下的值
-typedef BrnShareDialogItemClickCallBack(int shareChannel, int customIndex);
+typedef BrnShareDialogItemClickCallBack = void Function(int shareChannel, int customIndex);
 
 /// 获取自定义分享item标题
 /// index为自定义分享item索引
-typedef String? BrnShareDialogGetCustomShareItemTitle(int index);
+typedef BrnShareDialogGetCustomShareItemTitle = String? Function(int index);
 
 /// 获取自定义分享item图标
 /// index为自定义分享item索引
-typedef Widget? BrnShareDialogGetCustomShareItemIcon(int index);
+typedef BrnShareDialogGetCustomShareItemIcon = Widget? Function(int index);
 
 // ignore: must_be_immutable
 class BrnShareDialog extends StatelessWidget {

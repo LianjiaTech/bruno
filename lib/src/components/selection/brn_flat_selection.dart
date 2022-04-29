@@ -82,7 +82,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
     widget.controller?.addListener(_handleFlatControllerTick);
 
     List<BrnSelectionEntity> firstColumn = [];
-    if (widget.entityDataList.length > 0) {
+    if (widget.entityDataList.isNotEmpty) {
       for (BrnSelectionEntity entity in widget.entityDataList) {
         if (entity.isSelected) {
           firstColumn.add(entity);
@@ -90,12 +90,12 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
       }
     }
     _originalSelectedItemsList.addAll(firstColumn);
-    if (firstColumn.length > 0) {
+    if (firstColumn.isNotEmpty) {
       for (BrnSelectionEntity firstEntity in firstColumn) {
         List<BrnSelectionEntity> secondColumn =
             BrnSelectionUtil.currentSelectListForEntity(firstEntity);
         _originalSelectedItemsList.addAll(secondColumn);
-        if (secondColumn.length > 0) {
+        if (secondColumn.isNotEmpty) {
           for (BrnSelectionEntity secondEntity in secondColumn) {
             List<BrnSelectionEntity> thirdColumn =
                 BrnSelectionUtil.currentSelectListForEntity(secondEntity);
@@ -151,7 +151,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
 
   /// 取消
   _cancelSelectedOptions() {
-    if (widget.entityDataList.length <= 0) {
+    if (widget.entityDataList.isEmpty) {
       return;
     }
     for (BrnSelectionEntity entity in widget.entityDataList) {
@@ -173,7 +173,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
   /// 重置
   _resetSelectedOptions() {
     clearController.add(FlatClearEvent());
-    if (widget.entityDataList.length > 0) {
+    if (widget.entityDataList.isNotEmpty) {
       for (BrnSelectionEntity entity in widget.entityDataList) {
         _clearUIData(entity);
       }

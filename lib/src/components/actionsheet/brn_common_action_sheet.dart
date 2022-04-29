@@ -4,9 +4,9 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_action_sheet_config.dart';
 import 'package:flutter/material.dart';
 
-typedef void BrnCommonActionSheetItemClickCallBack(
+typedef BrnCommonActionSheetItemClickCallBack = void Function(
     int index, BrnCommonActionSheetItem actionItem);
-typedef bool BrnCommonActionSheetItemClickInterceptor(
+typedef BrnCommonActionSheetItemClickInterceptor =  bool Function(
     int index, BrnCommonActionSheetItem actionItem);
 
 /// 每行样式

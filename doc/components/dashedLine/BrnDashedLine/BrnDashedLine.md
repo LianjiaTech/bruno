@@ -28,7 +28,7 @@ group:
 
 
 ```dart
-BrnMetaDashedLine({  
+BrnDashedLine({  
   Key key,  
   @required this.contentWidget,  
   this.axis,  
@@ -61,7 +61,7 @@ BrnMetaDashedLine({
 
 ```dart
 // 内部有内容  
-BrnMetaDashedLine(  
+BrnDashedLine(  
   dashedLength: 20,  
   dashedThickness: 5,  
   axis: Axis.vertical,  
@@ -81,7 +81,7 @@ BrnMetaDashedLine(
 
 ```dart
 // 内部没有内容  
-BrnMetaDashedLine(  
+BrnDashedLine(  
   dashedLength: 10,  
   dashedThickness: 3,  
   axis: Axis.horizontal,  
@@ -106,7 +106,7 @@ Container(
   width: 300,  
   padding: EdgeInsets.all(5),  
   color: Colors.red,  
-  child: BrnMetaDashedLine(  
+  child: BrnDashedLine(  
     axis: Axis.horizontal,  
     dashedOffset: 10,  
   ),  

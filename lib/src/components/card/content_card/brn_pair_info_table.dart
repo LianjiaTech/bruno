@@ -103,6 +103,9 @@ class BrnPairInfoTable extends StatefulWidget {
   ///可以参考[_MaxWrapTableWidth]实现自定义的展示规则，指定长度等
   final TableColumnWidth? customKeyWidth;
 
+  /// Table 展开收起状态变化的回调
+  final ValueChanged<bool>? onFolded;
+
   BrnPairInfoTable({
     Key? key,
     required this.children,
@@ -112,8 +115,9 @@ class BrnPairInfoTable extends StatefulWidget {
     this.rowDistance,
     this.itemSpacing,
     this.isFolded = true,
-    this.themeData,
+    this.onFolded,
     this.customKeyWidth,
+    this.themeData
   });
 
   @override
@@ -140,7 +144,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   BrnInfoModal? indexModal;
 
   // 是否具备展开收起功能 如果不展示则显示全部
-  bool canExpanded = false;
+  bool _canFold = false;
 
   late BrnPairInfoTableConfig themeData;
 
@@ -161,12 +165,12 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
         widget.expandAtIndex >= (widget.children.length - 1)) {
       _expandAtIndex = -1;
       showList = widget.children;
-      canExpanded = false;
+      _canFold = false;
     } else {
       indexModal = widget.children[_expandAtIndex];
       foldList = _generateFoldList();
       expandedList = _generateExpandedList();
-      canExpanded = true;
+      _canFold = true;
     }
     super.initState();
   }
@@ -186,7 +190,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   Widget build(BuildContext context) {
     Widget showWidget;
 
-    if (canExpanded) {
+    if (_canFold) {
       if (_isFolded) {
         showList = foldList;
       } else {
@@ -296,6 +300,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     GestureDetector gdt = GestureDetector(
         child: row,
         onTap: () {
+          widget.onFolded?.call(!_isFolded);
           setState(() {
             _isFolded = !_isFolded;
           });
@@ -317,7 +322,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     Widget foldButtonWidget = layerCtn;
 
     /// 将原有的value显示替换为 stack
-    BrnInfoModal brnMetaInfoModal = BrnInfoModal(
+    BrnInfoModal brnInfoModal = BrnInfoModal(
       isArrow: indexModal!.isArrow,
       keyPart: indexModal!.keyPart,
       valuePart: indexModal!.valuePart,
@@ -325,13 +330,13 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     Container stack = Container(
       child: Stack(
         children: <Widget>[
-          _finalValueWidget(brnMetaInfoModal, itemSpacing: 0),
+          _finalValueWidget(brnInfoModal, itemSpacing: 0),
           Positioned(bottom: 0, right: 0, child: foldButtonWidget),
         ],
       ),
     );
-    brnMetaInfoModal.valuePart = stack;
-    return brnMetaInfoModal;
+    brnInfoModal.valuePart = stack;
+    return brnInfoModal;
   }
 
   BrnInfoModal _expandedButtonWidget() {
@@ -355,6 +360,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     GestureDetector gdt = GestureDetector(
         child: row,
         onTap: () {
+          widget.onFolded?.call(!_isFolded);
           setState(() {
             _isFolded = !_isFolded;
           });
@@ -375,7 +381,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     ///收起的widget
     Widget foldButtonWidget = layerCtn;
 
-    BrnInfoModal brnMetaInfoModal = BrnInfoModal(
+    BrnInfoModal brnInfoModal = BrnInfoModal(
       isArrow: widget.children.last.isArrow,
       keyPart: widget.children.last.keyPart,
       valuePart: widget.children.last.valuePart,
@@ -384,13 +390,13 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     Container stack = Container(
       child: Stack(
         children: <Widget>[
-          _finalValueWidget(brnMetaInfoModal, itemSpacing: 0),
+          _finalValueWidget(brnInfoModal, itemSpacing: 0),
           Positioned(bottom: 0, right: 0, child: foldButtonWidget),
         ],
       ),
     );
-    brnMetaInfoModal.valuePart = stack;
-    return brnMetaInfoModal;
+    brnInfoModal.valuePart = stack;
+    return brnInfoModal;
   }
 
   Widget _valueTitleText(String text,
@@ -578,9 +584,7 @@ class BrnFollowPairInfo extends StatelessWidget with PairInfoPart {
     if (infoModal.valueClickCallback != null) {
       value = GestureDetector(
         onTap: () {
-          if (infoModal.valueClickCallback != null) {
-            infoModal.valueClickCallback!();
-          }
+          infoModal.valueClickCallback?.call();
         },
         child: value,
       );
@@ -702,7 +706,7 @@ class BrnAlignPairInfo extends StatelessWidget with PairInfoPart {
 /// 用于展示信息的modal，封装了key和value的基本信息
 ///
 /// 基本的文本展示只需 传入keyPart和valuePart为字符串
-/// 复杂的展示 需要传入Widget，BrnMetaInfoModal的若干静态方法 提供了丰富简便的富文本使用方式
+/// 复杂的展示 需要传入Widget，BrnInfoModal的若干静态方法 提供了丰富简便的富文本使用方式
 ///
 class BrnInfoModal {
   /// 方便业务调用，具备两种类型 string 和 widget
@@ -749,6 +753,10 @@ class BrnInfoModal {
     BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
+    themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData.configId)
+        .pairInfoTableConfig
+        .merge(themeData);
     themeData = themeData.merge(BrnPairInfoTableConfig(
         itemSpacing: itemSpacing,
         keyTextStyle: BrnTextStyle(fontSize: fontSize),
@@ -756,10 +764,6 @@ class BrnInfoModal {
             .merge(BrnTextStyle.withStyle(valueTextStyle)),
         linkTextStyle: BrnTextStyle(fontSize: fontSize, color: linkColor)
             .merge(BrnTextStyle.withStyle(valueTextStyle))));
-    themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .pairInfoTableConfig
-        .merge(themeData);
 
     Widget valueWidget;
     if (isArrow) {
@@ -845,16 +849,16 @@ class BrnInfoModal {
     BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
+    themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData.configId)
+        .pairInfoTableConfig
+        .merge(themeData);
     themeData = themeData.merge(BrnPairInfoTableConfig(
         itemSpacing: itemSpacing,
         keyTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(keyTextStyle)),
         valueTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(valueTextStyle))));
-    themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .pairInfoTableConfig
-        .merge(themeData);
 
     dynamic valueWidget;
     dynamic keyWidget;
@@ -986,16 +990,16 @@ class BrnInfoModal {
     BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
+    themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData.configId)
+        .pairInfoTableConfig
+        .merge(themeData);
     themeData = themeData.merge(BrnPairInfoTableConfig(
         itemSpacing: itemSpacing,
         keyTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(keyTextStyle)),
         valueTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(valueTextStyle))));
-    themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .pairInfoTableConfig
-        .merge(themeData);
 
     BrnRichTextGenerator keyGen = BrnRichTextGenerator();
     if (headIcon != null) {
@@ -1036,15 +1040,15 @@ class BrnInfoModal {
     BrnPairInfoTableConfig? themeData,
   }) {
     themeData ??= BrnPairInfoTableConfig();
+    themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData.configId)
+        .pairInfoTableConfig
+        .merge(themeData);
     themeData = themeData.merge(BrnPairInfoTableConfig(
         itemSpacing: itemSpacing,
         keyTextStyle: BrnTextStyle(fontSize: fontSize),
         valueTextStyle: BrnTextStyle(fontSize: fontSize)
             .merge(BrnTextStyle.withStyle(valueTextStyle))));
-    themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
-        .pairInfoTableConfig
-        .merge(themeData);
 
     return BrnInfoModal(
         keyPart: keyTitle,

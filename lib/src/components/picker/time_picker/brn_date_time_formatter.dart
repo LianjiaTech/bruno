@@ -29,7 +29,7 @@ class DateTimeFormatter {
   /// Get default value of date format.
   static String generateDateFormat(
       String? dateFormat, BrnDateTimePickerMode pickerMode) {
-    if (dateFormat != null && dateFormat.length > 0) {
+    if (dateFormat != null && dateFormat.isNotEmpty) {
       return dateFormat;
     }
     switch (pickerMode) {
@@ -44,7 +44,7 @@ class DateTimeFormatter {
 
   static String generateDateRangePickerFormat(
       String? dateFormat, BrnDateTimeRangePickerMode pickerMode) {
-    if (dateFormat != null && dateFormat.length > 0) {
+    if (dateFormat != null && dateFormat.isNotEmpty) {
       return dateFormat;
     }
     switch (pickerMode) {
@@ -68,7 +68,7 @@ class DateTimeFormatter {
   /// Split date format to array.
   static List<String> splitDateFormat(String? dateFormat,
       {BrnDateTimePickerMode? mode}) {
-    if (dateFormat == null || dateFormat.length == 0) {
+    if (dateFormat == null || dateFormat.isEmpty) {
       return [];
     }
     List<String> result = dateFormat.split(RegExp(DATE_FORMAT_SEPARATOR));
@@ -107,7 +107,7 @@ class DateTimeFormatter {
   /// Format datetime string
   static String formatDateTime(
       int value, String format, DateTimePickerLocale locale) {
-    if (format.length == 0) {
+    if (format.isEmpty) {
       return value.toString();
     }
 
@@ -148,7 +148,7 @@ class DateTimeFormatter {
   /// Format day display
   static String formatDate(
       DateTime dateTime, String format, DateTimePickerLocale locale) {
-    if (format.length == 0) {
+    if (format.isEmpty) {
       return dateTime.toString();
     }
 

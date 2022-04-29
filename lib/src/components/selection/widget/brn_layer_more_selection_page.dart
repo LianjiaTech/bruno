@@ -133,6 +133,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                         .colorTextBase,
                   ),
                   onPressed: () {
+                    BrnSelectionUtil.resetSelectionDatas(widget.entityData);
                     //将选中的筛选项返回
                     _originalSelectedItemsList.forEach((data) {
                       data.isSelected = true;
@@ -140,7 +141,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                     Navigator.pop(context, widget.entityData);
                   },
                 ),
-                brightness: Brightness.light,
+                systemOverlayStyle: SystemUiOverlayStyle.dark,
                 backgroundColor: Colors.white,
                 title: Text(
                   '选择${widget.entityData.title}',
@@ -340,6 +341,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
         padding: const EdgeInsets.only(left: 20),
         child: Text(
           name,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
           style: textStyle,
         ),
       ),
@@ -428,7 +431,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildRightMultiItem(BrnSelectionEntity? entity) {
     if (entity == null) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     } else {
       return Row(
         children: <Widget>[
@@ -455,7 +458,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
 
   Widget _buildRightSingleItem(BrnSelectionEntity? entity) {
     if (entity == null) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     } else {
       return Text(entity.title,
           textAlign: TextAlign.left,

@@ -36,9 +36,10 @@ class CommonTagsPicker extends StatefulWidget {
       this.themeData})
       : super(key: key) {
     this.themeData ??= BrnPickerConfig();
-    this.themeData = this
-        .themeData!
-        .merge(BrnThemeConfigurator.instance.getConfig().pickerConfig);
+    this.themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: this.themeData!.configId)
+        .pickerConfig
+        .merge(this.themeData);
   }
 
   void show() {

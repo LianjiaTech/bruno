@@ -9,7 +9,6 @@ import 'package:example/sample/components/card/content/brn_two_rich_content_exam
 import 'package:example/sample/components/card/content/brn_two_text_content_example.dart';
 import 'package:example/sample/components/card/content/brn_two_text_expanded_example.dart';
 import 'package:example/sample/home/list_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TextContentEntryPage extends StatelessWidget {

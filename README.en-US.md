@@ -27,6 +27,12 @@ An enterprise-class package of Flutter components for mobile applications.
 
 ![](https://img.ljcdn.com/beike/zjz/bruno/img/1638883534391.png)
 
+#### New components :tada: :tada: :tada:
+
+<code>BrnSwitchButton</code>  <code>BrnSwitchFormItem</code>  <code>BrnGeneralFormItem</code>
+
+ <img src="https://img.ljcdn.com/beike/zjz/bruno/img/1651141461442.png" width="300" height="359" />
+
 ## ✨ Features
 
 * Enterprise-class UI designed for mobile applications.
@@ -49,6 +55,7 @@ If you cannot access the demo, you can directly watch [Overview](https://github.
 | 1.0.0      | 1.22.4           |
 | 2.0.0      | 2.2.2            |
 | 2.1.1 (support nullsafety)      | 2.2.2            |
+| 2.2.0 | 2.10.5 |
 
 
 ## Preparing for use

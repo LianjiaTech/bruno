@@ -1,5 +1,4 @@
 import 'package:bruno/src/components/dialog/brn_content_export_dialog.dart';
-import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -162,6 +161,7 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
   Widget build(BuildContext context) {
     return BrnContentExportWidget(
       Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _generateContentWidget(),
           Container(
@@ -235,22 +235,27 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
   /// 若无则以 messageText 生成widget 填充，
   /// 都没设置则为空 Container
   Widget _generateContentWidget() {
-    if (widget.messageWidget != null)
+    if (widget.messageWidget != null) {
       return Padding(
         padding: EdgeInsets.only(bottom: 8, left: 20, right: 20),
         child: widget.messageWidget,
       );
+    }
 
     if (!BrunoTools.isEmpty(widget.messageText)) {
       return Padding(
         padding: EdgeInsets.only(bottom: 8, left: 20, right: 20),
         child: Text(
           widget.messageText!,
-          style: cContentTextStyle,
+          style: BrnThemeConfigurator.instance
+              .getConfig()
+              .dialogConfig
+              .contentTextStyle
+              .generateTextStyle(),
         ),
       );
     }
-    return Container();
+    return const SizedBox.shrink();
   }
 
   Widget _buildItem(BuildContext context, int index) {
