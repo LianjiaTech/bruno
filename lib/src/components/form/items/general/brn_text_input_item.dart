@@ -71,6 +71,9 @@ class BrnTextInputFormItem extends StatefulWidget {
   /// 输入内容类型
   final String? inputType;
 
+  /// 是否自动获取焦点
+  bool autofocus;
+
   /// 最大可输入字符数
   final int? maxCharCount;
   final List<TextInputFormatter>? inputFormatters;
@@ -101,6 +104,7 @@ class BrnTextInputFormItem extends StatefulWidget {
     this.hint = "请输入",
     this.unit,
     this.maxCharCount,
+    this.autofocus: false,
     this.inputType,
     this.inputFormatters,
     this.onChanged,
@@ -174,6 +178,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                 ),
                 Expanded(
                   child: TextField(
+                    autofocus: widget.autofocus,
                     keyboardType: BrnFormUtil.getInputType(widget.inputType),
                     enabled: widget.isEdit,
                     maxLines: 1,

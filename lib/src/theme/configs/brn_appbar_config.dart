@@ -27,6 +27,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
     EdgeInsets? titlePadding,
     double? iconSize,
     SystemUiOverlayStyle? systemUiOverlayStyle,
+    bool? showDefaultBottom,
     String configId = GLOBAL_CONFIG_ID,
   })  : _backgroundColor = backgroundColor,
         _appBarHeight = appBarHeight,
@@ -39,6 +40,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
         _titlePadding = titlePadding,
         _iconSize = iconSize,
         _systemUiOverlayStyle = systemUiOverlayStyle,
+        _showDefaultBottom = showDefaultBottom,
         super(configId: configId);
 
   BrnAppBarConfig.dark({
@@ -196,6 +198,14 @@ class BrnAppBarConfig extends BrnBaseConfig {
       _systemUiOverlayStyle ??
       BrnDefaultConfigUtils.defaultAppBarConfig.systemUiOverlayStyle;
 
+  /// 是否展示Appbar bottom 分割线
+  /// 默认为 [false]
+  bool? _showDefaultBottom;
+
+  bool get showDefaultBottom =>
+      _showDefaultBottom ??
+          BrnDefaultConfigUtils.defaultAppBarConfig.showDefaultBottom;
+
   @override
   void initThemeConfig(
     String configId, {
@@ -222,6 +232,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
     _titlePadding ??= appbarConfig._titlePadding;
     _iconSize ??= appbarConfig._iconSize;
     _systemUiOverlayStyle ??= appbarConfig._systemUiOverlayStyle;
+    _showDefaultBottom ??= appbarConfig._showDefaultBottom;
   }
 
   BrnAppBarConfig copyWith({
@@ -236,6 +247,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
     EdgeInsets? titlePadding,
     double? iconSize,
     SystemUiOverlayStyle? systemUiOverlayStyle,
+    bool? showDefaultBottom,
   }) {
     return BrnAppBarConfig(
       backgroundColor: backgroundColor ?? _backgroundColor,
@@ -249,6 +261,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
       titlePadding: titlePadding ?? _titlePadding,
       iconSize: iconSize ?? _iconSize,
       systemUiOverlayStyle: systemUiOverlayStyle ?? _systemUiOverlayStyle,
+      showDefaultBottom: showDefaultBottom ?? _showDefaultBottom,
     );
   }
 
@@ -266,6 +279,7 @@ class BrnAppBarConfig extends BrnBaseConfig {
       titlePadding: other._titlePadding,
       iconSize: other._iconSize,
       systemUiOverlayStyle: other._systemUiOverlayStyle,
+      showDefaultBottom: other._showDefaultBottom,
     );
   }
 }

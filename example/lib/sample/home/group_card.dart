@@ -21,7 +21,7 @@ class GroupCard extends StatefulWidget {
 }
 
 class GroupCardState extends State<GroupCard>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   static final Animatable<double> _easeInTween =
       CurveTween(curve: Curves.easeIn);
   static final Animatable<double> _halfTween =
@@ -31,6 +31,9 @@ class GroupCardState extends State<GroupCard>
   late Animation<double> _iconTurns;
   late bool _initExpand;
   AnimationController? _animationController;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -101,7 +104,7 @@ class GroupCardState extends State<GroupCard>
 
   Widget _getContentWidget() {
     if (widget.groupInfo == null || widget.groupInfo!.children == null) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
     return ListView.builder(
       physics: new NeverScrollableScrollPhysics(),

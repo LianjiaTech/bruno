@@ -41,7 +41,8 @@ const BrnMiddleInputDialog(
       this.onCancel,
       this.dismissOnActionsTap = true,
       this.barrierDismissible = true,
-      this.autoFocus = false});
+      this.autoFocus = false,
+      this.themeData,});
 ```
 ### 参数说明
 
@@ -64,7 +65,7 @@ const BrnMiddleInputDialog(
 | dismissOnActionsTap | bool | 点击取消/确认按钮之后，是否自动关闭弹窗 | 否 | true |
 | barrierDismissible | bool | 点击蒙层背景，弹窗是否可关闭。 | 否 | true |
 | autoFocus | bool | 是否自动获取焦点，弹出键盘 | 否 | false |
-
+| themeData | BrnDialogConfig | 主题定制配置 | 否 | defaultDialogConfig |
 
 
 ## 四、效果及代码展示

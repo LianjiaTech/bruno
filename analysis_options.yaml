@@ -4,5 +4,3 @@ include: package:lints/core.yaml
 analyzer:
   exclude:
     - doc/**
-    - example/**
-    - test/**

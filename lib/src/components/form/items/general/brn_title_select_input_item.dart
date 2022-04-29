@@ -74,6 +74,9 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
   /// 输入类型
   final String inputType;
 
+  /// 是否自动获取焦点
+  bool autofocus;
+
   /// 选中title索引
   final int selectedIndex;
 
@@ -111,6 +114,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
       this.inputType = BrnInputType.text,
       this.selectedIndex = -1,
       this.inputFormatters,
+      this.autofocus: false,
       this.onChanged,
       this.onTitleSelected,
       this.controller,
@@ -284,6 +288,7 @@ class BrnTitleSelectInputFormItemState
 
   Widget _buildTextField() {
     return TextField(
+      autofocus: widget.autofocus,
       inputFormatters: widget.inputFormatters,
       textAlign: TextAlign.end,
       controller: _controller,

@@ -103,6 +103,9 @@ class BrnPairInfoTable extends StatefulWidget {
   ///可以参考[_MaxWrapTableWidth]实现自定义的展示规则，指定长度等
   final TableColumnWidth? customKeyWidth;
 
+  /// Table 展开收起状态变化的回调
+  final ValueChanged<bool>? onFolded;
+
   BrnPairInfoTable({
     Key? key,
     required this.children,
@@ -112,8 +115,9 @@ class BrnPairInfoTable extends StatefulWidget {
     this.rowDistance,
     this.itemSpacing,
     this.isFolded = true,
-    this.themeData,
+    this.onFolded,
     this.customKeyWidth,
+    this.themeData
   });
 
   @override
@@ -140,7 +144,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   BrnInfoModal? indexModal;
 
   // 是否具备展开收起功能 如果不展示则显示全部
-  bool canExpanded = false;
+  bool _canFold = false;
 
   late BrnPairInfoTableConfig themeData;
 
@@ -161,12 +165,12 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
         widget.expandAtIndex >= (widget.children.length - 1)) {
       _expandAtIndex = -1;
       showList = widget.children;
-      canExpanded = false;
+      _canFold = false;
     } else {
       indexModal = widget.children[_expandAtIndex];
       foldList = _generateFoldList();
       expandedList = _generateExpandedList();
-      canExpanded = true;
+      _canFold = true;
     }
     super.initState();
   }
@@ -186,7 +190,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   Widget build(BuildContext context) {
     Widget showWidget;
 
-    if (canExpanded) {
+    if (_canFold) {
       if (_isFolded) {
         showList = foldList;
       } else {
@@ -296,6 +300,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     GestureDetector gdt = GestureDetector(
         child: row,
         onTap: () {
+          widget.onFolded?.call(!_isFolded);
           setState(() {
             _isFolded = !_isFolded;
           });
@@ -355,6 +360,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     GestureDetector gdt = GestureDetector(
         child: row,
         onTap: () {
+          widget.onFolded?.call(!_isFolded);
           setState(() {
             _isFolded = !_isFolded;
           });
@@ -578,9 +584,7 @@ class BrnFollowPairInfo extends StatelessWidget with PairInfoPart {
     if (infoModal.valueClickCallback != null) {
       value = GestureDetector(
         onTap: () {
-          if (infoModal.valueClickCallback != null) {
-            infoModal.valueClickCallback!();
-          }
+          infoModal.valueClickCallback?.call();
         },
         child: value,
       );

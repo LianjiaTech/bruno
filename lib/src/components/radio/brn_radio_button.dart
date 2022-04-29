@@ -36,6 +36,10 @@ class BrnRadioButton extends StatelessWidget {
   /// 默认值MainAxisAlignment.start
   final MainAxisAlignment mainAxisAlignment;
 
+  /// 控件和选择按钮在row布局里面的crossAxisAlignment
+  /// 默认值CrossAxisAlignment.center
+  final CrossAxisAlignment crossAxisAlignment;
+
   /// 控件和选择按钮在row布局里面的mainAxisSize
   /// 默认值MainAxisSize.min
   final MainAxisSize mainAxisSize;
@@ -53,6 +57,7 @@ class BrnRadioButton extends StatelessWidget {
       this.child,
       this.childOnRight = true,
       this.mainAxisAlignment = MainAxisAlignment.start,
+      this.crossAxisAlignment = CrossAxisAlignment.center,
       this.mainAxisSize = MainAxisSize.min,
       this.behavior = HitTestBehavior.translucent});
 
@@ -65,6 +70,7 @@ class BrnRadioButton extends StatelessWidget {
       iconPadding: iconPadding,
       childOnRight: childOnRight,
       mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
       selectedImage: BrunoTools.getAssetImageWithBandColor(
           BrnAsset.iconRadioSingleSelected),

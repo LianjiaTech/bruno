@@ -59,6 +59,7 @@ BrnTextInputFormItem({
   this.hint = "请输入",
   this.unit,
   this.maxCharCount,
+  this.autofocus: false,
   this.inputType,
   this.inputFormatters,
   this.onChanged,
@@ -93,6 +94,7 @@ BrnTextInputFormItem({
 | hint | String | 录入项 hint 提示 | 否 | "请输入" |  |
 | unit | String? | 单位 | 否 | 无 |  |
 | maxCharCount | int? | 最大输入字符数 | 否 | 无 |  |
+| autofocus | bool | 是否自动获取焦点 | 否 | false |  |
 | inputType | String? | 输入内容类型，指定键盘类型，参见 `BrnInputType` | 否 | 无 | 详见**BrnInputType**类，注意：无法通过指定键盘类型确保输入。比如不能通过指定数字键盘确保用户只输入数字。如果有要求用户只输入特定字符的需求请使用**inputFormatters**参数 |
 | inputFormatters | `List<TextInputFormatter>?` | 指定对输入数据的格式化要求 | 否 | 无 |  |
 | onChanged | `ValueChanged<String>?` | 输入文案回调 | 否 | 无 |  |
