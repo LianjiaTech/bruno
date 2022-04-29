@@ -73,6 +73,13 @@ class BrnCommonCardTitle extends StatelessWidget {
   /// 内容的padding 默认上下16 左右0
   final EdgeInsetsGeometry? padding;
 
+  /// 标题最大行数
+  final int? titleMaxLines;
+
+  /// 标题 Overflow 展示方式，默认 TextOverflow.clip
+  /// 注意，由于 subTitleWidget 与 title 是流式布局，所以 subTitleWidget 会折叠
+  final TextOverflow titleOverflow;
+
   final BrnCardTitleConfig? themeData;
 
   BrnCommonCardTitle(
@@ -86,7 +93,9 @@ class BrnCommonCardTitle extends StatelessWidget {
       this.detailColor,
       this.alignment,
       this.padding,
-      this.themeData})
+      this.titleMaxLines,
+      this.titleOverflow = TextOverflow.clip,
+        this.themeData})
       : super(key: key);
 
   @override
@@ -174,6 +183,8 @@ class BrnCommonCardTitle extends StatelessWidget {
     }
     var titleWidget = RichText(
       textScaleFactor: MediaQuery.of(context).textScaleFactor,
+      maxLines: this.titleMaxLines,
+      overflow: this.titleOverflow,
       text: TextSpan(
           text: title,
           style: defaultConfig.titleWithHeightTextStyle.generateTextStyle(),

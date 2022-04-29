@@ -109,7 +109,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
       bool enableMainButton = true,
       List<BrnVerticalIconButton>? iconButtonList}) {
     if ((buttonTitleList.isEmpty) && iconButtonList == null) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
     if (buttonTitleList.length >= 2) {
       return BrnBottomButtonPanel(
@@ -142,7 +142,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
         iconButtonList: iconButtonList,
       );
     }
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   @override

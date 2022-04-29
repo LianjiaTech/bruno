@@ -322,7 +322,7 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
         );
       }
     } else {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
   }
 

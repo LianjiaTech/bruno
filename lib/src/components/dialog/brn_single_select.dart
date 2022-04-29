@@ -53,6 +53,9 @@ class BrnSingleSelectDialog extends Dialog {
   /// 是否在点击时让 Diallog 消失，默认为 true
   final bool canDismissOnConfirmClick;
 
+  /// 点击关闭按钮回调
+  final VoidCallback? onCloseClick;
+
   const BrnSingleSelectDialog(
       {this.isClose: true,
       this.title: "",
@@ -65,6 +68,7 @@ class BrnSingleSelectDialog extends Dialog {
       this.onItemClick,
       this.checkedItem,
       this.customWidget,
+      this.onCloseClick,
       this.canDismissOnConfirmClick = true,
       this.isCustomFollowScroll = true});
 
@@ -83,7 +87,8 @@ class BrnSingleSelectDialog extends Dialog {
         checkedItem: checkedItem,
         customWidget: customWidget,
         canDismissOnConfirmClick: canDismissOnConfirmClick,
-        isCustomFollowScroll: isCustomFollowScroll);
+        isCustomFollowScroll: isCustomFollowScroll,
+        onCloseClick: onCloseClick,);
   }
 }
 
@@ -106,6 +111,9 @@ class BrnSingleSelectDialogWidget extends StatefulWidget {
 
   final bool canDismissOnConfirmClick;
 
+  /// 点击关闭按钮回调
+  final VoidCallback? onCloseClick;
+
   BrnDialogConfig? themeData;
 
   BrnSingleSelectDialogWidget(
@@ -120,6 +128,7 @@ class BrnSingleSelectDialogWidget extends StatefulWidget {
       this.onItemClick,
       this.checkedItem,
       this.customWidget,
+      this.onCloseClick,
       this.isCustomFollowScroll = true,
       this.canDismissOnConfirmClick = true,
       this.themeData}) {
@@ -254,14 +263,18 @@ class BrnSingleSelectDialogWidgetState
                           right: 0.0,
                           child: InkWell(
                               onTap: () {
-                                Navigator.of(context).pop();
+                                if (widget.onCloseClick != null) {
+                                  widget.onCloseClick!();
+                                } else {
+                                  Navigator.of(context).pop();
+                                }
                               },
                               child: Padding(
                                 padding: EdgeInsets.all(15),
                                 child: BrunoTools.getAssetImage(
                                     BrnAsset.iconPickerClose),
                               )))
-                      : Container()
+                      : SizedBox.shrink()
                 ],
               ),
             )));

@@ -69,7 +69,7 @@ BrnShareDialog({
 | descText | String? | 弹框辅助信息文案（为空则**不显示**辅助信息） | 否 | 无 |
 | separatorText | String? | 文案与分享渠道图标间的分割线内嵌文案 | 否 | 你可以通过以下方式分享给客户 |
 | shareChannels | `List<int>` | 用于表示所展示的分享渠道图标的索引（列表内容可直接填写渠道对应的**int**值，或使用**BrnShareItemConstants**的静态变量，例如**BrnShareItemConstants.SHARE\_WEIXIN**）。自定义为100或**BrnShareItemConstants.SHARE\_CUSTOM**。 | 是 | 空 |
-| clickCallBack | BrnShareDialogItemClickCallBack(int shareChannel, int customIndex) | 点击分享渠道图标后回调方法（方法传参为被点击的分享渠道图标在**BrnShareItemConstants**中的索引值shareChannel， 及改列表在使用者自定义的*shareChannels*中的索引值customIndex），使用者**根据参数自行配置响应动作**。 | 否 | 空 |
+| clickCallBack | BrnShareDialogItemClickCallBack? | 点击分享渠道图标后回调方法（方法传参为被点击的分享渠道图标在**BrnShareItemConstants**中的索引值shareChannel， 及改列表在使用者自定义的*shareChannels*中的索引值customIndex），使用者**根据参数自行配置响应动作**。 | 否 | 空 |
 | getCustomChannelTitle | BrnShareDialogGetCustomShareItemTitle? | 获取自定义分享渠道对应的显示**文案**（方法传参为该自定义分享渠道在*shareChannels*中的索引值index）。回调返回值为**String**，如果返回值为空，则**不显示**该自定义分享渠道。 | 否 | 空 |
 | getCustomChannelWidget | BrnShareDialogGetCustomShareItemIcon? | 获取自定义分享渠道对应的显示**图标**（方法传参为该自定义分享渠道在*shareChannels*中的索引值index）。回调返回值为**Widget**，如果返回值为空，则**不显示**该自定义分享渠道。 | 否 | 空 |
 | context | BuildContext | BuildContext | 是 | 空 |

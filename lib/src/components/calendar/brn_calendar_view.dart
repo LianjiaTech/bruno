@@ -267,7 +267,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
         ),
       );
     }
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   bool _isIconEnable(bool isPre) {

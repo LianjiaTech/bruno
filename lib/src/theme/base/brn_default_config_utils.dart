@@ -424,6 +424,7 @@ class BrnDefaultConfigUtils {
     iconSize: BrnAppBarTheme.iconSize,
     configId: BRUNO_CONFIG_ID,
     systemUiOverlayStyle: SystemUiOverlayStyle.dark,
+    showDefaultBottom: false,
   );
 
   /// 内容信息（两列）配置

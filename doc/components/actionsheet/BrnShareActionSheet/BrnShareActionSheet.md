@@ -72,12 +72,12 @@ BrnShareActionSheet({
 | firstShareChannels | `List<BrnShareItem>?` | 第一行渠道列表 | 否 | 空 |
 | secondShareChannels | `List<BrnShareItem>?` | 第二行渠道列表 | 否 |  |
 | mainTitle | String? | 列表标题 | 否 |  |
-| clickCallBack | BrnShareActionSheetItemClickCallBack=void ( int section, int index, BrnShareItem shareItem)? | 点击分享渠道图标后回调方法 | 否 | 空 |
+| clickCallBack | BrnShareActionSheetItemClickCallBack? | 点击分享渠道图标后回调方法 | 否 | 空 |
 | cancelTitle | String? | 取消按钮的文案 | 否 | ''取消'' |
 | context | BuildContext | BuidContext | 是 | 空 |
 | shareTextColor | Color | 分享渠道文案颜色 | 否 | Color(0xff999999)灰色 |
 | textColor | Color | 选项标题颜色 | 否 | Color(0xff222222)黑色 |
-| clickInterceptor | BrnShareActionSheetOnItemClickInterceptor? = void (int section, int index, BrnShareItem shareItem)? | 是否可点击（如果为预设类型，设置为不可点击后会变为相应的置灰图标）默认为true | 否 |  |
+| clickInterceptor | BrnShareActionSheetOnItemClickInterceptor? | 是否可点击（如果为预设类型，设置为不可点击后会变为相应的置灰图标）默认为true | 否 |  |
 
 ### 其他数据
 

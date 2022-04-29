@@ -270,7 +270,7 @@ class AllFormItemStyleExamplePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(
               builder: (BuildContext context) {
-                return StepInputExamplePage("递增表单项f`ormItemConfig");
+                return StepInputExamplePage(title: "递增表单项");
               },
             ));
           },

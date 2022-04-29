@@ -39,6 +39,7 @@ const BrnRadioButton(
     this.child,
     this.childOnRight = true,
     this.mainAxisAlignment = MainAxisAlignment.start,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.min,
     this.behavior = HitTestBehavior.translucent});
 ```
@@ -54,6 +55,7 @@ const BrnRadioButton(
 | iconPadding | EdgeInsets? | 选择图标的padding | 否 | EdgeInsets.all(5) |
 | childOnRight | bool | widget在是否在选择 icon 的右边，false 就在左边 | 否 | true |
 | mainAxisAlignment | MainAxisAlignment | child 视图和 icon 在row布局里面的alignment | 否 | MainAxisAlignment.start |
+| crossAxisAlignment | CrossAxisAlignment | child 视图和 icon 在row布局里面的CrossAlignment | 否 | CrossAxisAlignment.center |
 | mainAxisSize | MainAxisSize | child 视图和 icon 在row布局里面的mainAxisSize | 否 | MainAxisSize.min |
 | behavior | HitTestBehavior | 默认值HitTestBehavior.translucent，控制widget.onRadioItemClick触发的点击范围 | 否 | HitTestBehavior.translucent |
 

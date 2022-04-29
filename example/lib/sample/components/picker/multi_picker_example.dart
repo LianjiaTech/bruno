@@ -140,8 +140,39 @@ class MultiPickerExamplePage extends StatelessWidget {
                 ).show();
               },
             ),
+            ListItem(
+              title: "默认 Delegate",
+              describe: '使用默认 Delegate 构造数据展示',
+              onPressed: () {
+                BrnMultiDataPicker(
+                  context: context,
+                  title: '来源',
+                  delegate: BrnDefaultMultiDataPickerDelegate(
+                      firstSelectedIndex: 2,
+                      secondSelectedIndex: 1,
+                      thirdSelectedIndex: 1,
+                  data: _getDefaultDelegateData()),
+                  confirmClick: (list) {
+                    BrnToast.show(list.toString(), context);
+                  },
+                ).show();
+              },
+            ),
           ],
         ));
+  }
+
+  List<BrnMultiDataPickerEntity> _getDefaultDelegateData() {
+    BrnMultiDataPickerEntity data = BrnMultiDataPickerEntity(
+        text: '测试1', value: 5095791542795657, children: []);
+
+    BrnMultiDataPickerEntity data2 = BrnMultiDataPickerEntity(
+        text: '测试2', value: 5029051542795656, children: []);
+
+    BrnMultiDataPickerEntity data3 = BrnMultiDataPickerEntity(
+        text: '测试3', value: 5090501542795658, children: []);
+
+    return [data, data2, data3];
   }
 }
 
