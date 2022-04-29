@@ -138,7 +138,7 @@ class BrnGeneralFormItemState extends State<BrnGeneralFormItem> {
                     ),
 
                     Offstage(
-                      offstage: (widget.isRequire == null || !widget.isRequire),
+                      offstage: (!widget.isRequire),
                       child: BrnFormUtil.getRequireIcon(widget.isRequire),
                     ),
                     Container(

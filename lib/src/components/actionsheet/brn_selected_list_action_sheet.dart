@@ -6,8 +6,8 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
-typedef BrnItemTitleBuilder<T> = dynamic Function<T>(int index, T entity);
-typedef BrnItemDeleteCallback<T> = bool Function<T>(int deleteIdx, T deleteEntity);
+typedef BrnItemTitleBuilder<T> = dynamic Function (int index, T entity);
+typedef BrnItemDeleteCallback<T> = bool Function (int deleteIdx, T deleteEntity);
 typedef BrnListDismissCallback = void Function(bool isClosedByClearButton);
 
 
