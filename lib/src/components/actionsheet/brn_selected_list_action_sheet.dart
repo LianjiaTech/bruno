@@ -214,8 +214,8 @@ class BrnSelectedListActionSheet<T> {
 class _BrnActionSheetSelectedItemListContentWidget<T> extends StatefulWidget {
   final BrnSelectedListActionSheet itemWidget;
   final void Function(bool isClear)? onDismiss;
-  final dynamic Function(int index, T entity) itemTitleBuilder;
-  final bool Function(int deleteIdx, T deleteEntity)? onItemDelete;
+  final BrnItemTitleBuilder<T> itemTitleBuilder;
+  final BrnItemDeleteCallback<T>? onItemDelete;
   final BrnSelectedListActionSheetController? controller;
 
   OverlayState? _overlayState;
