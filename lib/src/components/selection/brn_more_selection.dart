@@ -245,8 +245,8 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
               node.filterType == BrnSelectionFilterType.dateRange ||
               node.filterType == BrnSelectionFilterType.dateRangeCalendar)) {
         if (node.customMap != null &&
-            (BrunoTools.isEmpty(node.customMap!['min']) ||
-                BrunoTools.isEmpty(node.customMap!['max']))) {
+            !BrunoTools.isEmpty(node.customMap!['min']) &&
+            !BrunoTools.isEmpty(node.customMap!['max'])) {
           if (!node.isValidRange()) {
             isValid = false;
             if (node.filterType == BrnSelectionFilterType.range) {
