@@ -29,19 +29,19 @@ group:
 ### 构造函数
 
 ```dart
-const BrnCheckbox({
-    Key key,
-    @required this.radioIndex,
-    @required this.onValueChangedAtIndex,
-    this.disable = false,
-    this.isSelected = false,
-    this.iconPadding,
-    this.child,
-    this.childOnRight = true,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
-    this.mainAxisSize = MainAxisSize.min,
-  });
+const BrnCheckbox(
+      {Key? key,
+      required this.radioIndex,
+      required this.onValueChangedAtIndex,
+      this.disable = false,
+      this.isSelected = false,
+      this.iconPadding,
+      this.child,
+      this.childOnRight = true,
+      this.mainAxisAlignment = MainAxisAlignment.start,
+      this.crossAxisAlignment = CrossAxisAlignment.center,
+      this.mainAxisSize = MainAxisSize.min,
+      this.behavior = HitTestBehavior.translucent});
 ```
 ### 参数说明
 
@@ -57,6 +57,7 @@ const BrnCheckbox({
 | mainAxisAlignment | MainAxisAlignment | child 视图和 icon 在row布局里面的alignment | 否 | MainAxisAlignment.start |
 | crossAxisAlignment | CrossAxisAlignment | child 视图和 icon 在row布局里面的CrossAlignment | 否 | CrossAxisAlignment.center |
 | mainAxisSize | MainAxisSize | child 视图和 icon 在row布局里面的mainAxisSize | 否 | MainAxisSize.min |
+| behavior | HitTestBehavior | 控制widget.onRadioItemClick触发的点击范围 | 否 | HitTestBehavior.translucent |
 
 ## 四、代码演示
 

@@ -9,7 +9,7 @@
 
 #### components
 
-**New components** <code>BrnSwitchFormItem</code> <code>BrnGeneralFormItem</code> <code>BrnMetaSwitch</code>.
+**New components** <code>BrnSwitchFormItem</code> <code>BrnGeneralFormItem</code> <code>BrnSwitchButton</code>.
 
 - <code>BrnTitleFormItem</code>: fix  <code>isRequire</code> parameter invalid [#179](https://github.com/LianjiaTech/bruno/issues/179).
 - <code>BrnTextBlockInputFormItem</code> : change the <code>minLines</code> and <code>maxLines</code> attributes  to be nullable [#181](https://github.com/LianjiaTech/bruno/pull/181) thanks to **xiao luobei**.
@@ -29,7 +29,6 @@
 - <code>BrnAppBar</code> theme customization <code>BrnAppBarConfig</code> supports the attribute <code>showDefaultBottom</code> to control the bottom dividing line of the AppBar
 - <code>BrnMultiDataPicker</code>:  add default delegate implementation<code>BrnDefaultMultiDataPickerDelegate</code>.
 - <code>BrnStepInputFormItem</code>: add attribute <code>canManualInput</code> and <code>controller</code> to support manual input function.
-- <code>BrnPairInfoTable</code>: add a callback <code>onExpanded</code> for expanding and collapsing state changes.
 - <code>BrnSearchText</code>: add attribute <code>inputFormatters</code><code>textInputType</code>.
 - <code>BrnAnchorTab</code>: support content dynamic change.
 - <code>BrnProgressBarChart</code>: when <code>barChartStyle</code> is  <code>BarChartStyle.horizontal</code> support item click callback.
