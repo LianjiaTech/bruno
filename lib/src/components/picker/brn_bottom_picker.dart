@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_picker_cliprrect.dart';
@@ -134,8 +132,8 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   Widget _buildBottomWidget() {
