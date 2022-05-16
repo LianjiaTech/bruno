@@ -1,6 +1,7 @@
 import 'dart:ui' as ui show Codec;
 import 'dart:ui';
 
+import 'package:bruno/src/utils/brn_ambiguate.dart';
 import 'package:flutter/widgets.dart';
 
 /// 描述: 用于加载gif图，
@@ -127,7 +128,7 @@ class GifImageState extends State<GifImage> {
       dynamic data;
       AssetBundleImageKey key = await provider.obtainKey(ImageConfiguration());
       data = await key.bundle.load(key.name);
-      ui.Codec codec = await PaintingBinding.instance!
+      ui.Codec codec = await ambiguate(PaintingBinding.instance)!
           .instantiateImageCodec(data.buffer.asUint8List());
       for (int i = 0; i < codec.frameCount; i++) {
         FrameInfo frameInfo = await codec.getNextFrame();

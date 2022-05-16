@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_appbar_config.dart';
+import 'package:bruno/src/utils/brn_ambiguate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -232,15 +233,16 @@ class BrnAppBar extends PreferredSize {
     } else if (brightness == Brightness.dark) {
       _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.dark());
     }
-    _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(backgroundColor: this.backgroundColor, showDefaultBottom: this.showDefaultBottom));
+    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
+        backgroundColor: this.backgroundColor,
+        showDefaultBottom: this.showDefaultBottom));
 
     _defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: _defaultConfig.configId)
         .appBarConfig
         .merge(_defaultConfig);
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    ambiguate(WidgetsBinding.instance)!.addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(_defaultConfig.systemUiOverlayStyle);
     });
     return super.build(context);

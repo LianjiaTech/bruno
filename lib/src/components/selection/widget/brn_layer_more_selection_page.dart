@@ -6,6 +6,7 @@ import 'package:bruno/src/components/toast/brn_toast.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
+import 'package:bruno/src/utils/brn_ambiguate.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,7 +47,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    ambiguate(WidgetsBinding.instance)!.addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     });
     _controller = AnimationController(

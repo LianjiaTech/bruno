@@ -1,3 +1,4 @@
+import 'package:bruno/src/utils/brn_ambiguate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -21,11 +22,9 @@ class MeasureSizeRenderObject extends RenderProxyBox {
     if (oldSize == newSize) return;
 
     oldSize = newSize;
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
-        onChange(newSize);
-      });
-    }
+    ambiguate(WidgetsBinding.instance)!.addPostFrameCallback((_) {
+      onChange(newSize);
+    });
   }
 }
 
