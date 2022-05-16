@@ -44,8 +44,10 @@ class BrnBottomPicker {
           onConfirmPressed: onConfirm,
           onCancelPressed: onCancel,
           barrierDismissible: barrierDismissible,
-          pickerTitleConfig:
-              BrnPickerTitleConfig(titleContent: title, showTitle: showTitle),
+          pickerTitleConfig: BrnPickerTitleConfig(
+            titleContent: title,
+            showTitle: showTitle,
+          ),
         );
         return Theme(data: theme, child: pageChild);
       },
@@ -184,7 +186,7 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
           widget.onConfirmPressed!();
         }
       },
-      pickerTitleConfig: BrnPickerTitleConfig(
+      pickerTitleConfig: widget.pickerTitleConfig.copyWith(
         cancel: _buildCancelWidget(),
         confirm: _buildConfirmWidget(),
       ),

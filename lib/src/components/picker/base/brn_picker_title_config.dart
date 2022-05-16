@@ -1,7 +1,6 @@
-
+import 'package:flutter/material.dart';
 
 import 'package:bruno/src/components/picker/base/brn_picker_constants.dart';
-import 'package:flutter/material.dart';
 
 class BrnPickerTitleConfig {
   final Text cancelDefault = const Text('OK');
@@ -36,4 +35,20 @@ class BrnPickerTitleConfig {
   final bool showTitle;
 
   final String titleContent;
+
+  BrnPickerTitleConfig copyWith({
+    Widget? cancel,
+    Widget? confirm,
+    Widget? title,
+    bool? showTitle,
+    String? titleContent,
+  }) {
+    return BrnPickerTitleConfig(
+      cancel: cancel ?? this.cancel,
+      confirm: confirm ?? this.confirm,
+      title: title ?? this.title,
+      showTitle: showTitle ?? this.showTitle,
+      titleContent: titleContent ?? this.titleContent,
+    );
+  }
 }
