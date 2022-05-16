@@ -240,7 +240,7 @@ class BrnAppBar extends PreferredSize {
         .appBarConfig
         .merge(_defaultConfig);
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(_defaultConfig.systemUiOverlayStyle);
     });
     return super.build(context);
