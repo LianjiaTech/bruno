@@ -13,9 +13,9 @@ import 'package:bruno/src/theme/configs/brn_button_config.dart';
 import 'package:bruno/src/theme/configs/brn_card_title_config.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
 import 'package:bruno/src/theme/configs/brn_dialog_config.dart';
+import 'package:bruno/src/theme/configs/brn_enhance_number_card_config.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:bruno/src/theme/configs/brn_gallery_detail_config.dart';
-import 'package:bruno/src/theme/configs/brn_enhance_number_card_config.dart';
 import 'package:bruno/src/theme/configs/brn_pair_info_config.dart';
 import 'package:bruno/src/theme/configs/brn_picker_config.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
@@ -339,6 +339,11 @@ class BrnDefaultConfigUtils {
     accessoryTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextSecondary,
       fontSize: defaultCommonConfig.fontSizeBase,
+    ),
+    cardTitlePanelRadius: defaultCommonConfig.radiusLg,
+    cardTitlePanelPadding: EdgeInsets.only(
+      left: defaultCommonConfig.hSpacingMd,
+      right: defaultCommonConfig.hSpacingMd,
     ),
     cardTitlePadding: EdgeInsets.only(
       top: defaultCommonConfig.vSpacingXl,

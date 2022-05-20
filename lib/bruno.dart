@@ -189,6 +189,7 @@ export 'src/components/button/collection/brn_text_button_panel.dart';
 export 'src/components/button/collection/brn_multiple_bottom_button.dart';
 
 //卡片标题
+export 'src/components/card_title/brn_card_title_panel.dart';
 export 'src/components/card_title/brn_action_card_title.dart';
 export 'src/components/card_title/brn_common_card_title.dart';
 

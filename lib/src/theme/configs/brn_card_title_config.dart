@@ -11,6 +11,8 @@ class BrnCardTitleConfig extends BrnBaseConfig {
     BrnTextStyle? titleWithHeightTextStyle,
     BrnTextStyle? detailTextStyle,
     BrnTextStyle? accessoryTextStyle,
+    double? cardTitlePanelRadius,
+    EdgeInsets? cardTitlePanelPadding,
     EdgeInsets? cardTitlePadding,
     BrnTextStyle? titleTextStyle,
     BrnTextStyle? subtitleTextStyle,
@@ -20,12 +22,35 @@ class BrnCardTitleConfig extends BrnBaseConfig {
   })  : _titleWithHeightTextStyle = titleWithHeightTextStyle,
         _detailTextStyle = detailTextStyle,
         _accessoryTextStyle = accessoryTextStyle,
+        _cardTitlePanelRadius = cardTitlePanelRadius,
+        _cardTitlePanelPadding = cardTitlePanelPadding,
         _cardTitlePadding = cardTitlePadding,
         _titleTextStyle = titleTextStyle,
         _subtitleTextStyle = subtitleTextStyle,
         _alignment = alignment,
         _cardBackgroundColor = cardBackgroundColor,
         super(configId: configId);
+
+  /// 标题卡片板圆角
+  ///
+  /// 默认为 [BrnCommonConfig.radiusLg]
+  double? _cardTitlePanelRadius;
+
+  double get cardTitlePanelRadius =>
+      _cardTitlePanelRadius ??
+      BrnDefaultConfigUtils.defaultCardTitleConfig.cardTitlePanelRadius;
+
+  /// 标题卡片板外边距间距
+  ///
+  /// EdgeInsets.only(
+  ///   left: [BrnCommonConfig.hSpacingMd],
+  ///   right: [BrnCommonConfig.hSpacingMd],
+  /// )
+  EdgeInsets? _cardTitlePanelPadding;
+
+  EdgeInsets get cardTitlePanelPadding =>
+      _cardTitlePanelPadding ??
+          BrnDefaultConfigUtils.defaultCardTitleConfig.cardTitlePanelPadding;
 
   /// 标题外边距间距
   ///
@@ -173,6 +198,8 @@ class BrnCardTitleConfig extends BrnBaseConfig {
   }
 
   BrnCardTitleConfig copyWith({
+    double? cardTitlePanelRadius,
+    EdgeInsets? cardTitlePanelPadding,
     EdgeInsets? cardTitlePadding,
     BrnTextStyle? titleWithHeightTextStyle,
     BrnTextStyle? titleTextStyle,
@@ -183,6 +210,8 @@ class BrnCardTitleConfig extends BrnBaseConfig {
     Color? cardBackgroundColor,
   }) {
     return BrnCardTitleConfig(
+      cardTitlePanelRadius: cardTitlePanelRadius ?? _cardTitlePanelRadius,
+      cardTitlePanelPadding: cardTitlePanelPadding ?? _cardTitlePanelPadding,
       cardTitlePadding: cardTitlePadding ?? _cardTitlePadding,
       titleWithHeightTextStyle:
           titleWithHeightTextStyle ?? _titleWithHeightTextStyle,
@@ -198,6 +227,8 @@ class BrnCardTitleConfig extends BrnBaseConfig {
   BrnCardTitleConfig merge(BrnCardTitleConfig? other) {
     if (other == null) return this;
     return copyWith(
+      cardTitlePanelRadius: other._cardTitlePanelRadius,
+      cardTitlePanelPadding: other._cardTitlePanelPadding,
       cardTitlePadding: other._cardTitlePadding,
       titleWithHeightTextStyle:
           titleWithHeightTextStyle.merge(other._titleWithHeightTextStyle),

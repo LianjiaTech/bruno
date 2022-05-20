@@ -3,6 +3,7 @@
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/card_title/brn_action_title_example.dart';
 import 'package:example/sample/components/card_title/brn_common_title_example.dart';
+import 'package:example/sample/components/card_title/brn_title_panel_example.dart';
 import 'package:example/sample/components/tabbar/brn_switch_title_example.dart';
 import 'package:example/sample/components/tabbar/sub_switch_title_example.dart';
 import 'package:example/sample/home/list_item.dart';
@@ -38,6 +39,18 @@ class TitleExample extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(
                 builder: (BuildContext context) {
                   return BrnActionTitleExample();
+                },
+              ));
+            },
+          ),
+          ListItem(
+            title: "卡片标题面板",
+            isSupportTheme: true,
+            describe: '卡片标题集合的面板',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return BrnTitlePanelExample();
                 },
               ));
             },
