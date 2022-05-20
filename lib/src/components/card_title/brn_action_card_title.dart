@@ -33,8 +33,11 @@ import 'package:flutter/material.dart';
 ///  * [BrnCommonCardTitle], 普通卡片标题组件
 ///
 class BrnActionCardTitle extends StatelessWidget {
-  ///标题显示文案：必填参数
-  final String title;
+  ///标题显示文案
+  final String? title;
+
+  ///标题显示组件
+  final Widget? titleWidget;
 
   ///箭头左边的文字
   final String? accessoryText;
@@ -52,7 +55,8 @@ class BrnActionCardTitle extends StatelessWidget {
 
   BrnActionCardTitle({
     Key? key,
-    required this.title,
+    this.title,
+    this.titleWidget,
     this.accessoryText,
     this.onTap,
     this.subTitle,
@@ -107,10 +111,14 @@ class BrnActionCardTitle extends StatelessWidget {
   }
 
   Widget _titleWidget(BrnCardTitleConfig defaultConfig) {
+    assert(title != null || titleWidget != null, "title 或 titleWidget不能同时为空");
+    if (titleWidget != null) {
+      return titleWidget!;
+    }
     return Container(
       padding: EdgeInsets.only(right: 8),
       child: Text(
-        this.title,
+        this.title!,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: defaultConfig.titleTextStyle.generateTextStyle(),
