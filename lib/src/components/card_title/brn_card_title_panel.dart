@@ -58,14 +58,15 @@ class BrnCardTitlePanel extends StatelessWidget {
         }
         acc.add(element);
       });
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(defaultConfig.cardTitlePanelRadius),
-        child: Container(
-          padding: defaultConfig.cardTitlePanelPadding,
+      return Container(
+        padding: defaultConfig.cardTitlePanelPadding,
+        decoration: BoxDecoration(
           color: defaultConfig.cardBackgroundColor,
-          child: Column(
-            children: acc,
-          ),
+          borderRadius:
+              BorderRadius.circular(defaultConfig.cardTitlePanelRadius),
+        ),
+        child: Column(
+          children: acc,
         ),
       );
     }
