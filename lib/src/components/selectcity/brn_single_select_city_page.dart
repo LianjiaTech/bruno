@@ -177,7 +177,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
                   debugPrint("OnItemClick: $e");
                   if (widget.onValueChanged != null) {
                     widget.onValueChanged!(e);
-                  }else {
+                  } else {
                     Navigator.pop(context, e);
                   }
                 },
@@ -222,8 +222,9 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
               debugPrint("OnItemClick: $model");
               if (widget.onValueChanged != null) {
                 widget.onValueChanged!(model);
+              } else {
+                Navigator.pop(context, model);
               }
-              Navigator.pop(context, model);
             },
           ),
         )
