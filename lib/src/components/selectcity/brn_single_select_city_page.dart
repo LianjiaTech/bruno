@@ -177,8 +177,9 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
                   debugPrint("OnItemClick: $e");
                   if (widget.onValueChanged != null) {
                     widget.onValueChanged!(e);
+                  }else {
+                    Navigator.pop(context, e);
                   }
-                  Navigator.pop(context, e);
                 },
               );
             }).toList(),
