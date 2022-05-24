@@ -106,7 +106,7 @@ class BrnSearchAppbar extends PreferredSize {
   Size get preferredSize => Size.fromHeight(BrnAppBarTheme.appBarHeight);
 
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     });
     return super.build(context);

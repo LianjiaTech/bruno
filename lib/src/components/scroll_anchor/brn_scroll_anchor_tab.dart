@@ -4,10 +4,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 /// 构建指定索引的Widget
-typedef AnchorTabWidgetIndexedBuilder = Widget Function(BuildContext context, int index);
+typedef AnchorTabWidgetIndexedBuilder = Widget Function(
+    BuildContext context, int index);
 
 /// 构建指定索引的Tab
-typedef AnchorTabIndexedBuilder = BadgeTab Function(BuildContext context, int index);
+typedef AnchorTabIndexedBuilder = BadgeTab Function(
+    BuildContext context, int index);
 
 class BrnAnchorTab extends StatefulWidget {
   // TabBar的样式
@@ -27,7 +29,8 @@ class BrnAnchorTab extends StatefulWidget {
       this.tabBarStyle = const BrnAnchorTabBarStyle()});
 
   @override
-  _BrnScrollAnchorTabWidgetState createState() => _BrnScrollAnchorTabWidgetState();
+  _BrnScrollAnchorTabWidgetState createState() =>
+      _BrnScrollAnchorTabWidgetState();
 }
 
 class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
@@ -69,7 +72,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
     fillKeyList();
 
-    WidgetsBinding.instance?.addPostFrameCallback((da) {
+    WidgetsBinding.instance.addPostFrameCallback((da) {
       fillOffset();
       _scrollController.addListener(() {
         _updateOffset();
@@ -97,7 +100,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     if (sub != 0) {
       _tabController = TabController(length: widget.itemCount, vsync: this);
     }
-    WidgetsBinding.instance?.addPostFrameCallback((da) {
+    WidgetsBinding.instance.addPostFrameCallback((da) {
       fillOffset();
     });
   }
@@ -150,8 +153,9 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     List<Widget> tmpWidget = [];
     if (widget.widgetIndexedBuilder != null) {
       for (int i = 0, n = widget.itemCount; i < n; i++) {
-        Widget itemWidget =
-            Container(key: _bodyKeyList[i], child: widget.widgetIndexedBuilder!(context, i));
+        Widget itemWidget = Container(
+            key: _bodyKeyList[i],
+            child: widget.widgetIndexedBuilder!(context, i));
         itemWidget = MeasureSize(
           onChange: (size) {
             _updateOffset();
@@ -172,14 +176,17 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
   void fillOffset() {
     Offset globalToLocal =
-        (_key.currentContext!.findRenderObject() as RenderBox).localToGlobal(Offset.zero);
+        (_key.currentContext!.findRenderObject() as RenderBox)
+            .localToGlobal(Offset.zero);
     listDy = globalToLocal.dy;
 
     for (int i = 0, n = widget.itemCount; i < n; i++) {
-      if (_cardOffsetList[i] == -1.0 && _bodyKeyList[i].currentContext != null) {
-        double cardOffset = (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
-            .localToGlobal(Offset.zero) //相对于原点 控件的位置
-            .dy; //y点坐标
+      if (_cardOffsetList[i] == -1.0 &&
+          _bodyKeyList[i].currentContext != null) {
+        double cardOffset =
+            (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
+                .localToGlobal(Offset.zero) //相对于原点 控件的位置
+                .dy; //y点坐标
 
         _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
       }
@@ -197,9 +204,10 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
   void _updateOffset() {
     for (int i = 0, n = widget.itemCount; i < n; i++) {
       if (_bodyKeyList[i].currentContext != null) {
-        double cardOffset = (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
-            .localToGlobal(Offset.zero) //相对于原点 控件的位置
-            .dy; //y点坐标
+        double cardOffset =
+            (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
+                .localToGlobal(Offset.zero) //相对于原点 控件的位置
+                .dy; //y点坐标
 
         _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
       }
@@ -208,7 +216,8 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
   //根据偏移量 确定tab索引
   int createIndex(double offset) {
-    int index = widget.itemCount - 1;;
+    int index = widget.itemCount - 1;
+    ;
     for (int i = 0; i < widget.itemCount - 1; i++) {
       if (offset >= _cardOffsetList[i] && (offset <= _cardOffsetList[i + 1])) {
         return i;

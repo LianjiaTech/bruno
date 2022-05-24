@@ -54,7 +54,7 @@ class BrnMarqueeTextState extends State<BrnMarqueeText>
   void initState() {
     super.initState();
     scroController = new ScrollController();
-    WidgetsBinding.instance?.addPostFrameCallback((callback) {
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
       var size = context.findRenderObject()!.paintBounds.size;
       widget.width = (widget.width) > 0 ? widget.width : size.width;
       widget.height = (widget.height) > 0 ? widget.height : size.height;

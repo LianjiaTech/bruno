@@ -232,15 +232,16 @@ class BrnAppBar extends PreferredSize {
     } else if (brightness == Brightness.dark) {
       _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.dark());
     }
-    _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(backgroundColor: this.backgroundColor, showDefaultBottom: this.showDefaultBottom));
+    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
+        backgroundColor: this.backgroundColor,
+        showDefaultBottom: this.showDefaultBottom));
 
     _defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: _defaultConfig.configId)
         .appBarConfig
         .merge(_defaultConfig);
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(_defaultConfig.systemUiOverlayStyle);
     });
     return super.build(context);
@@ -621,8 +622,7 @@ class _BrnSearchResultAppBar extends StatelessWidget {
       _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.dark());
     }
 
-    _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(
+    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
       backgroundColor: this.backgroundColor,
       showDefaultBottom: this.showDefaultBottom,
     ));
