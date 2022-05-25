@@ -69,7 +69,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
     fillKeyList();
 
-    WidgetsBinding.instance?.addPostFrameCallback((da) {
+    WidgetsBinding.instance.addPostFrameCallback((da) {
       fillOffset();
       _scrollController.addListener(() {
         _updateOffset();
@@ -97,7 +97,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     if (sub != 0) {
       _tabController = TabController(length: widget.itemCount, vsync: this);
     }
-    WidgetsBinding.instance?.addPostFrameCallback((da) {
+    WidgetsBinding.instance.addPostFrameCallback((da) {
       fillOffset();
     });
   }
