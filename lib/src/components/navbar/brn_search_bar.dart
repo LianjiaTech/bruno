@@ -1,4 +1,5 @@
 import 'package:bruno/src/components/navbar/brn_appbar.dart';
+import 'package:bindings_compatible/bindings_compatible.dart';
 import 'package:bruno/src/components/navbar/brn_appbar_theme.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
@@ -106,7 +107,7 @@ class BrnSearchAppbar extends PreferredSize {
   Size get preferredSize => Size.fromHeight(BrnAppBarTheme.appBarHeight);
 
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    useWidgetsBinding().addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     });
     return super.build(context);
