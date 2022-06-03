@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:bindings_compatible/bindings_compatible.dart';
 
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -240,7 +241,7 @@ class BrnAppBar extends PreferredSize {
         .appBarConfig
         .merge(_defaultConfig);
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    useWidgetsBinding().addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(_defaultConfig.systemUiOverlayStyle);
     });
     return super.build(context);

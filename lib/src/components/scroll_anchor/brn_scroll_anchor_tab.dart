@@ -1,4 +1,5 @@
 import 'package:bruno/src/components/popup/brn_measure_size.dart';
+import 'package:bindings_compatible/bindings_compatible.dart';
 import 'package:bruno/src/components/tabbar/normal/brn_tab_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
     fillKeyList();
 
-    WidgetsBinding.instance?.addPostFrameCallback((da) {
+    useWidgetsBinding().addPostFrameCallback((da) {
       fillOffset();
       _scrollController.addListener(() {
         _updateOffset();
@@ -97,7 +98,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     if (sub != 0) {
       _tabController = TabController(length: widget.itemCount, vsync: this);
     }
-    WidgetsBinding.instance?.addPostFrameCallback((da) {
+    useWidgetsBinding().addPostFrameCallback((da) {
       fillOffset();
     });
   }
