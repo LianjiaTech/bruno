@@ -1,7 +1,7 @@
 import 'dart:ui' as ui show Codec;
-import 'package:bindings_compatible/bindings_compatible.dart';
 import 'dart:ui';
 
+import 'package:bindings_compatible/bindings_compatible.dart';
 import 'package:flutter/widgets.dart';
 
 /// 描述: 用于加载gif图，
