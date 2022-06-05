@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_picker_cliprrect.dart';
@@ -46,8 +44,10 @@ class BrnBottomPicker {
           onConfirmPressed: onConfirm,
           onCancelPressed: onCancel,
           barrierDismissible: barrierDismissible,
-          pickerTitleConfig:
-              BrnPickerTitleConfig(titleContent: title, showTitle: showTitle),
+          pickerTitleConfig: BrnPickerTitleConfig(
+            titleContent: title,
+            showTitle: showTitle,
+          ),
         );
         return Theme(data: theme, child: pageChild);
       },
@@ -134,8 +134,8 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   Widget _buildBottomWidget() {
@@ -186,7 +186,7 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
           widget.onConfirmPressed!();
         }
       },
-      pickerTitleConfig: BrnPickerTitleConfig(
+      pickerTitleConfig: widget.pickerTitleConfig.copyWith(
         cancel: _buildCancelWidget(),
         confirm: _buildConfirmWidget(),
       ),
