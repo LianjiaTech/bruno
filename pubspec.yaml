@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  xml: ^5.1.2
+  xml: ^6.1.0
   lpinyin: ^2.0.3
   path_drawing: ^1.0.0
   flutter_easyrefresh: ^2.2.1
