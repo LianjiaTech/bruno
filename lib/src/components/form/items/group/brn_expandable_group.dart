@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-
-
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -36,6 +34,7 @@ class BrnExpandableGroup extends StatefulWidget {
     required this.title,
     this.subtitle,
     this.backgroundColor,
+    this.headBackgroundColor,
     this.onExpansionChanged,
     this.children = const <Widget>[],
     this.initiallyExpanded = false,
@@ -73,6 +72,9 @@ class BrnExpandableGroup extends StatefulWidget {
 
   /// The color to display behind the sublist when expanded.
   final Color? backgroundColor;
+
+  /// The color to display behind the header.
+  final Color? headBackgroundColor;
 
   /// Specifies if the list tile is initially expanded (true) or collapsed (false, the default).
   final bool initiallyExpanded;
@@ -167,7 +169,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
               _handleTap();
             },
             child: Container(
-              color: Colors.white,
+              color: widget.headBackgroundColor ?? Colors.white,
               padding:
                   EdgeInsets.only(left: 20, top: 14, bottom: 14, right: 20),
               child: Row(
@@ -187,7 +189,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
                           )),
                       // 副标题
                       Container(
-                        color: Colors.white,
+                        color: widget.headBackgroundColor ?? Colors.white,
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(top: 4),
                         child: Offstage(
