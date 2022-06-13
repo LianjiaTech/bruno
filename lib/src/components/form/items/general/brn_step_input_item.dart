@@ -315,7 +315,11 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
   int get _value => int.tryParse(_textEditingController.text) ?? 0;
 
   set _value(int value) {
-    _textEditingController.text = value.toString();
+    // 如果是通过代码设置TextField的值，就将光标移动到最后
+    _textEditingController.value = TextEditingValue(
+        text: value.toString(),
+        selection: TextSelection.fromPosition(
+            TextPosition(offset: value.toString().length)));
   }
 }
 
@@ -328,10 +332,11 @@ class RangeLimitedTextInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
     int? newNum = int.tryParse(newValue.text);
-    if(newNum == null && minValue == 0) {
-      return TextEditingValue(text: '');
+    if (newNum == null && minValue == 0) {
+      return const TextEditingValue(
+          text: '', selection: TextSelection.collapsed(offset: 0));
     } else if (newNum != null && minValue <= newNum && newNum <= maxValue) {
-      return TextEditingValue(text: newNum.toString());
+      return newValue;
     } else {
       return oldValue;
     }
