@@ -172,9 +172,9 @@ BrnDialogManager.showConfirmDialog(context,
     title: "标题内容",  
     cancel: '取消',  
     confirm: '确定',  
-    message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息。", confirmTap: () {  
+    message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息。", onConfirm: () {  
   BrnToast.show("确定", context);  
-}, cancelTap: () {  
+}, onCancel: () {  
   BrnToast.show("取消", context);  
 });  
 ```
@@ -199,9 +199,9 @@ BrnDialogManager.showSingleButtonDialog(context,
 BrnDialogManager.showConfirmDialog(context,  
     title: "标题内容标题内容标题内容标题内容",  
     cancel: '取消',  
-    confirm: '确定', confirmTap: () {  
+    confirm: '确定', onConfirm: () {  
   BrnToast.show("确定", context);  
-}, cancelTap: () {  
+}, onCancel: () {  
   BrnToast.show("取消", context);  
 });  
 ```
@@ -216,9 +216,9 @@ BrnDialogManager.showConfirmDialog(context,
     title: "标题内容",  
     confirm: "确定",  
     cancel: "取消",  
-    message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息。", confirmTap: () {  
+    message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息。", onConfirm: () {  
   BrnToast.show("确定", context);  
-}, cancelTap: () {  
+}, onCancel: () {  
   BrnToast.show("取消", context);  
 });  
 ```
@@ -313,7 +313,7 @@ BrnDialogManager.showConfirmDialog(context,
         BrnToast.show('$text clicked!  Url is $linkUrl', context);  
       }),  
     ),  
-    showIcon: true, confirmTap: () {  
+    showIcon: true, onConfirm: () {  
   BrnToast.show("确定", context);  
 });
 ```

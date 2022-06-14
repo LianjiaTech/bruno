@@ -63,7 +63,7 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
   final ValueChanged<int>? onBtnSelectChanged;
 
   /// 录入项 hint 提示
-  final String hint;
+  final String? hint;
 
   /// 录入项 值
   String? value;
@@ -98,7 +98,7 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint: "请选择",
+      this.hint,
       this.value,
       this.btnsTxt,
       this.selectBtnList,
@@ -224,7 +224,7 @@ class BrnTextQuickSelectFormItemState
       );
     } else {
       return Text(
-        widget.hint,
+        widget.hint != null ? widget.hint! : "请选择" + widget.title,
         textAlign: TextAlign.end,
         style: BrnFormUtil.getHintTextStyle(widget.themeData!),
       );

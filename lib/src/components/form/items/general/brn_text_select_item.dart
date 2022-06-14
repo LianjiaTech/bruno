@@ -64,7 +64,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
   final VoidCallback? onTap;
 
   /// 录入项 hint 提示
-  final String hint;
+  final String? hint;
 
   /// 录入项 值
   final String? value;
@@ -98,7 +98,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
     this.onAddTap,
     this.onRemoveTap,
     this.onTip,
-    this.hint: "请选择",
+    this.hint,
     this.value,
     this.valueMaxLines = 1,
     this.titleMaxLines,
@@ -126,7 +126,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint: "请选择",
+      this.hint,
       this.value,
       this.valueMaxLines = 1,
       this.titleMaxLines,
@@ -360,7 +360,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           textDirection: TextDirection.ltr,
           strutStyle: _contentStructStyle,
           text: TextSpan(
-            text: widget.hint,
+            text: widget.hint != null ? widget.hint : "请选择" + widget.title,
             style: BrnFormUtil.getHintTextStyle(widget.themeData!, height: 1),
           ));
     }
@@ -383,7 +383,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       );
     } else {
       return Text(
-        widget.hint,
+        widget.hint != null ? widget.hint! : "请选择" + widget.title,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
         style: BrnFormUtil.getHintTextStyle(widget.themeData!, height: 1),
@@ -392,11 +392,11 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   }
 
   String getCalculateText() {
-    String value = '请选择';
+    String value = "请选择" + widget.title;
     if (!BrunoTools.isEmpty(widget.value)) {
       value = widget.value!;
     } else if (!BrunoTools.isEmpty(widget.hint)) {
-      value = widget.hint;
+      value = widget.hint!;
     }
     return value;
   }

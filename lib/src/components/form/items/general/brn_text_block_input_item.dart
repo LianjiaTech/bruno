@@ -61,7 +61,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
   final int? maxCharCount;
 
   /// 录入项 hint 提示
-  final String hint;
+  final String? hint;
 
   /// 输入内容类型
   final String? inputType;
@@ -101,7 +101,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
       this.onRemoveTap,
       this.onTip,
       this.onChanged,
-      this.hint = "请输入",
+      this.hint,
       this.maxCharCount,
       this.autofocus: false,
       this.inputType,
@@ -193,7 +193,7 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
                   widget.themeData!, widget.isEdit),
               inputFormatters: widget.inputFormatters,
               decoration: InputDecoration(
-                hintText: widget.hint,
+                hintText: widget.hint != null ? widget.hint : "请输入" + widget.title,
                 hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData!),
                 contentPadding: EdgeInsets.all(0),
                 border: InputBorder.none,

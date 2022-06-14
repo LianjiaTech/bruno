@@ -63,7 +63,7 @@ class BrnTextInputFormItem extends StatefulWidget {
   final String? prefixText;
 
   /// 提示文案
-  final String hint;
+  final String? hint;
 
   /// 单位
   final String? unit;
@@ -101,7 +101,7 @@ class BrnTextInputFormItem extends StatefulWidget {
     this.onRemoveTap,
     this.onTip,
     this.prefixText,
-    this.hint = "请输入",
+    this.hint,
     this.unit,
     this.maxCharCount,
     this.autofocus: false,
@@ -189,7 +189,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                       border: InputBorder.none,
                       hintStyle:
                           BrnFormUtil.getHintTextStyle(widget.themeData!),
-                      hintText: widget.hint,
+                      hintText: widget.hint != null ? widget.hint : "请输入" + widget.title,
                       counterText: "",
                       contentPadding: EdgeInsets.all(0),
                       isDense: true,

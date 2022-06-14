@@ -351,11 +351,11 @@ BrnSelectionView(
       BrnSetCustomSelectionParams customHandleCallBack) {
     // ①用户操作之后，将自定义参数回传，触发 onSelectionChanged回调。
     BrnDialogManager.showConfirmDialog(context,
-        cancel: '取消', confirm: '确定', message: '点击确定，回传自定义参数到筛选', confirmTap: () {
+        cancel: '取消', confirm: '确定', message: '点击确定，回传自定义参数到筛选', onConfirm: () {
       count++;
       // ②回填自定义选中的参数，内部会触发 onSelectionChanged回调
       customHandleCallBack({"CKey": "CValue" + '$count'});
-    }, cancelTap: () {});
+    }, onCancel: () {});
   },
   onSelectionChanged: (int menuIndex,
       Map<String, String> filterParams,

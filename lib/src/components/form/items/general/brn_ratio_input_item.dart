@@ -61,7 +61,7 @@ class BrnRatioInputFormItem extends StatefulWidget {
   final VoidCallback? onTip;
 
   ///内容
-  final String hint;
+  final String? hint;
 
   /// 输入内容类型
   final String? inputType;
@@ -88,7 +88,7 @@ class BrnRatioInputFormItem extends StatefulWidget {
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint: "请输入",
+      this.hint,
       this.inputType,
       this.controller,
       this.inputFormatters,
@@ -174,7 +174,7 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
                           border: InputBorder.none,
                           hintStyle:
                               BrnFormUtil.getHintTextStyle(widget.themeData!),
-                          hintText: widget.hint,
+                          hintText: widget.hint != null ? widget.hint : "请输入" + widget.title,
                           counterText: "",
                           contentPadding: EdgeInsets.all(0),
                           isDense: true,

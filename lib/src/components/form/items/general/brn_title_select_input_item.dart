@@ -66,7 +66,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
   final VoidCallback? onTip;
 
   /// 提示文案
-  final String hint;
+  final String? hint;
 
   /// 最大可输入字符数
   final int? maxCount;
@@ -109,7 +109,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint = "请输入",
+      this.hint,
       this.maxCount,
       this.inputType = BrnInputType.text,
       this.selectedIndex = -1,
@@ -305,7 +305,7 @@ class BrnTitleSelectInputFormItemState
             color: Color(0xFFCCCCCC),
             fontSize: BrnFonts.f16,
             textBaseline: TextBaseline.alphabetic),
-        hintText: widget.hint,
+        hintText: widget.hint != null ? widget.hint : "请选择" + widget.title,
         counterText: "",
         contentPadding: EdgeInsets.all(0),
         isDense: true,
