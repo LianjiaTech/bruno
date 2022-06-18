@@ -65,6 +65,9 @@ class BrnTextInputFormItem extends StatefulWidget {
   /// 提示文案
   final String hint;
 
+  /// 文本对齐方式
+  final TextAlign textAlign;
+
   /// 单位
   final String? unit;
 
@@ -102,6 +105,7 @@ class BrnTextInputFormItem extends StatefulWidget {
     this.onTip,
     this.prefixText,
     this.hint = "请输入",
+    this.textAlign = TextAlign.end,
     this.unit,
     this.maxCharCount,
     this.autofocus: false,
@@ -198,7 +202,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent)),
                     ),
-                    textAlign: TextAlign.end,
+                    textAlign: widget.textAlign,
                     controller: _controller,
                     inputFormatters: widget.inputFormatters,
                     onChanged: (text) {

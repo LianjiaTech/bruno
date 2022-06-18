@@ -57,6 +57,7 @@ BrnTextInputFormItem({
   this.onTip,
   this.prefixText,
   this.hint = "请输入",
+  this.textAlign = TextAlign.end,
   this.unit,
   this.maxCharCount,
   this.autofocus: false,
@@ -92,6 +93,7 @@ BrnTextInputFormItem({
 | onTip | VoidCallback? | 点击"？"图标回调 | 否 | 无 |  |
 | prefixText | String? | 固定前缀文案 | 否 | 无 |  |
 | hint | String | 录入项 hint 提示 | 否 | "请输入" |  |
+| textAlign | TextAlign | 录入项文本对齐方式 | 否 | TextAlign.end |  |
 | unit | String? | 单位 | 否 | 无 |  |
 | maxCharCount | int? | 最大输入字符数 | 否 | 无 |  |
 | autofocus | bool | 是否自动获取焦点 | 否 | false |  |
