@@ -63,6 +63,9 @@ class BrnMultiChoiceInputFormItem extends StatefulWidget {
   /// 局部禁用list
   final List<bool> enableList;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   /// 选项选中状态变化回调
   final OnBrnFormMultiChoiceValueChanged? onChanged;
 
@@ -86,6 +89,7 @@ class BrnMultiChoiceInputFormItem extends StatefulWidget {
       this.options = const <String>[],
       this.enableList = const <bool>[],
       this.onChanged,
+        this.backgroundColor,
       this.themeData})
       : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
@@ -93,6 +97,9 @@ class BrnMultiChoiceInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -115,7 +122,7 @@ class BrnMultiChoiceInputFormItemState
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

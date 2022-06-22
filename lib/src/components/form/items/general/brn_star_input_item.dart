@@ -66,6 +66,9 @@ class BrnStarsFormItem extends StatefulWidget {
   /// 星值数量变化回调
   final OnBrnFormValueChanged? onChanged;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   /// form配置
   BrnFormItemConfig? themeData;
 
@@ -85,6 +88,7 @@ class BrnStarsFormItem extends StatefulWidget {
       this.sumStar: 5,
       this.value: 0,
       this.onChanged,
+      this.backgroundColor,
       this.themeData})
       : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
@@ -92,6 +96,8 @@ class BrnStarsFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -106,7 +112,7 @@ class BrnStarsFormItemState extends State<BrnStarsFormItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

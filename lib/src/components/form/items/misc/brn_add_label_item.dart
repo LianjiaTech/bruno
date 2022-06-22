@@ -24,11 +24,15 @@ class BrnAddLabel extends StatefulWidget {
   /// 点击录入区回调
   final VoidCallback? onTap;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   BrnAddLabel({
     Key? key,
     this.label,
     this.title = "",
     this.isEdit = true,
+    this.backgroundColor,
     this.onTap,
   }) : super(key: key);
 
@@ -50,7 +54,7 @@ class BrnAddLabelState extends State<BrnAddLabel> {
         BrnFormUtil.notifyAddTap(context, widget.onTap);
       },
       child: Container(
-        color: Colors.white,
+        color: widget.backgroundColor,
         padding: EdgeInsets.fromLTRB(20, 15, 0, 15),
         child: Text(
           widget.title,

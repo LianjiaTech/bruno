@@ -58,6 +58,9 @@ class BrnSelectAllTitle extends StatefulWidget {
   /// 选中项状态
   final bool selectState;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   /// form配置
   BrnFormItemConfig? themeData;
 
@@ -78,12 +81,15 @@ class BrnSelectAllTitle extends StatefulWidget {
     this.selectState = true,
     this.themeData,
     this.customActionWidget,
+    this.backgroundColor,
   }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
