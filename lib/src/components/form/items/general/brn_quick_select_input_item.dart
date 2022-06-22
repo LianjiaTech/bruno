@@ -85,6 +85,9 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
 
   BrnFormItemConfig? themeData;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   BrnTextQuickSelectFormItem(
       {Key? key,
       this.label,
@@ -107,6 +110,7 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
       this.isBtnsScroll: false,
       this.onTap,
       this.onBtnSelectChanged,
+      this.backgroundColor,
       this.themeData})
       : super(key: key) {
     themeData ??= BrnFormItemConfig();
@@ -114,6 +118,8 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
         .getConfig(configId: themeData!.configId)
         .formItemConfig
         .merge(themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -127,7 +133,7 @@ class BrnTextQuickSelectFormItemState
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

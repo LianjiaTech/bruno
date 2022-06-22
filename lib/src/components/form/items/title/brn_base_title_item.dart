@@ -47,6 +47,9 @@ class BrnBaseTitle extends StatefulWidget {
   /// 点击"？"图标回调
   final VoidCallback? onTip;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   /// form配置
   BrnFormItemConfig? themeData;
 
@@ -62,6 +65,7 @@ class BrnBaseTitle extends StatefulWidget {
     this.subTitleWidget,
     this.customActionWidget,
     this.onTip,
+    this.backgroundColor,
     this.themeData,
   }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
@@ -69,6 +73,8 @@ class BrnBaseTitle extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -86,7 +92,7 @@ class BrnTitleState extends State<BrnBaseTitle> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

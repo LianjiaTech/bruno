@@ -82,6 +82,9 @@ class BrnTextSelectFormItem extends StatefulWidget {
   /// 左:右 比例值  例如  左:右 = 6:4   则 ratio = 1.5
   double? layoutRatio;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   /// form配置
   BrnFormItemConfig? themeData;
 
@@ -103,6 +106,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
     this.valueMaxLines = 1,
     this.titleMaxLines,
     this.onTap,
+    this.backgroundColor,
     this.themeData,
   }) : super(key: key) {
     this._isAutoLayout = false;
@@ -111,6 +115,8 @@ class BrnTextSelectFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   BrnTextSelectFormItem.autoLayout(
@@ -132,6 +138,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
       this.titleMaxLines,
       this.onTap,
       this.layoutRatio,
+      this.backgroundColor,
       this.themeData})
       : super(key: key) {
     this._isAutoLayout = true;
@@ -140,6 +147,8 @@ class BrnTextSelectFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -156,7 +165,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -72,6 +72,9 @@ class BrnStepInputFormItem extends StatefulWidget {
   /// form配置
   BrnFormItemConfig? themeData;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   BrnStepInputFormItem({
     Key? key,
     this.label,
@@ -91,6 +94,7 @@ class BrnStepInputFormItem extends StatefulWidget {
     this.onChanged,
     this.canManualInput = false,
     this.controller,
+    this.backgroundColor,
     this.themeData,
   }) : super(key: key) {
     if (value != null) {
@@ -106,6 +110,8 @@ class BrnStepInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -147,7 +153,7 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
