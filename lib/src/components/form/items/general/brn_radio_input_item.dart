@@ -80,6 +80,9 @@ class BrnRadioInputFormItem extends StatefulWidget {
   /// 是否自动布局
   bool? _isAutoLayout;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   /// form配置
   BrnFormItemConfig? themeData;
 
@@ -101,6 +104,7 @@ class BrnRadioInputFormItem extends StatefulWidget {
     this.enableList,
     this.onChanged,
     this.themeData,
+    this.backgroundColor,
     this.titleMaxLines,
   }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
@@ -108,6 +112,8 @@ class BrnRadioInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
     this._isAutoLayout = false;
   }
 
@@ -130,6 +136,7 @@ class BrnRadioInputFormItem extends StatefulWidget {
     this.onChanged,
     this.titleMaxLines,
     this.layoutRatio,
+    this.backgroundColor,
     this.themeData,
   }) : super(key: key) {
     this._isAutoLayout = true;
@@ -138,6 +145,8 @@ class BrnRadioInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -153,7 +162,7 @@ class BrnRadioInputFormItemState extends State<BrnRadioInputFormItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -10,6 +10,7 @@ class BrnFormItemConfig extends BrnBaseConfig {
   /// 遵循全局配置
   /// 默认为 [BrnDefaultConfigUtils.defaultFormItemConfig]
   BrnFormItemConfig({
+    Color? backgroundColor,
     BrnTextStyle? titleTextStyle,
     BrnTextStyle? subTitleTextStyle,
     BrnTextStyle? errorTextStyle,
@@ -27,7 +28,8 @@ class BrnFormItemConfig extends BrnBaseConfig {
     BrnTextStyle? optionTextStyle,
     BrnTextStyle? optionSelectedTextStyle,
     String configId = GLOBAL_CONFIG_ID,
-  })  : _titleTextStyle = titleTextStyle,
+  })  : _backgroundColor = backgroundColor,
+        _titleTextStyle = titleTextStyle,
         _subTitleTextStyle = subTitleTextStyle,
         _errorTextStyle = errorTextStyle,
         _hintTextStyle = hintTextStyle,
@@ -48,6 +50,10 @@ class BrnFormItemConfig extends BrnBaseConfig {
   BrnFormItemConfig.generatorFromConfigId(String configId) {
     initThemeConfig(configId);
   }
+
+  /// 表单项整体背景色
+  /// default color is Colors.White
+  Color? _backgroundColor;
 
   /// 左侧标题文本样式
   ///
@@ -172,6 +178,10 @@ class BrnFormItemConfig extends BrnBaseConfig {
   /// )
   BrnTextStyle? _tipsTextStyle;
 
+  Color get backgroundColor =>
+      _backgroundColor ??
+      BrnDefaultConfigUtils.defaultFormItemConfig.backgroundColor;
+
   BrnTextStyle get headTitleTextStyle =>
       _headTitleTextStyle ??
       BrnDefaultConfigUtils.defaultFormItemConfig.headTitleTextStyle;
@@ -254,6 +264,7 @@ class BrnFormItemConfig extends BrnBaseConfig {
         .getConfig(configId: configId)
         .formItemConfig;
 
+    _backgroundColor ??= formItemThemeData.backgroundColor;
     _titlePaddingSm ??= formItemThemeData.titlePaddingSm;
     _titlePaddingLg ??= formItemThemeData.titlePaddingLg;
     _optionSelectedTextStyle = formItemThemeData.optionSelectedTextStyle.merge(
@@ -338,6 +349,7 @@ class BrnFormItemConfig extends BrnBaseConfig {
   }
 
   BrnFormItemConfig copyWith({
+    Color? backgroundColor,
     BrnTextStyle? titleTextStyle,
     BrnTextStyle? subTitleTextStyle,
     BrnTextStyle? errorTextStyle,
@@ -356,6 +368,7 @@ class BrnFormItemConfig extends BrnBaseConfig {
     BrnTextStyle? optionSelectedTextStyle,
   }) {
     return BrnFormItemConfig(
+      backgroundColor: backgroundColor ?? _backgroundColor,
       titleTextStyle: titleTextStyle ?? _titleTextStyle,
       subTitleTextStyle: subTitleTextStyle ?? _subTitleTextStyle,
       errorTextStyle: errorTextStyle ?? _errorTextStyle,
@@ -379,6 +392,7 @@ class BrnFormItemConfig extends BrnBaseConfig {
   BrnFormItemConfig merge(BrnFormItemConfig? other) {
     if (other == null) return this;
     return copyWith(
+      backgroundColor: other._backgroundColor,
       titleTextStyle: titleTextStyle.merge(other._titleTextStyle),
       subTitleTextStyle: subTitleTextStyle.merge(other._subTitleTextStyle),
       errorTextStyle: errorTextStyle.merge(other._errorTextStyle),

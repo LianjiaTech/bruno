@@ -182,6 +182,7 @@ class BrnDefaultConfigUtils {
 
   /// 表单项默认配置
   static BrnFormItemConfig defaultFormItemConfig = BrnFormItemConfig(
+    backgroundColor: Colors.white,
     headTitleTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextBase,
       fontSize: defaultCommonConfig.fontSizeHead,
