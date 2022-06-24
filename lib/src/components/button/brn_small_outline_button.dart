@@ -118,7 +118,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
           radius: defaultThemeConfig.smallButtonRadius,
           text: title,
           disableLineColor: defaultThemeConfig.commonConfig.borderColorBase,
-          lineColor: defaultThemeConfig.commonConfig.borderColorBase,
+          lineColor: lineColor ?? defaultThemeConfig.commonConfig.borderColorBase,
           textColor: textColor ?? defaultThemeConfig.commonConfig.colorTextBase,
           disableTextColor: Color(0xFFCCCCCC),
           isEnable: isEnable,
