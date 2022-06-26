@@ -587,18 +587,12 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
   }
 
   void _onRangeDateClick(DateTime date) {
-    if (_currentStartSelectedDate == null) {
+    if ((_currentStartSelectedDate != null  && _currentEndSelectedDate != null) ||
+        (_currentStartSelectedDate == null  && _currentEndSelectedDate == null)) {
       _currentStartSelectedDate = date;
-    } else if (_currentStartSelectedDate != date &&
-        _currentEndSelectedDate == null) {
+      _currentEndSelectedDate = null;
+    } else if(_currentStartSelectedDate != null && _currentEndSelectedDate == null) {
       _currentEndSelectedDate = date;
-    } else if (_currentStartSelectedDate == null &&
-        _currentEndSelectedDate != null) {
-      _currentStartSelectedDate = _currentEndSelectedDate;
-      _currentEndSelectedDate = null;
-    } else {
-      _currentStartSelectedDate = date;
-      _currentEndSelectedDate = null;
     }
 
     if (_currentStartSelectedDate != null && _currentEndSelectedDate != null) {
@@ -606,12 +600,6 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
         final DateTime d = _currentStartSelectedDate!;
         _currentStartSelectedDate = _currentEndSelectedDate;
         _currentEndSelectedDate = d;
-      }
-      if (date.isBefore(_currentStartSelectedDate!)) {
-        _currentStartSelectedDate = date;
-      }
-      if (date.isAfter(_currentEndSelectedDate!)) {
-        _currentEndSelectedDate = date;
       }
     }
 
