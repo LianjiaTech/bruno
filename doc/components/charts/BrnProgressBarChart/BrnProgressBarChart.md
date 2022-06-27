@@ -67,7 +67,7 @@ BrnProgressBarChart(
 | barChartStyle | BarChartStyle | 水平/竖直方向条形图 | 否 | BarChartStyle.vertical |
 | xAxis | ChartAxis | x轴数据 | 是 |  |
 | yAxis | ChartAxis | y轴数据 | 是 |  |
-| barBundleList | `List<BarBundle>` | 柱形数据 | 是 |  |
+| barBundleList | `List<BrnProgressBarBundle>` | 柱形数据 | 是 |  |
 | barGroupSpace | double | 柱状图间距 | 否 | 30 |
 | singleBarWidth | double | 条形宽度 | 否 | 30 |
 | barMaxValue | double | 柱状图最大值 | 否 | 0 |
@@ -75,6 +75,56 @@ BrnProgressBarChart(
 | selectedHintTextBackgroundColor | Color | 选中柱状图提示文案文本背景颜色 | 否 | Colors.black |
 | barChartSelectCallback | BrnProgressBarChartSelectCallback | 选中柱状图时候的回调 | 否 |  |
 | onBarItemClickInterceptor | OnBarItemClickInterceptor | 柱状图是否可点击回调 | 否 |  |
+
+
+
+### 其他类型说明
+
+#### ChartAxis
+
+x、y 轴刻度配置
+
+``` dart
+ChartAxis({
+  required this.axisItemList, /// 刻度数据集合
+  this.hasMark = true,  /// 是否有刻度线，暂时不起作用
+  this.axisStyle = AxisStyle.axisStyleSolid,  /// 刻度线风格：实线/虚线/无
+  this.inclineText = false,  /// 倾斜坐标轴文本，避免文本距离过近，目前仅针对X轴文本有效
+});
+```
+
+
+
+#### BrnProgressBarBundle
+
+柱状图中的一组数据，
+
+``` dart
+BrnProgressBarBundle({
+  required this.barList, /// 一组数据集
+  this.colors = _defaultColor, /// Progress 值对应的颜色
+  this.hintColors = _defaultHintColor, /// 柱状背景色
+});
+```
+
+
+
+#### BrnProgressBarItem
+
+BrnProgressBarBundle 一组数据中单个柱状的配置
+
+``` dart
+BrnProgressBarItem({
+  this.text, /// 柱状数据的描述文本(仅水平方向会展示)
+  required this.value, /// 当前值
+  this.hintValue, /// 最大值
+  this.selectedHintText, /// 选中时气泡文字
+  this.showBarValueText, /// 展示柱形的值
+  this.showBarValueTextStyle = _showBarValueTextStyle, ///展示柱形值文本样式
+});
+```
+
+
 
 ## 四、代码演示
 
