@@ -586,32 +586,34 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
     });
   }
 
+  /// 在选择 [date] 这个时间时，startDate、endDate 的状态共四种组合（×: 代表无值， √: 代表有值）
+  ///   start    end
+  /// ①  √       √
+  /// ②  ×       ×
+  /// ③  √       ×
+  /// ④  ×       √
   void _onRangeDateClick(DateTime date) {
-    if (_currentStartSelectedDate == null) {
-      _currentStartSelectedDate = date;
-    } else if (_currentStartSelectedDate != date &&
-        _currentEndSelectedDate == null) {
-      _currentEndSelectedDate = date;
-    } else if (_currentStartSelectedDate == null &&
-        _currentEndSelectedDate != null) {
-      _currentStartSelectedDate = _currentEndSelectedDate;
-      _currentEndSelectedDate = null;
-    } else {
+    // 当为 ①、② 都有值，或都无值的时候，在选择 date 后，将date 赋值给 start，end 置空
+    if ((_currentStartSelectedDate != null  && _currentEndSelectedDate != null) ||
+        (_currentStartSelectedDate == null  && _currentEndSelectedDate == null)) {
       _currentStartSelectedDate = date;
       _currentEndSelectedDate = null;
+    } else{
+      // 当为 ③、④ 其中有一个有值时，在选择 date 后，将 date 赋值给为空的一方
+      if(_currentStartSelectedDate == null) {
+        _currentStartSelectedDate = date;
+      }
+      if(_currentEndSelectedDate == null) {
+        _currentEndSelectedDate = date;
+      }
     }
 
+    // 根据 start、end 时间大小，交换其值
     if (_currentStartSelectedDate != null && _currentEndSelectedDate != null) {
       if (!_currentEndSelectedDate!.isAfter(_currentStartSelectedDate!)) {
         final DateTime d = _currentStartSelectedDate!;
         _currentStartSelectedDate = _currentEndSelectedDate;
         _currentEndSelectedDate = d;
-      }
-      if (date.isBefore(_currentStartSelectedDate!)) {
-        _currentStartSelectedDate = date;
-      }
-      if (date.isAfter(_currentEndSelectedDate!)) {
-        _currentEndSelectedDate = date;
       }
     }
 

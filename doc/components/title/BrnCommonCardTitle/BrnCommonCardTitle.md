@@ -66,14 +66,10 @@ BrnCommonCardTitle(
 
 ```dart
 BrnCommonCardTitle(
-  title: '非箭头Title',
-  accessoryWidget: BrnStateTag(tagText: '状态标签'),
-  subTitleWidget: BrnRatingStar(
-      count: 4,
-      selectedCount: 2,
-  ),
+  title: '标题',
+  accessoryText: '辅助文本',
   onTap: () {
-    BrnToast.show('BrnPlainCardTitle is clicked', context);
+    BrnToast.show('BrnCommonCardTitle is clicked', context);
   },
 )
 ```
@@ -87,11 +83,11 @@ BrnCommonCardTitle(
   title: '非箭头Title',
   accessoryWidget: BrnStateTag(tagText: '状态标签'),
   subTitleWidget: BrnRatingStar(
-    count: 4,
+    count: 2,
     selectedCount: 2,
   ),
   onTap: () {
-    BrnToast.show('BrnPlainCardTitle is clicked', context);
+    BrnToast.show('BrnCommonCardTitle is clicked', context);
   },
 ),
 ```
@@ -103,9 +99,14 @@ BrnCommonCardTitle(
 ```dart
 BrnCommonCardTitle(
   title: '非箭头Title',
-  accessoryText: '辅助文本',
+  subTitleWidget: BrnRatingStar(
+    count: 2,
+    selectedCount: 2,
+  ),
+  accessoryWidget: BrnStateTag(tagText: '状态标签'),
+  detailTextString: '副标题副标题副标题',
   onTap: () {
-  BrnToast.show('BrnPlainCardTitle is clicked', context);
+    BrnToast.show('BrnCommonCardTitle is clicked', context);
   },
 )
 ```

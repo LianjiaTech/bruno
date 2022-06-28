@@ -13,6 +13,10 @@ class BigMainButtonExample extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            BrnBigMainButton(title: "登录", bgColor: Colors.red, themeData: BrnButtonConfig(
+              bigButtonRadius: 255,
+              bigButtonHeight: 50,
+              bigButtonFontSize: 20,),),
             Text(
               '规则',
               style: TextStyle(
