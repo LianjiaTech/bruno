@@ -123,7 +123,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
           disableTextColor: Color(0xFFCCCCCC),
           isEnable: isEnable,
           alignment: Alignment.center,
-          fontWeight: FontWeight.bold,
+          fontWeight: fontWeight,
           fontSize: defaultThemeConfig.smallButtonFontSize,
           onTap: onTap,
           backgroundColor: Colors.white,
