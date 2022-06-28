@@ -36,6 +36,22 @@ class _BrnCommonTitleExampleState extends State<BrnCommonTitleExample> {
                   'accessoryWidget的高度就是25，如果传入的widget过大会显示不全\n'
                   '上下的间距是16',
             ),
+            SizedBox(height: 50,),
+            Text(
+              '正常案例',
+              style: TextStyle(
+                color: Color(0xFF222222),
+                fontSize: 28,
+              ),
+            ),
+            BrnCommonCardTitle(
+              title: '标题',
+              accessoryText: '辅助文本',
+              onTap: () {
+                BrnToast.show('BrnPlainCardTitle is clicked', context);
+              },
+            ),
+            SizedBox(height: 50,),
             Text(
               '正常案例',
               style: TextStyle(
@@ -45,15 +61,17 @@ class _BrnCommonTitleExampleState extends State<BrnCommonTitleExample> {
             ),
             BrnCommonCardTitle(
               title: '非箭头Title',
-              accessoryWidget: BrnStateTag(tagText: '状态标签'),
               subTitleWidget: BrnRatingStar(
                 count: 2,
                 selectedCount: 2,
               ),
+              accessoryWidget: BrnStateTag(tagText: '状态标签'),
+              detailTextString: '副标题副标题副标题',
               onTap: () {
                 BrnToast.show('BrnPlainCardTitle is clicked', context);
               },
             ),
+            SizedBox(height: 50,),
             Text(
               '正常案例',
               style: TextStyle(
@@ -80,13 +98,6 @@ class _BrnCommonTitleExampleState extends State<BrnCommonTitleExample> {
               onTap: () {
                 BrnToast.show('BrnCommonCardTitle is clicked', context);
               },
-            ),
-            Text(
-              '正常案例',
-              style: TextStyle(
-                color: Color(0xFF222222),
-                fontSize: 28,
-              ),
             ),
           ],
         ),
