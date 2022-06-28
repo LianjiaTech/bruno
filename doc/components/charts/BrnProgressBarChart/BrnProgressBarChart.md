@@ -87,7 +87,6 @@ x、y 轴刻度配置
 ``` dart
 ChartAxis({
   required this.axisItemList, /// 刻度数据集合
-  this.hasMark = true,  /// 是否有刻度线，暂时不起作用
   this.axisStyle = AxisStyle.axisStyleSolid,  /// 刻度线风格：实线/虚线/无
   this.inclineText = false,  /// 倾斜坐标轴文本，避免文本距离过近，目前仅针对X轴文本有效
 });
