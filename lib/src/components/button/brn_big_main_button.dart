@@ -70,6 +70,8 @@ class BrnBigMainButton extends StatelessWidget {
       alignment: Alignment.center,
       isEnable: isEnable,
       text: title,
+      borderRadius: BorderRadius.all(Radius.circular(defaultThemeConfig.bigButtonRadius)),
+      fontSize: defaultThemeConfig.bigButtonFontSize,
       backgroundColor: bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
       disableBackgroundColor: Color(0xFFCCCCCC),
       onTap: onTap,
