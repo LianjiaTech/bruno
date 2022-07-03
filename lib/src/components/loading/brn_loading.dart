@@ -1,4 +1,5 @@
 import 'package:bruno/src/constants/brn_strings_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/material.dart';
 
 /// 页面或者弹窗中间的圆形加载框，左侧是可定制的加载文案[content]，比如：加载中、提交中等等
@@ -28,43 +29,50 @@ import 'package:flutter/material.dart';
 ///  * [BrnLoadingDialog], 加载对话框。
 
 class BrnPageLoading extends StatelessWidget {
-  final String content;
+  final String? content;
+  final BoxConstraints constraints;
 
-  const BrnPageLoading({this.content = BrnStrings.loadingContent});
+  const BrnPageLoading({
+    this.content,
+    this.constraints = const BoxConstraints(minWidth: 130, maxWidth: 130, minHeight: 50, maxHeight: 50,),
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 50,
-        width: 130,
+        constraints: constraints,
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
             color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
-        child: Center(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Container(
-                height: 19,
-                width: 19,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2.0,
-                  valueColor: AlwaysStoppedAnimation(Colors.white),
-                ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              height: 19,
+              width: 19,
+              child: CircularProgressIndicator(
+                strokeWidth: 2.0,
+                valueColor: AlwaysStoppedAnimation(Colors.white),
               ),
-              Container(
+            ),
+            Flexible(
+              child: Container(
                 margin: EdgeInsets.only(left: 8),
                 child: Text(
-                  content,
+                  content ?? BrnIntl.i10n(context).loading,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
                       decoration: TextDecoration.none),
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -3,6 +3,10 @@ library bruno;
 // 主题
 export 'src/theme/brn_theme.dart';
 
+// l10n
+export 'src/l10n/brn_intl.dart';
+export 'src/l10n/brn_resources.dart';
+
 //工具类 和 资源
 export 'src/components/toast/brn_toast.dart';
 export 'src/utils/brn_tools.dart';

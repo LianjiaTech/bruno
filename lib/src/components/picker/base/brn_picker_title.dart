@@ -11,13 +11,11 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class BrnPickerTitle extends StatelessWidget {
   final BrnPickerTitleConfig pickerTitleConfig;
-  final DateTimePickerLocale? locale;
   final DateVoidCallback onCancel, onConfirm;
   BrnPickerConfig? themeData;
 
   BrnPickerTitle({
     Key? key,
-    this.locale,
     required this.onCancel,
     required this.onConfirm,
     this.pickerTitleConfig = BrnPickerTitleConfig.Default,
