@@ -57,6 +57,12 @@ class BrnSelectTag extends StatefulWidget {
   /// 多选时的初始状态数组
   final List<bool>? initTagState;
 
+  /// 默认边框
+  final BoxBorder border;
+
+  /// 选中效果边框
+  final BoxBorder selectBorder;
+
   BrnTagConfig? themeData;
 
   BrnSelectTag({
@@ -76,6 +82,10 @@ class BrnSelectTag extends StatefulWidget {
     this.softWrap = true,
     this.alignment = Alignment.centerLeft,
     this.fixWidthMode = true,
+    this.border = const Border.fromBorderSide(BorderSide(
+        color: Colors.transparent, width: 1, style: BorderStyle.solid)),
+    this.selectBorder = const Border.fromBorderSide(BorderSide(
+        color: Colors.transparent, width: 1, style: BorderStyle.solid)),
     this.themeData,
   }) : super(key: key) {
     if (isSingleSelect == true) {
@@ -199,10 +209,12 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
     Container container = Container(
       constraints: BoxConstraints(minWidth: widget.themeData!.tagMinWidth),
       decoration: BoxDecoration(
-          color: selected
-              ? (widget.themeData!.selectedTagBackgroundColor.withOpacity(0.12))
-              : (widget.themeData!.tagBackgroundColor),
-          borderRadius: BorderRadius.circular(widget.themeData!.tagRadius)),
+        color: selected
+            ? (widget.themeData!.selectedTagBackgroundColor.withOpacity(0.12))
+            : (widget.themeData!.tagBackgroundColor),
+        borderRadius: BorderRadius.circular(widget.themeData!.tagRadius),
+        border: selected ? widget.selectBorder : widget.border,
+      ),
       width: widget.fixWidthMode ? widget.themeData!.tagWidth : null,
       height: widget.themeData!.tagHeight,
       padding: EdgeInsets.only(left: 8, right: 8),
