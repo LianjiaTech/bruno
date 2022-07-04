@@ -75,8 +75,9 @@ class BrnTitleFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -137,10 +138,8 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
                         padding: EdgeInsets.only(right: 20),
                         child: Text(
                           widget.operationLabel ?? "",
-                          style: TextStyle(
-                            color: widget.themeData!.commonConfig.brandPrimary,
-                            fontSize: BrnFonts.f16,
-                          ),
+                          style:
+                              BrnFormUtil.getOptionTextStyle(widget.themeData!),
                         )),
                   ),
                 ),
