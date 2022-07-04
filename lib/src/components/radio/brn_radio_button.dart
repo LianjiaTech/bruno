@@ -47,6 +47,18 @@ class BrnRadioButton extends StatelessWidget {
   /// 默认值HitTestBehavior.translucent控制widget.onRadioItemClick触发的点击范围
   final HitTestBehavior behavior;
 
+  /// 选中图片
+  final Image? selectedImage;
+
+  /// 未选中图片
+  final Image? unselectedImage;
+
+  /// 禁用状态选中图片
+  final Image? disSelectedImage;
+
+  /// 禁用状态未选中图片
+  final Image? disUnselectedImage;
+
   const BrnRadioButton(
       {Key? key,
       required this.radioIndex,
@@ -59,7 +71,11 @@ class BrnRadioButton extends StatelessWidget {
       this.mainAxisAlignment = MainAxisAlignment.start,
       this.crossAxisAlignment = CrossAxisAlignment.center,
       this.mainAxisSize = MainAxisSize.min,
-      this.behavior = HitTestBehavior.translucent});
+      this.behavior = HitTestBehavior.translucent,
+      this.selectedImage,
+      this.unselectedImage,
+      this.disSelectedImage,
+      this.disUnselectedImage});
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +88,14 @@ class BrnRadioButton extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
-      selectedImage: BrunoTools.getAssetImageWithBandColor(
-          BrnAsset.iconRadioSingleSelected),
-      unselectedImage: BrunoTools.getAssetImage(BrnAsset.iconRadioUnSelected),
-      disSelectedImage:
+      selectedImage: selectedImage ??
+          BrunoTools.getAssetImageWithBandColor(
+              BrnAsset.iconRadioSingleSelected),
+      unselectedImage: unselectedImage ??
+          BrunoTools.getAssetImage(BrnAsset.iconRadioUnSelected),
+      disSelectedImage: disSelectedImage ??
           BrunoTools.getAssetImage(BrnAsset.iconRadioDisableMultiSelected),
-      disUnselectedImage:
+      disUnselectedImage: disUnselectedImage ??
           BrunoTools.getAssetImage(BrnAsset.iconRadioDisableUnselected),
       child: child,
       onRadioItemClick: () {
