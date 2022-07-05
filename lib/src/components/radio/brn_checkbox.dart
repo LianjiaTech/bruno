@@ -54,10 +54,10 @@ class BrnCheckbox extends StatefulWidget {
   final Image? unselectedImage;
 
   /// 禁用状态选中图片
-  final Image? disSelectedImage;
+  final Image? selectedImageDisabled;
 
   /// 禁用状态未选中图片
-  final Image? disUnselectedImage;
+  final Image? unselectedImageDisabled;
 
   const BrnCheckbox(
       {Key? key,
@@ -74,8 +74,8 @@ class BrnCheckbox extends StatefulWidget {
       this.behavior = HitTestBehavior.translucent,
       this.selectedImage,
       this.unselectedImage,
-      this.disSelectedImage,
-      this.disUnselectedImage});
+      this.selectedImageDisabled,
+      this.unselectedImageDisabled});
 
   @override
   State<StatefulWidget> createState() {
@@ -108,9 +108,9 @@ class BrnCheckboxState extends State<BrnCheckbox> {
               BrnAsset.iconRadioMultiSelected),
       unselectedImage: widget.unselectedImage ??
           BrunoTools.getAssetImage(BrnAsset.iconRadioUnSelected),
-      disSelectedImage: widget.disSelectedImage ??
+      disSelectedImage: widget.selectedImageDisabled ??
           BrunoTools.getAssetImage(BrnAsset.iconRadioDisableSingleSelected),
-      disUnselectedImage: widget.disUnselectedImage ??
+      disUnselectedImage: widget.unselectedImageDisabled ??
           BrunoTools.getAssetImage(BrnAsset.iconRadioDisableUnselected),
       child: widget.child,
       onRadioItemClick: () {

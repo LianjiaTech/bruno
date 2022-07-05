@@ -1,3 +1,4 @@
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -51,6 +52,9 @@ class BrnTitleFormItem extends StatefulWidget {
   /// 背景色
   final Color? backgroundColor;
 
+  /// 自定义操作区文本样式设置
+  final TextStyle? optionTextStyle;
+
   /// form配置
   BrnFormItemConfig? themeData;
 
@@ -68,6 +72,7 @@ class BrnTitleFormItem extends StatefulWidget {
       this.operationLabel,
       this.onTap,
       this.backgroundColor,
+      this.optionTextStyle,
       this.themeData})
       : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
@@ -138,8 +143,12 @@ class BrnTitleFormItemState extends State<BrnTitleFormItem> {
                         padding: EdgeInsets.only(right: 20),
                         child: Text(
                           widget.operationLabel ?? "",
-                          style:
-                              BrnFormUtil.getOptionTextStyle(widget.themeData!),
+                          style: widget.optionTextStyle ??
+                              TextStyle(
+                                color:
+                                    widget.themeData!.commonConfig.brandPrimary,
+                                fontSize: BrnFonts.f16,
+                              ),
                         )),
                   ),
                 ),

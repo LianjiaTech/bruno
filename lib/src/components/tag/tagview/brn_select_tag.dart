@@ -61,7 +61,7 @@ class BrnSelectTag extends StatefulWidget {
   final BoxBorder border;
 
   /// 选中效果边框
-  final BoxBorder selectBorder;
+  final BoxBorder selectedBorder;
 
   BrnTagConfig? themeData;
 
@@ -84,7 +84,7 @@ class BrnSelectTag extends StatefulWidget {
     this.fixWidthMode = true,
     this.border = const Border.fromBorderSide(BorderSide(
         color: Colors.transparent, width: 1, style: BorderStyle.solid)),
-    this.selectBorder = const Border.fromBorderSide(BorderSide(
+    this.selectedBorder = const Border.fromBorderSide(BorderSide(
         color: Colors.transparent, width: 1, style: BorderStyle.solid)),
     this.themeData,
   }) : super(key: key) {
@@ -213,7 +213,7 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
             ? (widget.themeData!.selectedTagBackgroundColor.withOpacity(0.12))
             : (widget.themeData!.tagBackgroundColor),
         borderRadius: BorderRadius.circular(widget.themeData!.tagRadius),
-        border: selected ? widget.selectBorder : widget.border,
+        border: selected ? widget.selectedBorder : widget.border,
       ),
       width: widget.fixWidthMode ? widget.themeData!.tagWidth : null,
       height: widget.themeData!.tagHeight,
