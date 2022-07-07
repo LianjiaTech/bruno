@@ -56,6 +56,11 @@ class BrnExpandFormGroup extends StatefulWidget {
   /// 内部子项
   final List<Widget> children;
 
+  /// The color to display behind the sublist when expanded.
+  final Color? backgroundColor;
+
+
+
   BrnExpandFormGroup({
     Key? key,
     this.label,
@@ -69,6 +74,7 @@ class BrnExpandFormGroup extends StatefulWidget {
     this.onTip,
     this.isExpand = true,
     this.deleteLabel,
+    this.backgroundColor,
     required this.children,
   }) : super(key: key);
 
@@ -87,6 +93,7 @@ class BrnExpandFormGroupState extends State<BrnExpandFormGroup> {
         subtitle: widget.subTitle,
         deleteText: widget.deleteLabel,
         initiallyExpanded: widget.isExpand,
+        backgroundColor: widget.backgroundColor,
         children: getSubItem(),
         callback: () {
           if (!BrnFormUtil.isEdit(widget.isEdit)) {

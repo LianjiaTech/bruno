@@ -48,6 +48,9 @@ class ExpansionElementWidget extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   /// The primary content of the list item.
@@ -169,12 +172,10 @@ class _ExpansionElementState extends State<ExpansionElementWidget>
 
   Widget _buildHeader(BuildContext context, Widget? child) {
     final Color borderSideColor = /*_borderColor.value ??*/ Colors.transparent;
-    final Color backgroundColor = /*_backgroundColor.value ??*/ Colors
-        .transparent;
 
     return Container(
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: widget.themeData!.backgroundColor,
         border: Border(
           top: BorderSide(color: borderSideColor),
           bottom: BorderSide(color: borderSideColor),
@@ -184,7 +185,6 @@ class _ExpansionElementState extends State<ExpansionElementWidget>
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -238,7 +238,6 @@ class _ExpansionElementState extends State<ExpansionElementWidget>
 
           // 副标题
           Container(
-            color: Colors.white,
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(left: 20, top: 4, bottom: 14),
             child: Offstage(
