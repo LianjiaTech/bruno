@@ -77,6 +77,12 @@ class BrnCheckboxState extends State<BrnCheckbox> {
   }
 
   @override
+  void didUpdateWidget(covariant BrnCheckbox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _isSelected = widget.isSelected;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BrnRadioCore(
       radioIndex: widget.radioIndex,
