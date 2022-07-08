@@ -38,34 +38,38 @@ group:
 
 ```dart
 BrnSelectAllTitle({
-  Key? key,
-  this.title = "",
-  this.subTitle,
-  this.isRequire = false,
-  this.isEdit = true,
-  this.error = "",
-  this.tipLabel,
-  this.titleWidget,
-  this.subTitleWidget,
-  this.onTip,
-  this.onSelectAll,
-  this.selectText,
-  this.selectTextWidget,
-  this.selectState = true,
-  this.themeData,
-  this.customActionWidget,
-}):super(key: key) {
-  this.themeData ??= BrnFormItemConfig();
-  this.themeData = BrnThemeConfigurator.instance
-      .getConfig(configId: this.themeData!.configId)
-      .formItemConfig
-      .merge(this.themeData);
-}
+    Key? key,
+    this.title = "",
+    this.subTitle,
+    this.isRequire = false,
+    this.isEdit = true,
+    this.error = "",
+    this.tipLabel,
+    this.titleWidget,
+    this.subTitleWidget,
+    this.onTip,
+    this.onSelectAll,
+    this.selectText,
+    this.selectTextWidget,
+    this.selectState = true,
+    this.themeData,
+    this.customActionWidget,
+    this.backgroundColor,
+  }) : super(key: key) {
+    this.themeData ??= BrnFormItemConfig();
+    this.themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: this.themeData!.configId)
+        .formItemConfig
+        .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
+  }
 ```
 ### 参数说明
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
 | --- | --- | --- | --- | --- | --- |
+| backgroundColor | Color? | 表单项背景色 | 否 | 走主题配置默认色值 Colors.white |  |
 | title | String | 录入项标题 | 否 | '' |  |
 | titleWidget | Widget? | 录入项标题Widget | 否 | 无 |  |
 | subTitle | String? | 录入项子标题 | 否 | 无 |  |
