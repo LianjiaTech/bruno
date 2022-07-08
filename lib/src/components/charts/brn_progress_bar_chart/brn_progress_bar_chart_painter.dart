@@ -56,9 +56,6 @@ class AxisItem {
 class ChartAxis {
   final List<AxisItem> axisItemList;
 
-  /// 是否有刻度
-  final bool hasMark;
-
   /// 实线/虚线/无
   final AxisStyle axisStyle;
 
@@ -77,7 +74,6 @@ class ChartAxis {
 
   ChartAxis({
     required this.axisItemList,
-    this.hasMark = true,
     this.axisStyle = AxisStyle.axisStyleSolid,
     this.inclineText = false,
   });

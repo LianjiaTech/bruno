@@ -28,14 +28,16 @@ class ProgressBarChartExampleState extends State<ProgressBarChartExample> {
           children: <Widget>[
             BrnProgressBarChart(
               barChartStyle: BarChartStyle.horizontal,
-              xAxis: ChartAxis(axisItemList: [
-                AxisItem(showText: '1010'),
-                AxisItem(showText: '20'),
-                AxisItem(showText: '30'),
-                AxisItem(showText: '40'),
-                AxisItem(showText: '50'),
-                AxisItem(showText: '60'),
-                AxisItem(showText: '70'),
+              xAxis: ChartAxis(
+                  inclineText: true,
+                  axisItemList: [
+                AxisItem(showText: '2022年10月10日'),
+                AxisItem(showText: '2022年10月10日'),
+                AxisItem(showText: '2022年10月10日'),
+                AxisItem(showText: '2022年10月10日'),
+                AxisItem(showText: '2022年10月10日'),
+                AxisItem(showText: '2022年10月10日'),
+                AxisItem(showText: '2022年10月10日'),
               ]),
               yAxis: ChartAxis(axisItemList: [
                 AxisItem(showText: '示例1'),

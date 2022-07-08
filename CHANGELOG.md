@@ -1,3 +1,29 @@
+
+
+## [3.0.0] - 2022-5-8
+
+### Changed
+
+#### base 
+
+- Adapt flutter sdk 3.0.3.
+- Add the attribute <code>backgroundColor</code>  to the form item and fix issue [#260](https://github.com/LianjiaTech/bruno/issues/260) , thanks to **Kingtous** find it.
+- <code>pubspec.yaml</code> : upgrade <code>photo_view</code> version to v0.14.0 and remove <code>provider</code>.
+
+#### components
+
+- <code>BrnBottomPicker</code> : fix the title setting in the <code>show</code> method does not take effect [#212](https://github.com/LianjiaTech/bruno/issues/212) , thanks to **laiiihz** .
+- <code>BrnStepInputFormItem</code> : fix cursor confusion [#235](https://github.com/LianjiaTech/bruno/issues/235) , thanks to **jixiaoyong** .
+- <code>BrnSmallOutlineButton</code> : fix attribute <code>lineColor</code> does not take effect,thanks to **Story5** .
+- <code>BrnAddLabel</code> : support theme config.
+- <code>BrnBigMainButton</code> : fix the theme configuration <code>borderRadius</code> and <code>fontSize</code> does not take effect [#214](https://github.com/LianjiaTech/bruno/issues/214) .
+- <code>BrnCalendarView</code> : optimizes the time range selection supports selecting the same day [#200](https://github.com/LianjiaTech/bruno/issues/200) .
+- <code>BrnProgressBarChart</code>：remove useless attribute <code>hasMark</code> in class <code>ChartAxis</code>.
+- <code>BrnSmallOutlineButton</code> : fix attribute <code>fontWeight</code> does not take effect [#233](https://github.com/LianjiaTech/bruno/issues/233) .
+- <code>BrnDialog</code> : fix <code>themeData</code>  does not take effec [#259](https://github.com/LianjiaTech/bruno/issues/259) .
+
+
+
 ## [2.2.0] - 2022-4-29
 
 ### Changed
@@ -9,7 +35,7 @@
 
 #### components
 
-**New components** <code>BrnSwitchFormItem</code> <code>BrnGeneralFormItem</code> <code>BrnMetaSwitch</code>.
+**New components** <code>BrnSwitchFormItem</code> <code>BrnGeneralFormItem</code> <code>BrnSwitchButton</code>.
 
 - <code>BrnTitleFormItem</code>: fix  <code>isRequire</code> parameter invalid [#179](https://github.com/LianjiaTech/bruno/issues/179).
 - <code>BrnTextBlockInputFormItem</code> : change the <code>minLines</code> and <code>maxLines</code> attributes  to be nullable [#181](https://github.com/LianjiaTech/bruno/pull/181) thanks to **xiao luobei**.
@@ -29,7 +55,6 @@
 - <code>BrnAppBar</code> theme customization <code>BrnAppBarConfig</code> supports the attribute <code>showDefaultBottom</code> to control the bottom dividing line of the AppBar
 - <code>BrnMultiDataPicker</code>:  add default delegate implementation<code>BrnDefaultMultiDataPickerDelegate</code>.
 - <code>BrnStepInputFormItem</code>: add attribute <code>canManualInput</code> and <code>controller</code> to support manual input function.
-- <code>BrnPairInfoTable</code>: add a callback <code>onExpanded</code> for expanding and collapsing state changes.
 - <code>BrnSearchText</code>: add attribute <code>inputFormatters</code><code>textInputType</code>.
 - <code>BrnAnchorTab</code>: support content dynamic change.
 - <code>BrnProgressBarChart</code>: when <code>barChartStyle</code> is  <code>BarChartStyle.horizontal</code> support item click callback.

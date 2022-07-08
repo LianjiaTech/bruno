@@ -34,40 +34,44 @@ group:
 
 ```dart
 BrnTextQuickSelectFormItem(
-    {Key? key,
-    this.label,
-    this.title: "",
-    this.subTitle,
-    this.tipLabel,
-    this.prefixIconType: BrnPrefixIconType.normal,
-    this.error: "",
-    this.isEdit: true,
-    this.isRequire: false,
-    this.onAddTap,
-    this.onRemoveTap,
-    this.onTip,
-    this.hint: "请选择",
-    this.value,
-    this.btnsTxt,
-    this.selectBtnList,
-    this.enableBtnList,
-    this.btns,
-    this.isBtnsScroll: false,
-    this.onTap,
-    this.onBtnSelectChanged,
-    this.themeData})
-    : super(key: key) {
-  themeData ??= BrnFormItemConfig();
-  themeData = BrnThemeConfigurator.instance
-      .getConfig(configId: themeData!.configId)
-      .formItemConfig
-      .merge(themeData);
-}
+      {Key? key,
+      this.label,
+      this.title: "",
+      this.subTitle,
+      this.tipLabel,
+      this.prefixIconType: BrnPrefixIconType.normal,
+      this.error: "",
+      this.isEdit: true,
+      this.isRequire: false,
+      this.onAddTap,
+      this.onRemoveTap,
+      this.onTip,
+      this.hint: "请选择",
+      this.value,
+      this.btnsTxt,
+      this.selectBtnList,
+      this.enableBtnList,
+      this.btns,
+      this.isBtnsScroll: false,
+      this.onTap,
+      this.onBtnSelectChanged,
+      this.backgroundColor,
+      this.themeData})
+      : super(key: key) {
+    themeData ??= BrnFormItemConfig();
+    themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: themeData!.configId)
+        .formItemConfig
+        .merge(themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
+  }
 ```
 ### 参数说明
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
 | --- | --- | --- | --- | --- | --- |
+| backgroundColor | Color? | 表单项背景色 | 否 | 走主题配置默认色值 Colors.white |  |
 | label | String? | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
 | type | Stirng | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.textQuickSelectInputType | 外部可根据此字段判断表单项类型 |
 | title | String | 录入项标题 | 否 | '' |  |

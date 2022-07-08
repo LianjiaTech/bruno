@@ -83,6 +83,9 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
   /// 最大行数，默认值20
   final int? maxLines;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   /// form配置
   BrnFormItemConfig? themeData;
 
@@ -109,6 +112,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
       this.controller,
       this.minLines = 4,
       this.maxLines = 20,
+      this.backgroundColor,
       this.themeData})
       : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
@@ -116,6 +120,8 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -136,7 +142,7 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

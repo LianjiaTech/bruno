@@ -55,6 +55,7 @@ An enterprise-class package of Flutter components for mobile applications.
 | 2.0.0      | 2.2.2            |
 | 2.1.1 (support nullsafety)      | 2.2.2            |
 | 2.2.0 | 2.10.5 |
+| 3.0.0 | 3.0.3 |
 
 
 ## Preparing for use

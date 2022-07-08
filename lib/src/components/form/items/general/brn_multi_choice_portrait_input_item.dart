@@ -64,6 +64,9 @@ class BrnMultiChoicePortraitInputFormItem extends StatefulWidget {
   /// 局部禁用list
   final List<bool> enableList;
 
+  /// 背景色
+  final Color? backgroundColor;
+
   /// 选项选中状态变化回调
   final OnBrnFormMultiChoiceValueChanged? onChanged;
 
@@ -86,6 +89,7 @@ class BrnMultiChoicePortraitInputFormItem extends StatefulWidget {
       this.value = const <String>[],
       this.options = const <String>[],
       this.enableList = const <bool>[],
+      this.backgroundColor,
       this.onChanged,
       this.themeData})
       : super(key: key) {
@@ -94,6 +98,8 @@ class BrnMultiChoicePortraitInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
+    this.themeData = this.themeData!.merge(
+        BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -116,7 +122,7 @@ class BrnMultiChoicePortraitInputFormItemState
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       padding: BrnFormUtil.itemEdgeInsets(widget.themeData!),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -80,7 +80,7 @@ const BrnHorizontalSteps({
 
 ### 效果1
 
-![](img/BrnHorizontalSteps5.png)
+![](./img/BrnHorizontalSteps5.png)
 
 
 

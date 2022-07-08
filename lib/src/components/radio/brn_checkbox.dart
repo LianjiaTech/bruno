@@ -44,7 +44,7 @@ class BrnCheckbox extends StatefulWidget {
   /// 默认值MainAxisSize.min
   final MainAxisSize mainAxisSize;
 
-  /// 默认值HitTestBehavior.translucent控制widget.onRadioItemClick触发的点击范围
+  /// 默认值HitTestBehavior.translucent。控制widget.onRadioItemClick触发的点击范围
   final HitTestBehavior behavior;
 
   const BrnCheckbox(

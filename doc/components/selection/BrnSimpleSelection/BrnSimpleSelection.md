@@ -32,14 +32,15 @@ group:
 ```dart
 BrnSimpleSelection.radio({
   Key? key,
-  this.menuName,
-  this.menuKey = defaultMenuKey,
+  required this.menuName,
+  this.menuKey = _defaultMenuKey,
   this.defaultValue,
-  this.items,
-  this.maxSelectedCount = 1,
-  @required this.onSimpleSelectionChanged,
+  required this.items,
+  required this.onSimpleSelectionChanged,
   this.onMenuItemClick,
-})
+})  : this.isRadio = true,
+      this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
+      super(key: key);
 ```
 
 #### 多选
@@ -47,14 +48,15 @@ BrnSimpleSelection.radio({
 ```dart
 BrnSimpleSelection.checkbox({
   Key? key,
-  this.menuName,
-  this.menuKey,
+  required this.menuName,
+  this.menuKey = _defaultMenuKey,
   this.defaultValue,
-  this.maxSelectedCount,
-  this.items,
-  @required this.onSimpleSelectionChanged,
+  this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
+  required this.items,
+  required this.onSimpleSelectionChanged,
   this.onMenuItemClick,
-  })
+})  : this.isRadio = false,
+      super(key: key);
 ```
 
 

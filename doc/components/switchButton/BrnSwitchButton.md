@@ -38,7 +38,7 @@ group:
 | --- | --- | --- | --- | --- |
 | value | bool | 选中的状态 | 是 | 无 |
 | enabled | bool | 是否可以交互 | 否 | true |
-| onChanged | ValueChanged<bool> | 点击事件 | 否 | 无 |
+| onChanged | `ValueChanged<bool>` | 点击事件 | 否 | 无 |
 | borderColor | Color? | 未选中时边框的颜色 | 否 | 主题色 |
 
 

@@ -1,3 +1,4 @@
+import 'package:bindings_compatible/bindings_compatible.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/components/selection/bean/brn_selection_common_entity.dart';
 import 'package:bruno/src/components/selection/brn_more_selection.dart';
@@ -46,7 +47,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    useWidgetsBinding().addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     });
     _controller = AnimationController(

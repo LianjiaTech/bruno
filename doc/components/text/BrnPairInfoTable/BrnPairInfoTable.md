@@ -23,18 +23,18 @@ group:
 
 ```dart
 BrnPairInfoTable({
-  Key? key,
-  required this.children,
-  this.defaultVerticalAlignment = TableCellVerticalAlignment.baseline,
-  this.isValueAlign = true,
-  this.expandAtIndex = -1,
-  this.rowDistance,
-  this.itemSpacing,
-  this.isFolded = true,
-  this.onExpanded,
-  this.customKeyWidth,
-  this.themeData
-});
+    Key? key,
+    required this.children,
+    this.defaultVerticalAlignment = TableCellVerticalAlignment.baseline,
+    this.isValueAlign = true,
+    this.expandAtIndex = -1,
+    this.rowDistance,
+    this.itemSpacing,
+    this.isFolded = true,
+    this.onFolded,
+    this.customKeyWidth,
+    this.themeData
+  });
 ```
 
 ### 参数说明
@@ -48,7 +48,7 @@ BrnPairInfoTable({
 | rowDistance              | double?                    | 行与行之间的间距                                             | 否           | 4               |
 | itemSpacing              | double?                    | key-value 之间的间距                                         | 否           | 2               |
 | isFolded                 | true                       | 初始的展开收起状态                                           | 否           | bool            |
-| onExpanded               | ValueChanged\<bool\>?      | 展开手气状态变化的回调                                       | 否           | 无              |
+| onFolded               | `ValueChanged<bool>?`      | 展开手气状态变化的回调                                       | 否           | 无              |
 | customKeyWidth           | TableColumnWidth?          | 对齐情况下，自定义的key展示规则，默认是最大的Key展示长度是107，可以参考[_MaxWrapTableWidth]实现自定义的展示规则，指定长度等 | 否           | key 最大宽度 94 |
 | themeData                | BrnPairInfoTableConfig?    | 主题定制属性                                                 | 否           |                 |
 

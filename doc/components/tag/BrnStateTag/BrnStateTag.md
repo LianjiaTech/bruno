@@ -9,7 +9,7 @@ group:
 
 ## 一、效果总览
 
-![](img/BrnStateTagIntro.png)
+![](./img/BrnStateTagIntro.png)
 
 ## 二、描述
 

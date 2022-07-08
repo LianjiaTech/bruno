@@ -1,6 +1,6 @@
 name: bruno
 description: An enterprise-class package of Flutter components for mobile applications.
-version: 2.2.0
+version: 3.0.0
 homepage: https://github.com/LianjiaTech/bruno
 
 environment:
@@ -14,9 +14,9 @@ dependencies:
   path_drawing: ^1.0.0
   flutter_easyrefresh: ^2.2.1
   intl: ^0.17.0
-  photo_view: ^0.13.0
-  provider: ^6.0.1
+  photo_view: ^0.14.0
   badges: ^2.0.2
+  bindings_compatible: ^1.0.1
 
 dev_dependencies:
   flutter_test:

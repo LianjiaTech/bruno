@@ -1,4 +1,6 @@
 import 'dart:async';
+
+import 'package:bindings_compatible/bindings_compatible.dart';
 import 'package:flutter/material.dart';
 
 /// 文字跑马灯Widget
@@ -54,7 +56,7 @@ class BrnMarqueeTextState extends State<BrnMarqueeText>
   void initState() {
     super.initState();
     scroController = new ScrollController();
-    WidgetsBinding.instance?.addPostFrameCallback((callback) {
+    useWidgetsBinding().addPostFrameCallback((callback) {
       var size = context.findRenderObject()!.paintBounds.size;
       widget.width = (widget.width) > 0 ? widget.width : size.width;
       widget.height = (widget.height) > 0 ? widget.height : size.height;

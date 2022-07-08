@@ -2,6 +2,7 @@
 
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
+import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +25,30 @@ class BrnAddLabel extends StatefulWidget {
   /// 点击录入区回调
   final VoidCallback? onTap;
 
+  /// 背景色
+  final Color? backgroundColor;
+
+  /// form配置
+  BrnFormItemConfig? themeData;
+
   BrnAddLabel({
     Key? key,
     this.label,
     this.title = "",
     this.isEdit = true,
+    this.backgroundColor,
     this.onTap,
-  }) : super(key: key);
+    this.themeData,
+  }) : super(key: key) {
+    this.themeData ??= BrnFormItemConfig();
+    this.themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: this.themeData!.configId)
+        .formItemConfig
+        .merge(this.themeData);
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
+  }
 
   @override
   BrnAddLabelState createState() {
@@ -50,7 +68,7 @@ class BrnAddLabelState extends State<BrnAddLabel> {
         BrnFormUtil.notifyAddTap(context, widget.onTap);
       },
       child: Container(
-        color: Colors.white,
+        color: widget.themeData!.backgroundColor,
         padding: EdgeInsets.fromLTRB(20, 15, 0, 15),
         child: Text(
           widget.title,
