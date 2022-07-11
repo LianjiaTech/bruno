@@ -80,7 +80,6 @@ class BrnDateRangePicker {
         initialEndDateTime: initialEndDateTime,
         dateFormat: dateFormat,
         minuteDivider: minuteDivider,
-        locale: locale,
         pickerMode: pickerMode,
         pickerTitleConfig: pickerTitleConfig,
         onCancel: onCancel,
@@ -102,7 +101,6 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
       initialEndDateTime;
   final bool isLimitTimeRange;
   final String? dateFormat;
-  final DateTimePickerLocale locale;
   final BrnDateTimeRangePickerMode pickerMode;
   final BrnPickerTitleConfig pickerTitleConfig;
   final VoidCallback? onCancel;
@@ -121,7 +119,6 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
     this.initialEndDateTime,
     this.minuteDivider = 1,
     this.dateFormat,
-    this.locale = datetimePickerLocaleDefault,
     this.pickerMode = BrnDateTimeRangePickerMode.date,
     this.pickerTitleConfig = BrnPickerTitleConfig.Default,
     this.onCancel,
@@ -204,7 +201,6 @@ class _DatePickerComponent extends StatelessWidget {
           initialStartDateTime: route.initialStartDateTime,
           initialEndDateTime: route.initialEndDateTime,
           dateFormat: route.dateFormat,
-          locale: route.locale,
           pickerTitleConfig: route.pickerTitleConfig,
           onCancel: route.onCancel,
           onChange: route.onChange,
@@ -221,7 +217,6 @@ class _DatePickerComponent extends StatelessWidget {
           initialEndDateTime: route.initialEndDateTime,
           minuteDivider: route.minuteDivider,
           dateFormat: route.dateFormat,
-          locale: route.locale,
           pickerTitleConfig: route.pickerTitleConfig,
           onCancel: route.onCancel,
           onChange: route.onChange,

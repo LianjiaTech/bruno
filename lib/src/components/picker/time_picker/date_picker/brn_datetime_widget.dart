@@ -190,7 +190,6 @@ class _BrnDateTimeWidgetState extends State<BrnDateTimeWidget> {
         widget.pickerTitleConfig.showTitle) {
       Widget titleWidget = BrnPickerTitle(
         pickerTitleConfig: widget.pickerTitleConfig,
-        locale: widget.locale,
         onCancel: () => _onPressedCancel(),
         onConfirm: () => _onPressedConfirm(),
       );

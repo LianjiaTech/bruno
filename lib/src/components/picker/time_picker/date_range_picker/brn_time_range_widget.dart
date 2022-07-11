@@ -31,7 +31,6 @@ class BrnTimeRangeWidget extends StatefulWidget {
 
   /// 时间格式
   final String? dateFormat;
-  final DateTimePickerLocale locale;
 
   /// cancel 回调
   final DateVoidCallback? onCancel;
@@ -62,7 +61,6 @@ class BrnTimeRangeWidget extends StatefulWidget {
     this.initialStartDateTime,
     this.initialEndDateTime,
     this.dateFormat: datetimeRangePickerTimeFormat,
-    this.locale: datetimePickerLocaleDefault,
     this.pickerTitleConfig: BrnPickerTitleConfig.Default,
     this.minuteDivider = 1,
     this.onCancel,
@@ -183,7 +181,6 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
         widget.pickerTitleConfig.showTitle) {
       Widget titleWidget = BrnPickerTitle(
         pickerTitleConfig: widget.pickerTitleConfig,
-        locale: widget.locale,
         onCancel: () => _onPressedCancel(),
         onConfirm: () => _onPressedConfirm(),
       );

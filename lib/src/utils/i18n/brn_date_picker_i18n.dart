@@ -1,15 +1,11 @@
 import 'dart:math' as math;
 
+import 'package:bruno/src/l10n/brn_intl.dart';
+
 part 'brn_strings_zh_cn.dart';
 
 abstract class _StringsI18n {
   const _StringsI18n();
-
-  /// Get the done widget text
-  String getDoneText();
-
-  /// Get the cancel widget text
-  String getCancelText();
 
   /// Get the name of month
   List<String> getMonths();
@@ -72,22 +68,6 @@ const Map<DateTimePickerLocale, _StringsI18n> datePickerI18n = {
 
 class DatePickerI18n {
   const DatePickerI18n._();
-
-  /// Get done button text
-  static String getLocaleDone(DateTimePickerLocale locale) {
-    final _StringsI18n? i18n =
-        datePickerI18n[locale] ?? datePickerI18n[datetimePickerLocaleDefault];
-    return i18n?.getDoneText() ??
-        datePickerI18n[datetimePickerLocaleDefault]!.getDoneText();
-  }
-
-  /// Get cancel button text
-  static String getLocaleCancel(DateTimePickerLocale locale) {
-    final _StringsI18n? i18n =
-        datePickerI18n[locale] ?? datePickerI18n[datetimePickerLocaleDefault];
-    return i18n?.getCancelText() ??
-        datePickerI18n[datetimePickerLocaleDefault]!.getCancelText();
-  }
 
   /// Get locale month array
   static List<String> getLocaleMonths(DateTimePickerLocale locale) {

@@ -5,12 +5,6 @@ class _StringsZhCn extends _StringsI18n {
   const _StringsZhCn();
 
   @override
-  String getCancelText() => '取消';
-
-  @override
-  String getDoneText() => '确定';
-
-  @override
   List<String> getMonths() {
     return <String>[
       '01',
