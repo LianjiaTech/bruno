@@ -90,6 +90,10 @@ class BrnLocalizationDelegate extends LocalizationsDelegate<BrnIntl> {
 ///
 final Map<Locale, Map<Type, dynamic>> _additionalIntls = {};
 class _BrnIntlHelper {
+
+  ///
+  /// 根据 locale 查找 value 类型为[T]的资源
+  ///
   static T? findIntlResourceOfType<T>(Locale locale) {
     Map<Type, dynamic>? res = _additionalIntls[locale];
     if (res != null && res.isNotEmpty) {
@@ -102,6 +106,9 @@ class _BrnIntlHelper {
     return null;
   }
 
+  ///
+  /// 根据 locale 查找Type为[T]的资源
+  ///
   static T? findIntlResourceOfExactType<T>(Locale locale) {
     Map<Type, dynamic>? res = _additionalIntls[locale];
     if (res != null && res.isNotEmpty) {
@@ -114,6 +121,9 @@ class _BrnIntlHelper {
     return null;
   }
 
+  ///
+  /// 根据 locale 查找 value 类型为 T 的一系列资源
+  ///
   static Iterable<T>? findIntlResourcesOfType<T>(Locale locale) {
     final res = _additionalIntls[locale];
     if (res != null && res.isNotEmpty) {
@@ -128,6 +138,9 @@ class _BrnIntlHelper {
     return null;
   }
 
+  ///
+  /// 设置自定义 locale 的资源
+  ///
   static void addAll(Locale locale, List<BrnBaseResource> resources) {
     var res = _additionalIntls[locale];
     if (res == null) {
@@ -139,6 +152,9 @@ class _BrnIntlHelper {
     }
   }
 
+  ///
+  /// 设置自定义 locale 的资源
+  ///
   static void add(Locale locale, BrnBaseResource resource) {
     var res = _additionalIntls[locale];
     if (res == null) {
