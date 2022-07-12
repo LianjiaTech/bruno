@@ -47,6 +47,18 @@ class BrnCheckbox extends StatefulWidget {
   /// 默认值HitTestBehavior.translucent。控制widget.onRadioItemClick触发的点击范围
   final HitTestBehavior behavior;
 
+  /// 选中图片
+  final Image? selectedImage;
+
+  /// 未选中图片
+  final Image? unselectedImage;
+
+  /// 禁用状态选中图片
+  final Image? selectedImageDisabled;
+
+  /// 禁用状态未选中图片
+  final Image? unselectedImageDisabled;
+
   const BrnCheckbox(
       {Key? key,
       required this.radioIndex,
@@ -59,7 +71,11 @@ class BrnCheckbox extends StatefulWidget {
       this.mainAxisAlignment = MainAxisAlignment.start,
       this.crossAxisAlignment = CrossAxisAlignment.center,
       this.mainAxisSize = MainAxisSize.min,
-      this.behavior = HitTestBehavior.translucent});
+      this.behavior = HitTestBehavior.translucent,
+      this.selectedImage,
+      this.unselectedImage,
+      this.selectedImageDisabled,
+      this.unselectedImageDisabled});
 
   @override
   State<StatefulWidget> createState() {
@@ -87,12 +103,14 @@ class BrnCheckboxState extends State<BrnCheckbox> {
       mainAxisAlignment: widget.mainAxisAlignment,
       crossAxisAlignment: widget.crossAxisAlignment,
       mainAxisSize: widget.mainAxisSize,
-      selectedImage: BrunoTools.getAssetImageWithBandColor(
-          BrnAsset.iconRadioMultiSelected),
-      unselectedImage: BrunoTools.getAssetImage(BrnAsset.iconRadioUnSelected),
-      disSelectedImage:
+      selectedImage: widget.selectedImage ??
+          BrunoTools.getAssetImageWithBandColor(
+              BrnAsset.iconRadioMultiSelected),
+      unselectedImage: widget.unselectedImage ??
+          BrunoTools.getAssetImage(BrnAsset.iconRadioUnSelected),
+      disSelectedImage: widget.selectedImageDisabled ??
           BrunoTools.getAssetImage(BrnAsset.iconRadioDisableSingleSelected),
-      disUnselectedImage:
+      disUnselectedImage: widget.unselectedImageDisabled ??
           BrunoTools.getAssetImage(BrnAsset.iconRadioDisableUnselected),
       child: widget.child,
       onRadioItemClick: () {
