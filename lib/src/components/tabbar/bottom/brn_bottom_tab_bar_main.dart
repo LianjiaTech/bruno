@@ -478,7 +478,7 @@ class _BottomNavigationTile extends StatelessWidget {
           style: TextStyle(
             fontSize: _kActiveFontSize,
             color: colorTween?.evaluate(animation),
-          ),
+          ).merge(selected ? item.selectedTextStyle : item.unSelectedTextStyle),
 
           /// 使用矩阵变化控制字体大小
           child: Transform(
