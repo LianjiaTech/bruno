@@ -18,7 +18,7 @@ class LoadingExample extends StatelessWidget {
         ),
         Text("长文案 Loading 展示"),
         BrnPageLoading(
-          content: "我是较长的LoadingLoadingLoadingLoadingLoadingLoadingLoading",
+          content: "我是较长的我是较长的我是较长的Loading",
         )
       ])),
     );
