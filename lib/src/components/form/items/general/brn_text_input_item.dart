@@ -71,6 +71,9 @@ class BrnTextInputFormItem extends StatefulWidget {
   /// 输入内容类型
   final String? inputType;
 
+  /// textAlign
+  final TextAlign textAlign;
+
   /// 是否自动获取焦点
   bool autofocus;
 
@@ -89,39 +92,41 @@ class BrnTextInputFormItem extends StatefulWidget {
   /// form配置
   BrnFormItemConfig? themeData;
 
-  BrnTextInputFormItem({
-    Key? key,
-    this.label,
-    this.title = "",
-    this.subTitle,
-    this.tipLabel,
-    this.prefixIconType = BrnPrefixIconType.normal,
-    this.error = "",
-    this.isEdit = true,
-    this.isRequire = false,
-    this.isPrefixIconEnabled = false,
-    this.onAddTap,
-    this.onRemoveTap,
-    this.onTip,
-    this.prefixText,
-    this.hint = "请输入",
-    this.unit,
-    this.maxCharCount,
-    this.autofocus: false,
-    this.inputType,
-    this.inputFormatters,
-    this.onChanged,
-    this.controller,
-    this.backgroundColor,
-    this.themeData,
-  }) : super(key: key) {
+  BrnTextInputFormItem(
+      {Key? key,
+      this.label,
+      this.title = "",
+      this.subTitle,
+      this.tipLabel,
+      this.prefixIconType = BrnPrefixIconType.normal,
+      this.error = "",
+      this.isEdit = true,
+      this.isRequire = false,
+      this.isPrefixIconEnabled = false,
+      this.onAddTap,
+      this.onRemoveTap,
+      this.onTip,
+      this.prefixText,
+      this.hint = "请输入",
+      this.unit,
+      this.maxCharCount,
+      this.autofocus: false,
+      this.inputType,
+      this.inputFormatters,
+      this.onChanged,
+      this.controller,
+      this.backgroundColor,
+      this.themeData,
+      this.textAlign = TextAlign.end})
+      : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -204,7 +209,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent)),
                     ),
-                    textAlign: TextAlign.end,
+                    textAlign: widget.textAlign,
                     controller: _controller,
                     inputFormatters: widget.inputFormatters,
                     onChanged: (text) {

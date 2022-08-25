@@ -42,6 +42,9 @@ class BrnSelectTag extends StatefulWidget {
   /// 标签高度。默认全局配置高度 34
   final double? tagHeight;
 
+  /// Opacity
+  final double opacity;
+
   /// true 流式展示，false 横向滑动展示，默认 true
   final bool softWrap;
 
@@ -59,25 +62,26 @@ class BrnSelectTag extends StatefulWidget {
 
   BrnTagConfig? themeData;
 
-  BrnSelectTag({
-    Key? key,
-    required this.tags,
-    this.onSelect,
-    this.spacing = 12,
-    this.verticalSpacing = 10,
-    this.tagTextStyle,
-    this.selectedTagTextStyle,
-    this.tagBackgroundColor,
-    this.selectedTagBackgroundColor,
-    this.tagWidth,
-    this.tagHeight,
-    this.isSingleSelect = true,
-    this.initTagState,
-    this.softWrap = true,
-    this.alignment = Alignment.centerLeft,
-    this.fixWidthMode = true,
-    this.themeData,
-  }) : super(key: key) {
+  BrnSelectTag(
+      {Key? key,
+      required this.tags,
+      this.onSelect,
+      this.spacing = 12,
+      this.verticalSpacing = 10,
+      this.tagTextStyle,
+      this.selectedTagTextStyle,
+      this.tagBackgroundColor,
+      this.selectedTagBackgroundColor,
+      this.tagWidth,
+      this.tagHeight,
+      this.isSingleSelect = true,
+      this.initTagState,
+      this.softWrap = true,
+      this.alignment = Alignment.centerLeft,
+      this.fixWidthMode = true,
+      this.themeData,
+      this.opacity = 0.12})
+      : super(key: key) {
     if (isSingleSelect == true) {
       assert(initTagState == null || (initTagState!.length <= 1));
     }
@@ -200,7 +204,8 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
       constraints: BoxConstraints(minWidth: widget.themeData!.tagMinWidth),
       decoration: BoxDecoration(
           color: selected
-              ? (widget.themeData!.selectedTagBackgroundColor.withOpacity(0.12))
+              ? (widget.themeData!.selectedTagBackgroundColor
+                  .withOpacity(widget.opacity))
               : (widget.themeData!.tagBackgroundColor),
           borderRadius: BorderRadius.circular(widget.themeData!.tagRadius)),
       width: widget.fixWidthMode ? widget.themeData!.tagWidth : null,
