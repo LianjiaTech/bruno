@@ -8,10 +8,13 @@ class BrnDialItem {
   /// 刻度标志样式
   TextStyle? dialTextStyle;
 
+  /// 刻度选中样式
+  TextStyle? selectedDialTextStyle;
+
   /// x,y 轴刻度值。用于刻度在坐标的真实定位
   double value;
 
-  BrnDialItem({this.dialText, this.dialTextStyle, required this.value});
+  BrnDialItem({this.dialText, this.dialTextStyle, this.selectedDialTextStyle,required this.value});
 }
 
 class BrnPointData {

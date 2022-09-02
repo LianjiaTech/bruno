@@ -325,31 +325,37 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
       BrnDialItem(
         dialText: '1月',
         dialTextStyle: TextStyle(fontSize: 12.0, color: Color(0xFF999999)),
+        selectedDialTextStyle: TextStyle(fontSize: 14.0, color: Colors.green),
         value: 1,
       ),
       BrnDialItem(
         dialText: '2月',
         dialTextStyle: TextStyle(fontSize: 12.0, color: Color(0xFF999999)),
+        selectedDialTextStyle: TextStyle(fontSize: 14.0, color: Colors.red),
         value: 2,
       ),
       BrnDialItem(
         dialText: '3月',
         dialTextStyle: TextStyle(fontSize: 12.0, color: Color(0xFF999999)),
+        selectedDialTextStyle: TextStyle(fontSize: 14.0, color: Colors.black),
         value: 3,
       ),
       BrnDialItem(
         dialText: '5月',
         dialTextStyle: TextStyle(fontSize: 12.0, color: Color(0xFF999999)),
+        selectedDialTextStyle: TextStyle(fontSize: 14.0, color: Colors.orange),
         value: 5,
       ),
       BrnDialItem(
         dialText: '6月',
         dialTextStyle: TextStyle(fontSize: 12.0, color: Color(0xFF999999)),
+        selectedDialTextStyle: TextStyle(fontSize: 14.0, color: Colors.yellow),
         value: 6,
       ),
       BrnDialItem(
         dialText: '7月',
         dialTextStyle: TextStyle(fontSize: 12.0, color: Color(0xFF999999)),
+        selectedDialTextStyle: TextStyle(fontSize: 14.0, color: Colors.amberAccent),
         value: 7,
       )
     ];
