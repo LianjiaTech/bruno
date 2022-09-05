@@ -22,6 +22,7 @@ export 'src/components/tabbar/bottom/brn_bottom_tab_bar_main.dart';
 export 'src/components/tabbar/bottom/brn_bottom_tab_bar_item.dart';
 
 //弹框
+export 'src/components/dialog/brn_safe_dialog.dart';
 export 'src/components/dialog/brn_share_dialog.dart';
 export 'src/components/dialog/brn_enhance_operation_dialog.dart';
 export 'src/components/dialog/brn_scrollable_text_dialog.dart';
