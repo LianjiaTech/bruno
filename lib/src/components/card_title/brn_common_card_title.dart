@@ -110,8 +110,8 @@ class BrnCommonCardTitle extends StatelessWidget {
     defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultConfig.configId)
         .cardTitleConfig
-        .merge(cardTitleConfig)
-        .merge(themeData);
+        .merge(themeData)
+        .merge(cardTitleConfig);
 
     Widget titleContainer = Container(
       color: defaultConfig.cardBackgroundColor,
