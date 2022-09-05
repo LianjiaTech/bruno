@@ -61,7 +61,7 @@ class BrnPageLoading extends StatelessWidget {
         constraints: BoxConstraints(
             maxWidth: maxWidth, minWidth: _iconSize + _textLeftPadding),
         height: 50,
-        width: MediaQuery.of(context).size.width * 2 / 3,
+        width: _loadingMaxWidth,
         decoration: BoxDecoration(
             color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
         child: Center(
