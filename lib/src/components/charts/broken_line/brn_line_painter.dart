@@ -49,6 +49,8 @@ class BrnLinePainter extends BrnBasePainter {
 
   bool isShowXText, isShowYText;
 
+  final bool isShowXDial;
+
   final bool showPointDashLine;
 
   /// 默认的边距
@@ -96,6 +98,7 @@ class BrnLinePainter extends BrnBasePainter {
     required this.isShowHintY,
     required this.hintLineSolid,
     required this.hintLineColor,
+    this.isShowXDial = true,
     this.isShowXText = false,
     this.isShowYText = false,
   }) {
@@ -309,9 +312,14 @@ class BrnLinePainter extends BrnBasePainter {
 
     if (lines.isNotEmpty) {
       //绘制x轴的文字部分
-      for (var item in lines) {
-        if (item.isShowXDial) {
-          _drawXRuler(canvas, paint..color = xDialColor!);
+      if (isShowXDial) {
+        _drawXRuler(canvas, paint..color = xDialColor!);
+      } else {
+        // 此处逻辑已废弃
+        for (var item in lines) {
+          if (item.isShowXDial) {
+            _drawXRuler(canvas, paint..color = xDialColor!);
+          }
         }
       }
     }

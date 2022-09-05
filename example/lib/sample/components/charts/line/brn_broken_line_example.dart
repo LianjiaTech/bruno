@@ -61,10 +61,11 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             showPointDashLine: true,
             yHintLineOffset: 30,
             isTipWindowAutoDismiss: false,
+            isShowXDial: true,
             lines: [
               BrnPointsLine(
                 isShowPointText: true,
-                isShowXDial: true,
+                isShowXDial: false,
                 lineWidth: 3,
                 pointRadius: 4,
                 isShowPoint: true,
