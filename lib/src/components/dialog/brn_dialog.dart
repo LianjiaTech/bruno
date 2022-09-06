@@ -194,7 +194,7 @@ class BrnDialog extends AlertDialog {
 
   @override
   Widget build(BuildContext context) {
-    BrnDialogConfig? defaultConfig = BrnDialogConfig();
+    BrnDialogConfig? defaultConfig = themeData ?? BrnDialogConfig();
 
     defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultConfig.configId)

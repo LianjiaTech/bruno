@@ -27,21 +27,22 @@ group:
 
 ```dart
 BrnExpandableGroup({
-  Key? key,
-  required this.title,
-  this.subtitle,
-  this.backgroundColor,
-  this.onExpansionChanged,
-  this.children = const <Widget>[],
-  this.initiallyExpanded = false,
-  this.themeData,
-})  : super(key: key) {
-  this.themeData ??= BrnFormItemConfig();
-  this.themeData = BrnThemeConfigurator.instance
-      .getConfig(configId: this.themeData!.configId)
-      .formItemConfig
-      .merge(this.themeData);
-}
+    Key? key,
+    required this.title,
+    this.subtitle,
+    this.backgroundColor,
+    this.onExpansionChanged,
+    this.children = const <Widget>[],
+    this.initiallyExpanded = false,
+    this.themeData,
+  }) : super(key: key) {
+    this.themeData ??= BrnFormItemConfig();
+    this.themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: this.themeData!.configId)
+        .formItemConfig
+        .merge(this.themeData);
+    this.themeData = themeData!.merge(BrnFormItemConfig(backgroundColor: backgroundColor));
+  }
 ```
 
 ### 参数说明

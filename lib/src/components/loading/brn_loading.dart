@@ -39,42 +39,83 @@ class BrnPageLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double _loadingMaxWidth = MediaQuery.of(context).size.width * 2 / 3;
+    double _iconSize = 19.0;
+    double _textLeftPadding = 8.0;
+    double _outPadding = 10.0;
+
+    // 获取实际文字长度
+    TextPainter textPainter = TextPainter(
+      textDirection: TextDirection.ltr,
+      textScaleFactor: MediaQuery.of(context).textScaleFactor,
+      text: TextSpan(
+          text: content,
+          style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              decoration: TextDecoration.none)),
+    )..layout(
+        maxWidth: _loadingMaxWidth - _iconSize - _textLeftPadding, minWidth: 0);
+    double maxWidth =
+        textPainter.width + _iconSize + _textLeftPadding + _outPadding * 2;
+
     return Center(
       child: Container(
-        constraints: constraints,
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.all(_outPadding),
+        constraints: BoxConstraints(
+            maxWidth: maxWidth, minWidth: _iconSize + _textLeftPadding),
+        height: 50,
+        width: _loadingMaxWidth,
         decoration: BoxDecoration(
             color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-              height: 19,
-              width: 19,
-              child: CircularProgressIndicator(
-                strokeWidth: 2.0,
-                valueColor: AlwaysStoppedAnimation(Colors.white),
+        child: Center(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                height: _iconSize,
+                width: _iconSize,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2.0,
+                  valueColor: AlwaysStoppedAnimation(Colors.white),
+                ),
               ),
-            ),
-            Flexible(
-              child: Container(
-                margin: EdgeInsets.only(left: 8),
-                child: Text(
-                  content ?? BrnIntl.i10n(context).loading,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                      decoration: TextDecoration.none),
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.only(left: _textLeftPadding),
+                  child: Text(
+                    content,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                        decoration: TextDecoration.none),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  _buildText(BuildContext context, double maxWidth) {
+    TextPainter textPainter = TextPainter(
+      textScaleFactor: MediaQuery.of(context).textScaleFactor,
+      text: TextSpan(
+          text: content,
+          style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              decoration: TextDecoration.none)),
+    )..layout(maxWidth: maxWidth, minWidth: 0);
+    return BoxConstraints(
+      maxWidth: maxWidth,
+      minWidth: 0,
     );
   }
 }

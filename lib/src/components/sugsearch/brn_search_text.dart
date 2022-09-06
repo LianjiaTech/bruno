@@ -226,7 +226,9 @@ class _SearchTextState extends State<BrnSearchText> {
                                       .colorTextBase,
                                   fontSize: 16),
                           decoration: InputDecoration(
-                            border: InputBorder.none,
+                            border: OutlineInputBorder(
+                                borderRadius: widget.borderRadius,
+                                borderSide: BorderSide.none),
                             contentPadding: EdgeInsets.only(left: 8, right: 6),
                             // 填充颜色属性，填充装饰容器的颜色。
                             fillColor: widget.innerColor,

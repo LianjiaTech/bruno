@@ -36,25 +36,27 @@ group:
 
 ```dart
 BrnExpandFormGroup({
-  Key? key,
-  this.label,
-  this.title = "",
-  this.subTitle,
-  this.tipLabel,
-  this.error = "",
-  this.isEdit = true,
-  this.isRequire = false,
-  this.onRemoveTap,
-  this.onTip,
-  this.isExpand = true,
-  this.deleteLabel,
-  required this.children,
-}) : super(key: key);
+    Key? key,
+    this.label,
+    this.title = "",
+    this.subTitle,
+    this.tipLabel,
+    this.error = "",
+    this.isEdit = true,
+    this.isRequire = false,
+    this.onRemoveTap,
+    this.onTip,
+    this.isExpand = true,
+    this.deleteLabel,
+    this.backgroundColor,
+    required this.children,
+  }) : super(key: key);
 ```
 ### 参数说明
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** | **备注** |
 | --- | --- | --- | --- | --- | --- |
+| backgroundColor | Color? | 表单项背景色 | 否 | 走主题配置默认色值 Colors.white |  |
 | label | String? | 录入项的唯一标识，主要用于录入类型页面框架中 | 否 | 无 |  |
 | type | Stirng | 录入项类型，主要用于录入类型页面框架中 | 否 | BrnInputItemType.normalGroupType | 外部可根据此字段判断表单项类型 |
 | title | String | 录入项标题 | 否 | '' |  |
