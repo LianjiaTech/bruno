@@ -26,7 +26,9 @@ jobs:
       - run: flutter pub get
       - run: flutter pub publish --dry-run
       - run: cd example/ios; pwd; ls
-      - run: pod --version; pod install
+      - run: pod --version
+      - run: pod init
+      - run: pod install
       - run: cd ..; pwd; flutter build ios --no-codesign
 
   test_android:
