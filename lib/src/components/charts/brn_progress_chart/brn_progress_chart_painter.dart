@@ -6,6 +6,9 @@ class BrnProgressChartPainter extends CustomPainter {
   /// 进度值
   final double value;
 
+  /// 动画
+  final Animation<double>? animation;
+
   /// 背景色
   final Color backgroundColor;
 
@@ -20,13 +23,18 @@ class BrnProgressChartPainter extends CustomPainter {
 
   BrnProgressChartPainter(
       {this.value = 0.2,
+      this.animation,
       this.colors = const [Color(0xFF1545FD), Color(0xFF0984F9)],
       this.backgroundColor = const Color(0x7A90C9FF),
       this.radius = 4,
-      this.alwaysShowRadius = true});
+      this.alwaysShowRadius = true})
+      : super(repaint: animation){
+    assert(colors.isNotEmpty, 'colors must not be empty');
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
+    final double value = animation?.value ?? this.value;
     Paint backgroundPaint = Paint()
       ..color = this.backgroundColor
       ..style = PaintingStyle.fill;
@@ -48,22 +56,24 @@ class BrnProgressChartPainter extends CustomPainter {
             1 == value && false == this.alwaysShowRadius ? 0 : this.radius),
         topRight: Radius.circular(
             1 == value && false == this.alwaysShowRadius ? 0 : this.radius));
-
-    Shader progressBarShader = LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            tileMode: TileMode.clamp,
-            colors: (this.colors.length > 1)
-                ? this.colors
-                : [this.colors[0], this.colors[0]])
-        .createShader(progressBarRect);
-    Paint progressBarPaint = Paint()..shader = progressBarShader;
+    final bool isNotSingleColor = colors.length > 1;
+    Paint progressBarPaint = Paint();
+    if (isNotSingleColor) {
+      progressBarPaint.shader = LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              tileMode: TileMode.clamp,
+              colors: colors)
+          .createShader(progressBarRect);
+    } else {
+      progressBarPaint.color = colors[0];
+    }
 
     canvas.drawRRect(progressBarRRect, progressBarPaint);
   }
 
   @override
   bool shouldRepaint(BrnProgressChartPainter oldDelegate) {
-    return this.value != oldDelegate.value;
+    return false;
   }
 }
