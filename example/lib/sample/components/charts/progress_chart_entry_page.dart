@@ -25,13 +25,17 @@ class ProgressChartExampleState extends State<ProgressChartExample> {
             height: 44,
           ),
           BrnProgressChart(
-            key: UniqueKey(),
-            width: 200,
+            width: 300,
             height: 20,
             value: count,
+            duration: Duration(milliseconds: 500),
+            colors: [Colors.lightBlueAccent, Colors.blue],
+            backgroundColor: Colors.grey,
+            showAnimation: true,
+            isReverse: true,
             brnProgressIndicatorBuilder: (BuildContext context, double value) {
               return Text(
-                '自定义文本：$value',
+                '自定义：$value',
                 style: TextStyle(color: Colors.white),
               );
             },
