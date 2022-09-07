@@ -25,10 +25,8 @@ jobs:
       - run: flutter --version
       - run: flutter pub get
       - run: flutter pub publish --dry-run
-      - run: cd example/ios; pwd; ls
-      - run: pod --version
-      - run: pod install --project-directory=/Users/runner/work/bruno/bruno/example/ios
-      - run: cd ..; pwd; flutter build ios --no-codesign
+      - run: cd example; pod install --project-directory=/Users/runner/work/bruno/bruno/example/ios
+      - run: flutter build ios --no-codesign
 
   test_android:
     name: Test Android on ${{ matrix.os }}
