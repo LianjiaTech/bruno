@@ -25,7 +25,10 @@ jobs:
       - run: flutter --version
       - run: flutter pub get
       - run: flutter pub publish --dry-run
-      - run: cd example; flutter build ios --no-codesign
+      - run: cd example/ios; 
+      - run: pod install
+      - run: cd ..
+      - run: flutter build ios --no-codesign
 
   test_android:
     name: Test Android on ${{ matrix.os }}
