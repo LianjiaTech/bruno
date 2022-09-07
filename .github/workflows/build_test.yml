@@ -9,7 +9,10 @@ on:
 jobs:
   test_iOS:
     name: Test iOS on ${{ matrix.os }}
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
