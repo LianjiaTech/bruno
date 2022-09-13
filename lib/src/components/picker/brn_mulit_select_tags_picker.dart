@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_tags_common_picker.dart';
 import 'package:bruno/src/components/picker/brn_tags_picker_config.dart';
@@ -239,8 +237,12 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         child: Wrap(
           spacing: 15.0,
+          runSpacing: 15.0,
           children: this._sourceTags.map((choice) {
             bool selected = choice.isSelect;
+            Color titleColor = selected
+                ? tagConfig.selectTagTextStyle.color!
+                : tagConfig.tagTextStyle.color!;
             EdgeInsets edgeInsets = this.tagPickerConfig.chipPadding ??
                 EdgeInsets.only(top: 9.0, left: 10.0, right: 10, bottom: 11.0);
             return ChoiceChip(
@@ -248,8 +250,7 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
               padding: edgeInsets,
               pressElevation: 0,
               backgroundColor: tagConfig.tagBackgroundColor,
-              selectedColor: tagConfig.selectedTagBackgroundColor
-                  .withAlpha(0x14),
+              selectedColor: tagConfig.selectedTagBackgroundColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(2.0)),
               label: Text(
@@ -257,10 +258,14 @@ class BrnMultiSelectTagsPicker extends CommonTagsPicker {
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 strutStyle: StrutStyle(forceStrutHeight: true, height: 1),
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(
+                    height: 1,
+                    color: titleColor,
+                    fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+                    fontSize: this.tagPickerConfig.tagTitleFontSize),
               ),
               onSelected: (bool value) {
-                if (_selectedTags.length > this.maxSelectItemCount &&
+                if (_selectedTags.length >= this.maxSelectItemCount &&
                     this.maxSelectItemCount > 0 &&
                     value == true) {
                   if (this.onMaxSelectClick != null) {
