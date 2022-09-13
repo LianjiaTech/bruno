@@ -1,3 +1,4 @@
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/material.dart';
 import 'package:bruno/src/components/input/brn_input_text.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
@@ -49,7 +50,7 @@ class BrnAppraiseConfig {
   final bool showConfirmButton;
 
   /// 确认按钮的文案，默认 '提交'
-  final String confirmButtonText;
+  final String? confirmButtonText;
 
   /// 外部控制提交button的enable状态,null有效，不设置默认值
   final bool? isConfirmButtonEnabled;
@@ -79,7 +80,7 @@ class BrnAppraiseConfig {
     this.inputDefaultText,
     this.inputMaxHeight = 120,
     this.showConfirmButton = true,
-    this.confirmButtonText = '提交',
+    this.confirmButtonText,
     this.isConfirmButtonEnabled,
     this.iconClickCallback,
     this.inputTextChangeCallback,

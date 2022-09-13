@@ -2,6 +2,7 @@
 
 import 'package:bruno/src/components/radio/brn_checkbox.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -130,7 +131,7 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
                 Container(
                   padding: EdgeInsets.only(left: 4, right: 8),
                   child: Text(
-                    '全选',
+                    BrnIntl.of(context).localizedResource.selectAll,
                     style: TextStyle(color: Color(0XFF222222), fontSize: 16),
                   ),
                 ),
@@ -174,7 +175,7 @@ class _BrnMultipleBottomButtonState extends State<BrnMultipleBottomButton> {
         child: Row(
           children: <Widget>[
             Text(
-              '已选',
+              BrnIntl.of(context).localizedResource.selected,
               style: TextStyle(color: Color(0XFF222222), fontSize: 16),
             ),
             ValueListenableBuilder<MultiSelectState>(

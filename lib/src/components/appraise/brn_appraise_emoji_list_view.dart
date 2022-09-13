@@ -1,5 +1,6 @@
 import 'package:bruno/src/components/appraise/brn_appraise_emoji_item.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/material.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 
@@ -12,21 +13,21 @@ class BrnAppraiseEmojiListView extends StatefulWidget {
   final List<int> indexes;
 
   /// 自定义文案，list长度为5，不足5个时请在对应位置补空字符串
-  final List<String> titles;
+  List<String>? titles;
 
   /// 点击回调
   final BrnAppraiseIconClick? onTap;
 
-  static const List<String> _defaultTitles = ['不好', '还行', '满意', '很棒', '超惊喜'];
-
   BrnAppraiseEmojiListView(
       {Key? key,
       this.indexes = const [0, 1, 2, 3, 4],
-      this.titles = _defaultTitles,
+      this.titles,
       this.onTap})
       : assert(indexes.isNotEmpty),
-        assert(titles.length == 5),
-        super(key: key);
+        super(key: key) {
+    titles ??= BrnIntl.currentResource.appriseLevel;
+    assert(titles != null && titles!.length == 5);
+  }
 
   @override
   _BrnAppraiseEmojiListViewState createState() =>
@@ -79,7 +80,7 @@ class _BrnAppraiseEmojiListViewState extends State<BrnAppraiseEmojiListView> {
         padding:
             EdgeInsets.symmetric(horizontal: 7.0 * (6 - widget.indexes.length)),
         selectedIndex: _selectedIndex,
-        title: widget.titles[widget.indexes[i]],
+        title: widget.titles![widget.indexes[i]],
         onTap: (index) {
           _selectedIndex = index;
           if (widget.onTap != null) {

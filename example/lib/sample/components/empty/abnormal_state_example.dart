@@ -27,11 +27,11 @@ class AbnomalStateExample extends StatelessWidget {
             scale: 3.0,
           ),
           isCenterVertical: true,
-          title: BrnStrings.getDateFailed,
-          operateTexts: <String>[BrnStrings.clickPageRetry],
+          title: "获取数据失败，请重试",
+          operateTexts: <String>["请点击页面重试"],
           operateAreaType: OperateAreaType.textButton,
           action: (index) {
-            BrnToast.show(BrnStrings.getDateFailed, context);
+            BrnToast.show("获取数据失败，请重试", context);
           },
         );
         break;
@@ -42,7 +42,7 @@ class AbnomalStateExample extends StatelessWidget {
             'assets/image/empty_state.png',
             scale: 3.0,
           ),
-          title: BrnStrings.noData,
+          title: BrnIntl.of(context).localizedResource.noDataTip,
         );
         break;
       case 2:

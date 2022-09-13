@@ -2,6 +2,7 @@
 
 import 'package:bruno/src/components/button/brn_big_ghost_button.dart';
 import 'package:bruno/src/components/button/brn_normal_button.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,7 @@ const double _BBorderWith = 1;
 
 class BrnBigOutlineButton extends StatelessWidget {
   ///按钮显示文案,默认'确认'
-  final String title;
+  final String? title;
 
   ///边框的颜色
   final Color? lineColor;
@@ -53,7 +54,7 @@ class BrnBigOutlineButton extends StatelessWidget {
 
   const BrnBigOutlineButton({
     Key? key,
-    this.title = '确认',
+    this.title,
     this.lineColor,
     this.textColor,
     this.isEnable = true,
@@ -76,7 +77,7 @@ class BrnBigOutlineButton extends StatelessWidget {
     return BrnNormalButton.outline(
       borderWith: _BBorderWith,
       radius: defaultThemeConfig.bigButtonRadius,
-      text: title,
+      text: title ?? BrnIntl.of(context).localizedResource.confirm,
       disableLineColor: _lineColor,
       lineColor: _lineColor,
       textColor: textColor ?? defaultThemeConfig.commonConfig.colorTextBase,

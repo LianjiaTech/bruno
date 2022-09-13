@@ -5,6 +5,7 @@ import 'package:bruno/src/components/form/base/input_item_interface.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/components/popup/brn_popup_window.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -66,7 +67,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
   final VoidCallback? onTip;
 
   /// 提示文案
-  final String hint;
+  final String? hint;
 
   /// 最大可输入字符数
   final int? maxCount;
@@ -112,7 +113,7 @@ class BrnTitleSelectInputFormItem extends StatefulWidget {
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint = "请输入",
+      this.hint,
       this.maxCount,
       this.inputType = BrnInputType.text,
       this.selectedIndex = -1,
@@ -311,7 +312,7 @@ class BrnTitleSelectInputFormItemState
             color: Color(0xFFCCCCCC),
             fontSize: BrnFonts.f16,
             textBaseline: TextBaseline.alphabetic),
-        hintText: widget.hint,
+        hintText: widget.hint ?? BrnIntl.of(context).localizedResource.pleaseEnter,
         counterText: "",
         contentPadding: EdgeInsets.all(0),
         isDense: true,

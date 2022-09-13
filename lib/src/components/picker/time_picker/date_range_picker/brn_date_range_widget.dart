@@ -7,6 +7,7 @@ import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/time_picker/brn_date_picker_constants.dart';
 import 'package:bruno/src/components/picker/time_picker/date_range_picker/brn_date_range_side_widget.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
@@ -275,7 +276,7 @@ class _DatePickerWidgetState extends State<BrnDateRangeWidget> {
               height: widget.themeData!.itemHeight,
               alignment: Alignment.center,
               child: Text(
-                "至",
+                BrnIntl.of(context).localizedResource.to,
                 style: widget.themeData!.itemTextStyle.generateTextStyle(),
               ),
             );

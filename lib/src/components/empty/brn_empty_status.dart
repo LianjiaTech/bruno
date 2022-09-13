@@ -1,5 +1,6 @@
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_abnormal_state_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -30,21 +31,21 @@ class BrnAbnormalStateUtils {
     if (AbnormalState.getDataFailed == status) {
       return BrnAbnormalStateWidget(
         img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
-        title: BrnStrings.getDateFailed,
-        operateTexts: <String>[BrnStrings.clickPageRetry],
+        title: BrnIntl.of(context).localizedResource.fetchErrorAndRetry,
+        operateTexts: <String>[BrnIntl.of(context).localizedResource.clickPageAndRetry],
         action: action,
       );
     } else if (AbnormalState.networkConnectError == status) {
       return BrnAbnormalStateWidget(
         img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
-        title: BrnStrings.networkConnectError,
-        operateTexts: <String>[BrnStrings.clickPageRetry],
+        title: BrnIntl.of(context).localizedResource.netErrorAndRetryLater,
+        operateTexts: <String>[BrnIntl.of(context).localizedResource.clickPageAndRetry],
         action: action,
       );
     } else if (AbnormalState.noData == status) {
       return BrnAbnormalStateWidget(
         img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
-        title: BrnStrings.noData,
+        title: BrnIntl.of(context).localizedResource.noDataTip,
       );
     } else {
       return Container();

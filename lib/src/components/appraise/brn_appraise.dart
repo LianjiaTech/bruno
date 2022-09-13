@@ -6,6 +6,7 @@ import 'package:bruno/src/components/button/brn_big_main_button.dart';
 import 'package:bruno/src/components/input/brn_input_text.dart';
 import 'package:bruno/src/components/picker/brn_tags_picker_config.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_config.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/material.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 
@@ -17,7 +18,7 @@ import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 /// 4. 可以用在页面里面也可以使用在弹窗里面，使用在底部弹窗的参考[BrnAppraiseBottomPicker]
 /// /// /// /// /// /// /// /// /// /
 
-const BrnAppraiseConfig cConfig = BrnAppraiseConfig();
+const BrnAppraiseConfig cConfig = const BrnAppraiseConfig();
 
 class BrnAppraise extends StatefulWidget {
   /// 标题
@@ -38,7 +39,7 @@ class BrnAppraise extends StatefulWidget {
   /// 自定义文案
   /// 若评分组件为表情，则list长度为5，不足5个时请在对应位置补空字符串
   /// 若评分组件为星星，则list长度不能比count小
-  final List<String> iconDescriptions;
+  List<String>? iconDescriptions;
 
   /// 标签
   final List<String>? tags;
@@ -52,21 +53,12 @@ class BrnAppraise extends StatefulWidget {
   /// 评价组件的配置项
   final BrnAppraiseConfig config;
 
-  /// 评价组建每个评分对应的默认文案
-  static const List<String> _defaultIconDescriptions = [
-    '不好',
-    '还行',
-    '满意',
-    '很棒',
-    '超惊喜'
-  ];
-
   BrnAppraise(
       {Key? key,
       this.title = '',
       this.headerType = BrnAppraiseHeaderType.spaceBetween,
       this.type = BrnAppraiseType.star,
-      this.iconDescriptions = _defaultIconDescriptions,
+      this.iconDescriptions,
       this.tags,
       this.inputHintText = '',
       this.onConfirm,
@@ -148,7 +140,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
     if (widget.type == BrnAppraiseType.emoji) {
       return BrnAppraiseEmojiListView(
         indexes: widget.config.indexes,
-        titles: widget.iconDescriptions,
+        titles: widget.iconDescriptions ?? BrnIntl.of(context).localizedResource.appriseLevel,
         onTap: (index) {
           setState(() {
             _appraiseIndex = index;
@@ -161,7 +153,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
     } else {
       return BrnAppraiseStarListView(
         count: widget.config.count,
-        titles: widget.iconDescriptions,
+        titles: widget.iconDescriptions ?? BrnIntl.of(context).localizedResource.appriseLevel,
         hint: widget.config.starAppraiseHint,
         onTap: (index) {
           setState(() {
@@ -236,7 +228,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: BrnBigMainButton(
-          title: widget.config.confirmButtonText,
+          title: widget.config.confirmButtonText ?? BrnIntl.of(context).localizedResource.submit,
           isEnable: _enable ?? _appraiseIndex != -1,
           onTap: () {
             if (_enable ?? _appraiseIndex != -1) {

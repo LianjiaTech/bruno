@@ -1,4 +1,5 @@
 import 'package:bruno/src/components/picker/brn_tags_picker_config.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
@@ -98,7 +99,7 @@ class _BrnMultiSelectTagsState extends State<BrnMultiSelectTags> {
           Container(
             height: 200,
             child: Center(
-              child: Text('未配置tags数据'),
+              child: Text(BrnIntl.of(context).localizedResource.noTagDataTip),
             ),
           );
     }

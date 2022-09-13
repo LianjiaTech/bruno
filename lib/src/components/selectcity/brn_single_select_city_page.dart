@@ -8,6 +8,7 @@ import 'package:bruno/src/components/selectcity/brn_select_city_model.dart';
 import 'package:bruno/src/components/sugsearch/brn_search_text.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:bruno/src/constants/brn_fonts_constants.dart';
 import 'package:flutter/material.dart';
@@ -137,7 +138,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
         Container(
           padding: EdgeInsets.only(left: 20, right: 10, top: 20, bottom: 0),
           child: Text(
-            widget.hotCityTitle ?? '这里是推荐城市',
+            widget.hotCityTitle ?? BrnIntl.of(context).localizedResource.recommandCity,
             textAlign: TextAlign.left,
             style: TextStyle(
               fontWeight: FontWeight.w500,
@@ -233,7 +234,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   Widget _buildSearchBar() {
     return BrnSearchText(
       searchController: _brnSearchTextController,
-      hintText: '请输入搜索信息',
+      hintText: BrnIntl.of(context).localizedResource.inputSearchTip,
       onTextChange: (text) {
         _searchText = text;
         _showCityStack = text.isEmpty;
@@ -273,7 +274,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: BrnAppBar(title: widget.appBarTitle ?? '城市选择'),
+        appBar: BrnAppBar(title: widget.appBarTitle ?? BrnIntl.of(context).localizedResource.selectCity),
         body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Column(
@@ -360,7 +361,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
     return Container(
       child: BrnAbnormalStateWidget(
         img: BrunoTools.getAssetImage(BrnAsset.emptyState),
-        title: BrnStrings.noSearchData,
+        title: BrnIntl.of(context).localizedResource.noSearchData,
       ),
     );
   }

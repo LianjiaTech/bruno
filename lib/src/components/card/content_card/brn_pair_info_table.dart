@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/utils/brn_rich_text.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -287,7 +288,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
         Padding(
           padding: EdgeInsets.only(right: 4),
           child: Text(
-            '展开',
+            BrnIntl.of(context).localizedResource.expand,
             style: TextStyle(
               fontSize: 14,
               color: themeData.commonConfig.colorTextSecondary,
@@ -346,7 +347,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
         Padding(
           padding: EdgeInsets.only(right: 4),
           child: Text(
-            '收起',
+            BrnIntl.of(context).localizedResource.collapse,
             style: TextStyle(
               fontSize: 14,
               color: themeData.commonConfig.colorTextSecondary,

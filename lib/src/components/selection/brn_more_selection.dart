@@ -8,6 +8,7 @@ import 'package:bruno/src/components/selection/brn_selection_view.dart';
 import 'package:bruno/src/components/selection/widget/brn_selection_more_item_widget.dart';
 import 'package:bruno/src/components/toast/brn_toast.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -250,10 +251,10 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
           if (!node.isValidRange()) {
             isValid = false;
             if (node.filterType == BrnSelectionFilterType.range) {
-              BrnToast.show('您输入的区间有误', context);
+              BrnToast.show(BrnIntl.of(context).localizedResource.enterRangeError, context);
             } else if (node.filterType == BrnSelectionFilterType.dateRange ||
                 node.filterType == BrnSelectionFilterType.dateRangeCalendar) {
-              BrnToast.show('您选择的区间有误', context);
+              BrnToast.show(BrnIntl.of(context).localizedResource.enterRangeError, context);
             }
             return;
           }
@@ -310,7 +311,7 @@ class MoreBottomSelectionWidget extends StatelessWidget {
                   child: BrunoTools.getAssetImage(BrnAsset.iconSelectionReset),
                 ),
                 Text(
-                  '重置',
+                  BrnIntl.of(context).localizedResource.reset,
                   style: themeData.resetTextStyle.generateTextStyle(),
                 )
               ],
@@ -319,7 +320,7 @@ class MoreBottomSelectionWidget extends StatelessWidget {
         ),
         Expanded(
             child: BrnBigMainButton(
-          title: '确定',
+          title: BrnIntl.of(context).localizedResource.ok,
           onTap: () {
             if (conformCallback != null) {
               conformCallback!(entity);

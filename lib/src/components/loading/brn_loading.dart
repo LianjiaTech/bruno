@@ -124,14 +124,14 @@ class BrnPageLoading extends StatelessWidget {
 /// 过 [BrnLoadingDialog.show] 和 [BrnLoadingDialog.dismiss] 控制弹窗的显示和关闭。不会自动关闭。
 class BrnLoadingDialog extends Dialog {
   /// 加载时的提示文案，默认为 `加载中...`
-  final String content;
+  final String? content;
 
-  const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent})
+  const BrnLoadingDialog({Key? key, this.content})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BrnPageLoading(content: content);
+    return BrnPageLoading(content: content ?? BrnIntl.of(context).localizedResource.loading);
   }
 
   /// 展示加载弹窗的静态方法。
@@ -143,7 +143,7 @@ class BrnLoadingDialog extends Dialog {
   ///    rootNavigator，详见 [showDialog] 中的 [useRootNavigator]。
   static Future<T?> show<T>(
     BuildContext context, {
-    String content = BrnStrings.loadingContent,
+    String? content,
     bool barrierDismissible = true,
     bool useRootNavigator = true,
   }) {
@@ -152,7 +152,7 @@ class BrnLoadingDialog extends Dialog {
         barrierDismissible: barrierDismissible,
         useRootNavigator: useRootNavigator,
         builder: (_) {
-          return BrnLoadingDialog(content: content);
+          return BrnLoadingDialog(content: content ?? BrnIntl.of(context).localizedResource.loading);
         });
   }
 

@@ -5,7 +5,7 @@ class ChangeLocalEvent extends Notification{
   static Locale locale = Locale('zh', 'CN');
 }
 
-class ResourceDe extends BrnBaseResource {
+class ResourceDe extends BrnResourceEn {
 
   static Locale locale = Locale('de', 'DE');
 

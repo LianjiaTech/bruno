@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/configs/brn_gallery_detail_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,7 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(right: 4),
-                    child: Text('展开',
+                    child: Text(BrnIntl.of(context).localizedResource.expand,
                         style:
                             widget.themeData!.actionStyle.generateTextStyle()),
                   ),
@@ -112,7 +113,7 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(right: 4),
-                          child: Text('收起',
+                          child: Text(BrnIntl.of(context).localizedResource.collapse,
                               style: widget.themeData!.actionStyle
                                   .generateTextStyle()),
                         ),

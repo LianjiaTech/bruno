@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bruno/src/components/button/brn_normal_button.dart';
 import 'package:bruno/src/constants/brn_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ const double _BMinWidth = 84;
 
 class BrnSmallMainButton extends StatelessWidget {
   /// 按钮显示文案,默认'确认'
-  final String title;
+  final String? title;
 
   ///点击回调
   final VoidCallback? onTap;
@@ -47,7 +48,7 @@ class BrnSmallMainButton extends StatelessWidget {
   /// 传入属性优先级最高，未传入的走默认配置，更多请看[BrnSmallMainButtonConfig.defaultConfig]
   const BrnSmallMainButton({
     Key? key,
-    this.title = '确认',
+    this.title,
     this.onTap,
     this.isEnable = true,
     this.bgColor,
@@ -81,7 +82,7 @@ class BrnSmallMainButton extends StatelessWidget {
           color: textColor,
         );
         textPainter.textDirection = TextDirection.ltr;
-        textPainter.text = TextSpan(text: title, style: style);
+        textPainter.text = TextSpan(text: title ?? BrnIntl.of(context).localizedResource.confirm, style: style);
         textPainter.layout(maxWidth: con.maxWidth);
         double textWidth = textPainter.width;
         //按钮本身大小
@@ -111,7 +112,7 @@ class BrnSmallMainButton extends StatelessWidget {
             maxWidth: this.width ?? _maxWidth,
           ),
           alignment: Alignment.center,
-          text: title,
+          text: title ?? BrnIntl.of(context).localizedResource.confirm,
           backgroundColor:
               bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
           disableBackgroundColor: Color(0xFFCCCCCC),

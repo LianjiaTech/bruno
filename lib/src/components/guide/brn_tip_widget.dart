@@ -1,6 +1,7 @@
 import 'package:bruno/src/components/button/brn_icon_button.dart';
 import 'package:bruno/src/components/guide/brn_flutter_guide.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -241,7 +242,7 @@ class BrnTipInfoWidget extends StatelessWidget {
                           onSkip!();
                         },
                         child: Text(
-                          '跳过 (${currentStepIndex + 1}/$stepCount)',
+                          '${BrnIntl.currentResource.skip} (${currentStepIndex + 1}/$stepCount)',
                           style:
                               TextStyle(color: Color(0xFF999999), fontSize: 14),
                         ),
@@ -273,8 +274,8 @@ class BrnTipInfoWidget extends StatelessWidget {
                         child: Text(
                           nextTip ??
                               (stepCount == currentStepIndex + 1
-                                  ? '我知道了'
-                                  : '下一步'),
+                                  ? BrnIntl.currentResource.known
+                                  : BrnIntl.currentResource.next),
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
                       ),
@@ -308,7 +309,7 @@ class BrnTipInfoWidget extends StatelessWidget {
                           onSkip!();
                         },
                         child: Text(
-                          '跳过 (${currentStepIndex + 1}/$stepCount)',
+                          '${BrnIntl.currentResource.skip} (${currentStepIndex + 1}/$stepCount)',
                           style:
                               TextStyle(color: Color(0xFF999999), fontSize: 14),
                         ),
@@ -332,8 +333,8 @@ class BrnTipInfoWidget extends StatelessWidget {
                         child: Text(
                           nextTip ??
                               (stepCount == currentStepIndex + 1
-                                  ? '我知道了'
-                                  : '下一步'),
+                                  ? BrnIntl.currentResource.known
+                                  : BrnIntl.currentResource.next),
                           style: TextStyle(
                               color: BrnThemeConfigurator.instance
                                   .getConfig()

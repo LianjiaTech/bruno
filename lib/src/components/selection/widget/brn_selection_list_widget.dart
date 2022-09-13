@@ -6,6 +6,7 @@ import 'package:bruno/src/components/selection/brn_selection_util.dart';
 import 'package:bruno/src/components/selection/widget/brn_selection_menu_widget.dart';
 import 'package:bruno/src/components/selection/widget/brn_selection_single_list_widget.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -258,7 +259,7 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
                             BrnAsset.iconSelectionReset),
                       ),
                       Text(
-                        "重置",
+                        BrnIntl.of(context).localizedResource.reset,
                         style:
                             widget.themeData.resetTextStyle.generateTextStyle(),
                       )
@@ -269,7 +270,7 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
               ),
               Expanded(
                 child: BrnBigMainButton(
-                  title: '确定',
+                  title: BrnIntl.of(context).localizedResource.ok,
                   onTap: () {
                     _confirmButtonClickEvent();
                   },
