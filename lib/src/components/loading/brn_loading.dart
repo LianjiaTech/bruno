@@ -43,13 +43,13 @@ class BrnPageLoading extends StatelessWidget {
     double _iconSize = 19.0;
     double _textLeftPadding = 8.0;
     double _outPadding = 10.0;
-
+    String loadingText = content ?? BrnIntl.of(context).localizedResource.loading;
     // 获取实际文字长度
     TextPainter textPainter = TextPainter(
       textDirection: TextDirection.ltr,
       textScaleFactor: MediaQuery.of(context).textScaleFactor,
       text: TextSpan(
-          text: content,
+          text: loadingText,
           style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -63,12 +63,10 @@ class BrnPageLoading extends StatelessWidget {
     return Center(
       child: Container(
         padding: EdgeInsets.all(_outPadding),
-        constraints: BoxConstraints(
-            maxWidth: maxWidth, minWidth: _iconSize + _textLeftPadding),
+        constraints: BoxConstraints(maxWidth: maxWidth, minWidth: _iconSize + _textLeftPadding),
         height: 50,
         width: _loadingMaxWidth,
-        decoration: BoxDecoration(
-            color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
+        decoration: BoxDecoration(color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
         child: Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -85,7 +83,8 @@ class BrnPageLoading extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.only(left: _textLeftPadding),
                   child: Text(
-                    content,
+                    loadingText,
+                    maxLines: 1,
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -95,27 +94,10 @@ class BrnPageLoading extends StatelessWidget {
                   ),
                 ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
-    );
-  }
-
-  _buildText(BuildContext context, double maxWidth) {
-    TextPainter textPainter = TextPainter(
-      textScaleFactor: MediaQuery.of(context).textScaleFactor,
-      text: TextSpan(
-          text: content,
-          style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-              decoration: TextDecoration.none)),
-    )..layout(maxWidth: maxWidth, minWidth: 0);
-    return BoxConstraints(
-      maxWidth: maxWidth,
-      minWidth: 0,
     );
   }
 }

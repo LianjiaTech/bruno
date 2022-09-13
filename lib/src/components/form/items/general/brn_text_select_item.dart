@@ -393,7 +393,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       );
     } else {
       return Text(
-        widget.hint,
+        widget.hint ?? BrnIntl.of(context).localizedResource.pleaseChoose,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
         style: BrnFormUtil.getHintTextStyle(widget.themeData!, height: 1),
