@@ -173,8 +173,8 @@ class BrnMiddleInputDialog {
       ),
     ));
     return BrnDialogManager.showConfirmDialog(context,
-        cancel: cancelText ?? BrnIntl.currentResource.cancel,
-        confirm: confirmText ?? BrnIntl.currentResource.ok,
+        cancel: cancelText ?? BrnIntl.of(context).localizedResource.cancel,
+        confirm: confirmText ?? BrnIntl.of(context).localizedResource.ok,
         title: title,
         barrierDismissible: barrierDismissible,
         themeData: themeData,

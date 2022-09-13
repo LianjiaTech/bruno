@@ -86,9 +86,9 @@ class BrnBottomWritePicker extends StatefulWidget {
           final Widget pageChild = BrnBottomWritePicker(
             maxLength: maxLength,
             hintText: hintText ?? BrnIntl.of(context).localizedResource.pleaseEnter,
-            leftTag: leftTag ?? BrnIntl.currentResource.cancel,
+            leftTag: leftTag ?? BrnIntl.of(context).localizedResource.cancel,
             title: title,
-            rightTag: rightTag ?? BrnIntl.currentResource.ok,
+            rightTag: rightTag ?? BrnIntl.of(context).localizedResource.ok,
             onConfirm: onConfirm,
             onCancel: onCancel,
             rightTextColor: rightTextColor ??
@@ -166,8 +166,8 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
       pickerTitleConfig: BrnPickerTitleConfig(
         titleContent: widget.title,
       ),
-      confirm: _buildRightTag(),
-      cancel: widget.leftTag ?? BrnIntl.currentResource.cancel,
+      confirm: _buildRightTag(context),
+      cancel: widget.leftTag ?? BrnIntl.of(context).localizedResource.cancel,
       onConfirmPressed: () {
         if (widget.onConfirm != null) {
           widget.onConfirm!(context, _controller?.text);
@@ -183,10 +183,10 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
   }
 
   //此处返回类型为dynamic，在build的时候，会判读具体类型
-  dynamic _buildRightTag() {
+  dynamic _buildRightTag(BuildContext context) {
     if (widget.rightTextColor != null) {
       return Text(
-        widget.rightTag ?? BrnIntl.currentResource.ok,
+        widget.rightTag ?? BrnIntl.of(context).localizedResource.ok,
         style: TextStyle(
           fontSize: 16.0,
           color: widget.rightTextColor,

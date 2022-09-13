@@ -53,7 +53,7 @@ class BrnTipInfoWidget extends StatelessWidget {
       return Column(
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
-          buildContent(),
+          _buildContent(context),
           Container(
             alignment: direction == GuideDirection.bottomLeft
                 ? Alignment.bottomRight
@@ -76,7 +76,7 @@ class BrnTipInfoWidget extends StatelessWidget {
         direction == GuideDirection.topRight) {
       return Column(
         children: <Widget>[
-          buildContent(),
+          _buildContent(context),
           Container(
             alignment: direction == GuideDirection.topLeft
                 ? Alignment.topRight
@@ -98,7 +98,7 @@ class BrnTipInfoWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          buildContent(),
+          _buildContent(context),
           Container(
             alignment: Alignment.topLeft,
             padding: EdgeInsets.only(top: 12),
@@ -117,7 +117,7 @@ class BrnTipInfoWidget extends StatelessWidget {
         textDirection: TextDirection.rtl,
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
-          buildContent(),
+          _buildContent(context),
           Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(top: 12),
@@ -135,7 +135,7 @@ class BrnTipInfoWidget extends StatelessWidget {
     return Row();
   }
 
-  Widget buildContent() {
+  Widget _buildContent(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -158,7 +158,7 @@ class BrnTipInfoWidget extends StatelessWidget {
           buildImage(),
           buildTitle(),
           buildMessage(),
-          mode == GuideMode.force ? buildForceBottom() : buildSoftBottom()
+          mode == GuideMode.force ? _buildForceBottom(context) : _buildSoftBottom(context)
         ],
       ),
     );
@@ -221,7 +221,7 @@ class BrnTipInfoWidget extends StatelessWidget {
     );
   }
 
-  Widget buildSoftBottom() {
+  Widget _buildSoftBottom(BuildContext context) {
     if (onNext == null && onSkip == null) return Row();
     return Container(
       height: 32,
@@ -242,7 +242,7 @@ class BrnTipInfoWidget extends StatelessWidget {
                           onSkip!();
                         },
                         child: Text(
-                          '${BrnIntl.currentResource.skip} (${currentStepIndex + 1}/$stepCount)',
+                          '${BrnIntl.of(context).localizedResource.skip} (${currentStepIndex + 1}/$stepCount)',
                           style:
                               TextStyle(color: Color(0xFF999999), fontSize: 14),
                         ),
@@ -274,8 +274,8 @@ class BrnTipInfoWidget extends StatelessWidget {
                         child: Text(
                           nextTip ??
                               (stepCount == currentStepIndex + 1
-                                  ? BrnIntl.currentResource.known
-                                  : BrnIntl.currentResource.next),
+                                  ? BrnIntl.of(context).localizedResource.known
+                                  : BrnIntl.of(context).localizedResource.next),
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
                       ),
@@ -288,7 +288,7 @@ class BrnTipInfoWidget extends StatelessWidget {
     );
   }
 
-  Widget buildForceBottom() {
+  Widget _buildForceBottom(BuildContext context) {
     if (onNext == null && onSkip == null) return Row();
     return Container(
       height: 20,
@@ -309,7 +309,7 @@ class BrnTipInfoWidget extends StatelessWidget {
                           onSkip!();
                         },
                         child: Text(
-                          '${BrnIntl.currentResource.skip} (${currentStepIndex + 1}/$stepCount)',
+                          '${BrnIntl.of(context).localizedResource.skip} (${currentStepIndex + 1}/$stepCount)',
                           style:
                               TextStyle(color: Color(0xFF999999), fontSize: 14),
                         ),
@@ -333,8 +333,8 @@ class BrnTipInfoWidget extends StatelessWidget {
                         child: Text(
                           nextTip ??
                               (stepCount == currentStepIndex + 1
-                                  ? BrnIntl.currentResource.known
-                                  : BrnIntl.currentResource.next),
+                                  ? BrnIntl.of(context).localizedResource.known
+                                  : BrnIntl.of(context).localizedResource.next),
                           style: TextStyle(
                               color: BrnThemeConfigurator.instance
                                   .getConfig()
