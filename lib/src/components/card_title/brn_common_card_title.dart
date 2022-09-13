@@ -70,7 +70,7 @@ class BrnCommonCardTitle extends StatelessWidget {
   /// 标题下方文字 默认是深色的222222
   final Color? detailColor;
 
-  /// 内容的padding 默认上下16 左右0
+  /// 内容的padding 默认上16下12 左右0
   final EdgeInsetsGeometry? padding;
 
   /// 标题最大行数
@@ -95,22 +95,23 @@ class BrnCommonCardTitle extends StatelessWidget {
       this.padding,
       this.titleMaxLines,
       this.titleOverflow = TextOverflow.clip,
-        this.themeData})
+      this.themeData})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     BrnCardTitleConfig defaultConfig = themeData ?? BrnCardTitleConfig();
 
-    defaultConfig = defaultConfig.merge(BrnCardTitleConfig(
+    BrnCardTitleConfig cardTitleConfig = BrnCardTitleConfig(
         alignment: alignment,
         cardTitlePadding: padding as EdgeInsets?,
-        detailTextStyle: BrnTextStyle(color: detailColor)));
+        detailTextStyle: BrnTextStyle(color: detailColor));
 
     defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultConfig.configId)
         .cardTitleConfig
-        .merge(defaultConfig);
+        .merge(themeData)
+        .merge(cardTitleConfig);
 
     Widget titleContainer = Container(
       color: defaultConfig.cardBackgroundColor,
