@@ -809,10 +809,7 @@ class BrnInfoModal {
               }
             },
           )
-          .addIcon(Container(
-            height: 0,
-            width: 0,
-          ))
+          .addIcon(const SizedBox.shrink())
           .build();
     }
 

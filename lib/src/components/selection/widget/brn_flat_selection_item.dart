@@ -222,10 +222,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
   /// 自定义筛选条件的显示
   Widget _buildRangeWidget() {
     return widget.selectionEntity.currentRangeListForEntity().isEmpty
-        ? Container(
-            height: 0,
-            width: 0,
-          )
+        ? const SizedBox.shrink()
         : _MoreRangeWidget(
             streamController: _streamController,
             clearController: widget.clearController,

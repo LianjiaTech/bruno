@@ -413,11 +413,8 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                     ),
                     Material(
                       color: Colors.transparent,
-                      child: InkWell(
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(32.0)),
+                      child: GestureDetector(
+                          behavior: HitTestBehavior.opaque,
                         onTap: () {
                           final DateTime newMinimumDate = DateTime(
                               _minDate.year, _minDate.month, _minDate.day - 1);

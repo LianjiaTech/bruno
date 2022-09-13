@@ -96,7 +96,7 @@ class BrnAppraiseHeader extends StatelessWidget {
                 ),
               ),
             ),
-            InkWell(
+            GestureDetector(
               onTap: () {
                 if (cancelCallBack != null) {
                   cancelCallBack!(context);

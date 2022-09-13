@@ -182,7 +182,7 @@ class BrnGeneralFormItemState extends State<BrnGeneralFormItem> {
 
 
               Container(
-                child: widget.operateWidget ?? SizedBox.shrink(),
+                child: widget.operateWidget ?? const SizedBox.shrink(),
               ),
 
             ],

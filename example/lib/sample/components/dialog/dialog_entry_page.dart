@@ -75,7 +75,7 @@ class DialogEntryPage extends StatelessWidget {
               },
             ),
             ListItem(
-              title: "标题+信息+警示+单按钮",
+              title: "标题+信息+警示",
               isSupportTheme: true,
               describe: '有标题、单按钮、有辅助文案',
               onPressed: () {
@@ -83,7 +83,7 @@ class DialogEntryPage extends StatelessWidget {
               },
             ),
             ListItem(
-              title: "标题+信息+自定义警示UI+单按钮",
+              title: "标题+信息+自定义警示UI",
               isSupportTheme: true,
               describe: '有标题、单按钮、有辅助文案',
               onPressed: () {
