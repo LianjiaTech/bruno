@@ -32,7 +32,7 @@ class ProgressChartExampleState extends State<ProgressChartExample> {
             colors: [Colors.lightBlueAccent, Colors.blue],
             backgroundColor: Colors.grey,
             showAnimation: true,
-            isReverse: true,
+            isFromLastValue: true,
             brnProgressIndicatorBuilder: (BuildContext context, double value) {
               return Text(
                 '自定义：$value',

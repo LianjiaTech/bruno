@@ -41,7 +41,7 @@ class BrnProgressChart extends StatefulWidget {
   final Duration duration;
 
   /// 进度条是否从上次的值开始
-  final bool isReverse;
+  final bool isFromLastValue;
 
   const BrnProgressChart(
       {Key? key,
@@ -54,7 +54,7 @@ class BrnProgressChart extends StatefulWidget {
       this.colors = const [Colors.blueAccent, Colors.blue],
       this.backgroundColor = Colors.lightBlueAccent,
       this.showAnimation = false,
-      this.isReverse = false,
+      this.isFromLastValue = false,
       this.duration = const Duration(milliseconds: 250),})
       : assert(0 <= value && value <= 1, 'value 必须在 0 到 1 之间'),
         super(key: key);
@@ -75,7 +75,7 @@ class BrnProgressChartState extends State<BrnProgressChart>
   bool get _isAnimation => widget.showAnimation;
 
   void _initAnimation() {
-    final double begin = widget.isReverse ? _lastValue : 0;
+    final double begin = widget.isFromLastValue ? _lastValue : 0;
     final double end = widget.value;
     final Tween<double> tween = Tween<double>(begin: begin, end: end);
     _animationController.duration =

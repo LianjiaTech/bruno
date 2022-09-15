@@ -34,7 +34,7 @@ class BrnProgressChartPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final double value = animation?.value ?? this.value;
+    final double curValue = animation?.value ?? this.value;
     Paint backgroundPaint = Paint()
       ..color = this.backgroundColor
       ..style = PaintingStyle.fill;
@@ -42,20 +42,20 @@ class BrnProgressChartPainter extends CustomPainter {
     Rect backgroundRect = Rect.fromLTWH(0, 0, size.width, size.height);
     if (this.alwaysShowRadius) {
       RRect backgroundRRect = RRect.fromRectAndCorners(backgroundRect,
-          bottomRight: Radius.circular(value < 1 ? 0 : this.radius),
-          topRight: Radius.circular(value < 1 ? 0 : this.radius));
+          bottomRight: Radius.circular(curValue < 1 ? 0 : this.radius),
+          topRight: Radius.circular(curValue < 1 ? 0 : this.radius));
       canvas.drawRRect(backgroundRRect, backgroundPaint);
     } else {
       canvas.drawRect(backgroundRect, backgroundPaint);
     }
 
-    Rect progressBarRect = Rect.fromLTWH(0, 0, size.width * value, size.height);
+    Rect progressBarRect = Rect.fromLTWH(0, 0, size.width * curValue, size.height);
 
     RRect progressBarRRect = RRect.fromRectAndCorners(progressBarRect,
         bottomRight: Radius.circular(
-            1 == value && false == this.alwaysShowRadius ? 0 : this.radius),
+            1 == curValue && false == this.alwaysShowRadius ? 0 : this.radius),
         topRight: Radius.circular(
-            1 == value && false == this.alwaysShowRadius ? 0 : this.radius));
+            1 == curValue && false == this.alwaysShowRadius ? 0 : this.radius));
     final bool isNotSingleColor = colors.length > 1;
     Paint progressBarPaint = Paint();
     if (isNotSingleColor) {
