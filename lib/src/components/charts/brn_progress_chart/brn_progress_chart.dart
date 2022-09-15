@@ -163,6 +163,7 @@ class _IndicatorWidgetBuilderState extends State<IndicatorWidgetBuilder> {
 
   void _changeListener() {
     final double value = widget.notifier?.value ?? widget.value;
+    if(!mounted) return;
     setState(() {
       _value = value;
     });

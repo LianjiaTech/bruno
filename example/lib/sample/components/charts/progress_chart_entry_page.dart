@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -52,6 +50,7 @@ class ProgressChartExampleState extends State<ProgressChartExample> {
                     value: count,
                     divisions: 10,
                     onChanged: (data) {
+                      if (!mounted) return;
                       setState(() {
                         count = data;
                       });
