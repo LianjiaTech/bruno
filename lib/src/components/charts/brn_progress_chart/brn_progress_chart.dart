@@ -187,6 +187,6 @@ class _IndicatorWidgetBuilderState extends State<IndicatorWidgetBuilder> {
     final BrnProgressIndicatorBuilder? builder =
         widget.brnProgressIndicatorBuilder;
     return builder?.call(context, _value) ??
-        Text('文本：$_value', style: widget.textStyle);
+        Text('$_value', style: widget.textStyle);
   }
 }
