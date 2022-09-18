@@ -117,6 +117,11 @@ class BrnTextSelectFormItem extends StatefulWidget {
         .merge(this.themeData);
     this.themeData = this.themeData!.merge(
         BrnFormItemConfig(backgroundColor: backgroundColor));
+    if(!isRequire){
+      this.themeData = this
+          .themeData!
+          .merge(BrnFormItemConfig(errorPadding: EdgeInsets.zero));
+    }
   }
 
   BrnTextSelectFormItem.autoLayout(
