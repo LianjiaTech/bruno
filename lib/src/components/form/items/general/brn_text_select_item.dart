@@ -117,11 +117,6 @@ class BrnTextSelectFormItem extends StatefulWidget {
         .merge(this.themeData);
     this.themeData = this.themeData!.merge(
         BrnFormItemConfig(backgroundColor: backgroundColor));
-    if(!isRequire){
-      this.themeData = this
-          .themeData!
-          .merge(BrnFormItemConfig(errorPadding: EdgeInsets.zero));
-    }
   }
 
   BrnTextSelectFormItem.autoLayout(
@@ -183,7 +178,8 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
           // 错误提示
-          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
+          if (widget.isRequire && widget.error.isNotEmpty)
+            BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );
