@@ -2,7 +2,7 @@ import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 ///多选按钮
-class BrnCheckbox extends StatefulWidget {
+class BrnCheckbox extends StatelessWidget {
   /// 标识当前Radio的Index
   final int radioIndex;
 
@@ -44,7 +44,7 @@ class BrnCheckbox extends StatefulWidget {
   /// 默认值MainAxisSize.min
   final MainAxisSize mainAxisSize;
 
-  /// 默认值HitTestBehavior.translucent。控制widget.onRadioItemClick触发的点击范围
+  /// 默认值HitTestBehavior.translucent。控制onRadioItemClick触发的点击范围
   final HitTestBehavior behavior;
 
   const BrnCheckbox(
@@ -59,34 +59,20 @@ class BrnCheckbox extends StatefulWidget {
       this.mainAxisAlignment = MainAxisAlignment.start,
       this.crossAxisAlignment = CrossAxisAlignment.center,
       this.mainAxisSize = MainAxisSize.min,
-      this.behavior = HitTestBehavior.translucent});
-
-  @override
-  State<StatefulWidget> createState() {
-    return BrnCheckboxState();
-  }
-}
-
-class BrnCheckboxState extends State<BrnCheckbox> {
-  late bool _isSelected;
-
-  @override
-  void initState() {
-    super.initState();
-    _isSelected = widget.isSelected;
-  }
+      this.behavior = HitTestBehavior.translucent})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BrnRadioCore(
-      radioIndex: widget.radioIndex,
-      disable: widget.disable,
-      isSelected: _isSelected,
-      iconPadding: widget.iconPadding,
-      childOnRight: widget.childOnRight,
-      mainAxisAlignment: widget.mainAxisAlignment,
-      crossAxisAlignment: widget.crossAxisAlignment,
-      mainAxisSize: widget.mainAxisSize,
+      radioIndex: radioIndex,
+      disable: disable,
+      isSelected: isSelected,
+      iconPadding: iconPadding,
+      childOnRight: childOnRight,
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      mainAxisSize: mainAxisSize,
       selectedImage: BrunoTools.getAssetImageWithBandColor(
           BrnAsset.iconRadioMultiSelected),
       unselectedImage: BrunoTools.getAssetImage(BrnAsset.iconRadioUnSelected),
@@ -94,14 +80,11 @@ class BrnCheckboxState extends State<BrnCheckbox> {
           BrunoTools.getAssetImage(BrnAsset.iconRadioDisableSingleSelected),
       disUnselectedImage:
           BrunoTools.getAssetImage(BrnAsset.iconRadioDisableUnselected),
-      child: widget.child,
+      child: child,
       onRadioItemClick: () {
-        setState(() {
-          _isSelected = !_isSelected;
-        });
-        widget.onValueChangedAtIndex(widget.radioIndex, _isSelected);
+        onValueChangedAtIndex(radioIndex, !isSelected);
       },
-      behavior: widget.behavior,
+      behavior: behavior,
     );
   }
 }

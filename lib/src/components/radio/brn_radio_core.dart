@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 /// 2. 支持传入待选择widget，可以显示在选择按钮的左边或者右边
 /// 3. 传入widget时，widget和选择按钮使用Row包裹，支持传入Row的属性[MainAxisAlignment]和[MainAxisSize]
 
-class BrnRadioCore extends StatefulWidget {
+class BrnRadioCore extends StatelessWidget {
   /// 标识当前Radio的Index
   final int radioIndex;
 
@@ -53,7 +53,7 @@ class BrnRadioCore extends StatefulWidget {
 
   final VoidCallback? onRadioItemClick;
 
-  /// 默认值HitTestBehavior.translucent控制widget.onRadioItemClick触发的点击范围
+  /// 默认值HitTestBehavior.translucent控制onRadioItemClick触发的点击范围
   final HitTestBehavior behavior;
 
   const BrnRadioCore(
@@ -76,89 +76,42 @@ class BrnRadioCore extends StatefulWidget {
       : super(key: key);
 
   @override
-  _BrnRadioCoreState createState() => _BrnRadioCoreState();
-}
-
-class _BrnRadioCoreState extends State<BrnRadioCore> {
-  late bool _isSelected;
-  late bool _disable;
-
-  @override
-  void initState() {
-    _isSelected = widget.isSelected;
-    _disable = widget.disable;
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(BrnRadioCore oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _isSelected = widget.isSelected;
-    _disable = widget.disable;
-  }
-
-  @override
   Widget build(BuildContext context) {
-//    Image selectedImage = BrunoTools.getAssetImageWithBandColor(
-//        widget.radioType == BrnRadioType.single
-//            ? BrnAsset.ICON_RADIO_SINGLE_SELECTED
-//            : BrnAsset.ICON_RADIO_MULTI_SELECTED);
-//    Image unselectedImage = BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_UNSELECTED);
-//    Image disSelectedImage = BrunoTools.getAssetImage(widget.radioType == BrnRadioType.single
-//        ? BrnAsset.ICON_RADIO_DISABLE_SINGLE_SELECTED
-//        : BrnAsset.ICON_RADIO_DISABLE_MULTI_SELECTED);
-//    Image disUnselectedImage = BrunoTools.getAssetImage(BrnAsset.ICON_RADIO_DISABLE_UNSELECTED);
-
     Widget icon = Container(
-      padding: widget.iconPadding ?? EdgeInsets.all(5),
-      child: this._isSelected
-          ? (this._disable ? widget.disSelectedImage : widget.selectedImage)
-          : (this._disable
-              ? widget.disUnselectedImage
-              : widget.unselectedImage),
+      padding: iconPadding ?? EdgeInsets.all(5),
+      child: this.isSelected
+          ? (this.disable ? disSelectedImage : selectedImage)
+          : (this.disable ? disUnselectedImage : unselectedImage),
     );
 
     Widget radioWidget;
-    if (widget.child == null) {
+    if (child == null) {
       // 没设置左右widget的时候就不返回row
       radioWidget = icon;
     } else {
       List<Widget> list = [];
-      if (widget.childOnRight) {
+      if (childOnRight) {
         list.add(icon);
-        list.add(widget.child!);
+        list.add(child!);
       } else {
-        list.add(widget.child!);
+        list.add(child!);
         list.add(icon);
       }
       radioWidget = Row(
-        mainAxisSize: widget.mainAxisSize,
-        mainAxisAlignment: widget.mainAxisAlignment,
-        crossAxisAlignment: widget.crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
         children: list,
       );
     }
 
     return GestureDetector(
       child: radioWidget,
-      behavior: widget.behavior,
+      behavior: behavior,
       onTap: () {
-        if (widget.disable == true) return;
-        if (widget.onRadioItemClick != null) {
-          widget.onRadioItemClick!();
-        }
-//        if (widget.onValueChangedAtIndex != null) {
-//          if (widget.radioType == BrnRadioType.single) {
-//            // 单选
-//            widget.onValueChangedAtIndex(widget.radioIndex, true);
-//          } else {
-//            // 多选
-//            setState(() {
-//              _isSelected = !_isSelected;
-//            });
-//            widget.onValueChangedAtIndex(widget.radioIndex, _isSelected);
-//          }
-//        }
+        if (disable == true) return;
+
+        onRadioItemClick?.call();
       },
     );
   }
