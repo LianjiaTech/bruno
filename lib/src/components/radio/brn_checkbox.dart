@@ -80,7 +80,7 @@ class BrnCheckboxState extends State<BrnCheckbox> {
   void didUpdateWidget(covariant BrnCheckbox oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (_isSelected != widget.isSelected) {
+    if (oldWidget.isSelected != widget.isSelected) {
       _isSelected = widget.isSelected;
     }
   }
