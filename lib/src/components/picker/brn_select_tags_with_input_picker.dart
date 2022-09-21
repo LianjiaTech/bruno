@@ -256,7 +256,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
               fontWeight: FontWeight.w600,
             ),
           ),
-          InkWell(
+          GestureDetector(
               onTap: () {
                 if (widget.cancelCallBack != null) {
                   widget.cancelCallBack!(context);

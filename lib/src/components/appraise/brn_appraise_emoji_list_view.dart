@@ -66,7 +66,7 @@ class _BrnAppraiseEmojiListViewState extends State<BrnAppraiseEmojiListView> {
   @override
   Widget build(BuildContext context) {
     if (widget.indexes.isEmpty) {
-      return Container();
+      return const SizedBox.shrink();
     }
 
     List<BrnAppraiseEmojiItem> list = [];
