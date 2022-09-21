@@ -338,7 +338,10 @@ class BrnLinePainter extends BrnBasePainter {
             (xDialValues![i].value - xDialMin!) /
                 (xDialMax! - xDialMin!) *
                 _fixedWidth;
-        bool isXRulerSelected = _selectedPointX == _xPosition;
+
+        _selectedPointX = _selectedPointX ?? 0.0;
+        bool isXRulerSelected = (_selectedPointX - _xPosition).abs() < 1.0;
+
         ///绘制x轴文本
         var tpX = TextPainter(
             textAlign: TextAlign.center,
