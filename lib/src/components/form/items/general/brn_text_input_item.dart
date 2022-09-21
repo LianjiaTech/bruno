@@ -14,6 +14,9 @@ import 'package:flutter/services.dart';
 ///
 // ignore: must_be_immutable
 class BrnTextInputFormItem extends StatefulWidget {
+  /// 录入项的焦点控制对象，主要用于控制焦点
+  final FocusNode? focusNode;
+
   /// 录入项的唯一标识，主要用于录入类型页面框架中
   final String? label;
 
@@ -95,6 +98,7 @@ class BrnTextInputFormItem extends StatefulWidget {
     this.title = "",
     this.subTitle,
     this.tipLabel,
+    this.focusNode,
     this.prefixIconType = BrnPrefixIconType.normal,
     this.error = "",
     this.isEdit = true,
@@ -185,6 +189,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                 Expanded(
                   child: TextField(
                     autofocus: widget.autofocus,
+                    focusNode: widget.focusNode,
                     keyboardType: BrnFormUtil.getInputType(widget.inputType),
                     enabled: widget.isEdit,
                     maxLines: 1,
