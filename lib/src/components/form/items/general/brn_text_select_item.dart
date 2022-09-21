@@ -178,8 +178,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           BrnFormUtil.buildSubTitleWidget(widget.subTitle, widget.themeData!),
 
           // 错误提示
-          if (widget.isRequire && widget.error.isNotEmpty)
-            BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
+          BrnFormUtil.buildErrorWidget(widget.error, widget.themeData!)
         ],
       ),
     );

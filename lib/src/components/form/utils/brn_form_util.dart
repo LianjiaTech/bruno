@@ -36,14 +36,12 @@ class BrnFormUtil {
 
   /// 获取错误提示widget
   static Widget buildErrorWidget(String error, BrnFormItemConfig themeData) {
-    return Container(
-      padding: errorEdgeInsets(themeData),
-      child: Offstage(
-          offstage: (error.isEmpty),
-          child: Text(
-            error,
-            style: getErrorTextStyle(themeData),
-          )),
+    return Offstage(
+      offstage: error.isEmpty,
+      child: Container(
+        padding: errorEdgeInsets(themeData),
+        child: Text(error, style: getErrorTextStyle(themeData)),
+      ),
     );
   }
 
