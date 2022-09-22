@@ -315,7 +315,7 @@ class BrnLinePainter extends BrnBasePainter {
       if (isShowXDial) {
         _drawXRuler(canvas, paint..color = xDialColor!);
       } else {
-        // 此处逻辑已废弃
+        // 此处兼容之前 item.isShowXDial属性，建议使用全局isShowXDial
         for (var item in lines) {
           if (item.isShowXDial) {
             _drawXRuler(canvas, paint..color = xDialColor!);
