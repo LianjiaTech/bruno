@@ -6,6 +6,9 @@ class BrnProgressChartPainter extends CustomPainter {
   /// 进度值
   final double value;
 
+  /// 动画
+  final Animation<double>? animation;
+
   /// 背景色
   final Color backgroundColor;
 
@@ -20,13 +23,18 @@ class BrnProgressChartPainter extends CustomPainter {
 
   BrnProgressChartPainter(
       {this.value = 0.2,
+      this.animation,
       this.colors = const [Color(0xFF1545FD), Color(0xFF0984F9)],
       this.backgroundColor = const Color(0x7A90C9FF),
       this.radius = 4,
-      this.alwaysShowRadius = true});
+      this.alwaysShowRadius = true})
+      : super(repaint: animation){
+    assert(colors.isNotEmpty, 'colors must not be empty');
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
+    final double curValue = animation?.value ?? this.value;
     Paint backgroundPaint = Paint()
       ..color = this.backgroundColor
       ..style = PaintingStyle.fill;
@@ -34,36 +42,38 @@ class BrnProgressChartPainter extends CustomPainter {
     Rect backgroundRect = Rect.fromLTWH(0, 0, size.width, size.height);
     if (this.alwaysShowRadius) {
       RRect backgroundRRect = RRect.fromRectAndCorners(backgroundRect,
-          bottomRight: Radius.circular(value < 1 ? 0 : this.radius),
-          topRight: Radius.circular(value < 1 ? 0 : this.radius));
+          bottomRight: Radius.circular(curValue < 1 ? 0 : this.radius),
+          topRight: Radius.circular(curValue < 1 ? 0 : this.radius));
       canvas.drawRRect(backgroundRRect, backgroundPaint);
     } else {
       canvas.drawRect(backgroundRect, backgroundPaint);
     }
 
-    Rect progressBarRect = Rect.fromLTWH(0, 0, size.width * value, size.height);
+    Rect progressBarRect = Rect.fromLTWH(0, 0, size.width * curValue, size.height);
 
     RRect progressBarRRect = RRect.fromRectAndCorners(progressBarRect,
         bottomRight: Radius.circular(
-            1 == value && false == this.alwaysShowRadius ? 0 : this.radius),
+            1 == curValue && false == this.alwaysShowRadius ? 0 : this.radius),
         topRight: Radius.circular(
-            1 == value && false == this.alwaysShowRadius ? 0 : this.radius));
-
-    Shader progressBarShader = LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            tileMode: TileMode.clamp,
-            colors: (this.colors.length > 1)
-                ? this.colors
-                : [this.colors[0], this.colors[0]])
-        .createShader(progressBarRect);
-    Paint progressBarPaint = Paint()..shader = progressBarShader;
+            1 == curValue && false == this.alwaysShowRadius ? 0 : this.radius));
+    final bool isNotSingleColor = colors.length > 1;
+    Paint progressBarPaint = Paint();
+    if (isNotSingleColor) {
+      progressBarPaint.shader = LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              tileMode: TileMode.clamp,
+              colors: colors)
+          .createShader(progressBarRect);
+    } else {
+      progressBarPaint.color = colors[0];
+    }
 
     canvas.drawRRect(progressBarRRect, progressBarPaint);
   }
 
   @override
   bool shouldRepaint(BrnProgressChartPainter oldDelegate) {
-    return this.value != oldDelegate.value;
+    return false;
   }
 }
