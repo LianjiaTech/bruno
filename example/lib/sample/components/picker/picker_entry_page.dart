@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:bruno/bruno.dart';
@@ -10,6 +8,12 @@ import 'package:flutter/services.dart';
 
 import 'date_picker_example.dart';
 import 'multi_picker_example.dart';
+
+class PickerTitleInfo {
+  String? code;
+  String? content;
+  PickerTitleInfo({this.code, this.content});
+}
 
 class PickerEntryPage extends StatelessWidget {
   final String _title;
@@ -134,7 +138,13 @@ class PickerEntryPage extends StatelessWidget {
   ///多选弹框
   void _showBottomMultiSelectPicker(BuildContext context) {
     List<BrnMultiSelectBottomPickerItem> items = [];
-    items.add(new BrnMultiSelectBottomPickerItem("100", "这里是标题1"));
+    items.add(
+      new BrnMultiSelectBottomPickerItem("100", "这里是标题1",
+          data: PickerTitleInfo(
+            code: '100',
+            content: '这里是标题1',
+          )),
+    );
     items.add(new BrnMultiSelectBottomPickerItem("101", "这里是标题2"));
     items.add(
         new BrnMultiSelectBottomPickerItem("102", "这里是标题3", isChecked: true));
@@ -150,6 +160,7 @@ class PickerEntryPage extends StatelessWidget {
         var str = "";
         data.forEach((item) {
           str = str + item.content + "  ";
+          debugPrint('${item.data?.code}');
         });
         BrnToast.show(str, context);
         Navigator.of(context).pop();
