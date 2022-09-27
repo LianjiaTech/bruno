@@ -68,6 +68,9 @@ class BrnTextInputFormItem extends StatefulWidget {
   /// 单位
   final String? unit;
 
+  /// 点击单位回调
+  final VoidCallback? onUnitTap;
+
   /// 输入内容类型
   final String? inputType;
 
@@ -104,6 +107,7 @@ class BrnTextInputFormItem extends StatefulWidget {
       this.isRequire = false,
       this.isPrefixIconEnabled = false,
       this.onAddTap,
+      this.onUnitTap,
       this.onRemoveTap,
       this.onTip,
       this.prefixText,
@@ -219,15 +223,18 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                 ),
                 Offstage(
                   offstage: (widget.unit == null),
-                  child: Container(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Text(
-                        widget.unit ?? "",
-                        style: TextStyle(
-                          color: Color(0xFF101010),
-                          fontSize: BrnFonts.f16,
-                        ),
-                      )),
+                  child: InkWell(
+                    onTap: widget.onUnitTap,
+                    child: Container(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          widget.unit ?? "",
+                          style: TextStyle(
+                            color: Color(0xFF101010),
+                            fontSize: BrnFonts.f16,
+                          ),
+                        )),
+                  ),
                 ),
               ],
             ),
