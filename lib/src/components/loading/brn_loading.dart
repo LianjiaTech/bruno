@@ -1,3 +1,4 @@
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:flutter/material.dart';
 
@@ -118,11 +119,13 @@ class BrnPageLoading extends StatelessWidget {
 /// 通过 [BrnPageLoading] 构建出的加载状态的弹窗，加载动画和加载文字并排展示，且在屏幕中间。可通
 /// 过 [BrnLoadingDialog.show] 和 [BrnLoadingDialog.dismiss] 控制弹窗的显示和关闭。不会自动关闭。
 class BrnLoadingDialog extends Dialog {
+  /// tag 用于在 BrnSafeDialog 中标记类型
+  static const String _loadingDialogTag = '_loadingDialogTag';
+
   /// 加载时的提示文案，默认为 `加载中...`
   final String content;
 
-  const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent})
-      : super(key: key);
+  const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -142,8 +145,9 @@ class BrnLoadingDialog extends Dialog {
     bool barrierDismissible = true,
     bool useRootNavigator = true,
   }) {
-    return showDialog<T>(
+    return BrnSafeDialog.show<T>(
         context: context,
+        tag: _loadingDialogTag,
         barrierDismissible: barrierDismissible,
         useRootNavigator: useRootNavigator,
         builder: (_) {
@@ -155,6 +159,6 @@ class BrnLoadingDialog extends Dialog {
   ///
   ///  * [context] 上下文。
   static void dismiss<T extends Object?>(BuildContext context, [T? result]) {
-    Navigator.pop(context, result);
+    BrnSafeDialog.dismiss<T>(context: context, tag: _loadingDialogTag, result: result);
   }
 }
