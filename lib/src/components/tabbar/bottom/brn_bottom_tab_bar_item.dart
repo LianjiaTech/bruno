@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 /// 简述：[BrnBottomTabBar]中的单个选择按钮组件
 /// 功能：为了每个Tab独立控制操作
-/// 特别注意：Tab的右上角小红点可能不符合UI规范，可以使用BrnBadge小红点组件
 class BrnBottomTabBarItem {
   const BrnBottomTabBarItem({
     this.title,
