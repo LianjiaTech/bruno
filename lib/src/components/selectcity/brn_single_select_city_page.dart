@@ -38,6 +38,9 @@ class BrnSingleSelectCityPage extends StatefulWidget {
   /// 单选项 点击的回调
   final ValueChanged<BrnSelectCityModel>? onValueChanged;
 
+  /// 空页面中间展位图展示
+  final Image? emptyImage;
+
   BrnSingleSelectCityPage({
     this.appBarTitle = '',
     this.hotCityTitle = '',
@@ -46,6 +49,7 @@ class BrnSingleSelectCityPage extends StatefulWidget {
     this.showSearchBar = true,
     this.locationText = '',
     this.onValueChanged,
+    this.emptyImage,
   });
 
   @override
@@ -359,7 +363,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   Widget _noDataWidget() {
     return Container(
       child: BrnAbnormalStateWidget(
-        img: BrunoTools.getAssetImage(BrnAsset.emptyState),
+        img: widget.emptyImage ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
         title: BrnStrings.noSearchData,
       ),
     );
