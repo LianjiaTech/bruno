@@ -1,3 +1,30 @@
+## [3.1.0] - 2022-9-30
+
+### Changed
+
+#### base 
+
+- Adapt flutter sdk 3.3.0 and update dart sdk version to >=2.17.0.
+- add <code>BrnSafeDialog[dismiss]</code>  instead of Navigator.pop to close the Dialog [#317](https://github.com/LianjiaTech/bruno/issues/317).
+- optimize the upper font of form items [#330](https://github.com/LianjiaTech/bruno/issues/330).
+
+#### components
+
+- <code>BrnPageLoading</code> : calculated the range of loading based on screen width [#295](https://github.com/LianjiaTech/bruno/issues/295) .
+- <code>BrnBottomTabBar</code> : fix attributes <code>selectedTextStyle </code>and <code>unSelectedTextStyle</code>  do not take effectc [#285](https://github.com/LianjiaTech/bruno/issues/285) , thanks to **JunCaiLi** .
+- <code>BrnSearchText</code> : fix an abnormal display when BrnSearchText sets the innerColor property [#275](https://github.com/LianjiaTech/bruno/issues/275), thanks to **xyhuangjia**.
+- <code>BrnBrokenLine</code>: xDial support selected style [#282](https://github.com/LianjiaTech/bruno/issues/282).
+- <code>BrnMultiSelectTagsPicker</code>: fix when setting properties layoutStyle value of <code>BrnMultiSelectTagsLayoutStyle. Auto</code> display abnormal [#316](https://github.com/LianjiaTech/bruno/issues/316), thanks to **JunCaiLi**.
+- <code>BrnCommonCardTitle</code>: fix the theme customization does not take effect, thanks to **JunCaiLi**.
+- <code>BrnMiddleInputDialog</code>: add attribute <code>keyboardType</code>, thanks to **moqi2011**.
+- <code>BrnCheckbox</code>: fix unsynchronized internal and external check states [#333](https://github.com/LianjiaTech/bruno/issues/333), thanks to **moqi2011**.
+- <code>BrnTextInputFormItem</code>: add attribute <code>focusNode</code>, thanks to **Ives7**.
+- <code>BrnProgressChart</code>: fix invalid setting color, background color, and animation [#322](https://github.com/LianjiaTech/bruno/pull/322).
+- <code>BrnToast</code>: fix default value error in attribute <code>gravity</code> [#341](https://github.com/LianjiaTech/bruno/issues/341).
+- <code>BrnTextInputFormItem</code>: add attribute <code>textInputAction</code> , thanks to **Ives7**.
+- <code>BrnIconButton</code>: fix setting attribute <code>fontsize</code> does not take effect [#345](https://github.com/LianjiaTech/bruno/issues/345) and tag deprecated it use <code>style</code> is recommended.
+- .<code>BrnSingleSelectCityPage</code>: add attribute <code>emptyImage</code> [#329](https://github.com/LianjiaTech/bruno/issues/329) and optimize default images of <code>BrnAbnormalStateWidget</code>.
+
 
 
 ## [3.0.0] - 2022-7-8
@@ -17,7 +44,7 @@
 - <code>BrnSmallOutlineButton</code> : fix attribute <code>lineColor</code> does not take effect,thanks to **Story5** .
 - <code>BrnAddLabel</code> : support theme config.
 - <code>BrnBigMainButton</code> : fix the theme configuration <code>borderRadius</code> and <code>fontSize</code> does not take effect [#214](https://github.com/LianjiaTech/bruno/issues/214) .
-- <code>BrnCalendarView</code> : optimizes the time range selection supports selecting the same day [#200](https://github.com/LianjiaTech/bruno/issues/200) .
+- <code>BrnCalendarView</code> : optimize the time range selection supports selecting the same day [#200](https://github.com/LianjiaTech/bruno/issues/200) .
 - <code>BrnProgressBarChart</code>：remove useless attribute <code>hasMark</code> in class <code>ChartAxis</code>.
 - <code>BrnSmallOutlineButton</code> : fix attribute <code>fontWeight</code> does not take effect [#233](https://github.com/LianjiaTech/bruno/issues/233) .
 - <code>BrnDialog</code> : fix <code>themeData</code>  does not take effec [#259](https://github.com/LianjiaTech/bruno/issues/259) .
