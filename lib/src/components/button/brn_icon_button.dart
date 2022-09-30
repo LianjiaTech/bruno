@@ -100,7 +100,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                   widget.name,
                   style: widget.style ??
                       TextStyle(
-                        fontSize: 11,
+                        fontSize: widget.fontSize,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
                             .commonConfig
@@ -130,7 +130,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                   widget.name,
                   style: widget.style ??
                       TextStyle(
-                        fontSize: 11,
+                        fontSize: widget.fontSize,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
                             .commonConfig
@@ -155,7 +155,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                   widget.name,
                   style: widget.style ??
                       TextStyle(
-                        fontSize: 11,
+                        fontSize: widget.fontSize,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
                             .commonConfig
@@ -185,7 +185,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                   widget.name,
                   style: widget.style ??
                       TextStyle(
-                        fontSize: 11,
+                        fontSize: widget.fontSize,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
                             .commonConfig
