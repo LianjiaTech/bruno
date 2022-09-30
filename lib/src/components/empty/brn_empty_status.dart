@@ -29,21 +29,21 @@ class BrnAbnormalStateUtils {
       {Image? img, BrnEmptyStatusIndexedActionClickCallback? action}) {
     if (AbnormalState.getDataFailed == status) {
       return BrnAbnormalStateWidget(
-        img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
+        img: img ?? BrunoTools.getAssetImage(BrnAsset.contentFailed),
         title: BrnStrings.getDateFailed,
         operateTexts: <String>[BrnStrings.clickPageRetry],
         action: action,
       );
     } else if (AbnormalState.networkConnectError == status) {
       return BrnAbnormalStateWidget(
-        img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
+        img: img ?? BrunoTools.getAssetImage(BrnAsset.networkError),
         title: BrnStrings.networkConnectError,
         operateTexts: <String>[BrnStrings.clickPageRetry],
         action: action,
       );
     } else if (AbnormalState.noData == status) {
       return BrnAbnormalStateWidget(
-        img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
+        img: img ?? BrunoTools.getAssetImage(BrnAsset.noData),
         title: BrnStrings.noData,
       );
     } else {

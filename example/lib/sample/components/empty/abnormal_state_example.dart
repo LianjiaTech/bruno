@@ -23,7 +23,7 @@ class AbnomalStateExample extends StatelessWidget {
       case 0:
         widget = BrnAbnormalStateWidget(
           img: Image.asset(
-            'assets/image/empty_state.png',
+            'assets/image/content_failed.png',
             scale: 3.0,
           ),
           isCenterVertical: true,
@@ -39,25 +39,25 @@ class AbnomalStateExample extends StatelessWidget {
         widget = BrnAbnormalStateWidget(
           isCenterVertical: true,
           img: Image.asset(
-            'assets/image/empty_state.png',
-            scale: 3.0,
-          ),
-          title: BrnStrings.noData,
-        );
-        break;
-      case 2:
-        widget = BrnAbnormalStateWidget(
-          img: Image.asset(
-            'assets/image/empty_state.png',
+            'assets/image/no_data.png',
             scale: 3.0,
           ),
           title: '暂无数据',
         );
         break;
+      case 2:
+        widget = BrnAbnormalStateWidget(
+          img: Image.asset(
+            'assets/image/network_error.png',
+            scale: 3.0,
+          ),
+          title: '网络数据异常',
+        );
+        break;
       case 3:
         widget = BrnAbnormalStateWidget(
           img: Image.asset(
-            'assets/image/empty_state.png',
+            'assets/image/no_data.png',
             scale: 3.0,
           ),
           content: '您的门店暂无用户',
@@ -66,7 +66,7 @@ class AbnomalStateExample extends StatelessWidget {
       case 4:
         widget = BrnAbnormalStateWidget(
           img: Image.asset(
-            'assets/image/empty_state.png',
+            'assets/image/no_data.png',
             scale: 3.0,
           ),
           title: "这是副标题内容这是副标题内容这是副标",
@@ -81,7 +81,7 @@ class AbnomalStateExample extends StatelessWidget {
       case 5:
         widget = BrnAbnormalStateWidget(
           img: Image.asset(
-            'assets/image/empty_state.png',
+            'assets/image/no_data.png',
             scale: 3.0,
           ),
           title: "暂无",
