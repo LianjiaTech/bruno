@@ -1,10 +1,11 @@
 name: bruno
 description: An enterprise-class package of Flutter components for mobile applications.
-version: 3.0.0
+version: 3.1.0
 homepage: https://github.com/LianjiaTech/bruno
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
+  flutter: '>=3.3.0'
 
 dependencies:
   flutter:

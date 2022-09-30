@@ -23,11 +23,9 @@
 
 ![](https://img.ljcdn.com/beike/zjz/bruno/img/1638883534391.png)
 
-#### 组件上新 :tada: :tada: :tada:
+**Bruno 项目组诚邀用户参与调研反馈，我们珍视每一位用户的建议并纳入到后续规划中。同时为了增进 Bruno 用户间交流要求，我们建立了社区群，欢迎大家加入**:point_down:
 
-<code>BrnSwitchButton</code>  <code>BrnSwitchFormItem</code>  <code>BrnGeneralFormItem</code>
-
- <img src="https://img.ljcdn.com/beike/zjz/bruno/img/1651141461442.png" width="300" height="359" />
+<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664527706459.png"  /><img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664526385904.png"  /> 
 
 
 
@@ -40,7 +38,7 @@
 
 ### Demo 下载
 
-<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005085.png"  />       <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005077.png"  />
+请从 [发版包](https://github.com/LianjiaTech/bruno/releases) 中获取，或访问官网导航栏中的 [在线演示](https://bruno.ke.com/page/demo) 功能
 
 
 ## 适配 Flutter 版本
@@ -54,6 +52,7 @@
 | 2.1.1 (支持空安全)      | 2.2.2            |
 | 2.2.0 | 2.10.5 |
 | 3.0.0 | 3.0.3 |
+| 3.1.0 | 3.3.0 |
 
 
 
