@@ -27,11 +27,10 @@ An enterprise-class package of Flutter components for mobile applications.
 
 ![](https://img.ljcdn.com/beike/zjz/bruno/img/1638883534391.png)
 
-#### New components :tada: :tada: :tada:
+Bruno invites you to participate in the research! We will plan the roadmap according to your feedback. A community group has also been set up for developers to communicate and welcome to join:point_down:.
 
-<code>BrnSwitchButton</code>  <code>BrnSwitchFormItem</code>  <code>BrnGeneralFormItem</code>
+<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664527706459.png"  /><img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664526385904.png"  />
 
- <img src="https://img.ljcdn.com/beike/zjz/bruno/img/1651141461442.png" width="300" height="359" />
 
 ## ✨ Features
 
@@ -42,9 +41,7 @@ An enterprise-class package of Flutter components for mobile applications.
 
 ### Demo download
 
-- The latest Demo download link: https://github.com/LianjiaTech/bruno/releases
-
-
+Please download from [Releases](https://github.com/LianjiaTech/bruno/releases) or visit the website of the navigation bar [Online Demo](https://bruno.ke.com/page/demo).
 
 ## Adapted version of Flutter
 
@@ -56,6 +53,7 @@ An enterprise-class package of Flutter components for mobile applications.
 | 2.1.1 (support nullsafety)      | 2.2.2            |
 | 2.2.0 | 2.10.5 |
 | 3.0.0 | 3.0.3 |
+| 3.1.0 | 3.3.0 |
 
 
 ## Preparing for use
