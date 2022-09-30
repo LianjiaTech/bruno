@@ -363,7 +363,7 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   Widget _noDataWidget() {
     return Container(
       child: BrnAbnormalStateWidget(
-        img: widget.emptyImage ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
+        img: widget.emptyImage ?? BrunoTools.getAssetImage(BrnAsset.noData),
         title: BrnStrings.noSearchData,
       ),
     );

@@ -583,11 +583,6 @@ class CardDataConfig {
       appBarTitle: '城市单选',
       hotCityTitle: '这里是推荐城市',
       hotCityList: hotCityList,
-      emptyImage: Image.network(
-          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01d29258cce264a801219c77ec3f60.png%401280w_1l_2o_100sh.png&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1667024486&t=891b720f3322872b1a8b87dc5dd9546e",
-          width: 200,
-          height: 200,
-          fit: BoxFit.cover),
     );
   }
 }

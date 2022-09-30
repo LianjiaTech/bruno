@@ -30,6 +30,7 @@ BrnSingleSelectCityPage({
     this.showSearchBar = true,
     this.locationText = '',
     this.onValueChanged,
+    this.emptyImage,
   });
 ```
 
@@ -46,6 +47,7 @@ BrnSingleSelectCityPage({
 | cityList | `List<BrnSelectCityModel>?` | 城市列表 | 否 |  |
 | onValueChanged | ValueChanged<BrnSelectCityModel>? | 点击时间 | 否 |  |
 | hotCityList | `List<BrnSelectCityModel>?` | 热门推荐城市列表 | 否 |  |
+| emptyImage | `Image?` | 暂无搜索结果页面占位图 | 否 |  |
 
 ### 其它数据
 
@@ -72,6 +74,9 @@ final List<BrnSelectCityModel> hotCityList;
 
 /// 单选项 点击的回调
 final ValueChanged<BrnSelectCityModel>? onValueChanged;
+
+/// 空页面中间展位图展示
+final Image? emptyImage;
   
   ///城市信息  
 BrnSelectCityModel {
