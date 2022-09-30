@@ -41,7 +41,7 @@ Bruno invites you to participate in the research! We will plan the roadmap accor
 
 ### Demo download
 
-Please from [Releases](https://github.com/LianjiaTech/bruno/releases) or visit the website of the navigation bar [Online Demo](https://bruno.ke.com/page/demo).
+Please download from [Releases](https://github.com/LianjiaTech/bruno/releases) or visit the website of the navigation bar [Online Demo](https://bruno.ke.com/page/demo).
 
 ## Adapted version of Flutter
 
