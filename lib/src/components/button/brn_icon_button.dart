@@ -40,6 +40,7 @@ class BrnIconButton extends StatefulWidget {
   final double iconHeight;
 
   /// 字体大小，默认 11
+  @Deprecated('该字段废弃，请使用 style ')
   final double fontSize;
 
   ///  文字样式
