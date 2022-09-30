@@ -69,6 +69,9 @@ class BrnBrokenLine extends StatefulWidget {
   /// 提示 widget 是否自动消失。默认为 true
   final bool isTipWindowAutoDismiss;
 
+  /// 是否绘制 x 刻度
+  final bool isShowXDial;
+
   BrnBrokenLine({
     Key? key,
     required this.size,
@@ -94,6 +97,7 @@ class BrnBrokenLine extends StatefulWidget {
     this.isTipWindowAutoDismiss = true,
     this.isShowXDialText = false,
     this.isShowYDialText = false,
+    this.isShowXDial = true
   }) : super(key: key) {
     // 设置自定义 X 轴时，检查 x 轴的最大、最小刻度范围
     if (xDialValues != null) {
@@ -131,6 +135,7 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
       hintLineSolid: widget.isHintLineSolid,
       hintLineColor: widget.hintLineColor,
       isShowXText: widget.isShowXDialText,
+      isShowXDial: widget.isShowXDial,
     );
     var yPainter = BrnLineYPainter(
       widget.lines,

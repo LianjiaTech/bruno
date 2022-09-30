@@ -111,11 +111,11 @@ class BrnToast {
     final double defaultOffset;
     switch (gravity) {
       case BrnToastGravity.bottom:
-        final offset = verticalOffset ?? _defaultTopOffset;
+        final offset = verticalOffset ?? _defaultBottomOffset;
         defaultOffset = MediaQuery.of(context).viewInsets.bottom + offset;
         break;
       case BrnToastGravity.top:
-        final offset = verticalOffset ?? _defaultBottomOffset;
+        final offset = verticalOffset ?? _defaultTopOffset;
         defaultOffset = MediaQuery.of(context).viewInsets.top + offset;
         break;
       case BrnToastGravity.center:

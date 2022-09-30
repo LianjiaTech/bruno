@@ -227,10 +227,7 @@ class BrnDialog extends AlertDialog {
 
     children.add(Padding(
       padding: defaultConfig.dividerPadding,
-      child: SizedBox(
-        height: 0,
-        width: 0,
-      ),
+      child: const SizedBox.shrink(),
     ));
 
     if (!_isEmptyAction()) {
@@ -279,10 +276,7 @@ class BrnDialog extends AlertDialog {
           BrunoTools.getAssetImageWithBandColor("icons/icon_alter.png"));
     }
 
-    return SizedBox(
-      width: 0,
-      height: 0,
-    );
+    return const SizedBox.shrink();
   }
 
   /// 标题widget：以titleWidget为准，辅以title生成的Text。

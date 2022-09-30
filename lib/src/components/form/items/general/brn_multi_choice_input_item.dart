@@ -175,7 +175,7 @@ class BrnMultiChoiceInputFormItemState
   List<Widget> getCheckboxList(List<String>? options) {
     List<Widget> result = [];
     if (options == null || options.isEmpty) {
-      result.add(Container());
+      result.add(const SizedBox.shrink());
       return result;
     }
 

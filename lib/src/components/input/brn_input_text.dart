@@ -58,6 +58,7 @@ class BrnInputText extends StatelessWidget {
   /// 搜索框的焦点控制器
   final FocusNode? focusNode;
 
+
   /// 键盘输入行为， 默认为 TextInputAction.done
   final TextInputAction textInputAction;
 

@@ -72,10 +72,7 @@ class BrnRichInfoGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (pairInfoList == null || pairInfoList!.isEmpty) {
-      return Container(
-        height: 0,
-        width: 0,
-      );
+      return const SizedBox.shrink();
     }
 
     return _buildGridView(context);
@@ -139,10 +136,7 @@ class BrnRichInfoGrid extends StatelessWidget {
   Widget _getKeyWidget(BrnRichGridInfo info, double width, BuildContext context,
       BrnPairRichInfoGridConfig config) {
     if (info.keyPart == null) {
-      return Container(
-        height: 0,
-        width: 0,
-      );
+      return const SizedBox.shrink();
     }
 
     if (info.keyPart is String) {
@@ -158,10 +152,7 @@ class BrnRichInfoGrid extends StatelessWidget {
       return info.keyPart;
     }
 
-    return Container(
-      height: 0,
-      width: 0,
-    );
+    return const SizedBox.shrink();
   }
 
   Widget _getValueWidget(
@@ -182,10 +173,7 @@ class BrnRichInfoGrid extends StatelessWidget {
       return info.valuePart;
     }
 
-    return Container(
-      height: 0,
-      width: 0,
-    );
+    return const SizedBox.shrink();
   }
 }
 
@@ -285,10 +273,7 @@ class BrnRichGridInfo {
           ),
           isShowKeyQuestion
               ? _getQuestionImage(true)
-              : Container(
-                  height: 0,
-                  width: 0,
-                ),
+              : const SizedBox.shrink(),
           Text(
             '：',
             style: _getKeyStyle(themeData: themeData),
@@ -313,16 +298,10 @@ class BrnRichGridInfo {
           ),
           isShowValueClick
               ? _getClickValue(themeData: themeData)
-              : Container(
-                  height: 0,
-                  width: 0,
-                ),
+              : const SizedBox.shrink(),
           isShowValueQuestion
               ? _getQuestionImage(false)
-              : Container(
-                  height: 0,
-                  width: 0,
-                ),
+              : const SizedBox.shrink(),
         ],
       ),
     );

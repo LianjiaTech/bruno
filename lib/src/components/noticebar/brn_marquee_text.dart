@@ -128,9 +128,9 @@ class BrnMarqueeTextState extends State<BrnMarqueeText>
 
   Widget getCenterChild() {
     if (widget.scrollAxis == Axis.horizontal) {
-      return new Container(width: blankWidth);
+      return Container(width: blankWidth);
     } else {
-      return new Container(height: blankHeight);
+      return Container(height: blankHeight);
     }
   }
 

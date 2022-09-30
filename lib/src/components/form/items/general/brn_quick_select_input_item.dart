@@ -310,7 +310,7 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
 
   Widget getQuickButtons() {
     if (!widget.isEdit) {
-      return Container();
+      return const SizedBox.shrink();
     }
 
     if (widget.btns != null) {

@@ -58,11 +58,15 @@ class BrnMiddleInputDialog {
 
   /// 点击取消/确认按钮之后，是否自动关闭弹窗，默认为 true，关闭
   BrnDialogConfig? themeData;
+  
+  /// 键盘类型
+  final TextInputType? keyboardType;
 
   BrnMiddleInputDialog(
       {this.title,
       this.message,
       this.hintText,
+      this.keyboardType,
       this.maxLength = 20,
       this.maxLines,
       this.minLines: 1,
@@ -126,6 +130,7 @@ class BrnMiddleInputDialog {
       controller: inputEditingController,
       maxLines: maxLines ?? minLines,
       minLines: minLines,
+      keyboardType: keyboardType,
       //光标颜色
       cursorColor:
           BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,

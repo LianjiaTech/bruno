@@ -153,9 +153,7 @@ class BrnShareDialog extends StatelessWidget {
           Positioned(
             top: 10,
             right: 10,
-            child: InkWell(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
+            child: GestureDetector(
               child: Container(
                 width: 30,
                 height: 30,
@@ -227,7 +225,7 @@ class BrnShareDialog extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            InkWell(
+            GestureDetector(
               child: Container(
                 child: image,
                 width: 39,

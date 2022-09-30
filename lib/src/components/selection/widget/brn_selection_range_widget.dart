@@ -360,7 +360,7 @@ class _BrnRangeSelectionGroupWidgetState
       padding: EdgeInsets.fromLTRB(8, 11, 20, 11),
       child: Row(
         children: <Widget>[
-          InkWell(
+          GestureDetector(
             child: Container(
               padding: EdgeInsets.only(left: 12, right: 20),
               child: Column(

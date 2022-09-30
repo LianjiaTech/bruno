@@ -102,10 +102,7 @@ class _BrnSwitchTitleState extends State<BrnSwitchTitle>
 
   Widget _toggleButtonsWidget(context) {
     if (widget.nameList.isEmpty) {
-      return Container(
-        height: 0,
-        width: 0,
-      );
+      return const SizedBox.shrink();
     }
 
     List<Widget> widgetChildren = widget.nameList.map((name) {

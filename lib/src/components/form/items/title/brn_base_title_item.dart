@@ -125,7 +125,7 @@ class BrnTitleState extends State<BrnBaseTitle> {
                 // 自定义操作区
                 Offstage(
                   offstage: (widget.customActionWidget == null),
-                  child: widget.customActionWidget ?? Container(),
+                  child: widget.customActionWidget ?? const SizedBox.shrink(),
                 ),
               ],
             ),
