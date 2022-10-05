@@ -137,9 +137,9 @@ class PickerEntryPage extends StatelessWidget {
 
   ///多选弹框
   void _showBottomMultiSelectPicker(BuildContext context) {
-    List<BrnMultiSelectBottomPickerItem> items = [];
+    List<BrnMultiSelectBottomPickerItem<PickerTitleInfo>> items = [];
     items.add(
-      new BrnMultiSelectBottomPickerItem("100", "这里是标题1",
+      new BrnMultiSelectBottomPickerItem<PickerTitleInfo>("100", "这里是标题1",
           data: PickerTitleInfo(
             code: '100',
             content: '这里是标题1',
@@ -152,15 +152,15 @@ class PickerEntryPage extends StatelessWidget {
         new BrnMultiSelectBottomPickerItem("103", "这里是标题4", isChecked: true));
     items.add(new BrnMultiSelectBottomPickerItem("104", "这里是标题5"));
     items.add(new BrnMultiSelectBottomPickerItem("104", "这里是标题6"));
-    BrnMultiSelectListPicker.show(
+    BrnMultiSelectListPicker.show<PickerTitleInfo>(
       context,
       items: items,
       pickerTitleConfig: BrnPickerTitleConfig(titleContent: "多选 Picker"),
-      onSubmit: (List<BrnMultiSelectBottomPickerItem> data) {
+      onSubmit: (List<BrnMultiSelectBottomPickerItem<PickerTitleInfo>> data) {
         var str = "";
         data.forEach((item) {
           str = str + item.content + "  ";
-          debugPrint('${item.data?.code}');
+          debugPrint('${item.data?.content}');
         });
         BrnToast.show(str, context);
         Navigator.of(context).pop();
