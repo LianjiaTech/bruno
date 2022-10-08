@@ -95,6 +95,9 @@ class BrnTextInputFormItem extends StatefulWidget {
   /// form配置
   BrnFormItemConfig? themeData;
 
+  /// 输入框内容距离
+  final EdgeInsetsGeometry? contentPadding;
+
   BrnTextInputFormItem({
     Key? key,
     this.label,
@@ -122,6 +125,7 @@ class BrnTextInputFormItem extends StatefulWidget {
     this.controller,
     this.backgroundColor,
     this.themeData,
+    this.contentPadding,
   }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
@@ -147,6 +151,8 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
     super.initState();
   }
 
+  bool get hasContentPadding => widget.contentPadding != null;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -157,7 +163,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
         children: <Widget>[
           ConstrainedBox(
             constraints: BoxConstraints(
-              maxHeight: 25,
+              maxHeight: hasContentPadding ? double.infinity : 25,
             ),
             child: Row(
               children: <Widget>[
@@ -206,7 +212,8 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                           BrnFormUtil.getHintTextStyle(widget.themeData!),
                       hintText: widget.hint,
                       counterText: "",
-                      contentPadding: EdgeInsets.all(0),
+                      contentPadding: widget.contentPadding ??
+                          EdgeInsets.symmetric(vertical: 0),
                       isDense: true,
                       enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent)),
