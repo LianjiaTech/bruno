@@ -68,6 +68,8 @@ class BrnTextInputFormItem extends StatefulWidget {
   /// 单位
   final String? unit;
 
+  final Widget? unitWidget;
+
   /// 点击单位回调
   final VoidCallback? onUnitTap;
 
@@ -88,6 +90,7 @@ class BrnTextInputFormItem extends StatefulWidget {
   final ValueChanged<String>? onChanged;
 
   final TextEditingController? controller;
+  final bool isInputPwd;
 
   /// 背景色
   final Color? backgroundColor;
@@ -113,6 +116,7 @@ class BrnTextInputFormItem extends StatefulWidget {
       this.prefixText,
       this.hint = "请输入",
       this.unit,
+      this.unitWidget,
       this.maxCharCount,
       this.autofocus: false,
       this.inputType,
@@ -121,6 +125,7 @@ class BrnTextInputFormItem extends StatefulWidget {
       this.controller,
       this.backgroundColor,
       this.themeData,
+      this.isInputPwd = false,
       this.textAlign = TextAlign.end})
       : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
@@ -227,13 +232,15 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                     onTap: widget.onUnitTap,
                     child: Container(
                         padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          widget.unit ?? "",
-                          style: TextStyle(
-                            color: Color(0xFF101010),
-                            fontSize: BrnFonts.f16,
-                          ),
-                        )),
+                        child: widget.unitWidget != null
+                            ? widget.unitWidget
+                            : Text(
+                                widget.unit ?? "",
+                                style: TextStyle(
+                                  color: Color(0xFF101010),
+                                  fontSize: BrnFonts.f16,
+                                ),
+                              )),
                   ),
                 ),
               ],
