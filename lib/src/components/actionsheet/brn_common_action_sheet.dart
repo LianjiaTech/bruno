@@ -206,6 +206,7 @@ class BrnCommonActionSheet extends StatelessWidget {
               // 推荐使用回调方法处理点击事件!!!!!!!!!!
               if (clickCallBack != null) {
                 clickCallBack!(index, actions[index]);
+                return;
               }
               // 如果未拦截，则pop掉当前页面，并且携带信息（不建议使用此信息进行点击时间处理）
               Navigator.of(context).pop([index, actions[index]]);
