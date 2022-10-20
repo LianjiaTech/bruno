@@ -30,7 +30,7 @@ class BrnAbnormalStateUtils {
       {Image? img, BrnEmptyStatusIndexedActionClickCallback? action}) {
     if (AbnormalState.getDataFailed == status) {
       return BrnAbnormalStateWidget(
-        img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
+        img: img ?? BrunoTools.getAssetImage(BrnAsset.noData),
         title: BrnIntl.of(context).localizedResource.fetchErrorAndRetry,
         operateTexts: <String>[BrnIntl.of(context).localizedResource.clickPageAndRetry],
         action: action,
