@@ -27,11 +27,10 @@ An enterprise-class package of Flutter components for mobile applications.
 
 ![](https://img.ljcdn.com/beike/zjz/bruno/img/1638883534391.png)
 
-#### New components :tada: :tada: :tada:
+Bruno invites you to participate in the research! We will plan the roadmap according to your feedback. A community group has also been set up for developers to communicate and welcome to join:point_down:.
 
-<code>BrnSwitchButton</code>  <code>BrnSwitchFormItem</code>  <code>BrnGeneralFormItem</code>
+<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664527706459.png"  /><img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664526385904.png"  /> 
 
- <img src="https://img.ljcdn.com/beike/zjz/bruno/img/1651141461442.png" width="300" height="359" />
 
 ## ✨ Features
 
@@ -42,10 +41,7 @@ An enterprise-class package of Flutter components for mobile applications.
 
 ### Demo download
 
-
-<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005085.png"  />       <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/1639125005077.png"  />
-
-If you cannot access the demo, you can directly watch [Overview](https://github.com/Nayuta403/bruno/blob/patch/demo/Overview.MP4) or download the [APK](https://github.com/Nayuta403/bruno/blob/patch/demo/bruno_1.0.0_1_release_develop_c801f2db_20211210034820.apk) file.
+Please download from [Releases](https://github.com/LianjiaTech/bruno/releases) or visit the website of the navigation bar [Online Demo](https://bruno.ke.com/page/demo).
 
 ## Adapted version of Flutter
 
@@ -57,6 +53,7 @@ If you cannot access the demo, you can directly watch [Overview](https://github.
 | 2.1.1 (support nullsafety)      | 2.2.2            |
 | 2.2.0 | 2.10.5 |
 | 3.0.0 | 3.0.3 |
+| 3.1.0 | 3.3.0 |
 
 
 ## Preparing for use

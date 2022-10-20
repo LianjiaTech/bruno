@@ -30,6 +30,7 @@ BrnSingleSelectCityPage({
     this.showSearchBar = true,
     this.locationText = '',
     this.onValueChanged,
+    this.emptyImage,
   });
 ```
 
@@ -39,50 +40,59 @@ BrnSingleSelectCityPage({
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| appBarTitle | String | 导航栏标题 | 否 | "" |
-| hotCityTitle | String | 热门推荐标题 | 否 | "" |
+| appBarTitle | String? | 导航栏标题 | 否 | "" |
+| hotCityTitle | String? | 热门推荐标题 | 否 | "" |
 | showSearchBar | bool | 是否展示searchBar | 否 |  |
 | locationText | String | 当前定位城市文案 | 否 | "" |
-| cityList | `List<CityInfo>` | 城市列表 | 否 |  |
-| onValueChanged | ValueChanged | 点击时间 | 否 |  |
-| hotCityList | `List<CityInfo>` | 热门推荐城市列表 | 否 |  |
+| cityList | `List<BrnSelectCityModel>?` | 城市列表 | 否 |  |
+| onValueChanged | ValueChanged<BrnSelectCityModel>? | 点击时间 | 否 |  |
+| hotCityList | `List<BrnSelectCityModel>?` | 热门推荐城市列表 | 否 |  |
+| emptyImage | `Image?` | 暂无搜索结果页面占位图 | 否 |  |
 
 ### 其它数据
 
 
 ```dart
-  
-  ///页面标题  
-  final String appBarTitle;  
-  
-  ///热门推荐标题  
-  final String hotCityTitle;  
-  
-  ///是否 展示searchBar true  
-  final bool showSearchBar;  
-  
-  ///当前城市定位文案展示  
-  final String locationText;  
-  
-  ///城市列表  
-  List<CityInfo> cityList;  
-  
-  ///热门推荐城市列表  
-  List<CityInfo> hotCityList;  
-  
-  /// 单选项 点击的回调  
-  final ValueChanged<CityInfo> onValueChanged;  
+
+/// 页面标题，默认空
+final String? appBarTitle;
+
+/// 热门推荐标题，默认空
+final String? hotCityTitle;
+
+/// 是否展示searchBar，默认 true
+final bool showSearchBar;
+
+/// 当前城市定位文案展示
+final String locationText;
+
+/// 城市列表
+final List<BrnSelectCityModel>? cityList;
+
+/// 热门推荐城市列表
+final List<BrnSelectCityModel> hotCityList;
+
+/// 单选项 点击的回调
+final ValueChanged<BrnSelectCityModel>? onValueChanged;
+
+/// 空页面中间展位图展示
+final Image? emptyImage;
   
   ///城市信息  
- CityInfo {  
-  //城市名称  
-  String name;  
-  //城市名称前这是的标记符号  
-  String tagIndex;  
-  //拼音  
-  String namePinyin;  
-  //唯一标记  
-  String tag;  
+BrnSelectCityModel {
+  /// 城市名称
+  String name = "";
+
+  /// 城市名称前这是的标记符号 
+  String tagIndex = "";
+
+  /// 拼音
+  String? namePinyin;
+
+  String tag = "";
+
+  /// 城市编码
+  String cityCode = ""; 
 }
 ```
 
@@ -94,21 +104,19 @@ BrnSingleSelectCityPage({
 <img src="./img/BrnSingleSelectCityPageDemo1.png" style="zoom: 33%;" />
 
 ```dart
-List<CityInfo> hotCityList = List();  
-   hotCityList.addAll([  
-     CityInfo(name: "北京市"),  
-     CityInfo(name: "广州市"),  
-     CityInfo(name: "成都市"),  
-     CityInfo(name: "深圳市"),  
-     CityInfo(name: "杭州市"),  
-     CityInfo(name: "武汉市"),  
-   ]);  
-
-BrnSingleSelectCityPage(  
-   appBarTitle: '城市单选',  
-   hotCityTitle: '这里是推荐城市',  
-   hotCityList: hotCityList,  
-   cityList: hotCityList,  
- );  
+   List<BrnSelectCityModel> hotCityList = [];
+    hotCityList.addAll([
+      BrnSelectCityModel(name: "北京市"),
+      BrnSelectCityModel(name: "广州市"),
+      BrnSelectCityModel(name: "成都市"),
+      BrnSelectCityModel(name: "深圳市"),
+      BrnSelectCityModel(name: "杭州市"),
+      BrnSelectCityModel(name: "武汉市"),
+    ]);
+    return BrnSingleSelectCityPage(
+      appBarTitle: '城市单选',
+      hotCityTitle: '这里是推荐城市',
+      hotCityList: hotCityList,
+    );
    			
 ```

@@ -103,7 +103,7 @@ class BrnContentExportWidget extends StatelessWidget {
                 child: BrunoTools.getAssetImage(BrnAsset.iconPickerClose),
               )));
     }
-    return Container();
+    return const SizedBox.shrink();
   }
 
   /// 构建Dialog标题
@@ -128,7 +128,7 @@ class BrnContentExportWidget extends StatelessWidget {
             ? EdgeInsets.fromLTRB(20, 12, 20, 20)
             : EdgeInsets.only(top: 20),
         child: isShowOperateWidget
-            ? InkWell(
+            ?  GestureDetector(
                 child: Container(
                     decoration: BoxDecoration(
                       //背景
@@ -149,6 +149,6 @@ class BrnContentExportWidget extends StatelessWidget {
                   if (onSubmit != null) onSubmit!();
                 },
               )
-            : Container());
+            : const SizedBox.shrink());
   }
 }

@@ -49,6 +49,8 @@ class BrnLinePainter extends BrnBasePainter {
 
   bool isShowXText, isShowYText;
 
+  final bool isShowXDial;
+
   final bool showPointDashLine;
 
   /// 默认的边距
@@ -96,6 +98,7 @@ class BrnLinePainter extends BrnBasePainter {
     required this.isShowHintY,
     required this.hintLineSolid,
     required this.hintLineColor,
+    this.isShowXDial = true,
     this.isShowXText = false,
     this.isShowYText = false,
   }) {
@@ -133,6 +136,7 @@ class BrnLinePainter extends BrnBasePainter {
       ..style = PaintingStyle.stroke;
     _init(canvas, size, xyPaint);
     _initPath(canvas, xyPaint);
+    _drawXy(canvas, xyPaint); //坐标轴
     _drawSelectPointWithIndex(canvas, xyPaint);
     _drawLine(canvas); //曲线或折线
     _drawPointDisplayText(canvas);
@@ -148,7 +152,6 @@ class BrnLinePainter extends BrnBasePainter {
     //初始化参数
     _initValue();
     _initBorder(size);
-    _drawXy(canvas, xyPaint); //坐标轴
   }
 
   void _initValue() {
@@ -309,36 +312,53 @@ class BrnLinePainter extends BrnBasePainter {
 
     if (lines.isNotEmpty) {
       //绘制x轴的文字部分
-      for (var item in lines) {
-        if (item.points.isNotEmpty && item.isShowXDial) {
-          _drawXRuler(canvas, paint..color = xDialColor!, item.points);
+      if (isShowXDial) {
+        _drawXRuler(canvas, paint..color = xDialColor!);
+      } else {
+        // 此处兼容之前 item.isShowXDial属性，建议使用全局isShowXDial
+        for (var item in lines) {
+          if (item.isShowXDial) {
+            _drawXRuler(canvas, paint..color = xDialColor!);
+          }
         }
       }
     }
   }
 
   ///x轴刻度 & 辅助线
-  void _drawXRuler(Canvas canvas, Paint paint, List<BrnPointData> points) {
+  void _drawXRuler(Canvas canvas, Paint paint) {
+    double? _selectedPointX = -1.0;
+    if (lineSelectIndex >= 0 && pointSelectIndex >= 0) {
+        _selectedPointX = _linePointPositions[lineSelectIndex][pointSelectIndex].x as double? ;
+    }
     if (xDialValues != null && xDialValues!.isNotEmpty) {
       // 获取刻度长度
       for (var i = 0; i < xDialValues!.length; i++) {
+        double _xPosition = _startX +
+            (xDialValues![i].value - xDialMin!) /
+                (xDialMax! - xDialMin!) *
+                _fixedWidth;
+
+        _selectedPointX = _selectedPointX ?? 0.0;
+        bool isXRulerSelected = (_selectedPointX - _xPosition).abs() < 1.0;
+
         ///绘制x轴文本
         var tpX = TextPainter(
             textAlign: TextAlign.center,
             ellipsis: '.',
             text: TextSpan(
                 text: xDialValues![i].dialText,
-                style: xDialValues![i].dialTextStyle),
+                style: isXRulerSelected
+                    ? xDialValues![i].selectedDialTextStyle ??
+                        xDialValues![i].dialTextStyle
+                    : xDialValues![i].dialTextStyle),
             textDirection: TextDirection.ltr)
           ..layout();
         // 开始绘制刻度
         _drawXRuleByPointPosition(
             tpX,
             canvas,
-            _startX +
-                (xDialValues![i].value - xDialMin!) /
-                    (xDialMax! - xDialMin!) *
-                    _fixedWidth,
+            _xPosition,
             paint);
       }
     }

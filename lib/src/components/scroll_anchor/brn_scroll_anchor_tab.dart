@@ -132,7 +132,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
             });
           },
         ),
-        widget.tabDivider ?? SizedBox.shrink(),
+        widget.tabDivider ?? const SizedBox.shrink(),
         Expanded(
           child: SingleChildScrollView(
             child: Column(

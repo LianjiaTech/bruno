@@ -1,7 +1,10 @@
 class BrnAsset {
   const BrnAsset._();
 
-  static const String emptyState = "images/empty_state.png";
+  static const String contentFailed = "images/content_failed.png";
+  static const String noData = "images/no_data.png";
+  static const String networkError = "images/network_error.png";
+
   static const String stepTitle = 'images/img_step_title.png';
 
   static const String refreshArrowUp = "images/refresh_arrow_up.png";

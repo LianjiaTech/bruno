@@ -385,10 +385,7 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
                       ],
                     ),
                   )
-                : Container(
-                    height: 0,
-                    width: 0,
-                  );
+                : const SizedBox.shrink();
           },
         ),
       ],
@@ -410,9 +407,6 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
       return widget.leading;
     }
 
-    return Container(
-      height: 0,
-      width: 0,
-    );
+    return const SizedBox.shrink();
   }
 }

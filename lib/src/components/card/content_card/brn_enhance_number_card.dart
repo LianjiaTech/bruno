@@ -102,17 +102,11 @@ class BrnEnhanceNumberCard extends StatelessWidget {
         .merge(defaultConfig);
 
     if (itemChildren == null || itemChildren!.isEmpty) {
-      return Container(
-        height: 0,
-        width: 0,
-      );
+      return const SizedBox.shrink();
     }
     return LayoutBuilder(
       builder: (context, constraints) {
-        Widget contentWidget = Container(
-          height: 0,
-          width: 0,
-        );
+        Widget contentWidget = const SizedBox.shrink();
         // 容错显示的行数 显示三行
         int count = rowCount;
         if (rowCount <= 0 || rowCount > itemChildren!.length) {
@@ -280,10 +274,7 @@ class BrnEnhanceNumberCard extends StatelessWidget {
 
   Widget _getPreWidget(String? preDesc, BrnEnhanceNumberCardConfig config) {
     if (preDesc == null || preDesc.isEmpty) {
-      return Container(
-        height: 0,
-        width: 0,
-      );
+      return const SizedBox.shrink();
     }
     return Padding(
       padding: const EdgeInsets.only(left: 1),
@@ -302,10 +293,7 @@ class BrnEnhanceNumberCard extends StatelessWidget {
 
   Widget _getLastWidget(String? lastDesc, BrnEnhanceNumberCardConfig config) {
     if (lastDesc == null || lastDesc.isEmpty) {
-      return Container(
-        height: 0,
-        width: 0,
-      );
+      return const SizedBox.shrink();
     }
     return Padding(
       padding: const EdgeInsets.only(left: 1, top: 0),

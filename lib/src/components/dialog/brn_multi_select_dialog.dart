@@ -183,10 +183,7 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                                 padding: EdgeInsets.only(
                                     left: 20, right: 20, top: 12),
                               )
-                            : Container(
-                                width: 0,
-                                height: 0,
-                              ),
+                            : const SizedBox.shrink(),
                       ],
                     ),
                   )
@@ -204,10 +201,7 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                               padding:
                                   EdgeInsets.only(left: 20, right: 20, top: 12),
                             )
-                          : Container(
-                              width: 0,
-                              height: 0,
-                            ),
+                          : const SizedBox.shrink(),
                     ],
                   ),
           )
@@ -307,7 +301,7 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                 ? Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: BrnLine())
-                : Container()
+                : const SizedBox.shrink()
           ],
         ));
   }

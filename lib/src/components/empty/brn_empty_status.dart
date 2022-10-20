@@ -37,18 +37,18 @@ class BrnAbnormalStateUtils {
       );
     } else if (AbnormalState.networkConnectError == status) {
       return BrnAbnormalStateWidget(
-        img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
+        img: img ?? BrunoTools.getAssetImage(BrnAsset.networkError),
         title: BrnIntl.of(context).localizedResource.netErrorAndRetryLater,
         operateTexts: <String>[BrnIntl.of(context).localizedResource.clickPageAndRetry],
         action: action,
       );
     } else if (AbnormalState.noData == status) {
       return BrnAbnormalStateWidget(
-        img: img ?? BrunoTools.getAssetImage(BrnAsset.emptyState),
-        title: BrnIntl.of(context).localizedResource.noDataTip,
+        img: img ?? BrunoTools.getAssetImage(BrnAsset.noData),
+        title: BrnIntl.of(context).localizedResource.noDataTip
       );
     } else {
-      return Container();
+      return const SizedBox.shrink();
     }
   }
 }
@@ -170,7 +170,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                 : EdgeInsets.only(top: topOffset ?? height * topPercent),
             child: img,
           )
-        : SizedBox.shrink();
+        : const SizedBox.shrink();
   }
 
   ///文案区域：标题
@@ -183,7 +183,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: themeData!.titleTextStyle.generateTextStyle()),
           )
-        : SizedBox.shrink();
+        : const SizedBox.shrink();
   }
 
   ///文案区域：内容
@@ -196,7 +196,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: themeData!.contentTextStyle.generateTextStyle()),
           )
-        : SizedBox.shrink();
+        : const SizedBox.shrink();
   }
 
   ///操作区域
@@ -206,7 +206,7 @@ class BrnAbnormalStateWidget extends StatelessWidget {
             padding: EdgeInsets.only(top: 36),
             child: _buildOperateContentWidget(),
           )
-        : SizedBox.shrink();
+        : const SizedBox.shrink();
   }
 
   ///操作区按钮
@@ -278,6 +278,6 @@ class BrnAbnormalStateWidget extends StatelessWidget {
           child: Text(operateTexts![0],
               style: themeData!.operateTextStyle.generateTextStyle()));
     }
-    return Container();
+    return const SizedBox.shrink();
   }
 }

@@ -180,7 +180,7 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
                 ? Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: BrnLine())
-                : Container()
+                : const SizedBox.shrink()
           ],
         ));
   }

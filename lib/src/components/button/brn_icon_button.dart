@@ -40,6 +40,7 @@ class BrnIconButton extends StatefulWidget {
   final double iconHeight;
 
   /// 字体大小，默认 11
+  @Deprecated('该字段废弃，请使用 style ,未来版本会删除该字段')
   final double fontSize;
 
   ///  文字样式
@@ -64,6 +65,7 @@ class BrnIconButton extends StatefulWidget {
     this.onTap,
     this.iconWidth = 24,
     this.iconHeight = 24,
+    @Deprecated('该字段废弃，请使用 style ,未来版本会删除该字段')
     this.fontSize = 11,
     this.widgetWidth = 80,
     this.widgetHeight = 80,
@@ -100,7 +102,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                   widget.name,
                   style: widget.style ??
                       TextStyle(
-                        fontSize: 11,
+                        fontSize: widget.fontSize,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
                             .commonConfig
@@ -130,7 +132,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                   widget.name,
                   style: widget.style ??
                       TextStyle(
-                        fontSize: 11,
+                        fontSize: widget.fontSize,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
                             .commonConfig
@@ -155,7 +157,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                   widget.name,
                   style: widget.style ??
                       TextStyle(
-                        fontSize: 11,
+                        fontSize: widget.fontSize,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
                             .commonConfig
@@ -185,7 +187,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
                   widget.name,
                   style: widget.style ??
                       TextStyle(
-                        fontSize: 11,
+                        fontSize: widget.fontSize,
                         color: BrnThemeConfigurator.instance
                             .getConfig()
                             .commonConfig

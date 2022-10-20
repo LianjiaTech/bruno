@@ -197,10 +197,7 @@ class BrnSingleSelectDialogWidgetState
                                             padding: EdgeInsets.only(
                                                 left: 20, right: 20, top: 12),
                                           )
-                                        : Container(
-                                            width: 0,
-                                            height: 0,
-                                          ),
+                                        : const SizedBox.shrink(),
                                   ],
                                 ),
                               )
@@ -219,16 +216,13 @@ class BrnSingleSelectDialogWidgetState
                                           padding: EdgeInsets.only(
                                               left: 20, right: 20, top: 12),
                                         )
-                                      : Container(
-                                          width: 0,
-                                          height: 0,
-                                        ),
+                                      : const SizedBox.shrink(),
                                 ],
                               ),
                       ),
                       Padding(
                           padding: EdgeInsets.fromLTRB(20, 12, 20, 20),
-                          child: InkWell(
+                          child: GestureDetector(
                             child: Container(
                                 decoration: BoxDecoration(
                                   //背景
@@ -262,7 +256,7 @@ class BrnSingleSelectDialogWidgetState
                   widget.isClose
                       ? Positioned(
                           right: 0.0,
-                          child: InkWell(
+                          child: GestureDetector(
                               onTap: () {
                                 if (widget.onCloseClick != null) {
                                   widget.onCloseClick!();
@@ -275,7 +269,7 @@ class BrnSingleSelectDialogWidgetState
                                 child: BrunoTools.getAssetImage(
                                     BrnAsset.iconPickerClose),
                               )))
-                      : SizedBox.shrink()
+                      : const SizedBox.shrink()
                 ],
               ),
             )));
@@ -301,13 +295,13 @@ class BrnSingleSelectDialogWidgetState
         ),
       );
     }
-    return Container();
+    return const SizedBox.shrink();
   }
 
 
   Widget _buildItem(BuildContext context, int index) {
     if (widget.conditions == null) {
-      return Container();
+      return const SizedBox.shrink();
     } else {
       return Container(
           child: Column(
@@ -317,7 +311,7 @@ class BrnSingleSelectDialogWidgetState
             child: Row(
               children: <Widget>[
                 Expanded(
-                    child: InkWell(
+                    child: GestureDetector(
                   onTap: () {
                     setState(() {
                       for (dynamic item in widget.conditions!) {
@@ -349,7 +343,7 @@ class BrnSingleSelectDialogWidgetState
                                   .commonConfig
                                   .colorTextBase)),
                 )),
-                InkWell(
+                GestureDetector(
                   child: Container(
                     alignment: Alignment.center,
                     height: 44,
@@ -373,7 +367,7 @@ class BrnSingleSelectDialogWidgetState
           index != widget.conditions!.length - 1
               ? Padding(
                   padding: EdgeInsets.fromLTRB(20, 0, 20, 0), child: BrnLine())
-              : Container()
+              : const SizedBox.shrink()
         ],
       ));
     }

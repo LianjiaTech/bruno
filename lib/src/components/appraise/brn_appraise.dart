@@ -170,7 +170,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
   /// 标签
   Widget _getTags() {
     if (widget.tags?.isEmpty ?? true) {
-      return Container();
+      return const SizedBox.shrink();
     }
     return Padding(
       padding: EdgeInsets.only(top: 24),
@@ -219,7 +219,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
         ),
       );
     }
-    return Container();
+    return const SizedBox.shrink();
   }
 
   /// 提交按钮
@@ -242,7 +242,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
       );
     }
 
-    return Container();
+    return const SizedBox.shrink();
   }
 
   List<BrnTagItemBean> string2Tag(List<String>? tags) {
