@@ -13,8 +13,8 @@ import 'package:flutter/material.dart';
 
 /// 点击确定时的回调
 /// [checkedItems] 被选中的 item 集合
-typedef BrnMultiSelectListPickerSubmit = void Function(
-    List<BrnMultiSelectBottomPickerItem> checkedItems);
+typedef BrnMultiSelectListPickerSubmit<T> = void Function(
+    List<T> checkedItems);
 
 /// item 被点击时的回调
 /// [index] item 的索引
@@ -23,18 +23,18 @@ typedef BrnMultiSelectListPickerItemClick = void Function(
 
 /// 多选列表 Picker
 
-class BrnMultiSelectListPicker extends StatefulWidget {
+class BrnMultiSelectListPicker<T extends BrnMultiSelectBottomPickerItem> extends StatefulWidget {
   final String? title;
-  final List<BrnMultiSelectBottomPickerItem> items;
-  final BrnMultiSelectListPickerSubmit? onSubmit;
+  final List<T> items;
+  final BrnMultiSelectListPickerSubmit<T>? onSubmit;
   final VoidCallback? onCancel;
   final BrnMultiSelectListPickerItemClick? onItemClick;
   final BrnPickerTitleConfig pickerTitleConfig;
 
-  static void show(
+  static void show<T extends BrnMultiSelectBottomPickerItem>(
     BuildContext context, {
-    required List<BrnMultiSelectBottomPickerItem> items,
-    BrnMultiSelectListPickerSubmit? onSubmit,
+    required List<T> items,
+    BrnMultiSelectListPickerSubmit<T>? onSubmit,
     VoidCallback? onCancel,
     BrnMultiSelectListPickerItemClick? onItemClick,
     BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
@@ -45,7 +45,7 @@ class BrnMultiSelectListPicker extends StatefulWidget {
       isDismissible: isDismissible,
       backgroundColor: Colors.transparent,
       builder: (BuildContext dialogContext) {
-        return BrnMultiSelectListPicker(
+        return BrnMultiSelectListPicker<T>(
           items: items,
           onSubmit: onSubmit,
           onCancel: onCancel,
@@ -68,11 +68,11 @@ class BrnMultiSelectListPicker extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return MultiSelectDialogWidgetState();
+    return MultiSelectDialogWidgetState<T>();
   }
 }
 
-class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
+class MultiSelectDialogWidgetState<T extends BrnMultiSelectBottomPickerItem> extends State<BrnMultiSelectListPicker<T>> {
   @override
   Widget build(BuildContext context) {
     return BrnPickerClipRRect(
@@ -99,7 +99,7 @@ class MultiSelectDialogWidgetState extends State<BrnMultiSelectListPicker> {
                   child: BrnPickerTitle(
                     pickerTitleConfig: widget.pickerTitleConfig,
                     onConfirm: () {
-                      List<BrnMultiSelectBottomPickerItem> selectedItems = [];
+                      List<T> selectedItems = [];
                       if (widget.onSubmit != null) {
                         for (int i = 0; i < widget.items.length; i++) {
                           if (widget.items[i].isChecked) {

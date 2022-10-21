@@ -71,13 +71,13 @@ class BrnDatePicker {
     /// 点击【取消】回调给调用方的回调事件
     DateVoidCallback? onCancel,
 
-    /// 点击【完成】回调给调用方的数据
+    /// 弹框点击外围消失的回调事件
     DateVoidCallback? onClose,
 
     /// 时间滚动选择时候的回调事件
     DateValueCallback? onChange,
 
-    /// 弹框点击外围消失的回调事件
+    /// 点击【完成】回调给调用方的数据
     DateValueCallback? onConfirm,
     BrnPickerConfig? themeData,
   }) {
