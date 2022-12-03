@@ -43,3 +43,35 @@ import 'package:bruno/bruno.dart';
 
 如果你想换「风格」或者适配其它「机型」如 PAD 请参照 [主题定制](./theme) 操作
 
+代码模板:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:bruno/bruno.dart';
+
+class LeftPart extends StatefulWidget {
+  const LeftPart({super.key});
+
+  @override
+  State<LeftPart> createState() => _LeftPartState();
+}
+
+class _LeftPartState extends State<LeftPart> with SingleTickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    //这里是 bruno 组件的代码,此处以 tabs 为例
+    var tabs = <BadgeTab>[];
+    tabs.add(BadgeTab(text: "需求1", badgeNum: 26));
+    tabs.add(BadgeTab(text: "需求2"));
+    TabController tabController =
+        TabController(length: tabs.length, vsync: this);
+    return BrnTabBar(
+      controller: tabController,
+      tabs: tabs,
+      onTap: (state, index) {
+        state.refreshBadgeState(index);
+      },
+    );
+  }
+}
+```
