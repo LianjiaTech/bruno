@@ -17,7 +17,7 @@ group:
 
 ### 适用场景
 
-星级评分条RatingBar支持自定义图片，颜色，大小，间距，支持点击选中，支持第一个反选，支持半颗星（只用于展示，不支持选择半颗星）。
+星级评分条BrnRatingStar支持自定义图片，颜色，大小，间距，支持点击选中，支持第一个反选，支持半颗星（只用于展示，不支持选择半颗星）。
 
 ## 三、构造函数及参数说明
 
@@ -54,7 +54,7 @@ const BrnRatingStar({
 
 
 ```dart
-BrnRatingBar(),
+BrnRatingStar(),
 ```
 ### 效果2
 
@@ -63,13 +63,13 @@ BrnRatingBar(),
 
 
 ```dart
-BrnRatingBar(  
+BrnRatingStar(  
   selectedCount: 0.5,  
 )  
-BrnRatingBar(  
+BrnRatingStar(  
   selectedCount: 3.1,  
 ),  
-BrnRatingBar(  
+BrnRatingStar(  
   selectedCount: 3.6,  
   count: 10,  
 ),  
