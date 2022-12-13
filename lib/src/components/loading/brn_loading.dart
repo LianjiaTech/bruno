@@ -1,5 +1,4 @@
 import 'package:bruno/bruno.dart';
-import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:flutter/material.dart';
 
 /// 页面或者弹窗中间的圆形加载框，左侧是可定制的加载文案[content]，比如：加载中、提交中等等
@@ -95,23 +94,6 @@ class BrnPageLoading extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  _buildText(BuildContext context, double maxWidth) {
-    TextPainter textPainter = TextPainter(
-      textScaleFactor: MediaQuery.of(context).textScaleFactor,
-      text: TextSpan(
-          text: content,
-          style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-              decoration: TextDecoration.none)),
-    )..layout(maxWidth: maxWidth, minWidth: 0);
-    return BoxConstraints(
-      maxWidth: maxWidth,
-      minWidth: 0,
     );
   }
 }
