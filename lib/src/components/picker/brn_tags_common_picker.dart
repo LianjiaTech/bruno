@@ -17,7 +17,7 @@ typedef TagsPickerContentBuilder = Widget Function(
 
 /// 创建时传入Builder 或者 子类实现 createBuilder 函数
 // ignore: must_be_immutable
-class CommonTagsPicker extends StatefulWidget {
+abstract class CommonTagsPicker extends StatefulWidget {
   final BuildContext context;
   final ValueChanged? onConfirm;
   final VoidCallback? onCancel;
@@ -69,13 +69,7 @@ class CommonTagsPicker extends StatefulWidget {
 
   /// 子类需重写getConfirmData()函数，直接使用LJTagsPickerWidget类时忽略
   @protected
-  Object getConfirmData() {
-    return '子类需重写getConfirmData()函数';
-  }
-
-  Object getCommitData() {
-    return '子类需重写getConfirmData()函数';
-  }
+  Object getConfirmData();
 
   @override
   _CommonPickerState createState() => _CommonPickerState();

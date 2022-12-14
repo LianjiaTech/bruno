@@ -13,6 +13,7 @@ import 'package:bruno/src/components/selection/widget/brn_layer_more_selection_p
 import 'package:bruno/src/components/selection/widget/brn_selection_date_range_item_widget.dart';
 import 'package:bruno/src/components/toast/brn_toast.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -226,7 +227,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
               } else if (data.filterType == BrnSelectionFilterType.checkbox) {
                 if (!data.isSelected) {
                   if (!BrnSelectionUtil.checkMaxSelectionCount(data)) {
-                    BrnToast.show('您选择的筛选条件数量已达上限', context);
+                    BrnToast.show(BrnIntl.of(context).localizedResource.filterConditionCountLimited, context);
                     return;
                   }
                 }
@@ -261,8 +262,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
             DateTime.now().millisecondsSinceEpoch;
         showName = DateTimeFormatter.formatDate(
             DateTime.fromMillisecondsSinceEpoch(time),
-            'yyyy/MMMM/dd',
-            DateTimePickerLocale.zh_cn);
+            'yyyy/MMMM/dd');
       }
     } else {
       showName = entity.title;
@@ -299,7 +299,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
         pickerMode: BrnDateTimePickerMode.date,
         pickerTitleConfig: BrnPickerTitleConfig.Default,
         initialDateTime: DateTime.fromMillisecondsSinceEpoch(time),
-        dateFormat: 'yyyy年,MMMM月,dd日', onConfirm: (dateTime, list) {
+        dateFormat: BrnIntl.of(context).localizedResource.dateFormate_yyyy_MMMM_dd, onConfirm: (dateTime, list) {
       if (mounted) {
         setState(() {
           data.parent?.clearSelectedEntity();
@@ -351,7 +351,7 @@ class __MoreArrowState extends State<_MoreArrow> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              '更多',
+              BrnIntl.of(context).localizedResource.more,
               style: widget.themeData?.moreTextStyle.generateTextStyle(),
             ),
             Container(
@@ -518,20 +518,20 @@ class __MoreRangeWidgetState extends State<_MoreRangeWidget> {
         children: <Widget>[
           Expanded(
             child: _buildRangeField(
-                '最小值', minController, minFocusNode, widget.themeData),
+                BrnIntl.of(context).localizedResource.minValue, minController, minFocusNode, widget.themeData),
           ),
           Container(
 //          height: 38,
             alignment: Alignment.center,
             child: Text(
-              '至',
+              BrnIntl.of(context).localizedResource.to,
               textAlign: TextAlign.center,
               style: widget.themeData.inputTextStyle.generateTextStyle(),
             ),
           ),
           Expanded(
             child: _buildRangeField(
-                '最大值', maxController, maxFocusNode, widget.themeData),
+                BrnIntl.of(context).localizedResource.maxValue, maxController, maxFocusNode, widget.themeData),
           ),
         ],
       );
@@ -651,7 +651,7 @@ class _FilterLayerTypeWidgetState extends State<FilterLayerTypeWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                  child: Text(_isEmptyCondition() ? '请选择' : _getCondition(),
+                  child: Text(_isEmptyCondition() ? BrnIntl.of(context).localizedResource.pleaseChoose : _getCondition(),
                       style: _isEmptyCondition()
                           ? widget.themeData.hintTextStyle.generateTextStyle()
                           : widget.themeData.optionTextStyle

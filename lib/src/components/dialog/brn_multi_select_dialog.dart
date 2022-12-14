@@ -1,6 +1,7 @@
 import 'package:bruno/src/components/dialog/brn_content_export_dialog.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,7 @@ class BrnMultiSelectDialog extends Dialog {
   final List<MultiSelectItem> conditions;
 
   /// 操作按钮文案
-  final String submitText;
+  final String? submitText;
 
   /// 点击操作按钮
   final BrnMultiSelectDialogClickSubmitCallback? onSubmitClick;
@@ -72,7 +73,7 @@ class BrnMultiSelectDialog extends Dialog {
     this.messageWidget,
     this.customWidget,
     this.isCustomFollowScroll = true,
-    this.submitText = "提交",
+    this.submitText,
     this.submitBgColor,
     this.onSubmitClick,
     this.onItemClick,
@@ -89,7 +90,7 @@ class BrnMultiSelectDialog extends Dialog {
         customWidget: customWidget,
         isCustomFollowScroll: isCustomFollowScroll,
         conditions: conditions,
-        submitText: submitText,
+        submitText: submitText ?? BrnIntl.of(context).localizedResource.submit,
         onSubmitClick: onSubmitClick,
         onItemClick: onItemClick,
         submitBgColor: submitBgColor ??

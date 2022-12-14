@@ -1,45 +1,6 @@
 
 
-import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
-
-class BrnTagsPickerHeaderConfig {
-  BrnTagsPickerHeaderConfig({
-    this.headerHeight = 48,
-    this.title = "",
-    this.titleColor,
-    this.titleFontSize = 18,
-    this.confirmTitle = '确定',
-    this.confirmColor,
-    this.confirmFontSize = 18,
-    this.cancelTitle = "取消",
-    this.cancelColor,
-    this.cancelFontSize = 18,
-    this.dividingLineColor,
-  }) {
-    this.titleColor =
-        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-    this.cancelColor =
-        BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase;
-  }
-
-  final double headerHeight;
-
-  final String title;
-  Color? titleColor;
-  final double titleFontSize;
-
-  final String confirmTitle;
-  final Color? confirmColor;
-  final double confirmFontSize;
-
-  final String cancelTitle;
-  Color? cancelColor;
-  final double cancelFontSize;
-
-  //分割线颜色
-  final Color? dividingLineColor;
-}
 
 class BrnTagsPickerConfig {
   BrnTagsPickerConfig(

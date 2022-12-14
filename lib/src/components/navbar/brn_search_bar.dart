@@ -3,6 +3,7 @@ import 'package:bindings_compatible/bindings_compatible.dart';
 import 'package:bruno/src/components/navbar/brn_appbar_theme.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -151,7 +152,7 @@ class _SearchInputWidget extends StatefulWidget {
   final dynamic leading;
   final BrnSearchBarInputChangeCallback? searchBarInputChangeCallback;
   final BrnSearchBarInputSubmitCallback? searchBarInputSubmitCallback;
-  final String? hint;
+  String? hint;
   final TextStyle? hintStyle;
   final TextStyle? inputTextStyle;
   final TextStyle? dismissStyle;
@@ -168,7 +169,7 @@ class _SearchInputWidget extends StatefulWidget {
       this.textEditingController,
       this.searchBarInputChangeCallback,
       this.searchBarInputSubmitCallback,
-      this.hint = '请输入搜索内容',
+      this.hint,
       this.hintStyle,
       this.inputTextStyle,
       this.showDivider = true,
@@ -309,7 +310,7 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
                             color: _defaultHintTextColor,
                           ),
                       // 提示文本属性，提示字段接受哪种输入的文本。
-                      hintText: widget.hint,
+                      hintText: widget.hint ?? BrnIntl.of(context).localizedResource.inputSearchTip,
                     ),
                     // 在改变属性，当正在编辑的文本发生更改时调用。
                     onChanged: (content) {
@@ -370,7 +371,7 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          '取消',
+                          BrnIntl.of(context).localizedResource.cancel,
                           style: widget.dismissStyle ??
                               TextStyle(
                                   color: _defaultCancelTextColor,

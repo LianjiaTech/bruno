@@ -2,6 +2,7 @@ import 'package:bruno/src/components/picker/time_picker/brn_date_time_formatter.
 import 'package:bruno/src/components/selection/bean/brn_selection_common_entity.dart';
 import 'package:bruno/src/components/selection/brn_selection_util.dart';
 import 'package:bruno/src/components/toast/brn_toast.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
@@ -70,7 +71,7 @@ class _BrnSelectionRangeTagWidgetState
             if (BrnSelectionFilterType.checkbox == selectedEntity.filterType &&
                 !selectedEntity.isSelected) {
               if (!BrnSelectionUtil.checkMaxSelectionCount(selectedEntity)) {
-                BrnToast.show("您选择的筛选条件数量已达上限", context);
+                BrnToast.show(BrnIntl.of(context).localizedResource.filterConditionCountLimited, context);
                 return;
               }
             }
@@ -97,7 +98,7 @@ class _BrnSelectionRangeTagWidgetState
             widget.tagFilterList[nameIndex].value);
         if (dateTime != null) {
           text = DateTimeFormatter.formatDate(
-              dateTime, 'yyyy年MM月dd日', DateTimePickerLocale.zh_cn);
+              dateTime, BrnIntl.of(context).localizedResource.dateFormate_yyyy_MM_dd);
         }
       } else {
         text = widget.tagFilterList[nameIndex].value ?? '';

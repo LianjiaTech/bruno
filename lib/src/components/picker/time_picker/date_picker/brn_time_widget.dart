@@ -23,7 +23,6 @@ class BrnTimeWidget extends StatefulWidget {
     this.maxDateTime,
     this.initDateTime,
     this.dateFormat: datetimePickerTimeFormat,
-    this.locale: datetimePickerLocaleDefault,
     this.pickerTitleConfig: BrnPickerTitleConfig.Default,
     this.minuteDivider = 1,
     this.onCancel,
@@ -43,7 +42,6 @@ class BrnTimeWidget extends StatefulWidget {
 
   final DateTime? minDateTime, maxDateTime, initDateTime;
   final String? dateFormat;
-  final DateTimePickerLocale locale;
   final BrnPickerTitleConfig pickerTitleConfig;
   final DateVoidCallback? onCancel;
   final DateValueCallback? onChange, onConfirm;
@@ -143,7 +141,6 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
         widget.pickerTitleConfig.showTitle) {
       Widget titleWidget = BrnPickerTitle(
         pickerTitleConfig: widget.pickerTitleConfig,
-        locale: widget.locale,
         onCancel: () => _onPressedCancel(),
         onConfirm: () => _onPressedConfirm(),
       );
@@ -301,7 +298,7 @@ class _BrnTimeWidgetState extends State<BrnTimeWidget> {
       height: widget.themeData!.itemHeight,
       alignment: Alignment.center,
       child: Text(
-          DateTimeFormatter.formatDateTime(value, format, widget.locale),
+          DateTimeFormatter.formatDateTime(value, format),
           style: textStyle),
     );
   }

@@ -139,7 +139,7 @@ class BrnGuide {
       _widgetWidth = 0;
       _widgetHeight = 0;
       _widgetOffset = Offset.zero;
-      debugPrint('获取组件尺寸信息异常${e.toString()}');
+      debugPrint('get screen size error: ${e.toString()}');
     }
   }
 

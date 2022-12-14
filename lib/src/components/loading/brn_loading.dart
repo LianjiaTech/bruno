@@ -1,5 +1,6 @@
 import 'package:bruno/bruno.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/material.dart';
 
 /// 页面或者弹窗中间的圆形加载框，左侧是可定制的加载文案[content]，比如：加载中、提交中等等
@@ -29,9 +30,13 @@ import 'package:flutter/material.dart';
 ///  * [BrnLoadingDialog], 加载对话框。
 
 class BrnPageLoading extends StatelessWidget {
-  final String content;
+  final String? content;
+  final BoxConstraints constraints;
 
-  const BrnPageLoading({this.content = BrnStrings.loadingContent});
+  const BrnPageLoading({
+    this.content,
+    this.constraints = const BoxConstraints(minWidth: 130, maxWidth: 130, minHeight: 50, maxHeight: 50,),
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +44,13 @@ class BrnPageLoading extends StatelessWidget {
     double _iconSize = 19.0;
     double _textLeftPadding = 8.0;
     double _outPadding = 10.0;
-
+    String loadingText = content ?? BrnIntl.of(context).localizedResource.loading;
     // 获取实际文字长度
     TextPainter textPainter = TextPainter(
       textDirection: TextDirection.ltr,
       textScaleFactor: MediaQuery.of(context).textScaleFactor,
       text: TextSpan(
-          text: content,
+          text: loadingText,
           style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -59,12 +64,10 @@ class BrnPageLoading extends StatelessWidget {
     return Center(
       child: Container(
         padding: EdgeInsets.all(_outPadding),
-        constraints: BoxConstraints(
-            maxWidth: maxWidth, minWidth: _iconSize + _textLeftPadding),
+        constraints: BoxConstraints(maxWidth: maxWidth, minWidth: _iconSize + _textLeftPadding),
         height: 50,
         width: _loadingMaxWidth,
-        decoration: BoxDecoration(
-            color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
+        decoration: BoxDecoration(color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
         child: Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -81,7 +84,8 @@ class BrnPageLoading extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.only(left: _textLeftPadding),
                   child: Text(
-                    content,
+                    loadingText,
+                    maxLines: 1,
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -90,28 +94,11 @@ class BrnPageLoading extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  _buildText(BuildContext context, double maxWidth) {
-    TextPainter textPainter = TextPainter(
-      textScaleFactor: MediaQuery.of(context).textScaleFactor,
-      text: TextSpan(
-          text: content,
-          style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-              decoration: TextDecoration.none)),
-    )..layout(maxWidth: maxWidth, minWidth: 0);
-    return BoxConstraints(
-      maxWidth: maxWidth,
-      minWidth: 0,
     );
   }
 }
@@ -123,13 +110,13 @@ class BrnLoadingDialog extends Dialog {
   static const String _loadingDialogTag = '_loadingDialogTag';
 
   /// 加载时的提示文案，默认为 `加载中...`
-  final String content;
+  final String? content;
 
-  const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent}) : super(key: key);
+  const BrnLoadingDialog({Key? key, this.content}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BrnPageLoading(content: content);
+    return BrnPageLoading(content: content ?? BrnIntl.of(context).localizedResource.loading);
   }
 
   /// 展示加载弹窗的静态方法。
@@ -141,7 +128,7 @@ class BrnLoadingDialog extends Dialog {
   ///    rootNavigator，详见 [showDialog] 中的 [useRootNavigator]。
   static Future<T?> show<T>(
     BuildContext context, {
-    String content = BrnStrings.loadingContent,
+    String? content,
     bool barrierDismissible = true,
     bool useRootNavigator = true,
   }) {
@@ -151,7 +138,7 @@ class BrnLoadingDialog extends Dialog {
         barrierDismissible: barrierDismissible,
         useRootNavigator: useRootNavigator,
         builder: (_) {
-          return BrnLoadingDialog(content: content);
+          return BrnLoadingDialog(content: content ?? BrnIntl.of(context).localizedResource.loading);
         });
   }
 

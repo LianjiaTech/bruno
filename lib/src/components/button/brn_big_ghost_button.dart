@@ -1,6 +1,7 @@
 
 
 import 'package:bruno/src/components/button/brn_normal_button.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ import 'package:flutter/material.dart';
 
 class BrnBigGhostButton extends StatelessWidget {
   ///按钮文案，默认'确认'
-  final String title;
+  final String? title;
 
   ///文案颜色
   final Color? titleColor;
@@ -38,7 +39,7 @@ class BrnBigGhostButton extends StatelessWidget {
 
   const BrnBigGhostButton({
     Key? key,
-    this.title = '确认',
+    this.title,
     this.titleColor,
     this.bgColor,
     this.onTap,
@@ -62,7 +63,7 @@ class BrnBigGhostButton extends StatelessWidget {
           defaultThemeConfig.commonConfig.brandPrimary.withOpacity(0.05),
       onTap: onTap,
       alignment: Alignment.center,
-      text: title,
+      text: title ?? BrnIntl.of(context).localizedResource.confirm,
       textColor: titleColor ?? defaultThemeConfig.commonConfig.brandPrimary,
       fontSize: defaultThemeConfig.bigButtonFontSize,
     );

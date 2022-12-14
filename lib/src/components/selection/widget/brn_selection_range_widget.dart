@@ -13,6 +13,7 @@ import 'package:bruno/src/components/selection/widget/brn_selection_range_tag_wi
 import 'package:bruno/src/components/tabbar/normal/brn_tab_bar.dart';
 import 'package:bruno/src/components/toast/brn_toast.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_event_bus.dart';
 import 'package:bruno/src/utils/brn_text_util.dart';
@@ -372,7 +373,7 @@ class _BrnRangeSelectionGroupWidgetState
                         BrunoTools.getAssetImage(BrnAsset.iconSelectionReset),
                   ),
                   Text(
-                    '重置',
+                    BrnIntl.of(context).localizedResource.reset,
                     style: widget.themeData.resetTextStyle.generateTextStyle(),
                   )
                 ],
@@ -382,7 +383,7 @@ class _BrnRangeSelectionGroupWidgetState
           ),
           Expanded(
             child: BrnBigMainButton(
-              title: '确定',
+              title: BrnIntl.of(context).localizedResource.ok,
               onTap: () {
                 _confirmButtonClickEvent();
               },
@@ -423,12 +424,12 @@ class _BrnRangeSelectionGroupWidgetState
         if (!rangeEntity.isValidRange()) {
           FocusScope.of(context).requestFocus(FocusNode());
           if (rangeEntity.filterType == BrnSelectionFilterType.range) {
-            BrnToast.show('您输入的区间有误', context);
+            BrnToast.show(BrnIntl.of(context).localizedResource.enterRangeError, context);
           } else if (rangeEntity.filterType ==
                   BrnSelectionFilterType.dateRange ||
               rangeEntity.filterType ==
                   BrnSelectionFilterType.dateRangeCalendar) {
-            BrnToast.show('您选择的区间有误', context);
+            BrnToast.show(BrnIntl.of(context).localizedResource.selectRangeError, context);
           }
           return;
         }

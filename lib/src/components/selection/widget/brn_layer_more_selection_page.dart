@@ -5,6 +5,7 @@ import 'package:bruno/src/components/selection/brn_more_selection.dart';
 import 'package:bruno/src/components/selection/brn_selection_util.dart';
 import 'package:bruno/src/components/toast/brn_toast.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -145,7 +146,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                 systemOverlayStyle: SystemUiOverlayStyle.dark,
                 backgroundColor: Colors.white,
                 title: Text(
-                  '选择${widget.entityData.title}',
+                  BrnIntl.of(context).localizedResource.selectTitle(widget.entityData.title),
                   style: TextStyle(
                       color: BrnThemeConfigurator.instance
                           .getConfig()
@@ -236,7 +237,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
               if (!this._firstList[index].isSelected) {
                 if (!BrnSelectionUtil.checkMaxSelectionCount(
                     _firstList[index])) {
-                  BrnToast.show('您选择的筛选条件数量已达上限', context);
+                  BrnToast.show(BrnIntl.of(context).localizedResource.filterConditionCountLimited, context);
                   setState(() {});
                   return;
                 } else {
@@ -373,7 +374,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
               if (!_currentFirstEntity!.children[index].isSelected) {
                 if (!BrnSelectionUtil.checkMaxSelectionCount(
                     this._currentFirstEntity!.children[index])) {
-                  BrnToast.show('您选择的筛选条件数量已达上限', context);
+                  BrnToast.show(BrnIntl.of(context).localizedResource.filterConditionCountLimited, context);
                   return;
                 }
               }

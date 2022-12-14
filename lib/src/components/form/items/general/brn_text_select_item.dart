@@ -2,6 +2,7 @@
 
 import 'dart:math';
 
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -64,7 +65,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
   final VoidCallback? onTap;
 
   /// 录入项 hint 提示
-  final String hint;
+  final String? hint;
 
   /// 录入项 值
   final String? value;
@@ -101,7 +102,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
     this.onAddTap,
     this.onRemoveTap,
     this.onTip,
-    this.hint: "请选择",
+    this.hint,
     this.value,
     this.valueMaxLines = 1,
     this.titleMaxLines,
@@ -132,7 +133,7 @@ class BrnTextSelectFormItem extends StatefulWidget {
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint: "请选择",
+      this.hint,
       this.value,
       this.valueMaxLines = 1,
       this.titleMaxLines,
@@ -369,7 +370,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           textDirection: TextDirection.ltr,
           strutStyle: _contentStructStyle,
           text: TextSpan(
-            text: widget.hint,
+            text: widget.hint ?? BrnIntl.of(context).localizedResource.pleaseChoose,
             style: BrnFormUtil.getHintTextStyle(widget.themeData!, height: 1),
           ));
     }
@@ -392,7 +393,7 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       );
     } else {
       return Text(
-        widget.hint,
+        widget.hint ?? BrnIntl.of(context).localizedResource.pleaseChoose,
         textAlign: TextAlign.end,
         strutStyle: _contentStructStyle,
         style: BrnFormUtil.getHintTextStyle(widget.themeData!, height: 1),
@@ -401,11 +402,11 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
   }
 
   String getCalculateText() {
-    String value = '请选择';
+    String value = BrnIntl.of(context).localizedResource.pleaseChoose;
     if (!BrunoTools.isEmpty(widget.value)) {
       value = widget.value!;
     } else if (!BrunoTools.isEmpty(widget.hint)) {
-      value = widget.hint;
+      value = widget.hint ?? BrnIntl.of(context).localizedResource.pleaseChoose;
     }
     return value;
   }
