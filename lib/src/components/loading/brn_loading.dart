@@ -1,5 +1,4 @@
 import 'package:bruno/bruno.dart';
-import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/material.dart';
 
