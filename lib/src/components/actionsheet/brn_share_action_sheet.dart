@@ -1,5 +1,6 @@
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/constants/brn_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +120,7 @@ class BrnShareActionSheet extends StatelessWidget {
     // 判断是否为自定义标题
     title = (channel.shareType == BrnShareItemConstants.shareCustom)
         ? (channel.customTitle ?? "")
-        : BrnShareItemConstants.shareItemTitleList[channel.shareType];
+        : BrnIntl.of(context).localizedResource.shareChannels[channel.shareType];
     // 判断是否为自定义，如果不是自定义图标，则判断是否可点击（决定是否使用置灰图标）
     image = (channel.shareType == BrnShareItemConstants.shareCustom)
         ? channel.customImage
@@ -208,7 +209,7 @@ class BrnShareActionSheet extends StatelessWidget {
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.only(top: 16, left: 20),
       child: Text(
-        mainTitle ?? "分享至",
+        mainTitle ?? BrnIntl.of(context).localizedResource.shareTo,
         maxLines: 1,
         textAlign: TextAlign.left,
         style: TextStyle(
@@ -268,7 +269,7 @@ class BrnShareActionSheet extends StatelessWidget {
           padding: EdgeInsets.only(left: 61, right: 61, top: 12, bottom: 12),
           child: Center(
             child: Text(
-              cancelTitle ?? "取消",
+              cancelTitle ?? BrnIntl.of(context).localizedResource.cancel,
               style: TextStyle(
                   fontSize: 16, fontWeight: FontWeight.w600, color: textColor),
             ),

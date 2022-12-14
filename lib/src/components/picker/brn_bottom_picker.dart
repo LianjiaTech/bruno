@@ -1,6 +1,7 @@
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_picker_cliprrect.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 
@@ -200,7 +201,7 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
     } else if (widget.confirm is String) {
       confirmWidget = _buildDefaultConfirm(widget.confirm);
     } else {
-      confirmWidget = _buildDefaultConfirm('确认');
+      confirmWidget = _buildDefaultConfirm(BrnIntl.of(context).localizedResource.confirm);
     }
     return confirmWidget;
   }
@@ -212,7 +213,7 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
     } else if (widget.cancel is String) {
       cancelWidget = _buildDefaultCancel(widget.cancel);
     } else {
-      cancelWidget = _buildDefaultCancel('取消');
+      cancelWidget = _buildDefaultCancel(BrnIntl.of(context).localizedResource.cancel);
     }
     return cancelWidget;
   }
@@ -232,7 +233,7 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
 
   Widget _buildDefaultCancel(String? string) {
     return Text(
-      string ?? '取消',
+      string ?? BrnIntl.of(context).localizedResource.cancel,
       style: TextStyle(
           color: BrnThemeConfigurator.instance
               .getConfig()

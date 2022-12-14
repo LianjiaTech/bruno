@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:bruno/src/components/button/brn_normal_button.dart';
 import 'package:bruno/src/constants/brn_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ const double _BBorderWith = 1;
 
 class BrnSmallOutlineButton extends StatelessWidget {
   /// 按钮显示文案,默认'确认
-  final String title;
+  final String? title;
 
   /// 点击的回调
   final VoidCallback? onTap;
@@ -59,7 +60,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
   /// 传入属性优先级最高，未传入的走默认配置，更多请看[BrnSmallSecondaryOutlineButtonConfig.defaultConfig]
   const BrnSmallOutlineButton({
     Key? key,
-    this.title = '确认',
+    this.title,
     this.onTap,
     this.isEnable = true,
     this.lineColor,
@@ -94,7 +95,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
         );
 
         textPainter.textDirection = TextDirection.ltr;
-        textPainter.text = TextSpan(text: title, style: style);
+        textPainter.text = TextSpan(text: title ?? BrnIntl.of(context).localizedResource.confirm, style: style);
         textPainter.layout(maxWidth: con.maxWidth);
         double textWidth = textPainter.width;
         double _maxWidth = textWidth +
@@ -116,7 +117,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
           ),
           borderWith: _BBorderWith,
           radius: defaultThemeConfig.smallButtonRadius,
-          text: title,
+          text: title ?? BrnIntl.of(context).localizedResource.confirm,
           disableLineColor: defaultThemeConfig.commonConfig.borderColorBase,
           lineColor: lineColor ?? defaultThemeConfig.commonConfig.borderColorBase,
           textColor: textColor ?? defaultThemeConfig.commonConfig.colorTextBase,

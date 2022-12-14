@@ -26,7 +26,6 @@ class BrnDateRangeSideWidget extends StatefulWidget {
 
   /// 时间展示格式
   final String? dateFormat;
-  final DateTimePickerLocale locale;
 
   /// 时间选择变化时回调
   final DateRangeSideValueCallback? onChange;
@@ -43,7 +42,6 @@ class BrnDateRangeSideWidget extends StatefulWidget {
     this.maxDateTime,
     this.initialStartDateTime,
     this.dateFormat = datetimeRangePickerDateFormat,
-    this.locale = datetimePickerLocaleDefault,
     this.onInitSelectChange,
     this.onChange,
   }) : super(key: key) {
@@ -260,7 +258,7 @@ class _DatePickerWidgetState extends State<BrnDateRangeSideWidget> {
         height: widget.themeData!.itemHeight,
         alignment: Alignment.center,
         child: Text(
-          DateTimeFormatter.formatDateTime(value, format, widget.locale),
+          DateTimeFormatter.formatDateTime(value, format),
           style: textStyle,
         ));
   }

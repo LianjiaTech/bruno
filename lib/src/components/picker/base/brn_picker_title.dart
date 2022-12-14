@@ -2,6 +2,7 @@
 
 import 'package:bruno/src/components/picker/time_picker/brn_date_picker_constants.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +12,11 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class BrnPickerTitle extends StatelessWidget {
   final BrnPickerTitleConfig pickerTitleConfig;
-  final DateTimePickerLocale? locale;
   final DateVoidCallback onCancel, onConfirm;
   BrnPickerConfig? themeData;
 
   BrnPickerTitle({
     Key? key,
-    this.locale,
     required this.onCancel,
     required this.onConfirm,
     this.pickerTitleConfig = BrnPickerTitleConfig.Default,
@@ -63,7 +62,8 @@ class BrnPickerTitle extends StatelessWidget {
                   },
                 ),
                 Text(
-                  pickerTitleConfig.titleContent,
+                  pickerTitleConfig.titleContent ??
+                      BrnIntl.of(context).localizedResource.pleaseChoose,
                   style: themeData!.titleTextStyle.generateTextStyle(),
                 ),
                 GestureDetector(
@@ -91,7 +91,7 @@ class BrnPickerTitle extends StatelessWidget {
     if (cancelWidget == null) {
       TextStyle textStyle = themeData!.cancelTextStyle.generateTextStyle();
       cancelWidget = Text(
-        '取消',
+        BrnIntl.of(context).localizedResource.cancel,
         style: textStyle,
         textAlign: TextAlign.left,
       );
@@ -105,7 +105,7 @@ class BrnPickerTitle extends StatelessWidget {
     if (confirmWidget == null) {
       TextStyle textStyle = themeData!.confirmTextStyle.generateTextStyle();
       confirmWidget = Text(
-        '完成',
+        BrnIntl.of(context).localizedResource.done,
         style: textStyle,
         textAlign: TextAlign.right,
       );

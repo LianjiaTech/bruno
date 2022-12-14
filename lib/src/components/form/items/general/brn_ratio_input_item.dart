@@ -2,6 +2,7 @@
 
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class BrnRatioInputFormItem extends StatefulWidget {
   final VoidCallback? onTip;
 
   ///内容
-  final String hint;
+  final String? hint;
 
   /// 输入内容类型
   final String? inputType;
@@ -91,7 +92,7 @@ class BrnRatioInputFormItem extends StatefulWidget {
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint: "请输入",
+      this.hint,
       this.inputType,
       this.controller,
       this.inputFormatters,
@@ -180,7 +181,7 @@ class BrnRatioInputFormItemState extends State<BrnRatioInputFormItem> {
                           border: InputBorder.none,
                           hintStyle:
                               BrnFormUtil.getHintTextStyle(widget.themeData!),
-                          hintText: widget.hint,
+                          hintText: widget.hint ?? BrnIntl.of(context).localizedResource.pleaseEnter,
                           counterText: "",
                           contentPadding: EdgeInsets.all(0),
                           isDense: true,

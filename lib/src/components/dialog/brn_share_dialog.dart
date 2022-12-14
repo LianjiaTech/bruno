@@ -2,6 +2,7 @@ import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/components/dialog/brn_dialog_utils.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_dialog_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -184,7 +185,7 @@ class BrnShareDialog extends StatelessWidget {
             color: Color(0xffffffff),
             padding: EdgeInsets.only(left: 6, right: 6),
             child: Text(
-              separatorText ?? "你可以通过以下方式分享给客户",
+              separatorText ?? BrnIntl.of(context).localizedResource.shareWayTip,
               style: TextStyle(fontSize: 12, color: shareTextColor),
             ),
           ),
@@ -211,7 +212,7 @@ class BrnShareDialog extends StatelessWidget {
         }
       } else {
         // 获取自预设channel信息
-        title = BrnShareItemConstants.shareItemTitleList[shareChannels[index]];
+        title = BrnIntl.of(context).localizedResource.shareChannels[shareChannels[index]];
         image = BrunoTools.getAssetImage(
             BrnShareItemConstants.shareItemImagePathList[shareChannels[index]]);
       }
