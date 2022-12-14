@@ -125,11 +125,6 @@ class _BrnTabExampleState extends State<BrnTabExample>
     tabs.add(BadgeTab(text: "业务二", badgeNum: 22));
     tabs.add(BadgeTab(text: "业务三", badgeNum: 11));
     tabs.add(BadgeTab(text: "业务四", showRedBadge: true));
-    tabs.add(BadgeTab(text: "业务五", badgeNum: 12));
-    tabs.add(BadgeTab(text: "业务六", badgeNum: 30));
-    tabs.add(BadgeTab(text: "业务七"));
-    tabs.add(BadgeTab(text: "业务八", badgeNum: 23));
-    tabs.add(BadgeTab(text: "业务九"));
     TabController tabController =
         TabController(length: tabs.length, vsync: this);
     return BrnTabBar(
