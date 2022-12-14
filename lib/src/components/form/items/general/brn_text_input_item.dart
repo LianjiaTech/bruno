@@ -200,7 +200,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                     autofocus: widget.autofocus,
                     focusNode: widget.focusNode,
                     keyboardType: BrnFormUtil.getInputType(widget.inputType),
-                    textInputAction: textInputAction,
+                    textInputAction: widget.textInputAction,
                     enabled: widget.isEdit,
                     obscureText: widget.obscureText,
                     maxLines: 1,
