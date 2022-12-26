@@ -566,7 +566,9 @@ class BrnTextAction extends StatelessWidget {
         .merge(_defaultThemeData);
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       child: Container(
+        height: _defaultThemeData.appBarHeight,
         alignment: Alignment.center,
         child: Text(text,
             maxLines: 1,
