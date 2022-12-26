@@ -801,6 +801,7 @@ class BadgeTab {
       this.showRedBadge = false,
       this.isAutoDismiss = true});
 
+  @Deprecated('无效参数，预计两个版本后删除')
   final Key? key;
 
   /// Tab文本

@@ -56,7 +56,12 @@ class BrnPickerTitle extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 GestureDetector(
-                  child: _renderCancelWidget(context),
+                  behavior: HitTestBehavior.opaque,
+                  child: Container(
+                    height: themeData!.titleHeight,
+                    alignment: Alignment.center,
+                    child: _renderCancelWidget(context),
+                  ),
                   onTap: () {
                     this.onCancel();
                   },
@@ -67,7 +72,12 @@ class BrnPickerTitle extends StatelessWidget {
                   style: themeData!.titleTextStyle.generateTextStyle(),
                 ),
                 GestureDetector(
-                  child: _renderConfirmWidget(context),
+                  behavior: HitTestBehavior.opaque,
+                  child: Container(
+                    height: themeData!.titleHeight,
+                    alignment: Alignment.center,
+                    child: _renderConfirmWidget(context),
+                  ),
                   onTap: () {
                     this.onConfirm();
                   },
