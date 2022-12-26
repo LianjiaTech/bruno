@@ -43,6 +43,7 @@ group:
     this.autoFocus,
     this.textEditingController,
     this.focusNode,
+    this.textInputAction,
     this.textInputAction = TextInputAction.done,
     this.borderRadius,
     this.borderColor,
@@ -69,6 +70,7 @@ group:
 | borderRadius          | double?                                              | 背景圆角                                                     | 否           |                      |
 | autoFocus             | bool?                                                | 光标展示                                                     | 否           |                      |
 | focusNode             | FocusNode                                            | 搜索框的焦点控制器                                           | 否           |                      |
+| textInputAction       | TextInputAction?                                     | 选择键盘的完成按钮                                           | 否           |                      |
 | padding               | EdgeInsetsGeometry                                   | 文字距离边框的边距                                           | 否           | EdgeInsets.zero      |
 | textEditingController | TextInputAction                                      | 键盘输入行为                                                 | 否           | TextInputAction.done |
 

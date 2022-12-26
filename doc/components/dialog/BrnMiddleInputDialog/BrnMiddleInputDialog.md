@@ -28,6 +28,7 @@ const BrnMiddleInputDialog(
       {this.title,
       this.message,
       this.hintText,
+      this.keyboardType,
       this.maxLength = 20,
       this.maxLines,
       this.minLines: 1,
@@ -51,6 +52,7 @@ const BrnMiddleInputDialog(
 | title | String? | 标题 | 否 |  |
 | message | String? | 辅助内容 | 否 |  |
 | hintText | String? | 提示语 | 否 |  |
+| keyboardType | TextInputType? | 输入类型 | 否 | |
 | maxLength | int | 最大输入长度 | 否 | 20 |
 | maxLines | int? | 可输入的最maxLines多行数。超过 [maxLines] 指定的行数后，输入内容会变成可滑动 | 否 | |
 | minLines | int | 可输入的最少行数 | 否 | 1 |

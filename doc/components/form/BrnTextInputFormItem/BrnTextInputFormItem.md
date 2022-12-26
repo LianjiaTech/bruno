@@ -46,6 +46,7 @@ BrnTextInputFormItem({
     this.title = "",
     this.subTitle,
     this.tipLabel,
+    this.focusNode,
     this.prefixIconType = BrnPrefixIconType.normal,
     this.error = "",
     this.isEdit = true,
@@ -85,6 +86,7 @@ BrnTextInputFormItem({
 | title | String | 录入项标题 | 否 | '' |  |
 | subTitle | String? | 录入项子标题 | 否 | 无 |  |
 | tipLabel | String? | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
+| focusNode | FocusNode? | 录入项的焦点控制对象，主要用于控制焦点 | 否 |  |  |
 | prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.normal | 1. 不展示图标：BrnPrefixIconType.normal 2. 展示加号图标：BrnPrefixIconType.add 3. 展示减号图标：BrnPrefixIconType.remove |
 | error | String | 录入项错误提示 | 否 | '' |  |
 | isRequire | bool | 录入项是否为必填项（展示`*`图标） 默认为 false 不必填 | 否 | false |  |
