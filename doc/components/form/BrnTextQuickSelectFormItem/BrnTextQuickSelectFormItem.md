@@ -46,7 +46,7 @@ BrnTextQuickSelectFormItem(
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint: "请选择",
+      this.hint,
       this.value,
       this.btnsTxt,
       this.selectBtnList,
@@ -87,7 +87,7 @@ BrnTextQuickSelectFormItem(
 | onAddTap | VoidCallback? | 点击"+"图标回调 | 否 | 无 | 见prefixIconType字段 |
 | onRemoveTap | VoidCallback? | 点击"-"图标回调 | 否 | 无 | 见prefixIconType字段 |
 | onBtnSelectChanged | `ValueChanged<int>?` | 按钮选中文案，会把选中的序号回调出去。 | 否 | 无 |  |
-| hint | String | 录入项 hint 提示 | 否 | '请选择' |  |
+| hint | String? | 录入项 hint 提示 | 否 | 默认值为国际化配置文本 '请选择' |  |
 | btnsTxt | `List<String>?` | 快捷操作按钮选项文案列表 | 否 | 无 |  |
 | selectBtnList | `List<bool>?` | 快捷按钮区的初始选中状态 | 否 | 无 |  |
 | enableBtnList | `List<bool>?` | 快捷按钮区的是否可用状态 | 否 | 无 |  |

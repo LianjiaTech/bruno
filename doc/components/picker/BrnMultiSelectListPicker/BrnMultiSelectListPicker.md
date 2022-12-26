@@ -74,7 +74,7 @@ BrnPickerTitleConfig({
   this.confirm,
   this.title,
   this.showTitle: PICKER_SHOW_TITLE_DEFAULT,
-  this.titleContent: "请选择",
+  this.titleContent,
 });
 ```
 
@@ -151,4 +151,56 @@ showModalBottomSheet(
     });
   },
 );
+```
+
+### 效果 3：页面底部 Picker 多选，自定义数据协议
+
+<img src="./img/BrnMultiSelectListPicker.png" style="zoom: 33%;" />
+
+```dart
+List<ExpendMultiSelectBottomPickerItem> items = [];
+items.add(new ExpendMultiSelectBottomPickerItem("100", "这里是标题1",attribute1: "第一条自定义参数1"));
+items.add(new ExpendMultiSelectBottomPickerItem("101", "这里是标题2",attribute1: "第二条自定义参数2"));
+items.add(new ExpendMultiSelectBottomPickerItem("102", "这里是标题3", isChecked: true,attribute1: "第三条自定义参数3"));
+items.add(new ExpendMultiSelectBottomPickerItem("103", "这里是标题4", isChecked: true));
+items.add(new ExpendMultiSelectBottomPickerItem("104", "这里是标题5"));
+items.add(new ExpendMultiSelectBottomPickerItem("104", "这里是标题6"));
+BrnMultiSelectListPicker.show<ExpendMultiSelectBottomPickerItem>(
+  context,
+  items: items,
+  pickerTitleConfig: BrnPickerTitleConfig(titleContent: "多选 Picker"),
+  onSubmit: (List<ExpendMultiSelectBottomPickerItem> data) {
+    var str = "";
+    data.forEach((item) {
+      String attribute = item.attribute1 ?? ""; //处理自定义字段
+      str = str + attribute;
+    });
+    BrnToast.show(str, context);
+    Navigator.of(context).pop();
+  },
+);
+```
+
+
+
+自定义数据协议（继承基类：BrnMultiSelectBottomPickerItem）
+
+```dart
+class ExpendMultiSelectBottomPickerItem extends BrnMultiSelectBottomPickerItem {
+  final String? attribute1;
+  final String? attribute2;
+  final String? attribute3;
+  String code; //选项编号
+  String content; //选项内容
+  bool isChecked; //是否选中
+
+  ExpendMultiSelectBottomPickerItem(
+    this.code,
+    this.content, {
+    this.attribute1,
+    this.attribute2,
+    this.attribute3,
+    this.isChecked = false,
+  }) : super(code, content, isChecked: isChecked);
+}
 ```

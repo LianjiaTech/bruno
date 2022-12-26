@@ -30,7 +30,7 @@ group:
 ```dart
 const BrnBottomWritePicker(
       {this.maxLength = 200,
-      this.hintText = "请输入",
+      this.hintText,
       this.leftTag = "取消",
       this.title = "",
       this.rightTag = "确认",
@@ -47,10 +47,10 @@ const BrnBottomWritePicker(
 | 参数名                | 参数类型                                                     | 作用                                                         | 是否必填 | 默认值 |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ------ |
 | maxLength             | int                                                          | 最大输入长度                                                 | 否       | 200    |
-| hintText              | String                                                       | 提示语                                                       | 否       | 请输入 |
-| leftTag               | String                                                       | 左侧按钮文案                                                 | 否       | 取消   |
+| hintText              | String?                                                       | 提示语                                                       | 否       | 默认值为国际化配置文本 '请输入' |
+| leftTag               | String?                                                       | 左侧按钮文案                                                 | 否       | 默认值为国际化配置文本 '取消'   |
 | title                 | String                                                       | 标题文案                                                     | 否       |        |
-| rightTag              | String                                                       | 右侧按钮文案                                                 | 否       | 确认   |
+| rightTag              | String?                                                       | 右侧按钮文案                                                 | 否       | 默认值为国际化配置文本 '确认'   |
 | cancel                | BrnBottomWritePickerClickCallback = Future<void> Function(String content)？ | 取消输入事件回调                                             | 否       |        |
 | confirm               | BrnBottomWritePickerConfirmClickCallback = Future<void> Function(     BuildContext dialogContext, String content)？ | 确认输入事件回调                                             | 否       |        |
 | rightTextColor        | Color？                                                      | 右侧文案 Color                                               | 否       | 主题色 |

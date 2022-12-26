@@ -50,7 +50,6 @@ static void showDatePicker(
     DateTime? initialEndDateTime,
     String? dateFormat,
     int minuteDivider = 1,
-    DateTimePickerLocale locale = datetimePickerLocaleDefault,
     BrnDateTimeRangePickerMode pickerMode = BrnDateTimeRangePickerMode.date,
     BrnPickerTitleConfig pickerTitleConfig = BrnPickerTitleConfig.Default,
     DateVoidCallback? onCancel,
@@ -72,7 +71,6 @@ static void showDatePicker(
 | initialEndDateTime | DateTime? | 初始设置选中的结束时间 | 否 | DateTime.now() |
 | dateFormat | String? | 展示格式，仅在pickerMode 为 DateTimeRangePickerMode.date时生效。可设置为”MM月-dd日“、”yyyy-年MM月-dd日“等年月日格式，将数据带上单位显示 | 否 | 'MM-dd' |
 | minuteDivider | int | 刻度值，仅在pickerMode 为DateTimeRangePickerMode.time时生效 | 否 | 1 |
-| locale | DateTimePickerLocale | 时区 | 否 | DateTimePickerLocale.zh\_cn |
 | pickerMode | DateTimeRangePickerMode | 要展示的时间范围选择类型，date 还是 time | 否 | DateTimeRangePickerMode.date |
 | pickerTitleConfig | `BrnPickerTitleConfig` | picker title 内容配置 | 否 | BrnPickerTitleConfig.Default |
 | onCancel | DateVoidCallback? | 取消回调 | 否 |  |
@@ -92,7 +90,7 @@ const BrnPickerTitleConfig({
   this.confirm,/// 确认 widget，默认文案【完成】  
   this.title,  /// Title widget。  
   this.showTitle: DATETIME_PICKER_SHOW_TITLE_DEFAULT, /// 是否展示 title，默认true 展示  
-  this.titleContent:"请选择" /// Title 文案
+  this.titleContent /// Title 文案
 });  
 ```
 

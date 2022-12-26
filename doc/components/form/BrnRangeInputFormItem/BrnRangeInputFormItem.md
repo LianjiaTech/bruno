@@ -54,8 +54,8 @@ BrnRangeInputFormItem(
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hintMin: '最小',
-      this.hintMax: '最大',
+      this.hintMin,
+      this.hintMax,
       this.minUnit,
       this.maxUnit,
       this.leftMaxCount,
@@ -100,8 +100,8 @@ BrnRangeInputFormItem(
 | onTip | VoidCallback? | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
 | minUnit | String? | 最小范围单位 | 否 | 无 |  |
 | maxUnit | String? | 最大范围单位 | 否 | 无 |  |
-| hintMin | String | 最小范围录入项 hint 提示 | 否 | "最小" |  |
-| hintMax | String | 最大范围录入项 hint 提示 | 否 | "最大" |  |
+| hintMin | String? | 最小范围录入项 hint 提示 | 否 | 默认值为国际化配置文本 "最小" |  |
+| hintMax | String? | 最大范围录入项 hint 提示 | 否 | 默认值为国际化配置文本 "最大" |  |
 | leftMaxCount | int? | 最小值输入框最大字符数 | 否 | 无 |  |
 | rightMaxCount | int? | 最大值输入框最大字符数 | 否 | 无 |  |
 | inputType | String? | 输入内容类型，指定键盘类型，参见 `BrnInputType` | 否 | 无 | 详见**BrnInputType**类，注意：无法通过指定键盘类型确保输入。比如不能通过指定数字键盘确保用户只输入数字。如果有要求用户只输入特定字符的需求请使用**inputFormatters**参数 |

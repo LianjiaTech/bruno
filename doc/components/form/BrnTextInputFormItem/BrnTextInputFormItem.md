@@ -50,13 +50,14 @@ BrnTextInputFormItem({
     this.prefixIconType = BrnPrefixIconType.normal,
     this.error = "",
     this.isEdit = true,
+    this.obscureText = false,
     this.isRequire = false,
     this.isPrefixIconEnabled = false,
     this.onAddTap,
     this.onRemoveTap,
     this.onTip,
     this.prefixText,
-    this.hint = "请输入",
+    this.hint,
     this.unit,
     this.maxCharCount,
     this.autofocus: false,
@@ -91,12 +92,13 @@ BrnTextInputFormItem({
 | error | String | 录入项错误提示 | 否 | '' |  |
 | isRequire | bool | 录入项是否为必填项（展示`*`图标） 默认为 false 不必填 | 否 | false |  |
 | isEdit | bool | 录入项 是否可编辑 | 否 | true | true：可编辑false：禁用 |
+| obscureText | bool | 录入项 是否模糊文本（输入后*代替文本，常用于密码框） 默认值 |  | false |  |
 | isPrefixIconEnabled | bool | 录入项不可编辑时(isEdit: false) "+"、"-"号是否可点击，true: 可点击回调 false: 不可点击回调 | 否 | false |  |
 | onAddTap | VoidCallback? | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
 | onRemoveTap | VoidCallback? | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
 | onTip | VoidCallback? | 点击"？"图标回调 | 否 | 无 |  |
 | prefixText | String? | 固定前缀文案 | 否 | 无 |  |
-| hint | String | 录入项 hint 提示 | 否 | "请输入" |  |
+| hint | String? | 录入项 hint 提示 | 否 | 默认值为国际化配置文本 "请输入" |  |
 | unit | String? | 单位 | 否 | 无 |  |
 | maxCharCount | int? | 最大输入字符数 | 否 | 无 |  |
 | autofocus | bool | 是否自动获取焦点 | 否 | false |  |

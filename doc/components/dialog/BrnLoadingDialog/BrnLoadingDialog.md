@@ -24,7 +24,7 @@ group:
 ### 构造函数
 
 ```dart
-const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent})
+const BrnLoadingDialog({Key? key, this.content})
       : super(key: key);
 ```
 
@@ -32,7 +32,7 @@ const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent})
 
 | **参数名** | **参数类型** | **描述**   | **是否必填** | **默认值** |
 | ---------- | ------------ | ---------- | ------------ | ---------- |
-| content    | String       | 显示的文案 | 否           | 加载中...  |
+| content    | String?       | 显示的文案 | 否           | 默认值为国际化配置文本 '加载中...'  |
 
 ## 四、效果及代码展示
 

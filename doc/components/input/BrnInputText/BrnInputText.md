@@ -36,7 +36,7 @@ group:
     this.bgColor = Colors.white,
     this.maxLength = 200,
     this.minLines = 1,
-    this.hint = "请输入",
+    this.hint,
     this.maxHintLines,
     this.padding = EdgeInsets.zero,
     this.textString = "",
@@ -54,7 +54,7 @@ group:
 
 | **参数名**            | **参数类型**                                         | **描述**                                                     | **是否必填** | **默认值**           |
 | --------------------- | ---------------------------------------------------- | ------------------------------------------------------------ | ------------ | -------------------- |
-| hint                  | String                                               | 输入提示语,默认为"请输入..."                                 | 否           | "请输入..."          |
+| hint                  | String?                                               | 输入提示语,默认为"请输入"                                 | 否           | 默认值为国际化配置文本 "请输入"          |
 | textString            | String                                               | 输入框初始值                                                 | 否           | ""                   |
 | maxHintLines          | int?                                                 | 最大 hint 行数                                               |              |                      |
 | textEditingController | TextEditingController?                               | 用于对 TextField 更精细的控制，若传入该字段，[textString] 参数将失效，可使用 TextEditingController.text 进行赋值 | 否           |                      |

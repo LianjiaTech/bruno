@@ -78,11 +78,11 @@ BrnAbnormalStateWidget(
       scale: 3.0,
     ),
     isCenterVertical: true,
-    title: BrnStrings.getDateFailed,
-    operateTexts: <String>[BrnStrings.clickPageRetry],
-    operateAreaType: OperateAreaType.TextButton,
+    title: "获取数据失败，请重试",
+    operateTexts: <String>["请点击页面重试"],
+    operateAreaType: OperateAreaType.textButton,
     action: (index) {
-      BrnToast.show(BrnStrings.getDateFailed, context);
+      BrnToast.show("获取数据失败，请重试", context);
     },
   )
 ```

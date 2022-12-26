@@ -41,7 +41,7 @@ group:
 ```dart
 const BrnSelectTagsWithInputPicker(
       {this.maxLength = 200,
-      this.hintText = "请输入",
+      this.hintText,
       this.title = "",
       this.confirm,
       this.cancelCallBack,
@@ -58,7 +58,7 @@ const BrnSelectTagsWithInputPicker(
 | 参数名 | 参数类型 | 描述 | 是否必填 | 默认值 |
 | --- | --- | --- | --- | --- |
 | title | String | Picker显示标题 | 否 | 空字符串 |
-| hintText | String | 默认输入框提示文本 | 否 | 请输入 |
+| hintText | String? | 默认输入框提示文本 | 否 | 默认值为国际化配置文本 '请输入' |
 | maxLength | int | 输入框最长文本字符数 | 否 | 200 |
 | confirm | BrnTagInputConfirmClickCallback? | 点击“确定”按钮事件回调 | 否 | - |
 | cancelCallBack | BrnTagInputCancelClickCallBack? | 关闭Picker事件回调 | 否 | - |
