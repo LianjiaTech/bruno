@@ -94,7 +94,7 @@ class BrnCalendarView extends StatefulWidget {
   final bool showControllerBar;
 
   /// 自定义星期的名称
-  List<String>? weekNames;
+  final List<String>? weekNames;
 
   /// 初始展示月份
   ///
@@ -120,7 +120,6 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
 
   @override
   void initState() {
-    assert(widget.weekNames != null && widget.weekNames!.length == 7);
     _displayMode = widget.displayMode;
     _currentDate = widget.initDisplayDate ?? DateTime.now();
     _minDate = widget.minDate ?? DateTime(1970);
@@ -374,6 +373,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                                         .withOpacity(0.14)
                                     : Colors.transparent)
                                 : Colors.transparent,
+                            // 范围选择两端圆角
                             borderRadius: BorderRadius.horizontal(
                               left: _isStartDateRadius(date)
                                   ? const Radius.circular(24.0)
@@ -402,6 +402,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                                       .brandPrimary
                                   : Colors.transparent,
                               borderRadius:
+                                  // 选中色圆角
                                   const BorderRadius.all(Radius.circular(32.0)),
                             ),
                           ),
