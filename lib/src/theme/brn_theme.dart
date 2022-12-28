@@ -25,3 +25,4 @@ export 'configs/brn_tabbar_config.dart';
 export 'configs/brn_tag_config.dart';
 export 'brn_initializer.dart';
 export 'brn_theme_configurator.dart';
+export 'adapter/brn_pad_theme_config.dart';

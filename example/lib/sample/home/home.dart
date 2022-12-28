@@ -6,6 +6,7 @@ import 'package:example/sample/home/group_card.dart';
 import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
+import 'setting.dart';
 /// 主页面
 class HomePage extends StatelessWidget {
   GlobalKey _moreKey = GlobalKey();
@@ -18,22 +19,21 @@ class HomePage extends StatelessWidget {
         leading: null,
         automaticallyImplyLeading: false,
         actions: [
-          BrnTextAction( "切换组件词条语言",key: _moreKey, iconPressed: (){
-            BrnPopupListWindow.showPopListWindow(context, _moreKey,
-                data: ['BrnResourceEn', 'ResourceDe'],
-                onItemClick: (int index, item) {
-                  if(index == 0) {
-                    BrnToast.showInCenter(text: "已切换为英语词条（BrnResourceEn）。\n注意：组件传入的默认值会影响词条展示", context: context);
-                    ChangeLocalEvent.locale = Locale('en', 'US');
-                    ChangeLocalEvent()..dispatch(context);
-                  } else {
-                    BrnToast.showInCenter(text: "已切换为德语词条（ResourceDe 部分）。\n注意：组件传入的默认值会影响词条展示", context: context);
-                    ChangeLocalEvent.locale =  Locale('de', 'DE');
-                    ChangeLocalEvent()..dispatch(context);
-                  }
-                  return false;
-                });
-          },)
+          BrnIconAction(
+            iconPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return Setting();
+                },
+              ));
+            },
+            child: Image.asset(
+              'assets/image/setting.png',
+              scale: 3.0,
+              height: 20,
+              width: 20,
+            ),
+          ),
         ],
       ),
       body: _buildBodyWidget(),
