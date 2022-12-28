@@ -18,30 +18,22 @@ class HomePage extends StatelessWidget {
         leading: null,
         automaticallyImplyLeading: false,
         actions: [
-          GestureDetector(
-            child: Icon(
-              Icons.more_horiz,
-              key: _moreKey,
-              color: Colors.black54,
-            ),
-            onTap: () {
-              BrnPopupListWindow.showPopListWindow(context, _moreKey, data: ['切换语言', '测试动态增加语言'],
-                  onItemClick: (int index, item) {
-               if(index == 0) {
-                 ChangeLocalEvent.locale = ChangeLocalEvent.locale.languageCode == 'zh'
-                     ? Locale('en', 'US')
-                     : Locale('zh', 'CN');
-                 ChangeLocalEvent()..dispatch(context);
-               } else {
-                 ChangeLocalEvent.locale = ChangeLocalEvent.locale.languageCode == 'zh'
-                     ? Locale('de', 'DE')
-                     : Locale('zh', 'CN');
-                 ChangeLocalEvent()..dispatch(context);
-               }
-                return false;
-              });
-            },
-          )
+          BrnTextAction( "切换组件词条语言",key: _moreKey, iconPressed: (){
+            BrnPopupListWindow.showPopListWindow(context, _moreKey,
+                data: ['BrnResourceEn', 'ResourceDe'],
+                onItemClick: (int index, item) {
+                  if(index == 0) {
+                    BrnToast.showInCenter(text: "已切换为英语词条（BrnResourceEn）。\n注意：组件传入的默认值会影响词条展示", context: context);
+                    ChangeLocalEvent.locale = Locale('en', 'US');
+                    ChangeLocalEvent()..dispatch(context);
+                  } else {
+                    BrnToast.showInCenter(text: "已切换为德语词条（ResourceDe 部分）。\n注意：组件传入的默认值会影响词条展示", context: context);
+                    ChangeLocalEvent.locale =  Locale('de', 'DE');
+                    ChangeLocalEvent()..dispatch(context);
+                  }
+                  return false;
+                });
+          },)
         ],
       ),
       body: _buildBodyWidget(),

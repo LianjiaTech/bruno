@@ -288,7 +288,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
         Padding(
           padding: EdgeInsets.only(right: 4),
           child: Text(
-            BrnIntl.of(context).localizedResource.expand,
+            BrnIntl.currentResource.expand,
             style: TextStyle(
               fontSize: 14,
               color: themeData.commonConfig.colorTextSecondary,
@@ -347,7 +347,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
         Padding(
           padding: EdgeInsets.only(right: 4),
           child: Text(
-            BrnIntl.of(context).localizedResource.collapse,
+            BrnIntl.currentResource.collapse,
             style: TextStyle(
               fontSize: 14,
               color: themeData.commonConfig.colorTextSecondary,
