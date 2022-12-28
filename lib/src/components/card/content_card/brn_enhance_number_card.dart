@@ -145,13 +145,10 @@ class BrnEnhanceNumberCard extends StatelessWidget {
                       )),
                       //分割线的显示规则是：固定高度47
                       //                item之间显示，最后一个不显示
-                      Visibility(
-                        visible: !allCondition,
-                        child: Container(
-                          height: 47,
-                          width: defaultConfig.dividerWidth,
-                          color: defaultConfig.commonConfig.dividerColorBase,
-                        ),
+                      Container(
+                        height: 47,
+                        width: !allCondition ? defaultConfig.dividerWidth : 0,
+                        color: defaultConfig.commonConfig.dividerColorBase,
                       ),
                     ],
                   ));
