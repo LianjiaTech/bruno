@@ -82,7 +82,7 @@ BrnAppraise(
     this.title = '',
     this.headerType = BrnAppraiseHeaderType.spaceBetween,
     this.type = BrnAppraiseType.Star,
-    this.iconDescriptions = _defaultIconDescriptions,
+    this.iconDescriptions,
     this.tags,
     this.inputHintText = '',
     this.onConfirm,
@@ -97,7 +97,7 @@ BrnAppraise(
 | title            | String                   | 标题                                                         | 否           | ''                                     |
 | headerType       | BrnAppraiseHeaderType    | 标题类型，居中还是两侧                                       | 否           | BrnAppraiseHeaderType.spaceBetween     |
 | type             | BrnAppraiseType          | 评价组件类型，表情包还是五角星                               | 否           | BrnAppraiseType.Star                   |
-| iconDescriptions | `List<String>`           | 点击表情时对应等级的提示文案。若 `type=BrnAppraiseType.Emoji`，则 list 长度为 5，不足 5 个时请在对应位置补空字符串。若 `type=BrnAppraiseType.Star`，list 长度不能比传入的 BrnAppraiseConfig 中的 count 小。 | 否           | ['不好','还行','满意','很棒','超惊喜'] |
+| iconDescriptions | `List<String>?`           | 点击表情时对应等级的提示文案。若 `type=BrnAppraiseType.Emoji`，则 list 长度为 5，不足 5 个时请在对应位置补空字符串。若 `type=BrnAppraiseType.Star`，list 长度不能比传入的 BrnAppraiseConfig 中的 count 小。 | 否           | 默认值为国际化配置的数组，['不好','还行','满意','很棒','超惊喜'] |
 | tags             | `List<String>?`          | 供选择的标签数据                                             | 否           | 无                                     |
 | inputHintText    | String                   | 输入框的提示文字                                             | 否           | ''                                     |
 | onConfirm        | BrnAppraiseConfirmClick? | 点击提交时的回调，其中 index 是选中的表情或者五角星的 index，selectedTags 是选中的标签，input 是输入框的内容 | 否           | 无                                     |
@@ -125,7 +125,7 @@ BrnAppraise(
 | inputDefaultText        | String?                        | 输入框默认文案                                               | 否           | 无                                                           |
 | inputMaxHeight          | double                         | 输入框的最大高度                                             | 否           | 120                                                          |
 | showConfirmButton       | bool                           | 是否显示提交按钮                                             | 否           | true                                                         |
-| confirmButtonText       | String                         | 提交按钮自定义文案                                           | 否           | '提交'                                                       |
+| confirmButtonText       | String?                         | 提交按钮自定义文案                                           | 否           | 默认值为国际化配置文本，'提交'                                                       |
 | isConfirmButtonEnabled  | bool                           | 提交按钮的可用状态                                           | 否           | 默认 null，在打分之后 enable                                 |
 | iconClickCallback       | BrnAppraiseIconClick?          | 点击打分时的回调                                             | 否           | 无                                                           |
 | inputTextChangeCallback | BrnInputTextChangeCallback?    | 输入框内容改变的回调                                         | 否           | 无                                                           |

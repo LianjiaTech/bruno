@@ -33,7 +33,7 @@ BrnCalendarView(
   {Key key,
   this.selectMode = SelectMode.SINGLE,
   this.displayMode = DisplayMode.Month,
-  this.weekNames = _defaultWeekNames,
+  this.weekNames,
   this.showControllerBar = true,
   this.initStartSelectedDate,
   this.initEndSelectedDate,
@@ -49,7 +49,7 @@ BrnCalendarView(
 | --------------------- | -------------------------------------------------------------- | ---------------------------------------------------------- | ------------ | ------------------ |
 | selectMode            | SelectMode                                                     | 选择模式，是范围选择 RANGE 还是单点选择 SINGLE             | 否           | SINGLE             |
 | displayMode           | DisplatMode                                                    | 展示模式，是周视图 WEEK 还是月视图 MONTH                   | 否           | MONTH              |
-| weekNames             | List                                                           | 自定义星期名字，以【周日】开始排列                         | 否           | \_defaultWeekNames |
+| weekNames             | List                                                           | 自定义星期名字，以【周日】开始排列                         | 否           | 默认值为国际化配置文本 \_defaultWeekNames |
 | showControllerBar     | bool                                                           | 是否展示顶部切换日期控制按钮                               | 否           | true               |
 | initStartSelectedDate | DateTime                                                       | 初始选中开始时间                                           | 否           | 无                 |
 | initEndSelectedDate   | DateTime                                                       | 初始选中结束时间                                           | 否           | 无                 |

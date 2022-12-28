@@ -53,7 +53,7 @@ BrnTitleSelectInputFormItem(
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
-      this.hint = "请输入",
+      this.hint,
       this.maxCount,
       this.inputType = BrnInputType.text,
       this.selectedIndex = -1,
@@ -93,7 +93,7 @@ BrnTitleSelectInputFormItem(
 | onAddTap | VoidCallback? | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
 | onRemoveTap | VoidCallback? | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
 | onTip | VoidCallback? | 点击"？"图标回调 | 否 | 无 | 见**tipLabel**字段 |
-| hint | String | 录入项 hint 提示 | 否 | "请输入" |  |
+| hint | String? | 录入项 hint 提示 | 否 | 默认值为国际化配置文本 "请输入" |  |
 | maxCount | int? | 最大输入字符数 | 否 | 无 |  |
 | inputType | String | 指定键盘类型 | 否 | BrnInputType.TEXT | 详见**BrnInputType**类，注意：无法通过指定键盘类型确保输入。比如不能通过指定数字键盘确保用户只输入数字。如果有要求用户只输入特定字符的需求请使用**inputFormatters**参数 |
 | inputFormatters | `List<TextInputFormatter>?` | 指定对输入数据的格式化要求 | 否 | 无 |  |

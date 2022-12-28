@@ -32,10 +32,10 @@ class BrnPageLoading extends StatelessWidget {
   final String? content;
   final BoxConstraints constraints;
 
-  const BrnPageLoading({
+  const BrnPageLoading({Key? key,
     this.content,
     this.constraints = const BoxConstraints(minWidth: 130, maxWidth: 130, minHeight: 50, maxHeight: 50,),
-  });
+  }): super(key: key);
 
   @override
   Widget build(BuildContext context) {

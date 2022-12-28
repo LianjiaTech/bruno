@@ -25,7 +25,7 @@ group:
 ```dart
 const BrnSmallMainButton({
     Key? key,
-    this.title = '确认',
+    this.title,
     this.onTap,
     this.isEnable = true,
     this.bgColor,
@@ -43,7 +43,7 @@ const BrnSmallMainButton({
 
 | 参数名     | 参数类型        | 描述           | 是否必填 | 默认值          |
 | ---------- | --------------- | -------------- | -------- | --------------- |
-| title      | String          | 按钮显示文案   | 否       | '确认'        |
+| title      | String?          | 按钮显示文案   | 否       | 默认值为国际化配置文本 '确认'        |
 | onTap      | VoidCallback?   | 点击的回调     | 否       | 无              |
 | isEnable   | bool            | 按钮是否可用   | 否       | True            |
 | bgColor    | Color?          | 按钮的背景色   | 否       | 主题色          |

@@ -26,7 +26,7 @@ group:
 ```dart
 const BrnBigOutlineButton({
     Key? key,
-    this.title = '确认',
+    this.title,
     this.lineColor,
     this.textColor,
     this.isEnable = true,
@@ -39,7 +39,7 @@ const BrnBigOutlineButton({
 
 | **参数名** | **参数类型** | 描述 | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| title | String | 按钮显示文案 | 否 | '确认' |
+| title | String? | 按钮显示文案 | 否 | 默认值为国际化配置文本 '确认' |
 | onTap | VoidCallback? | 点击的回调 | 否 | 无 |
 | isEnable | bool | 按钮是否可用 | 否 | True |
 | lineColor | Color? | 边框颜色 | 否 | 主题色 |

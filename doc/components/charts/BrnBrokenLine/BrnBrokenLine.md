@@ -54,6 +54,7 @@ BrnBrokenLine({
   this.isTipWindowAutoDismiss = true,
   this.isShowXDialText = false,
   this.isShowYDialText = false,
+  this.isShowXDial = true
 }) : super(key: key) {
   // 设置自定义 X 轴时，检查 x轴的最大、最小刻度范围
   if (xDialValues != null) {
@@ -90,6 +91,7 @@ BrnBrokenLine({
 | isTipWindowAutoDismiss | bool                  | 点击弹出的 tip 提示框，是否自动消失                          | 否 | true                                 |      |
 | isShowXDialText        | bool                  | 是否展示 X 坐标刻度文案                                      | 否 | false                                |      |
 | isShowYDialText        | bool                  | 是否展示 Y 坐标刻度文案                                      | 否 | false                                |      |
+| isShowXDial | bool | 是否绘制 x 刻度 | 是 | true | |
 
 ### 其他数据结构
 
@@ -190,6 +192,9 @@ class BrnDialItem {
   /// 刻度标志样式
   TextStyle? dialTextStyle;
 
+  /// 刻度选中样式
+  TextStyle? selectedDialTextStyle;
+  
   /// x,y 轴刻度值。用于刻度在坐标的真实定位
   double value;
 }
