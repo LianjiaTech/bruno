@@ -33,12 +33,12 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
               : BrnGalleryDetailConfig.light(),
           title: '第一项',
           urls: <String>[
-            "https://img1.baidu.com/it/u=2496571732,442429806&fm=26&fmt=auto&gp=0.jpg",
-            "http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1508/20/c0/11483087_1440080502911_800x600.jpg",
-            "https://img1.baidu.com/it/u=2496571732,442429806&fm=26&fmt=auto&gp=0.jpg",
-            "http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1508/20/c0/11483087_1440080502911_800x600.jpg",
-            "https://img1.baidu.com/it/u=2496571732,442429806&fm=26&fmt=auto&gp=0.jpg",
-            "http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1508/20/c0/11483087_1440080502911_800x600.jpg",
+            "https://img1.baidu.com/it/u=1035835481,2764635772&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=750",
+            "https://img2.baidu.com/it/u=987135572,1298604833&fm=253&fmt=auto&app=138&f=JPEG?w=587&h=445",
+            "https://img1.baidu.com/it/u=2029510411,2926361415&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
+            "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
+            "https://img2.baidu.com/it/u=2011041083,1329194196&fm=253&fmt=auto&app=138&f=JPEG?w=333&h=500",
+            "https://img2.baidu.com/it/u=3412982025,1011812299&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500",
           ]),
       BrnPhotoGroupConfig(title: "信息", configList: [
         BrnPhotoItemConfig(
@@ -46,7 +46,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-                "https://img1.baidu.com/it/u=2496571732,442429806&fm=26&fmt=auto&gp=0.jpg",
+            "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.cantFold,
             name: "一只猫",
@@ -57,7 +57,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-                "http://m.360buyimg.com/mobilecms/s1600x1120_jfs/t19540/272/1542853502/335716/5ef8759b/5acc6c5bN988cd3d9.jpg",
+            "https://img2.baidu.com/it/u=2011041083,1329194196&fm=253&fmt=auto&app=138&f=JPEG?w=333&h=500",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.fold,
             name: "两只猫",
@@ -68,7 +68,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604923055966&di=7d5ea9848f0b40b5317ad08d2fd6a2b3&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F05%2F00%2F01300000194285122188000535877.jpg",
+            "https://img0.baidu.com/it/u=3926156041,1190073021&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.unFold,
             name: "三只猫",
@@ -79,7 +79,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-                "http://m.360buyimg.com/mobilecms/s1600x1120_jfs/t19540/272/1542853502/335716/5ef8759b/5acc6c5bN988cd3d9.jpg",
+            "https://img1.baidu.com/it/u=456300708,413059805&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500",
             showBottom: false,
             name: "一张图片",
             des:
@@ -91,8 +91,8 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
               ? BrnGalleryDetailConfig.dark()
               : BrnGalleryDetailConfig.light(),
           urls: <String>[
-            "https://img1.baidu.com/it/u=2496571732,442429806&fm=26&fmt=auto&gp=0.jpg",
-            "http://m.360buyimg.com/mobilecms/s1600x1120_jfs/t19540/272/1542853502/335716/5ef8759b/5acc6c5bN988cd3d9.jpg",
+            "https://img1.baidu.com/it/u=2029510411,2926361415&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
+            "https://img2.baidu.com/it/u=3412982025,1011812299&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500",
           ]),
       BrnPhotoGroupConfig.url(
           themeData: PhotoGalleryTheme.dark == widget.photoGalleryTheme
@@ -100,8 +100,8 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
               : BrnGalleryDetailConfig.light(),
           title: '第三项',
           urls: <String>[
-            "https://img1.baidu.com/it/u=2496571732,442429806&fm=26&fmt=auto&gp=0.jpg",
-            "http://m.360buyimg.com/mobilecms/s1600x1120_jfs/t19540/272/1542853502/335716/5ef8759b/5acc6c5bN988cd3d9.jpg",
+            "https://img2.baidu.com/it/u=987135572,1298604833&fm=253&fmt=auto&app=138&f=JPEG?w=587&h=445",
+            "https://img2.baidu.com/it/u=3412982025,1011812299&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500",
           ]),
       BrnPhotoGroupConfig.url(
           themeData: PhotoGalleryTheme.dark == widget.photoGalleryTheme
@@ -109,8 +109,8 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
               : BrnGalleryDetailConfig.light(),
           title: '第四项',
           urls: <String>[
-            "https://img1.baidu.com/it/u=2496571732,442429806&fm=26&fmt=auto&gp=0.jpg",
-            "http://m.360buyimg.com/mobilecms/s1600x1120_jfs/t19540/272/1542853502/335716/5ef8759b/5acc6c5bN988cd3d9.jpg",
+            "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
+            "https://img2.baidu.com/it/u=3412982025,1011812299&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500",
           ]),
       BrnPhotoGroupConfig(
           themeData: PhotoGalleryTheme.dark == widget.photoGalleryTheme
@@ -123,7 +123,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                     ? BrnGalleryDetailConfig.dark()
                     : BrnGalleryDetailConfig.light(),
                 url:
-                    "http://tao.goulew.com/users/upfile/20180927/11eb065d-24d3-4a55-b9f8-e58085bdad2e.jpg",
+                "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
                 showBottom: true,
                 bottomCardModel: PhotoBottomCardState.fold,
                 name: "一张图片",
@@ -136,7 +136,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-                "https://c-ssl.duitang.com/uploads/item/201912/31/20191231121259_dckjf.thumb.1000_0.jpg",
+            "https://img2.baidu.com/it/u=987135572,1298604833&fm=253&fmt=auto&app=138&f=JPEG?w=587&h=445",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.fold,
             name: "一张图片",
@@ -149,7 +149,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-                "https://c-ssl.duitang.com/uploads/item/201912/31/20191231121259_dckjf.thumb.1000_0.jpg",
+            "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.fold,
             name: "一张图片",
