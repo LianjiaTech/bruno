@@ -60,26 +60,22 @@ class Setting extends StatelessWidget {
               title: "主题定制切换",
               describe: "当切换为 Pad 主题样式请选用 Pad 设备查看",
               onPressed: () {
-                BrnPopupListWindow.showPopListWindow(
-                  context,
-                  _themeKey,
-                  data: ['App 主题样式', 'Pad 主题样式'],
-                  onItemClick: (int index, item) {
-                    if (index == 0) {
-                      BrnInitializer.register(
-                          allThemeConfig:
-                              BrnDefaultConfigUtils.defaultAllConfig);
-                      BrnToast.showInCenter(
-                          text: "已切换为 App 主题样式", context: context);
-                    } else {
-                      BrnInitializer.register(
-                          allThemeConfig: BrnPadThemeConfig.allConfig);
-                      BrnToast.showInCenter(
-                          text: "已切换为 Pad 主题样式", context: context);
-                    }
-                    return false;
-                  },
-                );
+                BrnPopupListWindow.showPopListWindow(context, _themeKey,
+                    data: ['App 主题样式', 'Pad 主题样式'],
+                    onItemClick: (int index, item) {
+                  if (index == 0) {
+                    BrnInitializer.register(
+                        allThemeConfig: BrnDefaultConfigUtils.defaultAllConfig);
+                    BrnToast.showInCenter(
+                        text: "已切换为 App 主题样式", context: context);
+                  } else {
+                    BrnInitializer.register(
+                        allThemeConfig: BrnPadThemeConfig.allConfig);
+                    BrnToast.showInCenter(
+                        text: "已切换为 Pad 主题样式", context: context);
+                  }
+                  return false;
+                }, arrowOffset: 100);
               },
             ),
           ],
