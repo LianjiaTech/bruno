@@ -22,15 +22,17 @@ group:
 ### 构造函数
 
 ```dart
- const BrnLoadingDialog({Key? key, this.content = BrnStrings.loadingContent})
-      : super(key: key);
+const BrnPageLoading({Key? key,
+  this.content,
+  this.constraints = const BoxConstraints(minWidth: 130, maxWidth: 130, minHeight: 50, maxHeight: 50,),
+}): super(key: key);
 ```
 ### 参数配置
 
 | **参数名** | **参数类型** | **描述** | **是否必填** | **默认值** |
 | --- | --- | --- | --- | --- |
-| content | String | 显示的文案 | 否 | 加载中... |
-
+| content | String? | 显示的文案 | 否 | 默认值为国际化配置文本 '加载中...' |
+| constraints | BoxConstraints | 约束 | 否 |  BoxConstraints(minWidth: 130, maxWidth: 130, minHeight: 50, maxHeight: 50,) |
 ## 四、代码演示
 
 ###  效果1：只有主按钮

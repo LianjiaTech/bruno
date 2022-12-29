@@ -1,5 +1,6 @@
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -61,7 +62,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
   final int? maxCharCount;
 
   /// 录入项 hint 提示
-  final String hint;
+  final String? hint;
 
   /// 输入内容类型
   final String? inputType;
@@ -104,7 +105,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
       this.onRemoveTap,
       this.onTip,
       this.onChanged,
-      this.hint = "请输入",
+      this.hint,
       this.maxCharCount,
       this.autofocus: false,
       this.inputType,
@@ -199,7 +200,7 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
                   widget.themeData!, widget.isEdit),
               inputFormatters: widget.inputFormatters,
               decoration: InputDecoration(
-                hintText: widget.hint,
+                hintText: widget.hint ?? BrnIntl.of(context).localizedResource.pleaseEnter,
                 hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData!),
                 contentPadding: EdgeInsets.all(0),
                 border: InputBorder.none,

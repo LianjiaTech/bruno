@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
@@ -328,7 +329,7 @@ class _BrnActionSheetSelectedItemListState<T>
       // 如果没有实现 onClear，执行默认弹窗并删除的逻辑
       this.dismissContent(true);
       BrnDialogManager.showConfirmDialog(context,
-          title: "确定要清空已选列表吗?", cancel: '取消', confirm: '确定', onConfirm: () {
+          title: BrnIntl.of(context).localizedResource.confirmClearSelectedList, cancel: BrnIntl.of(context).localizedResource.cancel, confirm: BrnIntl.of(context).localizedResource.ok, onConfirm: () {
         if (widget.itemWidget.onClearConfirmed != null) {
           widget.itemWidget.onClearConfirmed!();
         }
@@ -367,7 +368,7 @@ class _BrnActionSheetSelectedItemListState<T>
     String title =
         (widget.itemWidget.title != null && widget.itemWidget.title!.isNotEmpty)
             ? widget.itemWidget.title!
-            : '已选列表';
+            : BrnIntl.of(context).localizedResource.selectedList;
     TextStyle titleStyle = const TextStyle(
         fontSize: 18,
         color: Color(0xff222222),
@@ -391,7 +392,7 @@ class _BrnActionSheetSelectedItemListState<T>
         },
         child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 20, 20, 15),
-            child: Text("清空",
+            child: Text(BrnIntl.of(context).localizedResource.clear,
                 textAlign: TextAlign.right,
                 style: TextStyle(
                     fontSize: 16,

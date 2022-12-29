@@ -46,16 +46,18 @@ BrnTextInputFormItem({
     this.title = "",
     this.subTitle,
     this.tipLabel,
+    this.focusNode,
     this.prefixIconType = BrnPrefixIconType.normal,
     this.error = "",
     this.isEdit = true,
+    this.obscureText = false,
     this.isRequire = false,
     this.isPrefixIconEnabled = false,
     this.onAddTap,
     this.onRemoveTap,
     this.onTip,
     this.prefixText,
-    this.hint = "请输入",
+    this.hint,
     this.unit,
     this.maxCharCount,
     this.autofocus: false,
@@ -85,16 +87,18 @@ BrnTextInputFormItem({
 | title | String | 录入项标题 | 否 | '' |  |
 | subTitle | String? | 录入项子标题 | 否 | 无 |  |
 | tipLabel | String? | 录入项提示（问号图标&文案） 用户点击时触发onTip回调。 | 否 | 备注中类型3 | 1. 设置"空字符串"时展示问号图标 2. 设置"非空字符串"时展示问号图标&文案 3. 若不赋值或赋值为null时，不显示提示项 |
+| focusNode | FocusNode? | 录入项的焦点控制对象，主要用于控制焦点 | 否 |  |  |
 | prefixIconType | String | 录入项前缀图标样式 "添加项" "删除项" 详见 **BrnPrefixIconType** 类 | 否 | BrnPrefixIconType.normal | 1. 不展示图标：BrnPrefixIconType.normal 2. 展示加号图标：BrnPrefixIconType.add 3. 展示减号图标：BrnPrefixIconType.remove |
 | error | String | 录入项错误提示 | 否 | '' |  |
 | isRequire | bool | 录入项是否为必填项（展示`*`图标） 默认为 false 不必填 | 否 | false |  |
 | isEdit | bool | 录入项 是否可编辑 | 否 | true | true：可编辑false：禁用 |
+| obscureText | bool | 录入项 是否模糊文本（输入后*代替文本，常用于密码框） 默认值 |  | false |  |
 | isPrefixIconEnabled | bool | 录入项不可编辑时(isEdit: false) "+"、"-"号是否可点击，true: 可点击回调 false: 不可点击回调 | 否 | false |  |
 | onAddTap | VoidCallback? | 点击"+"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
 | onRemoveTap | VoidCallback? | 点击"-"图标回调 | 否 | 无 | 见**prefixIconType**字段 |
 | onTip | VoidCallback? | 点击"？"图标回调 | 否 | 无 |  |
 | prefixText | String? | 固定前缀文案 | 否 | 无 |  |
-| hint | String | 录入项 hint 提示 | 否 | "请输入" |  |
+| hint | String? | 录入项 hint 提示 | 否 | 默认值为国际化配置文本 "请输入" |  |
 | unit | String? | 单位 | 否 | 无 |  |
 | maxCharCount | int? | 最大输入字符数 | 否 | 无 |  |
 | autofocus | bool | 是否自动获取焦点 | 否 | false |  |

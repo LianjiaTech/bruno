@@ -36,13 +36,14 @@ group:
     this.bgColor = Colors.white,
     this.maxLength = 200,
     this.minLines = 1,
-    this.hint = "请输入",
+    this.hint,
     this.maxHintLines,
     this.padding = EdgeInsets.zero,
     this.textString = "",
     this.autoFocus,
     this.textEditingController,
     this.focusNode,
+    this.textInputAction,
     this.textInputAction = TextInputAction.done,
     this.borderRadius,
     this.borderColor,
@@ -53,7 +54,7 @@ group:
 
 | **参数名**            | **参数类型**                                         | **描述**                                                     | **是否必填** | **默认值**           |
 | --------------------- | ---------------------------------------------------- | ------------------------------------------------------------ | ------------ | -------------------- |
-| hint                  | String                                               | 输入提示语,默认为"请输入..."                                 | 否           | "请输入..."          |
+| hint                  | String?                                               | 输入提示语,默认为"请输入"                                 | 否           | 默认值为国际化配置文本 "请输入"          |
 | textString            | String                                               | 输入框初始值                                                 | 否           | ""                   |
 | maxHintLines          | int?                                                 | 最大 hint 行数                                               |              |                      |
 | textEditingController | TextEditingController?                               | 用于对 TextField 更精细的控制，若传入该字段，[textString] 参数将失效，可使用 TextEditingController.text 进行赋值 | 否           |                      |
@@ -69,6 +70,7 @@ group:
 | borderRadius          | double?                                              | 背景圆角                                                     | 否           |                      |
 | autoFocus             | bool?                                                | 光标展示                                                     | 否           |                      |
 | focusNode             | FocusNode                                            | 搜索框的焦点控制器                                           | 否           |                      |
+| textInputAction       | TextInputAction?                                     | 选择键盘的完成按钮                                           | 否           |                      |
 | padding               | EdgeInsetsGeometry                                   | 文字距离边框的边距                                           | 否           | EdgeInsets.zero      |
 | textEditingController | TextInputAction                                      | 键盘输入行为                                                 | 否           | TextInputAction.done |
 

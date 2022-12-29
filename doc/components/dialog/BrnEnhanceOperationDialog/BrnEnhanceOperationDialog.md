@@ -36,7 +36,7 @@ BrnEnhanceOperationDialog({
     required this.context,
     this.titleText,
     this.descText,
-    this.mainButtonText = '确认',
+    this.mainButtonText,
     this.secondaryButtonText,
     this.onMainButtonClick,
     this.onSecondaryButtonClick,
@@ -60,7 +60,7 @@ BrnEnhanceOperationDialog({
 | customIconWidget | Widget? | 自定义图标 | 否 |  |
 | titleText | String? | 弹框标题文案（为空则**不显示**标题） | 否 | 无 |
 | descText | String? | 弹框辅助信息文案（为空则**不显示**辅助信息） | 否 | 无 |
-| mainButtonText | String | 主要按钮文案 | 否 | 无 |
+| mainButtonText? | String | 主要按钮文案 | 否 | 默认值为国际化配置文本 '确认' |
 | secondaryButtonText | String? | 次要按钮文案（为空则**不显示**次要按钮） | 否 | 无 |
 | mainButtonCallBack | VoidCallback? | 点击**主要按钮**后回调方法，使用者**根据参数自行配置响应动作**。 | 否 | 空 |
 | secondaryButtonCallBack | VoidCallback? | 点击**次要按钮**后回调方法，使用者**根据参数自行配置响应动作**。 | 否 | 空 |

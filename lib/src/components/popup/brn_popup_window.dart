@@ -556,6 +556,7 @@ class BrnPopupListWindow {
       {List<String>? data,
       BrnPopupDirection popDirection = BrnPopupDirection.bottom,
       double offset = 0,
+      double? arrowOffset,
       BrnPopupListItemClick? onItemClick,
       VoidCallback? onDismiss}) {
     assert(popKey.currentContext != null && popKey.currentContext!.findRenderObject() != null);
@@ -567,7 +568,6 @@ class BrnPopupListWindow {
     double minWidth = 100;
     double maxWidth = 150;
     double maxHeight = 200;
-    double? arrowOffset;
     Color borderColor = BrnThemeConfigurator.instance.getConfig().commonConfig.dividerColorBase;
     Color backgroundColor = Colors.white;
     TextStyle textStyle = TextStyle(

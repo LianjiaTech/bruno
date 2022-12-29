@@ -32,7 +32,7 @@ BrnMultiSelectDialog({
     this.messageWidget,
     this.customWidget,
     this.isCustomFollowScroll = true,
-    this.submitText = "提交",
+    this.submitText,
     this.submitBgColor,
     this.onSubmitClick,
     this.onItemClick,
@@ -53,7 +53,7 @@ BrnMultiSelectDialog({
 | isCustomFollowScroll | bool                                     | 是否支持滚动                       | 否           | true       |
 | onSubmitClick        | BrnMultiSelectDialogClickSubmitCallback? | 点击【完成】时回调给外部选中的数据 | 否           |            |
 | onItemClick          | BrnMultiSelectDialogOnItemClickCallback? | Item 被点击的回调                  | 否           |            |
-| submitText           | String                                   | 底部提交按钮的文案                 | 否           | 提交       |
+| submitText           | String?                                   | 底部提交按钮的文案                 | 否           | 默认值为国际化配置文本 '提交'      |
 | submitBgColor        | Color?                                   | 底部按钮的主题色                   | 否           | 主题色     |
 | isShowOperateWidget  | bool                                     | 是否展示底部操作区域               | 否           | true       |
 

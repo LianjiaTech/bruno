@@ -5,6 +5,7 @@ import 'package:bruno/src/components/gallery/config/brn_controller.dart';
 import 'package:bruno/src/components/gallery/page/brn_gallery_summary_page.dart';
 import 'package:bruno/src/components/navbar/brn_appbar.dart';
 import 'package:bruno/src/components/tabbar/normal/brn_tab_bar.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_appbar_config.dart';
 import 'package:bruno/src/theme/configs/brn_gallery_detail_config.dart';
@@ -273,7 +274,7 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
                 valueListenable: _titleNotifier!,
               )
             : BrnTextAction(
-                '全部图片',
+                BrnIntl.of(context).localizedResource.allPics,
                 themeData: _appBarConfig,
                 iconPressed: () {
                   if (widget.fromSummary) {

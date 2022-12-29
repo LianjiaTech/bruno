@@ -51,7 +51,6 @@ static void showDatePicker(
   DateTime? initialDateTime,
   String? dateFormat,
   int minuteDivider: 1,
-  DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
   BrnDateTimePickerMode pickerMode: BrnDateTimePickerMode.date,
   BrnPickerTitleConfig pickerTitleConfig,
   DateVoidCallback? onCancel,
@@ -72,7 +71,6 @@ static void showDatePicker(
 | initialDateTime | DateTime? | 初始选择的时间 | 否 | 当前时间 |
 | minDateTime | DateTime? | 能滚动到的最小日期 | 否 | minDateTime ≤ maxDateTime |
 | maxDateTime | DateTime? | 能滚动到的最大日期 | 否 | minDateTime ≤ maxDateTime |
-| locale | DateTimePickerLocale | 设置本地语言 | 否 | DateTimePickerLocale.zh\_cn |
 | pickerMode | BrnDateTimePickerMode | 时间选择组件显示的时间类型 | 否 | BrnDateTimePickerMode.date |
 | pickerTitleConfig | BrnPickerTitleConfig | 时间选择组件的主题样式 | 否 | BrnPickerTitleConfig.Default |
 | dateFormat | String? | 时间格式化的格式 | 是 |  |

@@ -1,9 +1,9 @@
+import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bruno/src/components/picker/base/brn_picker_constants.dart';
 
 class BrnPickerTitleConfig {
-  final Text cancelDefault = const Text('OK');
 
   /// DateTimePicker theme.
   ///
@@ -17,7 +17,7 @@ class BrnPickerTitleConfig {
     this.confirm,
     this.title,
     this.showTitle: pickerShowTitleDefault,
-    this.titleContent: "请选择",
+    this.titleContent,
   });
 
   static const BrnPickerTitleConfig Default = const BrnPickerTitleConfig();
@@ -34,7 +34,7 @@ class BrnPickerTitleConfig {
   /// Whether display title widget or not. If set false, the default cancel and confirm widgets will not display, but the custom title widget will display if had specified one custom title widget.
   final bool showTitle;
 
-  final String titleContent;
+  final String? titleContent;
 
   BrnPickerTitleConfig copyWith({
     Widget? cancel,

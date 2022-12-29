@@ -1,6 +1,7 @@
 import 'package:bruno/src/components/dialog/brn_dialog_utils.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_dialog_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -30,7 +31,7 @@ class BrnSingleSelectDialog extends Dialog {
   final List<String> conditions;
 
   /// 确定/提交 按钮文案，默认 '提交'
-  final String submitText;
+  final String? submitText;
 
   /// 提交按钮点击回调
   final BrnSingleSelectOnSubmitCallback? onSubmitClick;
@@ -62,7 +63,7 @@ class BrnSingleSelectDialog extends Dialog {
       this.messageText,
       this.messageWidget,
       required this.conditions,
-      this.submitText: "提交",
+      this.submitText,
       this.submitBgColor,
       this.onSubmitClick,
       this.onItemClick,
@@ -80,7 +81,7 @@ class BrnSingleSelectDialog extends Dialog {
         messageText: messageText,
         messageWidget: messageWidget,
         conditions: conditions,
-        submitText: submitText,
+        submitText: submitText ?? BrnIntl.of(context).localizedResource.submit,
         onSubmitClick: onSubmitClick,
         onItemClick: onItemClick,
         submitBgColor: submitBgColor,

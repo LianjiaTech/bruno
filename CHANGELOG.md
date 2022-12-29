@@ -1,3 +1,27 @@
+
+
+## [3.2.0] - 2022-12-29
+
+### Changed
+
+#### base 
+
+- support for localization capabilities.
+- add pad theme configuration.
+- expend title click area in pickers [#369](https://github.com/LianjiaTech/bruno/issues/369).
+
+#### components
+
+- <code>BrnMultiSelectListPicker</code> : add generics for more flexible data transfer  [#336](https://github.com/LianjiaTech/bruno/issues/336) .
+- <code>BrnLinePainter</code> : add the limit of  yDialMax > yDialMin to fix the NaN error when calculating the path [359](https://github.com/LianjiaTech/bruno/issues/359).
+- <code>BrnTabBar</code> : fix the overflow error when setting <code>BrnTabBarBadgeMode.origin</code> mode [#340](https://github.com/LianjiaTech/bruno/issues/340).
+- <code>BrnAppraise</code>: fix  gif file error [#372](https://github.com/LianjiaTech/bruno/issues/372).
+- <code>BrnTextInputFormItem</code>: fix attribute <code>textInputAction</code>  does not take effect and add attribute <code>obscureText</code>, thank to **echo-LuGuang**.
+- <code>BrnAppBar</code>: expand <code>BrnTextAction</code> click area.
+- <code>BrnEnhanceNumberCard</code>: fix  the number card is not centered [#380](https://github.com/LianjiaTech/bruno/issues/380).
+
+
+
 ## [3.1.0] - 2022-9-30
 
 ### Changed

@@ -1,5 +1,6 @@
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_form_config.dart';
 import 'package:bruno/src/constants/brn_fonts_constants.dart';
@@ -51,6 +52,9 @@ class BrnTextInputFormItem extends StatefulWidget {
   /// 录入项 是否可编辑
   final bool isEdit;
 
+  /// 录入项 是否模糊文本（输入后*代替文本，常用于密码框） 默认值：false
+  final bool obscureText;
+
   /// 录入项不可编辑时(isEdit: false) "+"、"-"号是否可点击
   /// true: 可点击回调 false: 不可点击回调
   /// 默认值: false
@@ -69,7 +73,7 @@ class BrnTextInputFormItem extends StatefulWidget {
   final String? prefixText;
 
   /// 提示文案
-  final String hint;
+  final String? hint;
 
   /// 单位
   final String? unit;
@@ -106,13 +110,14 @@ class BrnTextInputFormItem extends StatefulWidget {
     this.prefixIconType = BrnPrefixIconType.normal,
     this.error = "",
     this.isEdit = true,
+    this.obscureText = false,
     this.isRequire = false,
     this.isPrefixIconEnabled = false,
     this.onAddTap,
     this.onRemoveTap,
     this.onTip,
     this.prefixText,
-    this.hint = "请输入",
+    this.hint,
     this.unit,
     this.maxCharCount,
     this.autofocus: false,
@@ -195,7 +200,9 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                     autofocus: widget.autofocus,
                     focusNode: widget.focusNode,
                     keyboardType: BrnFormUtil.getInputType(widget.inputType),
+                    textInputAction: widget.textInputAction,
                     enabled: widget.isEdit,
+                    obscureText: widget.obscureText,
                     maxLines: 1,
                     maxLength: widget.maxCharCount,
                     style: BrnFormUtil.getIsEditTextStyle(
@@ -204,7 +211,7 @@ class BrnTextInputFormItemState extends State<BrnTextInputFormItem> {
                       border: InputBorder.none,
                       hintStyle:
                           BrnFormUtil.getHintTextStyle(widget.themeData!),
-                      hintText: widget.hint,
+                      hintText: widget.hint?? BrnIntl.of(context).localizedResource.pleaseEnter,
                       counterText: "",
                       contentPadding: EdgeInsets.all(0),
                       isDense: true,

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/popup/brn_measure_size.dart';
 import 'package:bruno/src/components/selection/bean/brn_selection_common_entity.dart';
 import 'package:bruno/src/components/selection/brn_selection_util.dart';
@@ -246,7 +247,7 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
       node = tmp.removeLast();
       if (!node.isValidRange()) {
         isValid = false;
-        BrnToast.show('您输入的区间有误', context);
+        BrnToast.show(BrnIntl.of(context).localizedResource.enterRangeError, context);
         return;
       }
       node.children.forEach((data) {

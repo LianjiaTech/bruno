@@ -5,6 +5,7 @@ import 'package:bruno/src/components/picker/multi_range_picker/brn_multi_column_
 import 'package:bruno/src/components/picker/multi_range_picker/brn_multi_column_picker_util.dart';
 import 'package:bruno/src/components/picker/multi_range_picker/btn_multi_column_picker_item.dart';
 import 'package:bruno/src/components/toast/brn_toast.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/material.dart';
 
 /// 单个 item 点击的回调
@@ -134,7 +135,7 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
     if (selectedEntity.filterType == PickerFilterType.checkbox &&
         !selectedEntity.isSelected) {
       if (!BrnMultiColumnPickerUtil.isSelectedCountExceed(selectedEntity)) {
-        BrnToast.show("您选择的数量已达上限", context);
+        BrnToast.show(BrnIntl.of(context).localizedResource.selectCountLimitTip, context);
         return;
       }
     }

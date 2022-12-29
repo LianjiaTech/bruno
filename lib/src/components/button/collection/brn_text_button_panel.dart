@@ -1,5 +1,6 @@
 import 'package:bruno/src/components/popup/brn_popup_window.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_multi_click_util.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
@@ -128,7 +129,7 @@ class _BrnTextButtonPanelState extends State<BrnTextButtonPanel> {
       }
 
       Text tx = Text(
-        _isExpanded ? '收起' : '更多',
+        _isExpanded ? BrnIntl.of(context).localizedResource.collapse : BrnIntl.of(context).localizedResource.more,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(

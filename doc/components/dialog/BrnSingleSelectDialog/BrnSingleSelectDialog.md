@@ -30,7 +30,7 @@ const BrnSingleSelectDialog(
       this.messageText,
       this.messageWidget,
       required this.conditions,
-      this.submitText: "提交",
+      this.submitText,
       this.submitBgColor,
       this.onSubmitClick,
       this.onItemClick,
@@ -51,7 +51,7 @@ const BrnSingleSelectDialog(
 | messageWidget            | Widget?                             | 描述 Widget                                                 | 否           |            |
 | conditions               | List<String>                        | 备选项数组                                                  | 否           |            |
 | checkedItem              | String                              | 选中的选项名称                                              | 否           |            |
-| submitText               | String                              | 确定/提交 按钮文案                                          | 否           |            |
+| submitText               | String?                              | 确定/提交 按钮文案                                          | 否           |   默认值为国际化配置文本 '提交'       |
 | submitBgColor            | Color                               | 提交按钮背景颜色                                            | 否           |            |
 | customWidget             | Widget                              | 在单选列表底部自定义 Widget                                 | 否           | null       |
 | onCloseClick             | VoidCallback                        | 点击关闭 icon 的回调                                        | 否           | null       |

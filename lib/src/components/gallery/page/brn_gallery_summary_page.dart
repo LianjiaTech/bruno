@@ -4,6 +4,7 @@ import 'package:bruno/src/components/gallery/page/brn_gallery_detail_page.dart';
 import 'package:bruno/src/components/navbar/brn_appbar.dart';
 import 'package:bruno/src/components/scroll_anchor/brn_scroll_anchor_tab.dart';
 import 'package:bruno/src/components/tabbar/normal/brn_tab_bar.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class _BrnGallerySummaryPageState extends State<BrnGallerySummaryPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: BrnAppBar(
-        title: "全部图片",
+        title: BrnIntl.of(context).localizedResource.allPics,
       ),
       body: Container(color: Colors.white, child: _body()),
     );

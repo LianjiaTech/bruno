@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'date_picker_example.dart';
+import 'expend_multi_item.dart';
 import 'multi_picker_example.dart';
 
 class PickerEntryPage extends StatelessWidget {
@@ -54,6 +55,13 @@ class PickerEntryPage extends StatelessWidget {
               describe: '底部多选弹框',
               onPressed: () {
                 _showBottomMultiSelectPicker(context);
+              },
+            ),
+            ListItem(
+              title: "Picker/多选/勾选（MultiSelectBottomPicker）",
+              describe: '底部多选弹框(自定义数据协议)',
+              onPressed: () {
+                _showExpandBottomMultiSelectPicker(context);
               },
             ),
             ListItem(
@@ -150,6 +158,33 @@ class PickerEntryPage extends StatelessWidget {
         var str = "";
         data.forEach((item) {
           str = str + item.content + "  ";
+        });
+        BrnToast.show(str, context);
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
+  ///多选弹框自定义数据协议
+  void _showExpandBottomMultiSelectPicker(BuildContext context) {
+    List<ExpendMultiSelectBottomPickerItem> items = [];
+    items.add(new ExpendMultiSelectBottomPickerItem("100", "这里是标题1",attribute1: "第一条自定义参数1"));
+    items.add(new ExpendMultiSelectBottomPickerItem("101", "这里是标题2",attribute1: "第二条自定义参数2"));
+    items.add(
+        new ExpendMultiSelectBottomPickerItem("102", "这里是标题3", isChecked: true,attribute1: "第三条自定义参数3"));
+    items.add(
+        new ExpendMultiSelectBottomPickerItem("103", "这里是标题4", isChecked: true));
+    items.add(new ExpendMultiSelectBottomPickerItem("104", "这里是标题5"));
+    items.add(new ExpendMultiSelectBottomPickerItem("104", "这里是标题6"));
+    BrnMultiSelectListPicker.show<ExpendMultiSelectBottomPickerItem>(
+      context,
+      items: items,
+      pickerTitleConfig: BrnPickerTitleConfig(titleContent: "多选 Picker"),
+      onSubmit: (List<ExpendMultiSelectBottomPickerItem> data) {
+        var str = "";
+        data.forEach((item) {
+          String attribute = item.attribute1 ?? "";
+          str = str + attribute;
         });
         BrnToast.show(str, context);
         Navigator.of(context).pop();

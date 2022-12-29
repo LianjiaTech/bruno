@@ -108,6 +108,7 @@ class BrnLinePainter extends BrnBasePainter {
             '折线${i - 1}和$i条线的节点数不一致');
       }
     }
+    assert(yDialMax > yDialMin, "yDialMax 应该大于 yDialMin");
   }
 
   Point selectedPoint(int lineIndex, int pointIndex) {
@@ -198,10 +199,13 @@ class BrnLinePainter extends BrnBasePainter {
                   ((item.points[i].x - xDialMin!) /
                       (xDialMax! - xDialMin!) *
                       _fixedWidth);
-              var yPosition = _startY -
-                  ((item.points[i].y - yDialMin) /
-                      (yDialMax - yDialMin) *
-                      _fixedHeight);
+              var yPosition = _startY;
+              if (yDialMax != yDialMin) {
+                yPosition = _startY -
+                    ((item.points[i].y - yDialMin) /
+                        (yDialMax - yDialMin) *
+                        _fixedHeight);
+              }
               pointArr.add(Point(xPosition, yPosition));
             }
           } else {

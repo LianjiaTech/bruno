@@ -54,6 +54,7 @@ Please download from [Releases](https://github.com/LianjiaTech/bruno/releases) o
 | 2.2.0 | 2.10.5 |
 | 3.0.0 | 3.0.3 |
 | 3.1.0 | 3.3.0 |
+| 3.2.0 | 3.3.0 |
 
 
 ## Preparing for use
@@ -89,64 +90,71 @@ Please read our [Contributing](https://bruno.ke.com/page/guide/contribution) fir
 Thanks to all the developers who contributed to Bruno !
 
 <div style="display:flex;flex-wrap: wrap;">
+
   <a href="https://github.com/violinday">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664602.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/9434515?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/zhoujuanjuan">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664928.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/4566284?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/hexintao">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664290.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/15339683?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/ShzMinato">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664590.png'  />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/24968882?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/Nayuta403">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664273.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/40540394?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
+  </a>
+  <a href="https://github.com/leftcoding">
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/7122926?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
+  </a>
+  <a href="https://github.com/AlexV525">
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/15884415?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/liroya2003">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637736846398.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/11550773?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/lifuqing">
-      <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664429.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/2088673?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/visitorvisit">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664282.png'  />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/30320214?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/DNACore">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664426.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/7811286?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/SlamDunk007">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664914.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/13640766?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/zadouyoune">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664629.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/9626570?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/quanGitHub1">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664641.png'  />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/15058841?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/bill19">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664536.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/9607083?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/MichaelWon">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664633.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/13557870?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/laoshubuluo">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664320.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/14070606?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/eason-lz">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664460.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/5070735?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/coolsining">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664465.png'  />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/74528729?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/765227120">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637740374486.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/10770966?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
   <a href="https://github.com/xzj524">
-    <img src='https://img.ljcdn.com/beike/zjz/bruno/img/1637739664906.png' />
+    <img src='https://images.weserv.nl/?url=avatars.githubusercontent.com/u/10611023?v=4&h=64&w=64&fit=cover&mask=circle&maxage=7d' />
   </a>
-  </div>
+</div>
 
 
 
