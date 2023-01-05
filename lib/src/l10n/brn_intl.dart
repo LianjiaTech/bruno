@@ -39,7 +39,7 @@ class BrnIntl {
 
   /// 获取[BrnIntl]实例
   static BrnIntl of(BuildContext context) {
-    return Localizations.of(context, BrnIntl);
+    return Localizations.of(context, BrnIntl) ?? BrnIntl(BrnResourceZh.locale);
   }
 
   /// 获取当前语言下 [BrnBaseResource] 资源
