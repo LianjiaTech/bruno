@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/popup/brn_measure_size.dart';
 import 'package:bruno/src/components/selection/bean/brn_selection_common_entity.dart';
 import 'package:bruno/src/components/selection/brn_selection_util.dart';
@@ -9,6 +8,7 @@ import 'package:bruno/src/components/selection/controller/brn_flat_selection_con
 import 'package:bruno/src/components/selection/converter/brn_selection_converter.dart';
 import 'package:bruno/src/components/selection/widget/brn_flat_selection_item.dart';
 import 'package:bruno/src/components/toast/brn_toast.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:flutter/material.dart';

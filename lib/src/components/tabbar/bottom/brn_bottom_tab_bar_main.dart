@@ -3,7 +3,8 @@
 import 'dart:collection' show Queue;
 import 'dart:math' as math;
 
-import 'package:bruno/bruno.dart';
+import 'package:bruno/src/components/tabbar/bottom/brn_bottom_tab_bar_item.dart';
+import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
 /// 定义一些UI常量,根据UI稿进行填写
