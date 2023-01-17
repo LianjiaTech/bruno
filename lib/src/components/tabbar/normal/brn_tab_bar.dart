@@ -6,7 +6,7 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Badge;
 
 /// 单个tab选中的回调
 /// [state]:当前组件的State对象，[BrnTabBarState]
