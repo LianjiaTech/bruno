@@ -1,4 +1,3 @@
-import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bruno/src/components/picker/base/brn_picker_constants.dart';

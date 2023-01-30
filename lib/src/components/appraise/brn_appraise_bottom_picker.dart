@@ -1,7 +1,7 @@
-import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/appraise/brn_appraise.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_header.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_config.dart';
+import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/material.dart';
 import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 
