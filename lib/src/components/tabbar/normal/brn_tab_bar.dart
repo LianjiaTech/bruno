@@ -168,8 +168,6 @@ enum BrnTabBarBadgeMode {
 }
 
 class BrnTabBarState extends State<BrnTabBar> {
-  /// 小红点容器的样式
-  // late BadgeShape _badgeShape;
 
   /// 小红点文案
   late String _badgeText;
@@ -185,9 +183,6 @@ class BrnTabBarState extends State<BrnTabBar> {
 
   /// 小红点右偏移量
   double _paddingRight = 0;
-
-  /// 小红点圆角
-  // late BorderRadiusGeometry _borderRadius;
 
   /// 展开更多的按钮宽度
   final double _moreSpacing = 50;
