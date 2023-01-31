@@ -1,4 +1,3 @@
-// import 'package:badges/badges.dart';
 import 'package:bruno/src/components/popup/brn_measure_size.dart';
 import 'package:bruno/src/components/tabbar/indicator/brn_custom_width_indicator.dart';
 import 'package:bruno/src/components/tabbar/normal/brn_tabbar_controller.dart';
@@ -168,7 +167,6 @@ enum BrnTabBarBadgeMode {
 }
 
 class BrnTabBarState extends State<BrnTabBar> {
-
   /// 小红点文案
   late String _badgeText;
 
@@ -409,14 +407,17 @@ class BrnTabBarState extends State<BrnTabBar> {
                     color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
               ),
               backgroundColor: Colors.red,
-              alignment: AlignmentDirectional(-_paddingRight, _paddingTop),
+              alignment: AlignmentDirectional(_paddingRight, _paddingTop),
               padding: _badgePadding,
               largeSize: _largeSize,
-              child: Text(badgeTab.text!,
-                  maxLines: 1,
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis),
+              child: Text(
+                badgeTab.text!,
+                maxLines: 1,
+                softWrap: true,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 16),
+              ),
             )
           ],
         ),
@@ -481,7 +482,6 @@ class BrnTabBarState extends State<BrnTabBar> {
                       style: TextStyle(
                           color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
                     ),
-
                     alignment: AlignmentDirectional(_paddingRight, _paddingTop),
                     padding: _badgePadding,
                     largeSize: _largeSize,
@@ -489,7 +489,8 @@ class BrnTabBarState extends State<BrnTabBar> {
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         softWrap: true,
-                        overflow: TextOverflow.ellipsis),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 16)),
                   )
                 ],
               ),
@@ -510,19 +511,6 @@ class BrnTabBarState extends State<BrnTabBar> {
 
   // 计算小红点尺寸相关参数
   void caculateBadgeParams(BadgeTab badgeTab, BoxConstraints constraints) {
-    TextStyle style = TextStyle(
-      overflow: TextOverflow.ellipsis,
-    );
-    TextPainter _textPainter =
-        TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
-    _textPainter.textDirection = TextDirection.ltr;
-    _textPainter.maxLines = 1;
-    _textPainter.text = TextSpan(text: badgeTab.text, style: style);
-    _textPainter.layout(maxWidth: constraints.maxWidth);
-    double _textWidth = _textPainter.width;
-
-    _paddingRight =
-    (_textWidth == constraints.maxWidth) ? (_textWidth - 18.0) : _textWidth + 8.0;
     _paddingTop = -5.0;
 
     if (badgeTab.badgeNum != null) {
@@ -549,8 +537,46 @@ class BrnTabBarState extends State<BrnTabBar> {
         _largeSize = 8.0;
         _badgeText = "";
         _paddingTop = 1.0;
-
       }
+    }
+
+    // 获取 tabTextWidth
+    TextStyle tabTextStyle =
+        TextStyle(overflow: TextOverflow.ellipsis, fontSize: 16);
+    TextPainter _tabTextPainter = TextPainter(
+        locale: Localizations.localeOf(context), textAlign: TextAlign.center);
+    _tabTextPainter.textDirection = TextDirection.ltr;
+    _tabTextPainter.maxLines = 1;
+    _tabTextPainter.text = TextSpan(text: badgeTab.text, style: tabTextStyle);
+    _tabTextPainter.layout(maxWidth: constraints.maxWidth);
+    double _tabTextWidth = _tabTextPainter.width;
+
+    // 获取 badgeTextWidth
+    TextStyle badgeTextStyle = TextStyle(height: 1, fontSize: 10);
+    TextPainter _badgeTextPainter =
+        TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
+    _badgeTextPainter.textDirection = TextDirection.ltr;
+    _badgeTextPainter.maxLines = 1;
+    _badgeTextPainter.text = TextSpan(text: _badgeText, style: badgeTextStyle);
+    _badgeTextPainter.layout(maxWidth: constraints.maxWidth);
+    // 红点内 text 的宽度
+    double _badgeTextWidth = _badgeTextPainter.width;
+
+    double _badgeWidth = _badgeTextWidth + _badgePadding.horizontal;
+
+    // 获取外部传入的tab padding值
+    EdgeInsets _labelPadding = widget.labelPadding.resolve(TextDirection.ltr);
+
+    if ((_tabTextWidth + _badgeWidth) >
+        (constraints.maxWidth + _labelPadding.right)) {
+      // 如果tab文字宽度 + 红点宽度  > 约束宽度（父容器宽度）+ 设置tab 右padding  则将红点左移 红点宽度偏移量
+      // if(_badgeWidth > (constraints.maxWidth + _labelPadding.right)){
+      //   _paddingRight = 0.0;
+      // }else{
+      _paddingRight = constraints.maxWidth + _labelPadding.right - _badgeWidth;
+      // }
+    } else {
+      _paddingRight = _tabTextWidth;
     }
   }
 
