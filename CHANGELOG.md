@@ -1,10 +1,10 @@
-## [3.2.1] - 2023-2-1
+## [3.3.0] - 2023-2-1
 
 ### Changed
 
 - fix the NullPointerException caused by not configuring <code>BrnIntl</code> [#398](https://github.com/LianjiaTech/bruno/issues/398).
 - optimize internal import references.
-- adapt  flutter sdk 3.7.0 to fix badge reference conflict [#406](https://github.com/LianjiaTech/bruno/issues/406).
+- adapt flutter sdk 3.7.0 to fix badge reference conflict [#406](https://github.com/LianjiaTech/bruno/issues/406).
 
 
 

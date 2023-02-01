@@ -53,7 +53,6 @@ export 'src/components/selection/widget/brn_selection_animate_widget.dart';
 //选择器
 export 'src/components/picker/multi_range_picker/bean/brn_multi_column_picker_entity.dart';
 export 'src/components/picker/multi_range_picker/brn_multi_column_picker.dart';
-export 'src/components/picker/multi_select_bottom_picker/brn_multi_select_data.dart';
 export 'src/components/picker/multi_select_bottom_picker/brn_multi_select_list_picker.dart';
 export 'src/components/picker/brn_select_tags_with_input_picker.dart';
 export 'src/components/picker/brn_bottom_picker.dart';
@@ -78,6 +77,7 @@ export 'src/components/tabbar/normal/brn_tab_bar.dart';
 export 'src/components/tabbar/normal/brn_tabbar_controller.dart';
 export 'src/components/tabbar/indicator/brn_fixed_underline_decoration.dart';
 export 'src/components/tabbar/indicator/brn_triangle_decoration.dart';
+export 'src/components/tabbar/indicator/brn_custom_width_indicator.dart';
 
 //空页面
 export 'src/components/empty/brn_empty_status.dart';
@@ -99,10 +99,6 @@ export 'src/components/selectcity/brn_select_city_model.dart';
 
 //搜索
 export 'src/components/sugsearch/brn_search_text.dart';
-
-//tab
-export 'src/components/tabbar/indicator/brn_custom_width_indicator.dart';
-export 'src/components/tabbar/normal/brn_tab_bar.dart';
 
 //标签
 export 'src/components/tag/tagview/brn_select_tag.dart';
@@ -172,7 +168,6 @@ export 'src/components/gallery/config/brn_controller.dart';
 export 'src/components/input/brn_input_text.dart';
 export 'src/components/calendar/brn_calendar_view.dart';
 export 'src/components/button/brn_icon_button.dart';
-export 'src/components/picker/brn_tags_picker_config.dart';
 
 //新手引导
 export 'src/components/guide/brn_flutter_guide.dart';
@@ -237,8 +232,6 @@ export 'src/components/card/bubble_card/brn_insert_info.dart';
 //文本
 export 'src/components/card/bubble_card/brn_bubble_text.dart';
 export 'src/components/text/brn_expandable_text.dart';
-
-export 'src/components/line/brn_line.dart';
 
 //通知栏
 export 'src/components/noticebar/brn_notice_bar.dart';
