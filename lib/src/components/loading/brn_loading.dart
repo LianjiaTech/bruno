@@ -1,4 +1,4 @@
-import 'package:bruno/bruno.dart';
+import 'package:bruno/src/components/dialog/brn_safe_dialog.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:flutter/material.dart';
 
