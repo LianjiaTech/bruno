@@ -41,7 +41,7 @@ class BrnCommonActionSheetItem {
   BrnCommonActionSheetItem(
     this.title, {
     this.desc,
-    this.actionStyle: BrnCommonActionSheetItemStyle.normal,
+    this.actionStyle = BrnCommonActionSheetItemStyle.normal,
     this.titleStyle,
     this.descStyle,
   });

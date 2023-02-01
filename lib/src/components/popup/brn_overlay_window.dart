@@ -249,7 +249,7 @@ class BrnOverlayController {
 
   showOverlay() {
     if (_entry != null) {
-      Overlay.of(context)?.insert(_entry!);
+      Overlay.of(context).insert(_entry!);
       _isOverlayShowing = true;
     }
   }

@@ -118,7 +118,7 @@ class _ExpansionElementState extends State<ExpansionElementWidget>
   void initState() {
     super.initState();
     _isExpanded =
-        PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
+        PageStorage.of(context).readState(context) ?? widget.initiallyExpanded;
 
     _controller = AnimationController(
         duration: Duration(milliseconds: 200) /*_kExpand*/, vsync: this);
@@ -163,7 +163,7 @@ class _ExpansionElementState extends State<ExpansionElementWidget>
           if (!mounted) return;
         });
       }
-      PageStorage.of(context)?.writeState(context, _isExpanded);
+      PageStorage.of(context).writeState(context, _isExpanded);
     });
     if (widget.onExpansionChanged != null) {
       widget.onExpansionChanged!(_isExpanded);
