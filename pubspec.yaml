@@ -5,7 +5,7 @@ homepage: https://github.com/LianjiaTech/bruno
 
 environment:
   sdk: '>=2.17.0 <3.0.0'
-  flutter: '>=3.7.0'
+  flutter: '>=3.3.0'
 
 dependencies:
   flutter:
