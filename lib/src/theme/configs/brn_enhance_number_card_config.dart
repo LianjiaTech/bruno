@@ -14,7 +14,7 @@ class BrnEnhanceNumberCardConfig extends BrnBaseConfig {
     BrnTextStyle? titleTextStyle,
     BrnTextStyle? descTextStyle,
     double? dividerWidth,
-    String configId: GLOBAL_CONFIG_ID,
+    String configId = GLOBAL_CONFIG_ID,
   })  : _runningSpace = runningSpace,
         _itemRunningSpace = itemRunningSpace,
         _titleTextStyle = titleTextStyle,

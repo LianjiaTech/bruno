@@ -681,8 +681,8 @@ class _TabBarOverlayWidget extends StatefulWidget {
       this.moreWindowText,
       this.brnTabbarController,
       required this.themeData,
-      this.spacing: 12.0,
-      this.preLineTagCount: 4,
+      this.spacing = 12.0,
+      this.preLineTagCount = 4,
       this.tagHeight});
 
   @override

@@ -14,7 +14,11 @@ class BrnDialItem {
   /// x,y 轴刻度值。用于刻度在坐标的真实定位
   double value;
 
-  BrnDialItem({this.dialText, this.dialTextStyle, this.selectedDialTextStyle,required this.value});
+  BrnDialItem(
+      {this.dialText,
+      this.dialTextStyle,
+      this.selectedDialTextStyle,
+      required this.value});
 }
 
 class BrnPointData {
@@ -44,7 +48,7 @@ class BrnPointData {
       this.offset = const Offset(0, 0),
       this.pointText,
       this.pointTextStyle,
-      this.isClickable: true,
+      this.isClickable = true,
       required this.lineTouchData}) {
     pointText ??= '$y';
     pointTextStyle ??= TextStyle(
@@ -72,7 +76,7 @@ class BrnLineTouchData {
 
   BrnLineTouchData({
     required this.tipWindowSize,
-    this.tipOffset: const Offset(0, 0),
+    this.tipOffset = const Offset(0, 0),
     this.onTouch,
   });
 }
@@ -125,7 +129,7 @@ class BrnPointsLine {
       this.pointInnerColor,
       this.isCurve = false,
       required this.points,
-      this.isShowPoint: true,
+      this.isShowPoint = true,
       this.isShowPointText = false,
       this.shaderColors,
       this.lineColor = Colors.purple}) {

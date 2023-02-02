@@ -5,11 +5,9 @@ import 'package:example/sample/home/card_data_config.dart';
 import 'package:example/sample/home/group_card.dart';
 import 'package:flutter/material.dart';
 
-import '../l10n/l10n.dart';
 import 'setting.dart';
 /// 主页面
 class HomePage extends StatelessWidget {
-  GlobalKey _moreKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {

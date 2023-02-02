@@ -1,5 +1,3 @@
-
-
 class BrnMultiSelectBottomPickerItem {
   String code; //选项编号
 
@@ -8,5 +6,5 @@ class BrnMultiSelectBottomPickerItem {
   bool isChecked; //是否选中
 
   BrnMultiSelectBottomPickerItem(this.code, this.content,
-      {this.isChecked: false});
+      {this.isChecked = false});
 }

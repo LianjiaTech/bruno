@@ -1,5 +1,4 @@
 import 'package:bruno/src/constants/brn_asset_constants.dart';
-import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_abnormal_state_config.dart';
@@ -32,21 +31,24 @@ class BrnAbnormalStateUtils {
       return BrnAbnormalStateWidget(
         img: img ?? BrunoTools.getAssetImage(BrnAsset.noData),
         title: BrnIntl.of(context).localizedResource.fetchErrorAndRetry,
-        operateTexts: <String>[BrnIntl.of(context).localizedResource.clickPageAndRetry],
+        operateTexts: <String>[
+          BrnIntl.of(context).localizedResource.clickPageAndRetry
+        ],
         action: action,
       );
     } else if (AbnormalState.networkConnectError == status) {
       return BrnAbnormalStateWidget(
         img: img ?? BrunoTools.getAssetImage(BrnAsset.networkError),
         title: BrnIntl.of(context).localizedResource.netErrorAndRetryLater,
-        operateTexts: <String>[BrnIntl.of(context).localizedResource.clickPageAndRetry],
+        operateTexts: <String>[
+          BrnIntl.of(context).localizedResource.clickPageAndRetry
+        ],
         action: action,
       );
     } else if (AbnormalState.noData == status) {
       return BrnAbnormalStateWidget(
-        img: img ?? BrunoTools.getAssetImage(BrnAsset.noData),
-        title: BrnIntl.of(context).localizedResource.noDataTip
-      );
+          img: img ?? BrunoTools.getAssetImage(BrnAsset.noData),
+          title: BrnIntl.of(context).localizedResource.noDataTip);
     } else {
       return const SizedBox.shrink();
     }
@@ -116,14 +118,14 @@ class BrnAbnormalStateWidget extends StatelessWidget {
     this.img,
     this.title,
     this.content,
-    this.operateAreaType: OperateAreaType.textButton,
+    this.operateAreaType = OperateAreaType.textButton,
     this.operateTexts,
     this.action,
-    this.enablePageTap: false,
+    this.enablePageTap = false,
     this.topOffset,
-    this.bgColor: Colors.white,
+    this.bgColor = Colors.white,
     this.isCenterVertical = false,
-    this.topPercent: 0.08,
+    this.topPercent = 0.08,
     this.themeData,
   }) {
     this.themeData ??= BrnAbnormalStateConfig();
