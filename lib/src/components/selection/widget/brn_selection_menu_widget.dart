@@ -230,7 +230,7 @@ class _BrnSelectionMenuWidgetState extends State<BrnSelectionMenuWidget> {
                     BrnSelectionFilterType.customHandle) {
               /// 创建 筛选组件的的入口
               OverlayEntry entry = _createEntry(widget.data[index]);
-              Overlay.of(widget.context).insert(entry);
+              Overlay.of(widget.context)?.insert(entry);
 
               listViewController.entry = entry;
               listViewController.show(index);

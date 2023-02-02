@@ -223,7 +223,7 @@ class _BrnSelectionDateRangeItemWidgetState
       },
     );
     OverlayEntry entry = _createDatePickerEntry(context, content);
-    Overlay.of(context).insert(entry);
+    Overlay.of(context)?.insert(entry);
     _datePickerController.entry = entry;
     _datePickerController.show();
   }

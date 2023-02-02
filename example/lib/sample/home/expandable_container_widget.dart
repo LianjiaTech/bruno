@@ -82,7 +82,7 @@ class _BrnExpansionContainerElementState
   void initState() {
     super.initState();
     _isExpanded =
-        PageStorage.of(context).readState(context) ?? widget.initiallyExpanded;
+        PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
 
     _expandableController =
         widget.expandableController ?? BrnExpandableContainerController();
@@ -143,7 +143,7 @@ class _BrnExpansionContainerElementState
       } else {
         _animationController!.reverse();
       }
-      PageStorage.of(context).writeState(context, _isExpanded);
+      PageStorage.of(context)?.writeState(context, _isExpanded);
     });
     if (widget.onExpansionChanged != null)
       widget.onExpansionChanged!(_isExpanded);

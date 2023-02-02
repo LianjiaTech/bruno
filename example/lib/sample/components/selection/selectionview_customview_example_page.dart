@@ -71,7 +71,7 @@ class _SelectionViewExamplePageState
                   closeCustomFilterView();
                 } else {
                   filterViewEntry = getCustomFilterView();
-                  Overlay.of(context).insert(filterViewEntry!);
+                  Overlay.of(context)?.insert(filterViewEntry!);
                   isCustomFilterViewShow = true;
                 }
                 _customHandleCallBack = customHandleCallBack;

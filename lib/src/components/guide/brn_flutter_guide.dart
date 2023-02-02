@@ -239,7 +239,7 @@ class BrnGuide {
         );
       },
     );
-    Overlay.of(context).insert(_overlayEntry!);
+    Overlay.of(context)?.insert(_overlayEntry!);
   }
 
   void _onNext(BuildContext context) {

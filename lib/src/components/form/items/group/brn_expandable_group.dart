@@ -110,7 +110,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
   void initState() {
     super.initState();
     _isExpanded =
-        PageStorage.of(context).readState(context) ?? widget.initiallyExpanded;
+        PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
 
     _controller = AnimationController(
         duration: Duration(milliseconds: 200) /*_kExpand*/, vsync: this);
@@ -149,7 +149,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
           if (!mounted) return;
         });
       }
-      PageStorage.of(context).writeState(context, _isExpanded);
+      PageStorage.of(context)?.writeState(context, _isExpanded);
     });
     if (widget.onExpansionChanged != null) {
       widget.onExpansionChanged!(_isExpanded);
