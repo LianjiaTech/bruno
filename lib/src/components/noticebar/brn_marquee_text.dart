@@ -28,12 +28,12 @@ class BrnMarqueeText extends StatefulWidget {
 
   BrnMarqueeText({
     required this.text,
-    this.width: 0,
-    this.height: 0,
-    this.timerRest: 100,
+    this.width = 0,
+    this.height = 0,
+    this.timerRest = 100,
     this.textStyle,
-    this.scrollAxis: Axis.horizontal,
-    this.ratioOfBlankToScreen: 0.25,
+    this.scrollAxis = Axis.horizontal,
+    this.ratioOfBlankToScreen = 0.25,
   });
 
   @override

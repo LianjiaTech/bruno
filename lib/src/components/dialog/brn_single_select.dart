@@ -58,8 +58,8 @@ class BrnSingleSelectDialog extends Dialog {
   final VoidCallback? onCloseClick;
 
   const BrnSingleSelectDialog(
-      {this.isClose: true,
-      this.title: "",
+      {this.isClose = true,
+      this.title = "",
       this.messageText,
       this.messageWidget,
       required this.conditions,
@@ -76,20 +76,21 @@ class BrnSingleSelectDialog extends Dialog {
   @override
   Widget build(BuildContext context) {
     return BrnSingleSelectDialogWidget(
-        isClose: isClose,
-        title: title,
-        messageText: messageText,
-        messageWidget: messageWidget,
-        conditions: conditions,
-        submitText: submitText ?? BrnIntl.of(context).localizedResource.submit,
-        onSubmitClick: onSubmitClick,
-        onItemClick: onItemClick,
-        submitBgColor: submitBgColor,
-        checkedItem: checkedItem,
-        customWidget: customWidget,
-        canDismissOnConfirmClick: canDismissOnConfirmClick,
-        isCustomFollowScroll: isCustomFollowScroll,
-        onCloseClick: onCloseClick,);
+      isClose: isClose,
+      title: title,
+      messageText: messageText,
+      messageWidget: messageWidget,
+      conditions: conditions,
+      submitText: submitText ?? BrnIntl.of(context).localizedResource.submit,
+      onSubmitClick: onSubmitClick,
+      onItemClick: onItemClick,
+      submitBgColor: submitBgColor,
+      checkedItem: checkedItem,
+      customWidget: customWidget,
+      canDismissOnConfirmClick: canDismissOnConfirmClick,
+      isCustomFollowScroll: isCustomFollowScroll,
+      onCloseClick: onCloseClick,
+    );
   }
 }
 
@@ -297,7 +298,6 @@ class BrnSingleSelectDialogWidgetState
     }
     return const SizedBox.shrink();
   }
-
 
   Widget _buildItem(BuildContext context, int index) {
     if (widget.conditions == null) {

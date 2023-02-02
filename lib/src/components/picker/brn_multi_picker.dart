@@ -378,7 +378,6 @@ class _MyPickerState extends State<MyPicker> {
 
 ///默认的选择轮盘滚动行为，Android去除默认的水波纹动画效果
 class _DefaultScrollBehavior extends ScrollBehavior {
-  @override
   Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
     return child;
   }

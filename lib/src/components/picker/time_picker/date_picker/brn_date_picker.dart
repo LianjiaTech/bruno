@@ -38,7 +38,6 @@ class BrnDatePicker {
   /// onConfirm: [DateValueCallback] pressed title confirm widget event
   static void showDatePicker(
     BuildContext context, {
-
     /// If rootNavigator is set to true, the state from the furthest instance of this class is given instead.
     /// Useful for pushing contents above all subsequent instances of [Navigator].
     bool rootNavigator = false,
@@ -59,7 +58,7 @@ class BrnDatePicker {
     String? dateFormat,
 
     /// 分钟间切换的差值
-    int minuteDivider: 1,
+    int minuteDivider = 1,
 
     /// 时间选择组件显示的时间类型
     BrnDateTimePickerMode pickerMode = BrnDateTimePickerMode.date,

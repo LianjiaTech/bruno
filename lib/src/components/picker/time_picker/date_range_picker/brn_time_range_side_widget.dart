@@ -1,12 +1,9 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
 import 'package:bruno/src/components/picker/time_picker/brn_date_picker_constants.dart';
 import 'package:bruno/src/components/picker/time_picker/brn_date_time_formatter.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
-import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 
 /// TimeRangeSidePicker widget.
@@ -42,7 +39,7 @@ class BrnTimeRangeSideWidget extends StatefulWidget {
     this.minDateTime,
     this.maxDateTime,
     this.initialStartDateTime,
-    this.dateFormat: datetimeRangePickerTimeFormat,
+    this.dateFormat = datetimeRangePickerTimeFormat,
     this.minuteDivider = 1,
     this.onChange,
     this.onInitSelectChange,

@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
@@ -92,13 +90,13 @@ class BrnTextSelectFormItem extends StatefulWidget {
   BrnTextSelectFormItem({
     Key? key,
     this.label,
-    this.title: "",
+    this.title = "",
     this.subTitle,
     this.tipLabel,
-    this.prefixIconType: BrnPrefixIconType.normal,
-    this.error: "",
-    this.isEdit: true,
-    this.isRequire: false,
+    this.prefixIconType = BrnPrefixIconType.normal,
+    this.error = "",
+    this.isEdit = true,
+    this.isRequire = false,
     this.onAddTap,
     this.onRemoveTap,
     this.onTip,
@@ -116,20 +114,21 @@ class BrnTextSelectFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   BrnTextSelectFormItem.autoLayout(
       {Key? key,
       this.label,
-      this.title: "",
+      this.title = "",
       this.subTitle,
       this.tipLabel,
-      this.prefixIconType: BrnPrefixIconType.normal,
-      this.error: "",
-      this.isEdit: true,
-      this.isRequire: false,
+      this.prefixIconType = BrnPrefixIconType.normal,
+      this.error = "",
+      this.isEdit = true,
+      this.isRequire = false,
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
@@ -148,8 +147,9 @@ class BrnTextSelectFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -211,8 +211,8 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
         children: <Widget>[
           Flexible(
             child: Container(
-              padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-                  widget.isRequire, widget.themeData!),
+              padding: BrnFormUtil.titleEdgeInsets(
+                  widget.prefixIconType, widget.isRequire, widget.themeData!),
               child: Row(
                 children: <Widget>[
                   BrnFormUtil.buildPrefixIcon(
@@ -327,8 +327,8 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
-              widget.isRequire, widget.themeData!),
+          padding: BrnFormUtil.titleEdgeInsets(
+              widget.prefixIconType, widget.isRequire, widget.themeData!),
           child: Row(
             children: <Widget>[
               BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit,
@@ -370,7 +370,8 @@ class BrnTextSelectFormItemState extends State<BrnTextSelectFormItem> {
           textDirection: TextDirection.ltr,
           strutStyle: _contentStructStyle,
           text: TextSpan(
-            text: widget.hint ?? BrnIntl.of(context).localizedResource.pleaseChoose,
+            text: widget.hint ??
+                BrnIntl.of(context).localizedResource.pleaseChoose,
             style: BrnFormUtil.getHintTextStyle(widget.themeData!, height: 1),
           ));
     }

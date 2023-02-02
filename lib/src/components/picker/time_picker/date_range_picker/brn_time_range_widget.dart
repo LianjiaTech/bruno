@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
@@ -9,7 +7,6 @@ import 'package:bruno/src/components/picker/time_picker/brn_date_picker_constant
 import 'package:bruno/src/components/picker/time_picker/date_range_picker/brn_time_range_side_widget.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
-import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 
 /// 时间范围选择 TimeRange widget.
@@ -61,8 +58,8 @@ class BrnTimeRangeWidget extends StatefulWidget {
     this.isLimitTimeRange = true,
     this.initialStartDateTime,
     this.initialEndDateTime,
-    this.dateFormat: datetimeRangePickerTimeFormat,
-    this.pickerTitleConfig: BrnPickerTitleConfig.Default,
+    this.dateFormat = datetimeRangePickerTimeFormat,
+    this.pickerTitleConfig = BrnPickerTitleConfig.Default,
     this.minuteDivider = 1,
     this.onCancel,
     this.onChange,
@@ -258,9 +255,8 @@ class _TimePickerWidgetState extends State<BrnTimeRangeWidget> {
             child: BrnTimeRangeSideWidget(
               key: secondGlobalKey,
               dateFormat: widget.dateFormat,
-              minDateTime: (widget.isLimitTimeRange)
-                  ? _startSelectedDateTime
-                  : _minTime,
+              minDateTime:
+                  (widget.isLimitTimeRange) ? _startSelectedDateTime : _minTime,
               maxDateTime: _maxTime,
               initialStartDateTime: (widget.isLimitTimeRange)
                   ? _endSelectedDateTime.compareTo(_startSelectedDateTime) > 0

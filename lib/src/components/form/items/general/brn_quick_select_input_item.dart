@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
@@ -92,13 +90,13 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
   BrnTextQuickSelectFormItem(
       {Key? key,
       this.label,
-      this.title: "",
+      this.title = "",
       this.subTitle,
       this.tipLabel,
-      this.prefixIconType: BrnPrefixIconType.normal,
-      this.error: "",
-      this.isEdit: true,
-      this.isRequire: false,
+      this.prefixIconType = BrnPrefixIconType.normal,
+      this.error = "",
+      this.isEdit = true,
+      this.isRequire = false,
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
@@ -108,7 +106,7 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
       this.selectBtnList,
       this.enableBtnList,
       this.btns,
-      this.isBtnsScroll: false,
+      this.isBtnsScroll = false,
       this.onTap,
       this.onBtnSelectChanged,
       this.backgroundColor,
@@ -119,8 +117,9 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
         .getConfig(configId: themeData!.configId)
         .formItemConfig
         .merge(themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override

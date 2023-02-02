@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_constants.dart';
 
 class BrnPickerTitleConfig {
-
   /// DateTimePicker theme.
   ///
   /// [cancel] Custom cancel widget.
@@ -15,7 +14,7 @@ class BrnPickerTitleConfig {
     this.cancel,
     this.confirm,
     this.title,
-    this.showTitle: pickerShowTitleDefault,
+    this.showTitle = pickerShowTitleDefault,
     this.titleContent,
   });
 

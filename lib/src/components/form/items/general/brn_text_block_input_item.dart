@@ -107,7 +107,7 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
       this.onChanged,
       this.hint,
       this.maxCharCount,
-      this.autofocus: false,
+      this.autofocus = false,
       this.inputType,
       this.inputFormatters,
       this.controller,
@@ -121,8 +121,9 @@ class BrnTextBlockInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -200,7 +201,8 @@ class BrnTextBlockInputFormItemState extends State<BrnTextBlockInputFormItem> {
                   widget.themeData!, widget.isEdit),
               inputFormatters: widget.inputFormatters,
               decoration: InputDecoration(
-                hintText: widget.hint ?? BrnIntl.of(context).localizedResource.pleaseEnter,
+                hintText: widget.hint ??
+                    BrnIntl.of(context).localizedResource.pleaseEnter,
                 hintStyle: BrnFormUtil.getHintTextStyle(widget.themeData!),
                 contentPadding: EdgeInsets.all(0),
                 border: InputBorder.none,
