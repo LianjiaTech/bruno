@@ -4,7 +4,6 @@ import 'package:bruno/src/components/picker/time_picker/brn_date_picker_constant
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
-import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 
 /// DatePicker's title widget.

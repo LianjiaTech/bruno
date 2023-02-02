@@ -120,7 +120,7 @@ class BrnTextInputFormItem extends StatefulWidget {
     this.hint,
     this.unit,
     this.maxCharCount,
-    this.autofocus: false,
+    this.autofocus= false,
     this.inputType,
     this.inputFormatters,
     this.onChanged,

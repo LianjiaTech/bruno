@@ -59,7 +59,7 @@ class BrnMiddleInputDialog {
 
   /// 点击取消/确认按钮之后，是否自动关闭弹窗，默认为 true，关闭
   BrnDialogConfig? themeData;
-  
+
   /// 键盘类型
   final TextInputType? keyboardType;
 
@@ -70,7 +70,7 @@ class BrnMiddleInputDialog {
       this.keyboardType,
       this.maxLength = 20,
       this.maxLines,
-      this.minLines: 1,
+      this.minLines = 1,
       this.inputFocusNode,
       this.inputEditingController,
       this.inputFormatters,
@@ -196,12 +196,13 @@ class BrnMiddleInputDialog {
     });
   }
 
-
   Alignment _getMessageAlign(TextAlign messageTextAlign) {
-    if(messageTextAlign == TextAlign.left || messageTextAlign == TextAlign.start) {
+    if (messageTextAlign == TextAlign.left ||
+        messageTextAlign == TextAlign.start) {
       return Alignment.centerLeft;
     }
-    if(messageTextAlign == TextAlign.right || messageTextAlign == TextAlign.end) {
+    if (messageTextAlign == TextAlign.right ||
+        messageTextAlign == TextAlign.end) {
       return Alignment.centerRight;
     }
     return Alignment.center;
