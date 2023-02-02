@@ -5,7 +5,6 @@ import 'package:bruno/src/components/picker/time_picker/date_picker/brn_date_pic
 import 'package:bruno/src/components/picker/time_picker/date_range_picker/brn_date_range_picker.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
-import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:intl/intl.dart';
 
 const String DATE_FORMAT_SEPARATOR = r'[|,-\._: ]+';

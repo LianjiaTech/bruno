@@ -22,7 +22,7 @@ class MultiSelectItem {
   /// 是否选中
   bool isChecked;
 
-  MultiSelectItem(this.code, this.content, {this.isChecked: false});
+  MultiSelectItem(this.code, this.content, {this.isChecked = false});
 }
 
 /// 屏幕中间弹出多选列表弹框
