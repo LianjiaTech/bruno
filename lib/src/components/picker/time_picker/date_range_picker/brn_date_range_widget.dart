@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
@@ -9,7 +7,6 @@ import 'package:bruno/src/components/picker/time_picker/brn_date_picker_constant
 import 'package:bruno/src/components/picker/time_picker/date_range_picker/brn_date_range_side_widget.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
-import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 
 /// Solar months of 31 days.
@@ -54,8 +51,8 @@ class BrnDateRangeWidget extends StatefulWidget {
     this.maxDateTime,
     this.initialStartDateTime,
     this.initialEndDateTime,
-    this.dateFormat: datetimeRangePickerDateFormat,
-    this.pickerTitleConfig: BrnPickerTitleConfig.Default,
+    this.dateFormat = datetimeRangePickerDateFormat,
+    this.pickerTitleConfig = BrnPickerTitleConfig.Default,
     this.onCancel,
     this.onChange,
     this.onConfirm,

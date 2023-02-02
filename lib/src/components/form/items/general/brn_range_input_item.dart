@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
@@ -103,14 +101,14 @@ class BrnRangeInputFormItem extends StatefulWidget {
   BrnRangeInputFormItem(
       {Key? key,
       this.label,
-      this.title: "",
+      this.title = "",
       this.subTitle,
       this.tipLabel,
-      this.prefixIconType: BrnPrefixIconType.normal,
-      this.error: "",
-      this.isEdit: true,
-      this.isRequire: false,
-      this.isPrefixIconEnabled: false,
+      this.prefixIconType = BrnPrefixIconType.normal,
+      this.error = "",
+      this.isEdit = true,
+      this.isRequire = false,
+      this.isPrefixIconEnabled = false,
       this.onAddTap,
       this.onRemoveTap,
       this.onTip,
@@ -135,8 +133,9 @@ class BrnRangeInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -213,7 +212,8 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                             border: InputBorder.none,
                             hintStyle:
                                 BrnFormUtil.getHintTextStyle(widget.themeData!),
-                            hintText: widget.hintMin ?? BrnIntl.of(context).localizedResource.min,
+                            hintText: widget.hintMin ??
+                                BrnIntl.of(context).localizedResource.min,
                             counterText: "",
                             contentPadding: EdgeInsets.all(0),
                             isDense: true,
@@ -268,7 +268,8 @@ class BrnRangeInputFormItemState extends State<BrnRangeInputFormItem> {
                             border: InputBorder.none,
                             hintStyle:
                                 BrnFormUtil.getHintTextStyle(widget.themeData!),
-                            hintText: widget.hintMax ?? BrnIntl.of(context).localizedResource.max,
+                            hintText: widget.hintMax ??
+                                BrnIntl.of(context).localizedResource.max,
                             counterText: "",
                             contentPadding: EdgeInsets.all(0),
                             isDense: true,

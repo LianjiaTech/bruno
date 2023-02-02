@@ -24,7 +24,7 @@ class BrnTabBarConfig extends BrnBaseConfig {
     double? tagSpacing,
     int? preLineTagCount,
     double? tagHeight,
-    String configId: GLOBAL_CONFIG_ID,
+    String configId = GLOBAL_CONFIG_ID,
   })  : _tabHeight = tabHeight,
         _indicatorHeight = indicatorHeight,
         _indicatorWidth = indicatorWidth,

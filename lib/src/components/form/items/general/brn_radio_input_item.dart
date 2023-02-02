@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/form/base/brn_form_item_type.dart';
@@ -89,13 +87,13 @@ class BrnRadioInputFormItem extends StatefulWidget {
   BrnRadioInputFormItem({
     Key? key,
     this.label,
-    this.title: "",
+    this.title = "",
     this.subTitle,
     this.tipLabel,
-    this.prefixIconType: BrnPrefixIconType.normal,
-    this.error: "",
-    this.isEdit: true,
-    this.isRequire: false,
+    this.prefixIconType = BrnPrefixIconType.normal,
+    this.error = "",
+    this.isEdit = true,
+    this.isRequire = false,
     this.onAddTap,
     this.onRemoveTap,
     this.onTip,
@@ -112,21 +110,22 @@ class BrnRadioInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
     this._isAutoLayout = false;
   }
 
   BrnRadioInputFormItem.autoLayout({
     Key? key,
     this.label,
-    this.title: "",
+    this.title = "",
     this.subTitle,
     this.tipLabel,
-    this.prefixIconType: BrnPrefixIconType.normal,
-    this.error: "",
-    this.isEdit: true,
-    this.isRequire: false,
+    this.prefixIconType = BrnPrefixIconType.normal,
+    this.error = "",
+    this.isEdit = true,
+    this.isRequire = false,
     this.onAddTap,
     this.onRemoveTap,
     this.onTip,
@@ -145,8 +144,9 @@ class BrnRadioInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override

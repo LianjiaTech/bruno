@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
@@ -8,7 +6,6 @@ import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/time_picker/brn_date_picker_constants.dart';
 import 'package:bruno/src/components/picker/time_picker/brn_date_time_formatter.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
-import 'package:bruno/src/utils/i18n/brn_date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 
 enum ColumnType { year, month, day, hour, minute, second }
@@ -21,8 +18,8 @@ class BrnDateTimeWidget extends StatefulWidget {
     this.minDateTime,
     this.maxDateTime,
     this.initDateTime,
-    this.dateFormat: datetimePickerTimeFormat,
-    this.pickerTitleConfig: BrnPickerTitleConfig.Default,
+    this.dateFormat = datetimePickerTimeFormat,
+    this.pickerTitleConfig = BrnPickerTitleConfig.Default,
     this.onCancel,
     this.onChange,
     this.onConfirm,
@@ -469,8 +466,7 @@ class _BrnDateTimeWidgetState extends State<BrnDateTimeWidget> {
     return Container(
       height: widget.themeData!.itemHeight,
       alignment: Alignment.center,
-      child: Text(
-          DateTimeFormatter.formatDateTime(value, format),
+      child: Text(DateTimeFormatter.formatDateTime(value, format),
           style: textStyle),
     );
   }

@@ -24,8 +24,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  bruno:
-    path: ../
+
   flutter_easyrefresh: ^2.2.1
   lpinyin: ^2.0.3
   badges: ^2.0.2
@@ -34,6 +33,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+dependency_overrides:
+  bruno:
+    path: ../
 
 
 # For information on the generic Dart part of this file, see the
