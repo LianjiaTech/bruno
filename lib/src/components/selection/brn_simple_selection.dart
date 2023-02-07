@@ -2,6 +2,7 @@ import 'package:bruno/src/components/selection/bean/brn_filter_entity.dart';
 import 'package:bruno/src/components/selection/bean/brn_selection_common_entity.dart';
 import 'package:bruno/src/components/selection/brn_selection_view.dart';
 import 'package:bruno/src/constants/brn_constants.dart';
+import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:flutter/material.dart';
 
 typedef BrnSimpleSelectionOnSelectionChanged = void Function(
@@ -35,6 +36,9 @@ class BrnSimpleSelection extends StatefulWidget {
   /// 是否单选  默认 radio模式 is true ， checkbox模式 is false
   final bool isRadio;
 
+  /// SelectionView 配置
+  final BrnSelectionConfig? themeData;
+
   /// 单选构造函数
   BrnSimpleSelection.radio({
     Key? key,
@@ -44,6 +48,7 @@ class BrnSimpleSelection extends StatefulWidget {
     required this.items,
     required this.onSimpleSelectionChanged,
     this.onMenuItemClick,
+    this.themeData,
   })  : this.isRadio = true,
         this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
         super(key: key);
@@ -58,6 +63,7 @@ class BrnSimpleSelection extends StatefulWidget {
     required this.items,
     required this.onSimpleSelectionChanged,
     this.onMenuItemClick,
+    this.themeData,
   })  : this.isRadio = false,
         super(key: key);
 
@@ -103,6 +109,7 @@ class BrnSimpleSelectionState extends State<BrnSimpleSelection> {
   @override
   Widget build(BuildContext context) {
     return BrnSelectionView(
+      themeData: widget.themeData,
       originalSelectionData: selectionEntityList,
       onSelectionChanged:
           (menuIndex, selectedParams, customParams, setCustomTitleFunction) {
