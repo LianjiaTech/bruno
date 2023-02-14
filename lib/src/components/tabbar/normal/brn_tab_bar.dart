@@ -485,12 +485,16 @@ class BrnTabBarState extends State<BrnTabBar> {
                     alignment: AlignmentDirectional(_paddingRight, _paddingTop),
                     padding: _badgePadding,
                     largeSize: _largeSize,
-                    child: Text(badgeTab.text!,
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        softWrap: true,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 16)),
+                    child: Text(
+                      badgeTab.text!,
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: widget.unselectedLabelStyle?.fontSize ?? 16,
+                      ),
+                    ),
                   )
                 ],
               ),
