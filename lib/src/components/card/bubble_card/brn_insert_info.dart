@@ -47,7 +47,7 @@ class BrnInsertInfo extends StatelessWidget {
       ),
     );
 
-    Color color = Color(0xFFF8F8F8);
+    Color color = const Color(0xFFF8F8F8);
     Image image = BrunoTools.getAssetImage('icons/icon_right_top_pointer.png');
 
     Widget bubbleText = Row(
@@ -59,17 +59,17 @@ class BrnInsertInfo extends StatelessWidget {
                 color: color,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(0),
-                    topRight: Radius.circular(4),
-                    bottomLeft: Radius.circular(4),
-                    bottomRight: Radius.circular(4))),
-            padding: EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
+                    topLeft: const Radius.circular(0),
+                    topRight: const Radius.circular(4),
+                    bottomLeft: const Radius.circular(4),
+                    bottomRight: const Radius.circular(4))),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
             child: tx,
           ),
         )
       ],
     );
-    return Container(
+    return ColoredBox(
       color: Colors.transparent,
       child: Column(
         mainAxisSize: MainAxisSize.min,

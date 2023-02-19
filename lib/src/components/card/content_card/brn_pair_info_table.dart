@@ -77,7 +77,7 @@ class BrnPairInfoTable extends StatefulWidget {
   final bool isValueAlign;
 
   /// TableCell 默认垂直对齐方式， 默认值为 [TableCellVerticalAlignment.baseline]
-  /// 当 [BrnInfoModal.valuePart] 为自定义 Widget 时，可设置该参数调整对齐方式，仅在 
+  /// 当 [BrnInfoModal.valuePart] 为自定义 Widget 时，可设置该参数调整对齐方式，仅在
   /// [isValueAlign] 为 true 时设置才生效
   final TableCellVerticalAlignment defaultVerticalAlignment;
 
@@ -286,7 +286,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     Row row = Row(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(right: 4),
+          padding: const EdgeInsets.only(right: 4),
           child: Text(
             BrnIntl.currentResource.expand,
             style: TextStyle(
@@ -308,7 +308,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
         });
 
     Container layerCtn = Container(
-      padding: EdgeInsets.only(left: 30),
+      padding: const EdgeInsets.only(left: 30),
       alignment: Alignment.center,
       child: gdt,
       decoration: BoxDecoration(
@@ -345,7 +345,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     Row row = Row(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(right: 4),
+          padding: const EdgeInsets.only(right: 4),
           child: Text(
             BrnIntl.currentResource.collapse,
             style: TextStyle(
