@@ -33,6 +33,9 @@ class BrnNormalFormGroup extends StatefulWidget {
   /// 默认值为 3
   final String? tipLabel;
 
+  /// 录入项前缀图标样式 "添加项" "删除项" 详见 PrefixIconType类
+  final String prefixIconType;
+
   /// 录入项错误提示
   final String error;
 
@@ -41,6 +44,9 @@ class BrnNormalFormGroup extends StatefulWidget {
 
   /// 录入项 是否可编辑
   final bool isEdit;
+
+  /// 点击"+"图标回调
+  final VoidCallback? onAddTap;
 
   /// 点击"-"图标回调
   final VoidCallback? onRemoveTap;
@@ -63,14 +69,22 @@ class BrnNormalFormGroup extends StatefulWidget {
     this.title = "",
     this.subTitle,
     this.tipLabel,
+    this.prefixIconType = BrnPrefixIconType.normal,
     this.error = "",
     this.isEdit = true,
     this.isRequire = false,
+    this.onAddTap,
     this.onRemoveTap,
     this.onTip,
     this.deleteLabel,
     required this.children,
-  }) : super(key: key) {
+  })  : assert(
+          prefixIconType == BrnPrefixIconType.normal ||
+              (prefixIconType != BrnPrefixIconType.normal &&
+                  (onAddTap != null || onRemoveTap != null)),
+          'expected onAddTap or onRemoveTap, but got null',
+        ),
+        super(key: key) {
     this.themeData ??= BrnFormItemConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
@@ -99,25 +113,48 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
+            margin: EdgeInsets.only(
+              left: widget.prefixIconType == BrnPrefixIconType.normal ? 0 : 20,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Offstage(
-                  offstage: (widget.title.isEmpty),
-                  child: Container(
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                            padding: EdgeInsets.only(left: 20, right: 6),
-                            child: Text(
-                              widget.title,
-                              style: BrnFormUtil.getHeadTitleTextStyle(
+                Row(
+                  children: [
+                    BrnFormUtil.buildPrefixIcon(
+                        widget.prefixIconType,
+                        widget.isEdit,
+                        context,
+                        widget.onAddTap,
+                        widget.onRemoveTap),
+                    Offstage(
+                      offstage: (widget.title.isEmpty),
+                      child: Container(
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(
+                                left: widget.prefixIconType ==
+                                        BrnPrefixIconType.normal
+                                    ? 20
+                                    : 0,
+                                right: 6,
+                              ),
+                              child: Text(
+                                widget.title,
+                                style: BrnFormUtil.getHeadTitleTextStyle(
                                   widget.themeData!,
-                                  isBold: true),
-                            )),
-                      ],
+                                  isBold: true,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    BrnFormUtil.buildTipLabelWidget(
+                        widget.tipLabel, widget.onTip, widget.themeData!),
+                  ],
                 ),
                 Offstage(
                   offstage: widget.deleteLabel == null,

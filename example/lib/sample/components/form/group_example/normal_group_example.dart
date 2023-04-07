@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -70,8 +68,15 @@ class NormalGroupExample extends StatelessWidget {
               error: "必填项不能为空",
               isRequire: true,
               isEdit: true,
+              prefixIconType: BrnPrefixIconType.add,
+              onAddTap: () {
+                BrnToast.show("点击触发回调_onAddTap", context);
+              },
               onRemoveTap: () {
                 BrnToast.show("点击触发回调_onRemoveTap", context);
+              },
+              onTip: () {
+                BrnToast.show("点击触发回调_onTip", context);
               },
               children: [
                 BrnTextInputFormItem(
