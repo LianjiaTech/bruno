@@ -66,7 +66,6 @@ class NormalGroupExample extends StatelessWidget {
               title: "普通分组",
               subTitle: "这里是副标题",
               deleteLabel: "删除",
-              tipLabel: "标签",
               error: "必填项不能为空",
               isRequire: true,
               isEdit: true,
