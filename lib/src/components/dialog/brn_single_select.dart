@@ -227,16 +227,16 @@ class BrnSingleSelectDialogWidgetState
                             child: Container(
                                 decoration: BoxDecoration(
                                   //背景
-                                  color: BrnThemeConfigurator.instance
-                                      .getConfig()
-                                      .commonConfig
-                                      .brandPrimary,
+                                  color: widget.submitBgColor ??
+                                      BrnThemeConfigurator.instance
+                                          .getConfig()
+                                          .commonConfig
+                                          .brandPrimary,
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(6.0)), //设置四周圆角 角度
                                 ),
                                 alignment: Alignment.center,
                                 height: 48,
-                                color: widget.submitBgColor,
                                 child: Text(widget.submitText,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
