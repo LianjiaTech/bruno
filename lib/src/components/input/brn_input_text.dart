@@ -37,9 +37,15 @@ class BrnInputText extends StatelessWidget {
   /// 输入框的hint文字，默认为"请输入..."
   final String? hint;
 
+  /// 输入框的hint文字样式
+  final TextStyle? hintStyle;
+
   /// 输入框的初始值，默认为""
   /// 不能定义为String，兼容example调用的传值
   final String textString;
+
+  /// 输入字体的样式
+  final TextStyle? textStyle;
 
   /// 用于对 TextField  更精细的控制，若传入该字段，[textString] 参数将失效，可使用 TextEditingController.text 进行赋值。
   final TextEditingController? textEditingController;
@@ -59,7 +65,6 @@ class BrnInputText extends StatelessWidget {
   /// 搜索框的焦点控制器
   final FocusNode? focusNode;
 
-
   /// 键盘输入行为， 默认为 TextInputAction.done
   final TextInputAction textInputAction;
 
@@ -72,6 +77,9 @@ class BrnInputText extends StatelessWidget {
   /// 边框颜色
   final Color? borderColor;
 
+  /// 计数器自定义
+  final InputCounterWidgetBuilder? buildCounter;
+
   BrnInputText({
     this.onTextChange,
     this.onSubmit,
@@ -81,15 +89,18 @@ class BrnInputText extends StatelessWidget {
     this.maxLength = 200,
     this.minLines = 1,
     this.hint,
+    this.hintStyle,
     this.maxHintLines,
     this.padding = EdgeInsets.zero,
     this.textString = "",
+    this.textStyle,
     this.autoFocus,
     this.textEditingController,
     this.focusNode,
     this.textInputAction = TextInputAction.done,
     this.borderRadius,
     this.borderColor,
+    this.buildCounter,
   });
 
   @override
@@ -139,46 +150,49 @@ class BrnInputText extends StatelessWidget {
         textAlign: TextAlign.left,
         textInputAction: textInputAction,
         style: TextStyle(
-            fontSize: 16,
-            color: BrnThemeConfigurator.instance
-                .getConfig()
-                .commonConfig
-                .colorTextBase),
-        buildCounter: (
-          BuildContext context, {
-          required int currentLength,
-          required int? maxLength,
-          required bool isFocused,
-        }) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Text(
-                "$currentLength",
-                style: TextStyle(
-                  color: (currentLength == 0
-                      ? Color(0xffcccccc)
-                      : BrnThemeConfigurator.instance
-                          .getConfig()
-                          .commonConfig
-                          .colorTextSecondary),
-                  fontSize: 16,
-                ),
-              ),
-              Text(
-                "/$maxLength",
-                style: TextStyle(
-                  color: Color(0xffcccccc),
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          );
-        },
+          fontSize: 16,
+          color: BrnThemeConfigurator.instance
+              .getConfig()
+              .commonConfig
+              .colorTextBase,
+        ).merge(textStyle),
+        buildCounter: buildCounter ??
+            (
+              BuildContext context, {
+              required int currentLength,
+              required int? maxLength,
+              required bool isFocused,
+            }) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    "$currentLength",
+                    style: TextStyle(
+                      color: (currentLength == 0
+                          ? Color(0xffcccccc)
+                          : BrnThemeConfigurator.instance
+                              .getConfig()
+                              .commonConfig
+                              .colorTextSecondary),
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    "/$maxLength",
+                    style: TextStyle(
+                      color: Color(0xffcccccc),
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              );
+            },
         decoration: InputDecoration(
           hintText: hint ?? BrnIntl.of(context).localizedResource.pleaseEnter,
           hintMaxLines: maxHintLines,
-          hintStyle: TextStyle(fontSize: 16.0, color: Color(0xFFCCCCCC)),
+          hintStyle: TextStyle(fontSize: 16.0, color: Color(0xFFCCCCCC))
+              .merge(hintStyle),
           contentPadding: EdgeInsets.all(0),
           border: InputBorder.none,
           isDense: true,
