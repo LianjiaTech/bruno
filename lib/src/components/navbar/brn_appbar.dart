@@ -233,8 +233,9 @@ class BrnAppBar extends PreferredSize {
     } else if (brightness == Brightness.dark) {
       _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.dark());
     }
-    _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(backgroundColor: this.backgroundColor, showDefaultBottom: this.showDefaultBottom));
+    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
+        backgroundColor: this.backgroundColor,
+        showDefaultBottom: this.showDefaultBottom));
 
     _defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: _defaultConfig.configId)
@@ -294,7 +295,6 @@ class BrnAppBar extends PreferredSize {
       backgroundColor: _defaultConfig.backgroundColor,
       actions: _wrapActions(_defaultConfig),
       bottom: _buildBarBottom(_defaultConfig),
-      brightness: brightness ?? Brightness.light,
       toolbarOpacity: toolbarOpacity,
       bottomOpacity: bottomOpacity,
       flexibleSpace: flexibleSpace,
@@ -302,7 +302,6 @@ class BrnAppBar extends PreferredSize {
       shape: shape,
       iconTheme: iconTheme,
       actionsIconTheme: actionsIconTheme,
-      textTheme: textTheme,
       primary: primary,
       excludeHeaderSemantics: excludeHeaderSemantics,
     );
@@ -624,8 +623,7 @@ class _BrnSearchResultAppBar extends StatelessWidget {
       _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.dark());
     }
 
-    _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(
+    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
       backgroundColor: this.backgroundColor,
       showDefaultBottom: this.showDefaultBottom,
     ));
