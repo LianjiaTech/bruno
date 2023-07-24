@@ -30,36 +30,35 @@ group:
 
 ``` dart
 BrnAppBar(
-  {Key? key,
-  this.leading,
-  this.showLeadingDivider = false,
-  this.title,
-  this.actions,
-  this.backgroundColor,
-  this.bottom,
-  this.elevation = 0,
-  this.automaticallyImplyLeading = true,
-  this.brightness,
-  this.toolbarOpacity = 1.0,
-  this.bottomOpacity = 1.0,
-  this.titleAlignment = Alignment.center,
-  this.flexibleSpace,
-  this.backLeadCallback,
-  this.showDefaultBottom = true,
-  this.themeData,
-  this.leadingWidth,
-  this.shadowColor,
-  this.shape,
-  this.iconTheme,
-  this.actionsIconTheme,
-  this.excludeHeaderSemantics = false,
-  this.primary = true,
-  this.textTheme,
-  this.titleSpacing})
-  : assert(
-        actions == null || actions is Widget || (actions is List<Widget>)),
-    assert(title == null || title is String || title is Widget),
-    super(key: key, child: Container(), preferredSize: Size(0, 0));
+      {Key? key,
+      this.leading,
+      this.showLeadingDivider = false,
+      this.title,
+      this.actions,
+      this.backgroundColor,
+      this.bottom,
+      this.elevation = 0,
+      this.automaticallyImplyLeading = true,
+      this.toolbarOpacity = 1.0,
+      this.bottomOpacity = 1.0,
+      this.titleAlignment = Alignment.center,
+      this.flexibleSpace,
+      this.backLeadCallback,
+      this.showDefaultBottom,
+      this.themeData,
+      this.leadingWidth,
+      this.shadowColor,
+      this.shape,
+      this.iconTheme,
+      this.actionsIconTheme,
+      this.excludeHeaderSemantics = false,
+      this.primary = true,
+      this.systemOverlayStyle,
+      this.titleSpacing})
+      : assert(
+            actions == null || actions is Widget || (actions is List<Widget>)),
+        assert(title == null || title is String || title is Widget),
+        super(key: key, child: Container(), preferredSize: Size(0, 0));
 ```
 
 
@@ -73,7 +72,6 @@ BrnAppBar(
 | bottom | PreferredSizeWidget? | AppBar底部紧挨着的Widget | 否 | 无 |
 | bottomOpacity | double | AppBar 底部Widget透明度，即 bottom 字段的透明度 | 否 | 1.0 |
 | elevation | double | AppBar 阴影高度 | 否 | 0 |
-| brightness | Brightness? | AppBar 主题，包括 dark、light 两种类型 | 否 | Brightness.dark |
 | toolbarOpacity | double | Appbar 透明度 |  否 | 1.0 |
 | titleAlignment | Alignment | title 对齐方式 | 否 | Alignment.center |
 | backLeadCallback | VoidCallback? | 自定义的返回事件 | 否 | 无 |
@@ -84,7 +82,7 @@ BrnAppBar(
 | shape | ShapeBorder? | 边框形状，只有当elevation大于0的时候展示 | 否 |  |
 | iconTheme | IconThemeData? | icon样式定制 | 否 |  |
 | actionsIconTheme | IconThemeData? | icon主题定制 | 否 |  |
-| textTheme | TextTheme? | text主题定制 | 否 |  |
+| systemOverlayStyle | SystemUiOverlayStyle? | 同 Appbar systemOverlayStyle | 否 |  |
 | primary | bool | 此应用栏是否显示在屏幕顶部 | 否 |  |
 | excludeHeaderSemantics | bool | 是否用Semantics包裹 | 否 |  |
 | themeData | BrnAppBarConfig? | BrnAppBar对应的主题定制类 | 否 | |
@@ -101,7 +99,7 @@ BrnAppBar(
 
 ``` dart
 BrnAppBar(
-  brightness: Brightness.dark,
+  themeData: BrnAppBarConfig.dark(),
   title: Row(
     mainAxisSize: MainAxisSize.min,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -142,7 +140,7 @@ BrnAppBar(
     width: 20,  
     height: 20,  
   ),
-  brightness: Brightness.dark,
+  themeData: BrnAppBarConfig.dark(),
   //文本title
   title: '标题名称',  
 );
@@ -164,7 +162,7 @@ BrnAppBar(
   actions: BrnTextAction(  
     '文本按钮',  
     //设置为深色背景，则显示白色
-    brightness: Brightness.dark,  
+    themeData: BrnAppBarConfig.dark(),
   ),  
 )  
 ```
@@ -181,6 +179,7 @@ var actionKey = GlobalKey();
 
 BrnAppBar(
   title: '标题名称',
+  themeData: BrnAppBarConfig.dark(),
   leading: BrnDoubleLeading(
     first: BrnBackLeading(),
     second: BrnBackLeading(
@@ -212,7 +211,7 @@ BrnAppBar(
 
 ``` dart
 BrnAppBar(  
-  brightness: Brightness.dark,  
+  themeData: BrnAppBarConfig.dark(), 
   automaticallyImplyLeading: false,  
   //自定义显示的title 为切换的row
   title: Row(  
@@ -265,7 +264,7 @@ return GestureDetector(
 
 ``` dart
 BrnAppBar(  
-  brightness: Brightness.dark,  
+  themeData: BrnAppBarConfig.dark(), 
   //自定义leading
   leading: BrnBackLeading(  
     child: Image.asset(  
@@ -328,7 +327,7 @@ BrnAppBar(
 
 ``` dart
 BrnAppBar( 
-  brightness: Brightness.dark,
+  themeData: BrnAppBarConfig.dark(),
   automaticallyImplyLeading: true,  
   //多icon
   actions: <Widget>[  
@@ -378,13 +377,13 @@ BrnAppBar(
 BrnAppBar(
   //默认显示返回按钮
   automaticallyImplyLeading: true,
-  brightness: Brightness.light,
+  themeData: BrnAppBarConfig.light(),
   title: '名称名称',
   //自定义的右侧文本
   actions: BrnTextAction(  
     '文本按钮',  
     //设置为深色背景，则显示白色
-    brightness: Brightness.light,  
+    themeData: BrnAppBarConfig.light(),
   ),  
 )
 ```
