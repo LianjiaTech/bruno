@@ -1,3 +1,20 @@
+## [3.4.0] - 2023-7-24
+
+### Changed
+
+#### base
+
+- Adapt flutter sdk 3.10.0.
+
+#### components
+
+- <code>BrnSimpleSelection</code> : support theme configuration [#420 ](https://github.com/LianjiaTech/bruno/pull/420) , thanks to **JunCaiLi** .
+- Add missing themeData for <code>BrnNormalFormGroup</code> and <code>BrnPortraitRadioGroup</code> [#455](https://github.com/LianjiaTech/bruno/pull/445), thanks to **Kingtous**.
+- <code>BrnTabBar</code> : add <code>onTap</code> method for <code>_TabBarOverlayWidget</code> [#393](https://github.com/LianjiaTech/bruno/pull/393).
+
+
+
+
 ## [3.3.0] - 2023-2-1
 
 ### Changed
@@ -10,7 +27,7 @@
 
 ## [3.2.0] - 2022-12-29
 
-### Changed
+[comment]: <> (### Changed)
 
 #### base 
 
