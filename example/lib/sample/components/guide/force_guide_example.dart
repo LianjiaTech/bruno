@@ -58,7 +58,6 @@ class _ForceGuideExampleState extends State<ForceGuideExample> {
     return WillPopScope(
       child: Scaffold(
         appBar: BrnAppBar(
-          brightness: Brightness.light,
           title: Text(
             '强引导组件example',
             key: intro.keys[0],

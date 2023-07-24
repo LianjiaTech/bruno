@@ -6,6 +6,8 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
 import 'package:flutter/material.dart';
 
+import 'brn_appbar_config.dart';
+
 /// 查看大图配置
 class BrnGalleryDetailConfig extends BrnBaseConfig {
   /// 遵循全局配置
@@ -14,7 +16,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     BrnTextStyle? appbarTitleStyle,
     BrnTextStyle? appbarActionStyle,
     Color? appbarBackgroundColor,
-    Brightness? appbarBrightness,
+    BrnAppBarConfig? appbarConfig,
     BrnTextStyle? tabBarUnSelectedLabelStyle,
     BrnTextStyle? tabBarLabelStyle,
     Color? tabBarBackgroundColor,
@@ -28,7 +30,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
   })  : _appbarTitleStyle = appbarTitleStyle,
         _appbarActionStyle = appbarActionStyle,
         _appbarBackgroundColor = appbarBackgroundColor,
-        _appbarBrightness = appbarBrightness,
+        _appbarConfig = appbarConfig,
         _tabBarUnSelectedLabelStyle = tabBarUnSelectedLabelStyle,
         _tabBarLabelStyle = tabBarLabelStyle,
         _tabBarBackgroundColor = tabBarBackgroundColor,
@@ -47,7 +49,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     _appbarTitleStyle = BrnTextStyle(color: commonConfig.colorTextBaseInverse);
     _appbarActionStyle = BrnTextStyle(color: BrnAppBarTheme.lightTextColor);
     _appbarBackgroundColor = Colors.black;
-    _appbarBrightness = Brightness.dark;
+    _appbarConfig = BrnAppBarConfig.dark();
     _tabBarUnSelectedLabelStyle = BrnTextStyle(color: Color(0XFFCCCCCC));
     _tabBarLabelStyle = BrnTextStyle(color: commonConfig.colorTextBaseInverse);
     _tabBarBackgroundColor = Colors.black;
@@ -66,7 +68,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     _appbarTitleStyle = BrnTextStyle(color: commonConfig.colorTextBase);
     _appbarActionStyle = BrnTextStyle(color: commonConfig.colorTextBase);
     _appbarBackgroundColor = commonConfig.fillBody;
-    _appbarBrightness = Brightness.light;
+    _appbarConfig = BrnAppBarConfig.light();
     _tabBarUnSelectedLabelStyle = BrnTextStyle(
       color: commonConfig.colorTextBase,
     );
@@ -106,7 +108,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
 
   /// appbar brightness
   /// 默认为 [Brightness.dark]
-  Brightness? _appbarBrightness;
+  BrnAppBarConfig? _appbarConfig;
 
   /// tabBar 标题普通样式
   ///
@@ -178,9 +180,9 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
       _appbarBackgroundColor ??
       BrnDefaultConfigUtils.defaultGalleryDetailConfig.appbarBackgroundColor;
 
-  Brightness get appbarBrightness =>
-      _appbarBrightness ??
-      BrnDefaultConfigUtils.defaultGalleryDetailConfig.appbarBrightness;
+  BrnAppBarConfig get appbarConfig =>
+      _appbarConfig ??
+      BrnDefaultConfigUtils.defaultGalleryDetailConfig.appbarConfig;
 
   BrnTextStyle get tabBarUnSelectedLabelStyle =>
       _tabBarUnSelectedLabelStyle ??
@@ -242,7 +244,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     _appbarActionStyle = galleryDetailConfig.appbarActionStyle.merge(
       _appbarActionStyle,
     );
-    _appbarBrightness ??= galleryDetailConfig.appbarBrightness;
+    _appbarConfig ??= galleryDetailConfig.appbarConfig;
     _appbarBackgroundColor ??= galleryDetailConfig.appbarBackgroundColor;
     _tabBarUnSelectedLabelStyle = galleryDetailConfig.tabBarUnSelectedLabelStyle
         .merge(BrnTextStyle(fontSize: commonConfig.fontSizeSubHead))
@@ -284,7 +286,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     BrnTextStyle? appbarTitleStyle,
     BrnTextStyle? appbarActionStyle,
     Color? appbarBackgroundColor,
-    Brightness? appbarBrightness,
+    BrnAppBarConfig? appbarConfig,
     BrnTextStyle? tabBarUnSelectedLabelStyle,
     Color? tabBarUnselectedLabelColor,
     BrnTextStyle? tabBarLabelStyle,
@@ -302,7 +304,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
       appbarTitleStyle: appbarTitleStyle ?? _appbarTitleStyle,
       appbarActionStyle: appbarActionStyle ?? _appbarActionStyle,
       appbarBackgroundColor: appbarBackgroundColor ?? _appbarBackgroundColor,
-      appbarBrightness: appbarBrightness ?? _appbarBrightness,
+      appbarConfig: appbarConfig ?? _appbarConfig,
       tabBarUnSelectedLabelStyle:
           tabBarUnSelectedLabelStyle ?? _tabBarUnSelectedLabelStyle,
       tabBarLabelStyle: tabBarLabelStyle ?? _tabBarLabelStyle,
@@ -322,7 +324,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
       appbarTitleStyle: appbarTitleStyle.merge(other._appbarTitleStyle),
       appbarActionStyle: appbarActionStyle.merge(other._appbarActionStyle),
       appbarBackgroundColor: other._appbarBackgroundColor,
-      appbarBrightness: other._appbarBrightness,
+      appbarConfig: other._appbarConfig,
       tabBarUnSelectedLabelStyle:
           tabBarUnSelectedLabelStyle.merge(other._tabBarUnSelectedLabelStyle),
       tabBarLabelStyle: tabBarLabelStyle.merge(other._tabBarLabelStyle),
