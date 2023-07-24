@@ -1,11 +1,6 @@
-import 'package:bruno/src/components/navbar/brn_appbar.dart';
 import 'package:bindings_compatible/bindings_compatible.dart';
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/navbar/brn_appbar_theme.dart';
-import 'package:bruno/src/constants/brn_asset_constants.dart';
-import 'package:bruno/src/constants/brn_strings_constants.dart';
-import 'package:bruno/src/l10n/brn_intl.dart';
-import 'package:bruno/src/theme/brn_theme_configurator.dart';
-import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -73,13 +68,14 @@ class BrnSearchAppbar extends PreferredSize {
   /// 是否默认获取焦点
   final bool autoFocus;
 
-  /// searchBar 主题
-  final Brightness brightness;
-
   /// 清空回调
   final VoidCallback? onClearTap;
 
-  const BrnSearchAppbar(
+  final SystemUiOverlayStyle? systemOverlayStyle;
+
+  BrnAppBarConfig? themeData;
+
+  BrnSearchAppbar(
       {this.controller,
       this.focusNode,
       this.leading,
@@ -92,15 +88,24 @@ class BrnSearchAppbar extends PreferredSize {
       this.dismissStyle,
       this.showDivider = true,
       this.autoFocus = true,
-      this.brightness = Brightness.dark,
       this.onClearTap,
-      this.inputTextStyle})
-      : super(child: const Center(), preferredSize: const Size(0, 0));
+      this.systemOverlayStyle,
+      this.inputTextStyle,
+      this.themeData})
+      : super(child: const Center(), preferredSize: const Size(0, 0)){
+    this.themeData ??= BrnAppBarConfig.dark();
+    this.themeData = BrnThemeConfigurator.instance
+        .getConfig(configId: this.themeData!.configId)
+        .appBarConfig
+        .merge(this.themeData)
+        .merge(BrnAppBarConfig(systemUiOverlayStyle: systemOverlayStyle));
+  }
 
   @override
   Widget get child => BrnAppBar(
-        brightness: brightness,
+        systemOverlayStyle: systemOverlayStyle,
         automaticallyImplyLeading: false,
+        themeData: themeData,
         title: _createSearchChild(),
       );
 
@@ -137,7 +142,6 @@ class BrnSearchAppbar extends PreferredSize {
           dismissStyle: dismissStyle,
           showDivider: showDivider,
           clearTapCallback: onClearTap,
-          brightness: brightness,
         )),
       ],
     );
@@ -310,7 +314,8 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
                             color: _defaultHintTextColor,
                           ),
                       // 提示文本属性，提示字段接受哪种输入的文本。
-                      hintText: widget.hint ?? BrnIntl.of(context).localizedResource.inputSearchTip,
+                      hintText: widget.hint ??
+                          BrnIntl.of(context).localizedResource.inputSearchTip,
                     ),
                     // 在改变属性，当正在编辑的文本发生更改时调用。
                     onChanged: (content) {

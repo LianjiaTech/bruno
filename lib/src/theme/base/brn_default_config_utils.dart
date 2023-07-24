@@ -709,7 +709,7 @@ class BrnDefaultConfigUtils {
       fontWeight: FontWeight.w600,
     ),
     appbarBackgroundColor: Colors.black,
-    appbarBrightness: Brightness.dark,
+    appbarConfig: BrnAppBarConfig.dark(),
     tabBarUnSelectedLabelStyle: BrnTextStyle(
       fontSize: 16.0,
       color: Color(0XFFCCCCCC),

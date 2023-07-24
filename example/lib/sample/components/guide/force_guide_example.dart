@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// @desc    强引导example
 class ForceGuideExample extends StatefulWidget {
@@ -58,7 +59,6 @@ class _ForceGuideExampleState extends State<ForceGuideExample> {
     return WillPopScope(
       child: Scaffold(
         appBar: BrnAppBar(
-          brightness: Brightness.light,
           title: Text(
             '强引导组件example',
             key: intro.keys[0],

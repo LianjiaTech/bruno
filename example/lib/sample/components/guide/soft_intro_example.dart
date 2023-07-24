@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// @desc    弱引导example
 class SoftGuideExample extends StatefulWidget {
@@ -58,7 +59,6 @@ class _SoftGuideExampleState extends State<SoftGuideExample> {
     return WillPopScope(
       child: Scaffold(
         appBar: BrnAppBar(
-          brightness: Brightness.light,
           title: Text(
             '弱引导组件example',
             key: intro.keys[0],

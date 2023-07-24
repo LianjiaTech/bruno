@@ -181,7 +181,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           width: 20,
         ),
       ),
-      brightness: Brightness.dark,
+      themeData: BrnAppBarConfig.dark(),
       title: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -261,7 +261,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
   //文字标题 下拉框
   BrnAppBar _getBlackBar6() {
     return BrnAppBar(
-      brightness: Brightness.dark,
+      themeData: BrnAppBarConfig.dark(),
       title: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -287,7 +287,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
   //文字标题 左1个icon 右文本 bai
   BrnAppBar _getBlackBar9() {
     return BrnAppBar(
-      brightness: Brightness.light,
+      themeData: BrnAppBarConfig.light(),
       leading: Image.asset(
         'assets/image/icon_navbar_sousuo_hei.png',
         scale: 3.0,
@@ -301,7 +301,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
   //文字标题 带标签
   BrnAppBar _getBlackBar10() {
     return BrnAppBar(
-      brightness: Brightness.light,
+      themeData: BrnAppBarConfig.light(),
       leading: Image.asset(
         'assets/image/icon_navbar_sousuo_hei.png',
         scale: 3.0,
@@ -346,7 +346,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
   //文字标题 左2个icon 右文本
   BrnAppBar _getBlackBar11() {
     return BrnAppBar(
-      brightness: Brightness.light,
+      themeData: BrnAppBarConfig.light(),
       title: '标题名称',
       leading: BrnDoubleLeading(
         first: BrnBackLeading(),
@@ -368,7 +368,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
   //多icon的bar hei
   BrnAppBar _getBlackBar12() {
     return BrnAppBar(
-      brightness: Brightness.dark,
+      themeData: BrnAppBarConfig.dark(),
       automaticallyImplyLeading: true,
       title: "天通苑天通苑天通苑天通苑天通苑天通苑天通苑天通苑天通苑",
       actions: <Widget>[
@@ -406,7 +406,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
   //多icon的bar bai
   BrnAppBar _getBlackBar13() {
     return BrnAppBar(
-      brightness: Brightness.light,
+      themeData: BrnAppBarConfig.light(),
       automaticallyImplyLeading: true,
       title: "",
       actions: <Widget>[
@@ -482,7 +482,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
 
   PreferredSize _getWhiteSearchBar() {
     return BrnSearchAppbar(
-      brightness: Brightness.light,
+      themeData: BrnAppBarConfig.light(),
       showDivider: true,
       //自定义的leading显示
       leading: Padding(
@@ -653,7 +653,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
       ],
     );
     return BrnAppBar(
-      brightness: Brightness.dark,
+      themeData: BrnAppBarConfig.dark(),
       automaticallyImplyLeading: false,
       //自定义leading
       leading: BrnBackLeading(
