@@ -26,13 +26,6 @@ class BrnNormalFormGroup extends StatefulWidget {
   /// 录入项子标题
   final String? subTitle;
 
-  /// 录入项提示（问号图标&文案） 用户点击时触发onTip回调。
-  /// 1. 若赋值为 空字符串（""）时仅展示"问号"图标，
-  /// 2. 若赋值为非空字符串时 展示"问号图标&文案"，
-  /// 3. 若不赋值或赋值为null时 不显示提示项
-  /// 默认值为 3
-  final String? tipLabel;
-
   /// 录入项错误提示
   final String error;
 
@@ -62,13 +55,13 @@ class BrnNormalFormGroup extends StatefulWidget {
     this.label,
     this.title = "",
     this.subTitle,
-    this.tipLabel,
     this.error = "",
     this.isEdit = true,
     this.isRequire = false,
     this.onRemoveTap,
     this.onTip,
     this.deleteLabel,
+    this.themeData,
     required this.children,
   }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
@@ -94,7 +87,7 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 14),
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

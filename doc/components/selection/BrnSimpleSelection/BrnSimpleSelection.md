@@ -38,6 +38,7 @@ BrnSimpleSelection.radio({
   required this.items,
   required this.onSimpleSelectionChanged,
   this.onMenuItemClick,
+  this.themeData,
 })  : this.isRadio = true,
       this.maxSelectedCount = BrnSelectionConstant.maxSelectCount,
       super(key: key);
@@ -55,6 +56,7 @@ BrnSimpleSelection.checkbox({
   required this.items,
   required this.onSimpleSelectionChanged,
   this.onMenuItemClick,
+  this.themeData,
 })  : this.isRadio = false,
       super(key: key);
 ```
@@ -73,6 +75,7 @@ BrnSimpleSelection.checkbox({
 | onSimpleSelectionChanged | BrnSimpleSelectionOnSelectionChanged | 选择回调 | 是 |  |
 | onMenuItemClick | VoidCallback? | 菜单点击事件 | 否 | |
 | isRadio | bool | 是否单选  默认 radio模式 is true ， checkbox模式 is false | 否 | radio模式默认true checkbox模式默认false |
+| themeData | BrnSelectionConfig |筛选项配置类|否||
 
 ## 四、代码演示
 

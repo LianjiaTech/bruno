@@ -234,7 +234,7 @@ class BrnRichGridInfo {
           }
         },
         child: Padding(
-          padding: EdgeInsets.only(left: 4),
+          padding: const EdgeInsets.only(left: 4),
           child: Container(
             constraints: BoxConstraints(maxWidth: 56),
             child: Text(clickTitle,

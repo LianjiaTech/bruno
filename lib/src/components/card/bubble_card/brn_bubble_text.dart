@@ -83,11 +83,11 @@ class BrnBubbleText extends StatelessWidget {
                 color: bgColor,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(0),
+                    topLeft: const Radius.circular(0),
                     topRight: Radius.circular(radius),
                     bottomLeft: Radius.circular(radius),
                     bottomRight: Radius.circular(radius))),
-            padding: EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
             child: BrnExpandableText(
               text: text,
               maxLines: maxLines,

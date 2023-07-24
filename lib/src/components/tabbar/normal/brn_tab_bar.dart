@@ -619,6 +619,11 @@ class BrnTabBarState extends State<BrnTabBar> {
                       padding: EdgeInsets.all(0),
                       child: _TabBarOverlayWidget(
                         tabs: widget.tabs,
+                        onTap: (index) {
+                          if (widget.onTap != null) {
+                            widget.onTap!(this, index);
+                          }
+                        },
                         moreWindowText: widget.moreWindowText,
                         brnTabbarController: _brnTabbarController,
                         themeData: widget.themeData!,
@@ -676,8 +681,12 @@ class _TabBarOverlayWidget extends StatefulWidget {
   /// tag高度
   double? tagHeight;
 
+  /// Tab的选中点击事件
+  final ValueChanged<int>? onTap;
+
   _TabBarOverlayWidget(
       {this.tabs,
+      this.onTap,
       this.moreWindowText,
       this.brnTabbarController,
       required this.themeData,
@@ -785,6 +794,9 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
           widget.brnTabbarController?.entry = null;
           setState(() {});
         } else {
+          if (widget.onTap != null) {
+            widget.onTap!(index);
+          }
           widget.brnTabbarController!.setSelectIndex(index);
           widget.brnTabbarController?.isShow = false;
           widget.brnTabbarController?.entry?.remove();

@@ -91,10 +91,10 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     _appBarConfig = BrnThemeConfigurator.instance
         .getConfig(configId: widget.themeData!.configId)
         .appBarConfig
-        .merge(BrnAppBarConfig(
+        .merge(widget.themeData!.appbarConfig).merge(BrnAppBarConfig(
             titleStyle: widget.themeData!.appbarTitleStyle,
             backgroundColor: widget.themeData!.appbarBackgroundColor,
-            actionsStyle: widget.themeData!.appbarActionStyle));
+            actionsStyle: widget.themeData!.appbarActionStyle,));
 
     // 打平 tabBar
     _tabBarConfig = BrnThemeConfigurator.instance
@@ -254,7 +254,6 @@ class _BrnGalleryDetailPageState extends State<BrnGalleryDetailPage>
     return Scaffold(
       key: GlobalKey(),
       appBar: BrnAppBar(
-        brightness: widget.themeData!.appbarBrightness,
         backgroundColor: _appBarConfig!.backgroundColor,
         showDefaultBottom: false,
         themeData: _appBarConfig,
