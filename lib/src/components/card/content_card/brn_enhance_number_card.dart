@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/constants/brn_strings_constants.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
@@ -237,35 +235,38 @@ class BrnEnhanceNumberCard extends StatelessWidget {
       style: config.descTextStyle.generateTextStyle(),
       overflow: TextOverflow.ellipsis,
     );
+    Widget? icon;
     if (model.iconTapCallBack != null) {
-      Widget icon = BrunoTools.getAssetSizeImage(BrnAsset.iconQuestion, 14, 14);
+      icon = BrunoTools.getAssetSizeImage(BrnAsset.iconQuestion, 14, 14);
 
       if (model.numberInfoIcon == BrnNumberInfoIcon.arrow) {
         icon = BrunoTools.getAssetSizeImage(BrnAsset.iconRightArrow, 14, 14);
       }
       debugPrint('${tp.height}');
       debugPrint(model.title);
-      text = Row(
-        mainAxisAlignment: itemTextAlign == TextAlign.center
-            ? MainAxisAlignment.center
-            : (itemTextAlign == TextAlign.right
-                ? MainAxisAlignment.end
-                : MainAxisAlignment.start),
-        crossAxisAlignment:
-            tp.height > 22 ? CrossAxisAlignment.end : CrossAxisAlignment.center,
-        children: <Widget>[
-          Flexible(
-            child: text,
-          ),
+    }
+    text = Row(
+      mainAxisAlignment: itemTextAlign == TextAlign.center
+          ? MainAxisAlignment.center
+          : (itemTextAlign == TextAlign.right
+              ? MainAxisAlignment.end
+              : MainAxisAlignment.start),
+      crossAxisAlignment:
+          tp.height > 22 ? CrossAxisAlignment.end : CrossAxisAlignment.center,
+      children: <Widget>[
+        Flexible(
+          child: text,
+        ),
+        if (icon != null)
           GestureDetector(
             onTap: () {
               model.iconTapCallBack!(model);
             },
             child: icon,
           )
-        ],
-      );
-    }
+      ],
+    );
+
     return text;
   }
 
