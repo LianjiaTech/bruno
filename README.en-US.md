@@ -29,7 +29,7 @@ An enterprise-class package of Flutter components for mobile applications.
 
 Bruno invites you to participate in the research! We will plan the roadmap according to your feedback. A community group has also been set up for developers to communicate and welcome to join:point_down:.
 
-<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664527706459.png"  /><img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664526385904.png"  /> 
+<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664527706459.png"  /><img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664526385904.png"  />
 
 
 ## ✨ Features

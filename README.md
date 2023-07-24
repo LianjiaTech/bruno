@@ -25,7 +25,7 @@
 
 **Bruno 项目组诚邀用户参与调研反馈，我们珍视每一位用户的建议并纳入到后续规划中。同时为了增进 Bruno 用户间交流要求，我们建立了社区群，欢迎大家加入**:point_down:
 
-<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664527706459.png"  /><img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664526385904.png"  /> 
+<img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664527706459.png"  /><img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664526385904.png"  />
 
 
 
