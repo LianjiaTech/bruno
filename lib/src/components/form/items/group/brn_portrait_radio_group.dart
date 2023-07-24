@@ -99,7 +99,7 @@ class BrnPortraitRadioGroupState extends State<BrnPortraitRadioGroup> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: getRadioList(widget.options),

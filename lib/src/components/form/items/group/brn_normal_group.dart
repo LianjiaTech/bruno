@@ -61,6 +61,7 @@ class BrnNormalFormGroup extends StatefulWidget {
     this.onRemoveTap,
     this.onTip,
     this.deleteLabel,
+    this.themeData,
     required this.children,
   }) : super(key: key) {
     this.themeData ??= BrnFormItemConfig();
@@ -86,7 +87,7 @@ class BrnNormalFormGroupState extends State<BrnNormalFormGroup> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 14),
-      color: Colors.white,
+      color: widget.themeData!.backgroundColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
