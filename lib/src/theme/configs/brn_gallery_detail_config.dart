@@ -244,7 +244,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     _appbarActionStyle = galleryDetailConfig.appbarActionStyle.merge(
       _appbarActionStyle,
     );
-    _appbarConfig ??= galleryDetailConfig._appbarConfig;
+    _appbarConfig ??= galleryDetailConfig.appbarConfig;
     _appbarBackgroundColor ??= galleryDetailConfig.appbarBackgroundColor;
     _tabBarUnSelectedLabelStyle = galleryDetailConfig.tabBarUnSelectedLabelStyle
         .merge(BrnTextStyle(fontSize: commonConfig.fontSizeSubHead))

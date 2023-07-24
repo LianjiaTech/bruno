@@ -138,8 +138,6 @@ class BrnAppBar extends PreferredSize {
   final bool? showDefaultBottom;
   final bool showLeadingDivider;
   final BrnAppBarConfig? themeData;
-  final TextStyle? toolbarTextStyle;
-  final TextStyle? titleTextStyle;
   final SystemUiOverlayStyle? systemOverlayStyle;
 
   BrnAppBar(
@@ -167,8 +165,6 @@ class BrnAppBar extends PreferredSize {
       this.excludeHeaderSemantics = false,
       this.primary = true,
       this.systemOverlayStyle,
-      this.titleTextStyle,
-      this.toolbarTextStyle,
       this.titleSpacing})
       : assert(
             actions == null || actions is Widget || (actions is List<Widget>)),
@@ -193,8 +189,6 @@ class BrnAppBar extends PreferredSize {
       this.excludeHeaderSemantics = false,
       this.primary = true,
       this.systemOverlayStyle,
-      this.titleTextStyle,
-      this.toolbarTextStyle,
       this.titleSpacing})
       : this.actions = null,
         this.elevation = 0,
@@ -246,8 +240,7 @@ class BrnAppBar extends PreferredSize {
   }
 
   PreferredSizeWidget? _buildBarBottom(BrnAppBarConfig defaultConfig) {
-    if (defaultConfig == null ||
-        defaultConfig.systemOverlayStyle.statusBarBrightness ==
+    if (defaultConfig.systemOverlayStyle.statusBarBrightness ==
             Brightness.light) {
       if (bottom == null && defaultConfig.showDefaultBottom) {
         return BrnBarBottomDivider();
@@ -298,8 +291,6 @@ class BrnAppBar extends PreferredSize {
       shape: shape,
       iconTheme: iconTheme,
       actionsIconTheme: actionsIconTheme,
-      toolbarTextStyle: toolbarTextStyle,
-      titleTextStyle: titleTextStyle,
       primary: primary,
       excludeHeaderSemantics: excludeHeaderSemantics,
     );
