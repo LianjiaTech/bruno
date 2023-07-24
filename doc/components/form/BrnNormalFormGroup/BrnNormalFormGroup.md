@@ -38,13 +38,13 @@ BrnNormalFormGroup({
   this.label,
   this.title = "",
   this.subTitle,
-  this.tipLabel,
   this.error = "",
   this.isEdit = true,
   this.isRequire = false,
   this.onRemoveTap,
   this.onTip,
   this.deleteLabel,
+  this.themeData,
   required this.children,
 }) : super(key: key) {
   this.themeData ??= BrnFormItemConfig();
