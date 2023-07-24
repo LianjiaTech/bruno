@@ -233,8 +233,9 @@ class BrnAppBar extends PreferredSize {
     } else if (brightness == Brightness.dark) {
       _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.dark());
     }
-    _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(backgroundColor: this.backgroundColor, showDefaultBottom: this.showDefaultBottom));
+    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
+        backgroundColor: this.backgroundColor,
+        showDefaultBottom: this.showDefaultBottom));
 
     _defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: _defaultConfig.configId)
@@ -259,19 +260,33 @@ class BrnAppBar extends PreferredSize {
   @override
   Widget get child {
     BrnAppBarConfig _defaultConfig = themeData ?? BrnAppBarConfig();
+    BrnAppBarConfig globalAppBarConfig = BrnThemeConfigurator.instance
+        .getConfig(configId: _defaultConfig.configId)
+        .appBarConfig;
+    BrnAppBarConfig _appBarConfig = globalAppBarConfig.merge(
+      BrnAppBarConfig(backgroundColor: backgroundColor),
+    );
     //当外部传入主题
     if (brightness == Brightness.light) {
-      _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.light());
+      _appBarConfig = _appBarConfig.merge(
+        BrnAppBarConfig.light(
+          titleStyle: globalAppBarConfig.titleStyle,
+          actionsStyle: globalAppBarConfig.actionsStyle,
+          leadIconBuilder: globalAppBarConfig.leadIconBuilder,
+          backgroundColor: backgroundColor,
+        ),
+      );
     } else if (brightness == Brightness.dark) {
-      _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.dark());
+      _appBarConfig = _appBarConfig.merge(
+        BrnAppBarConfig.dark(
+          titleStyle: globalAppBarConfig.titleStyle,
+          actionsStyle: globalAppBarConfig.actionsStyle,
+          leadIconBuilder: globalAppBarConfig.leadIconBuilder,
+          backgroundColor: backgroundColor,
+        ),
+      );
     }
-    _defaultConfig =
-        _defaultConfig.merge(BrnAppBarConfig(backgroundColor: backgroundColor));
-
-    _defaultConfig = BrnThemeConfigurator.instance
-        .getConfig(configId: _defaultConfig.configId)
-        .appBarConfig
-        .merge(_defaultConfig);
+    _defaultConfig = globalAppBarConfig.merge(themeData).merge(_appBarConfig);
 
     Widget? flexibleSpace;
     if (this.flexibleSpace != null) {
@@ -624,8 +639,7 @@ class _BrnSearchResultAppBar extends StatelessWidget {
       _defaultConfig = _defaultConfig.merge(BrnAppBarConfig.dark());
     }
 
-    _defaultConfig = _defaultConfig
-        .merge(BrnAppBarConfig(
+    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
       backgroundColor: this.backgroundColor,
       showDefaultBottom: this.showDefaultBottom,
     ));
