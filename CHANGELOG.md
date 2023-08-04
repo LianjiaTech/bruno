@@ -1,3 +1,21 @@
+## [3.4.1] - 2023-8-4
+
+### Changed
+
+#### base
+
+- Fix dart analysis check warning.
+
+#### components
+
+- **Breaking change**: remove deprecated  attribute <code>fontSize</code> in  <code>BrnIconButton</code>, use <code>style</code> instead .
+
+- **Breaking change**: in order to optimize the use of <code>MediaQueryData.fromWindow</code> and replace it with the official suggested api, add attribute <code> context </code> to the <code>keyOrValueLastQuestionInfo</code> method and <code>valueLastClickInfo</code> method in <code>BrnInfoModal</code>.
+
+- **Breaking change**: remove deprecated  attribute <code>isShowXDial</code>in <code>BrnPointsLine</code>, use <code>isShowXDial</code> in <code>BrnLinePainter</code> instead.
+
+
+
 ## [3.4.0] - 2023-7-24
 
 ### Changed
