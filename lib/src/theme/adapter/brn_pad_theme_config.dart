@@ -15,7 +15,7 @@ import '../configs/brn_tag_config.dart';
 class BrnPadThemeConfig {
   ///  默认全局配置
   static BrnAllThemeConfig allConfig = BrnAllThemeConfig(
-      commonConfig: CommonConfig,
+      commonConfig: commonConfig,
       formItemConfig: formItemConfig,
       dialogConfig: dialogConfig,
       appBarConfig: appbarConfig,
@@ -26,7 +26,7 @@ class BrnPadThemeConfig {
       tagConfig: tagConfig);
 
   /// 全局默认配置
-  static BrnCommonConfig CommonConfig = BrnCommonConfig(
+  static BrnCommonConfig commonConfig = BrnCommonConfig(
     /// 主题色相关
     brandPrimary: const Color(0xFF3072F6),
     brandPrimaryTap: const Color(0x193072F6),

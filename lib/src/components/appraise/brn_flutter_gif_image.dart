@@ -129,7 +129,7 @@ class GifImageState extends State<GifImage> {
       AssetBundleImageKey key = await provider.obtainKey(ImageConfiguration());
       data = await key.bundle.load(key.name);
       ui.Codec codec = await usePaintingBinding()
-          .instantiateImageCodec(data.buffer.asUint8List());
+          .instantiateImageCodecWithSize(data.buffer.asUint8List());
       for (int i = 0; i < codec.frameCount; i++) {
         FrameInfo frameInfo = await codec.getNextFrame();
         infos.add(ImageInfo(image: frameInfo.image));

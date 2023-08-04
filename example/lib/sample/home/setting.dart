@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../l10n/l10n.dart';
 
 class Setting extends StatelessWidget {
-  GlobalKey _localKey = GlobalKey();
-  GlobalKey _themeKey = GlobalKey();
+  final GlobalKey _localKey = GlobalKey();
+  final GlobalKey _themeKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {

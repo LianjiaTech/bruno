@@ -26,7 +26,7 @@ class _TextContentExampleState extends State<TextContentExample> {
       BrnInfoModal(
           keyPart: "名称名称名称名称：",
           valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
-      BrnInfoModal.valueLastClickInfo("名称名：", '内容内容内容内容内容', '可点击内容',
+      BrnInfoModal.valueLastClickInfo(context,"名称名：", '内容内容内容内容内容', '可点击内容',
           clickCallback: (text) {
         BrnToast.show(text!, context);
       })
@@ -239,7 +239,7 @@ class _TextContentExampleState extends State<TextContentExample> {
                   BrnInfoModal(
                       keyPart: "名称名称名称名称：",
                       valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
-                  BrnInfoModal.valueLastClickInfo(
+                  BrnInfoModal.valueLastClickInfo(context,
                       "名称名：", '11111111', '22222222', clickCallback: (text) {
                     BrnToast.show(text!, context);
                   }),
@@ -266,7 +266,7 @@ class _TextContentExampleState extends State<TextContentExample> {
                 BrnInfoModal(
                     keyPart: "名称名称名称名称：",
                     valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
-                BrnInfoModal.valueLastClickInfo("名称名：", '内容内容内容内容内容', '可点击内容',
+                BrnInfoModal.valueLastClickInfo(context,"名称名：", '内容内容内容内容内容', '可点击内容',
                     clickCallback: (text) {
                   BrnToast.show(text!, context);
                 }),
@@ -401,7 +401,7 @@ class _TextContentExampleState extends State<TextContentExample> {
                     keyPart: "11111111111111111111111111111111111：",
                     valuePart: "内容内容内容内容内容"),
                 BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
-                BrnInfoModal.valueLastClickInfo(
+                BrnInfoModal.valueLastClickInfo(context,
                     "名称十分的长名称十分的长名称十分的长名称十分的长：", '内容内容内容内容内容', '可点击内容',
                     clickCallback: (text) {
                   BrnToast.show(text!, context);
@@ -425,7 +425,7 @@ class _TextContentExampleState extends State<TextContentExample> {
                 BrnInfoModal(
                     keyPart: "名称名称名：",
                     valuePart: "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"),
-                BrnInfoModal.valueLastClickInfo(
+                BrnInfoModal.valueLastClickInfo(context,
                     "名称十分的长名称十分的长名称十分的长名称十分的长：",
                     '内容内容内容内容内容',
                     '可点击内容可点击内容可点击内容可点击内容可点击内容可点击内容', clickCallback: (text) {

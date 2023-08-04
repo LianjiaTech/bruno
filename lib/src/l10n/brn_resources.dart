@@ -33,11 +33,11 @@ abstract class BrnBaseResource {
 
   List<String> get appriseLevel;
 
-  String get dateFormate_yyyy_MM;
+  String get dateFormatYYYYMM;
 
-  String get dateFormate_yyyy_MM_dd;
+  String get dateFormatYYYYMMDD;
 
-  String get dateFormate_yyyy_MMMM_dd;
+  String get dateFormatYYYYMMMMDD;
 
   String get expand;
 
@@ -175,13 +175,13 @@ class BrnResourceZh extends BrnBaseResource {
       ];
 
   @override
-  String get dateFormate_yyyy_MM => 'yyyy年MM月';
+  String get dateFormatYYYYMM => 'yyyy年MM月';
 
   @override
-  String get dateFormate_yyyy_MM_dd => 'yyyy年MM月dd日';
+  String get dateFormatYYYYMMDD => 'yyyy年MM月dd日';
 
   @override
-  String get dateFormate_yyyy_MMMM_dd => 'yyyy年,MMMM月,dd日';
+  String get dateFormatYYYYMMMMDD => 'yyyy年,MMMM月,dd日';
 
   @override
   String get expand => '展开';
@@ -404,13 +404,13 @@ class BrnResourceEn extends BrnBaseResource {
       ];
 
   @override
-  String get dateFormate_yyyy_MM => 'MM/yyyy';
+  String get dateFormatYYYYMM => 'MM/yyyy';
 
   @override
-  String get dateFormate_yyyy_MM_dd => 'dd/MM/yyyy';
+  String get dateFormatYYYYMMDD => 'dd/MM/yyyy';
 
   @override
-  String get dateFormate_yyyy_MMMM_dd => 'dd/MMMM/yyyy';
+  String get dateFormatYYYYMMMMDD => 'dd/MMMM/yyyy';
 
   @override
   String get expand => 'Expand';
