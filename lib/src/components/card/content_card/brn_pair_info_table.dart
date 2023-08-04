@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui' as ui;
 
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
@@ -741,6 +740,7 @@ class BrnInfoModal {
   /// clickCallback 可点击文案点击的回调
   /// isArrow 是否最右侧存在箭头
   static BrnInfoModal valueLastClickInfo(
+      BuildContext context,
     String keyTitle,
     String valueTitle,
     String clickValue, {
@@ -832,6 +832,7 @@ class BrnInfoModal {
   /// valueCallback value的小问号点击的回调
   ///   /// isArrow 是否最右侧存在箭头
   static BrnInfoModal keyOrValueLastQuestionInfo(
+  BuildContext context,
     String keyTitle,
     String valueTitle, {
     bool keyShow = false,
@@ -862,7 +863,7 @@ class BrnInfoModal {
     dynamic keyWidget;
 
     if (isArrow) {
-      MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
+      MediaQueryData mediaQuery = MediaQueryData.fromView(View.of(context));
       double screen = mediaQuery.size.width;
 
       if (keyShow) {

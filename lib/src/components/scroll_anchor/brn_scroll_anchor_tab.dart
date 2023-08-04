@@ -209,7 +209,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
   //根据偏移量 确定tab索引
   int createIndex(double offset) {
-    int index = widget.itemCount - 1;;
+    int index = widget.itemCount - 1;
     for (int i = 0; i < widget.itemCount - 1; i++) {
       if (offset >= _cardOffsetList[i] && (offset <= _cardOffsetList[i + 1])) {
         return i;

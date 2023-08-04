@@ -318,13 +318,6 @@ class BrnLinePainter extends BrnBasePainter {
       //绘制x轴的文字部分
       if (isShowXDial) {
         _drawXRuler(canvas, paint..color = xDialColor!);
-      } else {
-        // 此处兼容之前 item.isShowXDial属性，建议使用全局isShowXDial
-        for (var item in lines) {
-          if (item.isShowXDial) {
-            _drawXRuler(canvas, paint..color = xDialColor!);
-          }
-        }
       }
     }
   }

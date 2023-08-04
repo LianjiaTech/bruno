@@ -58,7 +58,7 @@ class _TextValueArrowContentExampleState
                     valueClickCallback: () {
                       BrnToast.show('内容内容内容内容', context);
                     }),
-                BrnInfoModal.keyOrValueLastQuestionInfo("名称名称名称", "内容内容内容内容内容",
+                BrnInfoModal.keyOrValueLastQuestionInfo(context,"名称名称名称", "内容内容内容内容内容",
                     keyShow: true,
                     valueShow: true,
                     keyCallback: () {
@@ -71,7 +71,7 @@ class _TextValueArrowContentExampleState
                     valueClickCallback: () {
                       BrnToast.show('内容内容内容内容', context);
                     }),
-                BrnInfoModal.valueLastClickInfo("名称名称名称", "内容内容内容内容内容", "超链接",
+                BrnInfoModal.valueLastClickInfo(context,"名称名称名称", "内容内容内容内容内容", "超链接",
                     clickCallback: (value) {
                       BrnToast.show(value!, context);
                     },
@@ -105,7 +105,7 @@ class _TextValueArrowContentExampleState
                     valueClickCallback: () {
                       BrnToast.show('内容内容内容内容', context);
                     }),
-                BrnInfoModal.keyOrValueLastQuestionInfo("名称名称名称", "内容内容内容内容内容",
+                BrnInfoModal.keyOrValueLastQuestionInfo(context,"名称名称名称", "内容内容内容内容内容",
                     keyShow: true,
                     valueShow: true,
                     keyCallback: () {
@@ -118,7 +118,7 @@ class _TextValueArrowContentExampleState
                     valueClickCallback: () {
                       BrnToast.show('内容内容内容内容', context);
                     }),
-                BrnInfoModal.valueLastClickInfo("名称名称名称", "内容内容内容内容内容", "超链接",
+                BrnInfoModal.valueLastClickInfo(context,"名称名称名称", "内容内容内容内容内容", "超链接",
                     clickCallback: (value) {
                       BrnToast.show(value!, context);
                     },
@@ -152,7 +152,7 @@ class _TextValueArrowContentExampleState
                     valueClickCallback: () {
                       BrnToast.show('内容内容内容内容', context);
                     }),
-                BrnInfoModal.keyOrValueLastQuestionInfo(
+                BrnInfoModal.keyOrValueLastQuestionInfo(context,
                     "名称名称名称名称名称名名称名称名称名称", "内容内容内容内容内容",
                     keyShow: true,
                     valueShow: true,
@@ -192,7 +192,7 @@ class _TextValueArrowContentExampleState
                     valueClickCallback: () {
                       BrnToast.show('内容内容内容内容', context);
                     }),
-                BrnInfoModal.keyOrValueLastQuestionInfo(
+                BrnInfoModal.keyOrValueLastQuestionInfo(context,
                     "名称名称名称名称名称名名称名称名称名称", "内容内容内容内容内容",
                     keyShow: true,
                     valueShow: true,
@@ -232,7 +232,7 @@ class _TextValueArrowContentExampleState
                     valueClickCallback: () {
                       BrnToast.show('内容内容内容内容', context);
                     }),
-                BrnInfoModal.keyOrValueLastQuestionInfo(
+                BrnInfoModal.keyOrValueLastQuestionInfo(context,
                     "名称名称名", "内容内容内容内容内容内容内容内容内容内容",
                     keyShow: true,
                     valueShow: true,
@@ -272,7 +272,7 @@ class _TextValueArrowContentExampleState
                     valueClickCallback: () {
                       BrnToast.show('内容内容内容内容', context);
                     }),
-                BrnInfoModal.keyOrValueLastQuestionInfo(
+                BrnInfoModal.keyOrValueLastQuestionInfo(context,
                     "名称名称名", "内容内容内容内容内容内容内容内容内容内容",
                     keyShow: true,
                     valueShow: true,
