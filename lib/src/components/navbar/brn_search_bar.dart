@@ -28,6 +28,7 @@ typedef BrnSearchBarInputSubmitCallback = Function(String input);
 /// 该组件是[BrnAppBar]的特例包装，
 /// 实现的思路是：将[BrnAppBar.title]设置为textField
 /// 更多信息 请查看[BrnAppBar]
+//ignore: must_be_immutable
 class BrnSearchAppbar extends PreferredSize {
   /// 搜索框的文本输入控制器
   final TextEditingController? controller;
@@ -106,7 +107,7 @@ class BrnSearchAppbar extends PreferredSize {
         systemOverlayStyle: systemOverlayStyle,
         automaticallyImplyLeading: false,
         themeData: themeData,
-        title: _createSearchChild(),
+        title: _createSearchChild(themeData!),
       );
 
   @override
@@ -119,7 +120,7 @@ class BrnSearchAppbar extends PreferredSize {
     return super.build(context);
   }
 
-  Widget _createSearchChild() {
+  Widget _createSearchChild(BrnAppBarConfig themeData) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -142,12 +143,13 @@ class BrnSearchAppbar extends PreferredSize {
           dismissStyle: dismissStyle,
           showDivider: showDivider,
           clearTapCallback: onClearTap,
+              themeData: themeData,
         )),
       ],
     );
   }
 }
-
+//ignore: must_be_immutable
 class _SearchInputWidget extends StatefulWidget {
   final FocusNode? focusNode;
   final TextEditingController? textEditingController;
@@ -156,14 +158,15 @@ class _SearchInputWidget extends StatefulWidget {
   final dynamic leading;
   final BrnSearchBarInputChangeCallback? searchBarInputChangeCallback;
   final BrnSearchBarInputSubmitCallback? searchBarInputSubmitCallback;
-  String? hint;
+  final String? hint;
   final TextStyle? hintStyle;
   final TextStyle? inputTextStyle;
   final TextStyle? dismissStyle;
   final bool showDivider;
   final bool autoFocus;
   final VoidCallback? clearTapCallback;
-  final Brightness? brightness;
+
+  BrnAppBarConfig? themeData;
 
   _SearchInputWidget(
       {this.focusNode,
@@ -180,7 +183,7 @@ class _SearchInputWidget extends StatefulWidget {
       this.autoFocus = true,
       this.dismissStyle,
       this.clearTapCallback,
-      this.brightness});
+      this.themeData});
 
   @override
   __SearchInputWidgetState createState() => __SearchInputWidgetState();
@@ -204,7 +207,7 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
 
     valueNotifier = ValueNotifier(false);
     _focusNode.addListener(_handleFocusChangeListenerTick);
-    if (widget.brightness == Brightness.dark) {
+    if (widget.themeData?.systemOverlayStyle.statusBarBrightness == Brightness.dark) {
       _defaultDividerColor = Colors.white.withOpacity(0.2);
       _defaultHintTextColor = Colors.white.withOpacity(0.4);
       _defaultInputTextColor = Colors.white;

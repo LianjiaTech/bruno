@@ -39,7 +39,7 @@ class BrnAppraise extends StatefulWidget {
   /// 自定义文案
   /// 若评分组件为表情，则list长度为5，不足5个时请在对应位置补空字符串
   /// 若评分组件为星星，则list长度不能比count小
-  List<String>? iconDescriptions;
+  final List<String>? iconDescriptions;
 
   /// 标签
   final List<String>? tags;

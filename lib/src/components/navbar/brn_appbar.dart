@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:bindings_compatible/bindings_compatible.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -236,37 +234,12 @@ class BrnAppBar extends PreferredSize {
     useWidgetsBinding().addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(_defaultConfig.systemOverlayStyle);
     });
-    return super.build(context);
-  }
-
-  PreferredSizeWidget? _buildBarBottom(BrnAppBarConfig defaultConfig) {
-    if (defaultConfig.systemOverlayStyle.statusBarBrightness ==
-            Brightness.light) {
-      if (bottom == null && defaultConfig.showDefaultBottom) {
-        return BrnBarBottomDivider();
-      }
-    }
-    return bottom;
-  }
-
-  @override
-  Widget get child {
-    BrnAppBarConfig _defaultConfig = themeData ?? BrnAppBarConfig();
-    //当外部传入主题
-    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
-        backgroundColor: backgroundColor,
-        systemUiOverlayStyle: systemOverlayStyle));
-
-    _defaultConfig = BrnThemeConfigurator.instance
-        .getConfig(configId: _defaultConfig.configId)
-        .appBarConfig
-        .merge(_defaultConfig);
 
     Widget? flexibleSpace;
     if (this.flexibleSpace != null) {
       flexibleSpace = Container(
         height: _defaultConfig.appBarHeight +
-            MediaQueryData.fromWindow(window).padding.top,
+            MediaQueryData.fromView(View.of(context)).padding.top,
         child: this.flexibleSpace,
       );
     }
@@ -294,6 +267,16 @@ class BrnAppBar extends PreferredSize {
       primary: primary,
       excludeHeaderSemantics: excludeHeaderSemantics,
     );
+  }
+
+  PreferredSizeWidget? _buildBarBottom(BrnAppBarConfig defaultConfig) {
+    if (defaultConfig.systemOverlayStyle.statusBarBrightness ==
+            Brightness.light) {
+      if (bottom == null && defaultConfig.showDefaultBottom) {
+        return BrnBarBottomDivider();
+      }
+    }
+    return bottom;
   }
 
   // 根据输入的leading 设置默认的leadingWidth
@@ -585,7 +568,6 @@ class _BrnSearchResultAppBar extends StatelessWidget {
   final String? title;
   final Color? backgroundColor;
   final PreferredSizeWidget? bottom;
-  final Brightness? brightness;
   final bool showLeadingDivider;
   final Widget? flexibleSpace;
   final VoidCallback? backLeadCallback;
@@ -596,7 +578,6 @@ class _BrnSearchResultAppBar extends StatelessWidget {
       this.backgroundColor,
       this.bottom,
       this.title,
-      this.brightness,
       this.showLeadingDivider = true,
       this.flexibleSpace,
       this.backLeadCallback,
