@@ -117,7 +117,7 @@ class BrnConvert {
         if (stack.isNotEmpty) {
           tag = stack.last;
         }
-        TextSpan textSpan = _createTextSpan(xmlEvent.text, tag);
+        TextSpan textSpan = _createTextSpan(xmlEvent.value, tag);
         spans.add(textSpan);
       }
 

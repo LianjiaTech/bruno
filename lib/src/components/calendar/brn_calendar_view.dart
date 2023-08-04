@@ -222,7 +222,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
             Expanded(
               child: Center(
                 child: Text(
-                  DateFormat(BrnIntl.of(context).localizedResource.dateFormate_yyyy_MM).format(_currentDate),
+                  DateFormat(BrnIntl.of(context).localizedResource.dateFormatYYYYMM).format(_currentDate),
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,

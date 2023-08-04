@@ -46,15 +46,15 @@ class _BrnTwoRichContentExampleState extends State<BrnTwoRichContentExample> {
                 BrnRichGridInfo("名称：", '内容内容内容内容'),
                 BrnRichGridInfo("名称：", '内容内容内容'),
                 BrnRichGridInfo("名称：", '内容内容'),
-                BrnRichGridInfo.valueLastClickInfo('名称', '内容内容',
+                BrnRichGridInfo.valueLastClickInfo(context,'名称', '内容内容',
                     keyQuestionCallback: (value) {
                   BrnToast.show(value, context);
                 }),
-                BrnRichGridInfo.valueLastClickInfo('名称', '内容内容',
+                BrnRichGridInfo.valueLastClickInfo(context,'名称', '内容内容',
                     valueQuestionCallback: (value) {
                   BrnToast.show(value, context);
                 }),
-                BrnRichGridInfo.valueLastClickInfo('名称', '内容内容',
+                BrnRichGridInfo.valueLastClickInfo(context,'名称', '内容内容',
                     valueQuestionCallback: (value) {
                       BrnToast.show(value, context);
                     },
@@ -62,7 +62,7 @@ class _BrnTwoRichContentExampleState extends State<BrnTwoRichContentExample> {
                     clickCallback: (value) {
                       BrnToast.show(value, context);
                     }),
-                BrnRichGridInfo.valueLastClickInfo('名称', '内容内容',
+                BrnRichGridInfo.valueLastClickInfo(context,'名称', '内容内容',
                     clickTitle: "可点击内容", clickCallback: (value) {
                   BrnToast.show(value, context);
                 }),
@@ -77,7 +77,7 @@ class _BrnTwoRichContentExampleState extends State<BrnTwoRichContentExample> {
             ),
             BrnRichInfoGrid(
               pairInfoList: <BrnRichGridInfo>[
-                BrnRichGridInfo.valueLastClickInfo('名称名称名称名称名称名称名称', '内容内容',
+                BrnRichGridInfo.valueLastClickInfo(context,'名称名称名称名称名称名称名称', '内容内容',
                     keyQuestionCallback: (value) {
                   BrnToast.show(value, context);
                 }),
@@ -95,7 +95,7 @@ class _BrnTwoRichContentExampleState extends State<BrnTwoRichContentExample> {
             ),
             BrnRichInfoGrid(
               pairInfoList: <BrnRichGridInfo>[
-                BrnRichGridInfo.valueLastClickInfo(
+                BrnRichGridInfo.valueLastClickInfo(context,
                     '名称名称', '内容内容内容内容内容内容内容内容内容内容内容',
                     keyQuestionCallback: (value) {
                   BrnToast.show(value, context);
@@ -115,7 +115,7 @@ class _BrnTwoRichContentExampleState extends State<BrnTwoRichContentExample> {
             BrnRichInfoGrid(
               pairInfoList: <BrnRichGridInfo>[
                 BrnRichGridInfo("名称名称：", '内容内容内容内容'),
-                BrnRichGridInfo.valueLastClickInfo(
+                BrnRichGridInfo.valueLastClickInfo(context,
                     "名称名称名称名称名称名称名称名称名称：", '内容内容内容内容内容内容内容内容内容内容内容'),
                 BrnRichGridInfo("名称：", '内容内容'),
                 BrnRichGridInfo("名称：", '内容'),
@@ -131,7 +131,7 @@ class _BrnTwoRichContentExampleState extends State<BrnTwoRichContentExample> {
             BrnRichInfoGrid(
               pairInfoList: <BrnRichGridInfo>[
                 BrnRichGridInfo("名称名称：", '内容内容内容内容'),
-                BrnRichGridInfo.valueLastClickInfo("名称名称名", '内容内容内容',
+                BrnRichGridInfo.valueLastClickInfo(context,"名称名称名", '内容内容内容',
                     clickTitle: '可点击内容可点击内容可点击内容',
                     valueQuestionCallback: (value) {
                   BrnToast.show(value, context);

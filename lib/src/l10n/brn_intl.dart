@@ -106,37 +106,6 @@ class _BrnIntlHelper {
     return null;
   }
 
-  ///
-  /// 根据 locale 查找Type为[T]的资源
-  ///
-  static T? findIntlResourceOfExactType<T>(Locale locale) {
-    Map<Type, dynamic>? res = _additionalIntls[locale];
-    if (res != null && res.isNotEmpty) {
-      for (var entry in res.entries) {
-        if (entry.key == T) {
-          return entry.value;
-        }
-      }
-    }
-    return null;
-  }
-
-  ///
-  /// 根据 locale 查找 value 类型为 T 的一系列资源
-  ///
-  static Iterable<T>? findIntlResourcesOfType<T>(Locale locale) {
-    final res = _additionalIntls[locale];
-    if (res != null && res.isNotEmpty) {
-      List<T> resources = [];
-      for (var entry in res.entries) {
-        if (entry.value is T) {
-          resources.add(entry.value);
-        }
-      }
-      return resources;
-    }
-    return null;
-  }
 
   ///
   /// 设置自定义 locale 的资源

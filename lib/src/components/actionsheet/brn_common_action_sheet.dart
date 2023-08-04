@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_action_sheet_config.dart';
@@ -108,7 +106,7 @@ class BrnCommonActionSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    EdgeInsets padding = MediaQueryData.fromWindow(window).padding;
+    EdgeInsets padding = MediaQueryData.fromView(View.of(context)).padding;
     double maxHeight =
         MediaQuery.of(context).size.height - padding.top - padding.bottom;
 

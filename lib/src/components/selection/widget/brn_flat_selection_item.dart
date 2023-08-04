@@ -341,7 +341,7 @@ class __FilterCommonTypeWidgetState extends State<_FilterCommonTypeWidget> {
         pickerMode: BrnDateTimePickerMode.date,
         pickerTitleConfig: BrnPickerTitleConfig.Default,
         initialDateTime: DateTime.fromMillisecondsSinceEpoch(time),
-        dateFormat: BrnIntl.of(context).localizedResource.dateFormate_yyyy_MMMM_dd, onConfirm: (dateTime, list) {
+        dateFormat: BrnIntl.of(context).localizedResource.dateFormatYYYYMMMMDD, onConfirm: (dateTime, list) {
       if (mounted) {
         setState(() {
           data.parent?.clearSelectedEntity();

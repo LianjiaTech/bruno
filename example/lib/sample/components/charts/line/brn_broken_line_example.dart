@@ -61,11 +61,10 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
             showPointDashLine: true,
             yHintLineOffset: 30,
             isTipWindowAutoDismiss: false,
-            isShowXDial: true,
+            isShowXDial: false,
             lines: [
               BrnPointsLine(
                 isShowPointText: true,
-                isShowXDial: false,
                 lineWidth: 3,
                 pointRadius: 4,
                 isShowPoint: true,
@@ -197,7 +196,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     List<BrnPointsLine> pointsLineList = [];
     _pointsLine = BrnPointsLine(
       isShowPointText: true,
-      isShowXDial: true,
       lineWidth: 3,
       pointRadius: 4,
       isShowPoint: false,
@@ -257,7 +255,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     );
     _pointsLine1 = BrnPointsLine(
       isShowPointText: true,
-      isShowXDial: true,
       lineWidth: 3,
       pointRadius: 4,
       isShowPoint: false,
@@ -428,7 +425,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     BrnPointsLine pointsLine, _pointsLine2;
     List<BrnPointsLine> pointsLineList = [];
     pointsLine = BrnPointsLine(
-      isShowXDial: true,
       lineWidth: 3,
       pointRadius: 4,
       isShowPoint: true,
@@ -581,7 +577,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     );
 
     _pointsLine2 = BrnPointsLine(
-      isShowXDial: true,
       lineWidth: 3,
       pointRadius: 4,
       isShowPoint: false,
@@ -786,7 +781,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     BrnPointsLine pointsLine, _pointsLine2;
     List<BrnPointsLine> pointsLineList = [];
     pointsLine = BrnPointsLine(
-      isShowXDial: true,
       lineWidth: 3,
       pointRadius: 4,
       isShowPoint: true,
@@ -939,7 +933,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     );
 
     _pointsLine2 = BrnPointsLine(
-      isShowXDial: true,
       lineWidth: 3,
       pointRadius: 4,
       isShowPoint: false,
@@ -1178,7 +1171,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     BrnPointsLine pointsLine, _pointsLine2;
     List<BrnPointsLine> pointsLineList = [];
     pointsLine = BrnPointsLine(
-      isShowXDial: true,
       lineWidth: 3,
       pointRadius: 4,
       pointColor: Colors.blue,
@@ -1340,7 +1332,6 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
     );
 
     _pointsLine2 = BrnPointsLine(
-      isShowXDial: true,
       lineWidth: 3,
       pointRadius: 4,
       isShowPoint: false,

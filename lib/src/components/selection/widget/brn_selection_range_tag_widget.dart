@@ -97,7 +97,7 @@ class _BrnSelectionRangeTagWidgetState
             widget.tagFilterList[nameIndex].value);
         if (dateTime != null) {
           text = DateTimeFormatter.formatDate(
-              dateTime, BrnIntl.of(context).localizedResource.dateFormate_yyyy_MM_dd);
+              dateTime, BrnIntl.of(context).localizedResource.dateFormatYYYYMMDD);
         }
       } else {
         text = widget.tagFilterList[nameIndex].value ?? '';

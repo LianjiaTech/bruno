@@ -222,7 +222,7 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
             break;
         }
         final ColorTween colorTween = ColorTween(
-          begin: textTheme.caption!.color,
+          begin: textTheme.bodySmall!.color,
           end: widget.fixedColor ?? themeColor,
         );
         for (int i = 0; i < widget.items.length; i += 1) {
