@@ -8,11 +8,11 @@
 
 #### components
 
-- **Breaking change**: remove deprecated  attribute <code>fontSize </code>in  <code>BrnIconButton</code>, use <code>style</code> instead .
+- **Breaking change**: remove deprecated  attribute <code>fontSize</code> in  <code>BrnIconButton</code>, use <code>style</code> instead .
 
-- **Breaking change**: in order to optimize the use of <code>MediaQueryData.fromWindow</code> and replace it with the official suggested api, add attribute <code> context </code> to the <code>keyOrValueLastQuestionInfo</code> method and<code>valueLastClickInfo</code> method in <code>BrnInfoModal</code>.
+- **Breaking change**: in order to optimize the use of <code>MediaQueryData.fromWindow</code> and replace it with the official suggested api, add attribute <code> context </code> to the <code>keyOrValueLastQuestionInfo</code> method and <code>valueLastClickInfo</code> method in <code>BrnInfoModal</code>.
 
-- **Breaking change**: remove deprecated  attribute <code>isShowXDial</code>in <code>BrnPointsLine,</code>use <code>isShowXDial</code> in <code>BrnLinePainter</code> instead.
+- **Breaking change**: remove deprecated  attribute <code>isShowXDial</code>in <code>BrnPointsLine</code>, use <code>isShowXDial</code> in <code>BrnLinePainter</code> instead.
 
 
 
