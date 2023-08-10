@@ -1,60 +1,47 @@
 
 
+import 'package:flutter/material.dart';
+
 class BrnPrefixIconType {
+  /// 普通类型 不加任何图标
   static const String normal = "type_normal";
+
+  /// 添加表单类型
   static const String add = "type_add";
+
+  /// 删除表单类型
   static const String remove = "type_remove";
 }
 
-/// 用于描述表单项的类型
-class BrnInputItemType {
-  /// appbar 类型
-  static const String headerNormalType = "header_normal_type";
-
-  /// 表单项类型
-  static const String textInputType = "text_input_type";
-  static const String textFormatInputType = "text_format_input_type";
-  static const String textArrayInputType = "text_array_input_type";
-  static const String textSelectInputType = "text_select_input_type";
-  static const String textBlockInputType = "text_block_input_type";
-  static const String textInputTitleSelectType = "text_input_title_select_type";
-  static const String textRangeInputType = "text_range_input_type";
-  static const String textStepInputType = "text_step_input_type";
-  static const String radioInputType = "radio_input_type";
-  static const String radioPortraitInputType = "radio_column_input_type";
-  static const String multiChoiceInputType = "multi_choice_input_type";
-  static const String multiChoicePortraitInputType =
-      "multi_choice_column_input_type";
-  static const String switchType = "switch_type";
-
-  static const String starInputType = "star_input_type";
-  static const String photoPickerType = "photo_picker_type";
-  static const String expandGroupType = "expand_group_type";
-  static const String normalGroupType = "normal_group_type";
-  static const String textInputRatioType = "text_input_ratio_type";
-
-  static const String textQuickSelectInputType = "text_quick_select_input_type";
-
-  /// bottom类型
-  static const String bottomBtnType = "bottom_btn_type";
-
-  static const String btnType = "btn_type";
-  static const String btnMultiType = "btn_multi_type";
-  static const String btnMultiStateType = "btn_multi_state_type";
-
-  static const String labelTitle = "label_title";
-  static const String labelAdd = "label_add";
-  static const String labelGeneralType = "label_general_type";
-}
-
+///
+/// 输入类型 对应 [TextField] TextInputType
+///
 class BrnInputType {
+
+  /// [TextInputType.text]
   static const String text = "text";
+
+  /// [TextInputType.multiline]
   static const String multiLine = "multiline";
+
+  /// [TextInputType.number]
   static const String number = "number";
+
+  /// [TextInputType.numberWithOptions]  attribute decimal is true
   static const String decimal = "decimal";
+
+  /// [TextInputType.phone]
   static const String phone = "phone";
+
+  /// [TextInputType.datetime]
   static const String date = "datetime";
+
+  /// [TextInputType.emailAddress]
   static const String email = "emailAddress";
+
+  /// [TextInputType.url]
   static const String url = "url";
+
+  /// [TextInputType.visiblePassword]
   static const String pwd = "visiblePassword";
 }

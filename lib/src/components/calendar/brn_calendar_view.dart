@@ -38,6 +38,7 @@ class BrnCalendarView extends StatefulWidget {
             selectMode == SelectMode.range && rangeDateChange != null),
         super(key: key);
 
+  /// 选择时间-单选构造 仅能选择一个日期
   BrnCalendarView.single(
       {Key? key,
       this.displayMode = DisplayMode.month,
@@ -53,6 +54,7 @@ class BrnCalendarView extends StatefulWidget {
         this.rangeDateChange = null,
         super(key: key);
 
+  /// 选择时间-时间范围选择
   BrnCalendarView.range(
       {Key? key,
       this.displayMode = DisplayMode.month,

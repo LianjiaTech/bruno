@@ -80,9 +80,11 @@ class BrnCommonCardTitle extends StatelessWidget {
   /// 注意，由于 subTitleWidget 与 title 是流式布局，所以 subTitleWidget 会折叠
   final TextOverflow titleOverflow;
 
+  /// the theme config of BrnCommonCardTitle
   final BrnCardTitleConfig? themeData;
 
-  BrnCommonCardTitle(
+  /// create BrnCommonCardTitle
+  const BrnCommonCardTitle(
       {Key? key,
       required this.title,
       this.accessoryText,

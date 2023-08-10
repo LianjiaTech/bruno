@@ -63,6 +63,7 @@ class BrnAppraiseConfig {
   /// 选择标签的回调
   final BrnAppraiseTagClick? tagSelectCallback;
 
+  /// create BrnAppraiseConfig
   const BrnAppraiseConfig({
     this.showHeader = true,
     this.headerPadding,

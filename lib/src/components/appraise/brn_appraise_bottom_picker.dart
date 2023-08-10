@@ -35,6 +35,7 @@ class BrnAppraiseBottomPicker extends StatefulWidget {
   /// 评价组件的配置项
   final BrnAppraiseConfig config;
 
+  /// create BrnAppraiseBottomPicker
   BrnAppraiseBottomPicker({
     Key? key,
     this.title = '',

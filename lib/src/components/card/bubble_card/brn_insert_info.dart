@@ -25,9 +25,14 @@ import 'package:flutter/material.dart';
 ///  * [BrnBubbleText], 气泡背景的文本组件
 ///
 class BrnInsertInfo extends StatelessWidget {
+
+  /// 显示的文本
   final String infoText;
+
+  /// 最多显示的行数，如果实际的行数超标，就折断
   final int maxLines;
 
+  /// create BrnInsertInfo
   const BrnInsertInfo({Key? key, required this.infoText, this.maxLines = 2})
       : super(key: key);
 

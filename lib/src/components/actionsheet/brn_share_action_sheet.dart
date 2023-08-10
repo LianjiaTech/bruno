@@ -36,6 +36,7 @@ class BrnShareItem extends Object {
   });
 }
 
+/// 分享弹窗
 // ignore: must_be_immutable
 class BrnShareActionSheet extends StatelessWidget {
   /// 第一行渠道列表
@@ -88,6 +89,7 @@ class BrnShareActionSheet extends StatelessWidget {
         child: SafeArea(child: _configActionWidgets(context)));
   }
 
+  /// 显示弹窗
   show(BuildContext context) {
     showModalBottomSheet(
         context: context,

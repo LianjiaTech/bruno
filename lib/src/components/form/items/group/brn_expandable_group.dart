@@ -58,7 +58,6 @@ class BrnExpandableGroup extends StatefulWidget {
   /// Additional content displayed below the title.
   ///
   /// Typically a [Text] widget.
-
   final String? subtitle;
 
   /// Called when the tile expands or collapses.
@@ -79,6 +78,7 @@ class BrnExpandableGroup extends StatefulWidget {
   /// Specifies if the list tile is initially expanded (true) or collapsed (false, the default).
   final bool initiallyExpanded;
 
+  /// the theme config of BrnFormItem
   BrnFormItemConfig? themeData;
 
   @override
@@ -104,7 +104,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
 
   bool _isExpanded = false;
 
-  Widget? arrowIcon;
+  Widget? _arrowIcon;
 
   @override
   void initState() {
@@ -127,9 +127,9 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
     }
 
     if (_isExpanded) {
-      arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconDownArrow, 12, 12);
+      _arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconDownArrow, 12, 12);
     } else {
-      arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconUpArrow, 12, 12);
+      _arrowIcon = BrunoTools.getAssetSizeImage(BrnAsset.iconUpArrow, 12, 12);
     }
   }
 
@@ -205,7 +205,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
                   ),
                   RotationTransition(
                     turns: _iconTurns,
-                    child: arrowIcon,
+                    child: _arrowIcon,
                   )
                 ],
               ),

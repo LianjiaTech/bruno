@@ -82,6 +82,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
   /// 如果设置为false，按钮置灰且不响应[secondaryButtonName]
   final bool enableSecondaryButton;
 
+  /// create BrnBottomButtonPanel
   const BrnBottomButtonPanel(
       {Key? key,
       required this.mainButtonName,

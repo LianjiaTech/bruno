@@ -54,6 +54,8 @@ import 'package:flutter/material.dart';
 ///
 ///
 class BrnEnhanceNumberCard extends StatelessWidget {
+
+  /// 待展示的信息
   final List<BrnNumberInfoItemModel>? itemChildren;
 
   ///如果超过一行，行间距则 默认为16
@@ -71,10 +73,13 @@ class BrnEnhanceNumberCard extends StatelessWidget {
   ///左侧的间距 默认20
   final EdgeInsets padding;
 
+  /// 文本内容对齐方式
   final TextAlign itemTextAlign;
 
+  /// the theme config of BrnEnhanceNumberCard
   final BrnEnhanceNumberCardConfig? themeData;
 
+  /// create BrnEnhanceNumberCard
   BrnEnhanceNumberCard({
     Key? key,
     this.itemChildren,
@@ -348,6 +353,8 @@ class BrnNumberInfoItemModel {
 
 ///可扩展
 enum BrnNumberInfoIcon {
+  /// 箭头
   arrow,
+  /// 问号
   question,
 }

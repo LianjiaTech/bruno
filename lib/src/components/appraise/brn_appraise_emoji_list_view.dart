@@ -18,6 +18,7 @@ class BrnAppraiseEmojiListView extends StatefulWidget {
   /// 点击回调
   final BrnAppraiseIconClick? onTap;
 
+  /// create BrnAppraiseEmojiListView
   BrnAppraiseEmojiListView(
       {Key? key,
       this.indexes = const [0, 1, 2, 3, 4],

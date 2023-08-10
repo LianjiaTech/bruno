@@ -94,6 +94,9 @@ class BrnSingleSelectDialog extends Dialog {
   }
 }
 
+///
+/// 单选列表弹框 widget
+///
 // ignore: must_be_immutable
 class BrnSingleSelectDialogWidget extends StatefulWidget {
   final bool isClose;

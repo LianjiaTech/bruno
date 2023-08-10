@@ -27,7 +27,6 @@ class MultiSelectItem {
 
 /// 屏幕中间弹出多选列表弹框
 /// 多用于反馈场景底部有操作按钮，可支持自定义底部操作区域
-
 class BrnMultiSelectDialog extends Dialog {
   /// 是否可关闭  默认true 可关闭
   final bool isClose;

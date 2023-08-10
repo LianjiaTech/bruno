@@ -18,8 +18,6 @@ import 'package:bruno/src/components/appraise/brn_appraise_interface.dart';
 /// 4. 可以用在页面里面也可以使用在弹窗里面，使用在底部弹窗的参考[BrnAppraiseBottomPicker]
 /// /// /// /// /// /// /// /// /// /
 
-const BrnAppraiseConfig cConfig = const BrnAppraiseConfig();
-
 class BrnAppraise extends StatefulWidget {
   /// 标题
   final String title;
@@ -53,6 +51,7 @@ class BrnAppraise extends StatefulWidget {
   /// 评价组件的配置项
   final BrnAppraiseConfig config;
 
+  /// create BrnAppraise
   BrnAppraise(
       {Key? key,
       this.title = '',
@@ -62,7 +61,7 @@ class BrnAppraise extends StatefulWidget {
       this.tags,
       this.inputHintText = '',
       this.onConfirm,
-      this.config = cConfig})
+      this.config = const BrnAppraiseConfig()})
       : super(key: key);
 
   @override
@@ -178,7 +177,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
         padding: EdgeInsets.all(0),
         physics: NeverScrollableScrollPhysics(),
         tagPickerBean: BrnTagsPickerConfig(
-          tagItemSource: string2Tag(widget.tags),
+          tagItemSource: _string2Tag(widget.tags),
         ),
         tagText: (choice) {
           return choice.name;
@@ -187,7 +186,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
         multiSelect: widget.config.multiSelect,
         brnCrossAxisCount: widget.config.tagCountEachRow,
         selectedTagsCallback: (list) {
-          _selectedTag = tag2String(list);
+          _selectedTag = _tag2String(list);
           if (widget.config.tagSelectCallback != null) {
             widget.config.tagSelectCallback!(_selectedTag);
           }
@@ -245,7 +244,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
     return const SizedBox.shrink();
   }
 
-  List<BrnTagItemBean> string2Tag(List<String>? tags) {
+  List<BrnTagItemBean> _string2Tag(List<String>? tags) {
     List<BrnTagItemBean> items = [];
     if (tags?.isNotEmpty ?? false) {
       for (int i = 0; i < tags!.length; i++) {
@@ -255,7 +254,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
     return items;
   }
 
-  List<String> tag2String(List<BrnTagItemBean> tags) {
+  List<String> _tag2String(List<BrnTagItemBean> tags) {
     List<String> result = [];
     tags.forEach((item) {
       result.add(item.name);
