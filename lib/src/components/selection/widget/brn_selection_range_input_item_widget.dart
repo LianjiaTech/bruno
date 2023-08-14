@@ -10,17 +10,26 @@ typedef RangeChangedCallback = void Function(String minInput, String maxInput);
 /// 清空自定义范围输入框焦点的事件类
 class ClearSelectionFocusEvent {}
 
+/// 筛选的范围输入子组件
 class BrnSelectionRangeItemWidget extends StatefulWidget {
   final BrnSelectionEntity item;
 
+  /// 范围输入框的回调
   final RangeChangedCallback? onRangeChanged;
+
+  /// 输入框焦点的回调
   final ValueChanged<bool>? onFocusChanged;
 
+  /// 是否清空输入框的文本
   final bool isShouldClearText;
 
+  /// 最小值输入框的控制器
   final TextEditingController minTextEditingController;
+
+  /// 最大值输入框的控制器
   final TextEditingController maxTextEditingController;
 
+  /// 主题配置
   final BrnSelectionConfig themeData;
 
   BrnSelectionRangeItemWidget({

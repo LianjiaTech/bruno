@@ -3,10 +3,13 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
 import 'package:flutter/material.dart';
 
+/// 图片加载工具类
 class BrunoTools {
   const BrunoTools._();
 
   /// 将 icon 根据主题色变色后返回
+  /// [assetFilePath] assets 资源文件路径
+  /// [configId] 主题配置id
   static Image getAssetImageWithBandColor(
     String assetFilePath, {
     String configId = GLOBAL_CONFIG_ID,
@@ -21,6 +24,8 @@ class BrunoTools {
   }
 
   /// 将 icon 根据传入颜色变后返回
+  /// [assetFilePath] assets 资源文件路径
+  /// [color] 图片着色
   static Image getAssetImageWithColor(String assetFilePath, Color? color) {
     if (!assetFilePath.startsWith('assets')) {
       assetFilePath = 'assets/$assetFilePath';
@@ -34,8 +39,8 @@ class BrunoTools {
   }
 
   /// [assetFilePath] assets 资源文件路径
-  /// [package] 访问某个 package 里的资源，这里默认为 'bruno'
-  /// [scale] 与所用的 png 资源是 icon_2x.png (scale=2.0)，icon_3x.png(scale=3.0)
+  /// [fit] 图片剪裁模式
+  /// [gaplessPlayback] 当图像提供程序更改时，是继续显示旧映像（true），还是暂时显示空白（false）。
   static Image getAssetImage(
     String assetFilePath, {
     BoxFit? fit,
@@ -53,6 +58,7 @@ class BrunoTools {
     );
   }
 
+  /// [assetFilePath] assets 资源文件路径，使用默认 scale
   static Image getAssetScaleImage(String assetFilePath) {
     if (!assetFilePath.startsWith('assets')) {
       assetFilePath = 'assets/$assetFilePath';
@@ -63,6 +69,10 @@ class BrunoTools {
     );
   }
 
+  /// [assetFilePath] assets 资源文件路径
+  /// [w] 图片宽度
+  /// [h] 图片高度，
+  /// [color] 图片着色
   static Image getAssetSizeImage(
     String assetFilePath,
     double w,
@@ -128,14 +138,4 @@ class BrunoTools {
     }
     return obj == null;
   }
-
-  /// 去掉最后一位小数
-//static double formatNumRemoveLastNum(double num){
-//    int count = num.toString().length - num.toString().lastIndexOf('.') - 1;
-//    if(count >1){
-//
-//    }
-//    String numStr = num.toString();
-//    return numStr.substring(numStr.length-1);
-//}
 }

@@ -14,10 +14,13 @@ class BrnRichTextGenerator {
   TextOverflow? _overflow;
 
   /// 添加超链接部分的文案
-  /// text 是显示的文案
-  /// url 是超链接的 url
-  /// fontsize 是显示大小
-  /// richTextLinkClick 是超链接点击的回调
+  /// [text] 显示的文案
+  /// [url] 超链接的 url
+  /// [textStyle] 文案的样式
+  /// [linkColor] 超链接的颜色
+  /// [fontSize] 显示大小
+  /// [fontWeight] 字体粗细
+  /// [richTextLinkClick] 超链接点击的回调
   BrnRichTextGenerator addTextWithLink(
     String text, {
     String? url,
@@ -52,8 +55,11 @@ class BrnRichTextGenerator {
   }
 
   /// 添加自定义文案
-  /// fontsize 是文案大小 默认是16
-  /// color 是文案的颜色 默认是深黑色
+  /// [text] 显示的文案
+  /// [textStyle] 文案的样式
+  /// [fontWeight] 字体的粗细 默认是 normal
+  /// [fontSize] 文案大小 默认是16
+  /// [color] 文案的颜色 默认是深黑色
   BrnRichTextGenerator addText(
     String text, {
     TextStyle? textStyle,
@@ -79,7 +85,8 @@ class BrnRichTextGenerator {
     return this;
   }
 
-  /// 添加Icon
+  /// [icon] 图标
+  /// [alignment] 图标的对齐方式 默认是顶部对齐
   BrnRichTextGenerator addIcon(
     Widget? icon, {
     PlaceholderAlignment? alignment,
@@ -101,7 +108,7 @@ class BrnRichTextGenerator {
     return this;
   }
 
-  /// 设置最多文案显示几行 默认是100行
+  /// 设置文案溢出的样式
   BrnRichTextGenerator setTextOverflow(TextOverflow overflow) {
     _overflow = overflow;
     return this;
@@ -122,6 +129,7 @@ class BrnRichTextGenerator {
     );
   }
 
+  /// 清空文案
   void clear() {
     _spanList.clear();
   }

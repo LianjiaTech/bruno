@@ -7,20 +7,36 @@ import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:flutter/material.dart';
 
+/// 单列选择子组件
 // ignore: must_be_immutable
 class BrnSelectionSingleListWidget extends StatefulWidget {
   late List<BrnSelectionEntity> _selectedItems;
+
+  /// 当前选择的项
   late int currentListIndex;
 
+  /// 筛选数据
   List<BrnSelectionEntity> items;
+
+  /// 占父容器宽度的比例
   int flex;
+
+  /// 焦点位置
   int focusedIndex;
+
+  /// 最大高度
   double maxHeight;
 
+  /// 背景色
   Color? backgroundColor;
+
+  /// 选中项背景色
   Color? selectedBackgroundColor;
+
+  /// 单选回调
   SingleListItemSelect? singleListItemSelect;
 
+  /// 主题配置
   BrnSelectionConfig themeData;
 
   BrnSelectionSingleListWidget({
@@ -203,6 +219,7 @@ class _BrnSelectionSingleListWidgetState
     }
   }
 
+  /// 根据父子层级数据，配置节点选中状态
   void configMultiLevelList(
       BrnSelectionEntity selectedEntity, int currentListIndex) {
     /// 选中【不限】清除同一级别其他的状态

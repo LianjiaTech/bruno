@@ -5,6 +5,7 @@ const double DESIGN_SELECTION_HEIGHT = 268;
 const double DESIGN_BOTTOM_HEIGHT = 82;
 const double DESIGN_SCREEN_HEIGHT = 812;
 
+/// 筛选组件工具类
 class BrnSelectionUtil {
   /// 处理兄弟结点为未选中状态，将自己置为选中状态
   static void processBrotherItemSelectStatus(
@@ -137,7 +138,7 @@ class BrnSelectionUtil {
         entity.getLimitedRootMaxSelectedCount();
   }
 
-//设置数据为未选中状态
+  /// 设置数据为未选中状态
   static void resetSelectionDatas(BrnSelectionEntity entity) {
     entity.isSelected = false;
     entity.customMap = Map();

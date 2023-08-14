@@ -6,26 +6,46 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
+/// 引导组件试，[force] 有蒙层遮挡，[soft] 无蒙层遮挡
 enum GuideMode { force, soft }
 
 /// 默认的引导组件包含，强和弱两种交互模式
 class BrnTipInfoWidget extends StatelessWidget {
+
+  /// 引导组件的方向
   final GuideDirection direction;
+
+  /// 关闭按钮的回调
   final void Function()? onClose;
+
+  /// 下一步按钮的回调
   final void Function()? onNext;
+
+  /// 跳过按钮的回调
   final void Function()? onSkip;
 
+  /// 引导组件的宽度
   final double width;
+
+  /// 引导组件的高度
   final double? height;
+
+  /// 引导组件的内容
   final BrnTipInfoBean info;
+
+  /// 引导模式
   final GuideMode mode;
 
-  /// Which guide page is currently displayed, starting from 0
+  /// 当前的引导步数
   final int currentStepIndex;
 
-  /// Total number of guide pages
+  /// 引导步数
   final int stepCount;
+
+  /// 箭头距离指示的边距
   final double? arrowPadding;
+
+  /// 【下一步】的文案
   final String? nextTip;
 
   const BrnTipInfoWidget(

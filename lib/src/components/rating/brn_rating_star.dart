@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 /// state，[RatingState] 星星状态
 typedef BrnRatingStarBuilder = Widget Function(RatingState state);
 
+/// 星星状态
 enum RatingState {
   /// 半颗
   half,

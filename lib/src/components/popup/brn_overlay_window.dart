@@ -236,6 +236,7 @@ class _BrnOverlayWindowState extends State<BrnOverlayWindow> {
   }
 }
 
+/// [OverlayWindow] 组件展示隐藏控制器
 class BrnOverlayController {
   OverlayEntry? _entry;
 
@@ -246,6 +247,7 @@ class BrnOverlayController {
 
   BrnOverlayController._(this.context, this._entry);
 
+  /// 显示OverlayWindow
   showOverlay() {
     if (_entry != null) {
       Overlay.of(context).insert(_entry!);
@@ -253,6 +255,7 @@ class BrnOverlayController {
     }
   }
 
+  /// 移除OverlayWindow
   void removeOverlay() {
     _entry?.remove();
     _entry = null;

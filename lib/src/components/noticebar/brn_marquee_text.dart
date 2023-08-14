@@ -22,9 +22,7 @@ class BrnMarqueeText extends StatefulWidget {
   final int timerRest;
 
   /// 尽量设置宽高，自动算宽|高受布局影响较大
-  double width;
-
-  double height;
+  double width, height;
 
   BrnMarqueeText({
     required this.text,

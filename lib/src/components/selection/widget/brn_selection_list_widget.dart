@@ -14,13 +14,26 @@ import 'package:flutter/material.dart';
 typedef SingleListItemSelect = void Function(
     int listIndex, int index, BrnSelectionEntity entity);
 
+/// 多列数据选择子组件，内部包含多个 BrnSelectionSingleListWidget
 // ignore: must_be_immutable
 class BrnListSelectionGroupWidget extends StatefulWidget {
+
+  /// 筛选数据
   final BrnSelectionEntity entity;
+
+  /// 最大高度
   final double maxContentHeight;
+
+  /// 是否显示选中数量
   final bool showSelectedCount;
+
+  /// 背景点击回调
   final VoidCallback? bgClickFunction;
+
+  /// 点击确认按钮回调
   final BrnOnRangeSelectionConfirm? onSelectionConfirm;
+
+  /// 主题配置
   BrnSelectionConfig themeData;
 
   BrnListSelectionGroupWidget({
