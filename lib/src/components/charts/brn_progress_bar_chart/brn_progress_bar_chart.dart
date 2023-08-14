@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// BrnProgressBarChart
 /// 柱形数据图表
 /// 展示一组或者多组数据，方便数据的查看以及对比
-/// ignore: must_be_immutable
+// ignore: must_be_immutable
 class BrnProgressBarChart extends StatefulWidget {
   /// 图表最小宽度，默认0
   final double minWidth;

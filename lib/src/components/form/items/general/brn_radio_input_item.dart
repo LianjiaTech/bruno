@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 /// 包括"标题"、"副标题"、"错误信息提示"、"必填项提示"、"添加/删除按钮"、"消息提示"、
 /// "单选项"等元素
 ///
-
 // ignore: must_be_immutable
 class BrnRadioInputFormItem extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
