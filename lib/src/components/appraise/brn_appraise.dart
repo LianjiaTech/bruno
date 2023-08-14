@@ -225,7 +225,7 @@ class _BrnAppraiseState extends State<BrnAppraise> {
   Widget _confirmButton() {
     if (widget.config.showConfirmButton) {
       return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(vertical: 16),
         child: BrnBigMainButton(
           title: widget.config.confirmButtonText ?? BrnIntl.of(context).localizedResource.submit,
           isEnable: _enable ?? _appraiseIndex != -1,
