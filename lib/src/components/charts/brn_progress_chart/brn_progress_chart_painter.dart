@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+/// 绘制 BrnProgressChart 进度条
 class BrnProgressChartPainter extends CustomPainter {
   /// 进度值
   final double value;

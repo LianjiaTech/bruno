@@ -42,6 +42,7 @@ class BrnButtonPanel extends StatefulWidget {
   /// popUpWindow位于targetView的方向,默认在下面
   final BrnPopupDirection popDirection;
 
+  /// create BrnButtonPanel
   const BrnButtonPanel(
       {Key? key,
       required this.mainButtonName,
@@ -67,17 +68,17 @@ class _BrnButtonPanelState extends State<BrnButtonPanel> {
   void initState() {
     super.initState();
     _popWindowKey = GlobalKey();
-    initSecondaryButton();
+    _initSecondaryButton();
   }
 
   @override
   void didUpdateWidget(BrnButtonPanel oldWidget) {
-    initSecondaryButton();
+    _initSecondaryButton();
     super.didUpdateWidget(oldWidget);
   }
 
   /// 初始化次按钮列表
-  void initSecondaryButton() {
+  void _initSecondaryButton() {
     _secondaryButtonList = [];
     if (widget.secondaryButtonList?.isNotEmpty ?? false) {
       _secondaryButtonList = widget.secondaryButtonList!;
@@ -230,7 +231,8 @@ class BrnButtonPanelConfig {
   /// 次按钮的enable状态，默认为true
   final bool isEnable;
 
-  BrnButtonPanelConfig({
+  /// create BrnButtonPanelConfig
+  const BrnButtonPanelConfig({
     required this.name,
     this.isEnable = true,
   });

@@ -28,7 +28,7 @@ enum BarChartStyle {
   horizontal,
 }
 
-//坐标轴样式
+/// 坐标轴样式
 enum AxisStyle {
   ///无线条
   axisStyleNone,
@@ -48,6 +48,7 @@ class AxisItem {
   /// 文本大小
   late Size textSize;
 
+  /// create AxisItem
   AxisItem({required this.showText});
 }
 
@@ -61,12 +62,14 @@ class ChartAxis {
 
   /// 两个刻度间距
   double? space;
-  double maxTextHeight = 0;
+
+  /// 显示文本最大宽度
   double maxTextWidth = 0;
 
   /// 0/刻度偏移量
   double leadingSpace = 30;
 
+  /// x,y 轴文本样式
   TextStyle textStyle = TextStyle(color: Color(0x999999), fontSize: 12);
 
   /// 倾斜坐标轴文本，避免文本距离过近，目前仅针对X轴文本有效
@@ -102,7 +105,11 @@ class BrnProgressBarItem {
 
   /// 展示柱形值文本样式
   final TextStyle showBarValueTextStyle;
+
+  ///
   late double percentage;
+
+  ///
   double? hintPercentage;
   Rect? barRect;
   Rect? barHintRect;

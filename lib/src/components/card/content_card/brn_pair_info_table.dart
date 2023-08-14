@@ -96,6 +96,7 @@ class BrnPairInfoTable extends StatefulWidget {
   /// key和value的间距 默认2
   final double? itemSpacing;
 
+  /// the theme config of BrnPairInfoTable
   final BrnPairInfoTableConfig? themeData;
 
   ///对齐情况下，自定义的key展示规则
@@ -106,6 +107,7 @@ class BrnPairInfoTable extends StatefulWidget {
   /// Table 展开收起状态变化的回调
   final ValueChanged<bool>? onFolded;
 
+  /// create BrnPairInfoTable
   BrnPairInfoTable({
     Key? key,
     required this.children,
@@ -132,13 +134,13 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
   late int _expandAtIndex;
 
   // 收起状态显示的孩子
-  List<BrnInfoModal>? foldList;
+  List<BrnInfoModal>? _foldList;
 
   // 展开状态显示的孩子
-  List<BrnInfoModal?>? expandedList;
+  List<BrnInfoModal?>? _expandedList;
 
   // 在页面呈现的孩子
-  List<BrnInfoModal?>? showList;
+  List<BrnInfoModal?>? _showList;
 
   // 指定位置的最原始 modal
   BrnInfoModal? indexModal;
@@ -164,12 +166,12 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
     if (_expandAtIndex < 0 ||
         widget.expandAtIndex >= (widget.children.length - 1)) {
       _expandAtIndex = -1;
-      showList = widget.children;
+      _showList = widget.children;
       _canFold = false;
     } else {
       indexModal = widget.children[_expandAtIndex];
-      foldList = _generateFoldList();
-      expandedList = _generateExpandedList();
+      _foldList = _generateFoldList();
+      _expandedList = _generateExpandedList();
       _canFold = true;
     }
     super.initState();
@@ -192,18 +194,18 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
 
     if (_canFold) {
       if (_isFolded) {
-        showList = foldList;
+        _showList = _foldList;
       } else {
-        showList = expandedList;
+        _showList = _expandedList;
       }
     } else {
-      showList = widget.children;
+      _showList = widget.children;
     }
 
     if (widget.isValueAlign) {
       showWidget = BrnAlignPairInfo(
         defaultVerticalAlignment: widget.defaultVerticalAlignment,
-        children: showList,
+        children: _showList,
         itemSpacing: widget.itemSpacing,
         rowDistance: widget.rowDistance,
         themeData: themeData,
@@ -211,7 +213,7 @@ class _BrnPairInfoTableState extends State<BrnPairInfoTable> {
       );
     } else {
       showWidget = BrnFollowPairInfo(
-        children: showList,
+        children: _showList,
         itemSpacing: widget.itemSpacing,
         rowDistance: widget.rowDistance,
         themeData: themeData,

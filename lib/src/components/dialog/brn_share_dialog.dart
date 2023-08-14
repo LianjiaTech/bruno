@@ -20,6 +20,14 @@ typedef BrnShareDialogGetCustomShareItemTitle = String? Function(int index);
 /// index为自定义分享item索引
 typedef BrnShareDialogGetCustomShareItemIcon = Widget? Function(int index);
 
+///
+/// 屏幕中间 dialog 弹窗
+/// 可指定最多五个需要展示的分享渠道图标（目前内设有：微信，朋友圈，qq，qq 空间，微博，链接，短信）
+/// 如需展示内设渠道之外的分享渠道，支持自定义展示渠道图标
+/// 可自定义分享弹框标题文案
+/// 可自定义分享弹框辅助信息
+/// 可自定义文案和分享渠道中间的分割线内文案
+///
 // ignore: must_be_immutable
 class BrnShareDialog extends StatelessWidget {
   final BuildContext context;

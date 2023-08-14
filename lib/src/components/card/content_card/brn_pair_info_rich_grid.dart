@@ -35,6 +35,8 @@ import 'package:flutter/material.dart';
 ///  * [BrnPairInfoTable], 单列key-value信息集合组件
 ///
 class BrnRichInfoGrid extends StatelessWidget {
+
+  /// 待展示的文本信息
   final List<BrnRichGridInfo>? pairInfoList;
 
   ///行间距 纵向
@@ -47,13 +49,16 @@ class BrnRichInfoGrid extends StatelessWidget {
   ///元素间距 横向
   final double? space;
 
+  /// item 的高度
   final double? itemHeight;
 
   /// 一共多少列 默认2列
   final int crossAxisCount;
 
+  /// the theme config of BrnRichInfoGrid
   final BrnPairRichInfoGridConfig? themeData;
 
+  /// create BrnRichInfoGrid
   BrnRichInfoGrid({
     Key? key,
     this.pairInfoList,
@@ -173,7 +178,10 @@ class BrnRichInfoGrid extends StatelessWidget {
   }
 }
 
+/// 用于构建文本信息
 class BrnRichGridInfo {
+
+  ///
   final dynamic keyPart;
   final dynamic valuePart;
 

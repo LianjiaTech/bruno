@@ -7,8 +7,8 @@ import 'package:flutter/widgets.dart';
 /// 描述: 用于加载gif图，
 /// 参考来自github：https://github.com/peng8350/flutter_gifimage
 /// 感谢 Jpeng
-
 class GifImage extends StatefulWidget {
+  ///
   final VoidCallback? onFetchCompleted;
   final AnimationController controller;
   final ImageProvider image;
@@ -26,6 +26,7 @@ class GifImage extends StatefulWidget {
   final bool excludeFromSemantics;
   final Widget? defaultImage;
 
+  /// create GifImage
   GifImage({
     required this.image,
     required this.controller,

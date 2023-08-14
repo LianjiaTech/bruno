@@ -27,7 +27,6 @@ import 'brn_normal_button.dart';
 /// 其他按钮如下：
 ///  * [BrnBigGhostButton], 大主色调的幽灵按钮
 ///  * [BrnBigOutlineButton], 大边框按钮
-
 class BrnBigMainButton extends StatelessWidget {
   ///按钮显示文案,默认'确认'
   final String? title;
@@ -44,8 +43,10 @@ class BrnBigMainButton extends StatelessWidget {
   ///背景颜色
   final Color? bgColor;
 
+  /// button theme config
   final BrnButtonConfig? themeData;
 
+  /// create BrnBigMainButton
   const BrnBigMainButton({
     Key? key,
     this.title,
