@@ -8,7 +8,6 @@ import 'package:flutter/widgets.dart';
 /// 参考来自github：https://github.com/peng8350/flutter_gifimage
 /// 感谢 Jpeng
 class GifImage extends StatefulWidget {
-  ///
   final VoidCallback? onFetchCompleted;
   final AnimationController controller;
   final ImageProvider image;

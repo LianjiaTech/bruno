@@ -27,7 +27,6 @@ typedef BrnShareDialogGetCustomShareItemIcon = Widget? Function(int index);
 /// 可自定义分享弹框标题文案
 /// 可自定义分享弹框辅助信息
 /// 可自定义文案和分享渠道中间的分割线内文案
-///
 // ignore: must_be_immutable
 class BrnShareDialog extends StatelessWidget {
   final BuildContext context;

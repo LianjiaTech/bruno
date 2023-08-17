@@ -10,6 +10,7 @@ typedef BrnSimpleSelectionOnSelectionChanged = void Function(
 
 const String _defaultMenuKey = "defaultMenuKey";
 
+/// 简单筛选，基于 BrnSelectionView 实现
 // ignore: must_be_immutable
 class BrnSimpleSelection extends StatefulWidget {
   /// 标题文案

@@ -2,12 +2,14 @@ import 'package:bruno/src/components/selection/bean/brn_selection_common_entity.
 import 'package:bruno/src/components/selection/brn_selection_util.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 
+/// 筛选项数据转换器，用于将统一的数据结构转换为用户需要的数据结构
 abstract class BrnSelectionConverterDelegate {
   /// 统一的数据结构 转换为 用户需要的数据结构，并通过 [BrnSelectionOnSelectionChanged] 回传给用户使用。
   Map<String, String> convertSelectedData(
       List<BrnSelectionEntity> selectedResults);
 }
 
+/// 默认的筛选项数据转换器
 class DefaultSelectionConverter implements BrnSelectionConverterDelegate {
   const DefaultSelectionConverter();
 
@@ -18,6 +20,7 @@ class DefaultSelectionConverter implements BrnSelectionConverterDelegate {
   }
 }
 
+/// 默认的【更多】筛选项数据转换器
 class DefaultMoreSelectionConverter implements BrnSelectionConverterDelegate {
   const DefaultMoreSelectionConverter();
 
@@ -28,6 +31,7 @@ class DefaultMoreSelectionConverter implements BrnSelectionConverterDelegate {
   }
 }
 
+/// 默认的【快捷筛选】筛选项数据转换器
 class DefaultSelectionQuickFilterConverter
     implements BrnSelectionConverterDelegate {
   const DefaultSelectionQuickFilterConverter();
@@ -48,6 +52,7 @@ Map<String, String> getSelectionParamsWithConfigChild(
   return getSelectionParams(selectedResults);
 }
 
+/// 根据传入的原始数据，返回用户选中的筛选数据
 Map<String, String> getSelectionParams(
     List<BrnSelectionEntity>? selectedResults) {
   Map<String, String> params = Map();
@@ -91,6 +96,7 @@ Map<String, String> getSelectionParams(
   return params;
 }
 
+/// 获取当前选中项中用户选择的筛选数据
 Map<String, String> getCurrentSelectionEntityParams(
     BrnSelectionEntity selectionEntity) {
   Map<String, String> params = Map();

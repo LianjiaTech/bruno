@@ -29,7 +29,7 @@ typedef BrnOnPickerConfirm = void Function(Map<String, List<BrnPickerEntity>> re
 
 /// 从屏幕下方弹起的多级筛选选择器
 /// 可设置筛项的层级、多选、单选等筛选相关功能
-/// ignore: must_be_immutable
+// ignore: must_be_immutable
 class BrnMultiColumnPicker extends StatefulWidget {
   /// 筛选数据源
   final BrnPickerEntity entity;

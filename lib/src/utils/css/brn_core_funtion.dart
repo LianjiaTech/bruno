@@ -7,8 +7,12 @@ import 'package:xml/xml_events.dart' as xml;
 /// 超链接的点击回调
 typedef BrnHyperLinkCallback = void Function(String text, String? url);
 
-/// 用于将标签转为 style
+/// 用于将 HTML 标签转为 style
 class BrnConvert {
+
+  /// [cssContent] 带有html 标签文本
+  /// [linkCallBack] 超链接的点击回调
+  /// [defaultStyle] 外部传入的默认文本样式
   BrnConvert(
     String cssContent, {
     BrnHyperLinkCallback? linkCallBack,

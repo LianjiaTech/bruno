@@ -1,9 +1,13 @@
+/// 底部多选 Picker 数据类
 class BrnMultiSelectBottomPickerItem {
-  String code; //选项编号
+  /// 选项编号
+  String code;
 
-  String content; //选项内容
+  /// 选项内容
+  String content;
 
-  bool isChecked; //是否选中
+  /// 是否选中
+  bool isChecked;
 
   BrnMultiSelectBottomPickerItem(this.code, this.content,
       {this.isChecked = false});

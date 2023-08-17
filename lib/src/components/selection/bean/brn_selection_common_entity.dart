@@ -3,6 +3,7 @@ import 'package:bruno/src/components/selection/brn_selection_util.dart';
 import 'package:bruno/src/constants/brn_constants.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 
+/// 筛选组件支持的筛选类型
 enum BrnSelectionFilterType {
   /// 未设置
   none,
@@ -50,6 +51,7 @@ enum BrnSelectionWindowType {
   range,
 }
 
+/// 筛选组件使用的数据结构
 class BrnSelectionEntity {
   /// 类型 是单选、复选还是有自定义输入
   String? type;
@@ -258,6 +260,7 @@ class BrnSelectionEntity {
     }
   }
 
+  /// 根据 [showType] 解析出对应的 [BrnSelectionWindowType]， 默认为 [BrnSelectionWindowType.list]
   BrnSelectionWindowType parserShowType(String? showType) {
     if (showType == "list") {
       return BrnSelectionWindowType.list;
@@ -267,6 +270,7 @@ class BrnSelectionEntity {
     return BrnSelectionWindowType.list;
   }
 
+  /// 根据 [type] 解析出对应的 [BrnSelectionFilterType], 默认为 [BrnSelectionFilterType.none]
   BrnSelectionFilterType parserFilterTypeWithType(String? type) {
     if (type == 'unlimit') {
       return BrnSelectionFilterType.unLimit;
@@ -294,6 +298,7 @@ class BrnSelectionEntity {
     return BrnSelectionFilterType.none;
   }
 
+  /// 清空子节点的选中状态
   void clearChildSelection() {
     if (children.isNotEmpty) {
       for (BrnSelectionEntity entity in children) {
@@ -311,6 +316,7 @@ class BrnSelectionEntity {
     }
   }
 
+  /// 获取当前节点的所有选中的子节点
   List<BrnSelectionEntity> selectedLastColumnList() {
     List<BrnSelectionEntity> list = [];
     if (this.children.isNotEmpty) {
@@ -341,6 +347,7 @@ class BrnSelectionEntity {
     return list;
   }
 
+  /// 获取当前节点的所有选中的子节点, 不包含【不限】节点
   List<BrnSelectionEntity> selectedListWithoutUnlimit() {
     List<BrnSelectionEntity> selected = selectedList();
     return selected
@@ -360,6 +367,7 @@ class BrnSelectionEntity {
         .toList();
   }
 
+  /// 获取当前节点的所有选中的子节点，支持 more 类型
   List<BrnSelectionEntity> selectedList() {
     if (BrnSelectionFilterType.more == this.filterType) {
       return this.selectedLastColumnList();
@@ -386,6 +394,7 @@ class BrnSelectionEntity {
     }
   }
 
+  /// 获取当前节点的所有选中的子节点
   List<BrnSelectionEntity> allSelectedList() {
     List<BrnSelectionEntity> results = [];
     List<BrnSelectionEntity> firstColumn =
@@ -408,14 +417,17 @@ class BrnSelectionEntity {
     return results;
   }
 
+  /// 获取当前节点对应根节点，返回根节点最后一级选中的子节点的数量
   int getLimitedRootSelectedChildCount() {
     return getSelectedChildCount(getRootEntity(this));
   }
 
+  /// 获取当前节点对应根节点，可选择的最大选中数量
   int getLimitedRootMaxSelectedCount() {
     return getRootEntity(this).maxSelectedCount;
   }
 
+  /// 获取当前节点对应根节点
   BrnSelectionEntity getRootEntity(BrnSelectionEntity rootEntity) {
     if (rootEntity.parent == null ||
         rootEntity.parent!.maxSelectedCount ==
@@ -477,6 +489,7 @@ class BrnSelectionEntity {
     return filterType == BrnSelectionFilterType.unLimit;
   }
 
+  /// 递归清空选中状态
   void clearSelectedEntity() {
     List<BrnSelectionEntity> tmp = [];
     BrnSelectionEntity node = this;
@@ -490,6 +503,10 @@ class BrnSelectionEntity {
     }
   }
 
+  /// 返回当前节点所有不是以下类型的子节点
+  /// [BrnSelectionFilterType.range]
+  /// [BrnSelectionFilterType.dateRange]
+  /// [BrnSelectionFilterType.dateRangeCalendar]
   List<BrnSelectionEntity> currentTagListForEntity() {
     List<BrnSelectionEntity> list = [];
     children.forEach((data) {
@@ -502,6 +519,7 @@ class BrnSelectionEntity {
     return list;
   }
 
+  /// 根据是否展开，返回对应数量的子节点
   List<BrnSelectionEntity> currentShowTagByExpanded(bool isExpanded) {
     List<BrnSelectionEntity> all = currentTagListForEntity();
     return isExpanded ? all : all.sublist(0, currentDefaultTagCountForEntity());
@@ -528,6 +546,10 @@ class BrnSelectionEntity {
     return defaultShowCount;
   }
 
+  /// 返回当前节点下所有以下类型的子节点
+  /// [BrnSelectionFilterType.range]
+  /// [BrnSelectionFilterType.dateRange]
+  /// [BrnSelectionFilterType.dateRangeCalendar]
   List<BrnSelectionEntity> currentRangeListForEntity() {
     List<BrnSelectionEntity> list = [];
     children.forEach((data) {
@@ -540,6 +562,7 @@ class BrnSelectionEntity {
     return list;
   }
 
+  /// 校验 range 类型的数据是否合法
   bool isValidRange() {
     if (this.filterType == BrnSelectionFilterType.range ||
         this.filterType == BrnSelectionFilterType.dateRange ||
@@ -583,10 +606,12 @@ class BrnSelectionEntity {
     return true;
   }
 
+  /// 反选
   void reverseSelected() {
     this.isSelected = !isSelected;
   }
 
+  /// 获取第一个选中的子节点的下标
   int getFirstSelectedChildIndex() {
     return children.indexWhere((data) {
       return data.isSelected;

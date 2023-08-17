@@ -7,7 +7,6 @@ import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
 /// TimeRangeSidePicker widget.
-
 // ignore: must_be_immutable
 class BrnTimeRangeSideWidget extends StatefulWidget {
   /// 可选最小时间

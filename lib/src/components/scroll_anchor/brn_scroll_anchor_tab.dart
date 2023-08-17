@@ -10,14 +10,21 @@ typedef AnchorTabWidgetIndexedBuilder = Widget Function(BuildContext context, in
 /// 构建指定索引的Tab
 typedef AnchorTabIndexedBuilder = BadgeTab Function(BuildContext context, int index);
 
+/// 滑动锚点组件
 class BrnAnchorTab extends StatefulWidget {
-  // TabBar的样式
+  /// TabBar的样式
   final BrnAnchorTabBarStyle tabBarStyle;
+
+  /// 构建指定索引的Widget
   final AnchorTabWidgetIndexedBuilder? widgetIndexedBuilder;
+
+  /// 构建指定索引的Tab
   final AnchorTabIndexedBuilder tabIndexedBuilder;
+
+  /// Tab与内容之间的分割线
   final Widget? tabDivider;
 
-  //设置tab与widget的个数
+  /// 设置tab与widget的个数
   final int itemCount;
 
   BrnAnchorTab(
@@ -33,28 +40,28 @@ class BrnAnchorTab extends StatefulWidget {
 
 class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     with SingleTickerProviderStateMixin {
-  //用于控制 滑动
+  /// 用于控制 滑动
   late ScrollController _scrollController;
 
-  //用于控制tab
+  /// 用于控制tab
   late TabController _tabController;
 
-  //滑动组件的 key
+  /// 滑动组件的 key
   late GlobalKey _key;
 
-  //当前选中的索引
+  /// 当前选中的索引
   int currentIndex = 0;
 
-  //滑动组件的元素的key
+  /// 滑动组件的元素的key
   late List<GlobalKey> _bodyKeyList;
 
-  //每个元素在滑动组件中的位置
+  /// 每个元素在滑动组件中的位置
   late List<double> _cardOffsetList;
 
-  //是否点击滑动
+  /// 是否点击滑动
   bool tab = false;
 
-  //滑动组件在屏幕的位置
+  /// 滑动组件在屏幕的位置
   double listDy = 0;
 
   @override
@@ -207,7 +214,7 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     }
   }
 
-  //根据偏移量 确定tab索引
+  /// 根据偏移量 确定tab索引
   int createIndex(double offset) {
     int index = widget.itemCount - 1;
     for (int i = 0; i < widget.itemCount - 1; i++) {
