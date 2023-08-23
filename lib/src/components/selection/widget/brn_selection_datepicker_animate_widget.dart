@@ -1,9 +1,16 @@
 import 'package:bruno/src/components/selection/controller/brn_selection_view_date_picker_controller.dart';
 import 'package:flutter/material.dart';
 
+/// 日期选择器动画组件
 class BrnSelectionDatePickerAnimationWidget extends StatefulWidget {
+
+  /// 用于展示隐藏控制器
   final BrnSelectionDatePickerController controller;
+
+  /// 子组件
   final Widget view;
+
+  /// 动画时长
   final int animationMilliseconds;
 
   const BrnSelectionDatePickerAnimationWidget(

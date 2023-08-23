@@ -40,6 +40,7 @@ class BrnPointData {
   /// 折线节点的点击击事件是否可用
   bool isClickable;
 
+  /// 点击时附加信息展示
   BrnLineTouchData lineTouchData;
 
   BrnPointData(

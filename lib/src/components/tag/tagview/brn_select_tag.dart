@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 /// 支持定宽和非定宽
 /// 宽高间距可设置
 /// 支持单选和多选
-/// ignore: must_be_immutable
+// ignore: must_be_immutable
 class BrnSelectTag extends StatefulWidget {
   /// 展示的标签列表
   final List<String> tags;

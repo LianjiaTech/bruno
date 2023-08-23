@@ -59,6 +59,7 @@ class BrnMultiSelectTags extends StatefulWidget {
   /// 最小宽度，默认 75
   final double minWidth;
 
+  /// create BrnMultiSelectTags
   BrnMultiSelectTags({
     Key? key,
     required this.tagPickerBean,

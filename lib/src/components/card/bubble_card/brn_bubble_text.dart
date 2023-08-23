@@ -48,6 +48,7 @@ class BrnBubbleText extends StatelessWidget {
   /// 内容文本样式
   final TextStyle? textStyle;
 
+  /// create BrnBubbleText
   const BrnBubbleText(
       {Key? key,
       this.text = '',

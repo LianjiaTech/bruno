@@ -35,6 +35,7 @@ class BrnShadowCard extends StatelessWidget {
   ///边框的宽度 默认0.5
   final double borderWidth;
 
+  /// create BrnShadowCard
   BrnShadowCard(
       {required this.child,
       this.color = const Color(0xfffafafa),

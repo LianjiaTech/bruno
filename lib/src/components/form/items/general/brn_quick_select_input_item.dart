@@ -19,9 +19,6 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
   final String? label;
 
-  /// 录入项类型，主要用于录入类型页面框架中
-  String type = BrnInputItemType.textQuickSelectInputType;
-
   /// 录入项标题
   final String title;
 
@@ -59,6 +56,7 @@ class BrnTextQuickSelectFormItem extends StatefulWidget {
   /// 点击录入区回调
   final VoidCallback? onTap;
 
+  /// 按钮点击
   final ValueChanged<int>? onBtnSelectChanged;
 
   /// 录入项 hint 提示

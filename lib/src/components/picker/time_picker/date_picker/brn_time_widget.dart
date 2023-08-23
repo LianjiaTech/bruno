@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 
 enum ColumnType { hour, minute, second }
 
+/// BrnTimeWidget widget. Can display time picker
 // ignore: must_be_immutable
 class BrnTimeWidget extends StatefulWidget {
   BrnTimeWidget({

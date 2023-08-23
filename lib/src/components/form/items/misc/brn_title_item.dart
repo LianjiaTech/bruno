@@ -11,9 +11,6 @@ class BrnTitleFormItem extends StatefulWidget {
   /// 录入项的唯一标识，主要用于录入类型页面框架中
   final String? label;
 
-  /// 录入项类型，主要用于录入类型页面框架中
-  final String type = BrnInputItemType.labelTitle;
-
   /// 录入项标题
   final String title;
 

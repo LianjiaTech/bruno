@@ -20,13 +20,24 @@ typedef BrnOnMenuItemClick = bool Function(int index);
 typedef BrnOnRangeSelectionConfirm = void Function(BrnSelectionEntity results,
     int firstIndex, int secondIndex, int thirdIndex);
 
+/// 筛选菜单子组件
 class BrnSelectionMenuWidget extends StatefulWidget {
+  /// 筛选菜单数据
   final List<BrnSelectionEntity> data;
   final BuildContext context;
+
+  /// 筛选菜单高度
   final double height;
+  /// 筛选菜单宽度
   final double? width;
+
+  /// 确认回调
   final BrnOnRangeSelectionConfirm? onConfirm;
+
+  /// 筛选菜单项点击回调
   final BrnOnMenuItemClick? onMenuItemClick;
+
+  /// 每行的 tag 数，用于子组件配置
   final BrnConfigTagCountPerRow? configRowCount;
 
   ///筛选所在列表的外部列表滚动需要收起筛选，此处为最外层列表，有点恶心，但是暂时只想到这个方法，有更好方式的一定要告诉我
@@ -35,6 +46,7 @@ class BrnSelectionMenuWidget extends StatefulWidget {
   ///指定筛选固定的相对于屏幕的顶部距离，默认null不指定
   final double? constantTop;
 
+  /// 筛选菜单主题
   final BrnSelectionConfig themeData;
 
   BrnSelectionMenuWidget(

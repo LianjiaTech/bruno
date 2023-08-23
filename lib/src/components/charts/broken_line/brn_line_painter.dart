@@ -7,6 +7,7 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
 
+/// 折线图 刻度线、X/Y 轴绘制类
 class BrnLinePainter extends BrnBasePainter {
   final int lineSelectIndex;
   final int pointSelectIndex;
@@ -47,10 +48,13 @@ class BrnLinePainter extends BrnBasePainter {
   /// 绘制线条的参数内容
   List<BrnPointsLine> lines;
 
+  /// 是否展示 X、Y 轴刻度文本
   bool isShowXText, isShowYText;
 
+  /// 是否展示 X轴刻度
   final bool isShowXDial;
 
+  /// 是否展示选中点对应的 X、Y 辅助虚线
   final bool showPointDashLine;
 
   /// 默认的边距
@@ -111,10 +115,12 @@ class BrnLinePainter extends BrnBasePainter {
     assert(yDialMax > yDialMin, "yDialMax 应该大于 yDialMin");
   }
 
+  /// 返回选中的点
   Point selectedPoint(int lineIndex, int pointIndex) {
     return _linePointPositions[lineIndex][pointIndex];
   }
 
+  /// 根据点击的位置和 point 的 index，遍历寻找出所属的 Line
   int lineIndexCompute(Offset offset, int pointIndex) {
     int index = -1;
     double margin = 15;
@@ -540,7 +546,7 @@ class BrnLinePainter extends BrnBasePainter {
                     style: item.points[i].pointTextStyle),
                 textDirection: TextDirection.ltr)
               ..layout();
-            double adjustOffset = isAdjustPosition(lineIndex,
+            double adjustOffset = _isAdjustPosition(lineIndex,
                     _linePointPositions[lineIndex][i], _linePointPositions)
                 ? (20 - tpX.height)
                 : -20;
@@ -559,9 +565,10 @@ class BrnLinePainter extends BrnBasePainter {
     }
   }
 
-  bool isAdjustPosition(
+  /// 是否需要调整位置
+  bool _isAdjustPosition(
       int lineIndex, Point currentPoint, List<List<Point<num>>> lines) {
-    List<Point<num>> sameXPoints = getSameXValuePoints(currentPoint, lines);
+    List<Point<num>> sameXPoints = _getSameXValuePoints(currentPoint, lines);
     if (sameXPoints.isNotEmpty) {
       if (currentPoint.distanceTo(sameXPoints[0]) == 0) {
         return lineIndex > 0;
@@ -572,7 +579,8 @@ class BrnLinePainter extends BrnBasePainter {
     return false;
   }
 
-  List<Point<num>> getSameXValuePoints(
+  /// 获取相同x值的点
+  List<Point<num>> _getSameXValuePoints(
       Point currentPoint, List<List<Point<num>>> lines) {
     List<Point<num>> sameXPoints = [];
     for (int lineIndex = 0; lineIndex < lines.length; lineIndex++) {
@@ -588,7 +596,7 @@ class BrnLinePainter extends BrnBasePainter {
   }
 }
 
-//绘制图表的计算之后的结果模型集
+/// 绘制图表的计算之后的结果模型集
 class LineCanvasModel {
   final List<Path> paths;
   final Color pathColor;

@@ -7,7 +7,6 @@ import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
 /// DatePicker's title widget.
-
 // ignore: must_be_immutable
 class BrnPickerTitle extends StatelessWidget {
   final BrnPickerTitleConfig pickerTitleConfig;

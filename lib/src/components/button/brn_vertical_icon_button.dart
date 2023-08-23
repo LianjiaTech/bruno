@@ -35,6 +35,7 @@ class BrnVerticalIconButton extends StatelessWidget {
   /// 按钮点击的回调
   final VoidCallback? onTap;
 
+  /// create BrnVerticalIconButton
   const BrnVerticalIconButton({
     Key? key,
     required this.name,

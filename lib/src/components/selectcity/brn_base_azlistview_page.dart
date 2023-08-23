@@ -7,37 +7,38 @@ import 'package:bruno/src/components/selectcity/brn_az_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:lpinyin/lpinyin.dart';
 
-//带右侧定位器的list页面
+/// 带右侧定位器的list页面
 abstract class BaseAZListViewPage extends StatefulWidget {
   @override
   _BaseAZListViewPageState createState() => _BaseAZListViewPageState();
 
-  //设置页面的title
+  /// 设置页面的title
   PreferredSizeWidget createAppBar();
 
-  //设置页面的数据源
+  /// 设置页面的数据源
   Future createFuture();
 
-  //从数据源中提取列表
+  /// 从数据源中提取列表
   List<ISuspensionBean> pickListFromData(data);
 
-  //列表的widget
+  /// 列表的widget
   Widget buildItemWidget(ISuspensionBean item);
 
-  //悬浮的widget
+  /// 悬浮的widget
   Widget buildSuspensionWidget(String? tag);
 
+  /// 顶部展示的数据
   List<ISuspensionBean> getTopData() {
     return <ISuspensionBean>[];
   }
 
-  //item的高度 默认50
+  /// item的高度 默认50
   double getItemHeight() => 50.0;
 
-  //悬浮的条目的高度
+  /// 悬浮的条目的高度
   double getSuspensionHeight() => 46.0;
 
-  //每个modal 对应的 tag，默认是拼音来设置
+  /// 每个modal 对应的 tag，默认是拼音来设置
   String createTagByModal(ISuspensionBean bean) {
     if (bean.name.isNotEmpty) {
       String pinyin = PinyinHelper.getPinyinE(bean.name);

@@ -19,7 +19,8 @@ class BrnStateTag extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
 
-  //默认为等待状态,黄色
+  /// 状态标签是反应状态的形式，根据不同的[tagState]呈现不同的背景色和文字颜色
+  /// 默认为等待状态, 黄色
   const BrnStateTag({
     Key? key,
     required this.tagText,
@@ -39,6 +40,8 @@ class BrnStateTag extends StatelessWidget {
     );
   }
 
+  /// 根据状态获取背景色
+  /// [state] 状态, 默认为 waiting
   Color getTagColor(TagState state) {
     switch (state) {
       case TagState.invalidate:

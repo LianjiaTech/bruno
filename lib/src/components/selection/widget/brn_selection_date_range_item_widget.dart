@@ -12,8 +12,11 @@ import 'package:flutter/services.dart';
 
 const String _defaultDateFormat = 'yyyy年MM月dd日';
 
+/// 日期范围选择，筛选组件的子组件
 // ignore: must_be_immutable
 class BrnSelectionDateRangeItemWidget extends StatefulWidget {
+
+  /// 筛选数据
   final BrnSelectionEntity item;
 
   /// 输入框显示文字大小
@@ -25,11 +28,16 @@ class BrnSelectionDateRangeItemWidget extends StatefulWidget {
   /// 日期格式
   final String dateFormat;
 
+  /// 最小日期输入框控制器
   final TextEditingController minTextEditingController;
+
+  /// 最大日期输入框控制器
   final TextEditingController maxTextEditingController;
 
+  /// 选择日期时的点击事件
   final VoidCallback? onTapped;
 
+  /// 主题配置
   BrnSelectionConfig themeData;
 
   BrnSelectionDateRangeItemWidget(
@@ -245,6 +253,7 @@ class _BrnSelectionDateRangeItemWidgetState
     });
   }
 
+  /// 关闭选择弹窗
   void closeSelectionPopupWindow() {
     if (_datePickerController.isShow) {
       _datePickerController.hide();

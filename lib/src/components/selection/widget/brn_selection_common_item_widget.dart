@@ -6,16 +6,31 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:bruno/src/utils/css/brn_css_2_text.dart';
 import 'package:flutter/material.dart';
 
+/// [BrnSelectionSingleListWidget] 子组件中的单项
 class BrnSelectionCommonItemWidget extends StatelessWidget {
+
+  /// 单项数据
   final BrnSelectionEntity item;
+
+  /// 背景色
   final Color? backgroundColor;
+
+  /// 选中项背景色
   final Color? selectedBackgroundColor;
+
+  /// 是否当前焦点
   final bool isCurrentFocused;
+
+  /// 是否是第一级
   final bool isFirstLevel;
+
+  /// 是否是多选列表类型
   final bool isMoreSelectionListType;
 
+  /// 单选回调
   final ValueChanged<BrnSelectionEntity>? itemSelectFunction;
 
+  /// 主题配置
   final BrnSelectionConfig? themeData;
 
   BrnSelectionCommonItemWidget({
@@ -103,6 +118,7 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
     );
   }
 
+  /// 获取当前节点的背景色
   Color? getItemBGColor() {
     if (isCurrentFocused) {
       return this.selectedBackgroundColor;
@@ -111,6 +127,7 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
     }
   }
 
+  /// 是否高亮
   bool isHighLight(BrnSelectionEntity item) {
     if (item.isInLastLevel()) {
       if (item.isUnLimit()) {
@@ -123,6 +140,7 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
     }
   }
 
+  /// 是否加粗
   bool isBold(BrnSelectionEntity item) {
     if (isHighLight(item)) {
       return true;
@@ -131,6 +149,7 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
     }
   }
 
+  /// 获取当前节点的文本样式
   TextStyle? getItemTextStyle() {
     if (isHighLight(item)) {
       return themeData?.itemSelectedTextStyle.generateTextStyle();
@@ -140,6 +159,7 @@ class BrnSelectionCommonItemWidget extends StatelessWidget {
     return themeData?.itemNormalTextStyle.generateTextStyle();
   }
 
+  /// 获取当前节点的子节点中，选中的数量
   String getSelectedItemCount(BrnSelectionEntity item) {
     String itemCount = "";
     if ((BrnSelectionUtil.getTotalLevel(item) < 3 || !isFirstLevel) &&

@@ -13,12 +13,16 @@ class BrnBaseSwitchButton extends StatelessWidget {
   /// can click
   final bool enabled;
 
+  /// Called when the user toggles the switch on or off.
   final ValueChanged<bool>? onChanged;
 
+  /// The color to use when this switch is off.
   final Color borderColor;
 
+  /// The color to use on the track.
   final Color? trackColor;
 
+  /// The color to use on the thumb.
   final Color thumbColor;
 
   const BrnBaseSwitchButton({
