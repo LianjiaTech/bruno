@@ -86,7 +86,7 @@ BrnSelectionView(
 
 | **参数名**                 | **参数类型**                                                 | **作用**                                                     | **是否必填** | **默认值** |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------ | ---------- |
-| originalSelectionData      | List<**BrnSelectionEntity**>                                 | 筛选所需数据用于展示筛选菜单栏，以及展开的筛选弹窗。         | 是           | 空         |
+| originalSelectionData      | `List<**BrnSelectionEntity**>`                                 | 筛选所需数据用于展示筛选菜单栏，以及展开的筛选弹窗。         | 是           | 空         |
 | selectionViewController    | BrnSelectionViewController?                                  | 用于主动控制筛选弹窗的关闭和刷新菜单的内容状态               | 否           |            |
 | onSelectionChanged         | `void Function(int menuIndex, Map<String, String> selectedParams, Map<String, String> customParams, BrnSetCustomSelectionMenuTitle setCustomMenuTitle)` | 点击筛选弹窗中的【确认】按钮时回调给外部选中的参数,包括:<br />menuIndex：当前展开的 menu 位置;<br />selectedParams 所有筛选弹窗中选中的参数；<br />customParams：拦截 CustomHandle 类型的筛选并设置的自定义参数；setCustomMenuTitle：对当前的筛选 Menu 设置 title 和高亮的回调函数，一般与 customParams 、**onCustomSelectionMenuClick**搭配使用，例如，通过 onCustomSelectionMenuClick 回调返回 customParams 参数，setCustomMenuTitle 根据 customParams 参数判断是否高亮，是否需要根据参数更新筛选菜单的 Title。 | 是           |            |
 | configRowCount             | `BrnConfigTagCountPerRow(int index, BrnSelectionEntity entity)?` | 仅适用于类型为 SelectionWindowType.Range 的筛选弹窗，用于对 SelectionWindowType.Range 类型的列数做配置，回调参数为 menu 的所在位置 index 和 menu 的数据。 | 否           | 空         |
