@@ -4,6 +4,7 @@ import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_text_util.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// popup window 位于 targetView 的方向
@@ -192,7 +193,7 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
   void initState() {
     super.initState();
     this._showRect = _getWidgetGlobalRect(widget.popKey);
-    this._screenSize = View.of(context).physicalSize / View.of(context).devicePixelRatio;
+    this._screenSize =PlatformDispatcher.instance.views.first.physicalSize/ PlatformDispatcher.instance.views.first.devicePixelRatio;
     _borderColor = (widget.borderColor ?? Colors.transparent).withAlpha(255);
     _backgroundColor =
         (widget.backgroundColor ?? Colors.transparent).withAlpha(255);
