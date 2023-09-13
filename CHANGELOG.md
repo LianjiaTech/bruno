@@ -2,11 +2,15 @@
 
 ### Changed
 
+#### base
+
+- Fixed the problem that some component documents cannot be viewed [#495](https://github.com/LianjiaTech/bruno/issues/495).
+
 #### components
 
-- <code>BrnPopupWindow</code> : fix issue [#486](https://github.com/LianjiaTech/bruno/issues/486) which is called after initState and whenever the dependencies change thereafter.
-- <code>BrnTabBar</code>: fix the issue [#487](https://github.com/LianjiaTech/bruno/issues/487)  of invalid setting of badge.
-
+- <code>BrnPopupWindow</code> : fixed issue [#486](https://github.com/LianjiaTech/bruno/issues/486) which is called after initState and whenever the dependencies change thereafter.
+- <code>BrnTabBar</code>: fixed the issue [#487](https://github.com/LianjiaTech/bruno/issues/487)  of invalid setting of badge.
+- <code>BrnStepInputFormItem</code>: fixed the issue where components are not displayed when manually inputting a leading 0 [#458](https://github.com/LianjiaTech/bruno/issues/458).
 
 
 
