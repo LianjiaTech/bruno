@@ -408,7 +408,8 @@ class BrnTabBarState extends State<BrnTabBar> {
                     color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
               ),
               backgroundColor: Colors.red,
-              alignment: AlignmentDirectional(_paddingRight, _paddingTop),
+              alignment: Alignment.topLeft,
+              offset:Offset(_paddingRight,_paddingTop) ,
               padding: _badgePadding,
               largeSize: _largeSize,
               child: Text(
@@ -483,7 +484,8 @@ class BrnTabBarState extends State<BrnTabBar> {
                       style: TextStyle(
                           color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
                     ),
-                    alignment: AlignmentDirectional(_paddingRight, _paddingTop),
+                    alignment: Alignment.topLeft,
+                    offset: Offset(_paddingRight,_paddingTop),
                     padding: _badgePadding,
                     largeSize: _largeSize,
                     child: Text(badgeTab.text!,
