@@ -58,7 +58,7 @@ BrnMultiDataPickerWidget(
 | titleTextStyle | TextStyle? | 标题样式 | 否 |  |
 | confirmTextStyle | TextStyle? | 确认文案样式 | 否 |  |
 | cancelTextStyle | TextStyle? | 取消文案样式 | 否 |  |
-| pickerTitles | List<String>? | 多级数据选择每一级的默认标题 | 否 | 无 |
+| pickerTitles | `List<String>?` | 多级数据选择每一级的默认标题 | 否 | 无 |
 | pickerTitleFontSize | double? | 多级数据选择每一级默认标题的字体大小 | 否 | 16 |
 | pickerTitleColor | Color? | 多级数据选择每一级默认标题的文案颜色 | 否 | Color(0XFF4A4E59) |
 | textFontSize | double? | 多级数据选择数据字体大小 | 否 | 18 |

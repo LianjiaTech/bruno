@@ -343,7 +343,14 @@ class RangeLimitedTextInputFormatter extends TextInputFormatter {
       return const TextEditingValue(
           text: '', selection: TextSelection.collapsed(offset: 0));
     } else if (newNum != null && minValue <= newNum && newNum <= maxValue) {
-      return newValue;
+      /// perf issue:#458，eg. '020' should displayed as '20'
+      if (newNum.toString() != newValue.text) {
+        return TextEditingValue(
+            text: newNum.toString(),
+            selection: TextSelection.collapsed(offset: newNum.toString().length));
+      } else {
+        return newValue;
+      }
     } else {
       return oldValue;
     }
