@@ -117,6 +117,7 @@ class BrnNormalButton extends StatelessWidget {
   /// 按钮圆角大小
   final BorderRadiusGeometry borderRadius;
 
+  /// create BrnNormalButton
   BrnNormalButton({
     Key? key,
     required this.text,

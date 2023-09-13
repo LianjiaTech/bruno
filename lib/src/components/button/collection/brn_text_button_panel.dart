@@ -25,6 +25,7 @@ class BrnTextButtonPanel extends StatefulWidget {
   /// 默认值为PopDirection.bottom
   final BrnPopupDirection popDirection;
 
+  /// create BrnTextButtonPanel
   const BrnTextButtonPanel({
     Key? key,
     required this.nameList,

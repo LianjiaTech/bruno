@@ -3,13 +3,23 @@ import 'package:bruno/src/theme/configs/brn_selection_config.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
+/// 筛选菜单项
 // ignore: must_be_immutable
 class BrnSelectionMenuItemWidget extends StatelessWidget {
+
+  /// 菜单项标题
   final String title;
+
+  /// 是否高亮
   final bool isHighLight;
+
+  /// 是否选中
   final bool active;
+
+  /// 点击事件
   final VoidCallback? itemClickFunction;
 
+  /// 主题配置
   BrnSelectionConfig themeData;
 
   BrnSelectionMenuItemWidget(

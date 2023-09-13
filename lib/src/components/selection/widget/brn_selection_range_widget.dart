@@ -19,17 +19,30 @@ import 'package:bruno/src/utils/brn_text_util.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
+/// 范围选择子组件
 class BrnRangeSelectionGroupWidget extends StatefulWidget {
+  /// 根节点的筛选数据
   final BrnSelectionEntity entity;
+
+  /// 最大高度
   final double maxContentHeight;
+
+  /// 是否显示选中数量
   final bool showSelectedCount;
+
+  /// 背景点击事件
   final VoidCallback? bgClickFunction;
+
+  /// 确认按钮点击事件
   final BrnOnRangeSelectionConfirm? onSelectionConfirm;
 
+  /// 每行 tag 数
   final int? rowCount;
 
+  /// 顶部间距
   final double marginTop;
 
+  /// 主题配置
   final BrnSelectionConfig themeData;
 
   BrnRangeSelectionGroupWidget(
@@ -453,7 +466,7 @@ class _BrnRangeSelectionGroupWidgetState
     });
   }
 
-  // 初始化数据
+  /// 初始化数据
   void _initData() {
     // 生成筛选节点树
     _originalSelectedItemsList = widget.entity.selectedList();
@@ -471,7 +484,7 @@ class _BrnRangeSelectionGroupWidgetState
     _refreshDataSource();
   }
 
-  // 设置默认无选中项的时候默认选择index
+  /// 设置默认无选中项的时候默认选择index
   void _configDefaultInitSelectIndex() {
     _firstIndex = _secondIndex = -1;
   }
@@ -503,7 +516,7 @@ class _BrnRangeSelectionGroupWidgetState
     });
   }
 
-  // 刷新3个ListView的数据源
+  /// 刷新3个ListView的数据源
   void _refreshDataSource() {
     _firstList = widget.entity.children;
     if (_firstIndex >= 0 && _firstList.length > _firstIndex) {
@@ -541,7 +554,7 @@ class _BrnRangeSelectionGroupWidgetState
     }
   }
 
-  //设置数据为未选中状态
+  /// 设置数据为未选中状态
   void _resetSelectionDatas(BrnSelectionEntity entity) {
     entity.isSelected = false;
     entity.customMap = Map();

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// BrnProgressBarChart
 /// 柱形数据图表
 /// 展示一组或者多组数据，方便数据的查看以及对比
-/// ignore: must_be_immutable
+// ignore: must_be_immutable
 class BrnProgressBarChart extends StatefulWidget {
   /// 图表最小宽度，默认0
   final double minWidth;
@@ -48,6 +48,7 @@ class BrnProgressBarChart extends StatefulWidget {
   /// 图表高度，竖直柱状图有效，默认300
   final double height;
 
+  /// create BrnProgressBarChart
   BrnProgressBarChart(
       {Key? key,
       this.minWidth = 0,
@@ -83,7 +84,7 @@ class BrnProgressBarChart extends StatefulWidget {
 class BrnProgressBarChartState extends State<BrnProgressBarChart> {
   BrnProgressBarItem? _selectedBarItem;
 
-  Size chartSize() {
+  Size _chartSize() {
     int barBundleCount = widget.barBundleList.length;
     int numberOfBars = widget.barBundleList[0].barList.length;
     if (BarChartStyle.horizontal == widget.barChartStyle) {
@@ -116,10 +117,10 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
   @override
   void didUpdateWidget(BrnProgressBarChart oldWidget) {
     super.didUpdateWidget(oldWidget);
-    this.clearSelectedBarItem(oldWidget);
+    this._clearSelectedBarItem(oldWidget);
   }
 
-  void clearSelectedBarItem(BrnProgressBarChart oldWidget) {
+  void _clearSelectedBarItem(BrnProgressBarChart oldWidget) {
     if (widget.barBundleList.length == oldWidget.barBundleList.length) {
       int bundleCount = widget.barBundleList.length;
       for (int bundleIndex = 0; bundleIndex < bundleCount; bundleIndex++) {
@@ -151,7 +152,7 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
 
   @override
   Widget build(BuildContext context) {
-    Size chartSize = this.chartSize();
+    Size chartSize = this._chartSize();
     if (chartSize == Size.zero) {
       return const SizedBox.shrink();
     }

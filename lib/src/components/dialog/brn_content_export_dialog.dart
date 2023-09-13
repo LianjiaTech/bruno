@@ -29,6 +29,7 @@ class BrnContentExportWidget extends StatelessWidget {
   /// 是否展示底部操作区域
   final bool isShowOperateWidget;
 
+  /// the theme config for common bruno dialog
   BrnDialogConfig? themeData;
 
   BrnContentExportWidget(this.contentWidget,

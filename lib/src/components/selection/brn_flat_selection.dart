@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 
 /// 支持tag 、输入 、range、选择等类型混合一级筛选
 /// 也可支持点击选项跳转二级页面
-
 // ignore: must_be_immutable
 class BrnFlatSelection extends StatefulWidget {
   /// 筛选原始数据

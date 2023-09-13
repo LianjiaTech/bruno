@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 /// 可以外部主动添加和删除标签
 /// 宽高间距可设置
 /// 支持标签数量的增删
-/// ignore: must_be_immutable
+// ignore: must_be_immutable
 class BrnDeleteTag extends StatefulWidget {
   /// 初始传入的标签，当传入controller的时候，应把初始标签放入controller的构造中
   final List<String>? tags;
@@ -173,7 +173,7 @@ class _BrnDeleteTagState extends State<BrnDeleteTag> {
 }
 
 /// 标签具体子项，配置属性可参考 [BrnDeleteTag]
-/// ignore: must_be_immutable
+// ignore: must_be_immutable
 class DeleteTagItemWidget extends StatelessWidget {
   final int index;
   final String title;

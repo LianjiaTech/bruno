@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 /// *
 /// * 注意：若想删除指定 Dialog，必须在 show、dismiss 方法时传 tag，
 /// * * * * * * * * * * *
-
 class BrnSafeDialog {
   static const String _safeDialogDefaultTag = '_safeDialogDefaultTag';
 

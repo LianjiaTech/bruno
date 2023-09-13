@@ -49,6 +49,7 @@ class BrnMultipleBottomButton extends StatefulWidget {
   /// 暴露给外界设置多选状态的控制器
   final BrnMultipleBottomController? bottomController;
 
+  /// create BrnMultipleBottomButton
   const BrnMultipleBottomButton(
       {Key? key,
       this.mainButton,
@@ -354,6 +355,7 @@ class BrnMultipleBottomController {
     valueNotifier = ValueNotifier(initMultiSelectState ?? MultiSelectState());
   }
 
+  ///
   final MultiSelectState? initMultiSelectState;
 
   late ValueNotifier<MultiSelectState> valueNotifier;

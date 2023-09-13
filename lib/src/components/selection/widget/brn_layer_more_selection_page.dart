@@ -261,7 +261,7 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     );
   }
 
-  //清空
+  /// 清空
   Widget _buildBottomBtn() {
     return Align(
       alignment: Alignment.bottomLeft,
@@ -470,8 +470,8 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
     }
   }
 
-  //初始化二级的选中（小白楼）
-  //规则：如果二级没有选中的，那么 选中二级的不限
+  /// 初始化二级的选中（小白楼）
+  /// 规则：如果二级没有选中的，那么 选中二级的不限
   void setInitialSecondShowingItem(BrnSelectionEntity currentFirstEntity) {
     //设置初始化的二级筛选条件 -1没有
     int secondIndex = currentFirstEntity.getFirstSelectedChildIndex();

@@ -332,7 +332,8 @@ class BrnTabBarState extends State<BrnTabBar> {
     );
   }
 
-  // 更新选中tab的小红点状态
+  /// 更新选中tab的小红点状态
+  /// [index] tab索引
   void refreshBadgeState(int index) {
     setState(() {
       BadgeTab badgeTab = widget.tabs![index];
@@ -375,7 +376,7 @@ class BrnTabBarState extends State<BrnTabBar> {
     return widgets;
   }
 
-  // 原始的自适应的tab样式
+  /// 原始的自适应的tab样式
   Widget _wrapOriginWidget(
       BadgeTab badgeTab, bool lastElement, bool isScrollable) {
     var _contentWidget = LayoutBuilder(builder: (context, constraints) {
@@ -443,7 +444,7 @@ class BrnTabBarState extends State<BrnTabBar> {
     );
   }
 
-  // 定制的等分tab样式
+  /// 定制的等分tab样式
   Widget _wrapAverageWidget(
       BadgeTab badgeTab, double? minWidth, bool lastElement) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -509,7 +510,7 @@ class BrnTabBarState extends State<BrnTabBar> {
     });
   }
 
-  // 计算小红点尺寸相关参数
+  /// 计算小红点尺寸相关参数
   void caculateBadgeParams(BadgeTab badgeTab, BoxConstraints constraints) {
     _paddingTop = -5.0;
 
@@ -580,7 +581,7 @@ class BrnTabBarState extends State<BrnTabBar> {
     }
   }
 
-  // 展开更多
+  /// 展开更多
   void showMoreWindow(BuildContext context) {
     final RenderBox dropDownItemRenderBox =
         context.findRenderObject() as RenderBox;
@@ -661,7 +662,7 @@ class BrnTabBarState extends State<BrnTabBar> {
   }
 }
 
-// 更多弹框样式
+/// 更多弹框样式
 // ignore: must_be_immutable
 class _TabBarOverlayWidget extends StatefulWidget {
   List<BadgeTab>? tabs;
@@ -711,7 +712,7 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
     return createMoreWindowView();
   }
 
-  // 展开更多弹框样式
+  /// 展开更多弹框样式
   Widget createMoreWindowView() {
     return MeasureSize(
       onChange: (size) {
@@ -828,18 +829,15 @@ class _TabBarOverlayWidgetState extends State<_TabBarOverlayWidget> {
   }
 }
 
+/// BrnTabBar tab 的展示配置
 class BadgeTab {
   BadgeTab(
-      {this.key,
-      this.text,
+      {this.text,
       this.badgeNum,
       this.topText,
       this.badgeText,
       this.showRedBadge = false,
       this.isAutoDismiss = true});
-
-  @Deprecated('无效参数，预计两个版本后删除')
-  final Key? key;
 
   /// Tab文本
   final String? text;

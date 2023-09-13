@@ -122,7 +122,6 @@ enum _ButtonType {
 ///    });
 ///  }
 ///
-
 class BrnDialog extends AlertDialog {
   /// 标题控件
   final Widget? titleWidget;

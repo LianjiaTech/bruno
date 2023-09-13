@@ -11,21 +11,32 @@ import 'package:flutter/material.dart';
 /// 描述: 多选 tag 组件
 /// /// /// /// /// /// /// /// /// /
 class BrnSelectionRangeTagWidget extends StatefulWidget {
-  //tag 显示的文本
+  /// tag 显示的文本
   @required
   final List<BrnSelectionEntity> tagFilterList;
 
-  //初始选中的 Index 列表
+  /// 初始选中的 Index 列表
   final List<bool>? initSelectStatus;
 
-  //选择tag的回调
+  /// 选择tag的回调
   final void Function(int, bool)? onSelect;
+
+  /// tag 之间的间距
   final double spacing;
+
+  /// tag 之间的垂直间距
   final double verticalSpacing;
+
+  /// tag 的宽度
   final int tagWidth;
+
+  /// tag 的高度
   final double tagHeight;
+
+  /// 初始选择的焦点位置
   final int initFocusedIndex;
 
+  /// 主题配置
   final BrnSelectionConfig themeData;
 
   BrnSelectionRangeTagWidget(

@@ -6,6 +6,11 @@ import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
+
+
+/// 默认最小宽度
+const double _BMinWidth = 84;
+
 ///
 /// 小的主色调按钮
 /// 该按钮有一个最小的宽度84，在此基础上，宽度随着文本内容的多少变更
@@ -21,10 +26,6 @@ import 'package:flutter/material.dart';
 ///  * [BrnSmallOutlineButton], 小主色调按钮
 ///
 ///
-
-/// 默认最小宽度
-const double _BMinWidth = 84;
-
 class BrnSmallMainButton extends StatelessWidget {
   /// 按钮显示文案,默认'确认'
   final String? title;
@@ -34,12 +35,26 @@ class BrnSmallMainButton extends StatelessWidget {
 
   ///是否可用，默认为true。false为不可用：置灰、不可点击。
   final bool isEnable;
+
+  /// background color
   final Color? bgColor;
+
+  /// text color
   final Color textColor;
+
+  /// font weight
   final FontWeight fontWeight;
+
+  /// button text fontSize
   final double? fontSize;
+
+  /// button 圆角
   final double? radius;
+
+  /// 外部要求的最大宽度
   final double? maxWidth;
+
+  /// button 宽度
   final double? width;
 
   /// 配置样式

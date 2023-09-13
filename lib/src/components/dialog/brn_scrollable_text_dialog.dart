@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 ///  纯文本展示Dialog 超过定高可滚动
 ///  可有操作区域也可没有皂搓区域
-
 class BrnScrollableTextDialog extends Dialog {
   /// 标题
   final String? title;

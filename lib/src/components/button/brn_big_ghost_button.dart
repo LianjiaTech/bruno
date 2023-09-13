@@ -21,22 +21,25 @@ import 'package:flutter/material.dart';
 ///  * [BrnBigOutlineButton], 大边框按钮
 
 class BrnBigGhostButton extends StatelessWidget {
-  ///按钮文案，默认'确认'
+  /// 按钮文案，默认'确认'
   final String? title;
 
-  ///文案颜色
+  /// 文案颜色
   final Color? titleColor;
 
-  ///按钮背景颜色
+  /// 按钮背景颜色
   final Color? bgColor;
 
-  ///点击回调
+  /// 点击回调
   final VoidCallback? onTap;
 
-  ///默认父布局可用空间
+  /// 默认父布局可用空间
   final double? width;
+
+  /// button theme config
   final BrnButtonConfig? themeData;
 
+  /// create BrnBigGhostButton
   const BrnBigGhostButton({
     Key? key,
     this.title,
