@@ -10,7 +10,7 @@
 
 - <code>BrnPopupWindow</code> : fixed issue [#486](https://github.com/LianjiaTech/bruno/issues/486) which is called after initState and whenever the dependencies change thereafter.
 - <code>BrnTabBar</code>: fixed the issue [#487](https://github.com/LianjiaTech/bruno/issues/487)  of invalid setting of badge.
-- <code>BrnStepInputFormItem</code>: fixed the issue where components are not displayed when manually inputting a leading 0 [#458](https://github.com/LianjiaTech/bruno/issues/458).
+- <code>BrnStepInputFormItem</code>: fixed the situation where manually input numbers are preceded by 0 [#458](https://github.com/LianjiaTech/bruno/issues/458).
 
 
 
