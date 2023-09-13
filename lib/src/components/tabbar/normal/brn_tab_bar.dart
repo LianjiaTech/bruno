@@ -177,10 +177,10 @@ class BrnTabBarState extends State<BrnTabBar> {
   late double _largeSize;
 
   /// 小红点上偏移量
-  double _paddingTop = 0;
+  double _dy = 0;
 
   /// 小红点右偏移量
-  double _paddingRight = 0;
+  double _dx = 0;
 
   /// 展开更多的按钮宽度
   final double _moreSpacing = 50;
@@ -408,7 +408,8 @@ class BrnTabBarState extends State<BrnTabBar> {
                     color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
               ),
               backgroundColor: Colors.red,
-              alignment: AlignmentDirectional(_paddingRight, _paddingTop),
+              alignment: Alignment.topLeft,
+              offset:Offset(_dx,_dy) ,
               padding: _badgePadding,
               largeSize: _largeSize,
               child: Text(
@@ -483,7 +484,8 @@ class BrnTabBarState extends State<BrnTabBar> {
                       style: TextStyle(
                           color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
                     ),
-                    alignment: AlignmentDirectional(_paddingRight, _paddingTop),
+                    alignment: Alignment.topLeft,
+                    offset: Offset(_dx,_dy),
                     padding: _badgePadding,
                     largeSize: _largeSize,
                     child: Text(badgeTab.text!,
@@ -512,7 +514,7 @@ class BrnTabBarState extends State<BrnTabBar> {
 
   /// 计算小红点尺寸相关参数
   void caculateBadgeParams(BadgeTab badgeTab, BoxConstraints constraints) {
-    _paddingTop = -5.0;
+    _dy = -5.0;
 
     if (badgeTab.badgeNum != null) {
       if (badgeTab.badgeNum! < 10) {
@@ -537,7 +539,7 @@ class BrnTabBarState extends State<BrnTabBar> {
         _badgePadding = EdgeInsets.only(left: 4.0, right: 4.0);
         _largeSize = 8.0;
         _badgeText = "";
-        _paddingTop = 1.0;
+        _dy = 1.0;
       }
     }
 
@@ -574,10 +576,10 @@ class BrnTabBarState extends State<BrnTabBar> {
       // if(_badgeWidth > (constraints.maxWidth + _labelPadding.right)){
       //   _paddingRight = 0.0;
       // }else{
-      _paddingRight = constraints.maxWidth + _labelPadding.right - _badgeWidth;
+      _dx = constraints.maxWidth + _labelPadding.right - _badgeWidth;
       // }
     } else {
-      _paddingRight = _tabTextWidth;
+      _dx = _tabTextWidth;
     }
   }
 
