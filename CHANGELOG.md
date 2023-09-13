@@ -1,3 +1,15 @@
+## [3.4.3] - 2023-9-13
+
+### Changed
+
+#### components
+
+- <code>BrnPopupWindow</code> : fix issue [#486](https://github.com/LianjiaTech/bruno/issues/486) which is called after initState and whenever the dependencies change thereafter.
+- <code>BrnTabBar</code>: fix the issue [#487](https://github.com/LianjiaTech/bruno/issues/487)  of invalid setting of badge.
+
+
+
+
 ## [3.4.2] - 2023-8-23
 
 ### Changed
