@@ -37,16 +37,18 @@ group:
     this.maxLength = 200,
     this.minLines = 1,
     this.hint,
+    this.hintStyle,
     this.maxHintLines,
     this.padding = EdgeInsets.zero,
     this.textString = "",
+    this.textStyle,
     this.autoFocus,
     this.textEditingController,
     this.focusNode,
-    this.textInputAction,
     this.textInputAction = TextInputAction.done,
     this.borderRadius,
     this.borderColor,
+    this.buildCounter,
   });
 ```
 
@@ -55,7 +57,9 @@ group:
 | **参数名**            | **参数类型**                                         | **描述**                                                     | **是否必填** | **默认值**           |
 | --------------------- | ---------------------------------------------------- | ------------------------------------------------------------ | ------------ | -------------------- |
 | hint                  | String?                                               | 输入提示语,默认为"请输入"                                 | 否           | 默认值为国际化配置文本 "请输入"          |
+| hintStyle             | TextStyle?                                           | 输入提示语的样式                                             | 否           | 基础样式              |
 | textString            | String                                               | 输入框初始值                                                 | 否           | ""                   |
+| textStyle             | TextStyle?                                           | 输入字体的样式                                               | 否           | 基础样式              |
 | maxHintLines          | int?                                                 | 最大 hint 行数                                               |              |                      |
 | textEditingController | TextEditingController?                               | 用于对 TextField 更精细的控制，若传入该字段，[textString] 参数将失效，可使用 TextEditingController.text 进行赋值 | 否           |                      |
 | onTextChange          | BrnInputTextChangeCallback = Function(String input)? | 搜索框输入内容改变时候的回调函数,str 为输入内容              | 否           | 无                   |
@@ -73,6 +77,7 @@ group:
 | textInputAction       | TextInputAction?                                     | 选择键盘的完成按钮                                           | 否           |                      |
 | padding               | EdgeInsetsGeometry                                   | 文字距离边框的边距                                           | 否           | EdgeInsets.zero      |
 | textEditingController | TextInputAction                                      | 键盘输入行为                                                 | 否           | TextInputAction.done |
+| buildCounter          | InputCounterWidgetBuilder?                           | 计数器自定义                                                 | 否           | 基础计数器            |
 
 ## 三、效果及代码展示
 
