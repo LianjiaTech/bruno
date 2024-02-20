@@ -221,15 +221,15 @@ class BrnAppBar extends PreferredSize {
   @override
   Widget build(BuildContext context) {
     BrnAppBarConfig _defaultConfig = themeData ?? BrnAppBarConfig();
-    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
-        backgroundColor: this.backgroundColor,
-        showDefaultBottom: this.showDefaultBottom,
-        systemUiOverlayStyle: this.systemOverlayStyle));
-
     _defaultConfig = BrnThemeConfigurator.instance
         .getConfig(configId: _defaultConfig.configId)
         .appBarConfig
         .merge(_defaultConfig);
+
+    _defaultConfig = _defaultConfig.merge(BrnAppBarConfig(
+        backgroundColor: this.backgroundColor,
+        showDefaultBottom: this.showDefaultBottom,
+        systemUiOverlayStyle: this.systemOverlayStyle));
 
     useWidgetsBinding().addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(_defaultConfig.systemOverlayStyle);
