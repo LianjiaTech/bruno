@@ -16,7 +16,7 @@ dependencies:
   lpinyin: ^2.0.3
   path_drawing: ^1.0.0
   flutter_easyrefresh: ^2.2.1
-  intl: ^0.18.0
+  intl: ^0.19.0
   photo_view: ^0.14.0
   bindings_compatible: ^1.0.1
 
