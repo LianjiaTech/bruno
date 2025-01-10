@@ -221,15 +221,15 @@ class BrnPickerConfig extends BrnBaseConfig {
     if (other == null) return this;
     return copyWith(
       backgroundColor: other._backgroundColor,
-      cancelTextStyle: cancelTextStyle.merge(other._cancelTextStyle),
-      confirmTextStyle: confirmTextStyle.merge(other._confirmTextStyle),
-      titleTextStyle: titleTextStyle.merge(other._titleTextStyle),
+      cancelTextStyle: _cancelTextStyle?.merge(other._cancelTextStyle),
+      confirmTextStyle: _confirmTextStyle?.merge(other._confirmTextStyle),
+      titleTextStyle: _titleTextStyle?.merge(other._titleTextStyle),
       pickerHeight: other._pickerHeight,
       titleHeight: other._titleHeight,
       itemHeight: other._itemHeight,
-      itemTextStyle: itemTextStyle.merge(other._itemTextStyle),
+      itemTextStyle: _itemTextStyle?.merge(other._itemTextStyle),
       itemTextSelectedStyle:
-          itemTextSelectedStyle.merge(other._itemTextSelectedStyle),
+          _itemTextSelectedStyle?.merge(other._itemTextSelectedStyle),
       dividerColor: other._dividerColor,
       cornerRadius: other._cornerRadius,
     );

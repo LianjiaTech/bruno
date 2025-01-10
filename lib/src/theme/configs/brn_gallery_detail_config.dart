@@ -321,19 +321,19 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
   BrnGalleryDetailConfig merge(BrnGalleryDetailConfig? other) {
     if (other == null) return this;
     return copyWith(
-      appbarTitleStyle: appbarTitleStyle.merge(other._appbarTitleStyle),
-      appbarActionStyle: appbarActionStyle.merge(other._appbarActionStyle),
+      appbarTitleStyle: _appbarTitleStyle?.merge(other._appbarTitleStyle),
+      appbarActionStyle: _appbarActionStyle?.merge(other._appbarActionStyle),
       appbarBackgroundColor: other._appbarBackgroundColor,
       appbarConfig: other._appbarConfig,
       tabBarUnSelectedLabelStyle:
-          tabBarUnSelectedLabelStyle.merge(other._tabBarUnSelectedLabelStyle),
-      tabBarLabelStyle: tabBarLabelStyle.merge(other._tabBarLabelStyle),
+          _tabBarUnSelectedLabelStyle?.merge(other._tabBarUnSelectedLabelStyle),
+      tabBarLabelStyle: _tabBarLabelStyle?.merge(other._tabBarLabelStyle),
       tabBarBackgroundColor: other._tabBarBackgroundColor,
       pageBackgroundColor: other._pageBackgroundColor,
       bottomBackgroundColor: other._bottomBackgroundColor,
-      titleStyle: titleStyle.merge(other._titleStyle),
-      contentStyle: contentStyle.merge(other._contentStyle),
-      actionStyle: actionStyle.merge(other._actionStyle),
+      titleStyle: _titleStyle?.merge(other._titleStyle),
+      contentStyle: _contentStyle?.merge(other._contentStyle),
+      actionStyle: _actionStyle?.merge(other._actionStyle),
       iconColor: other._iconColor,
     );
   }

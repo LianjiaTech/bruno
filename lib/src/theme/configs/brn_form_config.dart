@@ -393,23 +393,23 @@ class BrnFormItemConfig extends BrnBaseConfig {
     if (other == null) return this;
     return copyWith(
       backgroundColor: other._backgroundColor,
-      titleTextStyle: titleTextStyle.merge(other._titleTextStyle),
-      subTitleTextStyle: subTitleTextStyle.merge(other._subTitleTextStyle),
-      errorTextStyle: errorTextStyle.merge(other._errorTextStyle),
-      hintTextStyle: hintTextStyle.merge(other._hintTextStyle),
-      contentTextStyle: contentTextStyle.merge(other._contentTextStyle),
+      titleTextStyle: _titleTextStyle?.merge(other._titleTextStyle),
+      subTitleTextStyle: _subTitleTextStyle?.merge(other._subTitleTextStyle),
+      errorTextStyle: _errorTextStyle?.merge(other._errorTextStyle),
+      hintTextStyle: _hintTextStyle?.merge(other._hintTextStyle),
+      contentTextStyle: _contentTextStyle?.merge(other._contentTextStyle),
       formPadding: other._formPadding,
       titlePaddingSm: other._titlePaddingSm,
       titlePaddingLg: other._titlePaddingLg,
       optionsMiddlePadding: other._optionsMiddlePadding,
       subTitlePadding: other._subTitlePadding,
       errorPadding: other._errorPadding,
-      disableTextStyle: disableTextStyle.merge(other._disableTextStyle),
-      tipsTextStyle: tipsTextStyle.merge(other._tipsTextStyle),
-      headTitleTextStyle: headTitleTextStyle.merge(other._headTitleTextStyle),
-      optionTextStyle: optionTextStyle.merge(other._optionTextStyle),
+      disableTextStyle: _disableTextStyle?.merge(other._disableTextStyle),
+      tipsTextStyle: _tipsTextStyle?.merge(other._tipsTextStyle),
+      headTitleTextStyle: _headTitleTextStyle?.merge(other._headTitleTextStyle),
+      optionTextStyle: _optionTextStyle?.merge(other._optionTextStyle),
       optionSelectedTextStyle:
-          optionSelectedTextStyle.merge(other._optionSelectedTextStyle),
+          _optionSelectedTextStyle?.merge(other._optionSelectedTextStyle),
     );
   }
 }

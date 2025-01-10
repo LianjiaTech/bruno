@@ -260,15 +260,15 @@ class BrnActionSheetConfig extends BrnBaseConfig {
   BrnActionSheetConfig merge(BrnActionSheetConfig? other) {
     if (other == null) return this;
     return copyWith(
-      titleStyle: titleStyle.merge(other._titleStyle),
-      itemTitleStyle: itemTitleStyle.merge(other._itemTitleStyle),
-      itemTitleStyleLink: itemTitleStyleLink.merge(other._itemTitleStyleLink),
+      titleStyle: _titleStyle?.merge(other._titleStyle),
+      itemTitleStyle: _itemTitleStyle?.merge(other._itemTitleStyle),
+      itemTitleStyleLink: _itemTitleStyleLink?.merge(other._itemTitleStyleLink),
       itemTitleStyleAlert:
-          itemTitleStyleAlert.merge(other._itemTitleStyleAlert),
-      itemDescStyle: itemDescStyle.merge(other._itemDescStyle),
-      itemDescStyleLink: itemDescStyleLink.merge(other._itemDescStyleLink),
-      itemDescStyleAlert: itemDescStyleAlert.merge(other._itemDescStyleAlert),
-      cancelStyle: cancelStyle.merge(other._cancelStyle),
+          _itemTitleStyleAlert?.merge(other._itemTitleStyleAlert),
+      itemDescStyle: _itemDescStyle?.merge(other._itemDescStyle),
+      itemDescStyleLink: _itemDescStyleLink?.merge(other._itemDescStyleLink),
+      itemDescStyleAlert: _itemDescStyleAlert?.merge(other._itemDescStyleAlert),
+      cancelStyle: _cancelStyle?.merge(other._cancelStyle),
       topRadius: other._topRadius,
       contentPadding: other._contentPadding,
       titlePadding: other._titlePadding,

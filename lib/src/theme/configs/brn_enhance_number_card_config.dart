@@ -100,8 +100,8 @@ class BrnEnhanceNumberCardConfig extends BrnBaseConfig {
       runningSpace: other._runningSpace,
       itemRunningSpace: other._itemRunningSpace,
       dividerWidth: other._dividerWidth,
-      titleTextStyle: titleTextStyle.merge(other._titleTextStyle),
-      descTextStyle: descTextStyle.merge(other._descTextStyle),
+      titleTextStyle: _titleTextStyle?.merge(other._titleTextStyle),
+      descTextStyle: _descTextStyle?.merge(other._descTextStyle),
     );
   }
 }

@@ -185,12 +185,12 @@ class BrnAbnormalStateConfig extends BrnBaseConfig {
   BrnAbnormalStateConfig merge(BrnAbnormalStateConfig? other) {
     if (other == null) return this;
     return copyWith(
-      titleTextStyle: titleTextStyle.merge(other._titleTextStyle),
-      contentTextStyle: contentTextStyle.merge(other._contentTextStyle),
-      operateTextStyle: operateTextStyle.merge(other._operateTextStyle),
+      titleTextStyle: _titleTextStyle?.merge(other._titleTextStyle),
+      contentTextStyle: _contentTextStyle?.merge(other._contentTextStyle),
+      operateTextStyle: _operateTextStyle?.merge(other._operateTextStyle),
       btnRadius: other._btnRadius,
-      singleTextStyle: singleTextStyle.merge(other._singleTextStyle),
-      doubleTextStyle: doubleTextStyle.merge(other._doubleTextStyle),
+      singleTextStyle: _singleTextStyle?.merge(other._singleTextStyle),
+      doubleTextStyle: _doubleTextStyle?.merge(other._doubleTextStyle),
       singleMinWidth: other._singleMinWidth,
       doubleMinWidth: other._doubleMinWidth,
     );

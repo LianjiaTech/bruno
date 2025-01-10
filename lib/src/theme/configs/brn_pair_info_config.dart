@@ -283,9 +283,9 @@ class BrnPairRichInfoGridConfig extends BrnBaseConfig {
       rowSpacing: other._rowSpacing,
       itemSpacing: other._itemSpacing,
       itemHeight: other._itemHeight,
-      keyTextStyle: keyTextStyle.merge(other._keyTextStyle),
-      valueTextStyle: valueTextStyle.merge(other._valueTextStyle),
-      linkTextStyle: linkTextStyle.merge(other._linkTextStyle),
+      keyTextStyle: _keyTextStyle?.merge(other._keyTextStyle),
+      valueTextStyle: _valueTextStyle?.merge(other._valueTextStyle),
+      linkTextStyle: _linkTextStyle?.merge(other._linkTextStyle),
     );
   }
 }

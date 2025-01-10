@@ -68,6 +68,14 @@ class _BrnTabExampleState extends State<BrnTabExample>
                 _createTopTabbarCountWidgets(),
                 Divider(),
                 _createOriginWidgets(),
+                Divider(),
+                _buildTabar(),
+                Container(
+                  child: Container(
+                    height: 200,
+                    color: Colors.white,
+                  ),
+                )
               ],
             ),
           ),
@@ -79,6 +87,17 @@ class _BrnTabExampleState extends State<BrnTabExample>
           }
           return Future.value(true);
         });
+  }
+
+  _buildTabar(){
+    return TabBar(tabs: [
+      Text("dataaa"),
+      Text("dBBB"),
+      Text("CC"),
+      Text("CC"),
+      Text("CC"),
+    ],controller:
+        TabController(length: 5, vsync: this),);
   }
 
   _createExpandedMoreTabbarWidgets() {

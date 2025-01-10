@@ -254,14 +254,14 @@ class BrnTabBarConfig extends BrnBaseConfig {
       tabHeight: other._tabHeight,
       indicatorHeight: other._indicatorHeight,
       indicatorWidth: other._indicatorWidth,
-      labelStyle: labelStyle.merge(other._labelStyle),
+      labelStyle: _labelStyle?.merge(other._labelStyle),
       unselectedLabelStyle:
-          unselectedLabelStyle.merge(other._unselectedLabelStyle),
+          _unselectedLabelStyle?.merge(other._unselectedLabelStyle),
       backgroundColor: other._backgroundColor,
-      tagNormalTextStyle: tagNormalTextStyle.merge(other._tagNormalTextStyle),
+      tagNormalTextStyle: _tagNormalTextStyle?.merge(other._tagNormalTextStyle),
       tagNormalColor: other._tagNormalBgColor,
       tagSelectedTextStyle:
-          tagSelectedTextStyle.merge(other._tagSelectedTextStyle),
+          _tagSelectedTextStyle?.merge(other._tagSelectedTextStyle),
       tagSelectedColor: other._tagSelectedBgColor,
       tagRadius: other._tagRadius,
       tagSpacing: other._tagSpacing,

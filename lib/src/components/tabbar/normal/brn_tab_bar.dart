@@ -103,6 +103,8 @@ class BrnTabBar extends StatefulWidget {
   final double? tagHeight;
 
   BrnTabBarConfig? themeData;
+  /// 对齐方式
+  TabAlignment? tabAlignment;
 
   BrnTabBar({
     required this.tabs,
@@ -134,6 +136,7 @@ class BrnTabBar extends StatefulWidget {
     this.tagSpacing,
     this.preLineTagCount,
     this.tagHeight,
+    this.tabAlignment,
   }) : assert(tabs != null) {
     this.themeData ??= BrnTabBarConfig();
     this.themeData = BrnThemeConfigurator.instance
@@ -282,6 +285,7 @@ class BrnTabBarState extends State<BrnTabBar> {
             _brnTabbarController.entry = null;
           }
         },
+        tabAlignment: widget.tabAlignment,
         indicator: CustomWidthUnderlineTabIndicator(
           insets: widget.indicatorPadding,
           borderSide: BorderSide(
@@ -557,7 +561,7 @@ class BrnTabBarState extends State<BrnTabBar> {
     // 获取 badgeTextWidth
     TextStyle badgeTextStyle = TextStyle(height: 1, fontSize: 10);
     TextPainter _badgeTextPainter =
-        TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
+        TextPainter(textScaler: MediaQuery.of(context).textScaler);
     _badgeTextPainter.textDirection = TextDirection.ltr;
     _badgeTextPainter.maxLines = 1;
     _badgeTextPainter.text = TextSpan(text: _badgeText, style: badgeTextStyle);

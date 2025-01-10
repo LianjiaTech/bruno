@@ -200,11 +200,11 @@ class BrnCardTitleConfig extends BrnBaseConfig {
     return copyWith(
       cardTitlePadding: other._cardTitlePadding,
       titleWithHeightTextStyle:
-          titleWithHeightTextStyle.merge(other._titleWithHeightTextStyle),
-      titleTextStyle: titleTextStyle.merge(other._titleTextStyle),
-      subtitleTextStyle: subtitleTextStyle.merge(other._subtitleTextStyle),
-      detailTextStyle: detailTextStyle.merge(other._detailTextStyle),
-      accessoryTextStyle: accessoryTextStyle.merge(other._accessoryTextStyle),
+          _titleWithHeightTextStyle?.merge(other._titleWithHeightTextStyle),
+      titleTextStyle: _titleTextStyle?.merge(other._titleTextStyle),
+      subtitleTextStyle: _subtitleTextStyle?.merge(other._subtitleTextStyle),
+      detailTextStyle: _detailTextStyle?.merge(other._detailTextStyle),
+      accessoryTextStyle: _accessoryTextStyle?.merge(other._accessoryTextStyle),
       alignment: other._alignment,
       cardBackgroundColor: other._cardBackgroundColor,
     );

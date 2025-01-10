@@ -540,41 +540,41 @@ class BrnSelectionConfig extends BrnBaseConfig {
   BrnSelectionConfig merge(BrnSelectionConfig other) {
     return copyWith(
       menuNormalTextStyle:
-          menuNormalTextStyle.merge(other._menuNormalTextStyle),
+          _menuNormalTextStyle?.merge(other._menuNormalTextStyle),
       menuSelectedTextStyle:
-          menuSelectedTextStyle.merge(other._menuSelectedTextStyle),
+          _menuSelectedTextStyle?.merge(other._menuSelectedTextStyle),
       tagTextStyle: tagNormalTextStyle.merge(other._tagNormalTextStyle),
       tagSelectedTextStyle:
-          tagSelectedTextStyle.merge(other._tagSelectedTextStyle),
+          _tagSelectedTextStyle?.merge(other._tagSelectedTextStyle),
       tagRadius: other._tagRadius,
       tagBackgroundColor: other._tagNormalBackgroundColor,
       tagSelectedBackgroundColor: other._tagSelectedBackgroundColor,
-      hintTextStyle: hintTextStyle.merge(other._hintTextStyle),
+      hintTextStyle: _hintTextStyle?.merge(other._hintTextStyle),
       rangeTitleTextStyle:
-          rangeTitleTextStyle.merge(other._rangeTitleTextStyle),
-      inputTextStyle: inputTextStyle.merge(other._inputTextStyle),
+          _rangeTitleTextStyle?.merge(other._rangeTitleTextStyle),
+      inputTextStyle: _inputTextStyle?.merge(other._inputTextStyle),
       itemNormalTextStyle:
-          itemNormalTextStyle.merge(other._itemNormalTextStyle),
+          _itemNormalTextStyle?.merge(other._itemNormalTextStyle),
       itemSelectedTextStyle:
-          itemSelectedTextStyle.merge(other._itemSelectedTextStyle),
-      itemBoldTextStyle: itemBoldTextStyle.merge(other._itemBoldTextStyle),
+          _itemSelectedTextStyle?.merge(other._itemSelectedTextStyle),
+      itemBoldTextStyle: _itemBoldTextStyle?.merge(other._itemBoldTextStyle),
       deepNormalBgColor: other._deepNormalBgColor,
       deepSelectBgColor: other._deepSelectBgColor,
       middleNormalBgColor: other._middleNormalBgColor,
       middleSelectBgColor: other._middleSelectBgColor,
       lightNormalBgColor: other._lightNormalBgColor,
       lightSelectBgColor: other._lightSelectBgColor,
-      resetTextStyle: resetTextStyle.merge(other._resetTextStyle),
+      resetTextStyle: _resetTextStyle?.merge(other._resetTextStyle),
       titleForMoreTextStyle:
-          titleForMoreTextStyle.merge(other._titleForMoreTextStyle),
-      optionTextStyle: optionTextStyle.merge(other._optionTextStyle),
-      moreTextStyle: moreTextStyle.merge(other._moreTextStyle),
+          _titleForMoreTextStyle?.merge(other._titleForMoreTextStyle),
+      optionTextStyle: _optionTextStyle?.merge(other._optionTextStyle),
+      moreTextStyle: _moreTextStyle?.merge(other._moreTextStyle),
       flayerNormalTextStyle:
-          flayerNormalTextStyle.merge(other._flayerNormalTextStyle),
+          _flayerNormalTextStyle?.merge(other._flayerNormalTextStyle),
       flayerSelectedTextStyle:
-          flayerSelectedTextStyle.merge(other._flayerSelectedTextStyle),
+          _flayerSelectedTextStyle?.merge(other._flayerSelectedTextStyle),
       flayerBoldTextStyle:
-          flayerBoldTextStyle.merge(other._flayerBoldTextStyle),
+          _flayerBoldTextStyle?.merge(other._flayerBoldTextStyle),
     );
   }
 }

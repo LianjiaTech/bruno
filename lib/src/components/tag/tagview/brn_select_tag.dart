@@ -78,9 +78,9 @@ class BrnSelectTag extends StatefulWidget {
     this.fixWidthMode = true,
     this.themeData,
   }) : super(key: key) {
-    if (isSingleSelect == true) {
-      assert(initTagState == null || (initTagState!.length <= 1));
-    }
+    // if (isSingleSelect == true) {
+    //   assert(initTagState == null || (initTagState!.length <= 1));
+    // }
     this.themeData ??= BrnTagConfig();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
