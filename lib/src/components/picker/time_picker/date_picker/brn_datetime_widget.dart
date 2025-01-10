@@ -430,17 +430,19 @@ class _BrnDateTimeWidgetState extends State<BrnDateTimeWidget> {
 
     if (monthRangeChanged) {
       // CupertinoPicker refresh data not working (https://github.com/flutter/flutter/issues/22999)
-      _monthScrollCtrl.jumpToItem(monthRange.last - monthRange.first);
       if (_currMonth < monthRange.last) {
         _monthScrollCtrl.jumpToItem(_currMonth - monthRange.first);
+      } else {
+        _monthScrollCtrl.jumpToItem(monthRange.last - monthRange.first);
       }
     }
 
     if (dayRangeChanged) {
       // CupertinoPicker refresh data not working (https://github.com/flutter/flutter/issues/22999)
-      _dayScrollCtrl.jumpToItem(dayRange.last - dayRange.first);
       if (_currDay < dayRange.last) {
         _dayScrollCtrl.jumpToItem(_currDay - dayRange.first);
+      } else {
+        _dayScrollCtrl.jumpToItem(dayRange.last - dayRange.first);
       }
     }
 
