@@ -145,8 +145,7 @@ class DateTimeFormatter {
   }
 
   /// Format day display
-  static String formatDate(
-      DateTime dateTime, String format) {
+  static String formatDate(DateTime dateTime, String format) {
     if (format.isEmpty) {
       return dateTime.toString();
     }
@@ -187,8 +186,7 @@ class DateTimeFormatter {
   }
 
   /// format month text
-  static String _formatMonth(
-      int value, String format) {
+  static String _formatMonth(int value, String format) {
     List<String> months = BrnIntl.currentResource.months;
     if (format.contains('MMMM')) {
       // MMMM: the full name of month, e.g. January
@@ -202,14 +200,12 @@ class DateTimeFormatter {
   }
 
   /// format day text
-  static String _formatDay(
-      int value, String format) {
+  static String _formatDay(int value, String format) {
     return _formatNumber(value, format, 'd');
   }
 
   /// format week text
-  static String _formatWeek(
-      int value, String format) {
+  static String _formatWeek(int value, String format) {
     if (format.contains('EEEE')) {
       // EEEE: the full name of week, e.g. Monday
       List<String> weeks = BrnIntl.currentResource.weekFullName;
@@ -221,20 +217,17 @@ class DateTimeFormatter {
   }
 
   /// format hour text
-  static String _formatHour(
-      int value, String format) {
+  static String _formatHour(int value, String format) {
     return _formatNumber(value, format, 'H');
   }
 
   /// format minute text
-  static String _formatMinute(
-      int value, String format) {
+  static String _formatMinute(int value, String format) {
     return _formatNumber(value, format, 'm');
   }
 
   /// format second text
-  static String _formatSecond(
-      int value, String format) {
+  static String _formatSecond(int value, String format) {
     return _formatNumber(value, format, 's');
   }
 

@@ -142,7 +142,8 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
         Container(
           padding: EdgeInsets.only(left: 20, right: 10, top: 20, bottom: 0),
           child: Text(
-            widget.hotCityTitle ?? BrnIntl.of(context).localizedResource.recommandCity,
+            widget.hotCityTitle ??
+                BrnIntl.of(context).localizedResource.recommandCity,
             textAlign: TextAlign.left,
             style: TextStyle(
               fontWeight: FontWeight.w500,
@@ -278,7 +279,9 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: BrnAppBar(title: widget.appBarTitle ?? BrnIntl.of(context).localizedResource.selectCity),
+        appBar: BrnAppBar(
+            title: widget.appBarTitle ??
+                BrnIntl.of(context).localizedResource.selectCity),
         body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Column(
@@ -286,7 +289,9 @@ class _BrnSingleSelectCityPageState extends State<BrnSingleSelectCityPage> {
               widget.locationText.isEmpty
                   ? const SizedBox.shrink()
                   : _buildLocationBar(widget.locationText),
-              widget.showSearchBar ? _buildSearchBar() : const SizedBox.shrink(),
+              widget.showSearchBar
+                  ? _buildSearchBar()
+                  : const SizedBox.shrink(),
               Divider(
                 height: .0,
               ),

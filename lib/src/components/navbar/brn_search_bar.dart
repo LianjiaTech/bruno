@@ -93,7 +93,7 @@ class BrnSearchAppbar extends PreferredSize {
       this.systemOverlayStyle,
       this.inputTextStyle,
       this.themeData})
-      : super(child: const Center(), preferredSize: const Size(0, 0)){
+      : super(child: const Center(), preferredSize: const Size(0, 0)) {
     this.themeData ??= BrnAppBarConfig.dark();
     this.themeData = BrnThemeConfigurator.instance
         .getConfig(configId: this.themeData!.configId)
@@ -143,12 +143,13 @@ class BrnSearchAppbar extends PreferredSize {
           dismissStyle: dismissStyle,
           showDivider: showDivider,
           clearTapCallback: onClearTap,
-              themeData: themeData,
+          themeData: themeData,
         )),
       ],
     );
   }
 }
+
 //ignore: must_be_immutable
 class _SearchInputWidget extends StatefulWidget {
   final FocusNode? focusNode;
@@ -207,12 +208,13 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
 
     valueNotifier = ValueNotifier(false);
     _focusNode.addListener(_handleFocusChangeListenerTick);
-    if (widget.themeData?.systemOverlayStyle.statusBarBrightness == Brightness.dark) {
-      _defaultDividerColor = Colors.white.withOpacity(0.2);
-      _defaultHintTextColor = Colors.white.withOpacity(0.4);
+    if (widget.themeData?.systemOverlayStyle.statusBarBrightness ==
+        Brightness.dark) {
+      _defaultDividerColor = Colors.white.withValues(alpha: 0.2);
+      _defaultHintTextColor = Colors.white.withValues(alpha: 0.4);
       _defaultInputTextColor = Colors.white;
       _defaultCancelTextColor = Colors.white;
-      _defaultClearIconColor = Colors.white.withOpacity(0.4);
+      _defaultClearIconColor = Colors.white.withValues(alpha: 0.4);
     } else {
       _defaultDividerColor = BrnThemeConfigurator.instance
           .getConfig()

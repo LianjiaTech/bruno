@@ -1,5 +1,3 @@
-
-
 import 'dart:collection' show Queue;
 import 'dart:math' as math;
 
@@ -77,9 +75,9 @@ class BrnBottomTabBar extends StatefulWidget {
   _BottomTabBarState createState() => _BottomTabBarState();
 }
 
-
 /// 底部导航栏中状态控制类
-class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderStateMixin {
+class _BottomTabBarState extends State<BrnBottomTabBar>
+    with TickerProviderStateMixin {
   List<AnimationController> _controllers = <AnimationController>[];
   late List<CurvedAnimation> _animations;
 
@@ -197,7 +195,8 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
       _controllers[oldWidget.currentIndex].reverse();
       _controllers[widget.currentIndex].forward();
     } else {
-      if (_backgroundColor != widget.items[widget.currentIndex].backgroundColor) {
+      if (_backgroundColor !=
+          widget.items[widget.currentIndex].backgroundColor) {
         _backgroundColor = widget.items[widget.currentIndex].backgroundColor;
       }
     }
@@ -352,24 +351,22 @@ class _BottomTabBarState extends State<BrnBottomTabBar> with TickerProviderState
   }
 }
 
-
 /// 表示底部导航栏中的单个tile，它的目的是进入一个伸缩页面
 class _BottomNavigationTile extends StatelessWidget {
-
   const _BottomNavigationTile(
-      this.type,
-      this.item,
-      this.animation,
-      this.iconSize, {
-        this.onTap,
-        this.colorTween,
-        this.flex,
-        this.selected = false,
-        this.indexLabel,
-        this.isAnimation = true,
-        this.isInkResponse = true,
-        this.badgeColor,
-      });
+    this.type,
+    this.item,
+    this.animation,
+    this.iconSize, {
+    this.onTap,
+    this.colorTween,
+    this.flex,
+    this.selected = false,
+    this.indexLabel,
+    this.isAnimation = true,
+    this.isInkResponse = true,
+    this.badgeColor,
+  });
 
   final BrnBottomTabBarDisplayType type;
   final BrnBottomTabBarItem item;
@@ -422,7 +419,6 @@ class _BottomNavigationTile extends StatelessWidget {
     );
   }
 
-
   /// 构建icon
   Widget _buildIcon() {
     double? tweenStart;
@@ -434,7 +430,12 @@ class _BottomNavigationTile extends StatelessWidget {
         break;
       case BrnBottomTabBarDisplayType.shifting:
         tweenStart = 16.0;
-        iconColor = selected ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary : null;
+        iconColor = selected
+            ? BrnThemeConfigurator.instance
+                .getConfig()
+                .commonConfig
+                .brandPrimary
+            : null;
         break;
     }
     return Align(
@@ -444,9 +445,9 @@ class _BottomNavigationTile extends StatelessWidget {
         margin: EdgeInsets.only(
           top: isAnimation
               ? Tween<double>(
-            begin: tweenStart,
-            end: _kTopMargin,
-          ).evaluate(animation)
+                  begin: tweenStart,
+                  end: _kTopMargin,
+                ).evaluate(animation)
               : _kTopMargin,
         ),
         child: IconTheme(
@@ -465,9 +466,9 @@ class _BottomNavigationTile extends StatelessWidget {
   Widget _buildFixedLabel() {
     double scale = isAnimation
         ? Tween<double>(
-      begin: _kInactiveFontSize / _kActiveFontSize,
-      end: 1.0,
-    ).evaluate(animation)
+            begin: _kInactiveFontSize / _kActiveFontSize,
+            end: 1.0,
+          ).evaluate(animation)
         : 1.0;
     return Align(
       alignment: Alignment.bottomCenter,
@@ -513,8 +514,15 @@ class _BottomNavigationTile extends StatelessWidget {
         child: DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: _kActiveFontSize,
-            color: selected ? BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary
-                : BrnThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+            color: selected
+                ? BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .brandPrimary
+                : BrnThemeConfigurator.instance
+                    .getConfig()
+                    .commonConfig
+                    .colorTextBase,
           ).merge(selected ? item.selectedTextStyle : item.unSelectedTextStyle),
           child: item.title!,
         ),
@@ -590,7 +598,6 @@ class _BottomNavigationTile extends StatelessWidget {
   }
 }
 
-
 /// 简介：TabBarItem点击飞溅动画私有类
 /// 功能：实现点击飞溅动画
 class _Circle {
@@ -641,7 +648,6 @@ class _Circle {
     controller.dispose();
   }
 }
-
 
 /// 绘制动画色彩飞溅的圆圈
 class _RadialPainter extends CustomPainter {

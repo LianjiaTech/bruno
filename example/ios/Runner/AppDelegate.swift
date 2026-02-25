@@ -4,7 +4,7 @@ import Flutter
 /// 如果要调试局部显示 flutter 页面的功能，请打开此开关
 let kShouldDebugFlutterInNative = false;
 
-@UIApplicationMain
+@main
 @objc class AppDelegate: FlutterAppDelegate {
   override func application(
     _ application: UIApplication,

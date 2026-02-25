@@ -332,7 +332,8 @@ class BrnLinePainter extends BrnBasePainter {
   void _drawXRuler(Canvas canvas, Paint paint) {
     double? _selectedPointX = -1.0;
     if (lineSelectIndex >= 0 && pointSelectIndex >= 0) {
-        _selectedPointX = _linePointPositions[lineSelectIndex][pointSelectIndex].x as double? ;
+      _selectedPointX =
+          _linePointPositions[lineSelectIndex][pointSelectIndex].x as double?;
     }
     if (xDialValues != null && xDialValues!.isNotEmpty) {
       // 获取刻度长度
@@ -358,11 +359,7 @@ class BrnLinePainter extends BrnBasePainter {
             textDirection: TextDirection.ltr)
           ..layout();
         // 开始绘制刻度
-        _drawXRuleByPointPosition(
-            tpX,
-            canvas,
-            _xPosition,
-            paint);
+        _drawXRuleByPointPosition(tpX, canvas, _xPosition, paint);
       }
     }
   }

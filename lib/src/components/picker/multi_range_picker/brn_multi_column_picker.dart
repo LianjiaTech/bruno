@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title_config.dart';
 import 'package:bruno/src/components/picker/brn_picker_cliprrect.dart';
@@ -24,8 +22,11 @@ typedef BrnOnEntityTap = void Function(
 /// [firstIndex] 第一列被选中数据的位置
 /// [secondIndex] 第二列被选中数据的位置
 /// [thirdIndex] 第三列被选中数据的位置
-typedef BrnOnPickerConfirm = void Function(Map<String, List<BrnPickerEntity>> results,
-    int? firstIndex, int? secondIndex, int? thirdIndex);
+typedef BrnOnPickerConfirm = void Function(
+    Map<String, List<BrnPickerEntity>> results,
+    int? firstIndex,
+    int? secondIndex,
+    int? thirdIndex);
 
 /// 从屏幕下方弹起的多级筛选选择器
 /// 可设置筛项的层级、多选、单选等筛选相关功能

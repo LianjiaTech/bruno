@@ -2,9 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-
-
-
 import 'package:bruno/src/components/form/utils/brn_form_util.dart';
 import 'package:bruno/src/constants/brn_asset_constants.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
@@ -47,7 +44,8 @@ class BrnExpandableGroup extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = themeData!.merge(BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData =
+        themeData!.merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   /// The primary content of the list item.
@@ -157,7 +155,6 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
   }
 
   Widget _buildHeader(BuildContext context, Widget? child) {
-
     return Container(
       color: widget.themeData!.backgroundColor,
       child: Column(

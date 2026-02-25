@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 /// 日期选择器动画控制器
 class BrnSelectionDatePickerController extends ChangeNotifier {
-
   /// 是否显示下拉筛选列表
   bool isShow;
 

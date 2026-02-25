@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/button/brn_normal_button.dart';
@@ -7,8 +5,6 @@ import 'package:bruno/src/constants/brn_constants.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
-
-
 
 /// 默认最小宽度
 const double _BMinWidth = 84;
@@ -83,10 +79,11 @@ class BrnSmallOutlineButton extends StatelessWidget {
     ));
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig.merge(defaultThemeConfig);
+        .buttonConfig
+        .merge(defaultThemeConfig);
 
     TextPainter textPainter =
-        TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
+        TextPainter(textScaler: MediaQuery.textScalerOf(context));
 
     return LayoutBuilder(
       builder: (_, con) {
@@ -96,7 +93,9 @@ class BrnSmallOutlineButton extends StatelessWidget {
         );
 
         textPainter.textDirection = TextDirection.ltr;
-        textPainter.text = TextSpan(text: title ?? BrnIntl.of(context).localizedResource.confirm, style: style);
+        textPainter.text = TextSpan(
+            text: title ?? BrnIntl.of(context).localizedResource.confirm,
+            style: style);
         textPainter.layout(maxWidth: con.maxWidth);
         double textWidth = textPainter.width;
         double _maxWidth = textWidth +
@@ -120,7 +119,8 @@ class BrnSmallOutlineButton extends StatelessWidget {
           radius: defaultThemeConfig.smallButtonRadius,
           text: title ?? BrnIntl.of(context).localizedResource.confirm,
           disableLineColor: defaultThemeConfig.commonConfig.borderColorBase,
-          lineColor: lineColor ?? defaultThemeConfig.commonConfig.borderColorBase,
+          lineColor:
+              lineColor ?? defaultThemeConfig.commonConfig.borderColorBase,
           textColor: textColor ?? defaultThemeConfig.commonConfig.colorTextBase,
           disableTextColor: Color(0xFFCCCCCC),
           isEnable: isEnable,
@@ -129,7 +129,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
           fontSize: defaultThemeConfig.smallButtonFontSize,
           onTap: onTap,
           backgroundColor: Colors.white,
-          disableBackgroundColor: Color(0xffcccccc).withOpacity(0.1),
+          disableBackgroundColor: Color(0xffcccccc).withValues(alpha: 0.1),
         );
       },
     );

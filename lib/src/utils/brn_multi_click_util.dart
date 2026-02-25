@@ -1,4 +1,3 @@
-
 /// 防止多次点击工具类
 class BrnMultiClickUtils {
   const BrnMultiClickUtils._();

@@ -45,7 +45,6 @@ class AllFormItemStyleExamplePage extends StatelessWidget {
   Widget getBodyWidget(BuildContext context) {
     return ListView(
       children: <Widget>[
-
         ListItem(
           title: "基础类型 ",
           titleFontSize: 22,

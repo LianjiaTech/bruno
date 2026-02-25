@@ -185,7 +185,6 @@ class BrnCommonCardTitle extends StatelessWidget {
       subWidget = _subTitleWidgetFromWidget();
     }
     var titleWidget = RichText(
-      textScaleFactor: MediaQuery.of(context).textScaleFactor,
       maxLines: this.titleMaxLines,
       overflow: this.titleOverflow,
       text: TextSpan(
@@ -194,6 +193,7 @@ class BrnCommonCardTitle extends StatelessWidget {
           children: <InlineSpan>[
             WidgetSpan(child: subWidget, alignment: defaultConfig.alignment),
           ]),
+      textScaler: MediaQuery.textScalerOf(context),
     );
 
     List<Widget> colChildren = [];

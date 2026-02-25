@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 
 /// 点击item回调
 /// shareChannel 是分享渠道一般传入 [BrnShareItemConstants] 下的值
-typedef BrnShareDialogItemClickCallBack = void Function(int shareChannel, int customIndex);
+typedef BrnShareDialogItemClickCallBack = void Function(
+    int shareChannel, int customIndex);
 
 /// 获取自定义分享item标题
 /// index为自定义分享item索引
@@ -192,7 +193,8 @@ class BrnShareDialog extends StatelessWidget {
             color: Color(0xffffffff),
             padding: EdgeInsets.only(left: 6, right: 6),
             child: Text(
-              separatorText ?? BrnIntl.of(context).localizedResource.shareWayTip,
+              separatorText ??
+                  BrnIntl.of(context).localizedResource.shareWayTip,
               style: TextStyle(fontSize: 12, color: shareTextColor),
             ),
           ),
@@ -219,7 +221,9 @@ class BrnShareDialog extends StatelessWidget {
         }
       } else {
         // 获取自预设channel信息
-        title = BrnIntl.of(context).localizedResource.shareChannels[shareChannels[index]];
+        title = BrnIntl.of(context)
+            .localizedResource
+            .shareChannels[shareChannels[index]];
         image = BrunoTools.getAssetImage(
             BrnShareItemConstants.shareItemImagePathList[shareChannels[index]]);
       }

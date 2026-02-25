@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 /// 日期选择器动画组件
 class BrnSelectionDatePickerAnimationWidget extends StatefulWidget {
-
   /// 用于展示隐藏控制器
   final BrnSelectionDatePickerController controller;
 
@@ -62,10 +61,10 @@ class _BrnSelectionDatePickerAnimationWidgetState
   _showListViewWidget() {
     _animation = Tween(begin: MediaQuery.of(context).size.height, end: 300.0)
         .animate(_controller)
-          ..addListener(() {
-            //这行如果不写，没有动画效果
-            setState(() {});
-          });
+      ..addListener(() {
+        //这行如果不写，没有动画效果
+        setState(() {});
+      });
 
     if (_isControllerDisposed) return;
 

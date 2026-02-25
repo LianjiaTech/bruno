@@ -1,12 +1,11 @@
 import 'package:bruno/bruno.dart';
 import 'package:flutter/cupertino.dart';
 
-class ChangeLocalEvent extends Notification{
+class ChangeLocalEvent extends Notification {
   static Locale locale = Locale('zh', 'CN');
 }
 
 class ResourceDe extends BrnResourceEn {
-
   static Locale locale = Locale('de', 'DE');
 
   @override
@@ -20,5 +19,4 @@ class ResourceDe extends BrnResourceEn {
 
   @override
   String get ok => 'Ok';
-
 }

@@ -113,7 +113,8 @@ class _BrnPhotoBottomCardState extends State<BrnPhotoBottomCard>
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(right: 4),
-                          child: Text(BrnIntl.of(context).localizedResource.collapse,
+                          child: Text(
+                              BrnIntl.of(context).localizedResource.collapse,
                               style: widget.themeData!.actionStyle
                                   .generateTextStyle()),
                         ),

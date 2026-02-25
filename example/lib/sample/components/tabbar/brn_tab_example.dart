@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +21,13 @@ class _BrnTabExampleState extends State<BrnTabExample>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
+    return PopScope(
+        canPop: !(closeWindowController?.isShow ?? false),
+        onPopInvokedWithResult: (bool didPop, dynamic result) {
+          if (!didPop && (closeWindowController?.isShow ?? false)) {
+            closeWindowController?.closeMoreWindow();
+          }
+        },
         child: Scaffold(
           appBar: BrnAppBar(
             title: 'BrnTab示例',
@@ -71,14 +75,7 @@ class _BrnTabExampleState extends State<BrnTabExample>
               ],
             ),
           ),
-        ),
-        onWillPop: () {
-          if (closeWindowController!.isShow) {
-            closeWindowController!.closeMoreWindow();
-            return Future.value(false);
-          }
-          return Future.value(true);
-        });
+        ));
   }
 
   _createExpandedMoreTabbarWidgets() {

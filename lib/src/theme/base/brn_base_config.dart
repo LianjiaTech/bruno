@@ -46,7 +46,5 @@ abstract class BrnBaseConfig {
 
   BrnCommonConfig get commonConfig =>
       _currentLevelCommonConfig ??
-      BrnThemeConfigurator.instance
-          .getConfig(configId: configId)
-          .commonConfig;
+      BrnThemeConfigurator.instance.getConfig(configId: configId).commonConfig;
 }

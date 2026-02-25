@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 
 class BrnFilterEntity {

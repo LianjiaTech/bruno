@@ -15,7 +15,6 @@ const String _defaultDateFormat = 'yyyy年MM月dd日';
 /// 日期范围选择，筛选组件的子组件
 // ignore: must_be_immutable
 class BrnSelectionDateRangeItemWidget extends StatefulWidget {
-
   /// 筛选数据
   final BrnSelectionEntity item;
 
@@ -76,12 +75,10 @@ class _BrnSelectionDateRangeItemWidgetState
           widget.item.customMap!['max']);
     }
     widget.minTextEditingController.text = minDateTime != null
-        ? DateTimeFormatter.formatDate(
-            minDateTime, widget.dateFormat)
+        ? DateTimeFormatter.formatDate(minDateTime, widget.dateFormat)
         : '';
     widget.maxTextEditingController.text = maxDateTime != null
-        ? DateTimeFormatter.formatDate(
-            maxDateTime, widget.dateFormat)
+        ? DateTimeFormatter.formatDate(maxDateTime, widget.dateFormat)
         : '';
     super.initState();
   }
@@ -98,7 +95,9 @@ class _BrnSelectionDateRangeItemWidgetState
                     margin: EdgeInsets.only(bottom: 5),
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      widget.item.title.isEmpty ? BrnIntl.of(context).localizedResource.customRange : widget.item.title,
+                      widget.item.title.isEmpty
+                          ? BrnIntl.of(context).localizedResource.customRange
+                          : widget.item.title,
                       textAlign: TextAlign.left,
                       style: widget.themeData.rangeTitleTextStyle
                           .generateTextStyle(),
@@ -147,7 +146,9 @@ class _BrnSelectionDateRangeItemWidgetState
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           hintStyle: widget.themeData.hintTextStyle.generateTextStyle(),
-          hintText: (!isMax ? BrnIntl.of(context).localizedResource.startDate : BrnIntl.of(context).localizedResource.endDate),
+          hintText: (!isMax
+              ? BrnIntl.of(context).localizedResource.startDate
+              : BrnIntl.of(context).localizedResource.endDate),
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
             width: 1,
@@ -203,14 +204,16 @@ class _BrnSelectionDateRangeItemWidgetState
       pickerTitleConfig: BrnPickerTitleConfig(
           showTitle: true,
           // UI 规范规定高度按照比例设置，UI稿的比利为 240 / 812
-          titleContent: isMax ? BrnIntl.of(context).localizedResource.selectEndDate : BrnIntl.of(context).localizedResource.selectStartDate),
+          titleContent: isMax
+              ? BrnIntl.of(context).localizedResource.selectEndDate
+              : BrnIntl.of(context).localizedResource.selectStartDate),
       onCancel: () {
         closeSelectionPopupWindow();
       },
       onConfirm: (DateTime selectedDate, List<int> selectedIndex) {
         widget.item.isSelected = true;
-        String selectedDateStr = DateTimeFormatter.formatDate(
-            selectedDate, widget.dateFormat);
+        String selectedDateStr =
+            DateTimeFormatter.formatDate(selectedDate, widget.dateFormat);
         if (isMax) {
           widget.maxTextEditingController.text = selectedDateStr;
         } else {

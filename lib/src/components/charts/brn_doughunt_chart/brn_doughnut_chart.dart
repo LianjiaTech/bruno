@@ -184,7 +184,7 @@ class BrnDoughnut extends CustomPainter {
             height: textHeight + this.textVerticalPadding * 2);
         RRect rRect = RRect.fromRectAndRadius(baseRect, Radius.circular(2));
         Paint textBackgroundPaint = Paint()
-          ..color = Colors.black.withOpacity(0.7);
+          ..color = Colors.black.withValues(alpha: 0.7);
         canvas.drawRRect(rRect, textBackgroundPaint);
 
         textPainter.paint(

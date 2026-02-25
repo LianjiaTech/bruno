@@ -120,12 +120,20 @@ class _BrnSelectionSingleListWidgetState
                       /// 同级别中，存在不限类型已经选中情况，选择非不限类型 item，不检查数量限制
                     } else if (entity.isInLastLevel() &&
                         !BrnSelectionUtil.checkMaxSelectionCount(entity)) {
-                      BrnToast.show(BrnIntl.of(context).localizedResource.filterConditionCountLimited, context);
+                      BrnToast.show(
+                          BrnIntl.of(context)
+                              .localizedResource
+                              .filterConditionCountLimited,
+                          context);
                       return;
                     }
                   } else {
                     if (!BrnSelectionUtil.checkMaxSelectionCount(entity)) {
-                      BrnToast.show(BrnIntl.of(context).localizedResource.filterConditionCountLimited, context);
+                      BrnToast.show(
+                          BrnIntl.of(context)
+                              .localizedResource
+                              .filterConditionCountLimited,
+                          context);
                       return;
                     }
                   }
@@ -223,7 +231,7 @@ class _BrnSelectionSingleListWidgetState
   void configMultiLevelList(
       BrnSelectionEntity selectedEntity, int currentListIndex) {
     /// 选中【不限】清除同一级别其他的状态
-    if(selectedEntity.isUnLimit()){
+    if (selectedEntity.isUnLimit()) {
       selectedEntity.parent?.children
           .where((f) => f != selectedEntity)
           .forEach((f) {
@@ -241,20 +249,20 @@ class _BrnSelectionSingleListWidgetState
       });
       selectedEntity.isSelected = true;
     } else if (BrnSelectionFilterType.checkbox == selectedEntity.filterType) {
-        ///清除【不限】类型。
-        List<BrnSelectionEntity> brotherItems;
-        if (selectedEntity.parent == null) {
-          brotherItems = widget.items;
-        } else {
-          brotherItems = selectedEntity.parent?.children ?? [];
+      ///清除【不限】类型。
+      List<BrnSelectionEntity> brotherItems;
+      if (selectedEntity.parent == null) {
+        brotherItems = widget.items;
+      } else {
+        brotherItems = selectedEntity.parent?.children ?? [];
+      }
+      for (BrnSelectionEntity entity in brotherItems) {
+        if (entity.isUnLimit()) {
+          entity.clearChildSelection();
+          entity.isSelected = false;
         }
-        for (BrnSelectionEntity entity in brotherItems) {
-          if (entity.isUnLimit()) {
-            entity.clearChildSelection();
-            entity.isSelected = false;
-          }
-        }
-        selectedEntity.isSelected = !selectedEntity.isSelected;
+      }
+      selectedEntity.isSelected = !selectedEntity.isSelected;
     }
   }
 }

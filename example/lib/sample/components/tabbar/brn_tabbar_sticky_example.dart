@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +35,13 @@ class _BrnTabbarStickyExampleState extends State<BrnTabbarStickyExample>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
+    return PopScope(
+        canPop: !(closeWindowController?.isShow ?? false),
+        onPopInvokedWithResult: (bool didPop, dynamic result) {
+          if (!didPop && (closeWindowController?.isShow ?? false)) {
+            closeWindowController?.closeMoreWindow();
+          }
+        },
         child: Scaffold(
           appBar: BrnAppBar(
             title: 'TabBar Sticky 效果',
@@ -85,14 +89,7 @@ class _BrnTabbarStickyExampleState extends State<BrnTabbarStickyExample>
               ],
             ),
           ),
-        ),
-        onWillPop: () {
-          if (closeWindowController!.isShow) {
-            closeWindowController!.closeMoreWindow();
-            return Future.value(false);
-          }
-          return Future.value(true);
-        });
+        ));
   }
 
   Widget buildHeaderWidget() {

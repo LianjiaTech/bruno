@@ -5,10 +5,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 /// 构建指定索引的Widget
-typedef AnchorTabWidgetIndexedBuilder = Widget Function(BuildContext context, int index);
+typedef AnchorTabWidgetIndexedBuilder = Widget Function(
+    BuildContext context, int index);
 
 /// 构建指定索引的Tab
-typedef AnchorTabIndexedBuilder = BadgeTab Function(BuildContext context, int index);
+typedef AnchorTabIndexedBuilder = BadgeTab Function(
+    BuildContext context, int index);
 
 /// 滑动锚点组件
 class BrnAnchorTab extends StatefulWidget {
@@ -35,7 +37,8 @@ class BrnAnchorTab extends StatefulWidget {
       this.tabBarStyle = const BrnAnchorTabBarStyle()});
 
   @override
-  _BrnScrollAnchorTabWidgetState createState() => _BrnScrollAnchorTabWidgetState();
+  _BrnScrollAnchorTabWidgetState createState() =>
+      _BrnScrollAnchorTabWidgetState();
 }
 
 class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
@@ -158,8 +161,9 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
     List<Widget> tmpWidget = [];
     if (widget.widgetIndexedBuilder != null) {
       for (int i = 0, n = widget.itemCount; i < n; i++) {
-        Widget itemWidget =
-            Container(key: _bodyKeyList[i], child: widget.widgetIndexedBuilder!(context, i));
+        Widget itemWidget = Container(
+            key: _bodyKeyList[i],
+            child: widget.widgetIndexedBuilder!(context, i));
         itemWidget = MeasureSize(
           onChange: (size) {
             _updateOffset();
@@ -180,14 +184,17 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
 
   void fillOffset() {
     Offset globalToLocal =
-        (_key.currentContext!.findRenderObject() as RenderBox).localToGlobal(Offset.zero);
+        (_key.currentContext!.findRenderObject() as RenderBox)
+            .localToGlobal(Offset.zero);
     listDy = globalToLocal.dy;
 
     for (int i = 0, n = widget.itemCount; i < n; i++) {
-      if (_cardOffsetList[i] == -1.0 && _bodyKeyList[i].currentContext != null) {
-        double cardOffset = (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
-            .localToGlobal(Offset.zero) //相对于原点 控件的位置
-            .dy; //y点坐标
+      if (_cardOffsetList[i] == -1.0 &&
+          _bodyKeyList[i].currentContext != null) {
+        double cardOffset =
+            (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
+                .localToGlobal(Offset.zero) //相对于原点 控件的位置
+                .dy; //y点坐标
 
         _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
       }
@@ -205,9 +212,10 @@ class _BrnScrollAnchorTabWidgetState extends State<BrnAnchorTab>
   void _updateOffset() {
     for (int i = 0, n = widget.itemCount; i < n; i++) {
       if (_bodyKeyList[i].currentContext != null) {
-        double cardOffset = (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
-            .localToGlobal(Offset.zero) //相对于原点 控件的位置
-            .dy; //y点坐标
+        double cardOffset =
+            (_bodyKeyList[i].currentContext!.findRenderObject() as RenderBox)
+                .localToGlobal(Offset.zero) //相对于原点 控件的位置
+                .dy; //y点坐标
 
         _cardOffsetList[i] = cardOffset + _scrollController.offset - listDy;
       }

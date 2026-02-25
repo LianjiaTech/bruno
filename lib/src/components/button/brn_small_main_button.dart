@@ -6,8 +6,6 @@ import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
 
-
-
 /// 默认最小宽度
 const double _BMinWidth = 84;
 
@@ -87,7 +85,8 @@ class BrnSmallMainButton extends StatelessWidget {
         .buttonConfig
         .merge(defaultThemeConfig);
 
-    TextPainter textPainter = TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
+    TextPainter textPainter =
+        TextPainter(textScaler: MediaQuery.textScalerOf(context));
 
     return LayoutBuilder(
       builder: (_, con) {
@@ -97,7 +96,9 @@ class BrnSmallMainButton extends StatelessWidget {
           color: textColor,
         );
         textPainter.textDirection = TextDirection.ltr;
-        textPainter.text = TextSpan(text: title ?? BrnIntl.of(context).localizedResource.confirm, style: style);
+        textPainter.text = TextSpan(
+            text: title ?? BrnIntl.of(context).localizedResource.confirm,
+            style: style);
         textPainter.layout(maxWidth: con.maxWidth);
         double textWidth = textPainter.width;
         //按钮本身大小
@@ -131,7 +132,8 @@ class BrnSmallMainButton extends StatelessWidget {
           backgroundColor:
               bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
           disableBackgroundColor: Color(0xFFCCCCCC),
-          borderRadius: BorderRadius.all(Radius.circular(defaultThemeConfig.smallButtonRadius)),
+          borderRadius: BorderRadius.all(
+              Radius.circular(defaultThemeConfig.smallButtonRadius)),
           onTap: onTap,
           textStyle: style,
         );

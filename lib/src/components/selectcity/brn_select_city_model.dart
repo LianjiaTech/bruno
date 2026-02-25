@@ -2,7 +2,6 @@ import 'package:bruno/src/components/selectcity/brn_az_common.dart';
 
 /// 城市选择数据类
 class BrnSelectCityModel extends ISuspensionBean {
-
   /// 城市名称
   String name = "";
 

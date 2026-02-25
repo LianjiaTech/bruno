@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 /// 绘制 BrnProgressChart 进度条
@@ -29,7 +27,7 @@ class BrnProgressChartPainter extends CustomPainter {
       this.backgroundColor = const Color(0x7A90C9FF),
       this.radius = 4,
       this.alwaysShowRadius = true})
-      : super(repaint: animation){
+      : super(repaint: animation) {
     assert(colors.isNotEmpty, 'colors must not be empty');
   }
 
@@ -50,7 +48,8 @@ class BrnProgressChartPainter extends CustomPainter {
       canvas.drawRect(backgroundRect, backgroundPaint);
     }
 
-    Rect progressBarRect = Rect.fromLTWH(0, 0, size.width * curValue, size.height);
+    Rect progressBarRect =
+        Rect.fromLTWH(0, 0, size.width * curValue, size.height);
 
     RRect progressBarRRect = RRect.fromRectAndCorners(progressBarRect,
         bottomRight: Radius.circular(

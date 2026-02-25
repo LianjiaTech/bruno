@@ -224,7 +224,10 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
             Expanded(
               child: Center(
                 child: Text(
-                  DateFormat(BrnIntl.of(context).localizedResource.dateFormatYYYYMM).format(_currentDate),
+                  DateFormat(BrnIntl.of(context)
+                          .localizedResource
+                          .dateFormatYYYYMM)
+                      .format(_currentDate),
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
@@ -372,7 +375,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                                         .getConfig()
                                         .commonConfig
                                         .brandPrimary
-                                        .withOpacity(0.14)
+                                        .withValues(alpha: 0.14)
                                     : Colors.transparent)
                                 : Colors.transparent,
                             // 范围选择两端圆角
@@ -414,7 +417,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                     Material(
                       color: Colors.transparent,
                       child: GestureDetector(
-                          behavior: HitTestBehavior.opaque,
+                        behavior: HitTestBehavior.opaque,
                         onTap: () {
                           final DateTime newMinimumDate = DateTime(
                               _minDate.year, _minDate.month, _minDate.day - 1);
@@ -591,16 +594,18 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
   /// ④  ×       √
   void _onRangeDateClick(DateTime date) {
     // 当为 ①、② 都有值，或都无值的时候，在选择 date 后，将date 赋值给 start，end 置空
-    if ((_currentStartSelectedDate != null  && _currentEndSelectedDate != null) ||
-        (_currentStartSelectedDate == null  && _currentEndSelectedDate == null)) {
+    if ((_currentStartSelectedDate != null &&
+            _currentEndSelectedDate != null) ||
+        (_currentStartSelectedDate == null &&
+            _currentEndSelectedDate == null)) {
       _currentStartSelectedDate = date;
       _currentEndSelectedDate = null;
-    } else{
+    } else {
       // 当为 ③、④ 其中有一个有值时，在选择 date 后，将 date 赋值给为空的一方
-      if(_currentStartSelectedDate == null) {
+      if (_currentStartSelectedDate == null) {
         _currentStartSelectedDate = date;
       }
-      if(_currentEndSelectedDate == null) {
+      if (_currentEndSelectedDate == null) {
         _currentEndSelectedDate = date;
       }
     }
@@ -627,6 +632,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
   }
 
   String _getChinaWeekName(int weekOfDay) {
-    return (widget.weekNames ?? BrnIntl.of(context).localizedResource.weekMinName)[weekOfDay];
+    return (widget.weekNames ??
+        BrnIntl.of(context).localizedResource.weekMinName)[weekOfDay];
   }
 }

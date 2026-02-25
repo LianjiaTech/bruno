@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +34,9 @@ class _BrnCommonTitleExampleState extends State<BrnCommonTitleExample> {
                   'accessoryWidget的高度就是25，如果传入的widget过大会显示不全\n'
                   '上下的间距是16',
             ),
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             Text(
               '正常案例',
               style: TextStyle(
@@ -51,7 +51,9 @@ class _BrnCommonTitleExampleState extends State<BrnCommonTitleExample> {
                 BrnToast.show('BrnPlainCardTitle is clicked', context);
               },
             ),
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             Text(
               '正常案例',
               style: TextStyle(
@@ -71,7 +73,9 @@ class _BrnCommonTitleExampleState extends State<BrnCommonTitleExample> {
                 BrnToast.show('BrnPlainCardTitle is clicked', context);
               },
             ),
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             Text(
               '正常案例',
               style: TextStyle(

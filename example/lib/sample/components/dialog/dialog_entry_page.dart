@@ -312,7 +312,8 @@ class DialogEntryPage extends StatelessWidget {
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(8.0),
                         hintText: hintText,
-                        hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
+                        hintStyle:
+                            TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(2.0),
                             borderSide: BorderSide(
@@ -404,7 +405,8 @@ class DialogEntryPage extends StatelessWidget {
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(8.0),
                       hintText: hintText,
-                      hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
+                      hintStyle:
+                          TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(2.0),
                           borderSide: BorderSide(
@@ -550,7 +552,8 @@ class DialogEntryPage extends StatelessWidget {
 
   ///对话框样式一：无标题、单按钮
   void _showStyle1Dialog0(BuildContext context) {
-    BrnDialogManager.showSingleButtonDialog(context, label: "知道了", message: "辅助内容容信息", onTap: () {
+    BrnDialogManager.showSingleButtonDialog(context,
+        label: "知道了", message: "辅助内容容信息", onTap: () {
       BrnToast.show('知道了', context);
       Navigator.pop(context);
     });
@@ -582,7 +585,9 @@ class DialogEntryPage extends StatelessWidget {
   ///对话框样式二：有标题、单按钮、有辅助文案
   void _showStyle2Dialog(BuildContext context) {
     BrnDialogManager.showSingleButtonDialog(context,
-        title: "标题内容", label: "知道了", message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息", onTap: () {
+        title: "标题内容",
+        label: "知道了",
+        message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息", onTap: () {
       BrnToast.show('知道了', context);
       Navigator.pop(context);
     });
@@ -634,7 +639,8 @@ class DialogEntryPage extends StatelessWidget {
           '选项二',
           '选项三',
         ],
-        title: "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题", indexedActionClickCallback: (index) {
+        title: "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题",
+        indexedActionClickCallback: (index) {
       BrnToast.show("$index", context);
     });
   }
@@ -647,7 +653,8 @@ class DialogEntryPage extends StatelessWidget {
           '选项二',
           '选项三',
         ],
-        message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息", indexedActionClickCallback: (index) {
+        message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息",
+        indexedActionClickCallback: (index) {
       BrnToast.show("$index", context);
     });
   }
@@ -661,7 +668,8 @@ class DialogEntryPage extends StatelessWidget {
           '选项二',
           '选项三',
         ],
-        message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息", indexedActionClickCallback: (index) {
+        message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息",
+        indexedActionClickCallback: (index) {
       BrnToast.show("$index", context);
     });
   }
@@ -684,8 +692,8 @@ class DialogEntryPage extends StatelessWidget {
 
   ///对话框样式七：单按钮 有头部Icon、辅助信息为文案
   void _showStyle7Dialog(BuildContext context) {
-    BrnDialogManager.showSingleButtonDialog(context, showIcon: true, title: "恭喜你完成填写", label: "确定",
-        onTap: () {
+    BrnDialogManager.showSingleButtonDialog(context,
+        showIcon: true, title: "恭喜你完成填写", label: "确定", onTap: () {
       BrnToast.show("确定", context);
       Navigator.pop(context);
     });
@@ -694,7 +702,9 @@ class DialogEntryPage extends StatelessWidget {
   ///对话框样式八：两个按钮，换行标题
   void _showStyle8Dialog(BuildContext context) {
     BrnDialogManager.showConfirmDialog(context,
-        title: "标题内容,标题内容,标题内容标题内容,标题内容标题内容,标题内容", cancel: '取消', confirm: '确定', onConfirm: () {
+        title: "标题内容,标题内容,标题内容标题内容,标题内容标题内容,标题内容",
+        cancel: '取消',
+        confirm: '确定', onConfirm: () {
       BrnToast.show("确定", context);
     }, onCancel: () {
       BrnToast.show("取消", context);
@@ -749,8 +759,8 @@ class DialogEntryPage extends StatelessWidget {
   ///底部有输入框弹框
   void _showBrnLoadingDialog(BuildContext context) {
     BrnLoadingDialog.show(context).then((value) {
-          BrnToast.show('result: $value', context);
-        });
+      BrnToast.show('result: $value', context);
+    });
     Future.delayed(Duration(seconds: 5)).then((_) {
       BrnLoadingDialog.dismiss(context, 'dismiss 定时取消');
     });
@@ -780,11 +790,13 @@ class DialogEntryPage extends StatelessWidget {
     });
 
     Future.delayed(Duration(seconds: 5)).then((_) {
-      BrnSafeDialog.dismiss(context: context, tag: "AA", result: 'delete dialog AA by tag AA');
+      BrnSafeDialog.dismiss(
+          context: context, tag: "AA", result: 'delete dialog AA by tag AA');
     });
 
     Future.delayed(Duration(seconds: 10)).then((_) {
-      BrnSafeDialog.dismiss(context: context, result: 'delete dialog BB by default tag');
+      BrnSafeDialog.dismiss(
+          context: context, result: 'delete dialog BB by default tag');
     });
   }
 

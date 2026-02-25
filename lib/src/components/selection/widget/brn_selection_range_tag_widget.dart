@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 /// /// /// /// /// /// /// /// /// /
 class BrnSelectionRangeTagWidget extends StatefulWidget {
   /// tag 显示的文本
-  @required
   final List<BrnSelectionEntity> tagFilterList;
 
   /// 初始选中的 Index 列表
@@ -81,7 +80,11 @@ class _BrnSelectionRangeTagWidgetState
             if (BrnSelectionFilterType.checkbox == selectedEntity.filterType &&
                 !selectedEntity.isSelected) {
               if (!BrnSelectionUtil.checkMaxSelectionCount(selectedEntity)) {
-                BrnToast.show(BrnIntl.of(context).localizedResource.filterConditionCountLimited, context);
+                BrnToast.show(
+                    BrnIntl.of(context)
+                        .localizedResource
+                        .filterConditionCountLimited,
+                    context);
                 return;
               }
             }
@@ -107,8 +110,8 @@ class _BrnSelectionRangeTagWidgetState
         DateTime? dateTime = DateTimeFormatter.convertIntValueToDateTime(
             widget.tagFilterList[nameIndex].value);
         if (dateTime != null) {
-          text = DateTimeFormatter.formatDate(
-              dateTime, BrnIntl.of(context).localizedResource.dateFormatYYYYMMDD);
+          text = DateTimeFormatter.formatDate(dateTime,
+              BrnIntl.of(context).localizedResource.dateFormatYYYYMMDD);
         }
       } else {
         text = widget.tagFilterList[nameIndex].value ?? '';

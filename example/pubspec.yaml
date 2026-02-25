@@ -29,13 +29,13 @@ dependencies:
   lpinyin: ^2.0.3
   badges: ^2.0.2
   intl: 0.19.0
+  bruno:
+    path: ../
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 dependency_overrides:
-  bruno:
-    path: ../
   intl: 0.19.0
 
 

@@ -88,8 +88,9 @@ class BrnSelectAllTitle extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override

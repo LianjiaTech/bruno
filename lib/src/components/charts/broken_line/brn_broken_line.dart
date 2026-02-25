@@ -72,33 +72,33 @@ class BrnBrokenLine extends StatefulWidget {
   /// 是否绘制 x 刻度
   final bool isShowXDial;
 
-  BrnBrokenLine({
-    Key? key,
-    required this.size,
-    required this.lines,
-    this.contentPadding = const EdgeInsets.only(left: 10, right: 10),
-    this.backgroundColor,
-    this.xyDialLineWidth = 2,
-    this.xDialColor,
-    this.yDialColor,
-    this.yHintLineOffset = 20.0,
-    this.showPointDashLine = true,
-    this.dialWidth = 4,
-    this.xDialMin,
-    this.xDialMax,
-    this.xDialValues,
-    required this.yDialMin,
-    required this.yDialMax,
-    this.yDialValues,
-    this.isShowXHintLine = true,
-    this.isShowYHintLine = false,
-    this.isHintLineSolid = true,
-    this.hintLineColor,
-    this.isTipWindowAutoDismiss = true,
-    this.isShowXDialText = false,
-    this.isShowYDialText = false,
-    this.isShowXDial = true
-  }) : super(key: key) {
+  BrnBrokenLine(
+      {Key? key,
+      required this.size,
+      required this.lines,
+      this.contentPadding = const EdgeInsets.only(left: 10, right: 10),
+      this.backgroundColor,
+      this.xyDialLineWidth = 2,
+      this.xDialColor,
+      this.yDialColor,
+      this.yHintLineOffset = 20.0,
+      this.showPointDashLine = true,
+      this.dialWidth = 4,
+      this.xDialMin,
+      this.xDialMax,
+      this.xDialValues,
+      required this.yDialMin,
+      required this.yDialMax,
+      this.yDialValues,
+      this.isShowXHintLine = true,
+      this.isShowYHintLine = false,
+      this.isHintLineSolid = true,
+      this.hintLineColor,
+      this.isTipWindowAutoDismiss = true,
+      this.isShowXDialText = false,
+      this.isShowYDialText = false,
+      this.isShowXDial = true})
+      : super(key: key) {
     // 设置自定义 X 轴时，检查 x 轴的最大、最小刻度范围
     if (xDialValues != null) {
       assert(xDialMin != null);
@@ -264,7 +264,7 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
               borderRadius: BorderRadius.circular(3.0),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.6),
+                  color: Colors.black.withValues(alpha: 0.6),
                   offset: Offset(0.0, 2.0), //阴影xy轴偏移量
                   blurRadius: 4.0, //阴影模糊程度
                 )

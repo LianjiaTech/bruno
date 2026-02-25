@@ -65,7 +65,8 @@ class _KeyTextCloseContentExampleState
                   BrnInfoModal(keyPart: "名称：", valuePart: "内容内容内容内容"),
                   BrnInfoModal(keyPart: "名称名：", valuePart: "内容内容内容内容内容"),
                   BrnInfoModal(keyPart: "名称名称名：", valuePart: "内容内容内容内容内容"),
-                  BrnInfoModal.valueLastClickInfo(context,"名称名：", '内容内容内容内容内容', '可点击内容',
+                  BrnInfoModal.valueLastClickInfo(
+                      context, "名称名：", '内容内容内容内容内容', '可点击内容',
                       clickCallback: (text) {
                     BrnToast.show(text!, context);
                   }),
@@ -147,12 +148,13 @@ class _KeyTextCloseContentExampleState
                     keyPart: "名称名称名：",
                     valuePart:
                         "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内"),
-                BrnInfoModal.valueLastClickInfo(context,
-                    "名称十分的长名：", '内容内容内容内容内容', '可点击内容可点击内容可点击内容可点击内容',
+                BrnInfoModal.valueLastClickInfo(
+                    context, "名称十分的长名：", '内容内容内容内容内容', '可点击内容可点击内容可点击内容可点击内容',
                     clickCallback: (text) {
                   BrnToast.show(text!, context);
                 }),
-                BrnInfoModal.valueLastClickInfo(context,
+                BrnInfoModal.valueLastClickInfo(
+                    context,
                     "名称十分的长名：",
                     '内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容',
                     '可点击内容可点击内容可点击内容可点击内容', clickCallback: (text) {

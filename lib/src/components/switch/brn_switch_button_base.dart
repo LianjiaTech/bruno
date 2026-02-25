@@ -55,8 +55,7 @@ class BrnBaseSwitchButton extends StatelessWidget {
               border: Border.all(
                   color: value ? Colors.transparent : borderColor,
                   width: _borderWidth),
-              borderRadius:
-                  BorderRadius.all(Radius.circular(size.height / 2)),
+              borderRadius: BorderRadius.all(Radius.circular(size.height / 2)),
             ),
           ),
           _getThumb(value)

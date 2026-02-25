@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 class BrnPrefixIconType {
@@ -17,7 +15,6 @@ class BrnPrefixIconType {
 /// 输入类型 对应 [TextField] TextInputType
 ///
 class BrnInputType {
-
   /// [TextInputType.text]
   static const String text = "text";
 

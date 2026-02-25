@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 /// 筛选动画展示隐藏组件
 class BrnSelectionAnimationWidget extends StatefulWidget {
-
   /// 用于展示隐藏控制器
   final BrnSelectionListViewController controller;
 
@@ -64,10 +63,10 @@ class _BrnSelectionAnimationWidgetState
             end: MediaQuery.of(context).size.height -
                 (widget.controller.listViewTop ?? 0))
         .animate(_animationController)
-          ..addListener(() {
-            //这行如果不写，没有动画效果
-            setState(() {});
-          });
+      ..addListener(() {
+        //这行如果不写，没有动画效果
+        setState(() {});
+      });
 
     if (_isControllerDisposed) {
       return;

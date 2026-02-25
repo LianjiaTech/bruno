@@ -1,9 +1,7 @@
 import 'package:bruno/src/utils/brn_event_bus.dart';
 import 'package:flutter/material.dart';
 
-
 class BrnSelectionListViewController extends ChangeNotifier {
-
   /// 菜单索引
   int menuIndex;
 
@@ -42,7 +40,6 @@ class BrnSelectionListViewController extends ChangeNotifier {
 
 /// 筛选控制器
 class BrnSelectionViewController {
-
   /// 关闭筛选弹窗
   void closeSelectionView() {
     EventBus.instance.fire(CloseSelectionViewEvent());

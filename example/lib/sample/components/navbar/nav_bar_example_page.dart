@@ -245,14 +245,17 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
         key: actionKey,
         iconPressed: () {
           BrnPopupListWindow.showPopListWindow(context, actionKey,
-              offset: 10, data: ["aaaa", "bbbbb"], onItemClick: (index, item){
-                BrnDialogManager.showConfirmDialog(context, cancel: 'cancel', confirm: 'confirm', message: 'message', onCancel: (){
-                  Navigator.pop(context);
-                });
-                return true;
-              }, onDismiss: (){
-                BrnToast.show('onDismiss', context);
-              });
+              offset: 10, data: ["aaaa", "bbbbb"], onItemClick: (index, item) {
+            BrnDialogManager.showConfirmDialog(context,
+                cancel: 'cancel',
+                confirm: 'confirm',
+                message: 'message', onCancel: () {
+              Navigator.pop(context);
+            });
+            return true;
+          }, onDismiss: () {
+            BrnToast.show('onDismiss', context);
+          });
         },
       ),
     );
@@ -324,13 +327,13 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
               height: 17,
               padding: EdgeInsets.only(left: 3, right: 3),
               margin: EdgeInsets.only(left: 6),
-              decoration:
-                  BoxDecoration(color: Color(0xff8E8E8E).withOpacity(0.15)),
+              decoration: BoxDecoration(
+                  color: Color(0xff8E8E8E).withValues(alpha: 0.15)),
               child: Center(
                 child: Text(
                   '住宅',
                   overflow: TextOverflow.ellipsis,
-                  textScaleFactor: 1,
+                  textScaler: TextScaler.noScaling,
                   style: TextStyle(
                     fontSize: 11,
                     height: 1,
@@ -518,10 +521,11 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           keyLeading,
           data: ["aaaa", "bbbbb"],
           onItemClick: (index, data) {
-            BrnDialogManager.showConfirmDialog(context, cancel: 'cancel', confirm: 'confirm', message: 'message');
+            BrnDialogManager.showConfirmDialog(context,
+                cancel: 'cancel', confirm: 'confirm', message: 'message');
             return true;
           },
-          onDismiss: (){
+          onDismiss: () {
             BrnToast.show('onDismiss', context);
           },
         );
@@ -582,12 +586,8 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
       leadClickCallback: (controller, update) {
         //controller 是文本控制器，通过controller 可以拿到输入的内容 以及 对输入的内容更改
         //update 是setState方法的方法命，update() 就可以刷新输入框
-        BrnPopupListWindow.showPopListWindow(
-          context,
-          keyLeading,
-          data: ["aaaa", "bbbbb"],
-          offset: 10
-        );
+        BrnPopupListWindow.showPopListWindow(context, keyLeading,
+            data: ["aaaa", "bbbbb"], offset: 10);
       },
       //输入框 文本内容变化的监听
       searchBarInputChangeCallback: (input) {

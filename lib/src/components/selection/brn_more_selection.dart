@@ -251,10 +251,14 @@ class _BrnMoreSelectionPageState extends State<BrnMoreSelectionPage>
           if (!node.isValidRange()) {
             isValid = false;
             if (node.filterType == BrnSelectionFilterType.range) {
-              BrnToast.show(BrnIntl.of(context).localizedResource.enterRangeError, context);
+              BrnToast.show(
+                  BrnIntl.of(context).localizedResource.enterRangeError,
+                  context);
             } else if (node.filterType == BrnSelectionFilterType.dateRange ||
                 node.filterType == BrnSelectionFilterType.dateRangeCalendar) {
-              BrnToast.show(BrnIntl.of(context).localizedResource.enterRangeError, context);
+              BrnToast.show(
+                  BrnIntl.of(context).localizedResource.enterRangeError,
+                  context);
             }
             return;
           }

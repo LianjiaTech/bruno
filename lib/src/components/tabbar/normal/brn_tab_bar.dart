@@ -412,7 +412,7 @@ class BrnTabBarState extends State<BrnTabBar> {
               ),
               backgroundColor: Colors.red,
               alignment: Alignment.topLeft,
-              offset: Offset(_dx,_dy),
+              offset: Offset(_dx, _dy),
               padding: _badgePadding,
               largeSize: _largeSize,
               child: Text(
@@ -488,7 +488,7 @@ class BrnTabBarState extends State<BrnTabBar> {
                           color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
                     ),
                     alignment: Alignment.topLeft,
-                    offset: Offset(_dx,_dy),
+                    offset: Offset(_dx, _dy),
                     padding: _badgePadding,
                     largeSize: _largeSize,
                     child: Text(badgeTab.text!,
@@ -560,7 +560,7 @@ class BrnTabBarState extends State<BrnTabBar> {
     // 获取 badgeTextWidth
     TextStyle badgeTextStyle = TextStyle(height: 1, fontSize: 10);
     TextPainter _badgeTextPainter =
-        TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
+        TextPainter(textScaler: MediaQuery.textScalerOf(context));
     _badgeTextPainter.textDirection = TextDirection.ltr;
     _badgeTextPainter.maxLines = 1;
     _badgeTextPainter.text = TextSpan(text: _badgeText, style: badgeTextStyle);

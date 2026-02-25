@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/card/content/keyvalue_align_content_example.dart';
 import 'package:example/sample/components/card/content/keyvalue_close_content_example.dart';

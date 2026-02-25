@@ -11,7 +11,6 @@ enum GuideMode { force, soft }
 
 /// 默认的引导组件包含，强和弱两种交互模式
 class BrnTipInfoWidget extends StatelessWidget {
-
   /// 引导组件的方向
   final GuideDirection direction;
 
@@ -178,7 +177,9 @@ class BrnTipInfoWidget extends StatelessWidget {
           buildImage(),
           buildTitle(),
           buildMessage(),
-          mode == GuideMode.force ? _buildForceBottom(context) : _buildSoftBottom(context)
+          mode == GuideMode.force
+              ? _buildForceBottom(context)
+              : _buildSoftBottom(context)
         ],
       ),
     );

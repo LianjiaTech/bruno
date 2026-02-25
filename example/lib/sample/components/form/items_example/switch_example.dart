@@ -12,8 +12,7 @@ class SwitchInputExamplePage extends StatefulWidget {
   }
 }
 
-class SwitchInputExampleState extends State<SwitchInputExamplePage>{
-
+class SwitchInputExampleState extends State<SwitchInputExamplePage> {
   bool _isFirstSwitchOn = true;
   bool _isSecondSwitchOn = true;
   bool _isThirdSwitchOn = true;
@@ -130,5 +129,4 @@ class SwitchInputExampleState extends State<SwitchInputExamplePage>{
           ],
         ));
   }
-
 }

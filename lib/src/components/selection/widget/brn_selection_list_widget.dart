@@ -17,7 +17,6 @@ typedef SingleListItemSelect = void Function(
 /// 多列数据选择子组件，内部包含多个 BrnSelectionSingleListWidget
 // ignore: must_be_immutable
 class BrnListSelectionGroupWidget extends StatefulWidget {
-
   /// 筛选数据
   final BrnSelectionEntity entity;
 
@@ -232,7 +231,7 @@ class _BrnSelectionGroupViewState extends State<BrnListSelectionGroupWidget> {
                       begin: FractionalOffset.topCenter,
                       end: FractionalOffset.bottomCenter,
                       colors: [
-                        Colors.white.withOpacity(0),
+                        Colors.white.withValues(alpha: 0),
                         Colors.white,
                       ],
                       stops: [0, 1.0],

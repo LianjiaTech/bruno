@@ -228,7 +228,6 @@ class _BrnSelectTagsWithInputPickerWidgetState
       }
     }
 
-
     this._sourceTags = tagItems;
     // 重新排序，name 越长，越靠后
     this._sourceTags.sort((left, right) {
@@ -311,7 +310,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
                 .getConfig()
                 .commonConfig
                 .brandPrimary
-                .withOpacity(0.14);
+                .withValues(alpha: 0.14);
 
     return Container(
         color: Colors.white,
@@ -440,7 +439,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
                 borderRadius: BorderRadius.all(Radius.circular(4))),
             child: Center(
               child: Text(
-                  BrnIntl.of(context).localizedResource.submit,
+                BrnIntl.of(context).localizedResource.submit,
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,

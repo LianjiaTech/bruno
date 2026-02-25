@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 
 /// [BrnSelectionSingleListWidget] 子组件中的单项
 class BrnSelectionCommonItemWidget extends StatelessWidget {
-
   /// 单项数据
   final BrnSelectionEntity item;
 

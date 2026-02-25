@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -151,7 +149,7 @@ class MultiPickerExamplePage extends StatelessWidget {
                       firstSelectedIndex: 2,
                       secondSelectedIndex: 1,
                       thirdSelectedIndex: 1,
-                  data: _getDefaultDelegateData()),
+                      data: _getDefaultDelegateData()),
                   confirmClick: (list) {
                     BrnToast.show(list.toString(), context);
                   },

@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/text/brn_expandable_text.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +86,8 @@ class BrnBubbleText extends StatelessWidget {
                     topRight: Radius.circular(radius),
                     bottomLeft: Radius.circular(radius),
                     bottomRight: Radius.circular(radius))),
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
             child: BrnExpandableText(
               text: text,
               maxLines: maxLines,

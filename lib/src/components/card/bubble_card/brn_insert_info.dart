@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +23,6 @@ import 'package:flutter/material.dart';
 ///  * [BrnBubbleText], 气泡背景的文本组件
 ///
 class BrnInsertInfo extends StatelessWidget {
-
   /// 显示的文本
   final String infoText;
 
@@ -68,7 +65,8 @@ class BrnInsertInfo extends StatelessWidget {
                     topRight: const Radius.circular(4),
                     bottomLeft: const Radius.circular(4),
                     bottomRight: const Radius.circular(4))),
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
             child: tx,
           ),
         )
