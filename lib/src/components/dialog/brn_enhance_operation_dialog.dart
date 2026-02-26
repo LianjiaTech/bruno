@@ -154,7 +154,8 @@ class BrnEnhanceOperationDialog extends StatelessWidget {
       child: BrnBigMainButton(
         title: mainButtonText ?? BrnIntl.of(context).localizedResource.confirm,
         onTap: () {
-          Navigator.of(context).pop(mainButtonText ?? BrnIntl.of(context).localizedResource.confirm);
+          Navigator.of(context).pop(
+              mainButtonText ?? BrnIntl.of(context).localizedResource.confirm);
         },
       ),
     );

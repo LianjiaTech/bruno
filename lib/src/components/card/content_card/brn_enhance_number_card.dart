@@ -54,7 +54,6 @@ import 'package:flutter/material.dart';
 ///
 ///
 class BrnEnhanceNumberCard extends StatelessWidget {
-
   /// 待展示的信息
   final List<BrnNumberInfoItemModel>? itemChildren;
 
@@ -355,6 +354,7 @@ class BrnNumberInfoItemModel {
 enum BrnNumberInfoIcon {
   /// 箭头
   arrow,
+
   /// 问号
   question,
 }

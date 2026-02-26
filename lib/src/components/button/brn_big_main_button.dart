@@ -63,7 +63,8 @@ class BrnBigMainButton extends StatelessWidget {
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig.merge(defaultThemeConfig);
+        .buttonConfig
+        .merge(defaultThemeConfig);
 
     return BrnNormalButton(
       constraints: BoxConstraints.tightFor(
@@ -72,14 +73,15 @@ class BrnBigMainButton extends StatelessWidget {
       alignment: Alignment.center,
       isEnable: isEnable,
       text: title ?? BrnIntl.of(context).localizedResource.confirm,
-      borderRadius: BorderRadius.all(Radius.circular(defaultThemeConfig.bigButtonRadius)),
+      borderRadius:
+          BorderRadius.all(Radius.circular(defaultThemeConfig.bigButtonRadius)),
       fontSize: defaultThemeConfig.bigButtonFontSize,
       backgroundColor: bgColor ?? defaultThemeConfig.commonConfig.brandPrimary,
       disableBackgroundColor: Color(0xFFCCCCCC),
       onTap: onTap,
       textColor: Colors.white,
-      disableTextColor:
-          defaultThemeConfig.commonConfig.colorTextBaseInverse.withOpacity(0.7),
+      disableTextColor: defaultThemeConfig.commonConfig.colorTextBaseInverse
+          .withValues(alpha: 0.7),
     );
   }
 }

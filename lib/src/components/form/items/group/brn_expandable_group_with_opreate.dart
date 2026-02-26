@@ -48,8 +48,6 @@ class BrnExpandFormGroup extends StatefulWidget {
   /// The color to display behind the sublist when expanded.
   final Color? backgroundColor;
 
-
-
   BrnExpandFormGroup({
     Key? key,
     this.label,

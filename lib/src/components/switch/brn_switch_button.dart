@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'brn_switch_button_base.dart';
 
-
 /// 描述: 开关按钮
 class BrnSwitchButton extends StatefulWidget {
   final Size size;

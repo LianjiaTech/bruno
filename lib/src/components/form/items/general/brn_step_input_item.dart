@@ -103,7 +103,9 @@ class BrnStepInputFormItem extends StatefulWidget {
     }
     if (controller != null) {
       int? defaultValue = int.tryParse(controller!.text);
-      assert(defaultValue == null || (defaultValue >= minLimit && defaultValue <= maxLimit),
+      assert(
+          defaultValue == null ||
+              (defaultValue >= minLimit && defaultValue <= maxLimit),
           'The text or value in the controller is not in the limits.');
     }
     this.themeData ??= BrnFormItemConfig();
@@ -111,8 +113,9 @@ class BrnStepInputFormItem extends StatefulWidget {
         .getConfig(configId: this.themeData!.configId)
         .formItemConfig
         .merge(this.themeData);
-    this.themeData = this.themeData!.merge(
-        BrnFormItemConfig(backgroundColor: backgroundColor));
+    this.themeData = this
+        .themeData!
+        .merge(BrnFormItemConfig(backgroundColor: backgroundColor));
   }
 
   @override
@@ -145,7 +148,8 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
 
   void _onControllerTextChangedHandleTicker() {
     if (_oldValue != _value) {
-      BrnFormUtil.notifyValueChanged(widget.onChanged, context, _oldValue, _value);
+      BrnFormUtil.notifyValueChanged(
+          widget.onChanged, context, _oldValue, _value);
       setState(() {});
       _oldValue = _value;
     }
@@ -167,14 +171,19 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: BrnFormUtil.titleEdgeInsets(
-                      widget.prefixIconType, widget.isRequire, widget.themeData!),
+                  padding: BrnFormUtil.titleEdgeInsets(widget.prefixIconType,
+                      widget.isRequire, widget.themeData!),
                   child: Row(
                     children: <Widget>[
-                      BrnFormUtil.buildPrefixIcon(widget.prefixIconType, widget.isEdit, context,
-                          widget.onAddTap, widget.onRemoveTap),
+                      BrnFormUtil.buildPrefixIcon(
+                          widget.prefixIconType,
+                          widget.isEdit,
+                          context,
+                          widget.onAddTap,
+                          widget.onRemoveTap),
                       BrnFormUtil.buildRequireWidget(widget.isRequire),
-                      BrnFormUtil.buildTitleWidget(widget.title, widget.themeData!),
+                      BrnFormUtil.buildTitleWidget(
+                          widget.title, widget.themeData!),
                       BrnFormUtil.buildTipLabelWidget(
                           widget.tipLabel, widget.onTip, widget.themeData!),
                     ],
@@ -272,7 +281,8 @@ class BrnStepInputFormItemState extends State<BrnStepInputFormItem> {
           controller: _textEditingController,
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
-            RangeLimitedTextInputFormatter(minValue: widget.minLimit, maxValue: widget.maxLimit)
+            RangeLimitedTextInputFormatter(
+                minValue: widget.minLimit, maxValue: widget.maxLimit)
           ],
           style: TextStyle(
             color: Color(0xFF222222),
@@ -337,7 +347,8 @@ class RangeLimitedTextInputFormatter extends TextInputFormatter {
   RangeLimitedTextInputFormatter({this.minValue = 0, this.maxValue = 0});
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     int? newNum = int.tryParse(newValue.text);
     if (newNum == null && minValue == 0) {
       return const TextEditingValue(
@@ -347,7 +358,8 @@ class RangeLimitedTextInputFormatter extends TextInputFormatter {
       if (newNum.toString() != newValue.text) {
         return TextEditingValue(
             text: newNum.toString(),
-            selection: TextSelection.collapsed(offset: newNum.toString().length));
+            selection:
+                TextSelection.collapsed(offset: newNum.toString().length));
       } else {
         return newValue;
       }

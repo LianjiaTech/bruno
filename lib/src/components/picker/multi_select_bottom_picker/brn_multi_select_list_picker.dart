@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/line/brn_line.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_constants.dart';
 import 'package:bruno/src/components/picker/base/brn_picker_title.dart';
@@ -13,8 +11,7 @@ import 'package:flutter/material.dart';
 
 /// 点击确定时的回调
 /// [checkedItems] 被选中的 item 集合
-typedef BrnMultiSelectListPickerSubmit<T> = void Function(
-    List<T> checkedItems);
+typedef BrnMultiSelectListPickerSubmit<T> = void Function(List<T> checkedItems);
 
 /// item 被点击时的回调
 /// [index] item 的索引
@@ -23,7 +20,8 @@ typedef BrnMultiSelectListPickerItemClick = void Function(
 
 /// 多选列表 Picker
 
-class BrnMultiSelectListPicker<T extends BrnMultiSelectBottomPickerItem> extends StatefulWidget {
+class BrnMultiSelectListPicker<T extends BrnMultiSelectBottomPickerItem>
+    extends StatefulWidget {
   final String? title;
   final List<T> items;
   final BrnMultiSelectListPickerSubmit<T>? onSubmit;
@@ -72,7 +70,8 @@ class BrnMultiSelectListPicker<T extends BrnMultiSelectBottomPickerItem> extends
   }
 }
 
-class MultiSelectDialogWidgetState<T extends BrnMultiSelectBottomPickerItem> extends State<BrnMultiSelectListPicker<T>> {
+class MultiSelectDialogWidgetState<T extends BrnMultiSelectBottomPickerItem>
+    extends State<BrnMultiSelectListPicker<T>> {
   @override
   Widget build(BuildContext context) {
     return BrnPickerClipRRect(

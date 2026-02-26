@@ -65,8 +65,8 @@ class _BrnAppraiseBottomPickerState extends State<BrnAppraiseBottomPicker> {
           title: widget.title,
           headerType: widget.headerType,
           type: widget.type,
-          iconDescriptions:
-              widget.iconDescriptions ?? BrnIntl.of(context).localizedResource.appriseLevel,
+          iconDescriptions: widget.iconDescriptions ??
+              BrnIntl.of(context).localizedResource.appriseLevel,
           tags: widget.tags,
           inputHintText: widget.inputHintText,
           onConfirm: (index, list, input) {

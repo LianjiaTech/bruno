@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:bruno/bruno.dart';
@@ -168,12 +166,14 @@ class PickerEntryPage extends StatelessWidget {
   ///多选弹框自定义数据协议
   void _showExpandBottomMultiSelectPicker(BuildContext context) {
     List<ExpendMultiSelectBottomPickerItem> items = [];
-    items.add(new ExpendMultiSelectBottomPickerItem("100", "这里是标题1",attribute1: "第一条自定义参数1"));
-    items.add(new ExpendMultiSelectBottomPickerItem("101", "这里是标题2",attribute1: "第二条自定义参数2"));
-    items.add(
-        new ExpendMultiSelectBottomPickerItem("102", "这里是标题3", isChecked: true,attribute1: "第三条自定义参数3"));
-    items.add(
-        new ExpendMultiSelectBottomPickerItem("103", "这里是标题4", isChecked: true));
+    items.add(new ExpendMultiSelectBottomPickerItem("100", "这里是标题1",
+        attribute1: "第一条自定义参数1"));
+    items.add(new ExpendMultiSelectBottomPickerItem("101", "这里是标题2",
+        attribute1: "第二条自定义参数2"));
+    items.add(new ExpendMultiSelectBottomPickerItem("102", "这里是标题3",
+        isChecked: true, attribute1: "第三条自定义参数3"));
+    items.add(new ExpendMultiSelectBottomPickerItem("103", "这里是标题4",
+        isChecked: true));
     items.add(new ExpendMultiSelectBottomPickerItem("104", "这里是标题5"));
     items.add(new ExpendMultiSelectBottomPickerItem("104", "这里是标题6"));
     BrnMultiSelectListPicker.show<ExpendMultiSelectBottomPickerItem>(

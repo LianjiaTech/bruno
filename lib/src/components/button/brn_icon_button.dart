@@ -91,9 +91,7 @@ class _BrnIconButtonState extends State<BrnIconButton> {
               Container(
                 height: widget.iconHeight,
                 width: widget.iconWidth,
-                child: FittedBox(
-                  fit: BoxFit.contain,
-                    child: widget.iconWidget),
+                child: FittedBox(fit: BoxFit.contain, child: widget.iconWidget),
               ),
               Padding(
                 padding: EdgeInsets.only(top: widget.padding),

@@ -75,7 +75,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     _tabBarLabelStyle = BrnTextStyle(color: commonConfig.brandPrimary);
     _tabBarBackgroundColor = commonConfig.fillBody;
     _pageBackgroundColor = commonConfig.fillBody;
-    _bottomBackgroundColor = commonConfig.fillBody.withOpacity(.85);
+    _bottomBackgroundColor = commonConfig.fillBody.withValues(alpha: .85);
     _titleStyle = BrnTextStyle(color: commonConfig.colorTextBase);
     _contentStyle = BrnTextStyle(color: commonConfig.colorTextBase);
     _actionStyle = BrnTextStyle(color: commonConfig.colorTextSecondary);

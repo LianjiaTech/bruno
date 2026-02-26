@@ -139,7 +139,8 @@ class _BrnAppraiseState extends State<BrnAppraise> {
     if (widget.type == BrnAppraiseType.emoji) {
       return BrnAppraiseEmojiListView(
         indexes: widget.config.indexes,
-        titles: widget.iconDescriptions ?? BrnIntl.of(context).localizedResource.appriseLevel,
+        titles: widget.iconDescriptions ??
+            BrnIntl.of(context).localizedResource.appriseLevel,
         onTap: (index) {
           setState(() {
             _appraiseIndex = index;
@@ -152,7 +153,8 @@ class _BrnAppraiseState extends State<BrnAppraise> {
     } else {
       return BrnAppraiseStarListView(
         count: widget.config.count,
-        titles: widget.iconDescriptions ?? BrnIntl.of(context).localizedResource.appriseLevel,
+        titles: widget.iconDescriptions ??
+            BrnIntl.of(context).localizedResource.appriseLevel,
         hint: widget.config.starAppraiseHint,
         onTap: (index) {
           setState(() {
@@ -227,7 +229,8 @@ class _BrnAppraiseState extends State<BrnAppraise> {
       return Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
         child: BrnBigMainButton(
-          title: widget.config.confirmButtonText ?? BrnIntl.of(context).localizedResource.submit,
+          title: widget.config.confirmButtonText ??
+              BrnIntl.of(context).localizedResource.submit,
           isEnable: _enable ?? _appraiseIndex != -1,
           onTap: () {
             if (_enable ?? _appraiseIndex != -1) {

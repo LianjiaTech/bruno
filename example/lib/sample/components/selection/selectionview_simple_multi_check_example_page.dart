@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/selection/filter_entity.dart';
 import 'package:flutter/material.dart';

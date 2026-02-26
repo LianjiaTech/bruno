@@ -16,7 +16,6 @@ typedef BrnItemDeleteCallback<T> = bool Function(int deleteIdx, T deleteEntity);
 /// 视图隐藏时的回调，会把是否是清空按钮触发的销毁视图回传
 typedef BrnListDismissCallback = void Function(bool isClosedByClearButton);
 
-
 /// 监听数据刷新和列表关闭操作
 class BrnSelectedListActionSheetController extends ChangeNotifier {
   /// 是否刷新数据
@@ -56,7 +55,6 @@ class BrnSelectedListActionSheetController extends ChangeNotifier {
 ///    自动与 globalKey 绑定的组件左右对齐，并从其顶部弹出。clear
 /// 2. 外界需要自己监听 Android 上的系统返回事件，并且调用组件的 [dismiss] 方法！否则，组件不能正常关闭。
 class BrnSelectedListActionSheet<T> {
-
   /// 用来获取 Overlay
   final BuildContext context;
 
@@ -166,6 +164,7 @@ class BrnSelectedListActionSheet<T> {
     _bottomKeyOffset = MediaQuery.of(context).size.height - (offset?.dy ?? 0);
     this._innerShow(true);
   }
+
   /// 展示弹层
   void show() {
     this._innerShow(false);
@@ -339,7 +338,9 @@ class _BrnActionSheetSelectedItemListState<T>
       // 如果没有实现 onClear，执行默认弹窗并删除的逻辑
       this.dismissContent(true);
       BrnDialogManager.showConfirmDialog(context,
-          title: BrnIntl.of(context).localizedResource.confirmClearSelectedList, cancel: BrnIntl.of(context).localizedResource.cancel, confirm: BrnIntl.of(context).localizedResource.ok, onConfirm: () {
+          title: BrnIntl.of(context).localizedResource.confirmClearSelectedList,
+          cancel: BrnIntl.of(context).localizedResource.cancel,
+          confirm: BrnIntl.of(context).localizedResource.ok, onConfirm: () {
         if (widget.itemWidget.onClearConfirmed != null) {
           widget.itemWidget.onClearConfirmed!();
         }

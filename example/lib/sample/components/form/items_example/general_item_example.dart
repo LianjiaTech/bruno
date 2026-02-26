@@ -17,8 +17,7 @@ class GeneralFormExamplePage extends StatelessWidget {
           children: <Widget>[
             Container(
               padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-              child: Text(
-                "基本样式：",
+              child: Text("基本样式：",
                   style: TextStyle(
                     color: Color(0xFF222222),
                     fontSize: 22,

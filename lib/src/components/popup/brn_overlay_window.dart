@@ -97,7 +97,8 @@ class _BrnOverlayWindowState extends State<BrnOverlayWindow> {
   @override
   Widget build(BuildContext context) {
     this._showRect = _getWidgetGlobalRect(widget.targetKey);
-    this._screenSize = View.of(context).physicalSize / View.of(context).devicePixelRatio;
+    this._screenSize =
+        View.of(context).physicalSize / View.of(context).devicePixelRatio;
     if (this._showRect == null) {
       return const SizedBox.shrink();
     }

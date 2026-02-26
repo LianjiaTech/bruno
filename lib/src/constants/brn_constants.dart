@@ -1,5 +1,4 @@
 class BrnShareItemConstants {
-
   /// 分享渠道图片地址列表
   static const List<String> shareItemImagePathList = [
     "images/icon_share_weChat.png",

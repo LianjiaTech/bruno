@@ -246,7 +246,8 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
       node = tmp.removeLast();
       if (!node.isValidRange()) {
         isValid = false;
-        BrnToast.show(BrnIntl.of(context).localizedResource.enterRangeError, context);
+        BrnToast.show(
+            BrnIntl.of(context).localizedResource.enterRangeError, context);
         return;
       }
       node.children.forEach((data) {

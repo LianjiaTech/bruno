@@ -32,10 +32,16 @@ class BrnPageLoading extends StatelessWidget {
   final String? content;
   final BoxConstraints constraints;
 
-  const BrnPageLoading({Key? key,
+  const BrnPageLoading({
+    Key? key,
     this.content,
-    this.constraints = const BoxConstraints(minWidth: 130, maxWidth: 130, minHeight: 50, maxHeight: 50,),
-  }): super(key: key);
+    this.constraints = const BoxConstraints(
+      minWidth: 130,
+      maxWidth: 130,
+      minHeight: 50,
+      maxHeight: 50,
+    ),
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +49,12 @@ class BrnPageLoading extends StatelessWidget {
     double _iconSize = 19.0;
     double _textLeftPadding = 8.0;
     double _outPadding = 10.0;
-    String loadingText = content ?? BrnIntl.of(context).localizedResource.loading;
+    String loadingText =
+        content ?? BrnIntl.of(context).localizedResource.loading;
     // 获取实际文字长度
     TextPainter textPainter = TextPainter(
       textDirection: TextDirection.ltr,
-      textScaleFactor: MediaQuery.of(context).textScaleFactor,
+      textScaler: MediaQuery.textScalerOf(context),
       text: TextSpan(
           text: loadingText,
           style: TextStyle(
@@ -63,10 +70,12 @@ class BrnPageLoading extends StatelessWidget {
     return Center(
       child: Container(
         padding: EdgeInsets.all(_outPadding),
-        constraints: BoxConstraints(maxWidth: maxWidth, minWidth: _iconSize + _textLeftPadding),
+        constraints: BoxConstraints(
+            maxWidth: maxWidth, minWidth: _iconSize + _textLeftPadding),
         height: 50,
         width: _loadingMaxWidth,
-        decoration: BoxDecoration(color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
+        decoration: BoxDecoration(
+            color: Color(0xff222222), borderRadius: BorderRadius.circular(5)),
         child: Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -115,7 +124,8 @@ class BrnLoadingDialog extends Dialog {
 
   @override
   Widget build(BuildContext context) {
-    return BrnPageLoading(content: content ?? BrnIntl.of(context).localizedResource.loading);
+    return BrnPageLoading(
+        content: content ?? BrnIntl.of(context).localizedResource.loading);
   }
 
   /// 展示加载弹窗的静态方法。
@@ -137,7 +147,9 @@ class BrnLoadingDialog extends Dialog {
         barrierDismissible: barrierDismissible,
         useRootNavigator: useRootNavigator,
         builder: (_) {
-          return BrnLoadingDialog(content: content ?? BrnIntl.of(context).localizedResource.loading);
+          return BrnLoadingDialog(
+              content:
+                  content ?? BrnIntl.of(context).localizedResource.loading);
         });
   }
 
@@ -145,6 +157,7 @@ class BrnLoadingDialog extends Dialog {
   ///
   ///  * [context] 上下文。
   static void dismiss<T extends Object?>(BuildContext context, [T? result]) {
-    BrnSafeDialog.dismiss<T>(context: context, tag: _loadingDialogTag, result: result);
+    BrnSafeDialog.dismiss<T>(
+        context: context, tag: _loadingDialogTag, result: result);
   }
 }

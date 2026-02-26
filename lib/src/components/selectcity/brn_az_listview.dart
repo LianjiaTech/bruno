@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 /// Called to build children for the listView.
 /// 列表的Item
-typedef ItemWidgetBuilder = Widget Function(BuildContext context, ISuspensionBean model);
+typedef ItemWidgetBuilder = Widget Function(
+    BuildContext context, ISuspensionBean model);
 
 /// Called to build IndexBar.
 /// 右侧索引区域

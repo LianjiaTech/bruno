@@ -1,3 +1,19 @@
+## [3.4.4] - 2026-2-25
+
+### Changed
+
+#### base
+
+- Adapted to Flutter 3.38.x / Dart 3.10.x.
+- Fixed deprecated API usage across the library to pass `flutter analyze` on latest Flutter.
+
+#### example
+
+- Upgraded Android example build toolchain for modern Flutter/AGP (Gradle/AGP/Kotlin/Java 17).
+- Fixed Android manifest namespace compatibility for AGP 8+.
+- Upgraded iOS example minimum deployment target to iOS 13 and fixed CocoaPods install.
+- Fixed example package dependency declaration so Bruno package assets load correctly on iOS/Android.
+
 ## [3.4.3] - 2023-9-13
 
 ### Changed
@@ -229,4 +245,3 @@ Thanks again to **leftcoding**,  **jojinshallar**,  **laiiihz**,  **donywan**,  
 ## [1.0.0] - 2021-12-7
 
 - First publish adapt flutter sdk 1.22.4
-

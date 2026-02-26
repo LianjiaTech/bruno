@@ -115,10 +115,14 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        _controller.reverse();
-        return true;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, dynamic result) async {
+        if (didPop) return;
+        await _controller.reverse();
+        if (mounted) {
+          Navigator.of(context).pop();
+        }
       },
       child: Scaffold(
         backgroundColor: Color(0x33999999),
@@ -201,7 +205,8 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
     } else if (widget.confirm is String) {
       confirmWidget = _buildDefaultConfirm(widget.confirm);
     } else {
-      confirmWidget = _buildDefaultConfirm(BrnIntl.of(context).localizedResource.confirm);
+      confirmWidget =
+          _buildDefaultConfirm(BrnIntl.of(context).localizedResource.confirm);
     }
     return confirmWidget;
   }
@@ -213,7 +218,8 @@ class BrnBottomPickerWidgetState extends State<BrnBottomPickerWidget>
     } else if (widget.cancel is String) {
       cancelWidget = _buildDefaultCancel(widget.cancel);
     } else {
-      cancelWidget = _buildDefaultCancel(BrnIntl.of(context).localizedResource.cancel);
+      cancelWidget =
+          _buildDefaultCancel(BrnIntl.of(context).localizedResource.cancel);
     }
     return cancelWidget;
   }

@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/components/gallery/gallery_detail_example.dart';
 import 'package:example/sample/home/list_item.dart';

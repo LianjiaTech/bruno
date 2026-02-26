@@ -290,7 +290,11 @@ class BrnProgressBarChartPainter extends CustomPainter {
         this.xAxisRect = Rect.fromLTWH(this.yAxisRect.bottomRight.dx,
             size.height, size.width - this.yAxisRect.width, 0);
         this.yAxisRect = Rect.fromLTWH(
-            0, 0, this.yAxis.maxTextWidth + _yTextAxisSpace, size.height - (this.xAxis.axisItemList.isEmpty ? 0 : this._xAxisHeight));
+            0,
+            0,
+            this.yAxis.maxTextWidth + _yTextAxisSpace,
+            size.height -
+                (this.xAxis.axisItemList.isEmpty ? 0 : this._xAxisHeight));
       }
     }
 
@@ -429,7 +433,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
 
         // 坐标刻度虚线
         _drawDashLineOn(canvas, Offset(currentOffset.dx, currentOffset.dy),
-            Offset(currentOffset.dx, 0), Colors.black.withOpacity(0.09));
+            Offset(currentOffset.dx, 0), Colors.black.withValues(alpha: 0.09));
 
         // 坐标文本
         AxisItem axisItem = this.xAxis.axisItemList[xAxisItemIndex];
@@ -557,7 +561,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
             yAxisItemOffset,
             Offset(yAxisItemOffset.dx + this.contentRect.width,
                 yAxisItemOffset.dy),
-            Colors.black.withOpacity(0.09));
+            Colors.black.withValues(alpha: 0.09));
       }
     }
   }
@@ -754,18 +758,18 @@ class BrnProgressBarChartPainter extends CustomPainter {
         if (this.selectedBarItem!.barRect == barItem.barRect) {
           // 选中的柱形
           shader = LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              tileMode: TileMode.clamp,
-              colors: barBundle.colors)
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  tileMode: TileMode.clamp,
+                  colors: barBundle.colors)
               .createShader(barItem.barRect!);
         } else {
           // 未选中需要置灰的柱形
           shader = LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              tileMode: TileMode.clamp,
-              colors: <Color>[this.unselectedColor, this.unselectedColor])
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  tileMode: TileMode.clamp,
+                  colors: <Color>[this.unselectedColor, this.unselectedColor])
               .createShader(barItem.barRect!);
         }
         Paint barPaint = Paint()
@@ -785,10 +789,10 @@ class BrnProgressBarChartPainter extends CustomPainter {
         }
       } else {
         Shader shader = LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            tileMode: TileMode.clamp,
-            colors: barBundle.colors)
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                tileMode: TileMode.clamp,
+                colors: barBundle.colors)
             .createShader(barItem.barRect!);
         Paint barPaint = Paint()
           ..shader = shader
@@ -816,7 +820,6 @@ class BrnProgressBarChartPainter extends CustomPainter {
       });
     });
 
-
     // 最后画选中柱形的提示文字，否则可能被遮挡
     if (null != this.selectedBarItem) {
       // 画选中文字 Start
@@ -825,7 +828,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
               text: selectedBarItem!.selectedHintText ??
                   (selectedBarItem!.text ?? ''),
               style:
-              TextStyle(fontSize: 12, color: this.selectedHintTextColor)),
+                  TextStyle(fontSize: 12, color: this.selectedHintTextColor)),
           textDirection: TextDirection.ltr)
         ..layout(maxWidth: double.infinity, minWidth: 0);
       double textWidth = selectedBarTextPainter.size.width;

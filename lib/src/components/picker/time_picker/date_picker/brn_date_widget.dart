@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:bruno/src/components/picker/base/brn_picker.dart';
@@ -253,8 +251,7 @@ class _BrnDateWidgetState extends State<BrnDateWidget> {
     return Container(
       height: widget.themeData!.itemHeight,
       alignment: Alignment.center,
-      child: Text(
-          DateTimeFormatter.formatDateTime(value, format),
+      child: Text(DateTimeFormatter.formatDateTime(value, format),
           style: textStyle),
     );
   }

@@ -217,7 +217,7 @@ class _BrnStepLineState extends State<BrnStepLine> {
       width: 12,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: color.withOpacity(0.2),
+        color: color.withValues(alpha: 0.2),
       ),
       alignment: Alignment.center,
       child: Container(

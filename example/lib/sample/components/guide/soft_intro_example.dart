@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:bruno/bruno.dart';
@@ -55,7 +53,12 @@ class _SoftGuideExampleState extends State<SoftGuideExample> {
   }
 
   Widget build(BuildContext context) {
-    return WillPopScope(
+    return PopScope(
+      onPopInvokedWithResult: (bool didPop, dynamic result) {
+        if (didPop) {
+          intro.dispose();
+        }
+      },
       child: Scaffold(
         appBar: BrnAppBar(
           title: Text(
@@ -149,11 +152,6 @@ class _SoftGuideExampleState extends State<SoftGuideExample> {
           },
         ),
       ),
-      onWillPop: () async {
-        // destroy guide page when tap back key
-        intro.dispose();
-        return true;
-      },
     );
   }
 }

@@ -1,9 +1,13 @@
 /// Selected value of DatePicker.
 
-typedef DateValueCallback = Function(DateTime dateTime, List<int> selectedIndex);
+typedef DateValueCallback = Function(
+    DateTime dateTime, List<int> selectedIndex);
 
-typedef DateRangeValueCallback = Function(DateTime startDateTime, DateTime endDateTime,
-    List<int> startSelectedIndex, List<int> endSelectedIndex);
+typedef DateRangeValueCallback = Function(
+    DateTime startDateTime,
+    DateTime endDateTime,
+    List<int> startSelectedIndex,
+    List<int> endSelectedIndex);
 
 typedef DateRangeSideValueCallback = Function(
     DateTime selectDateTime, List<int> selectedIndex);

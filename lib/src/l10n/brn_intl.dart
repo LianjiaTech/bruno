@@ -7,18 +7,22 @@ import 'brn_resources.dart';
 /// Bruno 多语言支持
 ///
 class BrnIntl {
-
   /// 内置支持的语言和资源
-  final Map<String, BrnBaseResource> _defaultResourceMap = {'en': BrnResourceEn(), 'zh': BrnResourceZh()};
+  final Map<String, BrnBaseResource> _defaultResourceMap = {
+    'en': BrnResourceEn(),
+    'zh': BrnResourceZh()
+  };
 
   /// 缓存当前语言对应的资源，用于无 context 的情况
   static BrnIntl? _current;
   static BrnBaseResource get currentResource {
-    assert(_current != null,
+    assert(
+        _current != null,
         'No instance of BrnIntl was loaded. \n'
         'Try to initialize the BrnLocalizationDelegate before accessing BrnIntl.currentResource.');
+
     /// 若应用未做本地化，则默认使用 zh-CN 资源
-    if(_current == null) {
+    if (_current == null) {
       _current = BrnIntl(BrnResourceZh.locale);
     }
     return _current!.localizedResource;
@@ -31,10 +35,12 @@ class BrnIntl {
   /// 获取当前语言下对应的资源，若为 null 则返回 [BrnResourceZh]
   BrnBaseResource get localizedResource {
     // 支持动态资源文件
-    BrnBaseResource? resource = _BrnIntlHelper.findIntlResourceOfType<BrnBaseResource>(locale);
+    BrnBaseResource? resource =
+        _BrnIntlHelper.findIntlResourceOfType<BrnBaseResource>(locale);
     if (resource != null) return resource;
     // 常规的多语言资源加载
-    return _defaultResourceMap[locale.languageCode] ?? _defaultResourceMap['zh']!;
+    return _defaultResourceMap[locale.languageCode] ??
+        _defaultResourceMap['zh']!;
   }
 
   /// 获取[BrnIntl]实例
@@ -89,8 +95,8 @@ class BrnLocalizationDelegate extends LocalizationsDelegate<BrnIntl> {
 /// 支持外部动态添加其他语言支的本地化
 ///
 final Map<Locale, Map<Type, dynamic>> _additionalIntls = {};
-class _BrnIntlHelper {
 
+class _BrnIntlHelper {
   ///
   /// 根据 locale 查找 value 类型为[T]的资源
   ///
@@ -105,7 +111,6 @@ class _BrnIntlHelper {
     }
     return null;
   }
-
 
   ///
   /// 设置自定义 locale 的资源

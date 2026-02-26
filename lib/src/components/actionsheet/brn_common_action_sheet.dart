@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 /// Action Item 的点击事件回调
 typedef BrnCommonActionSheetItemClickCallBack = void Function(
     int index, BrnCommonActionSheetItem actionItem);
+
 /// Action Item 点击事件拦截回调
-typedef BrnCommonActionSheetItemClickInterceptor =  bool Function(
+typedef BrnCommonActionSheetItemClickInterceptor = bool Function(
     int index, BrnCommonActionSheetItem actionItem);
 
 /// 每行样式

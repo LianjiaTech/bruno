@@ -28,6 +28,7 @@ class BrnSelectionMenuWidget extends StatefulWidget {
 
   /// 筛选菜单高度
   final double height;
+
   /// 筛选菜单宽度
   final double? width;
 

@@ -28,9 +28,7 @@ class ProgressBarChartExampleState extends State<ProgressBarChartExample> {
           children: <Widget>[
             BrnProgressBarChart(
               barChartStyle: BarChartStyle.horizontal,
-              xAxis: ChartAxis(
-                  inclineText: true,
-                  axisItemList: [
+              xAxis: ChartAxis(inclineText: true, axisItemList: [
                 AxisItem(showText: '2022年10月10日'),
                 AxisItem(showText: '2022年10月10日'),
                 AxisItem(showText: '2022年10月10日'),
@@ -80,12 +78,17 @@ class ProgressBarChartExampleState extends State<ProgressBarChartExample> {
               barBundleList: [
                 BrnProgressBarBundle(barList: [
                   BrnProgressBarItem(
-                      text: '示例11', value: 5, hintValue: 15, showBarValueText: "1122334"),
-                  BrnProgressBarItem(text: '示例12', value: 20, selectedHintText: '示例12:20'),
+                      text: '示例11',
+                      value: 5,
+                      hintValue: 15,
+                      showBarValueText: "1122334"),
+                  BrnProgressBarItem(
+                      text: '示例12', value: 20, selectedHintText: '示例12:20'),
                   BrnProgressBarItem(
                       text: '示例13',
                       value: 30,
-                      selectedHintText: '示例13:30\n示例13:30\n示例13:30\n示例13:30\n示例13:30\n示例13:30'),
+                      selectedHintText:
+                          '示例13:30\n示例13:30\n示例13:30\n示例13:30\n示例13:30\n示例13:30'),
                   BrnProgressBarItem(text: '示例14', value: 25),
                   BrnProgressBarItem(text: '示例15', value: 21),
                   BrnProgressBarItem(text: '示例16', value: 28),
@@ -99,11 +102,13 @@ class ProgressBarChartExampleState extends State<ProgressBarChartExample> {
                 ]),
                 BrnProgressBarBundle(barList: [
                   BrnProgressBarItem(text: '示例21', value: 20, hintValue: 15),
-                  BrnProgressBarItem(text: '示例22', value: 15, selectedHintText: '示例12:20'),
+                  BrnProgressBarItem(
+                      text: '示例22', value: 15, selectedHintText: '示例12:20'),
                   BrnProgressBarItem(
                       text: '示例23',
                       value: 30,
-                      selectedHintText: '示例13:30\n示例13:30\n示例13:30\n示例13:30\n示例13:30\n示例13:30'),
+                      selectedHintText:
+                          '示例13:30\n示例13:30\n示例13:30\n示例13:30\n示例13:30\n示例13:30'),
                   BrnProgressBarItem(text: '示例24', value: 20),
                   BrnProgressBarItem(text: '示例25', value: 28),
                   BrnProgressBarItem(text: '示例26', value: 25),
@@ -124,7 +129,8 @@ class ProgressBarChartExampleState extends State<ProgressBarChartExample> {
               singleBarWidth: 30,
               barGroupSpace: 30,
               barMaxValue: 60,
-              onBarItemClickInterceptor: (barBundleIndex, barBundle, barGroupIndex, barItem) {
+              onBarItemClickInterceptor:
+                  (barBundleIndex, barBundle, barGroupIndex, barItem) {
                 return true;
               },
               barChartSelectCallback: (BrnProgressBarItem? barItem) {

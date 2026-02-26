@@ -243,7 +243,10 @@ class _SearchTextState extends State<BrnSearchText> {
                                   textBaseline: TextBaseline.alphabetic,
                                   color: Color(0xff999999),
                                 ),
-                            hintText: widget.hintText ?? BrnIntl.of(context).localizedResource.inputSearchTip,
+                            hintText: widget.hintText ??
+                                BrnIntl.of(context)
+                                    .localizedResource
+                                    .inputSearchTip,
                             counterText: '',
                           ),
                           // 在改变属性，当正在编辑的文本发生更改时调用。

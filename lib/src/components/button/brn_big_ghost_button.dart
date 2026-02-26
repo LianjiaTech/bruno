@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/button/brn_normal_button.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
@@ -55,7 +53,8 @@ class BrnBigGhostButton extends StatelessWidget {
     BrnButtonConfig defaultThemeConfig = themeData ?? BrnButtonConfig();
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig.merge(defaultThemeConfig);
+        .buttonConfig
+        .merge(defaultThemeConfig);
 
     return BrnNormalButton(
       borderRadius: BorderRadius.circular(defaultThemeConfig.bigButtonRadius),
@@ -63,7 +62,7 @@ class BrnBigGhostButton extends StatelessWidget {
           width: width ?? double.infinity,
           height: defaultThemeConfig.bigButtonHeight),
       backgroundColor: bgColor ??
-          defaultThemeConfig.commonConfig.brandPrimary.withOpacity(0.05),
+          defaultThemeConfig.commonConfig.brandPrimary.withValues(alpha: 0.05),
       onTap: onTap,
       alignment: Alignment.center,
       text: title ?? BrnIntl.of(context).localizedResource.confirm,

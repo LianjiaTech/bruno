@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/picker/multi_range_picker/bean/brn_multi_column_picker_entity.dart';
 import 'package:bruno/src/components/picker/multi_range_picker/brn_multi_column_picker.dart';
 import 'package:bruno/src/components/picker/multi_range_picker/brn_multi_column_picker_util.dart';
@@ -135,7 +133,8 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
     if (selectedEntity.filterType == PickerFilterType.checkbox &&
         !selectedEntity.isSelected) {
       if (!BrnMultiColumnPickerUtil.isSelectedCountExceed(selectedEntity)) {
-        BrnToast.show(BrnIntl.of(context).localizedResource.selectCountLimitTip, context);
+        BrnToast.show(
+            BrnIntl.of(context).localizedResource.selectCountLimitTip, context);
         return;
       }
     }
@@ -164,7 +163,8 @@ class _BrnMultiColumnListWidgetState extends State<BrnMultiColumnListWidget> {
         widget.items!.isNotEmpty &&
         widget.items![0].parent != null) {
       widget.items![0].parent?.isSelected = widget.items![0].parent!.children
-              .where((BrnPickerEntity f) => f.isSelected).isNotEmpty;
+          .where((BrnPickerEntity f) => f.isSelected)
+          .isNotEmpty;
     }
 
     for (BrnPickerEntity item in widget.items!) {

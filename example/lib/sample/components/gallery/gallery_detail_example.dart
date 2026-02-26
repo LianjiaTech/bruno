@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +44,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-            "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
+                "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.cantFold,
             name: "一只猫",
@@ -57,7 +55,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-            "https://img2.baidu.com/it/u=2011041083,1329194196&fm=253&fmt=auto&app=138&f=JPEG?w=333&h=500",
+                "https://img2.baidu.com/it/u=2011041083,1329194196&fm=253&fmt=auto&app=138&f=JPEG?w=333&h=500",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.fold,
             name: "两只猫",
@@ -68,7 +66,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-            "https://img0.baidu.com/it/u=3926156041,1190073021&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
+                "https://img0.baidu.com/it/u=3926156041,1190073021&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.unFold,
             name: "三只猫",
@@ -79,7 +77,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-            "https://img1.baidu.com/it/u=456300708,413059805&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500",
+                "https://img1.baidu.com/it/u=456300708,413059805&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500",
             showBottom: false,
             name: "一张图片",
             des:
@@ -123,7 +121,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                     ? BrnGalleryDetailConfig.dark()
                     : BrnGalleryDetailConfig.light(),
                 url:
-                "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
+                    "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
                 showBottom: true,
                 bottomCardModel: PhotoBottomCardState.fold,
                 name: "一张图片",
@@ -136,7 +134,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-            "https://img2.baidu.com/it/u=987135572,1298604833&fm=253&fmt=auto&app=138&f=JPEG?w=587&h=445",
+                "https://img2.baidu.com/it/u=987135572,1298604833&fm=253&fmt=auto&app=138&f=JPEG?w=587&h=445",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.fold,
             name: "一张图片",
@@ -149,7 +147,7 @@ class GalleryDetailExamplePageState extends State<GalleryDetailExamplePage> {
                 ? BrnGalleryDetailConfig.dark()
                 : BrnGalleryDetailConfig.light(),
             url:
-            "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
+                "https://img2.baidu.com/it/u=3489452515,1789465937&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333",
             showBottom: true,
             bottomCardModel: PhotoBottomCardState.fold,
             name: "一张图片",

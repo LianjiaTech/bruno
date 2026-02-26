@@ -118,7 +118,9 @@ class _BrnSelectionRangeItemWidgetState
               margin: EdgeInsets.only(bottom: 5),
               alignment: Alignment.centerLeft,
               child: Text(
-                (widget.item.title.isNotEmpty ? widget.item.title : BrnIntl.of(context).localizedResource.customRange) +
+                (widget.item.title.isNotEmpty
+                        ? widget.item.title
+                        : BrnIntl.of(context).localizedResource.customRange) +
                     "(" +
                     (widget.item.extMap['unit']?.toString() ?? '') +
                     ")",
@@ -161,7 +163,9 @@ class _BrnSelectionRangeItemWidgetState
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           hintStyle: widget.themeData.hintTextStyle.generateTextStyle(),
-          hintText: (isMax ? BrnIntl.of(context).localizedResource.maxValue : BrnIntl.of(context).localizedResource.minValue),
+          hintText: (isMax
+              ? BrnIntl.of(context).localizedResource.maxValue
+              : BrnIntl.of(context).localizedResource.minValue),
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
             width: 1,

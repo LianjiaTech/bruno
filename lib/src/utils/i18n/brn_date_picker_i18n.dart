@@ -42,4 +42,3 @@ enum DateTimePickerLocale {
 /// Default value of date locale
 const DateTimePickerLocale datetimePickerLocaleDefault =
     DateTimePickerLocale.zh_cn;
-

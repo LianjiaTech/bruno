@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/button/brn_big_ghost_button.dart';
 import 'package:bruno/src/components/button/brn_normal_button.dart';
 import 'package:bruno/src/l10n/brn_intl.dart';
@@ -69,7 +67,8 @@ class BrnBigOutlineButton extends StatelessWidget {
 
     defaultThemeConfig = BrnThemeConfigurator.instance
         .getConfig(configId: defaultThemeConfig.configId)
-        .buttonConfig.merge(defaultThemeConfig);
+        .buttonConfig
+        .merge(defaultThemeConfig);
 
     Color? _lineColor =
         lineColor ?? defaultThemeConfig.commonConfig.borderColorBase;
@@ -91,7 +90,7 @@ class BrnBigOutlineButton extends StatelessWidget {
           height: defaultThemeConfig.bigButtonHeight),
       onTap: onTap,
       backgroundColor: Colors.white,
-      disableBackgroundColor: Color(0xffcccccc).withOpacity(0.1),
+      disableBackgroundColor: Color(0xffcccccc).withValues(alpha: 0.1),
     );
   }
 }

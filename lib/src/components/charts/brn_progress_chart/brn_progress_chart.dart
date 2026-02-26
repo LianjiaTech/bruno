@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/src/components/charts/brn_progress_chart/brn_progress_chart_painter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -43,20 +41,20 @@ class BrnProgressChart extends StatefulWidget {
   /// 进度条是否从上次的值开始
   final bool isFromLastValue;
 
-  const BrnProgressChart(
-      {Key? key,
-      this.width = 0,
-      this.height = 0,
-      this.value = 0.2,
-      this.indicatorLeftPadding = 10,
-      this.textStyle = const TextStyle(color: Colors.white),
-      this.brnProgressIndicatorBuilder,
-      this.colors = const [Colors.blueAccent, Colors.blue],
-      this.backgroundColor = Colors.lightBlueAccent,
-      this.showAnimation = false,
-      this.isFromLastValue = false,
-      this.duration = const Duration(milliseconds: 250),})
-      : assert(0 <= value && value <= 1, 'value 必须在 0 到 1 之间'),
+  const BrnProgressChart({
+    Key? key,
+    this.width = 0,
+    this.height = 0,
+    this.value = 0.2,
+    this.indicatorLeftPadding = 10,
+    this.textStyle = const TextStyle(color: Colors.white),
+    this.brnProgressIndicatorBuilder,
+    this.colors = const [Colors.blueAccent, Colors.blue],
+    this.backgroundColor = Colors.lightBlueAccent,
+    this.showAnimation = false,
+    this.isFromLastValue = false,
+    this.duration = const Duration(milliseconds: 250),
+  })  : assert(0 <= value && value <= 1, 'value 必须在 0 到 1 之间'),
         super(key: key);
 
   @override
@@ -163,7 +161,7 @@ class _IndicatorWidgetBuilderState extends State<IndicatorWidgetBuilder> {
 
   void _changeListener() {
     final double value = widget.notifier?.value ?? widget.value;
-    if(!mounted) return;
+    if (!mounted) return;
     setState(() {
       _value = value;
     });

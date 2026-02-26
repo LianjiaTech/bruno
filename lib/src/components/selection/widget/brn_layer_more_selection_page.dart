@@ -146,7 +146,9 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
                 systemOverlayStyle: SystemUiOverlayStyle.dark,
                 backgroundColor: Colors.white,
                 title: Text(
-                  BrnIntl.of(context).localizedResource.selectTitle(widget.entityData.title),
+                  BrnIntl.of(context)
+                      .localizedResource
+                      .selectTitle(widget.entityData.title),
                   style: TextStyle(
                       color: BrnThemeConfigurator.instance
                           .getConfig()
@@ -237,7 +239,11 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
               if (!this._firstList[index].isSelected) {
                 if (!BrnSelectionUtil.checkMaxSelectionCount(
                     _firstList[index])) {
-                  BrnToast.show(BrnIntl.of(context).localizedResource.filterConditionCountLimited, context);
+                  BrnToast.show(
+                      BrnIntl.of(context)
+                          .localizedResource
+                          .filterConditionCountLimited,
+                      context);
                   setState(() {});
                   return;
                 } else {
@@ -374,7 +380,11 @@ class _BrnLayerMoreSelectionPageState extends State<BrnLayerMoreSelectionPage>
               if (!_currentFirstEntity!.children[index].isSelected) {
                 if (!BrnSelectionUtil.checkMaxSelectionCount(
                     this._currentFirstEntity!.children[index])) {
-                  BrnToast.show(BrnIntl.of(context).localizedResource.filterConditionCountLimited, context);
+                  BrnToast.show(
+                      BrnIntl.of(context)
+                          .localizedResource
+                          .filterConditionCountLimited,
+                      context);
                   return;
                 }
               }

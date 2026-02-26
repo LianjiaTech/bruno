@@ -85,7 +85,8 @@ class BrnBottomWritePicker extends StatefulWidget {
             Animation<double> secondaryAnimation) {
           final Widget pageChild = BrnBottomWritePicker(
             maxLength: maxLength,
-            hintText: hintText ?? BrnIntl.of(context).localizedResource.pleaseEnter,
+            hintText:
+                hintText ?? BrnIntl.of(context).localizedResource.pleaseEnter,
             leftTag: leftTag ?? BrnIntl.of(context).localizedResource.cancel,
             title: title,
             rightTag: rightTag ?? BrnIntl.of(context).localizedResource.ok,
@@ -160,7 +161,8 @@ class _BottomWritePickerState extends State<BrnBottomWritePicker> {
                       .getConfig()
                       .commonConfig
                       .colorTextHint),
-              hintText: widget.hintText ?? BrnIntl.of(context).localizedResource.pleaseEnter,
+              hintText: widget.hintText ??
+                  BrnIntl.of(context).localizedResource.pleaseEnter,
             )),
       ),
       pickerTitleConfig: BrnPickerTitleConfig(

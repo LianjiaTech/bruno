@@ -91,7 +91,7 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
       home: Scaffold(
           appBar: BrnAppBar(
             title: 'BottomTabBar',
-            backLeadCallback: (){
+            backLeadCallback: () {
               Navigator.pop(context);
             },
           ),
@@ -110,28 +110,32 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
             items: <BrnBottomTabBarItem>[
               // 定义每个BottomTabBarItem，子属性请看源码
               BrnBottomTabBarItem(
-                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon:
+                      Image(image: AssetImage("assets/icons/navbar_house.png")),
                   activeIcon: Image(
                     image: AssetImage("assets/icons/navbar_house.png"),
                     color: Colors.blue,
                   ),
                   title: Text(titles[0])),
               BrnBottomTabBarItem(
-                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon:
+                      Image(image: AssetImage("assets/icons/navbar_house.png")),
                   activeIcon: Image(
                     image: AssetImage("assets/icons/navbar_house.png"),
                     color: Colors.blue,
                   ),
                   title: Text(titles[1])),
               BrnBottomTabBarItem(
-                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon:
+                      Image(image: AssetImage("assets/icons/navbar_house.png")),
                   activeIcon: Image(
                     image: AssetImage("assets/icons/navbar_house.png"),
                     color: Colors.blue,
                   ),
                   title: Text(titles[2])),
               BrnBottomTabBarItem(
-                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon:
+                      Image(image: AssetImage("assets/icons/navbar_house.png")),
                   activeIcon: Image(
                     image: AssetImage("assets/icons/navbar_house.png"),
                     color: Colors.blue,
@@ -146,7 +150,8 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
                 title: Text(titles[4]),
               ),
               BrnBottomTabBarItem(
-                  icon: Image(image: AssetImage("assets/icons/navbar_house.png")),
+                  icon:
+                      Image(image: AssetImage("assets/icons/navbar_house.png")),
                   activeIcon: Image(
                     image: AssetImage("assets/icons/navbar_house.png"),
                     color: Colors.blue,
@@ -165,7 +170,8 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
                 currentIndex: _selectedIndexTest1,
                 onTap: _onItemSelectedTest1,
                 items: <BrnBottomTabBarItem>[
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text(titles[0])),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text(titles[0])),
                 ],
               ),
               Padding(
@@ -178,8 +184,10 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
                 type: BrnBottomTabBarDisplayType.shifting,
                 onTap: _onItemSelectedTest2,
                 items: <BrnBottomTabBarItem>[
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text(titles[0])),
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text(titles[0])),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text(titles[0])),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text(titles[0])),
                 ],
               ),
               Padding(
@@ -202,14 +210,22 @@ class BottomTabbarExampleState extends State<BottomTabbarExample>
                 currentIndex: _selectedIndexTest4,
                 onTap: _onItemSelectedTest4,
                 items: <BrnBottomTabBarItem>[
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("1111111111")),
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("2222222222")),
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("3333333333")),
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("4444444444")),
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("5555555555")),
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("6666666666")),
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("7777777777")),
-                  BrnBottomTabBarItem(icon: Icon(icons[0]), title: Text("8888888888")),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text("1111111111")),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text("2222222222")),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text("3333333333")),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text("4444444444")),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text("5555555555")),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text("6666666666")),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text("7777777777")),
+                  BrnBottomTabBarItem(
+                      icon: Icon(icons[0]), title: Text("8888888888")),
                 ],
               ),
             ],

@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -110,10 +108,10 @@ class BrnTriangleIndicator extends Decoration {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (runtimeType != other.runtimeType) return false;
-    final BrnTriangleIndicator typedOther = other;
+    final BrnTriangleIndicator typedOther = other as BrnTriangleIndicator;
     return color == typedOther.color &&
         lineWidth == typedOther.lineWidth &&
         triWidth == typedOther.triWidth &&

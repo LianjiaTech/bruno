@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 /// 筛选菜单项
 // ignore: must_be_immutable
 class BrnSelectionMenuItemWidget extends StatelessWidget {
-
   /// 菜单项标题
   final String title;
 

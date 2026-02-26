@@ -1,10 +1,7 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
 class StepInputExamplePage extends StatefulWidget {
-
   final String title;
 
   const StepInputExamplePage({Key? key, this.title = '示例'}) : super(key: key);
@@ -14,8 +11,8 @@ class StepInputExamplePage extends StatefulWidget {
 }
 
 class _StepInputExamplePageState extends State<StepInputExamplePage> {
-
-  TextEditingController _manualInputController = TextEditingController()..text = '23';
+  TextEditingController _manualInputController = TextEditingController()
+    ..text = '23';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

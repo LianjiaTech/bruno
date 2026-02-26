@@ -32,14 +32,13 @@ class SelectedListActionSheetExamplePageState
 
   @override
   Widget build(BuildContext context) {
-    /// 要拦截 Android 的系统返回行为，请务必自行添加以下 WillPopScope 逻辑
-    return WillPopScope(
-      onWillPop: () async {
-        if (!controller.isHidden) {
+    /// 要拦截 Android 的系统返回行为，请务必自行添加返回处理逻辑
+    return PopScope(
+      canPop: controller.isHidden,
+      onPopInvokedWithResult: (bool didPop, dynamic result) {
+        if (!didPop && !controller.isHidden) {
           controller.dismiss();
-          return false;
         }
-        return true;
       },
       child: Scaffold(
           appBar: BrnAppBar(

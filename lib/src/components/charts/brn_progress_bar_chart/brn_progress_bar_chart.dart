@@ -215,7 +215,7 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
       );
     } else if (BarChartStyle.horizontal == widget.barChartStyle) {
       double yAxisWidth =
-      BrnProgressBarChartPainter.maxYAxisWidth(widget.yAxis);
+          BrnProgressBarChartPainter.maxYAxisWidth(widget.yAxis);
       return Padding(
         padding: widget.padding,
         child: Stack(
@@ -253,12 +253,13 @@ class BrnProgressBarChartState extends State<BrnProgressBarChart> {
                       barGroupSpace: widget.barGroupSpace,
                       barBundleList: widget.barBundleList,
                       onBarItemClickInterceptor:
-                      widget.onBarItemClickInterceptor,
+                          widget.onBarItemClickInterceptor,
                       selectedBarItem: _selectedBarItem,
                       selectedHintTextColor: widget.selectedHintTextColor,
                       selectedHintTextBackgroundColor:
-                      widget.selectedHintTextBackgroundColor,
-                      brnProgressBarChartSelectCallback: (BrnProgressBarItem? item) {
+                          widget.selectedHintTextBackgroundColor,
+                      brnProgressBarChartSelectCallback:
+                          (BrnProgressBarItem? item) {
                         widget.barChartSelectCallback?.call(item);
                         setState(() {
                           _selectedBarItem = item;

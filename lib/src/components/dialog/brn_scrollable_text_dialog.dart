@@ -120,11 +120,14 @@ class BrnScrollableText extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(right: 8),
               child: SingleChildScrollView(
-                child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                child:
+                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   BrnCSS2Text.toTextView(contentText,
                       linksCallback: linksCallback,
                       defaultStyle: TextStyle(
-                          fontSize: textFontSize, color: textColor, fontWeight: FontWeight.normal))
+                          fontSize: textFontSize,
+                          color: textColor,
+                          fontWeight: FontWeight.normal))
                 ]),
               ),
             ),
