@@ -208,12 +208,12 @@ class __SearchInputWidgetState extends State<_SearchInputWidget> {
     valueNotifier = ValueNotifier(false);
     _focusNode.addListener(_handleFocusChangeListenerTick);
     if (widget.themeData?.systemOverlayStyle.statusBarBrightness == Brightness.dark) {
-      _defaultDividerColor = Colors.white.withValues(alpha: 0.2);
-      _defaultHintTextColor = Colors.white.withValues(alpha: 0.4);
+      _defaultDividerColor = Colors.white.withAlpha(51);
+      _defaultHintTextColor = Colors.white.withAlpha(102);
       _defaultInputTextColor = Colors.white;
       _defaultCancelTextColor = Colors.white;
-      _defaultClearIconColor = Colors.white.withValues(alpha: 0.4);
-    } else {
+      _defaultClearIconColor = Colors.white.withAlpha(102);
+    } else {  
       _defaultDividerColor = BrnThemeConfigurator.instance
           .getConfig()
           .commonConfig

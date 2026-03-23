@@ -628,7 +628,7 @@ class BrnDefaultConfigUtils {
     tagRadius: defaultCommonConfig.radiusSm,
     tagNormalBackgroundColor: defaultCommonConfig.fillBody,
     tagSelectedBackgroundColor:
-        defaultCommonConfig.brandPrimary.withValues(alpha: 0.12),
+        defaultCommonConfig.brandPrimary.withAlpha(30),
     rangeTitleTextStyle: BrnTextStyle(
       color: defaultCommonConfig.colorTextBase,
       fontSize: defaultCommonConfig.fontSizeSubHead,

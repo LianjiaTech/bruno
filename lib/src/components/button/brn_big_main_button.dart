@@ -79,7 +79,7 @@ class BrnBigMainButton extends StatelessWidget {
       onTap: onTap,
       textColor: Colors.white,
       disableTextColor:
-          defaultThemeConfig.commonConfig.colorTextBaseInverse.withValues(alpha: 0.7),
+          defaultThemeConfig.commonConfig.colorTextBaseInverse.withAlpha(178),
     );
   }
 }

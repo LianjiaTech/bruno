@@ -34,8 +34,8 @@ class SelectedListActionSheetCustomExamplePageState
     /// 要拦截 Android 的系统返回行为，请务必自行添加以下 WillPopScope 逻辑
     return PopScope(
       canPop: controller.isHidden, // 是否允许系统返回
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop || result == true) return;
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
 
         if (!controller.isHidden) {
           controller.dismiss(); // 关闭你的弹层

@@ -311,7 +311,7 @@ class _BrnSelectTagsWithInputPickerWidgetState
                 .getConfig()
                 .commonConfig
                 .brandPrimary
-                .withValues(alpha: 0.14);
+                .withAlpha(36);
 
     return Container(
         color: Colors.white,

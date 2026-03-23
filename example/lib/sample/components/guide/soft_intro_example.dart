@@ -55,8 +55,8 @@ class _SoftGuideExampleState extends State<SoftGuideExample> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop || result == true) return;
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
 
         intro.dispose();
       },

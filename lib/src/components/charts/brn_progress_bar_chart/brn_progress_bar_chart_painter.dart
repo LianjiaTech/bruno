@@ -429,7 +429,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
 
         // 坐标刻度虚线
         _drawDashLineOn(canvas, Offset(currentOffset.dx, currentOffset.dy),
-            Offset(currentOffset.dx, 0), Colors.black.withValues(alpha: 0.09));
+            Offset(currentOffset.dx, 0), Colors.black.withAlpha(23));
 
         // 坐标文本
         AxisItem axisItem = this.xAxis.axisItemList[xAxisItemIndex];
@@ -557,7 +557,7 @@ class BrnProgressBarChartPainter extends CustomPainter {
             yAxisItemOffset,
             Offset(yAxisItemOffset.dx + this.contentRect.width,
                 yAxisItemOffset.dy),
-            Colors.black.withValues(alpha: 0.09));
+            Colors.black.withAlpha(23));
       }
     }
   }

@@ -23,8 +23,8 @@ class _BrnTabExampleState extends State<BrnTabExample>
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop || result == true) return;
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
 
         closeWindowController!.closeMoreWindow();
       },

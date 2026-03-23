@@ -247,8 +247,8 @@ class _BrnPopupWindowState extends State<BrnPopupWindow> {
       excluding: true,
       child: PopScope(
         canPop: false,
-        onPopInvokedWithResult: (didPop, result) {
-          if (didPop || result == true) return;
+        onPopInvokedWithResult: (didPop, _) {
+          if (didPop) return;
 
           Navigator.pop(context);
         },

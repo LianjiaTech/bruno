@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 /// 页面中和主题色相关的幽灵按钮 可以支持自定义背景颜色、文字颜色等
 ///
-/// 和[BrnBigMainButton]相比，该按钮的背景色仅仅是其背景色的withValues(alpha: 0.1)
+/// 和[BrnBigMainButton]相比，该按钮的背景色仅仅是其背景色的withAlpha(13)
 /// 并且该按钮不支持不可用状态
 ///
 /// 按钮是圆角矩形的形状，不支持改变形状。
@@ -63,7 +63,7 @@ class BrnBigGhostButton extends StatelessWidget {
           width: width ?? double.infinity,
           height: defaultThemeConfig.bigButtonHeight),
       backgroundColor: bgColor ??
-          defaultThemeConfig.commonConfig.brandPrimary.withValues(alpha: 0.05),
+          defaultThemeConfig.commonConfig.brandPrimary.withAlpha(13),
       onTap: onTap,
       alignment: Alignment.center,
       text: title ?? BrnIntl.of(context).localizedResource.confirm,

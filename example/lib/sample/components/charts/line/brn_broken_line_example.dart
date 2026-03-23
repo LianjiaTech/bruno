@@ -71,8 +71,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 isCurve: true,
                 points: _linePointsForExample1(brokenData),
                 shaderColors: [
-                  Colors.green.withValues(alpha: 0.3),
-                  Colors.green.withValues(alpha: 0.01)
+                  Colors.green.withAlpha(77),
+                  Colors.green.withAlpha(2)
                 ],
                 lineColor: Colors.green,
               )
@@ -247,10 +247,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                   return '80';
                 })),
       ],
-      shaderColors: [
-        Colors.blue.withValues(alpha: 0.3),
-        Colors.blue.withValues(alpha: 0.01)
-      ],
+      shaderColors: [Colors.blue.withAlpha(77), Colors.blue.withAlpha(2)],
       lineColor: Colors.blue,
     );
     _pointsLine1 = BrnPointsLine(
@@ -306,10 +303,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                   return '80';
                 })),
       ],
-      shaderColors: [
-        Colors.green.withValues(alpha: 0.3),
-        Colors.green.withValues(alpha: 0.01)
-      ],
+      shaderColors: [Colors.green.withAlpha(77), Colors.green.withAlpha(2)],
       lineColor: Colors.green,
     );
 
@@ -353,7 +347,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
       BrnDialItem(
         dialText: '7月',
         dialTextStyle: TextStyle(fontSize: 12.0, color: Color(0xFF999999)),
-        selectedDialTextStyle: TextStyle(fontSize: 14.0, color: Colors.amberAccent),
+        selectedDialTextStyle:
+            TextStyle(fontSize: 14.0, color: Colors.amberAccent),
         value: 7,
       )
     ];
@@ -478,7 +473,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                           color: Colors.white),
                     )),
                     decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.8),
+                      color: Colors.black.withAlpha(204),
                       borderRadius: BorderRadius.circular(2.0),
                       boxShadow: [
                         BoxShadow(
@@ -682,10 +677,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                   return '99';
                 })),
       ],
-      shaderColors: [
-        Colors.green.withValues(alpha: 0.3),
-        Colors.green.withValues(alpha: 0.01)
-      ],
+      shaderColors: [Colors.green.withAlpha(77), Colors.green.withAlpha(2)],
       lineColor: Colors.green,
     );
 
@@ -835,7 +827,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                           color: Colors.white),
                     )),
                     decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.8),
+                      color: Colors.black.withAlpha(204),
                       borderRadius: BorderRadius.circular(2.0),
                       boxShadow: [
                         BoxShadow(
@@ -1038,10 +1030,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                   return '99';
                 })),
       ],
-      shaderColors: [
-        Colors.green.withValues(alpha: 0.3),
-        Colors.green.withValues(alpha: 0.01)
-      ],
+      shaderColors: [Colors.green.withAlpha(77), Colors.green.withAlpha(2)],
       lineColor: Colors.green,
     );
 
@@ -1235,7 +1224,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                           color: Colors.white),
                     )),
                     decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.8),
+                      color: Colors.black.withAlpha(204),
                       borderRadius: BorderRadius.circular(2.0),
                       boxShadow: [
                         BoxShadow(
@@ -1437,10 +1426,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                   return '99';
                 })),
       ],
-      shaderColors: [
-        Colors.green.withValues(alpha: 0.3),
-        Colors.green.withValues(alpha: 0.01)
-      ],
+      shaderColors: [Colors.green.withAlpha(77), Colors.green.withAlpha(2)],
       lineColor: Colors.green,
     );
 

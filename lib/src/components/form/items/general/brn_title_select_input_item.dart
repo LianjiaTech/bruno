@@ -373,7 +373,7 @@ class _TitleSelectPopWidgetState extends State<TitleSelectPopWidget> {
           BoxShadow(
             blurRadius: 2, //阴影范围
             spreadRadius: 1, //阴影浓度
-            color: Colors.white.withValues(alpha: 0.08), //阴影颜色
+            color: Colors.white.withAlpha(20), //阴影颜色
           ),
         ],
         color: Colors.white,

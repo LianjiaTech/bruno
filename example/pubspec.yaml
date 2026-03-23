@@ -28,7 +28,7 @@ dependencies:
   flutter_easyrefresh: ^2.2.1
   lpinyin: ^2.0.3
   badges: ^2.0.2
-  intl: 0.19.0
+  intl: 0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -36,7 +36,7 @@ dev_dependencies:
 dependency_overrides:
   bruno:
     path: ../
-  intl: 0.19.0
+  intl: 0.20.2
 
 
 # For information on the generic Dart part of this file, see the

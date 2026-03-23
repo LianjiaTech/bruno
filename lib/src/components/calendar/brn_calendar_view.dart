@@ -372,7 +372,7 @@ class _CustomCalendarViewState extends State<BrnCalendarView> {
                                         .getConfig()
                                         .commonConfig
                                         .brandPrimary
-                                        .withValues(alpha: 0.14)
+                                        .withAlpha(36)
                                     : Colors.transparent)
                                 : Colors.transparent,
                             // 范围选择两端圆角
