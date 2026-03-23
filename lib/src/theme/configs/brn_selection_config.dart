@@ -110,7 +110,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
   Color? _tagNormalBackgroundColor;
 
   /// tag 选中背景色
-  /// 默认为 [BrnCommonConfig.brandPrimary].withOpacity(0.12)
+  /// 默认为 [BrnCommonConfig.brandPrimary].withValues(alpha: 0.12)
   Color? _tagSelectedBackgroundColor;
 
   /// 输入选项标题文本样式
@@ -372,7 +372,7 @@ class BrnSelectionConfig extends BrnBaseConfig {
     _middleNormalBgColor ??= selectionConfig._middleNormalBgColor;
     _deepSelectBgColor ??= selectionConfig._deepSelectBgColor;
     _deepNormalBgColor ??= selectionConfig._deepNormalBgColor;
-    _tagSelectedBackgroundColor ??= commonConfig.brandPrimary.withOpacity(0.12);
+    _tagSelectedBackgroundColor ??= commonConfig.brandPrimary.withValues(alpha: 0.12);
     _tagNormalBackgroundColor ??= commonConfig.fillBody;
     _tagRadius ??= commonConfig.radiusSm;
     _flayerBoldTextStyle = selectionConfig.flayerBoldTextStyle.merge(

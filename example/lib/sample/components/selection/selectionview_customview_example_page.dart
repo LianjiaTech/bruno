@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -42,8 +40,9 @@ class _SelectionViewExamplePageState
 
   @override
   void initState() {
-    _currentCalendarSelectedDate =
-        ValueNotifier(DateTimeFormatter.convertStringToDate(_dateForamt, _filterSelectedDate));
+    _currentCalendarSelectedDate = ValueNotifier(
+        DateTimeFormatter.convertStringToDate(
+            _dateForamt, _filterSelectedDate));
     super.initState();
   }
 
@@ -192,8 +191,8 @@ class _SelectionViewExamplePageState
               ),
             ),
             onTap: () {
-              /// TODO  清除筛选
-              _currentCalendarSelectedDate.value = null;
+              _customHandleCallBack?.call(Map<String, String>());
+              closeCustomFilterView();
             },
           ),
           Expanded(

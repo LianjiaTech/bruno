@@ -71,8 +71,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 isCurve: true,
                 points: _linePointsForExample1(brokenData),
                 shaderColors: [
-                  Colors.green.withOpacity(0.3),
-                  Colors.green.withOpacity(0.01)
+                  Colors.green.withValues(alpha: 0.3),
+                  Colors.green.withValues(alpha: 0.01)
                 ],
                 lineColor: Colors.green,
               )
@@ -248,8 +248,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 })),
       ],
       shaderColors: [
-        Colors.blue.withOpacity(0.3),
-        Colors.blue.withOpacity(0.01)
+        Colors.blue.withValues(alpha: 0.3),
+        Colors.blue.withValues(alpha: 0.01)
       ],
       lineColor: Colors.blue,
     );
@@ -307,8 +307,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 })),
       ],
       shaderColors: [
-        Colors.green.withOpacity(0.3),
-        Colors.green.withOpacity(0.01)
+        Colors.green.withValues(alpha: 0.3),
+        Colors.green.withValues(alpha: 0.01)
       ],
       lineColor: Colors.green,
     );
@@ -478,7 +478,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                           color: Colors.white),
                     )),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.8),
+                      color: Colors.black.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(2.0),
                       boxShadow: [
                         BoxShadow(
@@ -683,8 +683,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 })),
       ],
       shaderColors: [
-        Colors.green.withOpacity(0.3),
-        Colors.green.withOpacity(0.01)
+        Colors.green.withValues(alpha: 0.3),
+        Colors.green.withValues(alpha: 0.01)
       ],
       lineColor: Colors.green,
     );
@@ -835,7 +835,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                           color: Colors.white),
                     )),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.8),
+                      color: Colors.black.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(2.0),
                       boxShadow: [
                         BoxShadow(
@@ -1039,8 +1039,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 })),
       ],
       shaderColors: [
-        Colors.green.withOpacity(0.3),
-        Colors.green.withOpacity(0.01)
+        Colors.green.withValues(alpha: 0.3),
+        Colors.green.withValues(alpha: 0.01)
       ],
       lineColor: Colors.green,
     );
@@ -1235,7 +1235,7 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                           color: Colors.white),
                     )),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.8),
+                      color: Colors.black.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(2.0),
                       boxShadow: [
                         BoxShadow(
@@ -1438,8 +1438,8 @@ class _BrokenLineExampleState extends State<BrokenLineExample> {
                 })),
       ],
       shaderColors: [
-        Colors.green.withOpacity(0.3),
-        Colors.green.withOpacity(0.01)
+        Colors.green.withValues(alpha: 0.3),
+        Colors.green.withValues(alpha: 0.01)
       ],
       lineColor: Colors.green,
     );

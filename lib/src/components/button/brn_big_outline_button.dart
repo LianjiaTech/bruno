@@ -91,7 +91,7 @@ class BrnBigOutlineButton extends StatelessWidget {
           height: defaultThemeConfig.bigButtonHeight),
       onTap: onTap,
       backgroundColor: Colors.white,
-      disableBackgroundColor: Color(0xffcccccc).withOpacity(0.1),
+      disableBackgroundColor: Color(0xffcccccc).withValues(alpha: 0.1),
     );
   }
 }

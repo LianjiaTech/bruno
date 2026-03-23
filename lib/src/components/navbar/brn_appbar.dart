@@ -239,7 +239,7 @@ class BrnAppBar extends PreferredSize {
     if (this.flexibleSpace != null) {
       flexibleSpace = Container(
         height: _defaultConfig.appBarHeight +
-            MediaQueryData.fromView(View.of(context)).padding.top,
+            MediaQuery.of(context).padding.top,
         child: this.flexibleSpace,
       );
     }

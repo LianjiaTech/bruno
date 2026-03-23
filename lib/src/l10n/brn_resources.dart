@@ -1,10 +1,8 @@
-
 import 'dart:core';
 import 'dart:ui';
 
 /// 资源抽象类
 abstract class BrnBaseResource {
-
   String get ok;
 
   String get cancel;
@@ -122,7 +120,6 @@ abstract class BrnBaseResource {
 /// 中文资源
 ///
 class BrnResourceZh extends BrnBaseResource {
-
   static Locale locale = Locale('zh', 'CN');
 
   @override
@@ -143,7 +140,6 @@ class BrnResourceZh extends BrnBaseResource {
   @override
   String get enterRangeError => '您输入的区间有误';
 
-//// TODO
   @override
   String get pleaseChoose => '请选择';
 
@@ -201,20 +197,20 @@ class BrnResourceZh extends BrnBaseResource {
   @override
   String get noTagDataTip => '暂未配置可选标签数据';
 
-  List<String> get months =>[
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
-  ];
+  List<String> get months => [
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+      ];
 
   @override
   List<String> get weekFullName => [
@@ -352,7 +348,6 @@ class BrnResourceZh extends BrnBaseResource {
 /// en resources
 ///
 class BrnResourceEn extends BrnBaseResource {
-
   static Locale locale = Locale('en', 'US');
 
   @override
@@ -383,7 +378,8 @@ class BrnResourceEn extends BrnBaseResource {
   String get reset => 'Reset';
 
   @override
-  String get confirmClearSelectedList => 'Are you sure you want to clear the selected list?';
+  String get confirmClearSelectedList =>
+      'Are you sure you want to clear the selected list?';
 
   @override
   String get selectedList => 'Selected list';
@@ -431,20 +427,20 @@ class BrnResourceEn extends BrnBaseResource {
   String get noTagDataTip => 'Tag data not configured yet';
 
   @override
-  List<String> get months =>[
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
-  ];
+  List<String> get months => [
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+      ];
 
   @override
   List<String> get weekFullName => [
@@ -504,7 +500,8 @@ class BrnResourceEn extends BrnBaseResource {
   String get selected => 'Selected';
 
   @override
-  String get shareWayTip => 'You can share with customers in the following ways';
+  String get shareWayTip =>
+      'You can share with customers in the following ways';
 
   @override
   String get max => 'Min';
@@ -513,7 +510,8 @@ class BrnResourceEn extends BrnBaseResource {
   String get min => 'Max';
 
   @override
-  String get selectCountLimitTip => 'You have already selected the maximum number';
+  String get selectCountLimitTip =>
+      'You have already selected the maximum number';
 
   @override
   String get to => 'to';
@@ -525,7 +523,8 @@ class BrnResourceEn extends BrnBaseResource {
   String get selectCity => 'Select city';
 
   @override
-  String get filterConditionCountLimited => 'You have selected the maximum number of filters';
+  String get filterConditionCountLimited =>
+      'You have selected the maximum number of filters';
 
   @override
   String get minValue => 'Min';
@@ -569,7 +568,8 @@ class BrnResourceEn extends BrnBaseResource {
   String get fetchErrorAndRetry => 'Fetch data fail, please try again';
 
   @override
-  String get netErrorAndRetryLater => 'Network connection failed, check and try again';
+  String get netErrorAndRetryLater =>
+      'Network connection failed, check and try again';
 
   @override
   String get noSearchData => 'No search results';

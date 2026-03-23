@@ -9,7 +9,6 @@ typedef BrnHyperLinkCallback = void Function(String text, String? url);
 
 /// 用于将 HTML 标签转为 style
 class BrnConvert {
-
   /// [cssContent] 带有html 标签文本
   /// [linkCallBack] 超链接的点击回调
   /// [defaultStyle] 外部传入的默认文本样式
@@ -121,7 +120,7 @@ class BrnConvert {
         if (stack.isNotEmpty) {
           tag = stack.last;
         }
-        TextSpan textSpan = _createTextSpan(xmlEvent.value, tag);
+        TextSpan textSpan = _createTextSpan(xmlEvent.text, tag);
         spans.add(textSpan);
       }
 

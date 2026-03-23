@@ -339,9 +339,9 @@ class QuickButtonsState extends State<QuickButtonsWidget> {
         padding: EdgeInsets.fromLTRB(6, 0, 6, 0),
         child: TextButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(getButtonColor(index)),
-            overlayColor: MaterialStateProperty.all(Colors.transparent),
-            padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+            backgroundColor: WidgetStateProperty.all(getButtonColor(index)),
+            overlayColor: WidgetStateProperty.all(Colors.transparent),
+            padding: WidgetStateProperty.all(EdgeInsets.all(10)),
           ),
           child: Text(
             str,

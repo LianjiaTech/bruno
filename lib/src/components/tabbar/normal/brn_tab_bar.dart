@@ -176,12 +176,6 @@ class BrnTabBarState extends State<BrnTabBar> {
   /// 小红点高度
   late double _largeSize;
 
-  /// 小红点上偏移量
-  double _dy = 0;
-
-  /// 小红点右偏移量
-  double _dx = 0;
-
   /// 展开更多的按钮宽度
   final double _moreSpacing = 50;
 
@@ -261,7 +255,7 @@ class BrnTabBarState extends State<BrnTabBar> {
         widget.tabWidth != null ||
         widget.isScroll;
     return TabBar(
-        tabAlignment: _isScrollable ? TabAlignment.start : TabAlignment.fill,
+        indicatorSize: TabBarIndicatorSize.tab,
         tabs: fillWidgetByDataList(_isScrollable),
         controller: widget.controller,
         isScrollable: _isScrollable,
@@ -275,7 +269,6 @@ class BrnTabBarState extends State<BrnTabBar> {
             widget.themeData!.unselectedLabelStyle.generateTextStyle(),
         dragStartBehavior: widget.dragStartBehavior,
         dividerColor: Colors.transparent,
-        dividerHeight: 0,
         onTap: (index) {
           if (widget.onTap != null) {
             widget.onTap!(this, index);
@@ -383,7 +376,7 @@ class BrnTabBarState extends State<BrnTabBar> {
   Widget _wrapOriginWidget(
       BadgeTab badgeTab, bool lastElement, bool isScrollable) {
     var _contentWidget = LayoutBuilder(builder: (context, constraints) {
-      caculateBadgeParams(badgeTab, constraints);
+      caculateBadgeParams(badgeTab);
       return Container(
         alignment: Alignment.center,
         height: 47,
@@ -411,8 +404,7 @@ class BrnTabBarState extends State<BrnTabBar> {
                     color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
               ),
               backgroundColor: Colors.red,
-              alignment: Alignment.topLeft,
-              offset: Offset(_dx,_dy),
+              alignment: AlignmentDirectional.topStart,
               padding: _badgePadding,
               largeSize: _largeSize,
               child: Text(
@@ -452,7 +444,7 @@ class BrnTabBarState extends State<BrnTabBar> {
   Widget _wrapAverageWidget(
       BadgeTab badgeTab, double? minWidth, bool lastElement) {
     return LayoutBuilder(builder: (context, constraints) {
-      caculateBadgeParams(badgeTab, constraints);
+      caculateBadgeParams(badgeTab);
       return Container(
         width: minWidth,
         alignment: Alignment.center,
@@ -487,8 +479,7 @@ class BrnTabBarState extends State<BrnTabBar> {
                       style: TextStyle(
                           color: Color(0xFFFFFFFF), fontSize: 10, height: 1),
                     ),
-                    alignment: Alignment.topLeft,
-                    offset: Offset(_dx,_dy),
+                    alignment: AlignmentDirectional.topStart,
                     padding: _badgePadding,
                     largeSize: _largeSize,
                     child: Text(badgeTab.text!,
@@ -516,9 +507,7 @@ class BrnTabBarState extends State<BrnTabBar> {
   }
 
   /// 计算小红点尺寸相关参数
-  void caculateBadgeParams(BadgeTab badgeTab, BoxConstraints constraints) {
-    _dy = -5.0;
-
+  void caculateBadgeParams(BadgeTab badgeTab) {
     if (badgeTab.badgeNum != null) {
       if (badgeTab.badgeNum! < 10) {
         _badgePadding = EdgeInsets.only(left: 5.0, right: 5.0);
@@ -542,47 +531,7 @@ class BrnTabBarState extends State<BrnTabBar> {
         _badgePadding = EdgeInsets.only(left: 4.0, right: 4.0);
         _largeSize = 8.0;
         _badgeText = "";
-        _dy = 1.0;
       }
-    }
-
-    // 获取 tabTextWidth
-    TextStyle tabTextStyle =
-        TextStyle(overflow: TextOverflow.ellipsis, fontSize: 16);
-    TextPainter _tabTextPainter = TextPainter(
-        locale: Localizations.localeOf(context), textAlign: TextAlign.center);
-    _tabTextPainter.textDirection = TextDirection.ltr;
-    _tabTextPainter.maxLines = 1;
-    _tabTextPainter.text = TextSpan(text: badgeTab.text, style: tabTextStyle);
-    _tabTextPainter.layout(maxWidth: constraints.maxWidth);
-    double _tabTextWidth = _tabTextPainter.width;
-
-    // 获取 badgeTextWidth
-    TextStyle badgeTextStyle = TextStyle(height: 1, fontSize: 10);
-    TextPainter _badgeTextPainter =
-        TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
-    _badgeTextPainter.textDirection = TextDirection.ltr;
-    _badgeTextPainter.maxLines = 1;
-    _badgeTextPainter.text = TextSpan(text: _badgeText, style: badgeTextStyle);
-    _badgeTextPainter.layout(maxWidth: constraints.maxWidth);
-    // 红点内 text 的宽度
-    double _badgeTextWidth = _badgeTextPainter.width;
-
-    double _badgeWidth = _badgeTextWidth + _badgePadding.horizontal;
-
-    // 获取外部传入的tab padding值
-    EdgeInsets _labelPadding = widget.labelPadding.resolve(TextDirection.ltr);
-
-    if ((_tabTextWidth + _badgeWidth) >
-        (constraints.maxWidth + _labelPadding.right)) {
-      // 如果tab文字宽度 + 红点宽度  > 约束宽度（父容器宽度）+ 设置tab 右padding  则将红点左移 红点宽度偏移量
-      // if(_badgeWidth > (constraints.maxWidth + _labelPadding.right)){
-      //   _paddingRight = 0.0;
-      // }else{
-      _dx = constraints.maxWidth + _labelPadding.right - _badgeWidth;
-      // }
-    } else {
-      _dx = _tabTextWidth;
     }
   }
 

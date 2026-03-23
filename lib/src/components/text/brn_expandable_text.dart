@@ -72,7 +72,8 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
             text: span,
             maxLines: widget.maxLines,
             textDirection: TextDirection.ltr,
-            ellipsis: 'EllipseText');
+            ellipsis: 'EllipseText',
+            textScaler: MediaQuery.textScalerOf(context));
         tp.layout(maxWidth: size.maxWidth);
         if (tp.didExceedMaxLines) {
           if (this._expanded) {
@@ -141,12 +142,12 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
     );
   }
 
-  Widget _expandedText(context, String text) {
+  Widget _expandedText(BuildContext context, String text) {
     return RichText(
-        textScaleFactor: MediaQuery.of(context).textScaleFactor,
+        textScaler: MediaQuery.textScalerOf(context),
         text: TextSpan(text: text, style: _defaultTextStyle(), children: [
-          _foldButtonSpan(context),
-        ]));
+      _foldButtonSpan(context),
+    ]));
   }
 
   TextStyle _defaultTextStyle() {
@@ -164,7 +165,7 @@ class _BrnExpandableTextState extends State<BrnExpandableText> {
 
   InlineSpan _foldButtonSpan(context) {
     return TextSpan(
-        text: ' '+ BrnIntl.of(context).localizedResource.collapse,
+        text: ' ' + BrnIntl.of(context).localizedResource.collapse,
         style: TextStyle(
           color: BrnThemeConfigurator.instance
               .getConfig()

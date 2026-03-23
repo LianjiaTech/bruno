@@ -264,7 +264,7 @@ class BrnBrokenLineState extends State<BrnBrokenLine> {
               borderRadius: BorderRadius.circular(3.0),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.6),
+                  color: Colors.black.withValues(alpha: 0.6),
                   offset: Offset(0.0, 2.0), //阴影xy轴偏移量
                   blurRadius: 4.0, //阴影模糊程度
                 )

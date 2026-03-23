@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:example/sample/home/list_item.dart';
 import 'package:flutter/material.dart';
@@ -23,62 +21,62 @@ class _BrnTabExampleState extends State<BrnTabExample>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        child: Scaffold(
-          appBar: BrnAppBar(
-            title: 'BrnTab示例',
-          ),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                ListItem(
-                  title: "BrnTabBarBadge实现",
-                  isShowLine: false,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop || result == true) return;
+
+        closeWindowController!.closeMoreWindow();
+      },
+      child: Scaffold(
+        appBar: BrnAppBar(
+          title: 'BrnTab示例',
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              ListItem(
+                title: "BrnTabBarBadge实现",
+                isShowLine: false,
+              ),
+              Divider(),
+              Center(
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(new MaterialPageRoute(builder: (context) {
+                      return BrnTabbarStickyExample();
+                    }));
+                  },
+                  child: Text("Tabbar点击自动收起example"),
                 ),
-                Divider(),
-                Center(
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .push(new MaterialPageRoute(builder: (context) {
-                        return BrnTabbarStickyExample();
-                      }));
-                    },
-                    child: Text("Tabbar点击自动收起example"),
-                  ),
-                ),
-                Divider(),
-                _createExpandedMoreTabbarWidgets(),
-                Divider(),
-                _createStableTabbar4Widgets(),
-                Divider(),
-                _createStableTabbarWidgets(),
-                Divider(),
-                _createTabbarBadgeWidgets(),
-                Divider(),
-                _createStableTabbarBadgeWidgets(),
-                Divider(),
-                _createDividerTabbarWidgets(),
-                Divider(),
-                _createCustomTabbarWidgets(),
-                Divider(),
-                _createTopTabbarWidgets(),
-                Divider(),
-                _createTopTabbarCountWidgets(),
-                Divider(),
-                _createOriginWidgets(),
-              ],
-            ),
+              ),
+              Divider(),
+              _createExpandedMoreTabbarWidgets(),
+              Divider(),
+              _createStableTabbar4Widgets(),
+              Divider(),
+              _createStableTabbarWidgets(),
+              Divider(),
+              _createTabbarBadgeWidgets(),
+              Divider(),
+              _createStableTabbarBadgeWidgets(),
+              Divider(),
+              _createDividerTabbarWidgets(),
+              Divider(),
+              _createCustomTabbarWidgets(),
+              Divider(),
+              _createTopTabbarWidgets(),
+              Divider(),
+              _createTopTabbarCountWidgets(),
+              Divider(),
+              _createOriginWidgets(),
+            ],
           ),
         ),
-        onWillPop: () {
-          if (closeWindowController!.isShow) {
-            closeWindowController!.closeMoreWindow();
-            return Future.value(false);
-          }
-          return Future.value(true);
-        });
+      ),
+    );
   }
 
   _createExpandedMoreTabbarWidgets() {

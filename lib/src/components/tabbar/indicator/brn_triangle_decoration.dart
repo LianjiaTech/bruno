@@ -110,10 +110,10 @@ class BrnTriangleIndicator extends Decoration {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (runtimeType != other.runtimeType) return false;
-    final BrnTriangleIndicator typedOther = other;
+    final BrnTriangleIndicator typedOther = other as BrnTriangleIndicator;
     return color == typedOther.color &&
         lineWidth == typedOther.lineWidth &&
         triWidth == typedOther.triWidth &&

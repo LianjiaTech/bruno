@@ -22,6 +22,9 @@ const double _kSqueeze = 1;
 /// lens with the same color as the background.
 const double _kForegroundScreenOpacityFraction = 0.4;
 
+/// Alpha channel as 0–255 from [Color.a].
+int _alphaByte(Color color) => (color.a * 255.0).round() & 0xff;
+
 /// An iOS-styled picker.
 ///
 /// Displays its children widgets on a wheel for selection and
@@ -234,7 +237,7 @@ class _CupertinoPickerState extends State<BrnPicker> {
     // have to just do a color blend. And a due to the way we are layering
     // the magnifier and the gradient on the background, using a transparent
     // background color makes the picker look odd.
-    if (widget.backgroundColor.alpha < 255) return Container();
+    if (_alphaByte(widget.backgroundColor) < 255) return Container();
 
     final Color widgetBackgroundColor = widget.backgroundColor;
     return Positioned.fill(
@@ -275,7 +278,7 @@ class _CupertinoPickerState extends State<BrnPicker> {
   /// the lens and partially grayed out around it.
   Widget _buildMagnifierScreen() {
     final Color foreground = widget.backgroundColor.withAlpha(
-        (widget.backgroundColor.alpha * _kForegroundScreenOpacityFraction)
+        (_alphaByte(widget.backgroundColor) * _kForegroundScreenOpacityFraction)
             .toInt());
 
     return IgnorePointer(
@@ -313,7 +316,7 @@ class _CupertinoPickerState extends State<BrnPicker> {
 
   Widget _buildUnderMagnifierScreen() {
     final Color foreground = widget.backgroundColor.withAlpha(
-        (widget.backgroundColor.alpha * _kForegroundScreenOpacityFraction)
+        (_alphaByte(widget.backgroundColor) * _kForegroundScreenOpacityFraction)
             .toInt());
 
     return Column(
@@ -370,7 +373,7 @@ class _CupertinoPickerState extends State<BrnPicker> {
     );
     // Adds the appropriate opacity under the magnifier if the background
     // color is transparent.
-    if (widget.backgroundColor.alpha < 255) {
+    if (_alphaByte(widget.backgroundColor) < 255) {
       result = Stack(
         children: <Widget>[
           _buildUnderMagnifierScreen(),

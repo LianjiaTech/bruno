@@ -71,7 +71,6 @@ import 'package:flutter/material.dart';
 ///  * [BrnFollowPairInfo], key-value紧紧相随的的文本组件
 ///
 class BrnPairInfoTable extends StatefulWidget {
-
   /// 文本信息是否对齐 默认不对齐
   final bool isValueAlign;
 
@@ -108,19 +107,18 @@ class BrnPairInfoTable extends StatefulWidget {
   final ValueChanged<bool>? onFolded;
 
   /// create BrnPairInfoTable
-  BrnPairInfoTable({
-    Key? key,
-    required this.children,
-    this.defaultVerticalAlignment = TableCellVerticalAlignment.baseline,
-    this.isValueAlign = true,
-    this.expandAtIndex = -1,
-    this.rowDistance,
-    this.itemSpacing,
-    this.isFolded = true,
-    this.onFolded,
-    this.customKeyWidth,
-    this.themeData
-  });
+  BrnPairInfoTable(
+      {Key? key,
+      required this.children,
+      this.defaultVerticalAlignment = TableCellVerticalAlignment.baseline,
+      this.isValueAlign = true,
+      this.expandAtIndex = -1,
+      this.rowDistance,
+      this.itemSpacing,
+      this.isFolded = true,
+      this.onFolded,
+      this.customKeyWidth,
+      this.themeData});
 
   @override
   _BrnPairInfoTableState createState() => _BrnPairInfoTableState();
@@ -742,7 +740,7 @@ class BrnInfoModal {
   /// clickCallback 可点击文案点击的回调
   /// isArrow 是否最右侧存在箭头
   static BrnInfoModal valueLastClickInfo(
-      BuildContext context,
+    BuildContext context,
     String keyTitle,
     String valueTitle,
     String clickValue, {
@@ -834,7 +832,7 @@ class BrnInfoModal {
   /// valueCallback value的小问号点击的回调
   ///   /// isArrow 是否最右侧存在箭头
   static BrnInfoModal keyOrValueLastQuestionInfo(
-  BuildContext context,
+    BuildContext context,
     String keyTitle,
     String valueTitle, {
     bool keyShow = false,
@@ -865,8 +863,7 @@ class BrnInfoModal {
     dynamic keyWidget;
 
     if (isArrow) {
-      MediaQueryData mediaQuery = MediaQueryData.fromView(View.of(context));
-      double screen = mediaQuery.size.width;
+      double screen = MediaQuery.of(context).size.width;
 
       if (keyShow) {
         keyWidget = Container(
