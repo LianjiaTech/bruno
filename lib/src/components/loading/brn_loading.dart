@@ -47,7 +47,7 @@ class BrnPageLoading extends StatelessWidget {
     // 获取实际文字长度
     TextPainter textPainter = TextPainter(
       textDirection: TextDirection.ltr,
-      textScaleFactor: MediaQuery.of(context).textScaleFactor,
+      textScaler: MediaQuery.textScalerOf(context),
       text: TextSpan(
           text: loadingText,
           style: TextStyle(

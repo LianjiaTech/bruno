@@ -1,5 +1,3 @@
-
-// TODO: change `my_app` to refer to your app package name.
 import 'package:example/sample/home/home.dart';
 import 'package:flutter/material.dart';
 

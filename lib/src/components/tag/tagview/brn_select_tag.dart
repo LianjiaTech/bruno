@@ -200,7 +200,7 @@ class _BrnSelectTagState extends State<BrnSelectTag> {
       constraints: BoxConstraints(minWidth: widget.themeData!.tagMinWidth),
       decoration: BoxDecoration(
           color: selected
-              ? (widget.themeData!.selectedTagBackgroundColor.withOpacity(0.12))
+              ? (widget.themeData!.selectedTagBackgroundColor.withAlpha(30))
               : (widget.themeData!.tagBackgroundColor),
           borderRadius: BorderRadius.circular(widget.themeData!.tagRadius)),
       width: widget.fixWidthMode ? widget.themeData!.tagWidth : null,

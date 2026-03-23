@@ -86,7 +86,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
         .buttonConfig.merge(defaultThemeConfig);
 
     TextPainter textPainter =
-        TextPainter(textScaleFactor: MediaQuery.of(context).textScaleFactor);
+        TextPainter(textScaler: MediaQuery.textScalerOf(context));
 
     return LayoutBuilder(
       builder: (_, con) {
@@ -129,7 +129,7 @@ class BrnSmallOutlineButton extends StatelessWidget {
           fontSize: defaultThemeConfig.smallButtonFontSize,
           onTap: onTap,
           backgroundColor: Colors.white,
-          disableBackgroundColor: Color(0xffcccccc).withOpacity(0.1),
+          disableBackgroundColor: Color(0xffcccccc).withAlpha(26),
         );
       },
     );

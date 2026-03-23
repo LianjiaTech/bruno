@@ -109,7 +109,7 @@ class BrnCommonActionSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    EdgeInsets padding = MediaQueryData.fromView(View.of(context)).padding;
+    EdgeInsets padding = MediaQuery.of(context).padding;
     double maxHeight =
         MediaQuery.of(context).size.height - padding.top - padding.bottom;
 

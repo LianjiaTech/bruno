@@ -1,4 +1,4 @@
-
+<!-- 
 
 <p align="center">
   <a href="https://bruno.ke.com">
@@ -27,8 +27,6 @@
 
 <img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664527706459.png"  /><img width="180" height="180" src="https://img.ljcdn.com/beike/zjz/bruno/img/1664526385904.png"  />
 
-
-
 ## ✨ 特性
 
 - 提炼自企业级移动端产品的交互和视觉风格
@@ -39,7 +37,6 @@
 ### Demo 下载
 
 请从 [发版包](https://github.com/LianjiaTech/bruno/releases) 中获取，或访问官网导航栏中的 [在线演示](https://bruno.ke.com/page/demo) 功能
-
 
 ## 适配 Flutter 版本
 
@@ -58,8 +55,6 @@
 | 3.4.0 | 3.10.0 |
 | 3.4.1 | 3.10.0 |
 | 3.4.2 | 3.10.0 |
-
-
 
 ## 接入
 
@@ -85,8 +80,6 @@ BrnBubbleText(
 ### 🌈 主题定制
 
 参考 [主题定制](https://bruno.ke.com/page/guide/theme) 文档
-
-
 
 ## 参与贡献
 
@@ -161,7 +154,6 @@ BrnBubbleText(
   </a>
 </div>
 
-
 ## 🔗 链接 
 
 - [首页](https://bruno.ke.com)
@@ -193,6 +185,5 @@ Bruno 作为整套标准组件，参考和引用部分开源库如下：
 - [azlistview](https://github.com/flutterchina/azlistview)
 - [flutter_path_drawing](https://github.com/dnfield/flutter_path_drawing)
 
-
 感谢以上开源库的作者
-
+ -->

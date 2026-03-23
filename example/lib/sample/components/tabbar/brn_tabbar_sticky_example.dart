@@ -1,5 +1,3 @@
-
-
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 
@@ -37,62 +35,61 @@ class _BrnTabbarStickyExampleState extends State<BrnTabbarStickyExample>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        child: Scaffold(
-          appBar: BrnAppBar(
-            title: 'TabBar Sticky 效果',
-          ),
-          body: NestedScrollView(
-            controller: scrollController,
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                buildHeaderWidget(),
-                SliverOverlapAbsorber(
-                  handle:
-                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                  sliver: SliverPersistentHeader(
-                    pinned: true,
-                    delegate: StickyTabBarDelegate(
-                        child: BrnTabBar(
-                      controller: tabController,
-                      tabs: tabs,
-                      showMore: true,
-                      moreWindowText: "Tabs描述",
-                      onTap: (state, index) {
-                        state.refreshBadgeState(index);
-                        scrollController.animateTo(
-                            globalKey.currentContext!.size!.height,
-                            duration: Duration(milliseconds: 200),
-                            curve: Curves.linear);
-                      },
-                      onMorePop: () {},
-                      closeController: closeWindowController,
-                    )),
-                  ),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+
+        closeWindowController!.closeMoreWindow();
+      },
+      child: Scaffold(
+        appBar: BrnAppBar(
+          title: 'TabBar Sticky 效果',
+        ),
+        body: NestedScrollView(
+          controller: scrollController,
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              buildHeaderWidget(),
+              SliverOverlapAbsorber(
+                handle:
+                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                sliver: SliverPersistentHeader(
+                  pinned: true,
+                  delegate: StickyTabBarDelegate(
+                      child: BrnTabBar(
+                    controller: tabController,
+                    tabs: tabs,
+                    showMore: true,
+                    moreWindowText: "Tabs描述",
+                    onTap: (state, index) {
+                      state.refreshBadgeState(index);
+                      scrollController.animateTo(
+                          globalKey.currentContext!.size!.height,
+                          duration: Duration(milliseconds: 200),
+                          curve: Curves.linear);
+                    },
+                    onMorePop: () {},
+                    closeController: closeWindowController,
+                  )),
                 ),
-              ];
-            },
-            body: TabBarView(
-              controller: this.tabController,
-              children: <Widget>[
-                Center(child: Text('业务一')),
-                Center(child: Text('业务二')),
-                Center(child: Text('业务三')),
-                Center(child: Text('业务四')),
-                Center(child: Text('业务五')),
-                Center(child: Text('业务六')),
-              ],
-            ),
+              ),
+            ];
+          },
+          body: TabBarView(
+            controller: this.tabController,
+            children: <Widget>[
+              Center(child: Text('业务一')),
+              Center(child: Text('业务二')),
+              Center(child: Text('业务三')),
+              Center(child: Text('业务四')),
+              Center(child: Text('业务五')),
+              Center(child: Text('业务六')),
+            ],
           ),
         ),
-        onWillPop: () {
-          if (closeWindowController!.isShow) {
-            closeWindowController!.closeMoreWindow();
-            return Future.value(false);
-          }
-          return Future.value(true);
-        });
+      ),
+    );
   }
 
   Widget buildHeaderWidget() {

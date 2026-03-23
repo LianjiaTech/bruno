@@ -227,7 +227,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
                         ? Colors.white
                         : BrnThemeConfigurator.instance
                             .getConfig()
-                            .commonConfig.colorTextBaseInverse.withOpacity(0.7),
+                            .commonConfig.colorTextBaseInverse.withAlpha(178),
                   ),
                 ),
               )),
@@ -268,7 +268,7 @@ class BrnBottomButtonPanel extends StatelessWidget {
                     ? Colors.white
                     : BrnThemeConfigurator.instance
                         .getConfig()
-                        .commonConfig.colorTextBaseInverse.withOpacity(0.7),
+                        .commonConfig.colorTextBaseInverse.withAlpha(178),
               ),
             ),
           )),

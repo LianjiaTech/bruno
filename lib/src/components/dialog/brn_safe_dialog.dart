@@ -34,7 +34,6 @@ class BrnSafeDialog {
           _safeDialogRoute.completer.complete(result);
         }
       } catch (e) {
-        /// TODO 可能会抛出异常, 直接打印到日志区
         print(e);
       }
     }
@@ -78,8 +77,8 @@ class BrnSafeDialog {
     // 将结果通过 Completer 转发出去
     _dialogStates[tag] ??= [];
     _dialogStates[tag]?.add(safeDialogRoute);
-    Future<T?> future =
-        Navigator.of(context, rootNavigator: useRootNavigator).push<T>(safeDialogRoute);
+    Future<T?> future = Navigator.of(context, rootNavigator: useRootNavigator)
+        .push<T>(safeDialogRoute);
     future.then((result) {
       _dialogStates[tag]?.remove(safeDialogRoute);
       if (!safeDialogRoute.completer.isCompleted) {
@@ -92,7 +91,6 @@ class BrnSafeDialog {
 
 /// 基于 DialogRoute 简单封装了 Completer，用于 Route 结果的转发
 class _SafeDialogRoute<T> extends DialogRoute<T> {
-
   /// 转发 Route 结果
   final Completer<T?> completer = Completer<T?>();
 
@@ -105,14 +103,14 @@ class _SafeDialogRoute<T> extends DialogRoute<T> {
     String? barrierLabel,
     bool useSafeArea = true,
     RouteSettings? settings,
-  })  : super(
-    context:context,
-    builder: builder,
-    themes: themes,
-    barrierColor: barrierColor,
-    barrierDismissible: barrierDismissible,
-    barrierLabel: barrierLabel,
-    useSafeArea: useSafeArea,
-    settings: settings,
-  );
+  }) : super(
+          context: context,
+          builder: builder,
+          themes: themes,
+          barrierColor: barrierColor,
+          barrierDismissible: barrierDismissible,
+          barrierLabel: barrierLabel,
+          useSafeArea: useSafeArea,
+          settings: settings,
+        );
 }

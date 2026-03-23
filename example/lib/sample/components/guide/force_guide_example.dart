@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +53,13 @@ class _ForceGuideExampleState extends State<ForceGuideExample> {
   }
 
   Widget build(BuildContext context) {
-    return WillPopScope(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+
+        intro.dispose();
+      },
       child: Scaffold(
         appBar: BrnAppBar(
           title: Text(
@@ -149,11 +153,6 @@ class _ForceGuideExampleState extends State<ForceGuideExample> {
           },
         ),
       ),
-      onWillPop: () async {
-        // destroy guide page when tap back key
-        intro.dispose();
-        return true;
-      },
     );
   }
 }

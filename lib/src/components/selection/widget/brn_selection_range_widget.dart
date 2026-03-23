@@ -1,4 +1,3 @@
-
 import 'package:bruno/src/components/button/brn_big_main_button.dart';
 import 'package:bruno/src/components/calendar/brn_calendar_view.dart';
 import 'package:bruno/src/components/line/brn_line.dart';
@@ -82,7 +81,7 @@ class _BrnRangeSelectionGroupWidgetState
 
   @override
   void initState() {
-    _screenWidth = View.of(context).physicalSize.width / View.of(context).devicePixelRatio;
+    _screenWidth = MediaQuery.of(context).size.width;
     _initData();
     _tabController = TabController(vsync: this, length: _firstList.length);
     if (_firstIndex >= 0) {
@@ -216,7 +215,6 @@ class _BrnRangeSelectionGroupWidgetState
   List<Widget> _getOneTabContent(BrnSelectionEntity filterItem) {
     List<BrnSelectionEntity> subFilterList = filterItem.children;
 
-    /// TODO 还要添加 Date  DateRange 类型的判断。
     List<BrnSelectionEntity> tagFilterList = subFilterList
         .where((f) =>
             f.filterType != BrnSelectionFilterType.range &&
@@ -237,14 +235,10 @@ class _BrnRangeSelectionGroupWidgetState
 
     ///如果指定展示列，则按照指定列展示，否则动态计算宽度。最大不超过四列。
     if (widget.rowCount == null) {
-      int oneCountTagWidth =
-          (_screenWidth - 40 - 12 * (1 - 1)) ~/ 1;
-      int twoCountTagWidth =
-          (_screenWidth - 40 - 12 * (2 - 1)) ~/ 2;
-      int threeCountTagWidth =
-          (_screenWidth - 40 - 12 * (3 - 1)) ~/ 3;
-      int fourCountTagWidth =
-          (_screenWidth - 40 - 12 * (4 - 1)) ~/ 4;
+      int oneCountTagWidth = (_screenWidth - 40 - 12 * (1 - 1)) ~/ 1;
+      int twoCountTagWidth = (_screenWidth - 40 - 12 * (2 - 1)) ~/ 2;
+      int threeCountTagWidth = (_screenWidth - 40 - 12 * (3 - 1)) ~/ 3;
+      int fourCountTagWidth = (_screenWidth - 40 - 12 * (4 - 1)) ~/ 4;
       if (maxWidthSize.width > twoCountTagWidth) {
         tagWidth = oneCountTagWidth;
       } else if (threeCountTagWidth < maxWidthSize.width &&
@@ -257,10 +251,8 @@ class _BrnRangeSelectionGroupWidgetState
         tagWidth = fourCountTagWidth;
       }
     } else {
-      tagWidth = (_screenWidth -
-              40 -
-              12 * (widget.rowCount! - 1)) ~/
-          widget.rowCount!;
+      tagWidth =
+          (_screenWidth - 40 - 12 * (widget.rowCount! - 1)) ~/ widget.rowCount!;
     }
 
     var tagContainer = tagFilterList.isNotEmpty
@@ -435,12 +427,15 @@ class _BrnRangeSelectionGroupWidgetState
         if (!rangeEntity.isValidRange()) {
           FocusScope.of(context).requestFocus(FocusNode());
           if (rangeEntity.filterType == BrnSelectionFilterType.range) {
-            BrnToast.show(BrnIntl.of(context).localizedResource.enterRangeError, context);
+            BrnToast.show(
+                BrnIntl.of(context).localizedResource.enterRangeError, context);
           } else if (rangeEntity.filterType ==
                   BrnSelectionFilterType.dateRange ||
               rangeEntity.filterType ==
                   BrnSelectionFilterType.dateRangeCalendar) {
-            BrnToast.show(BrnIntl.of(context).localizedResource.selectRangeError, context);
+            BrnToast.show(
+                BrnIntl.of(context).localizedResource.selectRangeError,
+                context);
           }
           return;
         }
@@ -664,10 +659,11 @@ class _BrnRangeSelectionGroupWidgetState
   bool _hasCalendarItem(BrnSelectionEntity entity) {
     bool hasCalendarItem = false;
     hasCalendarItem = entity.children
-            .where((_) =>
-                _.filterType == BrnSelectionFilterType.date ||
-                _.filterType == BrnSelectionFilterType.dateRangeCalendar)
-            .toList().isNotEmpty;
+        .where((_) =>
+            _.filterType == BrnSelectionFilterType.date ||
+            _.filterType == BrnSelectionFilterType.dateRangeCalendar)
+        .toList()
+        .isNotEmpty;
 
     /// 查找第二层级
     if (!hasCalendarItem) {

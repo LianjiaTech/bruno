@@ -40,7 +40,7 @@ class BrnGuide {
   late Widget _stepWidget;
   List<Map> _configMap = [];
   List<GlobalKey> _globalKeys = [];
-  final Color _maskColor = Colors.black.withOpacity(.6);
+  final Color _maskColor = Colors.black.withAlpha(153);
   final Duration _animationDuration = Duration(milliseconds: 300);
   final _th = _Throttling(duration: Duration(milliseconds: 500));
   late Size _lastScreenSize;

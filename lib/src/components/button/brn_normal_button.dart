@@ -208,7 +208,7 @@ class BrnNormalButton extends StatelessWidget {
     if (isEnable) {
       textColor = this.textColor;
     } else {
-      textColor = this.disableTextColor ?? (this.textColor).withOpacity(0.7);
+      textColor = this.disableTextColor ?? (this.textColor).withAlpha(178);
     }
 
     return TextStyle(
